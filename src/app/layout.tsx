@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto } from "next/font/google";
+import { Roboto, Unbounded } from "next/font/google";
 import "./globals.scss";
 
 const roboto = Roboto({
   variable: "--font-roboto-sans",
+  subsets: ["latin"],
+});
+const unbounded = Unbounded({
+  variable: "--font-unbounded-sans",
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
@@ -18,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable}`}>
+      <body className={`${roboto.variable} ${unbounded.variable}`}>
         {children}
       </body>
     </html>
