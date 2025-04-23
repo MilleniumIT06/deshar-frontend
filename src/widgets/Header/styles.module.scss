@@ -1,0 +1,131 @@
+@use "./../../shared/scss/breakpont"as breakpoint;
+@use './../../shared/scss/mini'as mini;
+
+.index {
+    position: relative;
+    border-bottom: 1px solid var(--neutral-light);
+    width: 100%;
+    height: 75px;
+
+
+
+
+
+    &__btn {
+        max-width: 92px;
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--light-color);
+
+    }
+
+    &__burger {
+        display: none;
+
+        &.burger--active {
+            color: var(--light-color);
+        }
+    }
+
+    &__mobile_menu {
+        &.menu--active {
+            display: block;
+        }
+    }
+
+    @include breakpoint.middle-tablet {
+        &__nav {
+            display: none;
+        }
+
+        &__inner {
+            justify-content: start;
+        }
+
+        &__logo {
+            margin-right: auto;
+        }
+
+        &__btn {
+            margin-right: 5%;
+        }
+
+        &__burger {
+            display: block;
+        }
+
+    }
+
+    @include breakpoint.small-mobile {
+        &__btn {
+            display: none;
+        }
+    }
+}
+
+.burger {
+    @include mini.burger;
+
+    z-index: 110;
+
+}
+
+.headerContainer {
+    height: 100%;
+}
+
+.logo {
+    width: 188px;
+    height: 28px;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    a {
+        &:focus {
+            outline: 2px solid var(--primary-medium);
+        }
+    }
+
+
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    gap: 43px;
+
+
+}
+
+.listItem {
+    a {
+        font-family: "Zona Pro", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 175%;
+        color: #202020;
+
+
+        &:hover {
+            color: var(--primary-medium);
+        }
+
+
+        &:focus {
+            outline: 2px solid var(--primary-medium);
+        }
+
+    }
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}

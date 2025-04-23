@@ -43,3 +43,19 @@ h5,
 h6 {
   margin: 0;
 }
+
+.container {
+  max-width: 1185px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
