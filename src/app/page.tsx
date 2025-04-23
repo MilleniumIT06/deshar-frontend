@@ -1,3 +1,4 @@
+import { Button } from "@/shared/ui/Button";
 import styles from "./page.module.scss";
 
 export default function Home() {
@@ -5,6 +6,12 @@ export default function Home() {
   return (
     <div className={styles.page}>
       TEst
+      <Button type="primary">
+        Test
+      </Button>
+      <Button type="secondary">
+        Test
+      </Button>
     </div>
   );
 }

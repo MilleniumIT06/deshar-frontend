@@ -1,0 +1,49 @@
+.index {
+    border-radius: 20px;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.primary {
+    color: var(--light-color);
+    background: var(--primary-medium);
+
+
+    &:hover {
+        border: 1px solid var(--primary-medium);
+        color: var(--primary-medium);
+        background: var(--light-color);
+    }
+
+
+
+    &:active {
+        box-shadow: 2px 2px 5px var(--primary-medium);
+    }
+
+    &:focus {
+        box-shadow: 2px 2px 5px var(--primary-medium);
+    }
+}
+
+.secondary {
+    color: var(--black-color);
+    background: var(--light-color);
+
+
+    &:hover {
+        border: 1px solid var(--light-color);
+        color: var(--light-color);
+        background-color: var(--primary-medium);
+    }
+
+
+    &:active {
+        box-shadow: 2px 2px 5px var(--light-color);
+    }
+
+    &:focus {
+        box-shadow: 2px 2px 5px var(--light-color);
+    }
+}
