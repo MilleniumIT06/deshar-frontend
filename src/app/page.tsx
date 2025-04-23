@@ -1,6 +1,7 @@
 import { Button } from "@/shared/ui/Button";
 import styles from "./page.module.scss";
 import { Logo } from "@/shared/ui/Logo";
+import { Avatar } from "@/shared/ui/Avatar";
 
 export default function Home() {
   console.log("dasds");
@@ -28,6 +29,7 @@ export default function Home() {
       </Button>
       <Logo />
       <Logo size="small" />
+      <Avatar />
     </div>
   );
 }
