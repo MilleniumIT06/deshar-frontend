@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import cn from 'classnames';
 import styles from './styles.module.scss';
+import { Button } from '@/shared/ui/Button';
 export const Header = () => {
 
     return (<header className={styles.index}>
@@ -19,7 +20,7 @@ export const Header = () => {
                         />
                     </a>
                 </div>
-                <nav className="header__nav">
+                <nav className={styles.headerNav}>
                     <ul className={`list-reset ${styles.list}`}>
                         <li className={styles.listItem}>
                             <a href="#">Уроки</a>
@@ -35,11 +36,11 @@ export const Header = () => {
                         </li>
                     </ul>
                 </nav>
-                <button className="btn-reset btn btn--primary header__btn">
+                <Button variant='primary' size="small" className={styles.headerBtn}>
                     Войти
-                </button>
-                <button className="btn-reset burger header__burger" aria-label="Открыть меню" aria-expanded="false" data-burger>
-                    <span className="burger__line"></span>
+                </Button>
+                <button className={cn("btn-reset", styles.headerBurger)} aria-label="Открыть меню" aria-expanded="false" data-burger>
+                    <span className={styles.burgerLine}></span>
                 </button>
             </div>
         </div>

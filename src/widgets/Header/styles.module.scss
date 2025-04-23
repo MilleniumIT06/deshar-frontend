@@ -6,61 +6,6 @@
     border-bottom: 1px solid var(--neutral-light);
     width: 100%;
     height: 75px;
-
-
-
-
-
-    &__btn {
-        max-width: 92px;
-        font-weight: 600;
-        font-size: 16px;
-        color: var(--light-color);
-
-    }
-
-    &__burger {
-        display: none;
-
-        &.burger--active {
-            color: var(--light-color);
-        }
-    }
-
-    &__mobile_menu {
-        &.menu--active {
-            display: block;
-        }
-    }
-
-    @include breakpoint.middle-tablet {
-        &__nav {
-            display: none;
-        }
-
-        &__inner {
-            justify-content: start;
-        }
-
-        &__logo {
-            margin-right: auto;
-        }
-
-        &__btn {
-            margin-right: 5%;
-        }
-
-        &__burger {
-            display: block;
-        }
-
-    }
-
-    @include breakpoint.small-mobile {
-        &__btn {
-            display: none;
-        }
-    }
 }
 
 .burger {
@@ -70,29 +15,41 @@
 
 }
 
+.headerNav {
+    @include breakpoint.middle-tablet {
+        display: none;
+    }
+}
+
+.headerBtn {
+    max-width: 92px;
+    height: 43px;
+
+    @include breakpoint.middle-tablet {
+        margin-right: 5%;
+    }
+
+    @include breakpoint.small-mobile {
+        display: none;
+    }
+}
+
 .headerContainer {
     height: 100%;
 }
 
-.logo {
-    width: 188px;
-    height: 28px;
+.headerBurger {
+    display: none;
 
-    img {
+    &.burger--active {
+        color: var(--neutral-white);
+    }
+
+    @include breakpoint.middle-tablet {
         display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
     }
-
-    a {
-        &:focus {
-            outline: 2px solid var(--primary-medium);
-        }
-    }
-
-
 }
+
 
 .list {
     display: flex;
@@ -128,4 +85,8 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
+
+    @include breakpoint.middle-tablet {
+        justify-content: start;
+    }
 }
