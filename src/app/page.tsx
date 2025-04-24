@@ -3,6 +3,7 @@ import { Info } from "@/components/Info";
 import { Learn } from "@/components/Learn";
 import styles from "./page.module.scss";
 import { Reviews } from "@/components/Reviews";
+import { Subscription } from "@/components/Subcription";
 
 export default function Home() {
 
@@ -12,6 +13,7 @@ export default function Home() {
       <Info />
       <Learn />
       <Reviews />
+      <Subscription />
     </main>
   );
 }

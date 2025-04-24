@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import cn from 'classnames';
 import styles from './styles.module.scss';
 import { Button } from '@/shared/ui/Button';
+import { Logo } from '@/shared/ui/Logo';
 export const Header = () => {
 
     return (<header className={styles.index}>
@@ -10,16 +10,7 @@ export const Header = () => {
 
 
             <div className={styles.inner}>
-                <div className={styles.logo}>
-                    <a href="/">
-                        <Image
-                            width={188}
-                            height={28}
-                            src="/logo.svg"
-                            alt="Picture of the author"
-                        />
-                    </a>
-                </div>
+                <Logo />
                 <nav className={styles.headerNav}>
                     <ul className={`list-reset ${styles.list}`}>
                         <li className={styles.listItem}>
