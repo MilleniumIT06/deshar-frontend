@@ -55,7 +55,10 @@ h6 {
   margin: 0;
   padding: 0;
 }
-
+.is-hidden {
+  /* stylelint-disable-next-line declaration-no-important */
+  display: none !important;
+}
 a {
   text-decoration: none;
 }
