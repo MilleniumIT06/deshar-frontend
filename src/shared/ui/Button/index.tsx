@@ -12,7 +12,8 @@ const buttonVariants = cva(
                 primary: styles.primary,
                 secondary: styles.secondary,
                 iconPrimary: styles.iconPrimary,
-                iconSecondary: styles.iconSecondary
+                iconSecondary: styles.iconSecondary,
+                iconThird:styles.iconThird
             },
             size: {
                 default: styles.big,
