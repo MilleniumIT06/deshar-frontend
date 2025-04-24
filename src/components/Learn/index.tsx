@@ -19,8 +19,6 @@ export const Learn = () => {
                             <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
                             <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
                             <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
-
-
                         </ul>
                     </div>
                 </div>
