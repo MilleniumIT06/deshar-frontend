@@ -9,6 +9,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { useState, useEffect } from 'react';
 import { SliderControl } from '../SliderControl';
+import { Button } from '@/shared/ui/Button';
 export const Reviews = () => {
     const [isMounted, setIsMounted] = useState(false);
 
@@ -27,8 +28,12 @@ export const Reviews = () => {
                     <div className={styles.sliderWrapper}>
 
                         <Swiper
-                            modules={[Navigation,A11y]}
-                            // navigation={{}}
+                            modules={[Navigation, A11y]}
+                            navigation={{
+                                enabled: true,
+                                prevEl: '.slider__btn_left',
+                                nextEl: '.slider__btn_right'
+                            }}
                             spaceBetween={50}
                             slidesPerView={3}  //Number of slides per view
                             style={{ maxWidth: "1155px", margin: "0 auto" }} //Optional, for styling
@@ -58,13 +63,30 @@ export const Reviews = () => {
                                 <ReviewsSlide />
                             </SwiperSlide>
                         </Swiper>
-                        {/* <div className={styles.sliderNavigation}>
-                            <SliderControl type="prev">P</SliderControl>
-                            <SliderControl type="next">N</SliderControl>
-
+                        {/* <div className={styles.reviewsNavigation}>
+                            <button className={cn("btn-reset", styles.reviewsBtn, "slider__btn_left")}>
+                                <svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 17L2 9L11 1" stroke="#060606" stroke-width="2" />
+                                </svg>
+                            </button>
+                            <button className={cn("btn-reset", styles.reviewsBtn, "slider__btn_right")}>
+                                <svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 17L10 9L1 1" stroke="#303030" stroke-width="2" />
+                                </svg>
+                            </button>
                         </div> */}
-                        <button className='prevW'>p</button>
-                        <button className='nextW'>n</button>
+                        <div className={styles.reviewsNavigation}>
+                            <Button variant="iconPrimary" size="iconBig" className={cn("btn-reset", styles.reviewsBtn, "slider__btn_left")}>
+                                <svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 17L2 9L11 1" stroke-width="2" />
+                                </svg>
+                            </Button>
+                            <Button variant="iconPrimary" size="iconBig" className={cn("btn-reset", styles.reviewsBtn, "slider__btn_right")}>
+                                <svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 17L10 9L1 1" stroke-width="2" />
+                                </svg>
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div >
