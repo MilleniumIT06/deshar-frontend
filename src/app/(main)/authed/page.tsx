@@ -1,4 +1,4 @@
-import { Successes, Continue } from "@/components";
+import { Successes, Continue, TopClassmates } from "@/components";
 
 
 export default function Authed() {
@@ -7,6 +7,7 @@ export default function Authed() {
         <main>
             <Successes />
             <Continue />
+            <TopClassmates />
         </main>
     );
 }

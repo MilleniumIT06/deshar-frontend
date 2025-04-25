@@ -1,6 +1,6 @@
-@use './../mixins/breakpoint'as breakpoint;
+@use './../../shared/scss//breakpoint'as breakpoint;
 
-.top-classmates {
+.topClassmates {
     &__inner {
         display: flex;
         flex-direction: column;
@@ -37,7 +37,7 @@
 
         &.active {
             span {
-                color: var(--light-color);
+                color: var(--neutral-white);
             }
 
             border-radius: 28px;
@@ -46,7 +46,7 @@
     }
 }
 
-.classmates-table {
+.classmatesTable {
     margin-top: 40px;
     width: 100%;
 
@@ -66,76 +66,3 @@
     }
 }
 
-.table-item {
-    position: relative;
-    height: 80px;
-
-    &__place {
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        height: 60px;
-
-        div {
-            position: relative;
-            width: 32px;
-            height: 32px;
-            background-image: url("./../../img/svg/star.svg");
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-
-            @include breakpoint.mobile {
-                width: 29px;
-                height: 29px;
-            }
-        }
-
-
-        span {
-            position: absolute;
-            left: 35%;
-            top: 50%;
-            z-index: 11;
-            font-family: var(--second-family);
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 150%;
-            text-align: center;
-            transform: translateY(-50%);
-
-        }
-    }
-
-
-    &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        z-index: 100;
-        width: 100%;
-        height: 1px;
-        background-color: #d6d6d6;
-    }
-
-}
-
-.table-item__points,
-.table-item__done,
-.table-item__name,
-.table-item__time {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 160%;
-    color: var(--neutral-darkest);
-
-    @include breakpoint.mobile {
-        font-size: 16px;
-    }
-}
-
-.table-item__points {
-    color: var(--primary-green);
-}

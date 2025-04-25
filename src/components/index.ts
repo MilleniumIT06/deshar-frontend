@@ -6,3 +6,4 @@ export {Reviews} from './Reviews';
 export {Subscription} from './Subcription';
 export {Continue} from './Continue';
 export {Successes} from './Successes';
+export {TopClassmates} from './TopClassmates';

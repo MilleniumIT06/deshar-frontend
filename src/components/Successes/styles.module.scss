@@ -273,7 +273,7 @@
     width: 168px;
     min-height: 44px;
     max-height: 44px;
-    background: var(--light-color);
+    background: var(--neutral-white);
     transition: all 1.5s ease;
 
     @include breakpoint.mobile {
