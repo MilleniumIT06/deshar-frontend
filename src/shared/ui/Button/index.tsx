@@ -13,7 +13,7 @@ const buttonVariants = cva(
                 secondary: styles.secondary,
                 iconPrimary: styles.iconPrimary,
                 iconSecondary: styles.iconSecondary,
-                iconThird:styles.iconThird
+                iconThird: styles.iconThird
             },
             size: {
                 default: styles.big,
@@ -33,7 +33,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> { }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, variant, size, ...props }, ref) => {

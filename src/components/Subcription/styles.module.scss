@@ -30,11 +30,10 @@
 
 .list {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     margin-top: 50px;
-    gap: 32px;
+    gap: 30px;
 
     @include breakpoint.mobile {
         flex-wrap: nowrap;

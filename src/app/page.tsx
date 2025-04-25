@@ -1,9 +1,6 @@
-import { Hero } from "@/components/Hero";
-import { Info } from "@/components/Info";
-import { Learn } from "@/components/Learn";
+import { Hero, Info, Learn, Reviews, Subscription, Question } from "@/components";
 import styles from "./page.module.scss";
-import { Reviews } from "@/components/Reviews";
-import { Subscription } from "@/components/Subcription";
+
 
 export default function Home() {
 
@@ -14,6 +11,7 @@ export default function Home() {
       <Learn />
       <Reviews />
       <Subscription />
+      <Question />
     </main>
   );
 }

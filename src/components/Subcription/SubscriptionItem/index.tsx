@@ -77,7 +77,7 @@ const SubscriptionItem = ({
                 <span className={styles.footerPrice}>
                     {price > 0 ? price + " ₽" : "Бесплатно"}
                 </span>
-                <Button variant={variant !== "primary" ? "secondary" : "primary"} size="big" className={styles.subscriptionBtn}>
+                <Button variant={variant !== "primary" ? "secondary" : "primary"} size="medium" className={styles.subscriptionBtn}>
                     {price > 0 ? "Записаться" : "Попробовать"}
                 </Button>
                 {/* <button className={cn("btn-reset" btn btn--primary subscription__item_btn">{price > 0 ? "Записаться" : "Попробовать"}</button> */}
