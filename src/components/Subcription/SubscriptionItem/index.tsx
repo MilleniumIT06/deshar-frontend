@@ -47,8 +47,8 @@ const SubscriptionItem = ({
                     <li className={styles.infoItem}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 12.6413L10.6027 15L16 10" strokeWidth="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
+                            <path d="M8 12.6413L10.6027 15L16 10" strokeWidth="2" strokeLinecap="round"
+                                strokeLinejoin="round" />
                             <circle cx="12" cy="12" r="8" strokeWidth="2" />
                         </svg>
                         <span>{subjectsCount} предмета</span>
@@ -56,8 +56,8 @@ const SubscriptionItem = ({
                     <li className={styles.infoItem}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 12.6413L10.6027 15L16 10" strokeWidth="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
+                            <path d="M8 12.6413L10.6027 15L16 10" strokeWidth="2" strokeLinecap="round"
+                                strokeLinejoin="round" />
                             <circle cx="12" cy="12" r="8" strokeWidth="2" />
                         </svg>
                         <span>{lessonsCount} занятий/мес</span>
@@ -65,8 +65,8 @@ const SubscriptionItem = ({
                     <li className={styles.infoItem}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 12.6413L10.6027 15L16 10" strokeWidth="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
+                            <path d="M8 12.6413L10.6027 15L16 10" strokeWidth="2" strokeLinecap="round"
+                                strokeLinejoin="round" />
                             <circle cx="12" cy="12" r="8" strokeWidth="2" />
                         </svg>
                         <span>{modulesCount} модулей</span>

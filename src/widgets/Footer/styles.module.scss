@@ -1,0 +1,212 @@
+@use './../../shared/scss/breakpont'as breakpoint;
+@use './../../shared/scss/mini'as mini;
+
+.footer {
+    width: 100%;
+    min-height: 512px;
+    background-color: #494949;
+
+    &__logo {
+        width: 188px;
+        height: 28px;
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__inner {
+        padding-top: 56px;
+    }
+
+    &__main {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 60px;
+
+        &_left {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+
+        @include breakpoint.tablet {
+            flex-direction: column;
+            gap: 30px;
+        }
+    }
+
+    &__cols {
+        display: flex;
+        align-items: start;
+        gap: 82px;
+
+        @include breakpoint.tablet {
+            gap: 60px;
+        }
+
+        @include breakpoint.small-tablet {
+            flex-wrap: wrap;
+            justify-content: start;
+        }
+    }
+
+    &__col {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        text-align: left;
+        gap: 28px;
+
+        &_title {
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 140%;
+            color: var(--neutral-white);
+        }
+
+        &_list {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 12px;
+        }
+
+        &_item {
+            a {
+                font-family: var(--font-family);
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 167%;
+                color: #d6d6d6;
+
+                @include mini.hover {
+                    &:hover {
+                        color: #fffbfb;
+                    }
+                }
+
+                &:active {
+                    text-decoration: underline;
+                }
+
+                @include breakpoint.mobile {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+
+    &__bottom {
+        border-top: 1px solid #7d7979;
+        padding-top: 20px;
+
+        &_copyright {
+            font-family: var(--font-family);
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 167%;
+            color: #d6d6d6;
+        }
+
+        &_inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @include breakpoint.small-tablet {
+                flex-flow: row-reverse wrap;
+                gap: 20px;
+            }
+
+            @include breakpoint.mobile {
+                padding-bottom: 5%;
+            }
+        }
+    }
+
+    &__agreement {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        &_item {
+            a {
+                font-family: var(--font-family);
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 143%;
+                color: #d6d6d6;
+
+                @include mini.hover {
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+
+            }
+        }
+    }
+
+    &__address {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        max-width: 311px;
+        gap: 10px;
+
+        a {
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 167%;
+            color: #d6d6d6;
+
+            @include mini.hover {
+                &:hover {
+                    color: #fff;
+                }
+            }
+
+            &:active {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__socials {
+        &_list {
+            display: flex;
+            align-items: start;
+            padding-top: 10px;
+            gap: 15px;
+        }
+    }
+
+    &__social {
+        width: 36px;
+        height: 36px;
+
+        a {
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            @include mini.hover {
+                &:hover {
+                    filter: drop-shadow(0 0 2px #d6d6d6);
+                }
+            }
+        }
+    }
+}
