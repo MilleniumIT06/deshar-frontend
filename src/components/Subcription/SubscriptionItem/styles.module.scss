@@ -1,48 +1,56 @@
-@use "./../../../shared/scss/breakpont"as breakpoint;
+@use "./../../../shared/scss/breakpoint"as breakpoint;
 @use "./../../../shared/scss/mini"as mini;
+
 .index {
     position: relative;
-      display: flex;
-      flex-basis: 280px;
-      flex-direction: column;
-      border-radius: 32px;
-      padding: 28px;
-      height: 480px;
-      @include breakpoint.mobile {
+    display: flex;
+    flex-basis: 280px;
+    flex-direction: column;
+    border-radius: 32px;
+    padding: 28px;
+    height: 480px;
+
+    @include breakpoint.mobile {
         flex: 1 0 150%;
         scroll-snap-align: center;
-      }
+    }
 
-    
-  }
-.header{
+
+}
+
+.header {
     display: flex;
     align-items: start;
     border-bottom: 1px solid #d6d6d6;
     padding-bottom: 20px;
 }
-.title{
+
+.title {
     font-family: var(--font-family);
     font-weight: 700;
     font-size: 24px;
     line-height: 150%;
     text-align: center;
 }
+
 .body {
     padding-top: 20px;
 }
-.subscriptionBtn{
-  
+
+.subscriptionBtn {
+
     width: 100%;
-  
+
 }
-.info{
+
+.info {
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: start;
     gap: 15px;
 }
+
 .discount {
     position: absolute;
     right: -5%;
@@ -54,45 +62,47 @@
     width: 76px;
     height: 76px;
     background-image: url('/discount.svg');
-    background-position:  center;
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 
-@include breakpoint.mobile {
-right: 0;
-top: 0;
-}
+    @include breakpoint.mobile {
+        right: 0;
+        top: 0;
+    }
 
     span {
-      font-family: var(--font-family);
-font-weight: 600;
-font-size: 20px;
-line-height: 140%;
-text-align: center;
-color: #060606;
+        font-family: var(--font-family);
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 140%;
+        text-align: center;
+        color: #060606;
     }
-  }
-.infoItem {
-    
-        display: flex;
-        align-items: center;
-        gap: 12px;
-
-        svg {
-            flex-shrink: 0;
-            width: 24px;
-            height: 24px;
-            stroke: currentcolor;
-        }
-
-        span {
-            font-family: var(--font-family);
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 175%;
-        }
-    
 }
+
+.infoItem {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    svg {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        stroke: currentcolor;
+    }
+
+    span {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 175%;
+    }
+
+}
+
 .footer {
     display: flex;
     flex-direction: column;
@@ -101,12 +111,14 @@ color: #060606;
     margin-top: auto;
     text-align: center;
 }
+
 .footerPrice {
     font-family: var(--font-family);
     font-weight: 700;
     font-size: 32px;
     text-align: center;
 }
+
 .itemPrimary {
     background-color: var(--primary-lightest);
 
@@ -138,6 +150,7 @@ color: #060606;
         color: var(--neutral-white);
     }
 }
+
 .itemTertiary {
     background: linear-gradient(225deg, #cb27a2 0%, #7e48c0 100%);
 

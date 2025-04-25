@@ -1,4 +1,5 @@
-@use './../shared/scss/breakpont'as breakpoint;
+@use './../shared/scss/breakpoint'as breakpoint;
+
 :root {
   --neutral-white: #fff;
   --black-color: #000;
@@ -44,6 +45,7 @@ h5,
 h6 {
   margin: 0;
 }
+
 .container {
   max-width: 1185px;
   padding: 0 15px;
@@ -55,13 +57,22 @@ h6 {
   margin: 0;
   padding: 0;
 }
+
 .is-hidden {
   /* stylelint-disable-next-line declaration-no-important */
   display: none !important;
 }
+
 a {
   text-decoration: none;
 }
+
+.btn-reset {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .section__title {
   font-family: var(--font-family);
   font-weight: 700;
@@ -77,6 +88,7 @@ a {
     font-size: 31px;
   }
 }
+
 .swiper {
   width: 100%;
   height: 100%;

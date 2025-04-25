@@ -1,4 +1,4 @@
-@use './../../shared/scss/breakpont'as breakpoint;
+@use './../../shared/scss/breakpoint'as breakpoint;
 @use './../../shared/scss/mini'as mini;
 
 .index {
@@ -19,9 +19,11 @@
     }
 
 }
+
 .heroContainer {
     height: 100%;
 }
+
 .inner {
     display: flex;
     align-items: end;
@@ -52,6 +54,7 @@
         min-height: initial;
     }
 }
+
 .info {
     display: flex;
     flex-direction: column;
@@ -81,6 +84,7 @@
         background-repeat: no-repeat;
     }
 }
+
 .title {
     font-family: var(--font-family);
     font-weight: 700;
@@ -95,29 +99,31 @@
         font-size: 37px;
     }
 }
+
 .image {
     width: 481px;
     height: 485px;
 
     img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
-      @include breakpoint.pre-tablet {
-          display: flex;
-          flex-direction: column;
-          justify-content: end;
-          height: 100%;
-      }
+    @include breakpoint.pre-tablet {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        height: 100%;
+    }
 
-      @include breakpoint.pre-middle-tablet {
-          display: none;
-      }
+    @include breakpoint.pre-middle-tablet {
+        display: none;
+    }
 
-  }
+}
+
 .heroBtn {
     margin-top: 56px;
     padding: 16px 38px;
