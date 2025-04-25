@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto, Unbounded } from "next/font/google";
-import "./../../globals.scss";
-import { Header, Footer } from "@/widgets";
+import "./../globals.scss";
+import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
 
 const roboto = Roboto({
     variable: "--font-roboto-sans",
@@ -24,6 +24,7 @@ export default function Layout({
     return (
         <html lang="en">
             <body className={`${roboto.variable} ${unbounded.variable}`}>
+                <Breadcrumbs />
                 {children}
 
             </body>

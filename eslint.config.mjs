@@ -19,7 +19,7 @@ const compat = new FlatCompat({
 const eslintConfig = [
   // ...compat.extends("next/core-web-vitals", "next/typescript"),
   ...compat.config({
-    extends: ["next", "next/core-web-vitals", "next/typescript"],
+    extends: ["next","prettier", "next/core-web-vitals", "next/typescript"],
     rules: {
       "no-console": "warn"
     }
