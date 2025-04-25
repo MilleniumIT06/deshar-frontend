@@ -7,3 +7,4 @@ export {Subscription} from './Subcription';
 export {Continue} from './Continue';
 export {Successes} from './Successes';
 export {TopClassmates} from './TopClassmates';
+export {OtherSubjects} from './OtherSubjects';
