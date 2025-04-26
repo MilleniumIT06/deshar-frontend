@@ -6,13 +6,10 @@ export const Breadcrumbs = () => {
 	return (
 		<ul className={cn('list-reset', styles.Breadcrumbs)}>
 			<li className={styles.BreadcrumbsItem}>
-				<Link href="/">TEst</Link>
+				<Link href="/">Главная</Link>
 			</li>
 			<li className={styles.BreadcrumbsItem}>
-				<Link href="/">TEst</Link>
-			</li>
-			<li className={styles.BreadcrumbsItem}>
-				<Link href="/">TEst</Link>
+				<Link href="/completed-courses">Выполненные дисциплины</Link>
 			</li>
 		</ul>
 	)

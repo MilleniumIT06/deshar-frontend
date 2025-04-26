@@ -1,0 +1,35 @@
+@use './../../../shared/scss/breakpoint'as breakpoint;
+.ProgressItem {
+    display: flex;
+    align-items: center;
+    border: 2px solid #7d7979;
+    border-radius: 20px;
+    padding: 16px 20px;
+    width: 354px;
+    height: 60px;
+
+    @include breakpoint.pre-tablet {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        margin-right: 90px;
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 175%;
+        color: var(--neutral-darkest);
+        gap: 10px;
+    }
+
+    &__count {
+        font-family: var(--font-family);
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 150%;
+        color: var(--neutral-darkest);
+    }
+}

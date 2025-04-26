@@ -24,7 +24,6 @@ export default function Layout({
     return (
         <html lang="en">
             <body className={`${roboto.variable} ${unbounded.variable}`}>
-                <Breadcrumbs />
                 {children}
 
             </body>
