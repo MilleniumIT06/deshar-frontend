@@ -14,37 +14,6 @@
         height: 80px;
     }
 
-    h6 {
-        font-family: var(--font-family);
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 150%;
-        text-align: center;
-        color: var(--neutral-darkest);
-
-        @include breakpoint.tablet {
-            font-size: 15px;
-        }
-    }
-
-    span {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        height: 44px;
-        min-width: 121px;
-        font-family: var(--font-family);
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 175%;
-        text-align: center;
-        color: var(--neutral-darkest);
-        background-color: #ebfaf3;
-
-        @include breakpoint.tablet {
-            font-size: 13px;
-        }
-    }
+   
 
 }

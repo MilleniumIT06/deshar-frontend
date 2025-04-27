@@ -2,15 +2,15 @@ import styles from './styles.module.scss';
 import cn from "classnames"
 import { cva, type VariantProps } from "class-variance-authority"
 import { Button } from '@/shared/ui/Button';
-const subscriptionItemVariants = cva(
+const RateCardVariants = cva(
     styles.index,
     {
         variants: {
             variant: {
                 default: styles.itemPrimary,
-                primary: styles.itemPrimary,
-                secondary: styles.itemSecondary,
-                tertiary: styles.itemTertiary
+                free: styles.itemPrimary,
+                standart: styles.itemSecondary,
+                premium: styles.itemTertiary
             },
         },
         defaultVariants: {
@@ -18,7 +18,7 @@ const subscriptionItemVariants = cva(
         },
     }
 )
-export interface SubscriptionItemProps extends VariantProps<typeof subscriptionItemVariants> {
+export interface RateCardProps extends VariantProps<typeof RateCardVariants> {
     title: string;
     subjectsCount: number;
     lessonsCount: number;
@@ -27,7 +27,7 @@ export interface SubscriptionItemProps extends VariantProps<typeof subscriptionI
     discount?: number;
     className?: string;
 }
-const SubscriptionItem = ({
+const RateCard = ({
     title,
     lessonsCount,
     modulesCount,
@@ -36,9 +36,9 @@ const SubscriptionItem = ({
     discount,
     variant,
     className
-}: SubscriptionItemProps) => {
+}: RateCardProps) => {
     return (
-        <li className={cn(subscriptionItemVariants({ variant, className }))}>
+        <li className={cn(RateCardVariants({ variant, className }))}>
             <div className={styles.header}>
                 <h6 className={styles.title}>{title}</h6>
             </div>
@@ -77,7 +77,7 @@ const SubscriptionItem = ({
                 <span className={styles.footerPrice}>
                     {price > 0 ? price + " ₽" : "Бесплатно"}
                 </span>
-                <Button variant={variant !== "primary" ? "secondary" : "primary"} size="medium" className={styles.subscriptionBtn}>
+                <Button variant={variant !== "free" ? "secondary" : "primary"} size="medium" className={styles.subscriptionBtn}>
                     {price > 0 ? "Записаться" : "Попробовать"}
                 </Button>
                 {/* <button className={cn("btn-reset" btn btn--primary subscription__item_btn">{price > 0 ? "Записаться" : "Попробовать"}</button> */}
@@ -89,4 +89,4 @@ const SubscriptionItem = ({
     )
 }
 
-export { SubscriptionItem, subscriptionItemVariants }
+export { RateCard, RateCardVariants }

@@ -1,16 +1,17 @@
+
 import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
-import { CompletedCourses } from '@/components/CompletedCourses';
+import { AllCourses } from "@/components/AllCourses";
 import styles from './../styles.module.scss';
-export default function Completed() {
+export default function AllCoursesPage() {
 
     return (
         <main>
             <div className="container">
             <div className={styles.inner}>
             <Breadcrumbs />
-            <CompletedCourses/>
             </div>
             </div>
+            <AllCourses/>
         </main>
     );
 }

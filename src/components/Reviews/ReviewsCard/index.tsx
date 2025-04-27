@@ -1,15 +1,15 @@
 import cn from 'classnames';
 import styles from './styles.module.scss';
 
-export const ReviewsSlide = () => {
+export const ReviewsCard = () => {
     return (
-        <div className="swiper-slide">
-            <div className={styles.reviewsSlide}>
-                <div className={styles.reviewsSlide__header}>
-                    <h6 className={styles.reviewsSlide__name}>
+ 
+            <div className={styles.reviewsCard}>
+                <div className={styles.reviewsCard__header}>
+                    <h6 className={styles.reviewsCard__name}>
                         Зарина М.
                     </h6>
-                    <ul className={cn("list-reset", styles.reviewsSlide__stars)}>
+                    <ul className={cn("list-reset", styles.reviewsCard__stars)}>
                         <li className={styles.slideStar}>
                             <svg width="18" height="17" viewBox="0 0 18 17" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -36,17 +36,16 @@ export const ReviewsSlide = () => {
                         </li>
                     </ul>
                 </div>
-                <div className={styles.reviewsSlide__body}>
+                <div className={styles.reviewsCard__body}>
                     <p>
                         Очень полезные курсы. Все нравится, особенно методика преподавания. Хочу также
                         на&nbsp;другие
                         курсы
                     </p>
                 </div>
-                <div className={styles.reviewsSlide__footer}>
-                    <span className={styles.reviewsSlide__subject}>Ингушский язык, 7 класс</span>
+                <div className={styles.reviewsCard__footer}>
+                    <span className={styles.reviewsCard__subject}>Ингушский язык, 7 класс</span>
                 </div>
             </div>
-        </div>
     )
 }

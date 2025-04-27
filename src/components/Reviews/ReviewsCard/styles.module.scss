@@ -1,4 +1,4 @@
-.reviewsSlide {
+.reviewsCard {
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -30,12 +30,16 @@
         color: var(--neutral-darkest);
     }
 
-    &__body p {
-        font-family: var(--font-family);
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 175%;
-        color: var(--neutral-darkest);
+    &__body {
+        max-width: 95%;
+
+        p {
+            font-family: var(--font-family);
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 175%;
+            color: var(--neutral-darkest);
+        }
     }
 
     &__subject {

@@ -46,7 +46,7 @@
 
 .learnItem:last-child {
     grid-column: 3 span;
-
+    max-width: none;
     @include breakpoint.middle-tablet {
         grid-column: 2 span;
     }

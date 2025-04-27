@@ -1,7 +1,7 @@
 "use client";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, A11y } from 'swiper/modules'
-import { ReviewsSlide } from './ReviewsSlide';
+import { ReviewsCard } from './ReviewsCard';
 import styles from './styles.module.scss';
 import cn from 'classnames';
 
@@ -56,28 +56,28 @@ export const Reviews = () => {
                             style={{ maxWidth: "1155px", margin: "0 auto" }} //Optional, for styling
                         >
                             <SwiperSlide key={1}>
-                                <ReviewsSlide />
+                                <ReviewsCard />
                             </SwiperSlide>
                             <SwiperSlide key={2}>
-                                <ReviewsSlide />
+                                <ReviewsCard />
                             </SwiperSlide>
                             <SwiperSlide key={3}>
-                                <ReviewsSlide />
+                                <ReviewsCard />
                             </SwiperSlide>
                             <SwiperSlide key={4}>
-                                <ReviewsSlide />
+                                <ReviewsCard />
                             </SwiperSlide>
                             <SwiperSlide key={5}>
-                                <ReviewsSlide />
+                                <ReviewsCard />
                             </SwiperSlide>
                             <SwiperSlide key={6}>
-                                <ReviewsSlide />
+                                <ReviewsCard />
                             </SwiperSlide>
                             <SwiperSlide key={7}>
-                                <ReviewsSlide />
+                                <ReviewsCard />
                             </SwiperSlide>
                             <SwiperSlide key={8}>
-                                <ReviewsSlide />
+                                <ReviewsCard />
                             </SwiperSlide>
                         </Swiper>
                         <div className={styles.reviewsNavigation}>
