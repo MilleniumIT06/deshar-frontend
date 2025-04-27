@@ -1,4 +1,6 @@
+
 import { SubjectCard } from "@/components/SubjectCard"
+
 import styles from './styles.module.scss';
 
 export const CoursesBlock = () => {
@@ -7,56 +9,64 @@ export const CoursesBlock = () => {
         <h3 className={styles.title}>
         1-4 класс
         </h3>
-       <div className={styles.Cards}>
+       <ul className={styles.Cards}>
             <SubjectCard 
                      imageUrl="subjectbg" 
                      title="Ингушский язык" 
                      description="Базовые навыки языка, алфавит, общение"
                      modulesCount={85}
+                     type="long"
             />
             <SubjectCard 
                      imageUrl="subjectbg" 
                      title="Ингушский язык" 
                      description="Базовые навыки языка, алфавит, общение"
                      modulesCount={85}
+                     type="long"
             />
                 <SubjectCard 
                 imageUrl="subjectbg" 
                 title="Ингушский язык" 
                 description="Базовые навыки языка, алфавит, общение"
                 modulesCount={85}
+                type="long"
                 />
                 <SubjectCard 
                 imageUrl="subjectbg" 
                 title="Ингушский язык" 
                 description="Базовые навыки языка, алфавит, общение"
                 modulesCount={85}
+                type="long"
                 />
                  <SubjectCard 
                      imageUrl="subjectbg" 
                      title="Ингушский язык" 
                      description="Базовые навыки языка, алфавит, общение"
                      modulesCount={85}
+                     type="long"
             />
              <SubjectCard 
                      imageUrl="subjectbg" 
                      title="Ингушский язык" 
                      description="Базовые навыки языка, алфавит, общение"
                      modulesCount={85}
+                     type="long"
             />
              <SubjectCard 
                      imageUrl="subjectbg" 
                      title="Ингушский язык" 
                      description="Базовые навыки языка, алфавит, общение"
                      modulesCount={85}
+                     type="long"
             />
              <SubjectCard 
                      imageUrl="subjectbg" 
                      title="Ингушский язык" 
                      description="Базовые навыки языка, алфавит, общение"
                      modulesCount={85}
+                     type="long"
             />
-        </div>
+        </ul>
        </div>
     )
 }

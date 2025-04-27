@@ -1,5 +1,6 @@
 import styles from './styles.module.scss';
 import { LessonProgressCard } from '../../widgets/LessonProgressCard';
+import Link from 'next/link';
 export const Continue = () => {
     return (
         <section className={styles.continue}>
@@ -12,7 +13,7 @@ export const Continue = () => {
                        
                     </div>
                     <div className={styles.continue__footer}>
-                        <a href="#" className={styles.continue__link}>Открыть выполненые дисциплины</a>
+                        <Link href="/completed-courses" className={styles.continue__link}>Открыть выполненые дисциплины</Link>
                     </div>
                 </div>
             </div >

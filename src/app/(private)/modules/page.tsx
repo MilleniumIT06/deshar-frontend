@@ -1,17 +1,17 @@
-
 import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
-import { AllCourses } from "@/components/AllCourses";
 import styles from './../styles.module.scss';
-export default function AllCoursesPage() {
+import { ModulesContent } from "@/components/ModulesContent";
+export default function Modules() {
 
     return (
         <main>
             <div className={styles.inner}>
             <div className="container">
             <Breadcrumbs />
+            
             </div>
+            <ModulesContent/>
             </div>
-            <AllCourses/>
         </main>
     );
 }

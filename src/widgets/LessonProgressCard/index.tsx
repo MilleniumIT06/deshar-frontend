@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import styles from './styles.module.scss';
 import { ProgressCounter } from './ProgressCounter';
+import { ProgressBar } from '@/shared/ui/ProgressBar';
 export const LessonProgressCard= () => {
     return (
         <div className={styles.LessonProgressCard}>
@@ -17,7 +18,7 @@ export const LessonProgressCard= () => {
                                    <ProgressCounter type="left" count={7}/>
                                    <ProgressCounter type="process" count={7}/>
                                 </ul>
-                                <div className={styles.LessonProgressCard__bar}></div>
+                                <ProgressBar counter={false} doneLessons={7} maxLessons={21} processLessons={7}/>
                             </div>
                         </div>
     )
