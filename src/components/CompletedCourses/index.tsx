@@ -1,4 +1,4 @@
-import { LessonProgress } from '@/widgets/LessonProgress';
+import { LessonProgressCard } from '@/widgets/LessonProgressCard';
 import styles from './styles.module.scss';
 export const CompletedCourses = () => {
     return (
@@ -7,9 +7,9 @@ export const CompletedCourses = () => {
                <div className={styles.inner}>
                <h1 className="section__title">Выполненные дисциплины</h1>
                 <div className={styles.lessons}>
-                <LessonProgress/>
-                <LessonProgress/>
-                <LessonProgress/>                
+                <LessonProgressCard/>
+                <LessonProgressCard/>
+                <LessonProgressCard/>                
                 </div>
                </div>
             </div>

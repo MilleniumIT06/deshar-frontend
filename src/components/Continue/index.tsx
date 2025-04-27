@@ -1,5 +1,5 @@
 import styles from './styles.module.scss';
-import { LessonProgress } from '../../widgets/LessonProgress';
+import { LessonProgressCard } from '../../widgets/LessonProgressCard';
 export const Continue = () => {
     return (
         <section className={styles.continue}>
@@ -7,8 +7,8 @@ export const Continue = () => {
                 <div className={styles.continue__inner}>
                     <h2 className="section__title">Продолжим обучение</h2>
                     <div className={styles.continue__subjects}>
-                       <LessonProgress/>
-                       <LessonProgress/>
+                       <LessonProgressCard/>
+                       <LessonProgressCard/>
                        
                     </div>
                     <div className={styles.continue__footer}>
