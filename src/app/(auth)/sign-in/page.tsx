@@ -1,14 +1,14 @@
-import { Input } from "@/shared/ui/Input";
+import cn from 'classnames'
 import styles from './../../page.module.scss';
+import { SignInForm } from "@/features/SignIn/ui/SignInForm";
 export default function SignIn() {
-
     return (
         <main>
-
-            <section style={{ height: "100vh" }}>
+            <section className={cn(styles.index,styles.signIn)}>
                 <div className="container">
-                    <Input placeholder="Test" variant="primary" className={styles.Input} />
-                    <Input placeholder="Test" variant="secondary" className={styles.Input} />
+                    <div className={styles.inner}>
+                        <SignInForm />
+                    </div>
                 </div>
             </section>
         </main>
