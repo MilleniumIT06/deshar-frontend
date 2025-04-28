@@ -1,4 +1,5 @@
 @use './../../../shared/scss/breakpoint'as breakpoint;
+
 .tableItem {
     position: relative;
     height: 80px;
@@ -22,8 +23,8 @@
                 width: 29px;
                 height: 29px;
             }
-            
-            
+
+
             span {
                 position: absolute;
                 left: 35%;
@@ -35,7 +36,7 @@
                 line-height: 150%;
                 text-align: center;
                 transform: translateY(-50%);
-                color:var(--neutral-white);
+                color: var(--neutral-white);
             }
         }
     }
@@ -53,10 +54,12 @@
     }
 
 }
+
 .tableItem__points,
 .tableItem__done,
 .tableItem__name,
-.tableItem__time {
+.tableItem__time,
+.tableItem__parralelClass {
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 20px;
