@@ -25,7 +25,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement>,
 
 const Input = ({ variant, className, type, visibleValue, handleVisible, ...props }: InputProps) => {
     return <label className={cn(inputVariants({ variant, className }))}>
-        <input className={styles.input} type={type}{...props} />
+        <input className={styles.input} type={type === "password" && visibleValue === true ? "text" : type}{...props} />
         {type === "password" && <ChangeVisible value={visibleValue} onChange={handleVisible} />}
     </label>
 }
