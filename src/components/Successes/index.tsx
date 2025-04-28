@@ -1,10 +1,8 @@
-"use client";
 import cn from 'classnames';
 import styles from './styles.module.scss';
 import { Button } from '@/shared/ui/Button';
-import { useState } from 'react';
+import { Selector } from '@/shared/ui/Selector';
 export const Successes = () => {
-    const [selectorActive, setSelectorActive] = useState(false);
     return (
         <section className={styles.successes}>
             <div className="container">
@@ -13,31 +11,7 @@ export const Successes = () => {
                         <h1 className={styles.successes__title}>
                             Ваши успехи
                         </h1>
-
-                        <div className={cn(styles.selector, selectorActive && styles.active)}>
-                            <div className={styles.selector__header}>
-                                <span>Неделя</span>
-                                <button className={cn("btn-reset", styles.selector__btn)} onClick={() => setSelectorActive(prev => !prev)}>
-                                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M13 1L7 7L1 0.999999" stroke="#303030" strokeWidth="1.5" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <div className={styles.selector__body}>
-                                <ul className={cn("list-reset", styles.selector__list)}>
-                                    <li className={styles.selector__list_item}>
-                                        <span>Test1</span>
-                                    </li>
-                                    <li className={styles.selector__list_item}>
-                                        <span>Test1</span>
-                                    </li>
-                                    <li className={styles.selector__list_item}>
-                                        <span>Test1</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <Selector />
                     </div>
                     <div className={styles.successes__body}>
                         <div className={styles.chart}>

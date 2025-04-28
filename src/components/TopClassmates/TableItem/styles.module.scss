@@ -3,6 +3,24 @@
 .tableItem {
     position: relative;
     height: 80px;
+    cursor: pointer;
+
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 99%;
+        height: 100%;
+        border-radius: 15px;
+        background-color: var(--neutral-lightest);
+        display: none;
+    }
+
+    &:hover {
+        &::before {
+            display: block;
+        }
+    }
 
     &__place {
         display: flex;
@@ -14,7 +32,6 @@
             position: relative;
             width: 32px;
             height: 32px;
-            background-image: url("/svg/star.svg");
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -36,7 +53,6 @@
                 line-height: 150%;
                 text-align: center;
                 transform: translateY(-50%);
-                color: var(--neutral-white);
             }
         }
     }
@@ -60,6 +76,8 @@
 .tableItem__name,
 .tableItem__time,
 .tableItem__parralelClass {
+    border: none;
+    margin: 0;
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 20px;
@@ -73,4 +91,25 @@
 
 .tableItem__points {
     color: var(--primary-medium);
+}
+
+.first {
+    color: var(--neutral-white);
+    background-image: url("/svg/first.svg");
+}
+
+.second {
+    color: var(--neutral-white);
+    background-image: url("/svg/second.svg");
+}
+
+.third {
+    color: var(--neutral-white);
+    background-image: url("/svg/third.svg");
+}
+
+.other {
+    span {
+        color: var(--black-color);
+    }
 }

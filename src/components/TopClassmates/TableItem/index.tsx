@@ -9,10 +9,11 @@ interface TableItemProps {
     type: "parallel" | "classmates";
 }
 export const TableItem = ({ doneModules, name, placeNumber, points, time, type, parralelClass }: TableItemProps) => {
+    const placeClass = placeNumber === 1 ? styles.first : placeNumber === 2 ? styles.second : placeNumber === 3 ? styles.third : styles.other;
     return (
         <tr className={styles.tableItem}>
             <td className={styles.tableItem__place}>
-                <div>
+                <div className={placeClass}>
                     <span>{placeNumber}</span>
                 </div>
             </td>
