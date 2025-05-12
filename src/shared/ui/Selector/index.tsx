@@ -16,17 +16,46 @@ export const Selector = () => {
                 </button>
             </div>
             <div className={styles.selector__body}>
-                <ul className={cn("list-reset", styles.selector__list)}>
-                    <li className={styles.selector__list_item}>
-                        <span>Test1</span>
-                    </li>
-                    <li className={styles.selector__list_item}>
-                        <span>Test1</span>
-                    </li>
-                    <li className={styles.selector__list_item}>
-                        <span>Test1</span>
-                    </li>
-                </ul>
+                <div className={styles.selector__body_inner}>
+                    <ul className={cn("list-reset", styles.selector__list)}>
+                        <li className={styles.selector__list_item}>
+                            <span>Неделя</span>
+                        </li>
+                        <li className={styles.selector__list_item}>
+                            <span>Месяц</span>
+                        </li>
+                        <li className={styles.selector__list_item}>
+                            <span>Год</span>
+                        </li>
+                        <li className={styles.selector__list_item}>
+                            <span>Неделя</span>
+                        </li>
+                        <li className={styles.selector__list_item}>
+                            <span>Месяц</span>
+                        </li>
+                        <li className={styles.selector__list_item}>
+                            <span>Год</span>
+                        </li>
+                        <li className={styles.selector__list_item}>
+                            <span>Неделя</span>
+                        </li>
+                        <li className={styles.selector__list_item}>
+                            <span>Месяц</span>
+                        </li>
+                        <li className={styles.selector__list_item}>
+                            <span>Год</span>
+                        </li>
+                        <li className={styles.selector__list_item}>
+                            <span>Неделя</span>
+                        </li>
+                        <li className={styles.selector__list_item}>
+                            <span>Месяц</span>
+                        </li>
+                        <li className={styles.selector__list_item}>
+                            <span>Год</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     )

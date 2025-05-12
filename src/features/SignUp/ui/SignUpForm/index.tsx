@@ -6,8 +6,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 export const SignUpForm = () => {
     const [vis, setVis] = useState(false)
+    const [visT, setVisT] = useState(false)
     const handleVisible = () => {
         setVis(!vis)
+    }
+    const handleVisibleT = () => {
+        setVisT(!visT)
     }
     return (
         <div className={styles.index}>
@@ -39,8 +43,8 @@ export const SignUpForm = () => {
                     <Input
                         type="password"
                         placeholder="Подтвердите пароль"
-                        visibleValue={vis}
-                        handleVisible={handleVisible}
+                        visibleValue={visT}
+                        handleVisible={handleVisibleT}
                         className={styles.input}
                     />
                     <Button className={styles.btn} size="medium">

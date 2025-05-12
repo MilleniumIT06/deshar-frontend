@@ -32,8 +32,8 @@ export const SignInForm = () => {
                 </form>
                 <div className={styles.bottom}>
                     <div>
-                        Еще не зарегистрированы?{' '}
-                        <Link href="/sign-up">Зарегистрироваться</Link>
+                        Еще не зарегистрированы? 
+                        <Link href="/sign-up"> Зарегистрироваться</Link>
                     </div>
                     <p>
                         Продолжая, вы соглашаетесь на обработку персональных данных
