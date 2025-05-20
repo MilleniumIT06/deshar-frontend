@@ -4,20 +4,15 @@ import { Button } from '@/shared/ui/Button'
 import styles from './styles.module.scss'
 import { useState } from 'react'
 import Link from 'next/link'
-import { InputSelect } from '@/shared/ui/InputSelect'
-export const SignUpForm = ({testHandle}:{testHandle:()=>void;}) => {
-    const [vis, setVis] = useState(false)
-    const [visT, setVisT] = useState(false)
-    const handleVisible = () => {
-        setVis(!vis)
-    }
-    const handleVisibleT = () => {
-        setVisT(!visT)
-    }
+import { Tabs } from '@/shared/ui/Tabs'
+export const ProgramSelectionForm = () => {
+     const [activeTab, setActiveTab] = useState(0);
+    const tabs = [{ id: 0, name: "Ингушетия" }, { id: 1, name: "Др. регионы" }];
     return (
         <div className={styles.index}>
             <div className={styles.inner}>
-                <h1 className={styles.title}>Регистрация аккаунта</h1>
+                <h1 className={styles.title}>Выбор программы</h1>
+                   <Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={tabs} />
                 <form className={styles.form}>
                     <Input
                         type="text"
@@ -34,23 +29,8 @@ export const SignUpForm = ({testHandle}:{testHandle:()=>void;}) => {
                         placeholder="Введите email"
                         className={styles.input}
                     />
-                    <InputSelect variant="default" placeholderValue="Test"/>
-                    <Input
-                        type="password"
-                        placeholder="Придумайте пароль"
-                        visibleValue={vis}
-                        handleVisible={handleVisible}
-                        className={styles.input}
-                    />
-                    <Input
-                        type="password"
-                        placeholder="Подтвердите пароль"
-                        visibleValue={visT}
-                        handleVisible={handleVisibleT}
-                        className={styles.input}
-                    />
-                    <Button className={styles.btn} size="medium" onClick={testHandle}>
-                        Далее
+                    <Button className={styles.btn} size="medium">
+                        Зарегистрировать
                     </Button>
                 </form>
                 <div className={styles.bottom}>

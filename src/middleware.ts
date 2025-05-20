@@ -5,7 +5,6 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
 	const authedStatus = true
 	if (!authedStatus) {
-		console.log('testMi')
 		return NextResponse.redirect(new URL('/sign-in', request.url))
 	}
 }
