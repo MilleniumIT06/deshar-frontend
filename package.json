@@ -10,6 +10,7 @@
 		"test": "vitest"
 	},
 	"dependencies": {
+		"@hookform/resolvers": "^5.1.1",
 		"class-variance-authority": "^0.7.1",
 		"classnames": "^2.5.1",
 		"lucide-react": "^0.522.0",

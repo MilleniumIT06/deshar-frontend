@@ -3,7 +3,6 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Input } from './../shared/ui/Input';
-import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
 // Моки иконок для тестов
 vi.mock('lucide-react', () => ({

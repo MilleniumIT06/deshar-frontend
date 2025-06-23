@@ -1,13 +1,10 @@
 .base {
+  position: relative;
     display: flex;
     align-items: center;
     border-radius: 16px;
     max-width: 180px;
     height: 45px;
-    &:focus-within {
-        border-color: #0070f3;
-        box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
-      }
       &.fullWidth {
         width: 100%;
       }
@@ -118,4 +115,11 @@
   display: flex;
   align-items: center;
   padding: 0 0.5rem;
+}
+.validationMessage {
+  position: absolute;
+  top: -25px;
+  left: 20px;
+  color:red;
+  font-size: 14px;
 }

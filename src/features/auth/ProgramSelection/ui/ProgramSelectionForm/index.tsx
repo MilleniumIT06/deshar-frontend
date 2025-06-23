@@ -6,13 +6,13 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Tabs } from '@/shared/ui/Tabs'
 export const ProgramSelectionForm = () => {
-     const [activeTab, setActiveTab] = useState(0);
+    const [activeTab, setActiveTab] = useState(0);
     const tabs = [{ id: 0, name: "Ингушетия" }, { id: 1, name: "Др. регионы" }];
     return (
         <div className={styles.index}>
             <div className={styles.inner}>
                 <h1 className={styles.title}>Выбор программы</h1>
-                   <Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={tabs} />
+                <Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={tabs} maxWidth />
                 <form className={styles.form}>
                     <Input
                         type="text"

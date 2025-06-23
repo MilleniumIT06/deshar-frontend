@@ -29,6 +29,7 @@ export interface InputProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
     VariantProps<typeof inputVariants> {
     error?: boolean;
+    validationMessage?: string;
     startAdornment?: React.ReactNode;
     endAdornment?: React.ReactNode;
 }
@@ -42,6 +43,7 @@ const Input = ({
     error = false,
     startAdornment,
     endAdornment,
+    validationMessage,
     ...props
 }: InputProps) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -104,6 +106,7 @@ const Input = ({
                     </span>
                 )
             }
+            {validationMessage && <span className={styles.validationMessage}>{validationMessage}</span>}
         </div >
     );
 }
