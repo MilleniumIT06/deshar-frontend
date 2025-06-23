@@ -109,7 +109,9 @@
     cursor: pointer;
     color:var(--neutral-medium);
 }
-
+.visibilityButton svg {
+  stroke: var(--neutral-medium);
+}
 // Элементы
 .startAdornment,
 .endAdornment {
