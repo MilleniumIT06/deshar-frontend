@@ -2,18 +2,11 @@
 import { Input } from '@/shared/ui/Input'
 import { Button } from '@/shared/ui/Button'
 import styles from './styles.module.scss'
-import { useState } from 'react'
 import Link from 'next/link'
 import { InputSelect } from '@/shared/ui/InputSelect'
-export const SignUpForm = ({testHandle}:{testHandle:()=>void;}) => {
-    const [vis, setVis] = useState(false)
-    const [visT, setVisT] = useState(false)
-    const handleVisible = () => {
-        setVis(!vis)
-    }
-    const handleVisibleT = () => {
-        setVisT(!visT)
-    }
+import { useState } from 'react'
+export const SignUpForm = ({ testHandle }: { testHandle: () => void; }) => {
+    const [p, setP] = useState("");
     return (
         <div className={styles.index}>
             <div className={styles.inner}>
@@ -34,19 +27,18 @@ export const SignUpForm = ({testHandle}:{testHandle:()=>void;}) => {
                         placeholder="Введите email"
                         className={styles.input}
                     />
-                    <InputSelect variant="default" placeholderValue="Test"/>
+                    <InputSelect variant="default" placeholderValue="Test" />
                     <Input
                         type="password"
                         placeholder="Придумайте пароль"
-                        visibleValue={vis}
-                        handleVisible={handleVisible}
                         className={styles.input}
+                        value={p}
+                        onChange={(e) => setP(e.target.value)}
                     />
+                    {p}
                     <Input
                         type="password"
                         placeholder="Подтвердите пароль"
-                        visibleValue={visT}
-                        handleVisible={handleVisibleT}
                         className={styles.input}
                     />
                     <Button className={styles.btn} size="medium" onClick={testHandle}>
