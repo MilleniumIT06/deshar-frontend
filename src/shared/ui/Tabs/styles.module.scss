@@ -8,15 +8,20 @@
     height: 52px;
     background-color: var(--neutral-lightest);
     gap: 20px;
+    &.maxWidth {
+        width: 100%;
+    }
 }
 
 .tab {
+    // border-radius: 28px;
     padding: 12px 0;
     width: 50%;
     height: 100%;
     text-align: center;
     cursor: pointer;
-
+    border: none;
+    background: transparent;
     span {
         font-family: var(--font-family);
         font-weight: 700;
@@ -33,4 +38,5 @@
         border-radius: 28px;
         background-color:var(--neutral-darkest);
     }
+
 }
