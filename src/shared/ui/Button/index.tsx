@@ -1,7 +1,7 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 import styles from './styles.module.scss';
-import cn from "classnames"
+import cn from "classnames";
 
 const buttonVariants = cva(
     styles.index,
@@ -23,6 +23,12 @@ const buttonVariants = cva(
                 iconBig: styles.iconBig,
                 iconSmall: styles.iconSmall
             },
+            loading: {
+                true: styles.loading
+            },
+            fullWidth: {
+                true: styles.fullWidth
+            }
         },
         defaultVariants: {
             variant: "default",
@@ -33,16 +39,55 @@ const buttonVariants = cva(
 
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> { }
+    VariantProps<typeof buttonVariants> {
+    loading?: boolean;
+    fullWidth?: boolean;
+}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant, size, ...props }, ref) => {
+    ({ 
+        className, 
+        variant, 
+        size, 
+        loading = false,
+        disabled = false,
+        fullWidth = false,
+        children,
+        ...props 
+    }, ref) => {
+        
+        const isDisabled = disabled || loading;
+        
         return (
             <button
-                className={cn(buttonVariants({ variant, size, className }))}
+                className={cn(
+                    buttonVariants({ 
+                        variant, 
+                        size, 
+                        loading, 
+                        fullWidth,
+                        className 
+                    })
+                )}
                 ref={ref}
+                disabled={isDisabled}
+                aria-disabled={isDisabled}
+                aria-busy={loading}
                 {...props}
-            />
+            >
+                {loading ? (
+                    <span className={styles.loadingContent}>
+                        <span className={styles.loader} aria-hidden="true">
+                            <svg className={styles.spinner} viewBox="0 0 50 50">
+                                <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" strokeWidth="4" />
+                            </svg>
+                        </span>
+                        <span>{children}</span>
+                    </span>
+                ) : (
+                    children
+                )}
+            </button>
         )
     }
 )

@@ -1,6 +1,6 @@
 .index {
     border-radius: 16px;
-padding: 12px 12px 12px 20px;
+    padding-right: 12px;
 max-width: 384px;
 width: 100%;
 height: 45px;
@@ -11,6 +11,7 @@ position: relative;
 background: var(--neutral-lightest);
 }
 .input {
+     padding: 12px 12px 12px 20px;
      -webkit-appearance: none;
     appearance: none;
     border: none;
@@ -27,10 +28,11 @@ background: var(--neutral-lightest);
     width: 100%;
     height: 100%;
     border-radius: 16px;
+    outline: none;
 }
 .options {
     position: absolute;
-    bottom: 0;
+    top: 100%;
     left: 0;
      border-radius: 16px;
     z-index: 10;

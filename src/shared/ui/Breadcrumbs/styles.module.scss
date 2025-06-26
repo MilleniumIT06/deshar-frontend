@@ -1,4 +1,4 @@
-.Breadcrumbs {
+.BreadcrumbsList {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -10,28 +10,60 @@
     border: 1px solid var(--neutral-light);
     border-radius: 32px;
 
-    a {
-        font-family: var(--font-family);
+}
+// .BreadcrumbsItem:not(:last-child) {
+//     &::after {
+//         content: "";
+//         position: absolute;
+//         display: block;
+//         width: 6px;
+//         height: 12px;
+//         right: -15px;
+//         top: 50%;
+//         transform: translateY(-50%);
+//         background-image: url("./../../../../public/arrow.svg");
+//         background-position: center;
+//         background-size: cover;
+//         background-repeat: no-repeat;
+
+    
+//    }
+// }
+.BreadcrumbsSeparator {
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--neutral-medium);
+         display: flex;
+  align-items: center;
+
+}
+.BreadcrumbsContainer {
+  padding: 12px 0;
+}
+
+
+
+
+.BreadcrumbsLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+   font-family: var(--font-family);
         font-weight: 400;
         font-size: 14px;
         color: var(--neutral-darkest);
-    }
+  
+  &:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+  }
 }
-.BreadcrumbsItem:not(:last-child) {
-    &::after {
-        content: "";
-        position: absolute;
-        display: block;
-        width: 6px;
-        height: 12px;
-        right: -15px;
-        top: 50%;
-        transform: translateY(-50%);
-        background-image: url("./../../../../public/arrow.svg");
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-
-    
-   }
+.BreadcrumbsText {
+      color: var(--text-secondary);
+       font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 14px;
+        color: var(--neutral-darkest);
 }
