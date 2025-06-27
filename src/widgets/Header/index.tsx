@@ -18,20 +18,20 @@ export const Header = () => {
                 <nav className={styles.headerNav}>
                     <ul className={`list-reset ${styles.list}`}>
                         <li className={styles.listItem}>
-                            <a href="#">Уроки</a>
+                            <a href="#" tabIndex={2}>Уроки</a>
                         </li>
                         <li className={styles.listItem}>
-                            <a href="#">Аттестация</a>
+                            <a href="#" tabIndex={3}>Аттестация</a>
                         </li>
                         <li className={styles.listItem}>
-                            <a href="#">Контакты</a>
+                            <a href="#" tabIndex={4}>Контакты</a>
                         </li>
                         <li className={styles.listItem}>
-                            <Link href="/profile.html">Профиль</Link>
+                            <Link href="/profile.html" tabIndex={5}>Профиль</Link>
                         </li>
                     </ul>
                 </nav>
-                {authed ? <Avatar /> : <Button variant='primary' size="small" className={styles.headerBtn}>
+                {authed ? <Avatar /> : <Button variant='primary' size="small" className={styles.headerBtn} tabIndex={6}>
                     Войти
                 </Button>}
                 <button className={cn("btn-reset", styles.headerBurger)} aria-label="Открыть меню" aria-expanded="false" data-burger>

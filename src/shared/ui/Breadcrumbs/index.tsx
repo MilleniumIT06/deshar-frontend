@@ -16,7 +16,7 @@ interface BreadcrumbsProps {
 
 export const Breadcrumbs = ({ 
   items, 
-  separator = <ChevronRight size={14} />,
+  separator = <ChevronRight size={20} />,
   className
 }: BreadcrumbsProps) => {
   if (!items || items.length === 0) return null;

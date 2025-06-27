@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import styles from './styles.module.scss';
+import Image from 'next/image';
 export const Footer = () => {
     return (
         <footer className={styles.footer}>
@@ -102,17 +103,17 @@ export const Footer = () => {
                                     <ul className={cn("list-reset", styles.footer__socials_list)}>
                                         <li className={cn(styles.footer__social)}>
                                             <a href="#">
-                                                <img src="/svg/yt.svg" alt="YouTube" />
+                                                <Image fill src="/svg/yt.svg" alt="YouTube" />
                                             </a>
                                         </li>
                                         <li className={cn(styles.footer__social)}>
                                             <a href="#">
-                                                <img src="/svg/vk.svg" alt="VK" />
+                                                <Image fill src="/svg/vk.svg" alt="VK" />
                                             </a>
                                         </li>
                                         <li className={cn(styles.footer__social)}>
                                             <a href="#">
-                                                <img src="/svg/tg.svg" alt="Telegram" />
+                                                <Image fill src="/svg/tg.svg" alt="Telegram" />
                                             </a>
                                         </li>
                                     </ul>

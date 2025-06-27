@@ -6,7 +6,7 @@ export const Logo = ({ size }: { size?: "small" }) => {
     const classes = cn(styles.index, size ? styles.small : styles.big)
     return (
         <div className={classes}>
-            <Link href="/">
+            <Link href="/" tabIndex={1}>
                 <Image
                     width={188}
                     height={28}
