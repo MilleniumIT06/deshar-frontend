@@ -28,7 +28,9 @@ export const ProgramSelectionForm = () => {
                         Зарегистрировать
                     </Button>
                 </form> : <form className={styles.form}>
-
+                    <InputSelect value={area} setValue={setArea} options={areas} placeholderValue='Выберите страну' />
+                    <InputSelect value={school} setValue={setScholl} options={schools} placeholderValue='Выберите населенный пункт' />
+                    <InputSelect value={classLevel} setValue={setClassLevel} options={classLevels} placeholderValue='Выберите класс' />
                     <Button className={styles.btn} size="medium">
                         Зарегистрировать
                     </Button>

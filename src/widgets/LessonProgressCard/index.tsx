@@ -21,7 +21,7 @@ export const LessonProgressCard = () => {
                     <ProgressCounter type="left" count={7} />
                     <ProgressCounter type="process" count={7} />
                 </ul>
-                <ProgressBar counter={false} doneLessons={10} maxLessons={21} processLessons={7} />
+                <ProgressBar counter={false} doneLessons={7} maxLessons={21} processLessons={7} />
             </div>
         </div>
     )

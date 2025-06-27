@@ -1,8 +1,6 @@
 "use client";
 import { useState } from 'react';
 
-import Link from 'next/link';
-
 import cn from 'classnames';
 
 import { Avatar } from '@/shared/ui/Avatar';
