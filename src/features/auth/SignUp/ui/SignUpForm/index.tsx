@@ -21,6 +21,7 @@ export const SignUpForm = ({ handleForm }: { handleForm: () => void; }) => {
         mode: "onChange"
     });
     const onSubmit = (data: signUpUserFormData) => {
+        // eslint-disable-next-line no-console
         console.log(data);
     }
     return (

@@ -5,7 +5,6 @@ import cn from 'classnames';
 import styles from './styles.module.scss';
 
 export const Footer = () => {
-    console.log("test");
     return (
         <footer className={styles.footer}>
             <div className="container">

@@ -83,7 +83,6 @@ const RateCard = ({
                 <Button variant={variant !== "free" ? "secondary" : "primary"} size="medium" className={styles.subscriptionBtn}>
                     {price > 0 ? "Записаться" : "Попробовать"}
                 </Button>
-                {/* <button className={cn("btn-reset" btn btn--primary subscription__item_btn">{price > 0 ? "Записаться" : "Попробовать"}</button> */}
             </div>
             {discount && <div className={styles.discount}>
                 <span>-{discount}%</span>

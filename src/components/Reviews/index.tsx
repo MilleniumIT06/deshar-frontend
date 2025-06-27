@@ -8,7 +8,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Button } from '@/shared/ui/Button';
 
 import { ReviewsCard } from './ReviewsCard';
-
 import styles from './styles.module.scss';
 
 

@@ -15,7 +15,6 @@ export const ProgramSelectionForm = () => {
     const [area, setArea] = useState<number | string>("");
     const [school, setScholl] = useState<number | string>("");
     const [classLevel, setClassLevel] = useState<number | string>("");
-    console.log("changed", area);
     return (
         <div className={styles.index}>
             <div className={styles.inner}>
