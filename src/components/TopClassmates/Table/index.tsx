@@ -1,5 +1,7 @@
 import { TableItem } from '../TableItem';
+
 import styles from './styles.module.scss';
+
 interface TableProps {
     data: {
         id: number;

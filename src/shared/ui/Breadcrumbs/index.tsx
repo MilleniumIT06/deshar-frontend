@@ -1,7 +1,9 @@
-import cn from 'classnames';
-import styles from './styles.module.scss';
 import Link from 'next/link';
-import { ChevronRight } from 'lucide-react'; 
+
+import cn from 'classnames';
+import { ChevronRight } from 'lucide-react';
+ 
+import styles from './styles.module.scss';
 
 export interface BreadcrumbItem {
   label: string;

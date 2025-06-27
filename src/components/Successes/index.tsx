@@ -1,7 +1,10 @@
 import cn from 'classnames';
-import styles from './styles.module.scss';
+
 import { Button } from '@/shared/ui/Button';
 import { Selector } from '@/shared/ui/Selector';
+
+import styles from './styles.module.scss';
+
 export const Successes = () => {
     return (
         <section className={styles.successes}>

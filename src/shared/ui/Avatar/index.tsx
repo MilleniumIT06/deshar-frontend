@@ -1,7 +1,11 @@
-import Image from 'next/image';
 import { useState } from 'react';
-import styles from './styles.module.scss';
+
+import Image from 'next/image';
+
 import cn from 'classnames';
+
+import styles from './styles.module.scss';
+
 
 interface AvatarProps {
   src?: string;

@@ -1,5 +1,7 @@
 import cn from 'classnames'
+
 import styles from './styles.module.scss'
+
 export const AttestationBar = ({points,status}:{
     points:number;
     status:"checking"|"checked";

@@ -1,8 +1,10 @@
 "use client";
 import { useState, useCallback } from 'react';
-import cn from 'classnames';
-import styles from './styles.module.scss';
+
 import { cva, type VariantProps } from 'class-variance-authority';
+import cn from 'classnames';
+
+import styles from './styles.module.scss';
 
 const inputVariants = cva(styles.base, {
     variants: {

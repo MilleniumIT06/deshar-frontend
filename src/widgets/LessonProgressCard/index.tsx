@@ -1,7 +1,10 @@
 import cn from 'classnames';
-import styles from './styles.module.scss';
-import { ProgressCounter } from './ProgressCounter';
+
 import { ProgressBar } from '@/shared/ui/ProgressBar';
+
+import { ProgressCounter } from './ProgressCounter';
+import styles from './styles.module.scss';
+
 export const LessonProgressCard = () => {
     return (
         <div className={styles.LessonProgressCard}>

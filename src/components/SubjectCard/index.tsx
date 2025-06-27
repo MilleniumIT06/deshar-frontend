@@ -1,8 +1,12 @@
 import Image from 'next/image';
-import cn from 'classnames';
-import { cva, type VariantProps } from 'class-variance-authority';
-import styles from './styles.module.scss';
 import Link from 'next/link';
+
+import { cva, type VariantProps } from 'class-variance-authority';
+import cn from 'classnames';
+
+import styles from './styles.module.scss';
+
+
 const subjectCardVariants = cva(
     styles.SubjectCard,
     {

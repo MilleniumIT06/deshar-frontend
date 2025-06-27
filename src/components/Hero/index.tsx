@@ -1,7 +1,11 @@
 import Image from "next/image"
+
 import cn from 'classnames';
-import styles from './styles.module.scss';
+
 import { Button } from "@/shared/ui/Button";
+
+import styles from './styles.module.scss';
+
 export const Hero = () => {
     return (
         <section className={styles.index}>

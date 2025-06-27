@@ -1,7 +1,10 @@
-import styles from './styles.module.scss';
-import cn from "classnames"
 import { cva, type VariantProps } from "class-variance-authority"
+import cn from "classnames"
+
 import { Button } from '@/shared/ui/Button';
+
+import styles from './styles.module.scss';
+
 const RateCardVariants = cva(
     styles.index,
     {

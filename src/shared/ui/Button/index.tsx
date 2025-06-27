@@ -1,7 +1,9 @@
 import * as React from "react";
+
 import { cva, type VariantProps } from "class-variance-authority";
-import styles from './styles.module.scss';
 import cn from "classnames";
+
+import styles from './styles.module.scss';
 
 const buttonVariants = cva(
     styles.index,

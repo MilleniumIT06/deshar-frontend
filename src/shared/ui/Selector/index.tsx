@@ -1,7 +1,10 @@
 'use client';
-import cn from 'classnames';
 import { useState } from 'react';
+
+import cn from 'classnames';
+
 import styles from './styles.module.scss';
+
 export const Selector = () => {
     const [active, setActive] = useState(false);
     return (

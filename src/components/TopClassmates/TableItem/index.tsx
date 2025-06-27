@@ -1,4 +1,5 @@
 import styles from './styles.module.scss';
+
 interface TableItemProps {
     placeNumber: number;
     name: string;

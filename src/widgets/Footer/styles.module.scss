@@ -158,13 +158,13 @@
         align-items: start;
         max-width: 311px;
         gap: 10px;
-
+        font-style: normal;
         a {
             font-family: var(--font-family);
             font-weight: 600;
-            font-size: 14px;
-            line-height: 167%;
-            color: #d6d6d6;
+            font-size: 16px;
+            line-height: 150%;
+            color: var(--neutral-light);
 
             @include mini.hover {
                 &:hover {

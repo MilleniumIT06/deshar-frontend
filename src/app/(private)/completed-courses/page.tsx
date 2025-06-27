@@ -1,5 +1,6 @@
-import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
 import { CompletedCourses } from '@/components/CompletedCourses';
+import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
+
 import styles from './../styles.module.scss';
 
 export default function Completed() {

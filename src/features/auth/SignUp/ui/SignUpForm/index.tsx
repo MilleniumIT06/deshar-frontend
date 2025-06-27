@@ -1,11 +1,20 @@
 'use client'
-import { Input } from '@/shared/ui/Input'
-import { Button } from '@/shared/ui/Button'
-import styles from './styles.module.scss'
 import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import { signUpUserFormData, signUpUserSchema } from '../../model/signUp.schema'
+
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+
+import { Button } from '@/shared/ui/Button'
+import { Input } from '@/shared/ui/Input'
+
+import { signUpUserFormData, signUpUserSchema } from '../../model/signUp.schema'
+
+import styles from './styles.module.scss'
+
+
+
+
+
 export const SignUpForm = ({ handleForm }: { handleForm: () => void; }) => {
     const { register, handleSubmit, formState: { errors, isValid } } = useForm<signUpUserFormData>({
         resolver: zodResolver(signUpUserSchema),

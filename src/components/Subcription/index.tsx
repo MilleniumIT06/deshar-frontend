@@ -1,6 +1,9 @@
 import cn from 'classnames';
-import styles from './styles.module.scss';
+
 import { RateCard } from '../RateCard';
+
+import styles from './styles.module.scss';
+
 export const Subscription = () => {
     return (
         <section className={styles.index}>

@@ -1,8 +1,10 @@
 "use client";
 import { useState } from 'react';
+
+import { Tabs } from '@/shared/ui/Tabs';
+
 import styles from './styles.module.scss';
 import { Table } from './Table';
-import { Tabs } from '@/shared/ui/Tabs';
 
 const testClasmates = [
     { id: 1, type: "classmates", class: '7 "Б"', name: "Дзауров Ахмед1", doneModules: 18, placeNumber: 1, points: 120, time: "2ч 37м" },

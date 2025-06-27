@@ -1,6 +1,8 @@
 import cn from 'classnames';
-import styles from './styles.module.scss';
+
 import { SubjectCard } from "../SubjectCard";
+
+import styles from './styles.module.scss';
 
 export const OtherSubjects = () => {
     return (

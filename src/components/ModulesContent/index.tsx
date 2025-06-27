@@ -1,5 +1,6 @@
 import { ModuleCard } from './ModuleCard';
 import styles from './styles.module.scss';
+
 export const ModulesContent = () => {
     return (
         <section className={styles.ModulesContent}>

@@ -1,8 +1,10 @@
 'use client';
 import { useState } from 'react';
+
+import { cva, type VariantProps } from 'class-variance-authority';
 import cn from 'classnames';
 import { motion, AnimatePresence } from 'motion/react';
-import { cva, type VariantProps } from 'class-variance-authority';
+
 import styles from './styles.module.scss';
 
 const inputSelectVariants = cva(styles.index, {
@@ -22,21 +24,24 @@ export interface InputSelectProps extends VariantProps<typeof inputSelectVariant
   className?: string;
   placeholderValue: string;
   options?: { value: string | number; label: string }[];
+  value: number | string;
+  setValue: (value: number | string) => void;
 }
 
-const InputSelect = ({ 
-  variant, 
-  className, 
+const InputSelect = ({
+  variant,
+  className,
   placeholderValue = "example",
   options = [
     { value: 1, label: 'Option 1' },
     { value: 2, label: 'Option 2' },
     { value: 3, label: 'Option 3' },
-  ]
+  ],
+  setValue,
+  value
 }: InputSelectProps) => {
-  const [value, setValue] = useState<string | number>("");
   const [open, setOpen] = useState(false);
-  
+
   const handleChange = (selectedValue: string | number) => {
     setValue(selectedValue);
     setOpen(false);
@@ -46,17 +51,17 @@ const InputSelect = ({
 
   return (
     <div className={cn(inputSelectVariants({ variant, className }))}>
-      <input 
+      <input
         placeholder={placeholderValue}
-        className={cn("input-reset", styles.input)} 
-        value={selectedLabel} 
-        type="text" 
+        className={cn("input-reset", styles.input)}
+        value={selectedLabel}
+        type="text"
         readOnly
       />
-      
-      <button 
-        type="button" 
-        className={cn("btn-reset", styles.openBtn)} 
+
+      <button
+        type="button"
+        className={cn("btn-reset", styles.openBtn)}
         onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-label="Toggle dropdown"
@@ -72,7 +77,7 @@ const InputSelect = ({
           <path d="M13 1.5L7 7.5L1 1.5" stroke="#7D7979" strokeWidth="1.5" />
         </motion.svg>
       </button>
-      
+
       <AnimatePresence>
         {open && (
           <motion.div
@@ -83,8 +88,8 @@ const InputSelect = ({
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
             {options.map((option) => (
-              <div 
-                key={option.value} 
+              <div
+                key={option.value}
                 className={cn(styles.option, {
                   [styles.selected]: option.value === value
                 })}

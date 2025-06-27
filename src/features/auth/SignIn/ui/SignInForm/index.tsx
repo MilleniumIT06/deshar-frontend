@@ -1,9 +1,15 @@
 'use client'
-import { Input } from '@/shared/ui/Input'
-import { Button } from '@/shared/ui/Button'
-import styles from './styles.module.scss'
 import { useState } from 'react'
+
 import Link from 'next/link'
+
+import { Button } from '@/shared/ui/Button'
+import { Input } from '@/shared/ui/Input'
+
+import styles from './styles.module.scss'
+
+
+
 export const SignInForm = () => {
     const [vis, setVis] = useState(false)
     const handleVisible = () => {

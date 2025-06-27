@@ -1,6 +1,9 @@
 import { ProgressBar } from '@/shared/ui/ProgressBar';
-import styles from './styles.module.scss';
+
 import { AttestationBar } from '../AttestationBar';
+
+import styles from './styles.module.scss';
+
 export const ModuleCard = ({
     doneLessons,
     maxLessons,

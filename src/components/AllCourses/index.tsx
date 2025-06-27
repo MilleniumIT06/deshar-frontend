@@ -1,5 +1,6 @@
 import { CoursesBlock } from './CoursesBlock';
 import styles from './styles.module.scss';
+
 export const AllCourses = () => {
     return (
         <section className={styles.AllCourses}>

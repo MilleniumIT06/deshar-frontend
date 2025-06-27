@@ -1,6 +1,9 @@
-import styles from './styles.module.scss';
-import { LessonProgressCard } from '../../widgets/LessonProgressCard';
 import Link from 'next/link';
+
+import { LessonProgressCard } from '../../widgets/LessonProgressCard';
+
+import styles from './styles.module.scss';
+
 export const Continue = () => {
     return (
         <section className={styles.continue}>

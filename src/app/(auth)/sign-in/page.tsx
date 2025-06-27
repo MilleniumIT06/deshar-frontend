@@ -1,6 +1,9 @@
 import cn from 'classnames'
-import styles from './../../page.module.scss';
+
 import { SignInForm } from "@/features/auth/SignIn/ui/SignInForm";
+
+import styles from './../../page.module.scss';
+
 export default function SignIn() {
     return (
         <main>

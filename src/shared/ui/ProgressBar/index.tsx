@@ -1,4 +1,5 @@
 import styles from './styles.module.scss';
+
 interface ProgressBarProps {
     counter: boolean;
     maxLessons: number;

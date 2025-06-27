@@ -1,11 +1,17 @@
 "use client";
+import { useState } from 'react';
+
+import Link from 'next/link';
+
 import cn from 'classnames';
-import styles from './styles.module.scss';
+
+import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
 import { Logo } from '@/shared/ui/Logo';
-import { useState } from 'react';
-import { Avatar } from '@/shared/ui/Avatar';
-import Link from 'next/link';
+
+import styles from './styles.module.scss';
+
+
 export const Header = () => {
     const [authed, setAuthed] = useState(true);
     return (<header className={styles.index}>

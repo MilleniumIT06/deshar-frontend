@@ -1,5 +1,7 @@
 import { LessonProgressCard } from '@/widgets/LessonProgressCard';
+
 import styles from './styles.module.scss';
+
 export const CompletedCourses = () => {
     return (
         <section className={styles.completedCourses}>

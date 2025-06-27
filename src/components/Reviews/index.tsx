@@ -1,14 +1,21 @@
 "use client";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, A11y } from 'swiper/modules'
-import { ReviewsCard } from './ReviewsCard';
-import styles from './styles.module.scss';
+import { useState, useEffect } from 'react';
+
 import cn from 'classnames';
+import { Navigation, A11y } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { Button } from '@/shared/ui/Button';
+
+import { ReviewsCard } from './ReviewsCard';
+
+import styles from './styles.module.scss';
+
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useState, useEffect } from 'react';
-import { Button } from '@/shared/ui/Button';
+
+
 export const Reviews = () => {
     const [isMounted, setIsMounted] = useState(false);
 

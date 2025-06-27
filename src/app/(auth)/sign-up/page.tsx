@@ -1,8 +1,11 @@
 'use client';
 import { useState } from "react";
-import { SignUpForm } from "@/features/auth/SignUp/ui/SignUpForm";
+
 import { ProgramSelectionForm } from "@/features/auth/ProgramSelection/ui/ProgramSelectionForm";
+import { SignUpForm } from "@/features/auth/SignUp/ui/SignUpForm";
+
 import styles from './../../page.module.scss';
+
 export default function SignUp() {
     const [step, setStep] = useState(2);
 

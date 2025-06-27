@@ -1,5 +1,7 @@
 import { Button } from '@/shared/ui/Button';
+
 import styles from './styles.module.scss';
+
 export const Question = () => {
 
     return (
