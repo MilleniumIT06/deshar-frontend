@@ -1,4 +1,4 @@
-@use './../../scss/breakpoint'as breakpoint;
+@use './../../scss/breakpoint' as breakpoint;
 
 .selector {
     position: relative;
@@ -35,11 +35,6 @@
         }
     }
 
-    &__btn {
-        svg {
-            transition: all 1s ease;
-        }
-    }
 
     &__list {
         width: 100%;
@@ -52,8 +47,8 @@
             display: flex;
             align-items: center;
             justify-content: start;
-            padding: 0 14px;
-
+            padding: 12px 16px;
+            border-radius: 16px;
             span {
                 font-family: var(--font-family);
                 font-weight: 400;
@@ -63,7 +58,13 @@
             }
 
             &:hover {
-                background-color: var(--neutral-light);
+                background-color: var(--neutral-lightest);
+            }
+
+            &.selected {
+                span {
+                    font-weight: 700;
+                }
             }
         }
     }
@@ -79,17 +80,15 @@
         align-items: start;
         justify-content: start;
         width: 143px;
-        max-height: 0;
         background-color: var(--neutral-white);
         box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.1);
         border-radius: 24px;
-        transition: all 0.3s ease-in-out;
 
         &_inner {
             width: 100%;
             max-height: 156px;
             overflow-y: scroll;
-
+            padding: 8px;
             &::-webkit-scrollbar {
                 width: 4px;
             }
@@ -104,18 +103,6 @@
                 width: 100%;
                 background: var(--neutral-medium);
             }
-        }
-    }
-
-    &.active {
-
-        .selector__body {
-            max-height: 156px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .selector__btn svg {
-            transform: rotate(180deg);
         }
     }
 
