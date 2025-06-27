@@ -1,92 +1,85 @@
-@use "./../../shared/scss/breakpoint"as breakpoint;
-@use './../../shared/scss/mini'as mini;
+@use './../../shared/scss/breakpoint' as breakpoint;
+@use './../../shared/scss/mini' as mini;
 
 .index {
-    position: relative;
-    border-bottom: 1px solid var(--neutral-light);
-    width: 100%;
-    height: 75px;
+	position: relative;
+	border-bottom: 1px solid var(--neutral-light);
+	width: 100%;
+	height: 75px;
 }
 
 .burger {
-    @include mini.burger;
+	@include mini.burger;
 
-    z-index: 110;
-
+	z-index: 110;
 }
 
 .headerNav {
-    @include breakpoint.middle-tablet {
-        display: none;
-    }
+	@include breakpoint.middle-tablet {
+		display: none;
+	}
 }
 
 .headerBtn {
-    max-width: 92px;
-    height: 43px;
+	max-width: 92px;
+	height: 43px;
 
-    @include breakpoint.middle-tablet {
-        margin-right: 5%;
-    }
+	@include breakpoint.middle-tablet {
+		margin-right: 5%;
+	}
 
-    @include breakpoint.small-mobile {
-        display: none;
-    }
+	@include breakpoint.small-mobile {
+		display: none;
+	}
 }
 
 .headerContainer {
-    height: 100%;
+	height: 100%;
 }
 
 .headerBurger {
-    display: none;
+	display: none;
 
-    &.burger--active {
-        color: var(--neutral-white);
-    }
+	&.burger--active {
+		color: var(--neutral-white);
+	}
 
-    @include breakpoint.middle-tablet {
-        display: block;
-    }
+	@include breakpoint.middle-tablet {
+		display: block;
+	}
 }
 
-
 .list {
-    display: flex;
-    align-items: center;
-    gap: 43px;
-
-
+	display: flex;
+	align-items: center;
+	gap: 43px;
 }
 
 .listItem {
-    a {
-        font-family: "Zona Pro", sans-serif;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 175%;
-        color: #202020;
+	a {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 175%;
+		color: #202020;
 
+		&:hover {
+			color: var(--primary-medium);
+		}
 
-        &:hover {
-            color: var(--primary-medium);
-        }
-
-
-        &:focus-visible {
-            outline: 2px solid var(--primary-medium);
-        }
-
-    }
+		&:focus-visible {
+			outline: 2px solid var(--primary-medium);
+		}
+	}
 }
 
 .inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
 
-    @include breakpoint.middle-tablet {
-        justify-content: start;
-    }
+	@include breakpoint.middle-tablet {
+		justify-content: start;
+	}
 }

@@ -20,7 +20,7 @@ export const Header = () => {
 
 
             <div className={styles.inner}>
-                <Logo />
+                <Logo size='large' />
                 <nav className={styles.headerNav}>
                     <ul className={`list-reset ${styles.list}`}>
                         <li className={styles.listItem}>
@@ -32,9 +32,7 @@ export const Header = () => {
                         <li className={styles.listItem}>
                             <a href="#" tabIndex={4}>Контакты</a>
                         </li>
-                        <li className={styles.listItem}>
-                            <Link href="/profile.html" tabIndex={5}>Профиль</Link>
-                        </li>
+                        
                     </ul>
                 </nav>
                 {authed ? <Avatar /> : <Button variant='primary' size="small" className={styles.headerBtn} tabIndex={6}>
