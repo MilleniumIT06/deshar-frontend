@@ -1,74 +1,71 @@
-@use './../../../shared/scss/breakpoint'as breakpoint;
+@use './../../../shared/scss/breakpoint' as breakpoint;
 
 .tableItem {
-    position: relative;
-    height: 80px;
-    cursor: pointer;
+	position: relative;
+	height: 80px;
+	cursor: pointer;
 
-    &::before {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        width: 99%;
-        height: 100%;
-        border-radius: 15px;
-        background-color: var(--neutral-lightest);
-        display: none;
-    }
+	&::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		width: 99%;
+		height: 100%;
+		border-radius: 15px;
+		background-color: var(--neutral-lightest);
+		display: none;
+	}
 
-    &:hover {
-        &::before {
-            display: block;
-        }
-    }
+	&:hover {
+		&::before {
+			display: block;
+		}
+	}
 
-    &__place {
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        height: 60px;
+	&__place {
+		display: flex;
+		align-items: center;
+		justify-content: start;
+		height: 60px;
 
-        div {
-            position: relative;
-            width: 32px;
-            height: 32px;
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
+		div {
+			position: relative;
+			width: 32px;
+			height: 32px;
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
 
-            @include breakpoint.mobile {
-                width: 29px;
-                height: 29px;
-            }
+			@include breakpoint.mobile {
+				width: 29px;
+				height: 29px;
+			}
 
+			span {
+				position: absolute;
+				left: 35%;
+				top: 50%;
+				z-index: 11;
+				font-family: var(--second-family);
+				font-weight: 600;
+				font-size: 16px;
+				line-height: 150%;
+				text-align: center;
+				transform: translateY(-50%);
+			}
+		}
+	}
 
-            span {
-                position: absolute;
-                left: 35%;
-                top: 50%;
-                z-index: 11;
-                font-family: var(--second-family);
-                font-weight: 600;
-                font-size: 16px;
-                line-height: 150%;
-                text-align: center;
-                transform: translateY(-50%);
-            }
-        }
-    }
-
-
-    &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        z-index: 100;
-        width: 100%;
-        height: 1px;
-        background-color: #d6d6d6;
-    }
-
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		z-index: 100;
+		width: 100%;
+		height: 1px;
+		background-color: var(--neutral-light);
+	}
 }
 
 .tableItem__points,
@@ -76,40 +73,40 @@
 .tableItem__name,
 .tableItem__time,
 .tableItem__parralelClass {
-    border: none;
-    margin: 0;
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 160%;
-    color: var(--neutral-darkest);
+	border: none;
+	margin: 0;
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 160%;
+	color: var(--neutral-darkest);
 
-    @include breakpoint.mobile {
-        font-size: 16px;
-    }
+	@include breakpoint.mobile {
+		font-size: 16px;
+	}
 }
 
 .tableItem__points {
-    color: var(--primary-medium);
+	color: var(--primary-medium);
 }
 
 .first {
-    color: var(--neutral-white);
-    background-image: url("/svg/first.svg");
+	color: var(--neutral-white);
+	background-image: url('/svg/first.svg');
 }
 
 .second {
-    color: var(--neutral-white);
-    background-image: url("/svg/second.svg");
+	color: var(--neutral-white);
+	background-image: url('/svg/second.svg');
 }
 
 .third {
-    color: var(--neutral-white);
-    background-image: url("/svg/third.svg");
+	color: var(--neutral-white);
+	background-image: url('/svg/third.svg');
 }
 
 .other {
-    span {
-        color: var(--black-color);
-    }
+	span {
+		color: var(--black-color);
+	}
 }

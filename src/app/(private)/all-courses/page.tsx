@@ -9,11 +9,11 @@ export default function AllCoursesPage() {
     return (
         <main>
             <div className={styles.inner}>
-            <div className="container">
-            <Breadcrumbs />
+                <div className="container">
+                    <Breadcrumbs items={[{ label: "test", href: "test" }]} />
+                </div>
             </div>
-            </div>
-            <AllCourses/>
+            <AllCourses />
         </main>
     );
 }

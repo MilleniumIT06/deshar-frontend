@@ -1,0 +1,25 @@
+.index {
+	width: 44px;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	height: 200px;
+	gap: 10px;
+
+	&__title {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 143%;
+		text-align: center;
+		color: #7d7979;
+	}
+
+	&__body {
+		border-radius: 12px;
+		width: 100%;
+		max-height: 200px;
+		background-color: var(--primary-medium);
+		transition: all 0.9s ease-in-out;
+	}
+}

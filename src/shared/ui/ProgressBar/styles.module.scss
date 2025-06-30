@@ -1,42 +1,42 @@
-.ProgressBar{
-    width: 100%;
-    height: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    gap: 8px;
-    &__line {
-        overflow: hidden;
-        position: relative;
-        border-radius: 8px;
-        background-color: #d6d6d6;
-       height: 12px;
-   }
-   &__done {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 10;
-    border-radius: 8px;
-    height: 100%;
-    background-color: #1baa7d;
-}
+.ProgressBar {
+	width: 100%;
+	height: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	gap: 8px;
+	&__line {
+		overflow: hidden;
+		position: relative;
+		border-radius: 8px;
+		background-color: var(--neutral-light);
+		height: 12px;
+	}
+	&__done {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 10;
+		border-radius: 8px;
+		height: 100%;
+		background-color: #1baa7d;
+	}
 
-&__process {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 9;
-    border-radius: 8px;
-    width: 47%;
-    height: 100%;
-    background-color: #f06c20;
+	&__process {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 9;
+		border-radius: 8px;
+		width: 47%;
+		height: 100%;
+		background-color: #f06c20;
+	}
 }
-}
-.ProgressBar__info{
-    font-family: var(--font-family);
-font-weight: 700;
-font-size: 14px;
-line-height: 143%;
-color: var(--primary-medium);
+.ProgressBar__info {
+	font-family: var(--font-family);
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 143%;
+	color: var(--primary-medium);
 }

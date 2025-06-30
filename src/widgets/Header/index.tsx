@@ -30,7 +30,7 @@ export const Header = () => {
                         <li className={styles.listItem}>
                             <a href="#" tabIndex={4}>Контакты</a>
                         </li>
-                        
+
                     </ul>
                 </nav>
                 {authed ? <Avatar /> : <Button variant='primary' size="small" className={styles.headerBtn} tabIndex={6}>

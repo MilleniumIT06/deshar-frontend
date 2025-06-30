@@ -1,3 +1,6 @@
+"use client";
+import { useState, useEffect } from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -5,7 +8,6 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import cn from 'classnames';
 
 import styles from './styles.module.scss';
-
 
 const subjectCardVariants = cva(
     styles.SubjectCard,
@@ -21,7 +23,8 @@ const subjectCardVariants = cva(
             type: "default",
         },
     }
-)
+);
+
 export interface SubjectCardProps extends VariantProps<typeof subjectCardVariants> {
     id: number | string;
     title: string;
@@ -29,7 +32,12 @@ export interface SubjectCardProps extends VariantProps<typeof subjectCardVariant
     description: string;
     modulesCount: number;
     className?: string;
+    loading?: 'eager' | 'lazy';
+    priority?: boolean;
 }
+
+
+
 const SubjectCard = ({
     id,
     type,
@@ -37,23 +45,73 @@ const SubjectCard = ({
     imageUrl = "subjectcardskeleton",
     description = "description",
     modulesCount = 99,
-    className
+    className,
+    loading = 'lazy',
+    priority = false
 }: SubjectCardProps) => {
+    const [imageError, setImageError] = useState(false);
+
+
+    const handleImageError = () => {
+        setImageError(true);
+    };
+
+
+    useEffect(() => {
+        setImageError(false);
+    }, [imageUrl]);
+
+
+    const getModulesText = (count: number) => {
+        if (count === 1) return 'модуль';
+        if (count >= 2 && count <= 4) return 'модуля';
+        return 'модулей';
+    };
+
     return (
-        <li className={cn(subjectCardVariants({ type, className }))}>
+        <li
+            className={cn(subjectCardVariants({ type, className }))}>
             <div className={styles.SubjectCard__header}>
-                <h6 className={styles.SubjectCard__title}><Link href={`/all-courses/${id}/modules`}>{title}</Link></h6>
-                <span>{modulesCount} модулей</span>
+                <h6 className={styles.SubjectCard__title}>
+                    <Link
+                        href={`/all-courses/${id}/modules`}
+                        passHref>
+                        {title}
+                    </Link>
+                </h6>
+
+                <span className={styles.SubjectCard__modules}>
+                    {modulesCount} {getModulesText(modulesCount)}
+                </span>
             </div>
-            {type === "long" && <div className={styles.SubjectCard__body}>
-                <p>
-                    {description}
-                </p>
-                <div className={styles.SubjectCard__image}>
-                    <Image src={`/${imageUrl}.png`} alt="Subject alt" width={168} height={168} />
+
+            {type === "long" && (
+                <div className={styles.SubjectCard__body}>
+                    <p className={styles.SubjectCard__description}>
+                        {description}
+                    </p>
+
+                    <div className={styles.SubjectCard__image}>
+                        {!imageError ? (
+                            <Image
+                                src={`/${imageUrl}.png`}
+                                alt={`Изображение курса: ${title}`}
+                                width={168}
+                                height={168}
+                                loading={loading}
+                                priority={priority}
+                                onError={handleImageError}
+                                placeholder="blur"
+                                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTY4IiBoZWlnaHQ9IjE2OCIgdmlld0JveD0iMCAwIDE2OCAxNjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2OCIgaGVpZ2h0PSIxNjgiIGZpbGw9IiNFMkUyRTIiLz48L3N2Zz4="
+                            />
+                        ) : (
+                            <div className={styles.SubjectCard__imageFallback} />
+                        )}
+                    </div>
                 </div>
-            </div>}
+            )}
         </li>
-    )
-}
-export { SubjectCard, subjectCardVariants }
+    );
+};
+
+export { SubjectCard, subjectCardVariants };

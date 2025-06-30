@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { Button } from '@/shared/ui/Button';
 import { Selector } from '@/shared/ui/Selector';
 
+import { ChartCandle } from './ChartCandle';
 import styles from './styles.module.scss';
 
 export const Successes = () => {
@@ -23,13 +24,13 @@ export const Successes = () => {
                                     Ежедневная активность
                                 </h4>
                                 <div className={styles.chart__navigation}>
-                                    <Button variant="iconThird" size="iconBig">
+                                    <Button variant="iconThird" size="iconSmall">
                                         <svg width="9" height="14" viewBox="0 0 9 14" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path d="M8 1L2 7L8 13" stroke="#303030" strokeWidth="1.5" />
                                         </svg>
                                     </Button>
-                                    <Button variant="iconThird" size="iconBig">
+                                    <Button variant="iconThird" size="iconSmall">
                                         <svg width="9" height="14" viewBox="0 0 9 14" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1 13L7 7L1 1" stroke="#303030" strokeWidth="1.5" />
@@ -52,22 +53,21 @@ export const Successes = () => {
                                     </ul>
                                 </div>
                                 <div className={styles.chart__lines}>
-                                    <div className={styles.chart__line}>
-                                        <div className={styles.chart__line_candle}></div>
-                                        <span className={styles.chart__line_title}>test</span>
-                                    </div>
-                                    <div className={styles.chart__line}>
-                                        <div className={styles.chart__line_candle}></div>
-                                        <span className={styles.chart__line_title}>test</span>
-                                    </div>
-                                    <div className={styles.chart__line}>
-                                        <div className={styles.chart__line_candle}></div>
-                                        <span className={styles.chart__line_title}>test</span>
-                                    </div>
-                                    <div className={styles.chart__line}>
-                                        <div className={styles.chart__line_candle}></div>
-                                        <span className={styles.chart__line_title}>test</span>
-                                    </div>
+
+                                    <ChartCandle maxPoints={200} currentPoints={26} />
+                                    <ChartCandle maxPoints={200} currentPoints={200} />
+                                    <ChartCandle maxPoints={200} currentPoints={76} />
+                                    <ChartCandle maxPoints={200} currentPoints={1} />
+                                    <ChartCandle maxPoints={200} currentPoints={26} />
+                                    <ChartCandle maxPoints={200} currentPoints={200} />
+                                    <ChartCandle maxPoints={200} currentPoints={76} />
+                                    <ChartCandle maxPoints={200} currentPoints={1} />
+                                    <ChartCandle maxPoints={200} currentPoints={26} />
+                                    <ChartCandle maxPoints={200} currentPoints={200} />
+                                    <ChartCandle maxPoints={200} currentPoints={76} />
+                                    <ChartCandle maxPoints={200} currentPoints={1} />
+                                    <ChartCandle maxPoints={200} currentPoints={26} />
+                                    <ChartCandle maxPoints={200} currentPoints={26} />
                                 </div>
                             </div>
                         </div>

@@ -13,7 +13,7 @@ export default async function Modules({
         <main>
             <div className={styles.inner}>
                 <div className="container">
-                    <Breadcrumbs />
+                    <Breadcrumbs items={[{ label: "test", href: "test" }]} />
 
                 </div>
                 {id}
