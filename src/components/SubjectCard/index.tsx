@@ -28,7 +28,7 @@ const subjectCardVariants = cva(
 export interface SubjectCardProps extends VariantProps<typeof subjectCardVariants> {
     id: number | string;
     title: string;
-    imageUrl: string;
+    imageUrl?: string;
     description: string;
     modulesCount: number;
     className?: string;
@@ -105,7 +105,13 @@ const SubjectCard = ({
                                 blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTY4IiBoZWlnaHQ9IjE2OCIgdmlld0JveD0iMCAwIDE2OCAxNjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2OCIgaGVpZ2h0PSIxNjgiIGZpbGw9IiNFMkUyRTIiLz48L3N2Zz4="
                             />
                         ) : (
-                            <div className={styles.SubjectCard__imageFallback} />
+                            <Image
+                                src={`/images/Subjects/fallback.png`}
+                                alt={`Изображение заглушка`}
+                                width={168}
+                                height={168}
+
+                            />
                         )}
                     </div>
                 </div>

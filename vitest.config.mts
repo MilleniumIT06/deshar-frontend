@@ -7,6 +7,11 @@ export default defineConfig({
 	test: {
 		environment: 'jsdom',
 		globals: true,
+		css: {
+			modules: {
+				classNameStrategy: 'non-scoped',
+			},
+		},
 	},
 })
 // import { defineConfig } from 'vite';
