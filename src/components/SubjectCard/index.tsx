@@ -74,7 +74,7 @@ const SubjectCard = ({
             <div className={styles.SubjectCard__header}>
                 <h6 className={styles.SubjectCard__title}>
                     <Link
-                        href={`/all-courses/${id}/modules`}
+                        href={`/courses/${id}/modules`}
                         passHref>
                         {title}
                     </Link>

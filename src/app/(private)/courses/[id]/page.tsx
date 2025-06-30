@@ -6,7 +6,7 @@ export default async function OneCourse() {
     return <main>
         <div className={styles.inner}>
             <div className="container">
-                <Breadcrumbs />
+                <Breadcrumbs items={[{ label: "test", href: "test" }]} />
             </div>
         </div>
      

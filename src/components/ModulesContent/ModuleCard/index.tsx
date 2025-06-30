@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { ProgressBar } from '@/shared/ui/ProgressBar';
 
 import { AttestationBar } from '../AttestationBar';
@@ -9,8 +11,10 @@ export const ModuleCard = ({
     maxLessons,
     number,
     processLessons,
-    title
+    title,
+    id,
 }: {
+    id: number | string;
     number: number;
     title: string;
     maxLessons: number;
@@ -25,12 +29,14 @@ export const ModuleCard = ({
                         <span className={styles.ModuleCard__suptitle}>Модуль {number}</span>
                     </div>
                     <div className={styles.ModuleCard__body}>
-                        <h6 className={styles.ModuleCard__title}>{title}</h6>
+                        <Link href={`/learning/${id}`}>
+                            <h6 className={styles.ModuleCard__title}>{title}</h6>
+                        </Link>
                     </div>
                 </div>
                 <div className={styles.ModuleCard__footer}>
 
-                    <ProgressBar maxLessons={maxLessons} doneLessons={doneLessons} processLessons={processLessons} counter/>
+                    <ProgressBar maxLessons={maxLessons} doneLessons={doneLessons} processLessons={processLessons} counter />
                     <AttestationBar points={100} status="checked" />
                 </div>
             </div>
