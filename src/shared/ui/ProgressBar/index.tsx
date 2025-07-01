@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
 
+import cn from 'classnames';
+
 import styles from './styles.module.scss';
 
 interface ProgressBarProps {
@@ -9,6 +11,7 @@ interface ProgressBarProps {
   processLessons: number;
   showPercentage?: boolean;
   ariaLabel?: string;
+  className?:string;
 }
 
 export const ProgressBar = ({
@@ -17,7 +20,8 @@ export const ProgressBar = ({
   processLessons = 2,
   counter = false,
   showPercentage = false,
-  ariaLabel = "Прогресс прохождения уроков"
+  ariaLabel = "Прогресс прохождения уроков",
+  className
 }: ProgressBarProps) => {
   const validatedValues = useMemo(() => {
     const max = Math.max(1, maxLessons);
@@ -42,7 +46,7 @@ export const ProgressBar = ({
 
   return (
     <div 
-      className={styles.ProgressBar}
+      className={cn(styles.ProgressBar,className)}
       role="progressbar"
       aria-valuenow={done}
       aria-valuemin={0}
