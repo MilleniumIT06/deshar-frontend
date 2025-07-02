@@ -1,3 +1,4 @@
+import { ChartCandleProps } from '@/components/Successes/ChartCandle'
 import { StudentData } from '@/components/TopClassmates'
 
 export const areas = [
@@ -442,3 +443,40 @@ export const TEST_PARALLEL: StudentData[] = [
 		time: '1ч 45м',
 	},
 ]
+
+// Генерация тестовых данных с разными датами
+const generateDate = (daysAgo: number): Date => {
+	const date = new Date()
+	date.setDate(date.getDate() - daysAgo)
+	return date
+}
+
+export const candleDateMockData: ChartCandleProps[] = [
+
+	{ date: generateDate(0), maxPoints: 100, currentPoints: 90 },
+	{ date: generateDate(1), maxPoints: 100, currentPoints: 75 },
+	{ date: generateDate(2), maxPoints: 100, currentPoints: 60 },
+	{ date: generateDate(3), maxPoints: 100, currentPoints: 45 },
+	{ date: generateDate(4), maxPoints: 100, currentPoints: 80 },
+	{ date: generateDate(5), maxPoints: 100, currentPoints: 30 },
+	{ date: generateDate(6), maxPoints: 100, currentPoints: 65 },
+
+
+	{ date: new Date(2023, 0, 1), maxPoints: 100, currentPoints: 100 },
+	{ date: new Date(2023, 11, 31), maxPoints: 100, currentPoints: 10 }, 
+	{ date: new Date(2023, 1, 29), maxPoints: 100, currentPoints: 50 }, 
+
+
+	{ date: new Date(2022, 5, 15), maxPoints: 100, currentPoints: 70 },
+	{ date: new Date(2024, 7, 20), maxPoints: 100, currentPoints: 85 },
+]
+
+
+export const histogramDateMockData: ChartCandleProps[] = Array.from(
+	{ length: 7 },
+	(_, i) => ({
+		date: generateDate(6 - i),
+		maxPoints: 100,
+		currentPoints: Math.floor(Math.random() * 100),
+	}),
+)
