@@ -1,3 +1,5 @@
+import { StudentData } from '@/components/TopClassmates'
+
 export const areas = [
 	{ value: 100, label: 'Магас' },
 	{ value: 200, label: 'Карабулак' },
@@ -309,5 +311,90 @@ export const reviewsMockData = [
 		rating: 5,
 		text: 'Ингушский язык преподается на высшем уровне! Виден прогресс уже после первого месяца занятий. Спасибо за качественный курс!',
 		subject: 'Ингушский язык, 6 класс',
+	},
+]
+export const TEST_CLASSMATES: StudentData[] = [
+	{
+		id: 1,
+		type: 'classmates',
+		class: '7 "Б"',
+		name: 'Дзауров Ахмед',
+		doneModules: 18,
+		placeNumber: 1,
+		points: 120,
+		time: '2ч 37м',
+	},
+	{
+		id: 2,
+		type: 'classmates',
+		class: '7 "Б"',
+		name: 'Кодзоева Мадина',
+		doneModules: 15,
+		placeNumber: 2,
+		points: 115,
+		time: '2ч 15м',
+	},
+	{
+		id: 3,
+		type: 'classmates',
+		class: '7 "Б"',
+		name: 'Богатырев Исмаил',
+		doneModules: 12,
+		placeNumber: 3,
+		points: 105,
+		time: '1ч 50м',
+	},
+	{
+		id: 4,
+		type: 'classmates',
+		class: '7 "Б"',
+		name: 'Эсмурзиева Амина',
+		doneModules: 10,
+		placeNumber: 4,
+		points: 95,
+		time: '1ч 30м',
+	},
+]
+
+export const TEST_PARALLEL: StudentData[] = [
+	{
+		id: 1,
+		type: 'parallel',
+		class: '7 "Б"',
+		name: 'Дзауров Ахмед',
+		doneModules: 18,
+		placeNumber: 1,
+		points: 120,
+		time: '2ч 37м',
+	},
+	{
+		id: 2,
+		type: 'parallel',
+		class: '8 "А"',
+		name: 'Мальсагова Зарина',
+		doneModules: 16,
+		placeNumber: 2,
+		points: 118,
+		time: '2ч 20м',
+	},
+	{
+		id: 3,
+		type: 'parallel',
+		class: '9 "В"',
+		name: 'Тумгоева Тамара',
+		doneModules: 14,
+		placeNumber: 3,
+		points: 110,
+		time: '2ч 05м',
+	},
+	{
+		id: 4,
+		type: 'parallel',
+		class: '7 "Г"',
+		name: 'Оздоев Руслан',
+		doneModules: 12,
+		placeNumber: 4,
+		points: 100,
+		time: '1ч 45м',
 	},
 ]
