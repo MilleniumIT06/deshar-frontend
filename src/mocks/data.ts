@@ -1,3 +1,6 @@
+import { ChartCandleProps } from '@/components/Successes/ChartCandle'
+import { StudentData } from '@/components/TopClassmates'
+
 export const areas = [
 	{ value: 100, label: 'Магас' },
 	{ value: 200, label: 'Карабулак' },
@@ -259,4 +262,221 @@ export const courses = [
 			},
 		],
 	},
+	{
+		id: 7,
+		title: 'История России2',
+		description: 'От Древней Руси до современности',
+		moduleCount: 5,
+		image: 'russian_history_bg',
+		modules: [
+			{
+				id: 21,
+				moduleNumber: 1,
+				title: 'Киевская Русь',
+				lessonsCount: 8,
+				courseId: 6,
+			},
+			{
+				id: 22,
+				moduleNumber: 2,
+				title: 'Московское царство',
+				lessonsCount: 10,
+				courseId: 6,
+			},
+			{
+				id: 23,
+				moduleNumber: 3,
+				title: 'Российская империя',
+				lessonsCount: 14,
+				courseId: 6,
+			},
+			{
+				id: 24,
+				moduleNumber: 4,
+				title: 'СССР',
+				lessonsCount: 16,
+				courseId: 6,
+			},
+			{
+				id: 25,
+				moduleNumber: 5,
+				title: 'Российская Федерация',
+				lessonsCount: 12,
+				courseId: 6,
+			},
+		],
+	},
 ]
+export const reviewsMockData = [
+	{
+		id: 1,
+		name: 'Амина Т.',
+		rating: 5,
+		text: 'Прекрасный курс! Учитель объясняет очень доступно, материал усваивается легко. Задания интересные и полезные.',
+		subject: 'Ингушский язык, 8 класс',
+	},
+	{
+		id: 2,
+		name: 'Ибрагим К.',
+		rating: 4,
+		text: 'Хорошая подача материала, но иногда не хватает практических примеров. В целом доволен прогрессом.',
+		subject: 'Математика, 10 класс',
+	},
+	{
+		id: 3,
+		name: 'Залина А.',
+		rating: 3,
+		text: 'Курс неплохой, но ожидала больше интерактива. Теория объясняется понятно, а вот с практикой слабовато.',
+		subject: 'Химия, 9 класс',
+	},
+	{
+		id: 4,
+		name: 'Адам Б.',
+		rating: 5,
+		text: 'Лучший преподаватель по физике! Сложные темы становятся простыми и понятными. Рекомендую всем одноклассникам.',
+		subject: 'Физика, 11 класс',
+	},
+	{
+		id: 5,
+		name: 'Мадина С.',
+		rating: 2,
+		text: 'Разочарована курсом. Материал подается хаотично, нет четкой структуры. Некоторые темы объясняются слишком поверхностно.',
+		subject: 'История России, 8 класс',
+	},
+	{
+		id: 6,
+		name: 'Аслан М.',
+		rating: 4,
+		text: 'Интересные лекции по всемирной истории, особенно понравились материалы по Древнему миру. Хотелось бы больше тестов для закрепления.',
+		subject: 'История, 7 класс',
+	},
+	{
+		id: 7,
+		name: 'Лейла Х.',
+		rating: 5,
+		text: 'Ингушский язык преподается на высшем уровне! Виден прогресс уже после первого месяца занятий. Спасибо за качественный курс!',
+		subject: 'Ингушский язык, 6 класс',
+	},
+]
+export const TEST_CLASSMATES: StudentData[] = [
+	{
+		id: 1,
+		type: 'classmates',
+		class: '7 "Б"',
+		name: 'Дзауров Ахмед',
+		doneModules: 18,
+		placeNumber: 1,
+		points: 120,
+		time: '2ч 37м',
+	},
+	{
+		id: 2,
+		type: 'classmates',
+		class: '7 "Б"',
+		name: 'Кодзоева Мадина',
+		doneModules: 15,
+		placeNumber: 2,
+		points: 115,
+		time: '2ч 15м',
+	},
+	{
+		id: 3,
+		type: 'classmates',
+		class: '7 "Б"',
+		name: 'Богатырев Исмаил',
+		doneModules: 12,
+		placeNumber: 3,
+		points: 105,
+		time: '1ч 50м',
+	},
+	{
+		id: 4,
+		type: 'classmates',
+		class: '7 "Б"',
+		name: 'Эсмурзиева Амина',
+		doneModules: 10,
+		placeNumber: 4,
+		points: 95,
+		time: '1ч 30м',
+	},
+]
+
+export const TEST_PARALLEL: StudentData[] = [
+	{
+		id: 1,
+		type: 'parallel',
+		class: '7 "Б"',
+		name: 'Дзауров Ахмед',
+		doneModules: 18,
+		placeNumber: 1,
+		points: 120,
+		time: '2ч 37м',
+	},
+	{
+		id: 2,
+		type: 'parallel',
+		class: '8 "А"',
+		name: 'Мальсагова Зарина',
+		doneModules: 16,
+		placeNumber: 2,
+		points: 118,
+		time: '2ч 20м',
+	},
+	{
+		id: 3,
+		type: 'parallel',
+		class: '9 "В"',
+		name: 'Тумгоева Тамара',
+		doneModules: 14,
+		placeNumber: 3,
+		points: 110,
+		time: '2ч 05м',
+	},
+	{
+		id: 4,
+		type: 'parallel',
+		class: '7 "Г"',
+		name: 'Оздоев Руслан',
+		doneModules: 12,
+		placeNumber: 4,
+		points: 100,
+		time: '1ч 45м',
+	},
+]
+
+// Генерация тестовых данных с разными датами
+const generateDate = (daysAgo: number): Date => {
+	const date = new Date()
+	date.setDate(date.getDate() - daysAgo)
+	return date
+}
+
+export const candleDateMockData: ChartCandleProps[] = [
+
+	{ date: generateDate(0), maxPoints: 100, currentPoints: 90 },
+	{ date: generateDate(1), maxPoints: 100, currentPoints: 75 },
+	{ date: generateDate(2), maxPoints: 100, currentPoints: 60 },
+	{ date: generateDate(3), maxPoints: 100, currentPoints: 45 },
+	{ date: generateDate(4), maxPoints: 100, currentPoints: 80 },
+	{ date: generateDate(5), maxPoints: 100, currentPoints: 30 },
+	{ date: generateDate(6), maxPoints: 100, currentPoints: 65 },
+
+
+	{ date: new Date(2023, 0, 1), maxPoints: 100, currentPoints: 100 },
+	{ date: new Date(2023, 11, 31), maxPoints: 100, currentPoints: 10 }, 
+	{ date: new Date(2023, 1, 29), maxPoints: 100, currentPoints: 50 }, 
+
+
+	{ date: new Date(2022, 5, 15), maxPoints: 100, currentPoints: 70 },
+	{ date: new Date(2024, 7, 20), maxPoints: 100, currentPoints: 85 },
+]
+
+
+export const histogramDateMockData: ChartCandleProps[] = Array.from(
+	{ length: 7 },
+	(_, i) => ({
+		date: generateDate(6 - i),
+		maxPoints: 100,
+		currentPoints: Math.floor(Math.random() * 100),
+	}),
+)

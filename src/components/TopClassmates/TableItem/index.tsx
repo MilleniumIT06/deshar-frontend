@@ -9,8 +9,28 @@ interface TableItemProps {
     parralelClass?: string;
     type: "parallel" | "classmates";
 }
-export const TableItem = ({ doneModules, name, placeNumber, points, time, type, parralelClass }: TableItemProps) => {
-    const placeClass = placeNumber === 1 ? styles.first : placeNumber === 2 ? styles.second : placeNumber === 3 ? styles.third : styles.other;
+
+export const TableItem = ({
+    doneModules,
+    name,
+    placeNumber,
+    points,
+    time,
+    type,
+    parralelClass
+}: TableItemProps) => {
+    const placeClasses = {
+        1: styles.first,
+        2: styles.second,
+        3: styles.third
+    };
+
+    const placeClass = placeClasses[placeNumber as keyof typeof placeClasses] || styles.other;
+
+    if (type === "parallel" && !parralelClass) {
+        console.warn(`TableItem: parralelClass is required for type "parallel" (placeNumber: ${placeNumber})`);
+    }
+
     return (
         <tr className={styles.tableItem}>
             <td className={styles.tableItem__place}>
@@ -18,8 +38,17 @@ export const TableItem = ({ doneModules, name, placeNumber, points, time, type, 
                     <span>{placeNumber}</span>
                 </div>
             </td>
-            <td className={styles.tableItem__name}>{name}</td>
-            {type === "parallel" && <td className={styles.tableItem__parralelClass}>{parralelClass}</td>}
+
+            <td className={styles.tableItem__name} title={name}>
+                {name}
+            </td>
+
+            {type === "parallel" && (
+                <td className={styles.tableItem__parralelClass}>
+                    {parralelClass || '—'}
+                </td>
+            )}
+
             <td className={styles.tableItem__time}>{time}</td>
             <td className={styles.tableItem__done}>{doneModules}</td>
             <td className={styles.tableItem__points}>{points}</td>
