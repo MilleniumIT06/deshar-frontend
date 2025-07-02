@@ -1,5 +1,3 @@
-import cn from 'classnames';
-
 import { LearningContent } from '@/components/LearningContent';
 import { LearningSidebar } from '@/components/LearningSidebar';
 import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
@@ -18,8 +16,10 @@ export default async function Learning({
                 <div className={styles.inner}>
 
                     <Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: "Все дисциплины", href: "/courses" }, { label: "Английский язык", href: "/" }, { label: "Морфемика", href: "/" }]} />
-                    <LearningSidebar />
+                   <div className={styles.wrapper}>
+                     <LearningSidebar />
                     <LearningContent />
+                   </div>
                 </div>
             </div>
         </main>
