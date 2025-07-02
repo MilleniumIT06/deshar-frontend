@@ -66,8 +66,8 @@ export const Reviews = () => {
                                 {/* <SwiperSlide key={1}>
                                 <ReviewsCard name='Зарина М.'/>
                                 </SwiperSlide> */}
-                                {reviewsMockData.map((item) => <SwiperSlide key={1}>
-                                    <ReviewsCard id={item.id} key={item.id} rating={item.rating} subject={item.subject} name={item.name} text={item.text} />
+                                {reviewsMockData.map((item) => <SwiperSlide key={item.id}>
+                                    <ReviewsCard id={item.id} rating={item.rating} subject={item.subject} name={item.name} text={item.text} />
                                 </SwiperSlide>)}
                             </Swiper>
                         }

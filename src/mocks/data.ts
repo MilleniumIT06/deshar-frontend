@@ -261,6 +261,50 @@ export const courses = [
 			},
 		],
 	},
+	{
+		id: 7,
+		title: 'История России2',
+		description: 'От Древней Руси до современности',
+		moduleCount: 5,
+		image: 'russian_history_bg',
+		modules: [
+			{
+				id: 21,
+				moduleNumber: 1,
+				title: 'Киевская Русь',
+				lessonsCount: 8,
+				courseId: 6,
+			},
+			{
+				id: 22,
+				moduleNumber: 2,
+				title: 'Московское царство',
+				lessonsCount: 10,
+				courseId: 6,
+			},
+			{
+				id: 23,
+				moduleNumber: 3,
+				title: 'Российская империя',
+				lessonsCount: 14,
+				courseId: 6,
+			},
+			{
+				id: 24,
+				moduleNumber: 4,
+				title: 'СССР',
+				lessonsCount: 16,
+				courseId: 6,
+			},
+			{
+				id: 25,
+				moduleNumber: 5,
+				title: 'Российская Федерация',
+				lessonsCount: 12,
+				courseId: 6,
+			},
+		],
+	},
 ]
 export const reviewsMockData = [
 	{
