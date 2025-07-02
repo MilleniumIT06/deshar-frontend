@@ -65,12 +65,12 @@ export const LearningSidebar = () => {
 							handleClick={t}
 						/>
 					</ul>
-                    <Button className={styles.showBtn} variant="secondary" size="medium" fullWidth>Показать следующие</Button>
+					<Button className={styles.showBtn} variant="secondary" size="medium" fullWidth>Показать следующие</Button>
 				</div>
-                <div className={styles.bottom}>
-                    <h5 className={styles.title}>Аттестация</h5>
-                    <AttestationItem/>
-                </div>
+				<div className={styles.bottom}>
+					<h5 className={styles.title}>Аттестация</h5>
+					<AttestationItem current={2} max={5} />
+				</div>
 			</div>
 		</div>
 	)
