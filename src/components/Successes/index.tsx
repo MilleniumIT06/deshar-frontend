@@ -1,7 +1,10 @@
 import cn from 'classnames';
 
+import { candleDateMockData } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button';
 import { Selector } from '@/shared/ui/Selector';
+
+import { ResultsCard } from '../ResultsCard';
 
 import { ChartCandle } from './ChartCandle';
 import styles from './styles.module.scss';
@@ -54,107 +57,18 @@ export const Successes = () => {
                                 </div>
                                 <div className={styles.chart__lines}>
 
-                                    <ChartCandle maxPoints={200} currentPoints={26} />
-                                    <ChartCandle maxPoints={200} currentPoints={200} />
-                                    <ChartCandle maxPoints={200} currentPoints={76} />
-                                    <ChartCandle maxPoints={200} currentPoints={1} />
-                                    <ChartCandle maxPoints={200} currentPoints={26} />
-                                    <ChartCandle maxPoints={200} currentPoints={200} />
-                                    <ChartCandle maxPoints={200} currentPoints={76} />
-                                    <ChartCandle maxPoints={200} currentPoints={1} />
-                                    <ChartCandle maxPoints={200} currentPoints={26} />
-                                    <ChartCandle maxPoints={200} currentPoints={200} />
-                                    <ChartCandle maxPoints={200} currentPoints={76} />
-                                    <ChartCandle maxPoints={200} currentPoints={1} />
-                                    <ChartCandle maxPoints={200} currentPoints={26} />
-                                    <ChartCandle maxPoints={200} currentPoints={26} />
+                                   
+                                    {candleDateMockData.map((item)=> <ChartCandle key={item.id}  id={item.id} maxPoints={200} currentPoints={item.currentPoints} date={item.date}/>)}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className={styles.successes__footer}>
                         <div className={styles.successes__results}>
-                            <div className={styles.resultsCard}>
-                                <h6 className={styles.resultsCard__title}>
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 12.6413L10.6027 15L16 10" stroke="#303030" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <circle cx="12" cy="12" r="8" stroke="#303030" strokeWidth="2" />
-                                    </svg>
-                                    Баллов набрано
-                                </h6>
-                                <div className={styles.resultsCard__info}>
-                                    <span>182</span>
-                                    <div className={styles.resultsCard__percent}>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M6.29289 16.1924C5.90237 16.5829 5.90237 17.2161 6.29289 17.6066C6.68342 17.9971 7.31658 17.9971 7.70711 17.6066L6.29289 16.1924ZM17.8995 6.99998C17.8995 6.4477 17.4518 5.99998 16.8995 5.99998L7.89949 5.99998C7.34721 5.99998 6.89949 6.4477 6.89949 6.99998C6.89949 7.55227 7.34721 7.99998 7.89949 7.99998L15.8995 7.99998L15.8995 16C15.8995 16.5523 16.3472 17 16.8995 17C17.4518 17 17.8995 16.5523 17.8995 16L17.8995 6.99998ZM7.70711 17.6066L17.6066 7.70709L16.1924 6.29287L6.29289 16.1924L7.70711 17.6066Z"
-                                                fill="#1BAA7D" />
-                                        </svg>
-                                        <span>
-                                            +25%
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className={styles.resultsCard__summary}>
-                                    <span className={styles.resultsCard__summary_value}>150</span>
-                                    <span className={styles.resultsCard__summary_period}>в прошлые 7 дней</span>
-                                </div>
-                            </div>
-                            <div className={styles.resultsCard}>
-                                <h6 className={styles.resultsCard__title}>
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 12.6413L10.6027 15L16 10" stroke="#303030" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <circle cx="12" cy="12" r="8" stroke="#303030" strokeWidth="2" />
-                                    </svg>
-                                    Баллов набрано
-                                </h6>
-                                <div className={styles.resultsCard__info}>
-                                    <span>182</span>
-                                    <div className={styles.resultsCard__percent}>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M6.29289 16.1924C5.90237 16.5829 5.90237 17.2161 6.29289 17.6066C6.68342 17.9971 7.31658 17.9971 7.70711 17.6066L6.29289 16.1924ZM17.8995 6.99998C17.8995 6.4477 17.4518 5.99998 16.8995 5.99998L7.89949 5.99998C7.34721 5.99998 6.89949 6.4477 6.89949 6.99998C6.89949 7.55227 7.34721 7.99998 7.89949 7.99998L15.8995 7.99998L15.8995 16C15.8995 16.5523 16.3472 17 16.8995 17C17.4518 17 17.8995 16.5523 17.8995 16L17.8995 6.99998ZM7.70711 17.6066L17.6066 7.70709L16.1924 6.29287L6.29289 16.1924L7.70711 17.6066Z"
-                                                fill="#1BAA7D" />
-                                        </svg>
-                                        <span>
-                                            +25%
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className={styles.resultsCard__summary}>
-                                    <span className={styles.resultsCard__summary_value}>150</span>
-                                    <span className={styles.resultsCard__summary_period}>в прошлые 7 дней</span>
-                                </div>
-                            </div>
-                            <div className={styles.resultsCard}>
-                                <h6 className={styles.resultsCard__title}>
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 12.6413L10.6027 15L16 10" stroke="#303030" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <circle cx="12" cy="12" r="8" stroke="#303030" strokeWidth="2" />
-                                    </svg>
-                                    Баллов набрано
-                                </h6>
-                                <div className={styles.resultsCard__info}>
-                                    <span>182</span>
-                                    <div className={styles.resultsCard__percent}>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M6.29289 16.1924C5.90237 16.5829 5.90237 17.2161 6.29289 17.6066C6.68342 17.9971 7.31658 17.9971 7.70711 17.6066L6.29289 16.1924ZM17.8995 6.99998C17.8995 6.4477 17.4518 5.99998 16.8995 5.99998L7.89949 5.99998C7.34721 5.99998 6.89949 6.4477 6.89949 6.99998C6.89949 7.55227 7.34721 7.99998 7.89949 7.99998L15.8995 7.99998L15.8995 16C15.8995 16.5523 16.3472 17 16.8995 17C17.4518 17 17.8995 16.5523 17.8995 16L17.8995 6.99998ZM7.70711 17.6066L17.6066 7.70709L16.1924 6.29287L6.29289 16.1924L7.70711 17.6066Z"
-                                                fill="#1BAA7D" />
-                                        </svg>
-                                        <span>
-                                            +25%
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className={styles.resultsCard__summary}>
-                                    <span className={styles.resultsCard__summary_value}>150</span>
-                                    <span className={styles.resultsCard__summary_period}>в прошлые 7 дней</span>
-                                </div>
-                            </div>
+                          <ResultsCard id={1} percent={25} period={7} points={182} title='Баллов набрано' type='increase' value={150} />
+                           <ResultsCard id={2} percent={12} period={7} points={26} title='Модулей выполнено' type="decrease" value={29} />
+                           <ResultsCard id={3} percent={12} period={7} points={30} title='Времени затрачено' type='increase' value="2ч 12м" />
+                            
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,14 @@
 import styles from './styles.module.scss';
 
 export interface ChartCandleProps {
+    id:number|string;
     maxPoints: number;
     currentPoints: number;
     date?: Date; 
 }
 
 export const ChartCandle = ({
+    id,
     maxPoints,
     currentPoints,
     date = new Date() 
@@ -19,26 +21,28 @@ export const ChartCandle = ({
         (clampedPoints / safeMaxPoints) * 100
     ));
 
-    const formatDate = (date: Date): string => {
+    const formatDate = (date: Date):{day:number;month:string;} => {
         const day = date.getDate();
-        const month = date.toLocaleString('ru-RU', { month: 'long' });
-        return `${day} ${month}`;
+        const month = date.toLocaleString('ru-RU', { month: "short" });
+        return {day:day, month:month.slice(0,3)}
     };
-
+    const dateT = formatDate(date);
     return (
         <div className={styles.index}>
             <div
                 className={styles.index__body}
                 style={{
                     height: `${pointsPercent}%`,
-                    transition: 'height 0.3s ease-in-out'
                 }}
                 role="progressbar"
                 aria-valuenow={clampedPoints}
                 aria-valuemin={0}
                 aria-valuemax={safeMaxPoints}
             />
-            <span className={styles.index__title}>{formatDate(date)}</span>
+            <time className={styles.index__date}>
+                <span>{dateT.day}</span>
+                <span>{dateT.month}</span>
+            </time>
         </div>
     )
 }

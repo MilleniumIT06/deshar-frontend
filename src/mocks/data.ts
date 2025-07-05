@@ -1,4 +1,3 @@
-import { ChartCandleProps } from '@/components/Successes/ChartCandle'
 import { StudentData } from '@/components/TopClassmates'
 
 export const areas = [
@@ -451,32 +450,31 @@ const generateDate = (daysAgo: number): Date => {
 	return date
 }
 
-export const candleDateMockData: ChartCandleProps[] = [
+export const candleDateMockData= [
 
-	{ date: generateDate(0), maxPoints: 100, currentPoints: 90 },
-	{ date: generateDate(1), maxPoints: 100, currentPoints: 75 },
-	{ date: generateDate(2), maxPoints: 100, currentPoints: 60 },
-	{ date: generateDate(3), maxPoints: 100, currentPoints: 45 },
-	{ date: generateDate(4), maxPoints: 100, currentPoints: 80 },
-	{ date: generateDate(5), maxPoints: 100, currentPoints: 30 },
-	{ date: generateDate(6), maxPoints: 100, currentPoints: 65 },
-
-
-	{ date: new Date(2023, 0, 1), maxPoints: 100, currentPoints: 100 },
-	{ date: new Date(2023, 11, 31), maxPoints: 100, currentPoints: 10 }, 
-	{ date: new Date(2023, 1, 29), maxPoints: 100, currentPoints: 50 }, 
+	{id:1, date: generateDate(0), currentPoints: 90 },
+	{id:2, date: generateDate(1), currentPoints: 75 },
+	{id:3, date: generateDate(2), currentPoints: 60 },
+	{id:4, date: new Date(2023, 11, 31), currentPoints: 45 },
+	{id:5, date: new Date(2023, 12, 28), currentPoints: 80 },
+	{id:6, date: new Date(2023, 10, 1), currentPoints: 30 },
+	{id:7, date: new Date(2024, 1, 11), currentPoints: 65 },
 
 
-	{ date: new Date(2022, 5, 15), maxPoints: 100, currentPoints: 70 },
-	{ date: new Date(2024, 7, 20), maxPoints: 100, currentPoints: 85 },
+	{id:8, date: new Date(2023, 0, 1), currentPoints: 100 },
+	{id:9, date: new Date(2023, 11, 31), currentPoints: 10 }, 
+	{id:10, date: new Date(2023, 1, 29), currentPoints: 50 }, 
+
+
+	{id:11, date: new Date(2022, 5, 15), currentPoints: 70 },
+	{id:12, date: new Date(2024, 7, 20), currentPoints: 85 },
 ]
 
 
-export const histogramDateMockData: ChartCandleProps[] = Array.from(
+export const histogramDateMockData = Array.from(
 	{ length: 7 },
 	(_, i) => ({
 		date: generateDate(6 - i),
-		maxPoints: 100,
 		currentPoints: Math.floor(Math.random() * 100),
 	}),
 )
