@@ -1,8 +1,15 @@
+'use client';
 import Image from 'next/image'
 
+import { Button } from '@/shared/ui/Button';
+
 import styles from './styles.module.scss'
+import {useCountdownTimer} from './useCountdownTimer';
 
 export const LearningContent = () => {
+  const {isExpired,secondsLeft} = useCountdownTimer(10);
+ 
+
   const lessonContent = [
     {
       id: 1,
@@ -58,8 +65,11 @@ export const LearningContent = () => {
           ]
         },
         {
-          type: 'paragraph',
-          text: "Орфография — это важный аспект владения русским языком, который требует внимания и практики. Понимание правил написания слов поможет учащимся не только в учебе, но и в повседневной жизни."
+          type: 'section',
+           title:'Заключение',
+          items: [
+            "Орфография — это важный аспект владения русским языком, который требует внимания и практики. Понимание правил написания слов поможет учащимся не только в учебе, но и в повседневной жизни."
+          ]
         },
         {
           type: 'note',
@@ -115,6 +125,15 @@ export const LearningContent = () => {
                 return null;
               })}
             </div>
+          </div>
+        </div>
+        <div className={styles.index__footer}>
+          <div className={styles.index__footer_left}>
+            <Button variant="secondary" size="medium">Назад</Button>
+          </div>
+          <div className={styles.index__footer_right}>
+            <Button variant="secondary" size="medium">Пропустить</Button>
+            <Button variant="primary" size="medium" disabled={isExpired?false:true}>Далее {isExpired ? "" : `(${secondsLeft})`}</Button>
           </div>
         </div>
       </div>
