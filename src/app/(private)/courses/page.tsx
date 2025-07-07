@@ -1,6 +1,6 @@
 
-import { AllCourses } from "@/components/AllCourses";
 import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
+import { AllCourses } from "@/widgets/AllCourses";
 
 import styles from './../styles.module.scss';
 
