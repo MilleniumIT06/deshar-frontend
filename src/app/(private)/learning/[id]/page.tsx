@@ -1,6 +1,5 @@
 import { LearningContent } from '@/components/LearningContent';
 import { LearningSidebar } from '@/components/LearningSidebar';
-import { QuizDialog } from '@/components/QuizDialog';
 import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
 
 import styles from './../../styles.module.scss';
@@ -11,18 +10,20 @@ export default async function Learning({
     params: Promise<{ id: string }>
 }) {
     const { id } = await params;
+
     return (
         <main className={styles.main}>
             <div className="container">
                 <div className={styles.inner}>
 
                     <Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: "Все дисциплины", href: "/courses" }, { label: "Английский язык", href: "/" }, { label: "Морфемика", href: "/" }]} />
-                   <div className={styles.wrapper}>
-                     <LearningSidebar />
-                    <LearningContent />
-                   </div>
+                    <div className={styles.wrapper}>
+                        <LearningSidebar />
+                        <LearningContent />
+                    </div>
                 </div>
-                <QuizDialog/>
+            
+        
             </div>
         </main>
     );

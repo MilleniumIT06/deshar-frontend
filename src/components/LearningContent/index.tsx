@@ -1,14 +1,17 @@
 'use client';
+import { useState } from 'react';
+
 import Image from 'next/image'
 
+import { QuizModal } from '@/features/quiz/ui/QuizModal';
 import { Button } from '@/shared/ui/Button';
 
 import styles from './styles.module.scss'
-import {useCountdownTimer} from './useCountdownTimer';
+import { useCountdownTimer } from './useCountdownTimer';
 
 export const LearningContent = () => {
-  const {isExpired,secondsLeft} = useCountdownTimer(10);
- 
+  const { isExpired, secondsLeft } = useCountdownTimer(10);
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
 
   const lessonContent = [
     {
@@ -66,7 +69,7 @@ export const LearningContent = () => {
         },
         {
           type: 'section',
-           title:'Заключение',
+          title: 'Заключение',
           items: [
             "Орфография — это важный аспект владения русским языком, который требует внимания и практики. Понимание правил написания слов поможет учащимся не только в учебе, но и в повседневной жизни."
           ]
@@ -87,7 +90,7 @@ export const LearningContent = () => {
         <h2 className={styles.index__title}>
           <span>3.</span> {currentLesson.title}
         </h2>
-        
+
         <div className={styles.content}>
           <div className={styles.content__inner}>
             <div className={styles.index__image}>
@@ -104,24 +107,24 @@ export const LearningContent = () => {
                 if (item.type === 'paragraph') {
                   return <p key={index}>{item.text}</p>;
                 }
-                
+
                 if (item.type === 'section') {
                   return (
                     <div key={index} className={styles.section}>
                       <p><strong>{item.title}</strong></p>
                       <ul className={styles.list}>
-                        {item.items?item.items.map((point, idx) => (
+                        {item.items ? item.items.map((point, idx) => (
                           <li key={idx}>{point}</li>
-                        )):"error"}
+                        )) : "error"}
                       </ul>
                     </div>
                   );
                 }
-                
+
                 if (item.type === 'note') {
                   return <span key={index} className={styles.note}>{item.text}</span>;
                 }
-                
+
                 return null;
               })}
             </div>
@@ -133,10 +136,20 @@ export const LearningContent = () => {
           </div>
           <div className={styles.index__footer_right}>
             <Button variant="secondary" size="medium">Пропустить</Button>
-            <Button variant="primary" size="medium" disabled={isExpired?false:true}>Далее {isExpired ? "" : `(${secondsLeft})`}</Button>
+            <Button variant="primary" size="medium" disabled={isExpired ? false : true}>Далее {isExpired ? "" : `(${secondsLeft})`}</Button>
           </div>
         </div>
       </div>
+      <Button
+        onClick={() => setIsQuizOpen(true)}
+        variant="primary"
+      >
+        Начать квиз
+      </Button>
+      <QuizModal
+        isOpen={isQuizOpen}
+        onClose={() => setIsQuizOpen(false)}
+      />
     </section>
   )
 }
