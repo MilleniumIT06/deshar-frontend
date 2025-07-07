@@ -28,7 +28,7 @@ export const LearningSidebar = () => {
   ]
 
   const [lessons, setLessons] = useState(initialLessons)
-  const [activeLessonId, setActiveLessonId] = useState(3)
+  const [activeLessonId, setActiveLessonId] = useState(1);
   
 
   const handleLessonClick = useCallback((id: number) => {

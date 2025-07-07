@@ -1,5 +1,6 @@
 import { LearningContent } from '@/components/LearningContent';
 import { LearningSidebar } from '@/components/LearningSidebar';
+import { QuizDialog } from '@/components/QuizDialog';
 import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
 
 import styles from './../../styles.module.scss';
@@ -9,7 +10,7 @@ export default async function Learning({
 }: {
     params: Promise<{ id: string }>
 }) {
-    const { id } = await params
+    const { id } = await params;
     return (
         <main className={styles.main}>
             <div className="container">
@@ -21,6 +22,7 @@ export default async function Learning({
                     <LearningContent />
                    </div>
                 </div>
+                <QuizDialog/>
             </div>
         </main>
     );
