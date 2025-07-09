@@ -4,18 +4,20 @@ import { useState, useRef, useEffect } from 'react'
 import styles from './styles.module.scss';
 
 const MissingLetter = ({
+    id = 999,
     word,
     missingLetter,
     onComplete,
 }: {
-    word: string
-    missingLetter: string
+    id: number | string | undefined;
+    word: string | undefined;
+    missingLetter: string | undefined;
     onComplete: (value: unknown) => void
 }) => {
     const [userInput, setUserInput] = useState('')
     const [status, setStatus] = useState('input') // 'input', 'success', 'error'
     const inputRef = useRef<HTMLInputElement | null>(null)
-    const missingIndex = word.split('').findIndex(val => val === missingLetter);
+    const missingIndex = word && word.split('').findIndex(val => val === missingLetter);
     console.log(missingIndex);
     // Фокус на инпут при загрузке
     useEffect(() => {
@@ -33,7 +35,7 @@ const MissingLetter = ({
     }
 
     const checkLetter = (letter: string) => {
-        const correctLetter = word[missingIndex].toLowerCase()
+        const correctLetter = word && word[missingIndex].toLowerCase()
 
         if (letter === correctLetter) {
             setStatus('success')
@@ -49,8 +51,8 @@ const MissingLetter = ({
     }
 
     // Разбиваем слово на части
-    const before = word.slice(0, missingIndex)
-    const after = word.slice(missingIndex + 1)
+    const before = word &&  word.slice(0, missingIndex)
+    const after = word &&  word.slice(missingIndex + 1)
 
     return (
         <span className={styles.index}>
@@ -66,7 +68,7 @@ const MissingLetter = ({
                 className={styles.index__input}
             />
 
-            <span>{after}</span>
+            <span>{after+" "}</span>
         </span>
     )
 }
