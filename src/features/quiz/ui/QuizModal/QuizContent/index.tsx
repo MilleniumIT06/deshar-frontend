@@ -1,9 +1,13 @@
+'use client';
+import { useState } from 'react';
+
 import MissingLetter from '@/components/MissingLetter'
 import { Button } from '@/shared/ui/Button'
 
 import styles from './styles.module.scss'
 
 export const QuizContent = () => {
+	const [missingWords, setMissingWords] = useState([{ id: 1, word: "гвозди", completed: false }]);
 	return (
 		<div className={styles.index__inner}>
 			<div className={styles.index__top}>
@@ -14,13 +18,13 @@ export const QuizContent = () => {
 					Купил как-то обувной мастер{' '}
 					<MissingLetter
 						word="гвозди"
-						missingIndex={2}
+						missingLetter='в'
 						onComplete={() => console.log('test')}
 					/>{' '}
 					для того, чтобы{' '}
 					<MissingLetter
 						word="починить"
-						missingIndex={3}
+						missingLetter='и'
 						onComplete={() => console.log('test')}
 					/>{' '}
 					обувь лорда Маркиза. К сожалению, он не знал насколько придирчив

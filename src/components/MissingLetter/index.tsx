@@ -5,17 +5,18 @@ import styles from './styles.module.scss';
 
 const MissingLetter = ({
     word,
-    missingIndex,
+    missingLetter,
     onComplete,
 }: {
     word: string
-    missingIndex: number
+    missingLetter: string
     onComplete: (value: unknown) => void
 }) => {
     const [userInput, setUserInput] = useState('')
     const [status, setStatus] = useState('input') // 'input', 'success', 'error'
     const inputRef = useRef<HTMLInputElement | null>(null)
-
+    const missingIndex = word.split('').findIndex(val => val === missingLetter);
+    console.log(missingIndex);
     // Фокус на инпут при загрузке
     useEffect(() => {
         inputRef.current?.focus()
