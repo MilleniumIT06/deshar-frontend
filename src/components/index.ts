@@ -1,5 +1,5 @@
 export {Question} from './Question';
-export {Hero} from './Hero';
+export {Hero} from '../widgets/Home/Hero';
 export {Info} from './Info';
 export {Learn} from './Learn';
 export {Reviews} from './Reviews';
