@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import Image from 'next/image'
 
+import { InfoModal } from '@/features/info/ui/InfoModal';
 import { QuizModal } from '@/features/quiz/ui/QuizModal';
 import { lessonContent } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button';
@@ -13,6 +14,7 @@ import { useCountdownTimer } from './useCountdownTimer';
 export const LearningContent = () => {
   const { isExpired, secondsLeft } = useCountdownTimer(10);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
 
 
 
@@ -74,11 +76,17 @@ export const LearningContent = () => {
           </div>
         </div>
       </div>
-
+      <Button variant="secondary" size="medium" onClick={() => setIsInfoOpen(true)}>test</Button>
       <QuizModal
         isOpen={isQuizOpen}
         onClose={() => setIsQuizOpen(false)}
       />
+      <InfoModal
+        isOpen={isInfoOpen}
+        onClose={() => setIsInfoOpen(false)}
+        type="fail"
+      />
+
     </section>
   )
 }
