@@ -1,12 +1,11 @@
 import { Modal } from "@/widgets/Modal/ui"
 
-import { QuizContent } from "./QuizContent";
 
-interface QuizModalProps {
+interface InfoModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
-export const QuizModal = ({ isOpen, onClose }: QuizModalProps) => {
+export const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
     return (
         <Modal
             isOpen={isOpen}

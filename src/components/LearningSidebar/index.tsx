@@ -1,13 +1,13 @@
 'use client'
 import { useCallback, useState } from 'react'
 
+import { initialLessons } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button'
 
 import { AttestationItem } from '../AttestationItem'
 import { LessonItem } from '../LessonItem'
 
 import styles from './styles.module.scss'
-
 
 type Lesson = {
   id: number
@@ -17,36 +17,54 @@ type Lesson = {
 }
 
 export const LearningSidebar = () => {
-
-  const initialLessons: Lesson[] = [
-    { id: 1, completed: true, number: 1, text: "Морфемика как раздел лингвистики" },
-    { id: 2, completed: true, number: 2, text: "Состав слова. Морфемный анализ слов" },
-    { id: 3, completed: false, number: 3, text: "Орфография как система правил правописания слов и форм слов" },
-    { id: 4, completed: false, number: 4, text: "Правописание разделительных Ъ и Ь" },
-    { id: 5, completed: false, number: 5, text: "Правописание корней с безударными проверяемыми, непроверяемыми гласными" },
-    { id: 6, completed: false, number: 6, text: "Правописание корней с проверяемыми, непроверяемыми, непроизносимыми согласными" },
-  ]
-
-  const [lessons, setLessons] = useState(initialLessons)
+  const [lessons] = useState<Lesson[]>(initialLessons)
   const [activeLessonId, setActiveLessonId] = useState(1);
-  
+  const [page, setPage] = useState(0); // Текущая страница
+  const itemsPerPage = 6; // Количество уроков на странице
 
   const handleLessonClick = useCallback((id: number) => {
     console.log('Clicked lesson:', id)
     setActiveLessonId(id)
   }, [])
 
-  const handleShowMore = useCallback(() => {
-    console.log('Load more lessons')
-  }, [])
+  // Переход на следующую страницу
+  const handleNextPage = useCallback(() => {
+    setPage(prev => prev + 1);
+  }, []);
+
+  // Переход на предыдущую страницу
+  const handlePrevPage = useCallback(() => {
+    setPage(prev => prev - 1);
+  }, []);
+
+  // Вычисляем индексы для текущей страницы
+  const startIndex = page * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedLessons = lessons.slice(startIndex, endIndex);
+
+  // Проверяем доступность навигации
+  const hasPreviousPage = page > 0;
+  const hasNextPage = endIndex < lessons.length;
 
   return (
     <div className={styles.index}>
       <div className={styles.inner}>
         <h5 className={styles.title}>Уроки</h5>
         <div className={styles.content}>
+          {hasPreviousPage && (
+            <Button
+              className={styles.showBtn}
+              variant="secondary"
+              size="medium"
+              fullWidth
+              onClick={handlePrevPage}
+            >
+              Показать предыдущие
+            </Button>
+          )}
+
           <ul className={styles.list}>
-            {lessons.map((lesson) => (
+            {paginatedLessons.map((lesson) => (
               <LessonItem
                 key={lesson.id}
                 id={lesson.id}
@@ -54,22 +72,24 @@ export const LearningSidebar = () => {
                 completed={lesson.completed}
                 number={lesson.number}
                 text={lesson.text}
-                handleClick={()=>handleLessonClick(lesson.id)}
+                handleClick={() => handleLessonClick(lesson.id)}
               />
             ))}
           </ul>
-          
-          <Button 
-            className={styles.showBtn} 
-            variant="secondary" 
-            size="medium" 
-            fullWidth
-            onClick={handleShowMore}
-          >
-            Показать следующие
-          </Button>
+
+          {hasNextPage && (
+            <Button
+              className={styles.showBtn}
+              variant="secondary"
+              size="medium"
+              fullWidth
+              onClick={handleNextPage}
+            >
+              Показать следующие
+            </Button>
+          )}
         </div>
-        
+
         <div className={styles.bottom}>
           <h5 className={styles.title}>Аттестация</h5>
           <AttestationItem max={10} current={5} />

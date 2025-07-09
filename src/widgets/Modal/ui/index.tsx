@@ -1,25 +1,41 @@
 'use client';
 import React, { ReactNode, useEffect } from 'react';
 
+import { cva, type VariantProps } from "class-variance-authority";
+import cn from "classnames";
 import ReactDOM from 'react-dom';
 
 import { Button } from '@/shared/ui/Button';
 
 import styles from './styles.module.scss';
 
-
-interface ModalProps {
+const modalVariants = cva(
+    styles.index,
+    {
+        variants: {
+            variant: {
+                default: styles.info,
+                info: styles.info,
+                quiz: styles.quiz,
+            },
+        },
+        defaultVariants: {
+            variant: "default",
+        },
+    }
+)
+interface ModalProps extends VariantProps<typeof modalVariants> {
     isOpen: boolean;
     onClose: () => void;
     children: ReactNode;
     closeOnOverlayClick?: boolean;
 }
-
-export const Modal = ({
+const Modal = ({
     isOpen,
     onClose,
     children,
-    closeOnOverlayClick
+    closeOnOverlayClick,
+    variant,
 }: ModalProps) => {
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
@@ -43,7 +59,7 @@ export const Modal = ({
     return ReactDOM.createPortal(
         <div className={styles.index__overlay} onClick={closeOnOverlayClick ? onClose : undefined}>
             <div
-                className={styles.index}
+                className={cn(modalVariants({ variant }))}
             >
                 <Button variant="iconSecondary" size="iconSmall" className={styles.index__closeBtn} onClick={onClose}>
                     <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,3 +82,5 @@ export const Modal = ({
         document.body
     );
 };
+
+export { Modal, modalVariants }

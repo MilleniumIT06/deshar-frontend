@@ -1,8 +1,6 @@
 .index {
 	position: relative;
 	border-radius: 32px;
-	width: 800px;
-	min-height: 388px;
 	background: var(--neutral-white);
 	&__overlay {
 		position: fixed;
@@ -24,4 +22,12 @@
 		right: 16px;
 		top: 16px;
 	}
+}
+.quiz {
+	width: 800px;
+	min-height: 388px;
+}
+.info {
+	width: 440px;
+	height: 452px;
 }

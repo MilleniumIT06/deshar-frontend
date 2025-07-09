@@ -70,16 +70,11 @@ export const LearningContent = () => {
           </div>
           <div className={styles.index__footer_right}>
             <Button variant="secondary" size="medium">Пропустить</Button>
-            <Button variant="primary" size="medium" disabled={isExpired ? false : true}>Далее {isExpired ? "" : `(${secondsLeft})`}</Button>
+            <Button variant="primary" size="medium" disabled={isExpired ? false : true} onClick={() => setIsQuizOpen(true)}>Далее {isExpired ? "" : `(${secondsLeft})`}</Button>
           </div>
         </div>
       </div>
-      <Button
-        onClick={() => setIsQuizOpen(true)}
-        variant="primary"
-      >
-        Начать квиз
-      </Button>
+
       <QuizModal
         isOpen={isQuizOpen}
         onClose={() => setIsQuizOpen(false)}

@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo, Fragment } from 'react';
+import { useState, Fragment, useEffect, useCallback } from 'react';
 
 import MissingLetter from '@/components/MissingLetter';
 import { Button } from '@/shared/ui/Button';
@@ -16,15 +16,21 @@ const exampleMissingData = {
 	]
 };
 
-export const QuizContent = () => {
+export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
 	const [missingWords, setMissingWords] = useState(exampleMissingData.missingWords);
+	const [completed, setCompleted] = useState(false);
 
-
-	const missingWordsMap = useMemo(() =>
-		new Map(missingWords.map(word => [word.id, word])),
-		[missingWords]
-	);
-
+	// const missingWordsMap = useMemo(() =>
+	// 	new Map(missingWords.map(word => [word.id, word])),
+	// 	[missingWords]
+	// );
+	const checkCompleted = useCallback(() => {
+		if (missingWords.every((value) => value.completed === true)) {
+			setCompleted(false);
+		} else {
+			setCompleted(true);
+		}
+	}, [missingWords]);
 
 	const handleComplete = (id: number) => {
 		setMissingWords(prev =>
@@ -32,6 +38,7 @@ export const QuizContent = () => {
 				word.id === id ? { ...word, completed: true } : word
 			)
 		);
+		checkCompleted();
 	};
 
 
@@ -64,7 +71,9 @@ export const QuizContent = () => {
 			);
 		});
 	};
-
+	useEffect(() => {
+		checkCompleted()
+	}, [missingWords, checkCompleted]);
 	return (
 		<div className={styles.index__inner}>
 			<div className={styles.index__top}>
@@ -76,10 +85,10 @@ export const QuizContent = () => {
 				</div>
 			</div>
 			<div className={styles.index__bottom}>
-				<Button variant="secondary" size="medium">
+				<Button variant="secondary" size="medium" onClick={onClose}>
 					Отмена
 				</Button>
-				<Button variant="primary" size="medium">
+				<Button variant="primary" size="medium" disabled={completed}>
 					Принять
 				</Button>
 			</div>
