@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import Image from 'next/image'
 
+import { useAppSelector } from '@/app/_store/hooks';
 import { InfoModal } from '@/features/info/ui/InfoModal';
 import { QuizModal } from '@/features/quiz/ui/QuizModal';
 import { lessonContent } from '@/mocks/data';
@@ -15,10 +16,10 @@ export const LearningContent = () => {
   const { isExpired, secondsLeft } = useCountdownTimer(10);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const { activeLesson } = useAppSelector(state => state);
 
 
-
-  const currentLesson = lessonContent[0];
+  const currentLesson = lessonContent[activeLesson.activeLessonId - 1];
 
   return (
     <section className={styles.index}>

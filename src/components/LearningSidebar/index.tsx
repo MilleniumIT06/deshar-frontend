@@ -1,6 +1,8 @@
 'use client'
 import { useCallback, useState } from 'react'
 
+import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
+import { changeId } from '@/entities/learning/model/slice'
 import { initialLessons } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button'
 
@@ -18,13 +20,17 @@ type Lesson = {
 
 export const LearningSidebar = () => {
   const [lessons] = useState<Lesson[]>(initialLessons)
-  const [activeLessonId, setActiveLessonId] = useState(1);
+
   const [page, setPage] = useState(0); // Текущая страница
   const itemsPerPage = 6; // Количество уроков на странице
 
+  const dispatch = useAppDispatch();
+  const { activeLesson } = useAppSelector(state => state);
+
   const handleLessonClick = useCallback((id: number) => {
     console.log('Clicked lesson:', id)
-    setActiveLessonId(id)
+    // setActiveLessonId(id)
+    dispatch(changeId(id))
   }, [])
 
   // Переход на следующую страницу
@@ -68,7 +74,7 @@ export const LearningSidebar = () => {
               <LessonItem
                 key={lesson.id}
                 id={lesson.id}
-                active={lesson.id === activeLessonId}
+                active={lesson.id === activeLesson.activeLessonId}
                 completed={lesson.completed}
                 number={lesson.number}
                 text={lesson.text}

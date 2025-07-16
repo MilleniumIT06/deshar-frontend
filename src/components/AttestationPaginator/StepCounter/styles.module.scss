@@ -1,0 +1,24 @@
+.index {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 16px;
+	padding: 12px 20px;
+	width: 44px;
+	height: 44px;
+	background: var(--neutral-lightest);
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 143%;
+	color: var(--neutral-darkest);
+	&.completed {
+		background: var(--primary-lightest);
+	}
+	&.active {
+		border: 2px solid var(--neutral-medium);
+		font-weight: 700;
+	}
+}

@@ -1,0 +1,11 @@
+.index {
+	border-radius: 32px;
+	padding: 32px;
+	width: 904px;
+	height: 108px;
+	&__list {
+		display: flex;
+		list-style: none;
+		gap: 12px;
+	}
+}

@@ -1,6 +1,9 @@
 import { Roboto, Unbounded } from "next/font/google";
 
+
+
 import type { Metadata } from "next";
+
 import "./../globals.scss";
 
 const roboto = Roboto({
@@ -24,6 +27,7 @@ export default function Layout({
     return (
         <html lang="en">
             <body className={`${roboto.variable} ${unbounded.variable}`}>
+
                 {children}
 
             </body>
