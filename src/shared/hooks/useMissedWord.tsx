@@ -1,12 +1,14 @@
 'use client';
 
-import MissingLetter from "@/components/MissingLetter";
 import { Fragment, useCallback, useEffect, useState } from "react";
+
+import MissingLetter from "@/components/MissingLetter";
 
 interface IWord {
     id: number;
     word: string;
     missedLetter: string;
+    wordNumber: number;
 
 }
 interface IMissedWordData { id: number; sentence: string; missingWords: IWord[] };
@@ -22,7 +24,8 @@ export const useMissedWord = (data: IMissedWordData) => {
             setCompleted(true);
         }
     }, [missingWords]);
-
+    console.log(11, 'Купил как-то обувной мастер {{1}} для того, чтобы {{2}} обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.'.match(/(\{\{\d+\}\})/g));
+    console.log(11, 'Купил как-то обувной мастер {{1}} для того, чтобы {{2}} обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.'.match(/(\{\{2\}\})/g));
     const handleComplete = (id: number) => {
         setMissingWords(prev =>
             prev.map(word =>
@@ -67,6 +70,7 @@ export const useMissedWord = (data: IMissedWordData) => {
     }, [missingWords, checkCompleted]);
     return {
         renderSentence,
-        completed
+        completed,
+        checkCompleted
     }
 }

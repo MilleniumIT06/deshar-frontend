@@ -5,13 +5,16 @@
 	height: 60px;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: start;
 	text-align: center;
-	span {
+	&__content {
+		display: flex;
+		align-items: center;
+		justify-content: start;
+		gap: 11px;
 		font-family: var(--font-family);
 		font-weight: 400;
 		font-size: 16px;
-		line-height: 175%;
 		color: var(--neutral-darkest);
 	}
 	&.success {

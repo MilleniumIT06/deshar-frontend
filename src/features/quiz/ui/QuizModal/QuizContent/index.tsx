@@ -1,21 +1,14 @@
 'use client';
+import { exampleMissingData } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button';
 
+import { useMissedWord } from '../../../../../shared/hooks/useMissedWord';
+
 import styles from './styles.module.scss';
-import { useMissedWord } from './useMissedWord';
 
-
-const exampleMissingData = {
-	id: 1,
-	sentence: "Купил как-то обувной мастер гвозди для того, чтобы починить обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.",
-	missingWords: [
-		{ id: 1, word: "гвозди",missedLetter: "в" },
-		{ id: 2, word: "починить",missedLetter: "и" }
-	]
-};
 
 export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
-	const { completed,renderSentence} = useMissedWord(exampleMissingData);
+	const { completed, renderSentence } = useMissedWord(exampleMissingData);
 
 	return (
 		<div className={styles.index__inner}>

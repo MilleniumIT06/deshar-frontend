@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
 
 import styles from './../../styles.module.scss';
 
+
 export default async function Learning({
     params,
 }: {
@@ -22,6 +23,7 @@ export default async function Learning({
                         <LearningSidebar />
                         {/* <LearningContent /> */}
                         <LearningAttestation />
+
                     </div>
                 </div>
 

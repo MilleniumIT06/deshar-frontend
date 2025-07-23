@@ -682,3 +682,12 @@ export const initialLessons = [
 		text: 'Орфография как система правил правописания слов и форм слов',
 	},
 ]
+export const exampleMissingData = {
+	id: 1,
+	sentence:
+		'Купил как-то обувной мастер {{1}} для того, чтобы {{2}} обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.',
+	missingWords: [
+		{ id: 1, wordNumber: 1, word: 'гвозди', missedLetter: 'в' },
+		{ id: 2, wordNumber: 2, word: 'починить', missedLetter: 'и' },
+	],
+}
