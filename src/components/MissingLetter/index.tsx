@@ -44,7 +44,6 @@ const MissingLetter = ({
             setStatus('error')
             setTimeout(() => {
                 setStatus('input')
-                setUserInput('')
                 inputRef.current?.focus()
             }, 1000)
         }
@@ -64,7 +63,6 @@ const MissingLetter = ({
                 value={userInput}
                 onChange={handleInput}
                 maxLength={1}
-                disabled={status !== 'input'}
                 className={styles.index__input}
             />
 

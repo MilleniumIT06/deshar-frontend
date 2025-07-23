@@ -1,79 +1,22 @@
 'use client';
-import { useState, Fragment, useEffect, useCallback } from 'react';
-
-import MissingLetter from '@/components/MissingLetter';
 import { Button } from '@/shared/ui/Button';
 
 import styles from './styles.module.scss';
+import { useMissedWord } from './useMissedWord';
 
 
 const exampleMissingData = {
 	id: 1,
 	sentence: "Купил как-то обувной мастер гвозди для того, чтобы починить обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.",
 	missingWords: [
-		{ id: 1, word: "гвозди", completed: false, missedLetter: "в" },
-		{ id: 2, word: "починить", completed: false, missedLetter: "и" }
+		{ id: 1, word: "гвозди",missedLetter: "в" },
+		{ id: 2, word: "починить",missedLetter: "и" }
 	]
 };
 
 export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
-	const [missingWords, setMissingWords] = useState(exampleMissingData.missingWords);
-	const [completed, setCompleted] = useState(false);
+	const { completed,renderSentence} = useMissedWord(exampleMissingData);
 
-	// const missingWordsMap = useMemo(() =>
-	// 	new Map(missingWords.map(word => [word.id, word])),
-	// 	[missingWords]
-	// );
-	const checkCompleted = useCallback(() => {
-		if (missingWords.every((value) => value.completed === true)) {
-			setCompleted(false);
-		} else {
-			setCompleted(true);
-		}
-	}, [missingWords]);
-
-	const handleComplete = (id: number) => {
-		setMissingWords(prev =>
-			prev.map(word =>
-				word.id === id ? { ...word, completed: true } : word
-			)
-		);
-		checkCompleted();
-	};
-
-
-	const renderSentence = () => {
-		return exampleMissingData.sentence.split(' ').map((token, index, arr) => {
-
-			const missingWord = missingWords.find(mw =>
-				token.includes(mw.word) && !mw.completed
-			);
-
-
-			const punctuation = token.replace(missingWord?.word || '', '');
-
-			return (
-				<Fragment key={index}>
-					{missingWord ? (
-						<>
-							<MissingLetter
-								id={missingWord.id}
-								missingLetter={missingWord.missedLetter}
-								word={missingWord.word}
-								onComplete={() => handleComplete(missingWord.id)}
-							/>
-							{punctuation}
-						</>
-					) : token}
-
-					{index < arr.length - 1 ? ' ' : ''}
-				</Fragment>
-			);
-		});
-	};
-	useEffect(() => {
-		checkCompleted()
-	}, [missingWords, checkCompleted]);
 	return (
 		<div className={styles.index__inner}>
 			<div className={styles.index__top}>

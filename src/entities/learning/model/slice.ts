@@ -27,7 +27,7 @@ const learningActiveLessonSlice = createSlice({
 		// },
 		changeId: (state, action: PayloadAction<number>) => {
 			state.activeLessonId = action.payload
-		},
+		}
 	},
 })
 

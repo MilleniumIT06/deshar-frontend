@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import activeLessonReducer from '@/entities/learning/model/slice'
+
 export const store = configureStore({
 	reducer: {
 		activeLesson: activeLessonReducer,
