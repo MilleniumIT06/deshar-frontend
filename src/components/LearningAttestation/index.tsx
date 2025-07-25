@@ -5,13 +5,13 @@ import { useMissedWord } from '@/shared/hooks/useMissedWord';
 
 import { AttestationPaginator } from '../AttestationPaginator';
 import { MissedLetterTrainer } from '../MissedLetterTrainer';
+import MissingLetter from '../MissingLetter';
 import { TrainerWrapper } from '../TrainerWrapper';
 
 import styles from './styles.module.scss';
-import MissingLetter from '../MissingLetter';
 
 export const LearningAttestation = () => {
-    const { hasError, renderSentence } = useMissedWord({ data: exampleMissingData, onError: () => console.log('eero'), onSuccess: () => console.log("succ") });
+    const { hasError, renderSentence, completed, handleCheckAnswers, isButtonDisabled } = useMissedWord({ data: exampleMissingData, onError: () => console.log('eero'), onSuccess: () => console.log("succ") });
     return (
         <div className={styles.index}>
             <AttestationPaginator />
@@ -20,7 +20,7 @@ export const LearningAttestation = () => {
                 <QuizContent onClose={() => console.log('close')} />
             </div> */}
             {/* <MissingLetter id={1} missingLetter='a' onComplete={() => console.log('test')} word='tast' key={1} /> */}
-            <TrainerWrapper completed={true} title="Впишите пропущенные буквы в следующем предложении" >
+            <TrainerWrapper handleCheckAnswers={handleCheckAnswers} hasError={hasError} isButtonDisabled={isButtonDisabled} completed={completed} title="Впишите пропущенные буквы в следующем предложении" >
                 {/* <QuizContent onClose={() => console.log('close')} /> */}
                 <MissedLetterTrainer render={renderSentence} />
             </TrainerWrapper>

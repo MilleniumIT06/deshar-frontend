@@ -68,7 +68,7 @@ const MissingLetter = ({
     return (
         <span
             key={id}
-            className={`word-input ${errors[+id] ? 'error' : ''}`}
+            className={`${styles.index} ${errors[+id] ? styles.index__error : ''}`}
         >
             {before}
             <input
@@ -76,7 +76,7 @@ const MissingLetter = ({
                 value={inputValues[id] || ''}
                 onChange={e => handleInputChange(+id, e.target.value)}
                 maxLength={1}
-                className={errors[+id] ? 'input-error' : ''}
+                className={`${styles.index__input} ${errors[+id] ? styles.index__input_error : ''}`}
                 aria-label={`Пропущенная буква в слове "${word}"`}
             />
             {after}
