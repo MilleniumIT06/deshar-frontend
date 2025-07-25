@@ -8,16 +8,23 @@ const MissingLetter = ({
     word,
     missingLetter,
     onComplete,
+    errors,
+    inputValues,
+    handleInputChange
 }: {
-    id: number | string | undefined;
-    word: string | undefined;
-    missingLetter: string | undefined;
+    id: number | string;
+    word: string;
+    missingLetter: string;
+    errors: Record<number, boolean>;
+    inputValues: any;
     onComplete: (value: unknown) => void
+    handleInputChange: (id: number, value: string) => void;
 }) => {
     const [userInput, setUserInput] = useState('')
     const [status, setStatus] = useState('input') // 'input', 'success', 'error'
     const inputRef = useRef<HTMLInputElement | null>(null)
     const missingIndex = word && word.split('').findIndex(val => val === missingLetter);
+    const check = word && missingIndex && missingLetter;
     console.log(missingIndex);
     // Фокус на инпут при загрузке
     useEffect(() => {
@@ -35,7 +42,7 @@ const MissingLetter = ({
     }
 
     const checkLetter = (letter: string) => {
-        const correctLetter = word && word[missingIndex].toLowerCase()
+        const correctLetter = word && missingIndex && word[missingIndex].toLowerCase()
 
         if (letter === correctLetter) {
             setStatus('success')
@@ -49,26 +56,32 @@ const MissingLetter = ({
         }
     }
 
-    // Разбиваем слово на части
-    const before = word &&  word.slice(0, missingIndex)
-    const after = word &&  word.slice(missingIndex + 1)
+    const letterIndex = word.indexOf(missingLetter);
+
+    if (letterIndex === -1) {
+        return <span key={id} className="error">[Ошибка в данных]</span>;
+    }
+
+    const before = check && word.substring(0, letterIndex);
+    const after = check && word.substring(letterIndex + 1);
 
     return (
-        <span className={styles.index}>
-            <span>{before}</span>
-
+        <span
+            key={id}
+            className={`word-input ${errors[+id] ? 'error' : ''}`}
+        >
+            {before}
             <input
-                ref={inputRef}
                 type="text"
-                value={userInput}
-                onChange={handleInput}
+                value={inputValues[id] || ''}
+                onChange={e => handleInputChange(+id, e.target.value)}
                 maxLength={1}
-                className={styles.index__input}
+                className={errors[+id] ? 'input-error' : ''}
+                aria-label={`Пропущенная буква в слове "${word}"`}
             />
-
-            <span>{after+" "}</span>
+            {after}
         </span>
-    )
+    );
 }
 
 export default MissingLetter
