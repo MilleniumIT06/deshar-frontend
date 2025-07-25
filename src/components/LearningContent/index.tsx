@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 import { useAppSelector } from '@/app/_store/hooks';
 import { InfoModal } from '@/features/info/ui/InfoModal';
-import { QuizModal } from '@/features/quiz/ui/QuizModal';
+import { QuizModal } from '@/features/missingLetterQuiz/ui/QuizModal';
 import { lessonContent } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button';
 

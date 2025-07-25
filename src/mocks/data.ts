@@ -682,12 +682,129 @@ export const initialLessons = [
 		text: 'Орфография как система правил правописания слов и форм слов',
 	},
 ]
-export const exampleMissingData = {
-	id: 1,
-	sentence:
-		'Купил как-то обувной мастер {{1}} для того, чтобы {{2}} обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.',
-	missingWords: [
-		{ id: 1, wordNumber: 1, word: 'гвозди', missedLetter: 'в' },
-		{ id: 2, wordNumber: 2, word: 'починить', missedLetter: 'и' },
-	],
-}
+export const exampleMissingData = [
+	{
+		id: 1,
+		sentence:
+			'Купил как-то обувной мастер {{1}} для того, чтобы {{2}} обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.',
+		missingWords: [
+			{ id: 1, word: 'гвозди', missedLetter: 'в', wordNumber: 1 },
+			{ id: 2, word: 'починить', missedLetter: 'и', wordNumber: 2 },
+		],
+	},
+	{
+		id: 2,
+		sentence: 'В лесу мы нашли {{1}} и решили {{2}} их домой.',
+		missingWords: [
+			{ id: 1, word: 'грибы', missedLetter: 'и', wordNumber: 1 },
+			{ id: 2, word: 'принести', missedLetter: 'е', wordNumber: 2 },
+		],
+	},
+	{
+		id: 3,
+		sentence: 'На {{1}} небе светила яркая {{2}}, а под ней шумело {{3}} море.',
+		missingWords: [
+			{ id: 1, word: 'ночном', missedLetter: 'о', wordNumber: 1 },
+			{ id: 2, word: 'луна', missedLetter: 'у', wordNumber: 2 },
+			{ id: 3, word: 'тёмное', missedLetter: 'ё', wordNumber: 3 },
+		],
+	},
+	{
+		id: 4,
+		sentence: '{{1}} принёс {{2}} подарки для всех {{3}}.',
+		missingWords: [
+			{ id: 1, word: 'Дед Мороз', missedLetter: 'о', wordNumber: 1 },
+			{ id: 2, word: 'новогодние', missedLetter: 'и', wordNumber: 2 },
+			{ id: 3, word: 'детей', missedLetter: 'е', wordNumber: 3 },
+		],
+	},
+	{
+		id: 5,
+		sentence: 'Художник взял {{1}} и начал {{2}} прекрасный {{3}}.',
+		missingWords: [
+			{ id: 1, word: 'кисть', missedLetter: 'и', wordNumber: 1 },
+			{ id: 2, word: 'рисовать', missedLetter: 'о', wordNumber: 2 },
+			{ id: 3, word: 'пейзаж', missedLetter: 'е', wordNumber: 3 },
+		],
+	},
+]
+export const exampleQuizData = [
+	{
+		id: 1,
+		question:
+			'Какие из этих языков программирования являются строго типизированными?',
+		options: [
+			{ id: 1, text: 'JavaScript', isCorrect: false },
+			{ id: 2, text: 'TypeScript', isCorrect: true },
+			{ id: 3, text: 'Python', isCorrect: false },
+			{ id: 4, text: 'Java', isCorrect: true },
+		],
+		multiple: true,
+	},
+	{
+		id: 2,
+		question: 'Что из перечисленного относится к принципам SOLID?',
+		options: [
+			{ id: 1, text: 'Single Responsibility Principle', isCorrect: true },
+			{ id: 2, text: 'Double Dispatch Principle', isCorrect: false },
+			{ id: 3, text: 'Open-Closed Principle', isCorrect: true },
+			{ id: 4, text: 'Linear Programming Principle', isCorrect: false },
+		],
+		multiple: true,
+	},
+	{
+		id: 3,
+		question: 'Какой хук React используется для управления состоянием?',
+		options: [
+			{ id: 1, text: 'useEffect', isCorrect: false },
+			{ id: 2, text: 'useState', isCorrect: true },
+			{ id: 3, text: 'useContext', isCorrect: false },
+			{ id: 4, text: 'useReducer', isCorrect: true },
+		],
+		multiple: true,
+	},
+	{
+		id: 4,
+		question: 'Что такое Redux Toolkit?',
+		options: [
+			{ id: 1, text: 'Библиотека для управления состоянием', isCorrect: true },
+			{ id: 2, text: 'Фреймворк для бэкенд-разработки', isCorrect: false },
+			{ id: 3, text: 'Инструмент для тестирования', isCorrect: false },
+			{ id: 4, text: 'Средство визуализации данных', isCorrect: false },
+		],
+		multiple: false,
+	},
+	{
+		id: 5,
+		question: 'Какие преимущества предоставляет Next.js?',
+		options: [
+			{ id: 1, text: 'Серверный рендеринг', isCorrect: true },
+			{ id: 2, text: 'Статическая генерация сайтов', isCorrect: true },
+			{ id: 3, text: 'Встроенная система управления БД', isCorrect: false },
+			{ id: 4, text: 'Автоматическая оптимизация изображений', isCorrect: true },
+		],
+		multiple: true,
+	},
+]
+export const exampleSelectData = [
+	{
+		id: 1,
+		content: 'Скачок, скачка',
+		correct: false,
+	},
+	{
+		id: 2,
+		content: 'Сбор, соберу',
+		correct: true,
+	},
+	{
+		id: 3,
+		content: 'Дружок, дружочек',
+		correct: false,
+	},
+	{
+		id: 4,
+		content: 'Срывать, сорвать',
+		correct: false,
+	},
+]

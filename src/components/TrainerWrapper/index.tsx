@@ -26,7 +26,7 @@ export const TrainerWrapper = ({
                 <div className={styles.index__content}>{children}</div>
 
                 {hasError && <Notification fullWidth={true} type="warning" warningMessage="Ответ неверный! Попробуйте еще раз." successMessage="Success" />}
-                {completed && <Notification fullWidth={true} type="success" warningMessage="Ответ неверный! Попробуйте еще раз." successMessage="Success" />}
+                {/* {completed && <Notification fullWidth={true} type="success" warningMessage="Ответ неверный! Попробуйте еще раз." successMessage="Success" />} */}
                 <div className={styles.index__footer}>
                     <Button variant="secondary" size="small">Назад</Button>
                     <Button variant="primary" size="small" onClick={handleCheckAnswers} disabled={isButtonDisabled}>Далее</Button>

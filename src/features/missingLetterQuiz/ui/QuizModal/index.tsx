@@ -1,6 +1,6 @@
 import { Modal } from "@/widgets/Modal/ui"
 
-import { QuizContent } from "./QuizContent";
+import { QuizContent } from "./missingLetterQuizContent";
 
 interface QuizModalProps {
     isOpen: boolean;

@@ -11,10 +11,11 @@ interface IWord {
     wordNumber: number;
 }
 
-interface IMissedWordData {
+export interface IMissedWordData {
     id: number;
     sentence: string;
     missingWords: IWord[];
+    type: "missed-letter"
 };
 
 interface IUseMissedData {
@@ -30,7 +31,7 @@ export const useMissedWord = ({ data, onError, onSuccess }: IUseMissedData) => {
     const [hasError, setHasError] = useState<boolean>(false);
     const [completed, setCompleted] = useState<boolean>(false);
 
- 
+
     useEffect(() => {
         const initialValues: Record<number, string> = {};
         data.missingWords.forEach(word => {
@@ -63,7 +64,7 @@ export const useMissedWord = ({ data, onError, onSuccess }: IUseMissedData) => {
             setHasError(Object.keys(newErrors).length > 0);
         }
 
-    
+
         setInputValues(prev => ({
             ...prev,
             [id]: value.slice(0, 1),
