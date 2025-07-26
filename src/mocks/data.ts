@@ -728,64 +728,7 @@ export const exampleMissingData = [
 		],
 	},
 ]
-export const exampleQuizData = [
-	{
-		id: 1,
-		question:
-			'Какие из этих языков программирования являются строго типизированными?',
-		options: [
-			{ id: 1, text: 'JavaScript', isCorrect: false },
-			{ id: 2, text: 'TypeScript', isCorrect: true },
-			{ id: 3, text: 'Python', isCorrect: false },
-			{ id: 4, text: 'Java', isCorrect: true },
-		],
-		multiple: true,
-	},
-	{
-		id: 2,
-		question: 'Что из перечисленного относится к принципам SOLID?',
-		options: [
-			{ id: 1, text: 'Single Responsibility Principle', isCorrect: true },
-			{ id: 2, text: 'Double Dispatch Principle', isCorrect: false },
-			{ id: 3, text: 'Open-Closed Principle', isCorrect: true },
-			{ id: 4, text: 'Linear Programming Principle', isCorrect: false },
-		],
-		multiple: true,
-	},
-	{
-		id: 3,
-		question: 'Какой хук React используется для управления состоянием?',
-		options: [
-			{ id: 1, text: 'useEffect', isCorrect: false },
-			{ id: 2, text: 'useState', isCorrect: true },
-			{ id: 3, text: 'useContext', isCorrect: false },
-			{ id: 4, text: 'useReducer', isCorrect: true },
-		],
-		multiple: true,
-	},
-	{
-		id: 4,
-		question: 'Что такое Redux Toolkit?',
-		options: [
-			{ id: 1, text: 'Библиотека для управления состоянием', isCorrect: true },
-			{ id: 2, text: 'Фреймворк для бэкенд-разработки', isCorrect: false },
-			{ id: 3, text: 'Инструмент для тестирования', isCorrect: false },
-			{ id: 4, text: 'Средство визуализации данных', isCorrect: false },
-		],
-		multiple: false,
-	},
-	{
-		id: 5,
-		question: 'Какие преимущества предоставляет Next.js?',
-		options: [
-			{ id: 1, text: 'Серверный рендеринг', isCorrect: true },
-			{ id: 2, text: 'Статическая генерация сайтов', isCorrect: true },
-			{ id: 3, text: 'Встроенная система управления БД', isCorrect: false },
-			{ id: 4, text: 'Автоматическая оптимизация изображений', isCorrect: true },
-		],
-		multiple: true,
-	},
-]
+
 export const exampleSelectData = [
 	{
 		id: 1,
