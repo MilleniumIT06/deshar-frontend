@@ -3,6 +3,9 @@
 import { useCallback, useEffect, useState } from "react";
 
 import MissingLetter from "@/components/MissingLetter";
+import { MoveBox } from "@/components/MoveBox";
+import { DropInput } from "@/components/DropInput";
+import { ISlot } from "@/components/DragDropTrainer";
 
 interface IWord {
     id: number;
@@ -11,20 +14,21 @@ interface IWord {
     wordNumber: number;
 }
 
-export interface IMissedWordData {
+export interface IMoveWordData {
     id: number;
     sentence: string;
     missingWords: IWord[];
-    type: string
+    type: "move-letter"
 };
 
-interface IUseMissedData {
-    data: IMissedWordData;
+interface IUseDragDropdData {
+    slots: ISlot[]
+    data: IMoveWordData;
     onSuccess: () => void;
     onError: () => void;
 }
 
-export const useMissedWord = ({ data, onError, onSuccess }: IUseMissedData) => {
+export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDropdData) => {
     const [inputValues, setInputValues] = useState<Record<number, string>>({});
     const [errors, setErrors] = useState<Record<number, boolean>>({});
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
@@ -104,17 +108,20 @@ export const useMissedWord = ({ data, onError, onSuccess }: IUseMissedData) => {
                 const word = data.missingWords.find(w => w.id === wordId);
 
                 if (!word) return <span key={`missing-${index}`}>{part}</span>;
-
+                const slot = slots.find(slot => +slot.id === +word.id);
+                // if (!slot) return <span key={`missing-${index}`}>{part}</span>;
+                console.log(slot);
                 return (
-                    <MissingLetter
-                        key={`word-${word.id}`}
-                        id={word.id}
-                        missingLetter={word.missedLetter}
-                        word={word.word}
-                        errors={errors}
-                        inputValues={inputValues}
-                        handleInputChange={handleInputChange}
-                    />
+                    // <MissingLetter
+                    //     key={`word-${word.id}`}
+                    //     id={word.id}
+                    //     missingLetter={word.missedLetter}
+                    //     word={word.word}
+                    //     errors={errors}
+                    //     inputValues={inputValues}
+                    //     handleInputChange={handleInputChange}
+                    // />
+                    <DropInput current={slot.current} id={`slot-id-${slots[0].id}`} key={slots[0].id} />
                 );
             }
             return <span key={`text-${index}`}>{part}</span>;

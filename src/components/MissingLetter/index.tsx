@@ -17,7 +17,7 @@ const MissingLetter = ({
     missingLetter: string;
     errors: Record<number, boolean>;
     inputValues: any;
-    onComplete: (value: unknown) => void
+    onComplete?: (value: unknown) => void
     handleInputChange: (id: number, value: string) => void;
 }) => {
     const [userInput, setUserInput] = useState('')
