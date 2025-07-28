@@ -20,10 +20,10 @@ export const DragDropTrainer = ({ render, setSlots, slots }: {
 }) => {
 
     const [letters] = useState([
-        { id: 1, char: 'о' },
-        { id: 2, char: 'а' },
+        { id: 1, char: 'в' },
+        { id: 2, char: 'о' },
         { id: 3, char: 'и' },
-        { id: 4, char: 'е' },
+        { id: 4, char: 'а' },
     ]);
 
     const handleDragEnd = (event: any) => {

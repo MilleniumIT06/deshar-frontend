@@ -19,10 +19,10 @@ import styles from './styles.module.scss';
 export const LearningAttestation = () => {
     // const { hasError, renderSentence, completed, handleCheckAnswers, isButtonDisabled } = useMissedWord({ data: exampleMissingData[0], onError: () => console.log('eero'), onSuccess: () => console.log("succ") });
     const [slots, setSlots] = useState<ISlot[]>([
-        { id: 1, correct: 'о', current: null },
-        { id: 2, correct: 'а', current: null },
+        { id: 1, correct: 'в', current: null },
+        { id: 2, correct: 'и', current: null },
     ]);
-    const { renderSentence } = useDragDropWord({ slots: slots, data: exampleMissingData[0], onError: () => console.log('eero'), onSuccess: () => console.log("succ") });
+    const { renderSentence, completed, handleCheckAnswers, hasError, isButtonDisabled } = useDragDropWord({ slots: slots, data: exampleMissingData[0], onError: () => console.log('eero'), onSuccess: () => console.log("succ") });
     return (
         <div className={styles.index}>
             <AttestationPaginator />
@@ -40,7 +40,7 @@ export const LearningAttestation = () => {
 
             {/* <SelectAnswerQuiz /> */}
 
-            <TrainerWrapper handleCheckAnswers={() => console.log('check')} hasError={false} isButtonDisabled={false} completed={false} title="Перетащите пропущенные буквы в предложении из вариантов ниже" >
+            <TrainerWrapper handleCheckAnswers={handleCheckAnswers} hasError={hasError} isButtonDisabled={isButtonDisabled} completed={completed} title="Перетащите пропущенные буквы в предложении из вариантов ниже" >
                 <DragDropTrainer render={renderSentence} setSlots={setSlots} slots={slots} />
             </TrainerWrapper>
         </div>

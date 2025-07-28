@@ -50,11 +50,17 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
 
 
     useEffect(() => {
-        const allFilled = data.missingWords.every(
-            word => inputValues[word.id]?.trim().length === 1
-        );
-        setIsButtonDisabled(!allFilled);
-    }, [inputValues, data.missingWords]);
+        // const allFilled = data.missingWords.every(
+        //     word => inputValues[word.id]?.trim().length === 1
+        // );
+        if (slots) {
+
+            const allFilled = slots.every(
+                slot => slot && slot.current && slot?.current?.length > 0
+            )
+            setIsButtonDisabled(!allFilled);
+        }
+    }, [slots]);
 
     const handleInputChange = (id: number, value: string) => {
 
@@ -79,13 +85,12 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
         const newErrors: Record<number, boolean> = {};
         let hasAnyError = false;
 
-        data.missingWords.forEach(word => {
-            const isIncorrect = inputValues[word.id] !== word.missedLetter;
-            if (isIncorrect) {
-                newErrors[word.id] = true;
+        slots.forEach((slot) => {
+            if (slot.current !== slot.correct) {
                 hasAnyError = true;
+                newErrors[+slot.id] = true;
             }
-        });
+        })
 
         setErrors(newErrors);
         setHasError(hasAnyError);
@@ -96,7 +101,7 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
             onSuccess();
             setCompleted(true);
         }
-    }, [data.missingWords, inputValues, onSuccess, onError]);
+    }, [slots, onError, onSuccess]);
 
     const renderSentence = () => {
         const parts = data.sentence.split(/(\{\{\d+\}\})/g);
