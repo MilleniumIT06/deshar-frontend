@@ -4,13 +4,12 @@ import { useState } from 'react';
 import { exampleMissingData } from '@/mocks/data';
 import { useDragDropWord } from '@/shared/hooks/useDragDropWord';
 // import { QuizContent } from '@/features/quiz/ui/QuizModal/QuizContent';
-// import { exampleMissingData } from '@/mocks/data';
 // import { useMissedWord } from '@/shared/hooks/useMissedWord';
 
 import { AttestationPaginator } from '../AttestationPaginator';
 import { DragDropTrainer, ISlot } from '../DragDropTrainer';
-import { SelectAnswerQuiz } from '../SelectAnswerQuiz';
 // import { MissedLetterTrainer } from '../MissedLetterTrainer';
+import { SelectAnswerQuiz } from '../SelectAnswerQuiz';
 // import MissingLetter from '../MissingLetter';
 import { TrainerWrapper } from '../TrainerWrapper';
 
@@ -38,11 +37,11 @@ export const LearningAttestation = () => {
                 <MissedLetterTrainer render={renderSentence} />
             </TrainerWrapper> */}
 
-            {/* <SelectAnswerQuiz /> */}
+            <SelectAnswerQuiz />
 
-            <TrainerWrapper handleCheckAnswers={handleCheckAnswers} hasError={hasError} isButtonDisabled={isButtonDisabled} completed={completed} title="Перетащите пропущенные буквы в предложении из вариантов ниже" >
+            {/* <TrainerWrapper handleCheckAnswers={handleCheckAnswers} hasError={hasError} isButtonDisabled={isButtonDisabled} completed={completed} title="Перетащите пропущенные буквы в предложении из вариантов ниже" >
                 <DragDropTrainer render={renderSentence} setSlots={setSlots} slots={slots} />
-            </TrainerWrapper>
+            </TrainerWrapper> */}
         </div>
     )
 }

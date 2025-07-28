@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-import { DndContext, DragOverlay } from '@dnd-kit/core';
+import { DndContext, DragEndEvent, DragOverlay } from '@dnd-kit/core';
 import cn from 'classnames';
 
 import { MoveBox } from '../MoveBox';
@@ -26,12 +26,11 @@ export const DragDropTrainer = ({ render, setSlots, slots }: {
         { id: 4, char: 'а' },
     ]);
 
-    const handleDragEnd = (event: any) => {
+    const handleDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
-
         if (over) {
             setSlots(slots.map(slot =>
-                slot.id === over.id ? { ...slot, current: active.data.current.char } : slot
+                slot.id === over.id ? { ...slot, current: active.data.current?.char } : slot
             ));
         }
     };

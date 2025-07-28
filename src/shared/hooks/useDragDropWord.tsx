@@ -29,7 +29,6 @@ interface IUseDragDropdData {
 }
 
 export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDropdData) => {
-    const [inputValues, setInputValues] = useState<Record<number, string>>({});
     const [errors, setErrors] = useState<Record<number, boolean>>({});
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
     const [hasError, setHasError] = useState<boolean>(false);
@@ -37,11 +36,6 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
 
 
     useEffect(() => {
-        const initialValues: Record<number, string> = {};
-        data.missingWords.forEach(word => {
-            initialValues[word.id] = '';
-        });
-        setInputValues(initialValues);
         setIsButtonDisabled(true);
         setErrors({});
         setHasError(false);
@@ -62,24 +56,20 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
         }
     }, [slots]);
 
-    const handleInputChange = (id: number, value: string) => {
+    // const handleInputChange = (id: number) => {
 
-        setCompleted(false);
-
-
-        if (errors[id] || hasError) {
-            const newErrors = { ...errors };
-            delete newErrors[id];
-            setErrors(newErrors);
-            setHasError(Object.keys(newErrors).length > 0);
-        }
+    //     setCompleted(false);
 
 
-        setInputValues(prev => ({
-            ...prev,
-            [id]: value.slice(0, 1),
-        }));
-    };
+    //     if (errors[id] || hasError) {
+    //         const newErrors = { ...errors };
+    //         delete newErrors[id];
+    //         setErrors(newErrors);
+    //         setHasError(Object.keys(newErrors).length > 0);
+    //     }
+
+
+    // };
 
     const handleCheckAnswers = useCallback(() => {
         const newErrors: Record<number, boolean> = {};

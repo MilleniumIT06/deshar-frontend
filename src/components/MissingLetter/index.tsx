@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef, useEffect } from 'react'
+import {useRef, useEffect } from 'react'
 
 import styles from './styles.module.scss';
 
@@ -16,12 +16,12 @@ const MissingLetter = ({
     word: string;
     missingLetter: string;
     errors: Record<number, boolean>;
-    inputValues: any;
+    inputValues: Record<number, string>;
     onComplete?: (value: unknown) => void
     handleInputChange: (id: number, value: string) => void;
 }) => {
-    const [userInput, setUserInput] = useState('')
-    const [status, setStatus] = useState('input') // 'input', 'success', 'error'
+    // const [userInput, setUserInput] = useState('')
+    // const [status, setStatus] = useState('input') // 'input', 'success', 'error'
     const inputRef = useRef<HTMLInputElement | null>(null)
     const missingIndex = word && word.split('').findIndex(val => val === missingLetter);
     const check = word && missingIndex && missingLetter;
@@ -31,30 +31,7 @@ const MissingLetter = ({
         inputRef.current?.focus()
     }, [])
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleInput = (e: any) => {
-        const value = e.target.value.toLowerCase()
-        setUserInput(value)
 
-        if (value.length === 1) {
-            checkLetter(value)
-        }
-    }
-
-    const checkLetter = (letter: string) => {
-        const correctLetter = word && missingIndex && word[missingIndex].toLowerCase()
-
-        if (letter === correctLetter) {
-            setStatus('success')
-            if (onComplete) onComplete(true)
-        } else {
-            setStatus('error')
-            setTimeout(() => {
-                setStatus('input')
-                inputRef.current?.focus()
-            }, 1000)
-        }
-    }
 
     const letterIndex = word.indexOf(missingLetter);
 
@@ -73,7 +50,7 @@ const MissingLetter = ({
             {before}
             <input
                 type="text"
-                value={inputValues[id] || ''}
+                value={inputValues[+id] || ''}
                 onChange={e => handleInputChange(+id, e.target.value)}
                 maxLength={1}
                 className={`${styles.index__input} ${errors[+id] ? styles.index__input_error : ''}`}

@@ -21,8 +21,8 @@ export default async function Learning({
                     <Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: "Все дисциплины", href: "/courses" }, { label: "Английский язык", href: "/" }, { label: "Морфемика", href: "/" }]} />
                     <div className={styles.wrapper}>
                         <LearningSidebar />
-                        {/* <LearningContent /> */}
-                        <LearningAttestation />
+                        <LearningContent />
+                        {/* <LearningAttestation /> */}
 
                     </div>
                 </div>
