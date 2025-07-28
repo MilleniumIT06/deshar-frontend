@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 
+import { ISlot } from "@/components/DragDropTrainer";
+import { DropInput } from "@/components/DropInput";
 import MissingLetter from "@/components/MissingLetter";
 import { MoveBox } from "@/components/MoveBox";
-import { DropInput } from "@/components/DropInput";
-import { ISlot } from "@/components/DragDropTrainer";
 
 interface IWord {
     id: number;
@@ -109,19 +109,10 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
 
                 if (!word) return <span key={`missing-${index}`}>{part}</span>;
                 const slot = slots.find(slot => +slot.id === +word.id);
-                // if (!slot) return <span key={`missing-${index}`}>{part}</span>;
+                if (!slot) return <span key={`missing-${index}`}>{part}</span>;
                 console.log(slot);
                 return (
-                    // <MissingLetter
-                    //     key={`word-${word.id}`}
-                    //     id={word.id}
-                    //     missingLetter={word.missedLetter}
-                    //     word={word.word}
-                    //     errors={errors}
-                    //     inputValues={inputValues}
-                    //     handleInputChange={handleInputChange}
-                    // />
-                    <DropInput current={slot.current} id={`slot-id-${slots[0].id}`} key={slots[0].id} />
+                    <DropInput current={slot && slot.current} id={slot.id} key={slot.id} word={word.word} missingLetter={word.missedLetter} />
                 );
             }
             return <span key={`text-${index}`}>{part}</span>;

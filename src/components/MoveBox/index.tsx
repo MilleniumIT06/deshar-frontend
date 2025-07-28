@@ -1,6 +1,8 @@
 'use client';
-import styles from './styles.module.scss';
 import { useDraggable } from '@dnd-kit/core';
+
+import styles from './styles.module.scss';
+
 export const MoveBox = ({
     id,
     char = "a"

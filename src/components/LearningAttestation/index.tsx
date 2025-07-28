@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+
 import { exampleMissingData } from '@/mocks/data';
 import { useDragDropWord } from '@/shared/hooks/useDragDropWord';
 // import { QuizContent } from '@/features/quiz/ui/QuizModal/QuizContent';
@@ -18,8 +19,8 @@ import styles from './styles.module.scss';
 export const LearningAttestation = () => {
     // const { hasError, renderSentence, completed, handleCheckAnswers, isButtonDisabled } = useMissedWord({ data: exampleMissingData[0], onError: () => console.log('eero'), onSuccess: () => console.log("succ") });
     const [slots, setSlots] = useState<ISlot[]>([
-        { id: 'slot1', correct: 'о', current: null },
-        { id: 'slot2', correct: 'а', current: null },
+        { id: 1, correct: 'о', current: null },
+        { id: 2, correct: 'а', current: null },
     ]);
     const { renderSentence } = useDragDropWord({ slots: slots, data: exampleMissingData[0], onError: () => console.log('eero'), onSuccess: () => console.log("succ") });
     return (
