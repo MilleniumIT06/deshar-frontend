@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
 import { changeId } from '@/entities/learning/model/slice'
-import { initialLessons } from '@/mocks/data';
+// import { initialLessons } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button'
 
 import { AttestationItem } from '../AttestationItem'
@@ -11,22 +11,21 @@ import { LessonItem } from '../LessonItem'
 
 import styles from './styles.module.scss'
 
-type Lesson = {
-  id: number
-  completed: boolean
-  number: number
-  text: string
-}
+// type Lesson = {
+//   id: number
+//   completed: boolean
+//   number: number
+//   text: string
+// }
 
 export const LearningSidebar = () => {
-  const [lessons] = useState<Lesson[]>(initialLessons)
+  // const [lessons] = useState<Lesson[]>(initialLessons)
 
   const [page, setPage] = useState(0); // Текущая страница
   const itemsPerPage = 6; // Количество уроков на странице
 
   const dispatch = useAppDispatch();
-  const { activeLesson } = useAppSelector(state => state);
-
+  const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
   const handleLessonClick = useCallback((id: number) => {
     console.log('Clicked lesson:', id)
     // setActiveLessonId(id)
@@ -37,7 +36,6 @@ export const LearningSidebar = () => {
   const handleNextPage = useCallback(() => {
     setPage(prev => prev + 1);
   }, []);
-
   // Переход на предыдущую страницу
   const handlePrevPage = useCallback(() => {
     setPage(prev => prev - 1);
@@ -74,7 +72,7 @@ export const LearningSidebar = () => {
               <LessonItem
                 key={lesson.id}
                 id={lesson.id}
-                active={lesson.id === activeLesson.activeLessonId}
+                active={lesson.id === activeLessonId}
                 completed={lesson.completed}
                 number={lesson.number}
                 text={lesson.text}

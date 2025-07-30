@@ -22,8 +22,8 @@ export const Notification = ({
     fullWidth,
 }: {
     type: "success" | "warning";
-    successMessage: string;
-    warningMessage: string;
+    successMessage?: string;
+    warningMessage?: string;
     fullWidth?: boolean;
 }) => {
     return (

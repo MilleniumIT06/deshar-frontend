@@ -1,4 +1,5 @@
 'use client';
+import { Notification } from '@/components/Notification';
 import { exampleMissingData } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button';
 
@@ -8,8 +9,11 @@ import styles from './styles.module.scss';
 
 
 export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
-	const { completed, renderSentence } = useMissedWord({data:exampleMissingData[0]});
-
+	const { completed, renderSentence, isButtonDisabled, hasError, handleCheckAnswers } = useMissedWord({ data: exampleMissingData[0], onSuccess: () => console.log('success') });
+	const handleClick = () => {
+		handleCheckAnswers();
+		onClose();
+	}
 	return (
 		<div className={styles.index__inner}>
 			<div className={styles.index__top}>
@@ -19,12 +23,14 @@ export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
 				<div className={styles.index__content}>
 					{renderSentence()}
 				</div>
+
+				{hasError && <Notification type='warning' fullWidth />}
 			</div>
 			<div className={styles.index__bottom}>
 				<Button variant="secondary" size="medium" onClick={onClose}>
 					Отмена
 				</Button>
-				<Button variant="primary" size="medium" disabled={completed}>
+				<Button variant="primary" size="medium" disabled={isButtonDisabled} onClick={handleClick}>
 					Принять
 				</Button>
 			</div>

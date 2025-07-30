@@ -6,27 +6,62 @@ import Image from 'next/image'
 import { useAppSelector } from '@/app/_store/hooks';
 import { InfoModal } from '@/features/info/ui/InfoModal';
 import { QuizModal } from '@/features/missingLetterQuiz/ui/QuizModal';
-import { lessonContent } from '@/mocks/data';
+import { initialLessons } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button';
 
 import styles from './styles.module.scss'
 import { useCountdownTimer } from './useCountdownTimer';
 
+type LessonTaskType = "missing-word" | "choice-right" | "missing-dnd" | string;
+interface IMissinWord {
+  id: number;
+  word: string;
+  missedLetter: string;
+  wordNumber: number;
+}
+interface IMissingWordTask {
+  id: number;
+  sentence: string;
+  type: LessonTaskType;
+  missingWords: { id: number; word: string; missedLetter: string; wordNumber: number }[]
+}
+interface IChoiceRightTask {
+  id: number;
+  type: LessonTaskType;
+  title: string;
+  variants: { id: number; content: string; correct: boolean; }[];
+}
+interface IMissingWordDndTask {
+  id: number;
+  sentence: string;
+  type: LessonTaskType;
+  missingWords: IMissinWord[];
+  slots: { id: number; correct: string; current: string | null }[];
+  letters: { id: number; char: string }[];
+}
+export interface ILesson {
+  id: number;
+  completed: boolean;
+  number: number;
+  text: string;
+  title: string;
+  task: IMissingWordTask | IChoiceRightTask | IMissingWordDndTask;
+}
 export const LearningContent = () => {
   const { isExpired, secondsLeft } = useCountdownTimer(10);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
-  const { activeLesson } = useAppSelector(state => state);
+  const { activeLessonId } = useAppSelector(state => state.learningReducer);
 
 
-  const currentLesson = lessonContent[activeLesson.activeLessonId - 1];
+  const currentLesson: ILesson = initialLessons[activeLessonId - 1];
 
   return (
 
     <section className={styles.index}>
       <div className={styles.inner}>
         <h2 className={styles.index__title}>
-          <b>3.</b> {currentLesson.title}
+          <b>{currentLesson.id}.</b> {currentLesson.title}
         </h2>
 
         <div className={styles.content}>
