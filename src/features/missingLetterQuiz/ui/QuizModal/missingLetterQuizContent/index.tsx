@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 
 
 export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
-	const { completed, renderSentence } = useMissedWord(exampleMissingData);
+	const { completed, renderSentence } = useMissedWord({data:exampleMissingData[0]});
 
 	return (
 		<div className={styles.index__inner}>

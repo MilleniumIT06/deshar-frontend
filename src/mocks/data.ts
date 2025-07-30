@@ -673,8 +673,8 @@ export const lessonContent = [
 	},
 ]
 export const initialLessons = [
-	{ id: 1, completed: true, number: 1, text: 'Морфемика как раздел лингвистики' },
-	{ id: 2, completed: true, number: 2, text: 'Состав слова. Морфемный анализ слов' },
+	{ id: 1, completed: false, number: 1, text: 'Морфемика как раздел лингвистики' },
+	{ id: 2, completed: false, number: 2, text: 'Состав слова. Морфемный анализ слов' },
 	{
 		id: 3,
 		completed: false,
@@ -682,6 +682,10 @@ export const initialLessons = [
 		text: 'Орфография как система правил правописания слов и форм слов',
 	},
 ]
+
+
+
+
 export const exampleMissingData = [
 	{
 		id: 1,
