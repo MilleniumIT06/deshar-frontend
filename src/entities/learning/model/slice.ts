@@ -15,20 +15,6 @@ const learningSlice = createSlice({
 	name: 'leariningSlice',
 	initialState,
 	reducers: {
-		// addReview: (state, action: PayloadAction<Review>) => {
-		// 	state.reviews.push(action.payload)
-		// },
-		// setReviews: (state, action: PayloadAction<Review[]>) => {
-		// 	state.reviews = action.payload
-		// 	state.status = 'succeeded'
-		// },
-		// setLoading: (state, action: PayloadAction<boolean>) => {
-		// 	state.status = action.payload ? 'loading' : 'idle'
-		// },
-		// setError: (state, action: PayloadAction<string>) => {
-		// 	state.error = action.payload
-		// 	state.status = 'failed'
-		// },
 		changeStatusOfLesson: (state, action: PayloadAction<{ id: number; value: boolean }>) => {
 			const lesson = state.lessons.find(item => item.id === action.payload.id)
 			if (lesson) {
@@ -38,11 +24,15 @@ const learningSlice = createSlice({
 		},
 		changeId: (state, action: PayloadAction<number>) => {
 			state.activeLessonId = action.payload
-			console.log(state.activeLessonId)
-			console.log(state.lessons)
+		},
+		nextId: state => {
+			state.activeLessonId = state.activeLessonId + 1
+		},
+		prevId: state => {
+			state.activeLessonId = state.activeLessonId - 1
 		},
 	},
 })
 
-export const { changeId, changeStatusOfLesson } = learningSlice.actions
+export const { changeId, changeStatusOfLesson, nextId, prevId } = learningSlice.actions
 export default learningSlice.reducer

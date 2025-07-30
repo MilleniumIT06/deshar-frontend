@@ -9,16 +9,18 @@ export const LessonItem = ({
 	number = 1,
 	completed = true,
 	active = false,
-    fullWidth,
-    handleClick
+	fullWidth,
+	handleClick,
+	disabled
 }: {
 	id: number | string
 	text: string
 	number: number | string
 	completed: boolean
 	active: boolean
-    fullWidth?:boolean
-    handleClick:()=>void;
+	fullWidth?: boolean
+	handleClick: () => void;
+	disabled: boolean;
 }) => {
 	return (
 		<li
@@ -27,9 +29,10 @@ export const LessonItem = ({
 				styles.index,
 				completed && styles.completed,
 				active && styles.active,
-                fullWidth&&styles.fullWidth
+				fullWidth && styles.fullWidth,
+				disabled && styles.disabled
 			)}
-            onClick={handleClick}>
+			onClick={handleClick}>
 			<span className={styles.index__number}>{number}</span>
 			<span className={styles.index__text}>{text}</span>
 		</li>

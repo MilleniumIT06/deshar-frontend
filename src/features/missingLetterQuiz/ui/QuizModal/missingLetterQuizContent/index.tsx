@@ -6,14 +6,32 @@ import { Button } from '@/shared/ui/Button';
 import { useMissedWord } from '../../../../../shared/hooks/useMissedWord';
 
 import styles from './styles.module.scss';
+import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
+import { nextId, changeStatusOfLesson } from '@/entities/learning/model/slice';
 
 
 export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
+	const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
 	const { completed, renderSentence, isButtonDisabled, hasError, handleCheckAnswers } = useMissedWord({ data: exampleMissingData[0], onSuccess: () => console.log('success') });
+	const dispatch = useAppDispatch();
 	const handleClick = () => {
 		handleCheckAnswers();
-		onClose();
+		if (!hasError && completed) {
+			dispatch(changeStatusOfLesson({ id: activeLessonId, value: true }));
+			dispatch(nextId());
+			onClose();
+		}
 	}
+	console.log('activeId', activeLessonId)
+	// if (lessons[activeLessonId].task.type === "missing-word") {
+
+	// }
+	// else if (lessons[activeLessonId].task.type === "choice-right") {
+
+	// } else if (lessons[activeLessonId].task.type === "missing-dnd") {
+
+	// }
+
 	return (
 		<div className={styles.index__inner}>
 			<div className={styles.index__top}>

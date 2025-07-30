@@ -35,6 +35,7 @@
 
 	&.active {
 		border: 2px solid var(--neutral-medium);
+		background: var(--neutral-white);
 	}
 
 	&.active &__text {
@@ -51,5 +52,10 @@
 		font-size: 14px;
 		line-height: 143%;
 		color: var(--neutral-darkest);
+	}
+	&.disabled {
+		pointer-events: none;
+		opacity: 0.6;
+		cursor: default;
 	}
 }

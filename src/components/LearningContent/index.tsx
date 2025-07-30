@@ -51,10 +51,18 @@ export const LearningContent = () => {
   const { isExpired, secondsLeft } = useCountdownTimer(10);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
-  const { activeLessonId } = useAppSelector(state => state.learningReducer);
+  const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
+  const isLastLesson = () => {
+    if (activeLessonId === lessons[lessons.length - 1].id) {
+      console.log(activeLessonId, lessons.length);
+      return true
+    } else {
+      console.log(activeLessonId, lessons.length);
+      return false;
+    }
+  }
 
-
-  const currentLesson: ILesson = initialLessons[activeLessonId - 1];
+  const currentLesson: ILesson = lessons[activeLessonId - 1];
 
   return (
 
@@ -142,7 +150,16 @@ export const LearningContent = () => {
             </div>
             <div className={styles.index__footer_right}>
               <Button variant="secondary" size="medium">Пропустить</Button>
-              <Button variant="primary" size="medium" disabled={isExpired ? false : true} onClick={() => setIsQuizOpen(true)}>Далее {isExpired ? "" : `(${secondsLeft})`}</Button>
+
+              {isLastLesson() ?
+                <Button variant="secondary" size="medium">Перейти к аттестации</Button> :
+                <Button
+                  variant="primary"
+                  size="medium"
+                  disabled={isExpired ? false : true}
+                  onClick={() => setIsQuizOpen(true)}>Далее {isExpired ? "" : `(${secondsLeft})`}</Button>
+              }
+
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import { changeId } from '@/entities/learning/model/slice'
 import { Button } from '@/shared/ui/Button'
 
 import { AttestationItem } from '../AttestationItem'
+import { ILesson } from '../LearningContent';
 import { LessonItem } from '../LessonItem'
 
 import styles from './styles.module.scss'
@@ -31,7 +32,23 @@ export const LearningSidebar = () => {
     // setActiveLessonId(id)
     dispatch(changeId(id))
   }, [])
+  let countOfCompletedLessons = 0;
+  lessons.forEach((el) => {
+    if (el.completed === true) {
+      countOfCompletedLessons += 1;
+    }
+  })
+  const lessonIsDisabled = (lesson: ILesson) => {
+    // lesson.completed !== true && lesson.id !== activeLessonId
+    if (lesson.id === activeLessonId) {
+      return false
+    }
+    if (lesson.completed === true) {
+      return false
+    }
 
+    return true
+  }
   // Переход на следующую страницу
   const handleNextPage = useCallback(() => {
     setPage(prev => prev + 1);
@@ -77,6 +94,7 @@ export const LearningSidebar = () => {
                 number={lesson.number}
                 text={lesson.text}
                 handleClick={() => handleLessonClick(lesson.id)}
+                disabled={lessonIsDisabled(lesson)}
               />
             ))}
           </ul>
@@ -96,7 +114,7 @@ export const LearningSidebar = () => {
 
         <div className={styles.bottom}>
           <h5 className={styles.title}>Аттестация</h5>
-          <AttestationItem max={10} current={5} />
+          <AttestationItem max={lessons.length} current={countOfCompletedLessons} />
         </div>
       </div>
     </div>
