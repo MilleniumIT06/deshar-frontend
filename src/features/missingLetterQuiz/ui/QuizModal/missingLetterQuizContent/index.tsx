@@ -35,15 +35,6 @@ export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
 			}
 		}
 	}
-	console.log('activeId', activeLessonId)
-	// if (lessons[activeLessonId].task.type === "missing-word") {
-
-	// }
-	// else if (lessons[activeLessonId].task.type === "choice-right") {
-
-	// } else if (lessons[activeLessonId].task.type === "missing-dnd") {
-
-	// }
 
 	return (
 		<div className={styles.index__inner}>

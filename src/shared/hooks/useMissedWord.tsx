@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 
+import {  IMissingWordTask } from "@/components/LearningContent";
 import MissingLetter from "@/components/MissingLetter";
 
 interface IWord {
@@ -19,7 +20,7 @@ export interface IMissedWordData {
 };
 
 interface IUseMissedData {
-    data: IMissedWordData;
+    data: IMissingWordTask;
     onSuccess: () => void;
     onError: () => void;
 }

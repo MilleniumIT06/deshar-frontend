@@ -1,13 +1,9 @@
-'use client';
-import { useState } from 'react';
-
 import cn from 'classnames';
-
-import { exampleSelectData } from '@/mocks/data';
 
 import { SelectBox } from '../SelectBox';
 
 import styles from './styles.module.scss';
+
 export interface ISelectItem {
 
     id: number;
@@ -15,7 +11,7 @@ export interface ISelectItem {
     correct: boolean;
 
 }
-export const SelectAnswerQuizContent = ({checkSelected, data, onSelect }: {
+export const SelectAnswerQuizContent = ({ checkSelected, data, onSelect }: {
     data: ISelectItem[];
     selected: ISelectItem[];
     setError: (value: boolean) => void;

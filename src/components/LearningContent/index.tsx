@@ -3,67 +3,94 @@ import { useState } from 'react';
 
 import Image from 'next/image'
 
-import { useAppSelector } from '@/app/_store/hooks';
+import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
+import { changeStatusOfLesson, nextId } from '@/entities/learning/model/slice';
 import { InfoModal } from '@/features/info/ui/InfoModal';
 import { QuizModal } from '@/features/missingLetterQuiz/ui/QuizModal';
-import { initialLessons } from '@/mocks/data';
 import { isAllLessonsCompleted } from '@/shared/lib/allCompleted';
 import { Button } from '@/shared/ui/Button';
 
 import styles from './styles.module.scss'
 import { useCountdownTimer } from './useCountdownTimer';
 
-type LessonTaskType = "missing-word" | "choice-right" | "missing-dnd" | string;
-interface IMissinWord {
+
+export interface IMissingWord {
   id: number;
   word: string;
   missedLetter: string;
   wordNumber: number;
 }
-interface IMissingWordTask {
+
+
+export type LessonTaskType = "missing-word" | "choice-right" | "missing-dnd";
+
+
+export interface IMissingWordTask {
   id: number;
   sentence: string;
-  type: LessonTaskType;
-  missingWords: { id: number; word: string; missedLetter: string; wordNumber: number }[]
+  type: "missing-word";
+  missingWords: IMissingWord[];
 }
-interface IChoiceRightTask {
+
+export interface IChoiceRightTask {
   id: number;
-  type: LessonTaskType;
+  type: "choice-right"; // Конкретный литерал
   title: string;
-  variants: { id: number; content: string; correct: boolean; }[];
+  variants: {
+    id: number;
+    content: string;
+    correct: boolean;
+  }[];
 }
-interface IMissingWordDndTask {
+
+export interface IMissingWordDndTask {
   id: number;
   sentence: string;
-  type: LessonTaskType;
-  missingWords: IMissinWord[];
-  slots: { id: number; correct: string; current: string | null }[];
-  letters: { id: number; char: string }[];
+  type: "missing-dnd"; // Конкретный литерал
+  missingWords: IMissingWord[]; // Используем общий интерфейс
+  slots: {
+    id: number;
+    correct: string; // ID буквы или само буква?
+    current: string | null; // ID буквы или сама буква?
+  }[];
+  letters: {
+    id: number;
+    char: string;
+  }[];
 }
+
+// 4. Добавлен тип-объединение для задач
+export type Task =
+  | IMissingWordTask
+  | IChoiceRightTask
+  | IMissingWordDndTask;
+
 export interface ILesson {
   id: number;
   completed: boolean;
   number: number;
   text: string;
   title: string;
-  task: IMissingWordTask | IChoiceRightTask | IMissingWordDndTask;
+  task: Task; // Используем объединение типов
 }
 export const LearningContent = () => {
   const { isExpired, secondsLeft } = useCountdownTimer(3);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
-  const isLastLesson = () => {
-    if (activeLessonId === lessons[lessons.length - 1].id) {
-      console.log(activeLessonId, lessons.length);
-      return true
+  const dispatch = useAppDispatch();
+
+  const currentLesson: ILesson = lessons[activeLessonId - 1];
+  const handleNextBtn = () => {
+    if (currentLesson.task.type === "missing-word") {
+
+      setIsQuizOpen(true)
     } else {
-      console.log(activeLessonId, lessons.length);
-      return false;
+      dispatch(changeStatusOfLesson({ id: activeLessonId, value: true }));
+      dispatch(nextId());
     }
   }
 
-  const currentLesson: ILesson = lessons[activeLessonId - 1];
 
   return (
 
@@ -158,7 +185,7 @@ export const LearningContent = () => {
                   variant="primary"
                   size="medium"
                   disabled={isExpired ? false : true}
-                  onClick={() => setIsQuizOpen(true)}>Далее {isExpired ? "" : `(${secondsLeft})`}</Button>
+                  onClick={handleNextBtn}>Далее {isExpired ? "" : `(${secondsLeft})`}</Button>
               }
 
             </div>
