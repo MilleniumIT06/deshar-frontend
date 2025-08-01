@@ -7,6 +7,7 @@ import { useAppSelector } from '@/app/_store/hooks';
 import { InfoModal } from '@/features/info/ui/InfoModal';
 import { QuizModal } from '@/features/missingLetterQuiz/ui/QuizModal';
 import { initialLessons } from '@/mocks/data';
+import { isAllLessonsCompleted } from '@/shared/lib/allCompleted';
 import { Button } from '@/shared/ui/Button';
 
 import styles from './styles.module.scss'
@@ -48,7 +49,7 @@ export interface ILesson {
   task: IMissingWordTask | IChoiceRightTask | IMissingWordDndTask;
 }
 export const LearningContent = () => {
-  const { isExpired, secondsLeft } = useCountdownTimer(10);
+  const { isExpired, secondsLeft } = useCountdownTimer(3);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
@@ -151,7 +152,7 @@ export const LearningContent = () => {
             <div className={styles.index__footer_right}>
               <Button variant="secondary" size="medium">Пропустить</Button>
 
-              {isLastLesson() ?
+              {isAllLessonsCompleted(lessons) ?
                 <Button variant="secondary" size="medium">Перейти к аттестации</Button> :
                 <Button
                   variant="primary"

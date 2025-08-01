@@ -1,25 +1,38 @@
 'use client';
+import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
 import { Notification } from '@/components/Notification';
+import { nextId, changeStatusOfLesson } from '@/entities/learning/model/slice';
 import { exampleMissingData } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button';
 
 import { useMissedWord } from '../../../../../shared/hooks/useMissedWord';
 
 import styles from './styles.module.scss';
-import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
-import { nextId, changeStatusOfLesson } from '@/entities/learning/model/slice';
 
 
 export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
 	const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
 	const { completed, renderSentence, isButtonDisabled, hasError, handleCheckAnswers } = useMissedWord({ data: exampleMissingData[0], onSuccess: () => console.log('success') });
 	const dispatch = useAppDispatch();
+	const isLastLesson = () => {
+		if (lessons[lessons.length - 1].id === activeLessonId) {
+			return true
+		} else {
+			return false;
+		}
+	}
 	const handleClick = () => {
 		handleCheckAnswers();
-		if (!hasError && completed) {
-			dispatch(changeStatusOfLesson({ id: activeLessonId, value: true }));
-			dispatch(nextId());
+		if (isLastLesson()) {
 			onClose();
+			dispatch(changeStatusOfLesson({ id: activeLessonId, value: true }));
+		} else {
+
+			if (!hasError && completed) {
+				dispatch(changeStatusOfLesson({ id: activeLessonId, value: true }));
+				dispatch(nextId());
+				onClose();
+			}
 		}
 	}
 	console.log('activeId', activeLessonId)
