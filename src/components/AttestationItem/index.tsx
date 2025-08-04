@@ -1,10 +1,12 @@
+import cn from 'classnames';
+
 import { ProgressBar } from '@/shared/ui/ProgressBar';
 
 import styles from './styles.module.scss';
 
-export const AttestationItem = ({ max = 5, current = 1 }: { max: number; current: number }) => {
+export const AttestationItem = ({ max = 5, current = 1, active = false }: { max: number; current: number; active?: boolean; }) => {
     return (
-        <div className={styles.index}>
+        <div className={cn(styles.index, active && styles.active)}>
             <div className={styles.inner}>
                 <div className={styles.index__top}>
                     <span className={styles.index__title}>Прогресс</span>

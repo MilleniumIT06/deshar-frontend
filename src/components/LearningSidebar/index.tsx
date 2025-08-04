@@ -27,6 +27,7 @@ export const LearningSidebar = () => {
 
   const dispatch = useAppDispatch();
   const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
+  const { status } = useAppSelector(state => state.learningStatusReducer);
   const handleLessonClick = useCallback((id: number) => {
     console.log('Clicked lesson:', id)
     // setActiveLessonId(id)
@@ -40,7 +41,22 @@ export const LearningSidebar = () => {
   const handlePrevPage = useCallback(() => {
     setPage(prev => prev - 1);
   }, []);
+  const isActiveLessonItem = (lesson: ILesson) => {
+    if (status === "attestation") {
+      return false
+    } else {
 
+      return lesson.id === activeLessonId
+    }
+  }
+  const isActiveAttestationItem = () => {
+    if (status === "attestation") {
+      return true
+    } else {
+
+      return false
+    }
+  }
   // Вычисляем индексы для текущей страницы
   const startIndex = page * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -72,7 +88,7 @@ export const LearningSidebar = () => {
               <LessonItem
                 key={lesson.id}
                 id={lesson.id}
-                active={lesson.id === activeLessonId}
+                active={isActiveLessonItem(lesson)}
                 completed={lesson.completed}
                 number={lesson.number}
                 text={lesson.text}
@@ -97,7 +113,7 @@ export const LearningSidebar = () => {
 
         <div className={styles.bottom}>
           <h5 className={styles.title}>Аттестация</h5>
-          <AttestationItem max={lessons.length} current={0} />
+          <AttestationItem max={lessons.length} current={0} active={isActiveAttestationItem()} />
         </div>
       </div>
     </div>

@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import learningReducer from '@/entities/learning/model/slice'
-
+import learningStatusReducer from '@/entities/learning/model/status.slice'
 export const store = configureStore({
 	reducer: {
-		 learningReducer,
+		learningReducer,
+		learningStatusReducer,
 		// другие редюсеры
 	},
 })

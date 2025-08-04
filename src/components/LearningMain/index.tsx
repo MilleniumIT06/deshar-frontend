@@ -1,7 +1,8 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-import { useAppSelector } from "@/app/_store/hooks";
+import { useAppDispatch, useAppSelector } from "@/app/_store/hooks";
+import { changeStatus } from "@/entities/learning/model/status.slice";
 import { isAllLessonsCompleted } from "@/shared/lib/allCompleted";
 
 import { LearningAttestation } from "../LearningAttestation";
@@ -10,14 +11,20 @@ import { LearningSidebar } from "../LearningSidebar"
 
 export const LearningMain = () => {
     const { lessons } = useAppSelector(state => state.learningReducer);
-    const [completed, setCompleted] = useState(false);
+    const { status } = useAppSelector(state => state.learningStatusReducer);
+    const dispatch = useAppDispatch();
     useEffect(() => {
-        setCompleted(isAllLessonsCompleted(lessons))
+        if (isAllLessonsCompleted(lessons)) {
+            dispatch(changeStatus("attestation"));
+
+        } else {
+            dispatch(changeStatus("learning"));
+        }
     }, [lessons])
     return (
         <>
             <LearningSidebar />
-            {!completed ? <LearningContent /> :
+            {status === "learning" ? <LearningContent /> :
                 <LearningAttestation />}
         </>
     )
