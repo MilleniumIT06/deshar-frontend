@@ -1,11 +1,16 @@
 'use client';
 
-import styles from './index.module.scss';
+import { useMissedWord } from '@/shared/hooks/useMissedWord';
 
-export const MissedLetterTrainer = ({ render }: { render: () => React.ReactNode; }) => {
+import { IMissingWordTask } from '../LearningContent';
+import { TrainerWrapper } from '../TrainerWrapper';
+
+
+export const MissedLetterTrainer = ({ data }: { data: IMissingWordTask }) => {
+    const { hasError, renderSentence, completed, handleCheckAnswers, isButtonDisabled } = useMissedWord({ data: data, onError: () => console.log('eero'), onSuccess: () => console.log("succ") });
     return (
-        <div className={styles.index}>
-            {render()}
-        </div>
+        <TrainerWrapper handleCheckAnswers={handleCheckAnswers} hasError={hasError} isButtonDisabled={isButtonDisabled} completed={completed} title="Впишите пропущенные буквы в следующем предложении" >
+            {renderSentence()}
+        </TrainerWrapper>
     )
 }

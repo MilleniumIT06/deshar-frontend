@@ -823,3 +823,66 @@ export const exampleSelectData = [
 		correct: false,
 	},
 ]
+export const attestationExampleData = [
+	{
+		id: 1,
+		sentence:
+			'Купил1 как-то обувной мастер {{1}} для того, чтобы {{2}} обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.',
+		type: 'missing-word',
+		missingWords: [
+			{ id: 1, word: 'гвозди', missedLetter: 'в', wordNumber: 1 },
+			{ id: 2, word: 'починить', missedLetter: 'и', wordNumber: 2 },
+		],
+		completed: false,
+	},
+	{
+		id: 2,
+		sentence: 'На {{1}} небе светила яркая {{2}}, а под ней шумело {{3}} море.',
+		type: 'missing-dnd',
+		missingWords: [
+			{ id: 1, word: 'ночном', missedLetter: 'о', wordNumber: 1 },
+			{ id: 2, word: 'луна', missedLetter: 'у', wordNumber: 2 },
+			{ id: 3, word: 'тёмное', missedLetter: 'ё', wordNumber: 3 },
+		],
+		slots: [
+			{ id: 1, correct: 'о', current: null },
+			{ id: 2, correct: 'у', current: null },
+			{ id: 3, correct: 'ё', current: null },
+		],
+		letters: [
+			{ id: 1, char: 'в' },
+			{ id: 2, char: 'о' },
+			{ id: 3, char: 'и' },
+			{ id: 4, char: 'а' },
+		],
+		completed: false,
+	},
+	{
+		id: 3,
+		type: 'choice-right',
+		title: 'Найдите однокоренные слова с чередующимися согласными в корне.',
+		variants: [
+			{
+				id: 1,
+				content: 'Скачок, скачка',
+				correct: false,
+			},
+			{
+				id: 2,
+				content: 'Сбор, соберу',
+				correct: true,
+			},
+			{
+				id: 3,
+				content: 'Дружок, дружочек',
+				correct: false,
+			},
+			{
+				id: 4,
+				content: 'Срывать, сорвать',
+				correct: false,
+			},
+		],
+		completed: false,
+	},
+]

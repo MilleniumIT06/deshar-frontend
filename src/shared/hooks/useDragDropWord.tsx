@@ -4,8 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { ISlot } from "@/components/DragDropTrainer";
 import { DropInput } from "@/components/DropInput";
-import MissingLetter from "@/components/MissingLetter";
-import { MoveBox } from "@/components/MoveBox";
+import { Task } from "@/components/LearningContent";
 
 interface IWord {
     id: number;
@@ -18,7 +17,7 @@ export interface IMoveWordData {
     id: number;
     sentence: string;
     missingWords: IWord[];
-    type: "move-letter"
+    type: Task
 };
 
 interface IUseDragDropdData {
