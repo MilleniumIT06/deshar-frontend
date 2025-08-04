@@ -1,60 +1,73 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export function useCountdownTimer(initialSeconds: number) {
   const [seconds, setSeconds] = useState(initialSeconds);
   const [isExpired, setIsExpired] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Функция очистки таймера
-  const clearTimer = () => {
+  
+  const clearTimer = useCallback(() => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
-  };
+  }, []);
 
-  useEffect(() => {
-    // Сбрасываем состояние при изменении initialSeconds
-    setSeconds(initialSeconds);
-    setIsExpired(false);
-    clearTimer();
-
-    if (initialSeconds <= 0) {
-      setIsExpired(true);
-      return;
-    }
+ 
+  const startTimer = useCallback(() => {
+    clearTimer(); 
 
     timerRef.current = setInterval(() => {
       setSeconds(prev => {
-        const newSeconds = prev - 1;
-        
-        if (newSeconds <= 0) {
+        if (prev <= 1) {
           clearTimer();
           setIsExpired(true);
           return 0;
         }
-        
-        return newSeconds;
+        return prev - 1;
       });
     }, 1000);
+  }, [clearTimer]);
+
+
+  useEffect(() => {
+    setSeconds(initialSeconds);
+    setIsExpired(initialSeconds <= 0);
+
+    if (initialSeconds > 0) {
+      startTimer();
+    }
 
     return clearTimer;
-  }, [initialSeconds]); // Зависимость только от initialSeconds
+  }, [initialSeconds, startTimer, clearTimer]);
+
+  // Функция перезапуска
+  const restart = useCallback(() => {
+    clearTimer();
+    setSeconds(initialSeconds);
+    setIsExpired(false);
+
+    if (initialSeconds > 0) {
+      startTimer();
+    }
+  }, [initialSeconds, startTimer, clearTimer]);
 
   // Форматирование времени
-  const formatTime = () => {
+  const formatTime = useCallback(() => {
     const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
     const secs = (seconds % 60).toString().padStart(2, '0');
     return `${mins}:${secs}`;
-  };
+  }, [seconds]);
 
   return {
     time: isExpired ? '00:00' : formatTime(),
     isExpired,
     secondsLeft: seconds,
     reset: () => {
+      clearTimer();
       setSeconds(initialSeconds);
       setIsExpired(false);
-    }
+    },
+    restart
   };
 }

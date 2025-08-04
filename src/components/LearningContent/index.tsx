@@ -74,7 +74,7 @@ export interface ILesson {
   task: Task; // Используем объединение типов
 }
 export const LearningContent = () => {
-  const { isExpired, secondsLeft } = useCountdownTimer(3);
+  const { isExpired, secondsLeft, reset, restart } = useCountdownTimer(3);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
@@ -88,7 +88,12 @@ export const LearningContent = () => {
     } else {
       dispatch(changeStatusOfLesson({ id: activeLessonId, value: true }));
       dispatch(nextId());
+      restart()
     }
+  }
+  const handleCloseModal = () => {
+    restart();
+    setIsQuizOpen(false);
   }
 
 
@@ -194,7 +199,7 @@ export const LearningContent = () => {
         <Button variant="secondary" size="medium" onClick={() => setIsInfoOpen(true)}>test</Button>
         <QuizModal
           isOpen={isQuizOpen}
-          onClose={() => setIsQuizOpen(false)}
+          onClose={handleCloseModal}
         />
         <InfoModal
           isOpen={isInfoOpen}
