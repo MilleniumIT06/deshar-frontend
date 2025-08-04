@@ -86,9 +86,16 @@ export const LearningContent = () => {
 
       setIsQuizOpen(true)
     } else {
-      dispatch(changeStatusOfLesson({ id: activeLessonId, value: true }));
-      dispatch(nextId());
-      restart()
+      if (lessons[lessons.length - 1].id === currentLesson.id && currentLesson.completed === false) {
+        dispatch(changeStatusOfLesson({ id: activeLessonId, value: true }));
+        restart()
+      } else {
+
+
+        dispatch(changeStatusOfLesson({ id: activeLessonId, value: true }));
+        dispatch(nextId());
+        restart()
+      }
     }
   }
   const handleCloseModal = () => {
