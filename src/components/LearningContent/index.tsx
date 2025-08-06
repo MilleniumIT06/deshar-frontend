@@ -1,10 +1,11 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Image from 'next/image'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
 import { changeStatusOfLesson, nextId } from '@/entities/learning/model/slice';
+import { changeStatus } from '@/entities/learning/model/status.slice';
 import { InfoModal } from '@/features/info/ui/InfoModal';
 import { QuizModal } from '@/features/missingLetterQuiz/ui/QuizModal';
 import { isAllLessonsCompleted } from '@/shared/lib/allCompleted';
@@ -34,7 +35,7 @@ export interface IMissingWordTask {
 
 export interface IChoiceRightTask {
   id: number;
-  type: "choice-right"; // Конкретный литерал
+  type: "choice-right";
   title: string;
   variants: {
     id: number;
@@ -46,12 +47,12 @@ export interface IChoiceRightTask {
 export interface IMissingWordDndTask {
   id: number;
   sentence: string;
-  type: "missing-dnd"; // Конкретный литерал
-  missingWords: IMissingWord[]; // Используем общий интерфейс
+  type: "missing-dnd";
+  missingWords: IMissingWord[];
   slots: {
     id: number;
-    correct: string; // ID буквы или само буква?
-    current: string | null; // ID буквы или сама буква?
+    correct: string;
+    current: string | null;
   }[];
   letters: {
     id: number;
@@ -59,7 +60,7 @@ export interface IMissingWordDndTask {
   }[];
 }
 
-// 4. Добавлен тип-объединение для задач
+
 export type Task =
   | IMissingWordTask
   | IChoiceRightTask
@@ -71,10 +72,10 @@ export interface ILesson {
   number: number;
   text: string;
   title: string;
-  task: Task; // Используем объединение типов
+  task: Task;
 }
 export const LearningContent = () => {
-  const { isExpired, secondsLeft, reset, restart } = useCountdownTimer(3);
+  const { isExpired, secondsLeft, restart } = useCountdownTimer(3);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
@@ -102,8 +103,9 @@ export const LearningContent = () => {
     restart();
     setIsQuizOpen(false);
   }
-
-
+  const onClickAttestationButton = () => {
+    dispatch(changeStatus("attestation"));
+  }
   return (
 
     <section className={styles.index}>
@@ -192,7 +194,7 @@ export const LearningContent = () => {
               <Button variant="secondary" size="medium">Пропустить</Button>
 
               {isAllLessonsCompleted(lessons) ?
-                <Button variant="secondary" size="medium">Перейти к аттестации</Button> :
+                <Button variant="secondary" size="medium" onClick={onClickAttestationButton}>Перейти к аттестации</Button> :
                 <Button
                   variant="primary"
                   size="medium"

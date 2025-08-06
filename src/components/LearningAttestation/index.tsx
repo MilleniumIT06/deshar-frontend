@@ -13,7 +13,7 @@ import { Task } from '../LearningContent';
 import { MissedLetterTrainer } from '../MissedLetterTrainer';
 import { SelectAnswerQuiz } from '../SelectAnswerQuiz';
 // import MissingLetter from '../MissingLetter';
-import { TrainerWrapper } from '../TrainerWrapper';
+
 
 import styles from './styles.module.scss';
 
@@ -23,32 +23,34 @@ export const LearningAttestation = () => {
         { id: 1, correct: 'в', current: null },
         { id: 2, correct: 'и', current: null },
     ]);
-    const [data, setData] = useState([...attestationExampleData]);
+    const [data, setData] = useState<any>(attestationExampleData);
     const [currentTaskNumber, setCurrentTaskNumber] = useState(1);
-    const currentTask = data[currentTaskNumber];
+    const currentTask: Task = data[currentTaskNumber - 1];
+
     const renderTask = () => {
         switch (currentTask.type) {
-            case 'missing-word':
+            case "missing-word":
                 return (
-                    <MissedLetterTrainer data={currentTask} />
+                    <MissedLetterTrainer data={{ id: currentTask.id, missingWords: currentTask.missingWords, sentence: currentTask.sentence, type: currentTask.type }} />
                 )
-            case 'missing-dnd':
-                return (
-                    <MissedLetterTrainer data={currentTask} />
-                )
+            case "missing-dnd":
+                return <DragDropTrainer data={{ id: currentTask.id, letters: currentTask.letters, missingWords: currentTask.missingWords, sentence: currentTask.sentence, slots: currentTask.slots, type: currentTask.type }} />
+            case "choice-right":
+                return <SelectAnswerQuiz />
+            default:
+                return <div>Error</div>
         }
+    }
+
+    const handleChangeTask = (value: number) => {
+        setCurrentTaskNumber(value);
     }
     return (
         <div className={styles.index}>
-            <AttestationPaginator />
+            <AttestationPaginator onClick={handleChangeTask} />
 
-            {/* <div className={styles.index__quiz_wrapper}>
-                <QuizContent onClose={() => console.log('close')} />
-            </div> */}
-            {/* <MissingLetter id={1} missingLetter='a' onComplete={() => console.log('test')} word='tast' key={1} /> */}
-            {/* <QuizContent onClose={() => console.log('close')} /> */}
 
-            { }
+            {renderTask()}
 
             {/* <SelectAnswerQuiz /> */}
 

@@ -13,20 +13,20 @@ export const LearningMain = () => {
     const { lessons } = useAppSelector(state => state.learningReducer);
     const { status } = useAppSelector(state => state.learningStatusReducer);
     const dispatch = useAppDispatch();
-    useEffect(() => {
-        if (isAllLessonsCompleted(lessons)) {
-            dispatch(changeStatus("attestation"));
+    // useEffect(() => {
+    //     if (isAllLessonsCompleted(lessons)) {
+    //         dispatch(changeStatus("attestation"));
 
-        } else {
-            dispatch(changeStatus("learning"));
-        }
-    }, [lessons])
+    //     } else {
+    //         dispatch(changeStatus("learning"));
+    //     }
+    // }, [lessons])
     return (
         <>
             <LearningSidebar />
-            {/* {status === "learning" ? <LearningContent /> :
-                <LearningAttestation />} */}
-            <LearningAttestation />
+            {status === "learning" ? <LearningContent /> :
+                <LearningAttestation />}
+            {/* <LearningAttestation /> */}
         </>
     )
 }

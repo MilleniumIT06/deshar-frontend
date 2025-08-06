@@ -4,7 +4,11 @@ import { useState } from 'react';
 import { StepCounter } from './StepCounter';
 import styles from './styles.module.scss';
 
-export const AttestationPaginator = () => {
+export const AttestationPaginator = ({
+    onClick
+}: {
+    onClick: (value: number) => void;
+}) => {
     const [activeP, setActiveP] = useState(1);
     const stepCounterTestData = [
         {
@@ -30,6 +34,7 @@ export const AttestationPaginator = () => {
     ];
     const handleClickD = (id: number) => {
         setActiveP(id);
+        onClick(id);
     }
     return (
         <div className={styles.index}>
