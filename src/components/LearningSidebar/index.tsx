@@ -3,7 +3,6 @@ import { useCallback, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
 import { changeId } from '@/entities/learning/model/slice'
-// import { initialLessons } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button'
 
 import { AttestationItem } from '../AttestationItem'
@@ -12,18 +11,13 @@ import { LessonItem } from '../LessonItem'
 
 import styles from './styles.module.scss'
 
-// type Lesson = {
-//   id: number
-//   completed: boolean
-//   number: number
-//   text: string
-// }
+
 
 export const LearningSidebar = () => {
-  // const [lessons] = useState<Lesson[]>(initialLessons)
 
-  const [page, setPage] = useState(0); // Текущая страница
-  const itemsPerPage = 6; // Количество уроков на странице
+
+  const [page, setPage] = useState(0);
+  const itemsPerPage = 6;
 
   const dispatch = useAppDispatch();
   const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
@@ -69,48 +63,50 @@ export const LearningSidebar = () => {
   return (
     <div className={styles.index}>
       <div className={styles.inner}>
-        <h5 className={styles.title}>Уроки</h5>
-        <div className={styles.content}>
-          {hasPreviousPage && (
-            <Button
-              className={styles.showBtn}
-              variant="secondary"
-              size="medium"
-              fullWidth
-              onClick={handlePrevPage}
-            >
-              Показать предыдущие
-            </Button>
-          )}
+        <div className={styles.index_wrapper}>
+          <h5 className={styles.title}>Уроки</h5>
+          <div className={styles.content}>
+            {hasPreviousPage && (
+              <Button
+                className={styles.showBtn}
+                variant="secondary"
+                size="medium"
+                fullWidth
+                onClick={handlePrevPage}
+              >
+                Показать предыдущие
+              </Button>
+            )}
 
-          <ul className={styles.list}>
-            {paginatedLessons.map((lesson) => (
-              <LessonItem
-                key={lesson.id}
-                id={lesson.id}
-                active={isActiveLessonItem(lesson)}
-                completed={lesson.completed}
-                number={lesson.number}
-                text={lesson.text}
-                handleClick={() => handleLessonClick(lesson.id)}
+            <ul className={styles.list}>
+              {paginatedLessons.map((lesson) => (
+                <LessonItem
+                  key={lesson.id}
+                  id={lesson.id}
+                  active={isActiveLessonItem(lesson)}
+                  completed={lesson.completed}
+                  number={lesson.number}
+                  text={lesson.text}
+                  handleClick={() => handleLessonClick(lesson.id)}
 
-              />
-            ))}
-          </ul>
+                />
+              ))}
+            </ul>
 
-          {hasNextPage && (
-            <Button
-              className={styles.showBtn}
-              variant="secondary"
-              size="medium"
-              fullWidth
-              onClick={handleNextPage}
-            >
-              Показать следующие
-            </Button>
-          )}
+            {hasNextPage && (
+              <Button
+                className={styles.showBtn}
+                variant="secondary"
+                size="medium"
+                fullWidth
+                onClick={handleNextPage}
+              >
+                Показать следующие
+              </Button>
+            )}
+          </div>
+
         </div>
-
         <div className={styles.bottom}>
           <h5 className={styles.title}>Аттестация</h5>
           <AttestationItem max={lessons.length} current={0} active={isActiveAttestationItem()} />

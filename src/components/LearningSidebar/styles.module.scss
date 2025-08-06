@@ -4,6 +4,7 @@
 	width: 280px;
 	min-height: 700px;
 	background: var(--neutral-white);
+	display: flex;
 }
 .title {
 	font-family: var(--font-family);
@@ -20,13 +21,18 @@
 .inner {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	align-items: start;
 	gap: 20px;
 }
 .showBtn {
 	margin: 20px 0;
 }
+.content {
+	margin-top: 20px;
+}
 .bottom {
 	width: 100%;
 	border-top: 1px solid var(--neutral-light);
+	margin-top: auto;
 }
