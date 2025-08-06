@@ -4,10 +4,10 @@ import { attestationExampleData } from '@/mocks/data'
 
 const initialState: {
 	data: Task[]
-	currentTaskNumber: number | null
+	currentTaskNumber: number
 } = {
 	data: attestationExampleData as Task[],
-	currentTaskNumber: null,
+	currentTaskNumber: 1,
 }
 
 const attestationSlice = createSlice({
@@ -30,14 +30,11 @@ const attestationSlice = createSlice({
 		// prevId: state => {
 		// 	state.activeLessonId = state.activeLessonId - 1
 		// },
-		setAttestationData: (state, action: PayloadAction<any[]>) => {
-			state.data = [...action.payload]
-		},
 		changeCurrentTask: (state, action: PayloadAction<number>) => {
 			state.currentTaskNumber = action.payload
 		},
 	},
 })
 
-export const {} = attestationSlice.actions
+export const { changeCurrentTask } = attestationSlice.actions
 export default attestationSlice.reducer

@@ -1,7 +1,5 @@
 'use client';
-import { useState } from 'react';
-
-import { attestationExampleData, exampleMissingData, } from '@/mocks/data';
+import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
 
 import { AttestationPaginator } from '../AttestationPaginator';
 import { DragDropTrainer } from '../DragDropTrainer';
@@ -9,17 +7,17 @@ import { Task } from '../LearningContent';
 import { MissedLetterTrainer } from '../MissedLetterTrainer';
 import { SelectAnswerQuiz } from '../SelectAnswerQuiz';
 
-
-
+import { changeCurrentTask } from './attestation.slice';
 import styles from './styles.module.scss';
 
 
 export const LearningAttestation = () => {
     // const { hasError, renderSentence, completed, handleCheckAnswers, isButtonDisabled } = useMissedWord({ data: exampleMissingData[0], onError: () => console.log('eero'), onSuccess: () => console.log("succ") });
-    const [data, setData] = useState<Task[]>(attestationExampleData as Task[]);
-    const [currentTaskNumber, setCurrentTaskNumber] = useState(1);
+    // const [data, setData] = useState<Task[]>(attestationExampleData as Task[]);
+    // const [currentTaskNumber, setCurrentTaskNumber] = useState(1);
+    const { data, currentTaskNumber } = useAppSelector(state => state.learningAttestationReducer)
+    const dispatch = useAppDispatch();
     const currentTask: Task | undefined = data[currentTaskNumber - 1];
-
     const renderTask = () => {
         if (!currentTask) return <div>Task not found</div>;
         switch (currentTask.type) {
@@ -37,7 +35,7 @@ export const LearningAttestation = () => {
     }
 
     const handleChangeTask = (value: number) => {
-        setCurrentTaskNumber(value);
+        dispatch(changeCurrentTask(value));
     }
     return (
         <div className={styles.index}>
