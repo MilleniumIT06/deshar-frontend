@@ -2,32 +2,26 @@
 import { useState } from 'react';
 
 import { attestationExampleData, exampleMissingData, } from '@/mocks/data';
-import { useDragDropWord } from '@/shared/hooks/useDragDropWord';
-// import { QuizContent } from '@/features/quiz/ui/QuizModal/QuizContent';
-// import { useMissedWord } from '@/shared/hooks/useMissedWord';
 
 import { AttestationPaginator } from '../AttestationPaginator';
-import { DragDropTrainer, ISlot } from '../DragDropTrainer';
-// import { MissedLetterTrainer } from '../MissedLetterTrainer';
+import { DragDropTrainer } from '../DragDropTrainer';
 import { Task } from '../LearningContent';
 import { MissedLetterTrainer } from '../MissedLetterTrainer';
 import { SelectAnswerQuiz } from '../SelectAnswerQuiz';
-// import MissingLetter from '../MissingLetter';
+
 
 
 import styles from './styles.module.scss';
 
+
 export const LearningAttestation = () => {
     // const { hasError, renderSentence, completed, handleCheckAnswers, isButtonDisabled } = useMissedWord({ data: exampleMissingData[0], onError: () => console.log('eero'), onSuccess: () => console.log("succ") });
-    const [slots, setSlots] = useState<ISlot[]>([
-        { id: 1, correct: 'в', current: null },
-        { id: 2, correct: 'и', current: null },
-    ]);
-    const [data, setData] = useState<any>(attestationExampleData);
+    const [data, setData] = useState<Task[]>(attestationExampleData as Task[]);
     const [currentTaskNumber, setCurrentTaskNumber] = useState(1);
-    const currentTask: Task = data[currentTaskNumber - 1];
+    const currentTask: Task | undefined = data[currentTaskNumber - 1];
 
     const renderTask = () => {
+        if (!currentTask) return <div>Task not found</div>;
         switch (currentTask.type) {
             case "missing-word":
                 return (

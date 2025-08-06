@@ -8,7 +8,7 @@ const initialState: {
 	lessons: ILesson[]
 } = {
 	activeLessonId: 1,
-	lessons: initialLessons,
+	lessons: initialLessons as ILesson[],
 }
 
 const learningSlice = createSlice({

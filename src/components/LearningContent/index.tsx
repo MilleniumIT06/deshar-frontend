@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Image from 'next/image'
 
@@ -31,6 +31,7 @@ export interface IMissingWordTask {
   sentence: string;
   type: "missing-word";
   missingWords: IMissingWord[];
+  completed?: boolean;
 }
 
 export interface IChoiceRightTask {
@@ -42,6 +43,7 @@ export interface IChoiceRightTask {
     content: string;
     correct: boolean;
   }[];
+  completed?: boolean;
 }
 
 export interface IMissingWordDndTask {
@@ -58,6 +60,7 @@ export interface IMissingWordDndTask {
     id: number;
     char: string;
   }[];
+  completed?: boolean;
 }
 
 
