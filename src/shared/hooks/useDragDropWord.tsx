@@ -39,7 +39,7 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
         setErrors({});
         setHasError(false);
         setCompleted(false);
-    }, [data]);
+    }, []);//data
 
 
     useEffect(() => {

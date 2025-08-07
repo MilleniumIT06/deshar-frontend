@@ -854,6 +854,8 @@ export const attestationExampleData = [
 			{ id: 2, char: 'о' },
 			{ id: 3, char: 'и' },
 			{ id: 4, char: 'а' },
+			{ id: 5, char: 'у' },
+			{ id: 6, char: 'ё' },
 		],
 		completed: false,
 	},
