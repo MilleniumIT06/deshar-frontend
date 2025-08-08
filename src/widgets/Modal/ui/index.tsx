@@ -29,6 +29,7 @@ interface ModalProps extends VariantProps<typeof modalVariants> {
     onClose: () => void;
     children: ReactNode;
     closeOnOverlayClick?: boolean;
+    className?: string;
 }
 const Modal = ({
     isOpen,
@@ -36,6 +37,7 @@ const Modal = ({
     children,
     closeOnOverlayClick,
     variant,
+    className
 }: ModalProps) => {
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
@@ -59,7 +61,7 @@ const Modal = ({
     return ReactDOM.createPortal(
         <div className={styles.index__overlay} onClick={closeOnOverlayClick ? onClose : undefined}>
             <div
-                className={cn(modalVariants({ variant }))}
+                className={cn(modalVariants({ variant }), className && className)}
             >
                 <Button variant="iconSecondary" size="iconSmall" className={styles.index__closeBtn} onClick={onClose}>
                     <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

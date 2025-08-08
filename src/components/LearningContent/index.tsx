@@ -4,10 +4,10 @@ import { useState } from 'react';
 import Image from 'next/image'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
-import { changeStatusOfLesson, nextId } from '@/entities/learning/model/slice';
-import { changeStatus } from '@/entities/learning/model/status.slice';
+import { changeStatusOfLesson, nextId, changeId } from '@/entities/learning/model/slice';
 import { InfoModal } from '@/features/info/ui/InfoModal';
 import { QuizModal } from '@/features/missingLetterQuiz/ui/QuizModal';
+import { SelectModal } from '@/features/select/ui/SelectModal';
 import { isAllLessonsCompleted } from '@/shared/lib/allCompleted';
 import { Button } from '@/shared/ui/Button';
 
@@ -81,11 +81,31 @@ export const LearningContent = () => {
   const { isExpired, secondsLeft, restart } = useCountdownTimer(3);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
   const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
   const dispatch = useAppDispatch();
 
   const currentLesson: ILesson = lessons[activeLessonId - 1];
+  // const handleFindNotCompletedLessons = () => {
+  //   if (!isAllLessonsCompleted(lessons)) {
+  //     const lesson = lessons.find(item => item.completed !== true);
+  //     if (lesson) {
+
+  //       dispatch(changeId(lesson?.id))
+  //     }
+  //     dispatch(changeId(lessons[0].id))
+  //   }
+  // }
   const handleNextBtn = () => {
+    if (activeLessonId === lessons[lessons.length - 1].id) {
+      if (!isAllLessonsCompleted(lessons)) {
+        const lesson = lessons.find(item => item.completed !== true);
+        if (lesson) {
+
+          dispatch(changeId(lesson?.id))
+        }
+      }
+    }
     if (currentLesson.task.type === "missing-word") {
 
       setIsQuizOpen(true)
@@ -106,9 +126,7 @@ export const LearningContent = () => {
     restart();
     setIsQuizOpen(false);
   }
-  const onClickAttestationButton = () => {
-    dispatch(changeStatus("attestation"));
-  }
+
   return (
 
     <section className={styles.index}>
@@ -197,7 +215,7 @@ export const LearningContent = () => {
               <Button variant="secondary" size="medium">Пропустить</Button>
 
               {isAllLessonsCompleted(lessons) ?
-                <Button variant="secondary" size="medium" onClick={onClickAttestationButton}>Перейти к аттестации</Button> :
+                <Button variant="secondary" size="medium" onClick={() => setIsSelectOpen(true)}>Перейти к аттестации</Button> :
                 <Button
                   variant="primary"
                   size="medium"
@@ -217,6 +235,10 @@ export const LearningContent = () => {
           isOpen={isInfoOpen}
           onClose={() => setIsInfoOpen(false)}
           type="fail"
+        />
+        <SelectModal
+          isOpen={isSelectOpen}
+          onClose={() => setIsSelectOpen(false)}
         />
       </div>
     </section>

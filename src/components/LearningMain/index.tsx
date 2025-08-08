@@ -12,9 +12,9 @@ export const LearningMain = () => {
     return (
         <>
             <LearningSidebar />
-            {/* {status === "learning" ? <LearningContent /> :
-                <LearningAttestation />} */}
-            <LearningAttestation />
+            {status === "learning" ? <LearningContent /> :
+                <LearningAttestation />}
+            {/* <LearningAttestation /> */}
         </>
     )
 }
