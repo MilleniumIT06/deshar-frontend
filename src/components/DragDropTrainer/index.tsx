@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { DndContext, DragEndEvent } from '@dnd-kit/core'
 import cn from 'classnames'
 
+import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { useDragDropWord } from '@/shared/hooks/useDragDropWord'
 
+import { changeCompletedStatus, changeCurrentTask } from '../LearningAttestation/attestation.slice'
 import { IMissingWordDndTask } from '../LearningContent'
 import { MoveBox } from '../MoveBox'
 import { TrainerWrapper } from '../TrainerWrapper'
@@ -32,9 +34,18 @@ export const DragDropTrainer = ({
             )
         }
     }
+    const { currentTaskNumber } = useAppSelector(state => state.learningAttestationReducer)
+    const dispatch = useAppDispatch();
+    const handleSuccess = () => {
+
+        dispatch(changeCurrentTask(currentTaskNumber + 1));
+        dispatch(changeCompletedStatus({ id: currentTaskNumber, value: true }))
+    }
     const { handleCheckAnswers, completed, hasError, isButtonDisabled, renderSentence } = useDragDropWord({
         data: { id: data.id, missingWords: data.missingWords, sentence: data.sentence, type: data.type },
         slots: slots,
+        onSuccess: handleSuccess,
+        onError: () => console.log("error")
     })
     return (
         <TrainerWrapper

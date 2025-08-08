@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-import {  IMissingWordTask } from "@/components/LearningContent";
+import { IMissingWordTask } from "@/components/LearningContent";
 import MissingLetter from "@/components/MissingLetter";
 
 interface IWord {
@@ -87,10 +87,10 @@ export const useMissedWord = ({ data, onError, onSuccess }: IUseMissedData) => {
         setErrors(newErrors);
         setHasError(hasAnyError);
 
-        if (hasAnyError) {
+        if (hasAnyError && onError) {
             onError();
         } else {
-            onSuccess();
+                onSuccess();
             setCompleted(true);
         }
     }, [data.missingWords, inputValues, onSuccess, onError]);

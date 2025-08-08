@@ -84,7 +84,7 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
         setErrors(newErrors);
         setHasError(hasAnyError);
 
-        if (hasAnyError) {
+        if (hasAnyError && onError) {
             onError();
         } else {
             onSuccess();

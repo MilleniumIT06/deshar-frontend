@@ -11,7 +11,7 @@ export const StepCounter = ({
 }: {
     id: number;
     content: number;
-    completed: boolean;
+    completed: boolean | undefined;
     active: boolean;
     handleClick: () => void;
 }) => {

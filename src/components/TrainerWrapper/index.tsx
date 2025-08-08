@@ -1,3 +1,5 @@
+'use client';
+import { useAppSelector } from '@/app/_store/hooks';
 import { Button } from '@/shared/ui/Button'
 
 import { Notification } from '../Notification'
@@ -19,6 +21,13 @@ export const TrainerWrapper = ({
     hasError: boolean;
     handleCheckAnswers: () => void;
 }) => {
+    const { data } = useAppSelector(state => state.learningAttestationReducer);
+    const checkAllCompleted = () => {
+        if (data.every(item => item.completed === true)) {
+            return true
+        }
+        return false
+    }
     return (
         <div className={styles.index}>
             <div className={styles.index__inner}>
@@ -29,7 +38,13 @@ export const TrainerWrapper = ({
                 {/* {completed && <Notification fullWidth={true} type="success" warningMessage="Ответ неверный! Попробуйте еще раз." successMessage="Success" />} */}
                 <div className={styles.index__footer}>
                     <Button variant="secondary" size="small">Назад</Button>
-                    <Button variant="primary" size="small" onClick={handleCheckAnswers} disabled={isButtonDisabled}>Далее</Button>
+
+
+                    {
+                        checkAllCompleted() ? <Button variant="primary" size="small" onClick={handleCheckAnswers} disabled={isButtonDisabled}>Завершить аттестацию</Button> : <Button variant="primary" size="small" onClick={handleCheckAnswers} disabled={isButtonDisabled}>Далее</Button>
+
+                    }
+
                 </div>
             </div>
         </div>

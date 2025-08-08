@@ -1,7 +1,9 @@
 'use client';
 
-import { exampleSelectData } from "@/mocks/data";
 import { useEffect, useState } from "react";
+
+import { exampleSelectData } from "@/mocks/data";
+
 import { ISelectItem } from "./SelectAnswerQuizContent";
 
 export const useSelectAnswerQuiz = (setError: (value: boolean) => void) => {

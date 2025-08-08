@@ -33,8 +33,14 @@ const attestationSlice = createSlice({
 		changeCurrentTask: (state, action: PayloadAction<number>) => {
 			state.currentTaskNumber = action.payload
 		},
+		changeCompletedStatus: (state, action: PayloadAction<{ id: number; value: boolean }>) => {
+			const item = state.data.find(item => item.id === action.payload.id)
+			if (item) {
+				item.completed = action.payload.value
+			}
+		},
 	},
 })
 
-export const { changeCurrentTask } = attestationSlice.actions
+export const { changeCurrentTask, changeCompletedStatus } = attestationSlice.actions
 export default attestationSlice.reducer

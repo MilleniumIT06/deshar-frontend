@@ -1,5 +1,5 @@
 'use client';
-import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
+import { useAppSelector } from '@/app/_store/hooks';
 
 import { AttestationPaginator } from '../AttestationPaginator';
 import { DragDropTrainer } from '../DragDropTrainer';
@@ -7,7 +7,6 @@ import { Task } from '../LearningContent';
 import { MissedLetterTrainer } from '../MissedLetterTrainer';
 import { SelectAnswerQuiz } from '../SelectAnswerQuiz';
 
-import { changeCurrentTask } from './attestation.slice';
 import styles from './styles.module.scss';
 
 
@@ -16,7 +15,7 @@ export const LearningAttestation = () => {
     // const [data, setData] = useState<Task[]>(attestationExampleData as Task[]);
     // const [currentTaskNumber, setCurrentTaskNumber] = useState(1);
     const { data, currentTaskNumber } = useAppSelector(state => state.learningAttestationReducer)
-    const dispatch = useAppDispatch();
+
     const currentTask: Task | undefined = data[currentTaskNumber - 1];
     const renderTask = () => {
         if (!currentTask) return <div>Task not found</div>;
@@ -34,12 +33,9 @@ export const LearningAttestation = () => {
         }
     }
 
-    const handleChangeTask = (value: number) => {
-        dispatch(changeCurrentTask(value));
-    }
     return (
         <div className={styles.index}>
-            <AttestationPaginator onClick={handleChangeTask} />
+            <AttestationPaginator />
 
 
             {renderTask()}
