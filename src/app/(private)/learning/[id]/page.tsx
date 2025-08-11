@@ -19,6 +19,7 @@ export default async function Learning({
 
                     <Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: "Все дисциплины", href: "/courses" }, { label: "Английский язык", href: "/" }, { label: "Морфемика", href: "/" }]} />
                     <div className={styles.wrapper}>
+                        <h1 className={styles.title}>Морфемика</h1>
                         <LearningMain />
 
                     </div>

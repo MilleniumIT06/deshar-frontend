@@ -1,5 +1,6 @@
-import { Info, Learn, Reviews, Subscription, Question } from "@/components";
+import { Info, Learn, Subscription, Question } from "@/components";
 import { Hero } from '@/widgets/Home/Hero';
+import { Reviews } from "@/widgets/Reviews";
 
 import styles from "./page.module.scss";
 

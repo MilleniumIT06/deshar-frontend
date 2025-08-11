@@ -1,6 +1,7 @@
 'use client';
 import { useAppSelector } from "@/app/_store/hooks";
 
+import { AttestationResult } from "../AttestationResult";
 import { LearningAttestation } from "../LearningAttestation";
 import { LearningContent } from "../LearningContent";
 import { LearningSidebar } from "../LearningSidebar"
@@ -11,10 +12,11 @@ export const LearningMain = () => {
 
     return (
         <>
-            <LearningSidebar />
+            {/* <LearningSidebar />
             {status === "learning" ? <LearningContent /> :
-                <LearningAttestation />}
+                <LearningAttestation />} */}
             {/* <LearningAttestation /> */}
+            <AttestationResult />
         </>
     )
 }

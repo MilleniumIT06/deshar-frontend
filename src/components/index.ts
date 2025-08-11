@@ -1,10 +1,10 @@
-export {Question} from './Question';
-export {Hero} from '../widgets/Home/Hero';
-export {Info} from './Info';
-export {Learn} from './Learn';
-export {Reviews} from './Reviews';
-export {Subscription} from './Subcription';
-export {Continue} from './Continue';
-export {Successes} from './Successes';
-export {TopClassmates} from './TopClassmates';
-export {OtherSubjects} from './OtherSubjects';
+export { Question } from './Question'
+export { Hero } from '../widgets/Home/Hero'
+export { Info } from './Info'
+export { Learn } from './Learn'
+export { Reviews } from '../widgets/Reviews/ui'
+export { Subscription } from './Subcription'
+export { Continue } from './Continue'
+export { Successes } from './Successes'
+export { TopClassmates } from './TopClassmates'
+export { OtherSubjects } from './OtherSubjects'

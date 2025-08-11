@@ -10,8 +10,7 @@ import { useMissedWord } from '../../../../../shared/hooks/useMissedWord';
 import styles from './styles.module.scss';
 
 
-export const 
-QuizContent = ({ onClose }: { onClose: () => void; }) => {
+export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
 	const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
 	const { completed, renderSentence, isButtonDisabled, hasError, handleCheckAnswers } = useMissedWord({ data: exampleMissingData[0], onSuccess: () => console.log('success') });
 	const dispatch = useAppDispatch();

@@ -5,10 +5,11 @@ import cn from 'classnames';
 import { Navigation, A11y } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { ReviewsCard } from '@/entities/reviews/index';
 import { reviewsMockData } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button';
 
-import { ReviewsCard } from './ReviewsCard';
+
 import styles from './styles.module.scss';
 
 
