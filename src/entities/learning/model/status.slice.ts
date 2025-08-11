@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+export type learningStatusType = 'learning' | 'attestation' | 'finish'
 const initialState: {
-	status: 'learning' | 'attestation'
+	status: learningStatusType
 } = {
 	status: 'learning',
 }
@@ -10,7 +10,7 @@ const learningStatusSlice = createSlice({
 	name: 'learningStatus',
 	initialState,
 	reducers: {
-		changeStatus: (state, action: PayloadAction<'learning' | 'attestation'>) => {
+		changeStatus: (state, action: PayloadAction<learningStatusType>) => {
 			state.status = action.payload
 		},
 	},

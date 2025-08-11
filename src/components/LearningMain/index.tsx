@@ -6,17 +6,29 @@ import { LearningAttestation } from "../LearningAttestation";
 import { LearningContent } from "../LearningContent";
 import { LearningSidebar } from "../LearningSidebar"
 
+import styles from './styles.module.scss';
+
 export const LearningMain = () => {
     const { status } = useAppSelector(state => state.learningStatusReducer);
 
-
+    const render = () => {
+        switch (status) {
+            case 'learning':
+                return <LearningContent />
+            case 'attestation':
+                return <LearningAttestation />
+            default:
+                return <div>Error</div>
+        }
+    }
     return (
-        <>
-            {/* <LearningSidebar />
-            {status === "learning" ? <LearningContent /> :
-                <LearningAttestation />} */}
-            {/* <LearningAttestation /> */}
-            <AttestationResult />
-        </>
+        <div className={styles.index}>
+            {status === "finish" ? <AttestationResult /> :
+                <>
+                    <LearningSidebar />
+                    {render()}
+                </>
+            }
+        </div>
     )
 }

@@ -39,12 +39,6 @@ export const LearningAttestation = () => {
 
 
             {renderTask()}
-
-            {/* <SelectAnswerQuiz /> */}
-
-            {/* <TrainerWrapper handleCheckAnswers={handleCheckAnswers} hasError={hasError} isButtonDisabled={isButtonDisabled} completed={completed} title="Перетащите пропущенные буквы в предложении из вариантов ниже" >
-                <DragDropTrainer render={renderSentence} setSlots={setSlots} slots={slots} />
-            </TrainerWrapper> */}
         </div>
     )
 }

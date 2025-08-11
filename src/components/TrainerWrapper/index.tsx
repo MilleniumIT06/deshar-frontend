@@ -1,5 +1,6 @@
 'use client';
-import { useAppSelector } from '@/app/_store/hooks';
+import { useAppSelector, useAppDispatch } from '@/app/_store/hooks';
+import { changeStatus } from '@/entities/learning/model/status.slice';
 import { Button } from '@/shared/ui/Button'
 
 import { Notification } from '../Notification'
@@ -12,7 +13,7 @@ export const TrainerWrapper = ({
     completed,
     isButtonDisabled,
     hasError,
-    handleCheckAnswers
+    handleCheckAnswers,
 }: {
     title: string
     children: React.ReactNode;
@@ -22,11 +23,16 @@ export const TrainerWrapper = ({
     handleCheckAnswers: () => void;
 }) => {
     const { data } = useAppSelector(state => state.learningAttestationReducer);
+    const { status } = useAppSelector(state => state.learningStatusReducer);
+    const dispatch = useAppDispatch();
     const checkAllCompleted = () => {
         if (data.every(item => item.completed === true)) {
             return true
         }
         return false
+    }
+    const handleClickFinishBtn = () => {
+        dispatch(changeStatus("finish"));
     }
     return (
         <div className={styles.index}>
@@ -41,7 +47,7 @@ export const TrainerWrapper = ({
 
 
                     {
-                        checkAllCompleted() ? <Button variant="primary" size="small" onClick={handleCheckAnswers} disabled={isButtonDisabled}>Завершить аттестацию</Button> : <Button variant="primary" size="small" onClick={handleCheckAnswers} disabled={isButtonDisabled}>Далее</Button>
+                        checkAllCompleted() ? <Button variant="primary" size="small" onClick={handleClickFinishBtn} disabled={isButtonDisabled}>Завершить аттестацию</Button> : <Button variant="primary" size="small" onClick={handleCheckAnswers} disabled={isButtonDisabled}>Далее</Button>
 
                     }
 
