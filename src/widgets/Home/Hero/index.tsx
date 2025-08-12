@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { Button } from "@/shared/ui/Button";
 
 import styles from './styles.module.scss';
+import Link from "next/link";
 
 export const Hero = () => {
     return (
@@ -18,8 +19,11 @@ export const Hero = () => {
                         <p>
                             Бесплатные вводые уроки на&nbsp;первые 14&nbsp;учебных дней
                         </p>
-                        <Button variant="secondary" className={styles.heroBtn}>
-                            Записаться
+
+                        <Button asChild variant="secondary" className={styles.heroBtn}>
+                            <Link href="/authed">
+                                Записаться
+                            </Link>
                         </Button>
                     </div>
                     <div className={styles.image}>
