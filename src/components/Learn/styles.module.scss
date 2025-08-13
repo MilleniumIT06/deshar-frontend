@@ -1,8 +1,9 @@
-@use './../../shared/scss/breakpont'as breakpoint;
+@use './../../shared/scss/breakpoint'as breakpoint;
 
 .index {
     min-height: 490px;
 }
+
 .inner {
     display: flex;
     flex-direction: column;
@@ -11,10 +12,12 @@
     padding-bottom: 80px;
     gap: 40px;
 }
+
 .items {
     padding: 0 2%;
     width: 100%;
 }
+
 .learnList {
     display: grid;
     grid-auto-rows: 100px;
@@ -32,6 +35,7 @@
         row-gap: 0;
     }
 }
+
 .learnItem {
     width: 100%;
 
@@ -42,7 +46,7 @@
 
 .learnItem:last-child {
     grid-column: 3 span;
-
+    max-width: none;
     @include breakpoint.middle-tablet {
         grid-column: 2 span;
     }

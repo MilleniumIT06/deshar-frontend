@@ -1,0 +1,12 @@
+.index {
+	width: 904px;
+
+	&__quiz_wrapper {
+		margin-top: 32px;
+		border-radius: 32px;
+		padding: 32px;
+		width: 904px;
+
+		background: var(--neutral-white);
+	}
+}

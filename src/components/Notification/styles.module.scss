@@ -1,0 +1,29 @@
+.index {
+	border-radius: 20px;
+	padding: 16px;
+	width: 800px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	text-align: center;
+	&__content {
+		display: flex;
+		align-items: center;
+		justify-content: start;
+		gap: 11px;
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 16px;
+		color: var(--neutral-darkest);
+	}
+	&.success {
+		background: var(--primary-lightest);
+	}
+	&.warning {
+		background: var(--negative-lightest);
+	}
+	&.fullWidth {
+		width: 100%;
+	}
+}

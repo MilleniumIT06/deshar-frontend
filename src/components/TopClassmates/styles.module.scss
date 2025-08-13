@@ -1,0 +1,14 @@
+@use './../../shared/scss//breakpoint'as breakpoint;
+
+.topClassmates {
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 30px;
+    }
+
+}
+
+
+

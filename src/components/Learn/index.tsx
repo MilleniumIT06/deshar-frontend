@@ -1,6 +1,11 @@
-import { SubjectsItem } from '../SubjectsItem';
-import cn from 'classnames';
-import styles from './styles.module.scss';
+import cn from 'classnames'
+
+import { courses } from '@/mocks/data'
+
+import { SubjectCard } from '../SubjectCard'
+
+import styles from './styles.module.scss'
+
 export const Learn = () => {
     return (
         <section className={styles.index}>
@@ -8,22 +13,31 @@ export const Learn = () => {
                 <div className={styles.inner}>
                     <h2 className="section__title">Учим шаг за&nbsp;шагом</h2>
                     <div className={styles.items}>
-                        <ul className={cn("list-reset", styles.learnList)}>
-                            <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
-                            <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
-                            <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
-                            <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
-                            <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
-                            <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
-                            <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
-                            <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
-                            <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
-                            <SubjectsItem title="Ингушский язык" text="85 модулей" anotherClass={styles.learnItem} />
+                        <ul className={cn('list-reset', styles.learnList)}>
+                            {courses.map(course => (
+                                <SubjectCard
+                                    id={course.id}
+                                    key={course.id}
+                                    className={styles.learnItem}
+                                    type="short"
+                                    title={course.title}
+                                    description={course.description}
+                                    modulesCount={course.moduleCount}
+                                    imageUrl="subjectcardskeleton"
+                                />
+                            ))}
+                            <SubjectCard
+                                className={styles.learnItem}
+                                type="short"
+                                title="Полный каталог дисциплин"
+                                modulesCount={26}
+                                imageUrl="subjectcardskeleton"
+                                fullCatalog={true}
+                            />
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
-
     )
 }

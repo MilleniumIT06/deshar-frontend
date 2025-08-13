@@ -1,0 +1,73 @@
+@use './../../shared/scss/breakpoint'as breakpoint;
+
+.otherSubjects {
+    &__inner {
+        padding-top: 40px;
+        padding-bottom: 15%;
+    }
+
+    &__list {
+        display: grid;
+        grid-auto-rows: 100px;
+        grid-template-columns: 33% 33% 33%;
+        width: 100%;
+        gap: 10% 2%;
+
+        @include breakpoint.middle-tablet {
+            justify-content: center;
+            grid-template-columns: 50% 50%;
+            row-gap: 0;
+        }
+
+        @include breakpoint.first-middle-tablet {
+            justify-content: center;
+            grid-template-columns: 50% 50%;
+            row-gap: 0;
+        }
+
+        @include breakpoint.pre-mobile {
+            grid-template-columns: 100%;
+            row-gap: 0;
+        }
+    }
+
+
+    &__top {
+        padding-top: 50px;
+        width: 100%;
+    }
+
+    &__bottom {
+        padding-top: 30px;
+        width: 100%;
+    }
+}
+.otherSubjectsItem {
+        max-width: none;
+        width: 100%;
+
+        @include breakpoint.first-middle-tablet {
+            grid-column: span 1;
+        }
+
+        @include breakpoint.middle-tablet {
+            grid-column: span 2;
+        }
+    
+
+    &:last-child {
+        grid-column: 3 span;
+
+        @include breakpoint.first-middle-tablet {
+            grid-column: 2 span;
+        }
+
+        @include breakpoint.middle-tablet {
+            grid-column: 2 span;
+        }
+
+        @include breakpoint.pre-mobile {
+            grid-column: auto;
+        }
+    }
+}

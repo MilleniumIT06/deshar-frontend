@@ -1,0 +1,39 @@
+.index {
+	width: 44px;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	height: 200px;
+	gap: 10px;
+	cursor: pointer;
+	
+	&__date  {
+		display: flex;
+		gap: 5px;
+		align-items: center;
+		span{
+
+			font-family: var(--font-family);
+			font-weight: 400;
+			font-size: 14px;
+			text-align: center;
+			color: #7d7979;
+			line-height: 143%;
+		}
+	}
+
+	&__body {
+		border-radius: 12px;
+		width: 100%;
+		max-height: 200px;
+		background-color: var(--primary-medium);
+		transition: all 0.3s ease-in-out;
+		box-shadow:none;
+		will-change: box-shadow;
+	}
+	&:hover {
+		.index__body {
+			box-shadow:0 0px 7px var(--primary-medium);
+		}
+	}
+}

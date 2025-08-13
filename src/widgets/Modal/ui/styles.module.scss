@@ -1,0 +1,33 @@
+.index {
+	position: relative;
+	border-radius: 32px;
+	background: var(--neutral-white);
+	&__overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 10;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.36);
+	}
+	&__inner {
+		padding: 52px;
+	}
+	&__closeBtn {
+		position: absolute;
+		right: 16px;
+		top: 16px;
+	}
+}
+.quiz {
+	width: 800px;
+	min-height: 388px;
+}
+.info {
+	width: 440px;
+	height: 452px;
+}
