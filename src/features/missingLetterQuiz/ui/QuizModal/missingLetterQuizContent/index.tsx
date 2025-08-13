@@ -33,7 +33,7 @@ export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
 
 		}
 	}
-	const { renderSentence, isButtonDisabled, hasError, handleCheckAnswers } = useMissedWord({ data: exampleMissingData[0], onSuccess: handleClick, onError: () => console.log('test') });
+	const { renderSentence, isButtonDisabled, hasError, handleCheckAnswers } = useMissedWord({ data: exampleMissingData[0], onSuccess: handleClick, onError: () => "error" });
 	const dispatch = useAppDispatch();
 	return (
 		<div className={styles.index__inner}>

@@ -11,7 +11,7 @@ import styles from './styles.module.scss';
 
 
 export const Header = () => {
-    const [authed, setAuthed] = useState(true);
+    const [authed] = useState(true);
     return (<header className={styles.index}>
         <div className={cn("container", styles.headerContainer)}>
 

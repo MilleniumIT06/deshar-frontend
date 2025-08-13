@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
 export type learningStatusType = 'learning' | 'attestation' | 'finish'
 const initialState: {
 	status: learningStatusType

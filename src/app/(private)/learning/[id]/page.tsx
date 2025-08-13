@@ -4,14 +4,9 @@ import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
 import styles from './../../styles.module.scss';
 
 
-export default async function Learning({
-    params,
-}: {
-    params: Promise<{ id: string }>
-}) {
-    const { id } = await params;
+export default async function Learning() {
 
-    console.log(id);
+
     return (
         <main className={styles.main}>
             <div className="container">

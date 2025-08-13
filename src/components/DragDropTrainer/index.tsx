@@ -45,6 +45,7 @@ export const DragDropTrainer = ({
         data: { id: data.id, missingWords: data.missingWords, sentence: data.sentence, type: data.type },
         slots: slots,
         onSuccess: handleSuccess,
+        // eslint-disable-next-line no-console
         onError: () => console.log("error")
     })
     return (

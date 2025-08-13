@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { exampleSelectData } from "@/mocks/data";
 
@@ -15,6 +15,7 @@ export const useSelectAnswerQuiz = (setError: (value: boolean) => void) => {
             correctAnswersCount++;
         }
     })
+    // eslint-disable-next-line no-console
     console.log(correctAnswersCount);
     const onSelect = (item: ISelectItem) => {
         setSelected(prev => {

@@ -8,7 +8,6 @@ export interface ChartCandleProps {
 }
 
 export const ChartCandle = ({
-    id,
     maxPoints,
     currentPoints,
     date = new Date()

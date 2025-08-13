@@ -28,6 +28,7 @@ export const TableItem = ({
     const placeClass = placeClasses[placeNumber as keyof typeof placeClasses] || styles.other;
 
     if (type === "parallel" && !parralelClass) {
+        // eslint-disable-next-line no-console
         console.warn(`TableItem: parralelClass is required for type "parallel" (placeNumber: ${placeNumber})`);
     }
 

@@ -1,6 +1,7 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
 import { ILesson } from '@/components/LearningContent'
 import { initialLessons } from '@/mocks/data'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 // import { Review, ReviewsState } from './types'
 
 const initialState: {
@@ -20,7 +21,6 @@ const learningSlice = createSlice({
 			if (lesson) {
 				lesson.completed = action.payload.value
 			}
-			console.log(state.lessons)
 		},
 		changeId: (state, action: PayloadAction<number>) => {
 			state.activeLessonId = action.payload

@@ -17,7 +17,7 @@ export const MissedLetterTrainer = ({ data }: { data: IMissingWordTask }) => {
         dispatch(changeCurrentTask(currentTaskNumber + 1));
         dispatch(changeCompletedStatus({ id: currentTaskNumber, value: true }))
     }
-    const { hasError, renderSentence, completed, handleCheckAnswers, isButtonDisabled } = useMissedWord({ data: data, onSuccess: handleSuccess, onError: () => console.log('test') });
+    const { hasError, renderSentence, completed, handleCheckAnswers, isButtonDisabled } = useMissedWord({ data: data, onSuccess: handleSuccess, onError: () => 'error' });
     return (
         <TrainerWrapper handleCheckAnswers={handleCheckAnswers} hasError={hasError} isButtonDisabled={isButtonDisabled} completed={completed} title="Впишите пропущенные буквы в следующем предложении" >
             <div className={styles.index}>

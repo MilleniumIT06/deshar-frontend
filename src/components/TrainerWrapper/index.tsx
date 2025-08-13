@@ -10,7 +10,6 @@ import styles from './styles.module.scss'
 export const TrainerWrapper = ({
     title = 'test',
     children,
-    completed,
     isButtonDisabled,
     hasError,
     handleCheckAnswers,
@@ -23,7 +22,6 @@ export const TrainerWrapper = ({
     handleCheckAnswers: () => void;
 }) => {
     const { data } = useAppSelector(state => state.learningAttestationReducer);
-    const { status } = useAppSelector(state => state.learningStatusReducer);
     const dispatch = useAppDispatch();
     const checkAllCompleted = () => {
         if (data.every(item => item.completed === true)) {
@@ -41,7 +39,6 @@ export const TrainerWrapper = ({
                 <div className={styles.index__content}>{children}</div>
 
                 {hasError && <Notification fullWidth={true} type="warning" warningMessage="Ответ неверный! Попробуйте еще раз." successMessage="Success" />}
-                {/* {completed && <Notification fullWidth={true} type="success" warningMessage="Ответ неверный! Попробуйте еще раз." successMessage="Success" />} */}
                 <div className={styles.index__footer}>
                     <Button variant="secondary" size="small">Назад</Button>
 

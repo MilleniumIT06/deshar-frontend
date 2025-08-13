@@ -31,9 +31,8 @@ export const LearningSidebar = () => {
   })
 
   const handleLessonClick = useCallback((id: number) => {
-    console.log('Clicked lesson:', id)
-    // setActiveLessonId(id)
     dispatch(changeId(id))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   // Переход на следующую страницу
   const handleNextPage = useCallback(() => {

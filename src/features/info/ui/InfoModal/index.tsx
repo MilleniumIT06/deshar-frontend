@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Modal } from "@/widgets/Modal/ui"
 
 import { InfoModalContent } from "./InfoModalContent";

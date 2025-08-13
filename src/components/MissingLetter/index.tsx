@@ -7,7 +7,6 @@ const MissingLetter = ({
     id = 999,
     word,
     missingLetter,
-    onComplete,
     errors,
     inputValues,
     handleInputChange
@@ -25,6 +24,7 @@ const MissingLetter = ({
     const inputRef = useRef<HTMLInputElement | null>(null)
     const missingIndex = word && word.split('').findIndex(val => val === missingLetter);
     const check = word && missingIndex && missingLetter;
+    // eslint-disable-next-line no-console
     console.log(missingIndex);
     // Фокус на инпут при загрузке
     useEffect(() => {

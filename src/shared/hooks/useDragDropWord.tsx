@@ -28,6 +28,7 @@ interface IUseDragDropdData {
 }
 
 export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDropdData) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [errors, setErrors] = useState<Record<number, boolean>>({});
     const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
     const [hasError, setHasError] = useState<boolean>(false);
@@ -104,7 +105,7 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
                 if (!word) return <span key={`missing-${index}`}>{part}</span>;
                 const slot = slots.find(slot => +slot.id === +word.id);
                 if (!slot) return <span key={`missing-${index}`}>{part}</span>;
-                console.log(slot);
+
                 return (
                     <DropInput current={slot && slot.current} id={slot.id} key={slot.id} word={word.word} missingLetter={word.missedLetter} />
                 );

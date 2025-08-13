@@ -38,7 +38,7 @@ export const ResultsCard = ({
     value:string|number;
 }) => {
 	return (
-		<div className={styles.index}>
+		<div className={styles.index} key={id}>
 			<h6 className={styles.index__title}>
 				<svg
 					width="24"
