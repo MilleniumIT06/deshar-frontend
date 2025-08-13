@@ -39,6 +39,16 @@
 			}
 		}
 	}
+	&__name {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 140%;
+		color: var(--neutral-darkest);
+		@include breakpoint.mobile {
+			font-size: 16px;
+		}
+	}
 
 	&::after {
 		content: '';
@@ -67,7 +77,6 @@
 
 .tableItem__points,
 .tableItem__done,
-.tableItem__name,
 .tableItem__time,
 .tableItem__parralelClass {
 	border: none;
