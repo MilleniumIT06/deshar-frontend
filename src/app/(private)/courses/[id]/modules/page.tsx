@@ -3,12 +3,7 @@ import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
 
 import styles from './../../../styles.module.scss';
 
-export default async function Modules({
-    params,
-}: {
-    params: Promise<{ id: string }>
-}) {
-    const { id } = await params
+export default async function Modules() {
     return (
         <main>
             <div className={styles.inner}>
@@ -16,7 +11,6 @@ export default async function Modules({
                     <Breadcrumbs items={[{ label: "test", href: "test" }]} />
 
                 </div>
-                {id}
                 <ModulesContent />
             </div>
         </main>

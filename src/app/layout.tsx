@@ -1,5 +1,6 @@
 import { Roboto, Unbounded } from "next/font/google";
 
+// import {} from "next/font/"
 import { Header, Footer } from "@/widgets";
 
 import { StoreProvider } from "./_providers/StoreProvider";

@@ -64,9 +64,6 @@ export const Reviews = () => {
                                 slidesPerView={1}  //Number of slides per view
                                 style={{ maxWidth: "1155px", margin: "0 auto" }} //Optional, for styling
                             >
-                                {/* <SwiperSlide key={1}>
-                                <ReviewsCard name='Зарина М.'/>
-                                </SwiperSlide> */}
                                 {reviewsMockData.map((item) => <SwiperSlide key={item.id}>
                                     <ReviewsCard id={item.id} rating={item.rating} subject={item.subject} name={item.name} text={item.text} />
                                 </SwiperSlide>)}
