@@ -1,109 +1,107 @@
-@use './../../shared/scss/breakpoint'as breakpoint;
+@use './../../shared/scss/breakpoint' as breakpoint;
 
 .SubjectCard {
-    position: relative;
-    overflow: hidden;
-    margin-top: 30px;
-    border-radius: 32px;
-    padding: 24px 28px;
-    max-width: 384px;
-    flex-basis: 32%;
-    flex-grow: 1;
-    flex-shrink: 1;
-    height: 240px;
-    background: var(--neutral-lightest);
+	position: relative;
+	overflow: hidden;
+	margin-top: 30px;
+	border-radius: 32px;
+	padding: 24px 28px;
+	max-width: 384px;
+	flex-basis: 32%;
+	flex-grow: 1;
+	flex-shrink: 1;
+	height: 240px;
+	background: var(--neutral-lightest);
 
-    &__header {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+	&__header {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 
-        span {
+		span {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 12px;
+			height: 44px;
+			min-width: 121px;
+			font-family: var(--font-family);
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 175%;
+			text-align: center;
+			color: var(--neutral-darkest);
+			background-color: var(--primary-lightest);
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            height: 44px;
-            min-width: 121px;
-            font-family: var(--font-family);
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 175%;
-            text-align: center;
-            color: var(--neutral-darkest);
-            background-color: var(--primary-lightest);
+			@include breakpoint.tablet {
+				font-size: 13px;
+			}
+		}
+	}
 
-            @include breakpoint.tablet {
-                font-size: 13px;
+	&__body {
+		max-width: 210px;
 
-            }
-        }
-    }
+		p {
+			font-family: var(--font-family);
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 175%;
+			color: var(--neutral-darkest);
+		}
+	}
 
-    &__body {
-        max-width: 210px;
+	&__title {
+		a {
+			font-family: var(--font-family);
+			font-weight: 600;
+			font-size: 16px;
+			line-height: 150%;
+			color: var(--neutral-darkest);
+		}
+	}
 
-        p {
-            font-family: var(--font-family);
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 175%;
-            color: var(--neutral-darkest);
-        }
-    }
+	&__image {
+		position: absolute;
+		z-index: 1;
+		right: 0;
+		bottom: 0;
+		width: 168px;
+		height: 168px;
 
-    &__title {
-        a {
-
-            font-family: var(--font-family);
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 140%;
-            color: var(--neutral-darkest);
-        }
-    }
-
-    &__image {
-        position: absolute;
-        z-index: 1;
-        right: 0;
-        bottom: 0;
-        width: 168px;
-        height: 168px;
-
-        img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
 }
 
-.long {}
+.long {
+}
 
 .short {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 32px;
-    padding: 28px 32px;
-    height: 100px;
-    background-color: var(--neutral-lightest);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 32px;
+	padding: 28px 32px;
+	height: 100px;
+	background-color: var(--neutral-lightest);
 
-    .SubjectCard__title {
-        font-family: var(--font-family);
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 150%;
-        text-align: center;
-        color: var(--neutral-darkest);
-    }
+	.SubjectCard__title {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 150%;
+		text-align: center;
+		color: var(--neutral-darkest);
+	}
 
-    @include breakpoint.tablet {
-        padding: 21px 29px;
-        height: 80px;
-    }
+	@include breakpoint.tablet {
+		padding: 21px 29px;
+		height: 80px;
+	}
 }
