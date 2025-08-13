@@ -33,26 +33,27 @@ export const TableItem = ({
     }
 
     return (
-        <tr className={styles.tableItem}>
-            <td className={styles.tableItem__place}>
-                <div className={placeClass}>
-                    <span>{placeNumber}</span>
-                </div>
-            </td>
+            <tr className={styles.tableItem}>
 
-            <td className={styles.tableItem__name} title={name}>
-                {name}
-            </td>
-
-            {type === "parallel" && (
-                <td className={styles.tableItem__parralelClass}>
-                    {parralelClass || '—'}
+                <td className={styles.tableItem__place}>
+                    <div className={placeClass}>
+                        <span>{placeNumber}</span>
+                    </div>
                 </td>
-            )}
 
-            <td className={styles.tableItem__time}>{time}</td>
-            <td className={styles.tableItem__done}>{doneModules}</td>
-            <td className={styles.tableItem__points}>{points}</td>
-        </tr>
+                <td className={styles.tableItem__name} title={name}>
+                    {name}
+                </td>
+
+                {type === "parallel" && (
+                    <td className={styles.tableItem__parralelClass}>
+                        {parralelClass || '—'}
+                    </td>
+                )}
+
+                <td className={styles.tableItem__time}>{time}</td>
+                <td className={styles.tableItem__done}>{doneModules}</td>
+                <td className={styles.tableItem__points}>{points}</td>
+            </tr>
     )
 }

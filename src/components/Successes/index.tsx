@@ -57,18 +57,18 @@ export const Successes = () => {
                                 </div>
                                 <div className={styles.chart__lines}>
 
-                                   
-                                    {candleDateMockData.map((item)=> <ChartCandle key={item.id}  id={item.id} maxPoints={200} currentPoints={item.currentPoints} date={item.date}/>)}
+
+                                    {candleDateMockData.map((item) => <ChartCandle key={item.id} id={item.id} maxPoints={200} currentPoints={item.currentPoints} date={item.date} />)}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className={styles.successes__footer}>
                         <div className={styles.successes__results}>
-                          <ResultsCard id={1} percent={25} period={7} points={182} title='Баллов набрано' type='increase' value={150} />
-                           <ResultsCard id={2} percent={12} period={7} points={26} title='Модулей выполнено' type="decrease" value={29} />
-                           <ResultsCard id={3} percent={12} period={7} points={30} title='Времени затрачено' type='increase' value="2ч 12м" />
-                            
+                            <ResultsCard id={1} percent={25} period={7} points={182} title='Баллов набрано' type='increase' value={150} />
+                            <ResultsCard id={2} percent={12} period={7} points={26} title='Модулей выполнено' type="decrease" value={29} />
+                            <ResultsCard id={3} percent={12} period={7} points={30} title='Времени затрачено' type='increase' value="2ч 12м" />
+
                         </div>
                     </div>
                 </div>
