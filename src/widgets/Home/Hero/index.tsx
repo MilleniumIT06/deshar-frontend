@@ -1,11 +1,11 @@
 import Image from "next/image"
+import Link from "next/link";
 
 import cn from 'classnames';
 
 import { Button } from "@/shared/ui/Button";
 
 import styles from './styles.module.scss';
-import Link from "next/link";
 
 export const Hero = () => {
     return (

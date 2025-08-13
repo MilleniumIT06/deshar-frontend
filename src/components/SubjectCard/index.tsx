@@ -1,123 +1,116 @@
-"use client";
-import { useState, useEffect } from 'react';
+'use client'
+import { useState, useEffect, useCallback } from 'react'
 
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
-import { cva, type VariantProps } from 'class-variance-authority';
-import cn from 'classnames';
+import { cva, type VariantProps } from 'class-variance-authority'
+import cn from 'classnames'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
-const subjectCardVariants = cva(
-    styles.SubjectCard,
-    {
-        variants: {
-            type: {
-                default: styles.long,
-                long: styles.long,
-                short: styles.short
-            },
+const subjectCardVariants = cva(styles.SubjectCard, {
+    variants: {
+        type: {
+            default: styles.long,
+            long: styles.long,
+            short: styles.short,
         },
-        defaultVariants: {
-            type: "default",
-        },
-    }
-);
+    },
+    defaultVariants: {
+        type: 'default',
+    },
+})
 
 export interface SubjectCardProps extends VariantProps<typeof subjectCardVariants> {
-    id: number | string;
-    title: string;
-    imageUrl?: string;
-    description: string;
-    modulesCount: number;
-    className?: string;
-    loading?: 'eager' | 'lazy';
-    priority?: boolean;
+    id?: number | string
+    title: string
+    imageUrl?: string
+    description?: string
+    modulesCount: number
+    className?: string
+    loading?: 'eager' | 'lazy'
+    priority?: boolean
+    fullCatalog?: boolean
 }
 
-
+const FALLBACK_IMAGE = '/images/Subjects/fallback.png'
+const PLACEHOLDER_SVG =
+    'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTY4IiBoZWlnaHQ9IjE2OCIgdmlld0JveD0iMCAwIDE2OCAxNjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2OCIgaGVpZ2h0PSIxNjgiIGZpbGw9IiNFMkUyRTIiLz48L3N2Zz4='
 
 const SubjectCard = ({
     id,
     type,
-    title = "title",
-    imageUrl = "subjectcardskeleton",
-    description = "description",
-    modulesCount = 99,
+    title = 'title',
+    imageUrl = 'subjectcardskeleton',
+    description = 'description',
+    modulesCount = 0,
     className,
     loading = 'lazy',
-    priority = false
+    priority = false,
+    fullCatalog,
 }: SubjectCardProps) => {
-    const [imageError, setImageError] = useState(false);
+    const [imageError, setImageError] = useState(false)
+    const validImageUrl = imageUrl?.trim() || 'subjectcardskeleton'
 
-
-    const handleImageError = () => {
-        setImageError(true);
-    };
-
+    const handleImageError = useCallback(() => {
+        setImageError(true)
+    }, [])
 
     useEffect(() => {
-        setImageError(false);
-    }, [imageUrl]);
+        setImageError(false)
+    }, [validImageUrl])
 
+    const getModulesText = useCallback(() => {
+        if (fullCatalog) return 'дисциплин'
 
-    const getModulesText = (count: number) => {
-        if (count === 1) return 'модуль';
-        if (count >= 2 && count <= 4) return 'модуля';
-        return 'модулей';
-    };
+        const lastDigit = modulesCount % 10
+        const lastTwoDigits = modulesCount % 100
+
+        if (lastDigit === 1 && lastTwoDigits !== 11) return 'модуль'
+        if (lastDigit >= 2 && lastDigit <= 4 && !(lastTwoDigits >= 12 && lastTwoDigits <= 14)) return 'модуля'
+        return 'модулей'
+    }, [modulesCount, fullCatalog])
+
+    const linkHref = fullCatalog ? '/courses' : `/courses/${id}/modules`
+
+    // const shouldRenderImage = type === 'long' && !imageError
+    const modulesText = `${modulesCount} ${getModulesText()}`
 
     return (
-        <li
-            className={cn(subjectCardVariants({ type, className }))}>
+        <li className={cn(subjectCardVariants({ type, className }))}>
             <div className={styles.SubjectCard__header}>
                 <h6 className={styles.SubjectCard__title}>
-                    <Link
-                        href={`/courses/${id}/modules`}
-                        passHref>
+                    <Link href={linkHref} passHref>
                         {title}
                     </Link>
                 </h6>
 
-                <span className={styles.SubjectCard__modules}>
-                    {modulesCount} {getModulesText(modulesCount)}
-                </span>
+                <span className={styles.SubjectCard__modules}>{modulesText}</span>
             </div>
 
-            {type === "long" && (
+            {type === 'long' && (
                 <div className={styles.SubjectCard__body}>
-                    <p className={styles.SubjectCard__description}>
-                        {description}
-                    </p>
+                    <p className={styles.SubjectCard__description}>{description}</p>
 
                     <div className={styles.SubjectCard__image}>
-                        {!imageError ? (
-                            <Image
-                                src={`/${imageUrl}.png`}
-                                alt={`Изображение курса: ${title}`}
-                                width={168}
-                                height={168}
-                                loading={loading}
-                                priority={priority}
-                                onError={handleImageError}
-                                placeholder="blur"
-                                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTY4IiBoZWlnaHQ9IjE2OCIgdmlld0JveD0iMCAwIDE2OCAxNjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2OCIgaGVpZ2h0PSIxNjgiIGZpbGw9IiNFMkUyRTIiLz48L3N2Zz4="
-                            />
-                        ) : (
-                            <Image
-                                src={`/images/Subjects/fallback.png`}
-                                alt={`Изображение заглушка`}
-                                width={168}
-                                height={168}
-
-                            />
-                        )}
+                        <Image
+                            src={imageError ? FALLBACK_IMAGE : `/${validImageUrl}.png`}
+                            alt={imageError ? 'Изображение заглушка' : `Изображение курса: ${title}`}
+                            width={168}
+                            height={168}
+                            loading={loading}
+                            priority={priority}
+                            onError={handleImageError}
+                            placeholder="blur"
+                            blurDataURL={PLACEHOLDER_SVG}
+                            key={`${validImageUrl}-${imageError}`}
+                        />
                     </div>
                 </div>
             )}
         </li>
-    );
-};
+    )
+}
 
-export { SubjectCard, subjectCardVariants };
+export { SubjectCard, subjectCardVariants }
