@@ -12,36 +12,50 @@ export const Subscription = () => {
                     <h2 className="section__title">Выбираем лучшую подписку</h2>
                     <ul className={cn("list-reset", styles.list)}>
                         <RateCard
-                            lessonsCount={10}
-                            modulesCount={11}
                             price={0}
-                            subjectsCount={11}
-                            title='test'
-                            variant="free" />
+                            title='14 дней'
+                            variant="free"
+                            info={[
+                                { id: 1, content: "3 предмета" },
+                                { id: 2, content: "20 занятий/мес" },
+                                { id: 3, content: "12 модулей" }
+                            ]} />
                         <RateCard
-                            lessonsCount={10}
-                            modulesCount={11}
-                            price={100}
-                            subjectsCount={11}
-                            title='test'
+                            price={999}
+                            
+                            title='30 дней'
                             discount={10}
-                            variant="standart" />
+                            variant="standart"
+                            info={[
+                                { id: 1, content: "24 предмета" },
+                                { id: 2, content: "Неограниченное количество занятий" },
+                                { id: 3, content: "Неограниченный доступ к модулям" },
+                                { id: 4, content: "Аттестация уроков" }
+                            ]} />
                         <RateCard
-                            lessonsCount={10}
-                            modulesCount={11}
-                            price={100}
-                            subjectsCount={11}
-                            title='test'
+                            price={2499}
+                            
+                            title='120 дней'
                             discount={10}
-                            variant="standart" />
+                            variant="standart"
+                            info={[
+                                { id: 1, content: "24 предмета" },
+                                { id: 2, content: "Неограниченное количество занятий" },
+                                { id: 3, content: "Неограниченный доступ к модулям" },
+                                { id: 4, content: "Аттестация уроков" }
+                            ]} />
                         <RateCard
-                            lessonsCount={10}
-                            modulesCount={11}
-                            price={100}
-                            subjectsCount={11}
-                            title='test'
+                            price={7999}
+                            
+                            title='1 год'
                             discount={10}
-                            variant="premium" />
+                            variant="premium"
+                            info={[
+                                { id: 1, content: "24 предмета" },
+                                { id: 2, content: "Неограниченное количество занятий" },
+                                { id: 3, content: "Неограниченный доступ к модулям" },
+                                { id: 4, content: "Аттестация уроков" }
+                            ]} />
                     </ul>
                 </div>
             </div>

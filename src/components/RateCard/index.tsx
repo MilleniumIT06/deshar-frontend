@@ -19,12 +19,6 @@ const CHECK_ICON = (
     </svg>
 )
 
-const INFO_ITEMS = [
-    { key: 'subjects', label: 'предмета' },
-    { key: 'lessons', label: 'занятий/мес' },
-    { key: 'modules', label: 'модулей' }
-] as const
-
 const RateCardVariants = cva(styles.index, {
     variants: {
         variant: {
@@ -41,25 +35,21 @@ const RateCardVariants = cva(styles.index, {
 
 export interface RateCardProps extends VariantProps<typeof RateCardVariants> {
     title: string;
-    subjectsCount: number;
-    lessonsCount: number;
-    modulesCount: number;
     price: number;
     discount?: number;
     className?: string;
     onSelect?: () => void;
+    info: { id: number; content: string; }[]
 }
 
 const RateCard = ({
     title,
-    subjectsCount,
-    lessonsCount,
-    modulesCount,
     price,
     discount,
     variant,
     className,
-    onSelect
+    onSelect,
+    info = [{ id: 1, content: "test" }]
 }: RateCardProps) => {
 
     const formattedPrice = price > 0
@@ -69,13 +59,6 @@ const RateCard = ({
 
     const buttonText = price > 0 ? "Записаться" : "Попробовать"
 
-
-    const infoData = {
-        subjects: subjectsCount,
-        lessons: lessonsCount,
-        modules: modulesCount
-    }
-
     return (
         <li className={cn(RateCardVariants({ variant, className }))}>
             <div className={styles.header}>
@@ -84,10 +67,10 @@ const RateCard = ({
 
             <div className={styles.body}>
                 <ul className={cn("list-reset", styles.info)}>
-                    {INFO_ITEMS.map((item) => (
-                        <li key={item.key} className={styles.infoItem}>
+                    {info.map((item) => (
+                        <li key={item.id} className={styles.infoItem}>
                             {CHECK_ICON}
-                            <span>{infoData[item.key]} {item.label}</span>
+                            <span>{item.content}</span>
                         </li>
                     ))}
                 </ul>
