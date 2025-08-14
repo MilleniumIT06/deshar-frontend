@@ -10,7 +10,7 @@ export default function AllCoursesPage() {
         <main>
             <div className={styles.inner}>
                 <div className="container">
-                    <Breadcrumbs items={[{ label: "test", href: "test" }]} />
+                    <Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: "Все дисциплины", href: "/courses" }]} />
                 </div>
             </div>
             <AllCourses />

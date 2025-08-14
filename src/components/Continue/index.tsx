@@ -11,9 +11,19 @@ export const Continue = () => {
                 <div className={styles.continue__inner}>
                     <h2 className="section__title">Продолжим обучение</h2>
                     <div className={styles.continue__subjects}>
-                       <LessonProgressCard/>
-                       <LessonProgressCard/>
-                       
+                        <LessonProgressCard
+                            countOfFinishedModules={7}
+                            countOfLeftModules={11}
+                            countOfModules={21}
+                            countOfProcessModules={3}
+                            title='Ингушский язык' />
+                        <LessonProgressCard
+                            countOfFinishedModules={10}
+                            countOfLeftModules={19}
+                            countOfModules={38}
+                            countOfProcessModules={0}
+                            title='История' />
+
                     </div>
                     <div className={styles.continue__footer}>
                         <Link href="/completed-courses" className={styles.continue__link}>Открыть выполненые дисциплины</Link>

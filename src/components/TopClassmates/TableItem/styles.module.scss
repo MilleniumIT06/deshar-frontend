@@ -4,16 +4,14 @@
 	position: relative;
 	height: 80px;
 	cursor: pointer;
-	width: 95%;
-
-	&:hover {
-		border-radius: 15px;
-		background-color: var(--neutral-lightest);
-	}
+	width: 80%;
 
 	&__place {
 		div {
-			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
 			width: 32px;
 			height: 32px;
 			background-position: center;
@@ -26,16 +24,11 @@
 			}
 
 			span {
-				position: absolute;
-				left: 35%;
-				top: 50%;
-				z-index: 11;
 				font-family: var(--second-family);
 				font-weight: 600;
 				font-size: 16px;
 				line-height: 150%;
 				text-align: center;
-				transform: translateY(-50%);
 			}
 		}
 	}
@@ -60,19 +53,7 @@
 		height: 1px;
 		background-color: var(--neutral-light);
 	}
-	/* Закругление углов для первой/последней ячейки */
-	td:first-child {
-		border-top-left-radius: 10px;
-	}
-	td:last-child {
-		border-top-right-radius: 10px;
-	}
-	td:first-child {
-		border-bottom-left-radius: 10px;
-	}
-	td:last-child {
-		border-bottom-right-radius: 10px;
-	}
+	
 }
 
 .tableItem__points,
