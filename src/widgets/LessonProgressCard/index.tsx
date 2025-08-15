@@ -4,6 +4,7 @@ import { ProgressBar } from '@/shared/ui/ProgressBar';
 
 import { ProgressCounter } from './ProgressCounter';
 import styles from './styles.module.scss';
+
 interface ILessonProgressCard {
     title: string;
     countOfModules: number;

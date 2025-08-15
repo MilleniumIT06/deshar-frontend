@@ -1,6 +1,3 @@
-'use client'
-import { useState } from 'react'
-
 import Link from 'next/link'
 
 import { Button } from '@/shared/ui/Button'
@@ -11,10 +8,6 @@ import styles from './styles.module.scss'
 
 
 export const SignInForm = () => {
-    const [vis, setVis] = useState(false)
-    const handleVisible = () => {
-        setVis(!vis)
-    }
     return (
         <div className={styles.index}>
             <div className={styles.inner}>

@@ -1,9 +1,10 @@
 import cn from 'classnames';
 
+import { courses } from '@/mocks/data'
+
 import { SubjectCard } from "../SubjectCard";
 
 import styles from './styles.module.scss';
-import { courses } from '@/mocks/data'
 
 export const OtherSubjects = () => {
     return (
@@ -15,7 +16,14 @@ export const OtherSubjects = () => {
                         <ul className={cn("list-reset", styles.otherSubjects__list, styles.subjectsList)} >
 
                             {courses.map(course => (
-                                <SubjectCard className={styles.otherSubjectsItem} type="short" title={course.title} description={course.description} modulesCount={course.moduleCount} imageUrl="subjectcardskeleton" />
+                                <SubjectCard
+                                    key={course.id}
+                                    className={styles.otherSubjectsItem}
+                                    type="short"
+                                    title={course.title}
+                                    description={course.description}
+                                    modulesCount={course.moduleCount}
+                                    imageUrl="subjectcardskeleton" />
                             ))}
                             <SubjectCard
                                 className={styles.otherSubjectsItem}
