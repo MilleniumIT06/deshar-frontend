@@ -16,7 +16,7 @@ export const TrainerWrapper = ({
 }: {
     title: string
     children: React.ReactNode;
-    completed: boolean;
+    completed?: boolean;
     isButtonDisabled: boolean;
     hasError: boolean;
     handleCheckAnswers: () => void;
