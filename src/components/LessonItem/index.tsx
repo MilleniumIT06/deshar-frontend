@@ -11,7 +11,6 @@ export const LessonItem = ({
 	active = false,
 	fullWidth,
 	handleClick,
-	disabled
 }: {
 	id: number | string
 	text: string
@@ -20,7 +19,6 @@ export const LessonItem = ({
 	active: boolean
 	fullWidth?: boolean
 	handleClick: () => void;
-	disabled: boolean;
 }) => {
 	return (
 		<li
@@ -30,7 +28,6 @@ export const LessonItem = ({
 				completed && styles.completed,
 				active && styles.active,
 				fullWidth && styles.fullWidth,
-				disabled && styles.disabled
 			)}
 			onClick={handleClick}>
 			<span className={styles.index__number}>{number}</span>
