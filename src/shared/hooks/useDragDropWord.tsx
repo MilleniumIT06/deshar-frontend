@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { ISlot } from "@/components/DragDropTrainer";
 import { DropInput } from "@/components/DropInput";
-import { Task } from "@/components/LearningContent";
+
 
 interface IWord {
     id: number;
@@ -17,7 +17,7 @@ export interface IMoveWordData {
     id: number;
     sentence: string;
     missingWords: IWord[];
-    type: Task
+    type: "missing-dnd"
 };
 
 interface IUseDragDropdData {
