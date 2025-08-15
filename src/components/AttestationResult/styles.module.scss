@@ -20,6 +20,11 @@
 	&__btn {
 		border-radius: 20px;
 		padding: 12px 20px;
+		text-align: center;
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 150%;
 	}
 	&__btns {
 		display: flex;

@@ -1,6 +1,8 @@
 "use client";
 import { useState } from 'react';
 
+import Link from 'next/link';
+
 import cn from 'classnames';
 
 import { Avatar } from '@/shared/ui/Avatar';
@@ -8,7 +10,6 @@ import { Button } from '@/shared/ui/Button';
 import { Logo } from '@/shared/ui/Logo';
 
 import styles from './styles.module.scss';
-
 
 export const Header = () => {
     const [authed] = useState(true);
@@ -22,13 +23,13 @@ export const Header = () => {
                 <nav className={styles.headerNav}>
                     <ul className={`list-reset ${styles.list}`}>
                         <li className={styles.listItem}>
-                            <a href="#" tabIndex={2}>Уроки</a>
+                            <Link href="/courses" tabIndex={2}>Уроки</Link>
                         </li>
                         <li className={styles.listItem}>
-                            <a href="#" tabIndex={3}>Аттестация</a>
+                            <Link href="#" tabIndex={3}>Аттестация</Link>
                         </li>
                         <li className={styles.listItem}>
-                            <a href="#" tabIndex={4}>Контакты</a>
+                            <Link href="#" tabIndex={4}>Контакты</Link>
                         </li>
 
                     </ul>

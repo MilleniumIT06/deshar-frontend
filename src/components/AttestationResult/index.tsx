@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { Button } from '@/shared/ui/Button';
 
 import styles from './styles.module.scss';
@@ -16,8 +18,18 @@ export const AttestationResult = () => {
                     <h6 className={styles.index__title}>Вы успешно прошли модуль!</h6>
                 </div>
                 <div className={styles.index__btns}>
-                    <Button className={styles.index__btn} variant="primary" size="small" fullWidth>Следующий модуль</Button>
-                    <Button className={styles.index__btn} variant="secondary" size="small" fullWidth>Вернуться в профиль</Button>
+
+                    <Button asChild size="small" variant="primary" className={styles.index__btn} fullWidth>
+                        <Link href="/authed">
+                            Следующий модуль
+                        </Link>
+                    </Button>
+
+                    <Button asChild variant="secondary" size="small" fullWidth className={styles.index__btn}>
+                        <Link href="/authed">
+                            Вернуться в профиль
+                        </Link>
+                    </Button>
                 </div>
             </div>
         </div>
