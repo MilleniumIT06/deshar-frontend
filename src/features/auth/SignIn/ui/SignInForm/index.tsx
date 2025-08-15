@@ -28,8 +28,6 @@ export const SignInForm = () => {
                     <Input
                         type="password"
                         placeholder="Введите пароль"
-                        visibleValue={vis}
-                        handleVisible={handleVisible}
                         className={styles.input}
                     />
                     <Button className={styles.btn} size="medium">
@@ -38,7 +36,7 @@ export const SignInForm = () => {
                 </form>
                 <div className={styles.bottom}>
                     <div>
-                        Еще не зарегистрированы? 
+                        Еще не зарегистрированы?
                         <Link href="/sign-up"> Зарегистрироваться</Link>
                     </div>
                     <p>
