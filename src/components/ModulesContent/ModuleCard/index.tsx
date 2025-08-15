@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import cn from 'classnames'
+
 import { ProgressBar } from '@/shared/ui/ProgressBar';
 
 import { AttestationBar } from '../AttestationBar';
@@ -22,7 +24,7 @@ export const ModuleCard = ({
     processLessons: number;
 }) => {
     return (
-        <div className={styles.ModuleCard}>
+        <div className={cn(styles.ModuleCard, doneLessons === maxLessons && styles.ModuleCard__done)}>
             <div className={styles.ModuleCard__inner}>
                 <div className={styles.ModuleCard__top}>
                     <div className={styles.ModuleCard__header}>
