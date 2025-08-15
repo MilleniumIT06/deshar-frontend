@@ -33,7 +33,8 @@ export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
 
 		}
 	}
-	const { renderSentence, isButtonDisabled, hasError, handleCheckAnswers } = useMissedWord({ data: exampleMissingData[0], onSuccess: handleClick, onError: () => "error" });
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const { renderSentence, isButtonDisabled, hasError, handleCheckAnswers } = useMissedWord({ data: exampleMissingData[0] as any, onSuccess: handleClick, onError: () => "error" });
 	const dispatch = useAppDispatch();
 	return (
 		<div className={styles.index__inner}>

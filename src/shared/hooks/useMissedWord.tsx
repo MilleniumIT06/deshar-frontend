@@ -2,25 +2,25 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-import { IMissingWordTask } from "@/components/LearningContent";
+import { IMissingWord } from "@/components/LearningContent";
 import MissingLetter from "@/components/MissingLetter";
 
-interface IWord {
-    id: number;
-    word: string;
-    missedLetter: string;
-    wordNumber: number;
-}
 
+
+
+
+// Исправленный интерфейс данных
 export interface IMissedWordData {
     id: number;
     sentence: string;
-    missingWords: IWord[];
-    type: string
+    missingWords: IMissingWord[];
+    type: string; // Конкретный тип
+    completed?:boolean;
 };
 
+// Интерфейс для хука
 interface IUseMissedData {
-    data: IMissingWordTask;
+    data: IMissedWordData; // Используем исправленный тип
     onSuccess: () => void;
     onError: () => void;
 }
@@ -90,7 +90,7 @@ export const useMissedWord = ({ data, onError, onSuccess }: IUseMissedData) => {
         if (hasAnyError && onError) {
             onError();
         } else {
-                onSuccess();
+            onSuccess();
             setCompleted(true);
         }
     }, [data.missingWords, inputValues, onSuccess, onError]);

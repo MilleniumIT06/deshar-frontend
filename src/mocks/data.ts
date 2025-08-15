@@ -719,6 +719,8 @@ export const exampleMissingData = [
 			{ id: 1, word: 'гвозди', missedLetter: 'в', wordNumber: 1 },
 			{ id: 2, word: 'починить', missedLetter: 'и', wordNumber: 2 },
 		],
+		completed:false,
+		type:'missing-word'
 	},
 	{
 		id: 2,
