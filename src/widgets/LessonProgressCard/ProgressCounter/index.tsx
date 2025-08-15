@@ -28,9 +28,9 @@ interface ProgressCounterProps {
 export const ProgressCounter = ({ count = 1, type }: ProgressCounterProps) => {
 
   const config = PROGRESS_CONFIG[type]
-  
+
   return (
-    <li 
+    <li
       className={styles.ProgressCounter}
       aria-label={`${config.title}: ${count}`}
     >
@@ -48,7 +48,7 @@ export const ProgressCounter = ({ count = 1, type }: ProgressCounterProps) => {
           {config.title}
         </span>
       </div>
-      <span 
+      <span
         className={styles.ProgressCounter__count}
         aria-live="polite"
       >

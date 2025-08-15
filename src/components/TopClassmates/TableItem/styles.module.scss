@@ -4,32 +4,14 @@
 	position: relative;
 	height: 80px;
 	cursor: pointer;
-
-	&::before {
-		content: '';
-		position: absolute;
-		z-index: -1;
-		width: 99%;
-		height: 100%;
-		border-radius: 15px;
-		background-color: var(--neutral-lightest);
-		display: none;
-	}
-
-	&:hover {
-		&::before {
-			display: block;
-		}
-	}
+	width: 80%;
 
 	&__place {
-		display: flex;
-		align-items: center;
-		justify-content: start;
-		height: 60px;
-
 		div {
-			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
 			width: 32px;
 			height: 32px;
 			background-position: center;
@@ -42,17 +24,22 @@
 			}
 
 			span {
-				position: absolute;
-				left: 35%;
-				top: 50%;
-				z-index: 11;
 				font-family: var(--second-family);
 				font-weight: 600;
 				font-size: 16px;
 				line-height: 150%;
 				text-align: center;
-				transform: translateY(-50%);
 			}
+		}
+	}
+	&__name {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 140%;
+		color: var(--neutral-darkest);
+		@include breakpoint.mobile {
+			font-size: 16px;
 		}
 	}
 
@@ -66,11 +53,11 @@
 		height: 1px;
 		background-color: var(--neutral-light);
 	}
+	
 }
 
 .tableItem__points,
 .tableItem__done,
-.tableItem__name,
 .tableItem__time,
 .tableItem__parralelClass {
 	border: none;

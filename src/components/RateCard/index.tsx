@@ -54,7 +54,7 @@ const RateCard = ({
 
     const formattedPrice = price > 0
         ? new Intl.NumberFormat('ru-RU').format(price) + ' ₽'
-        : 'Бесплатно'
+        : 'Бесплатно!'
 
 
     const buttonText = price > 0 ? "Записаться" : "Попробовать"

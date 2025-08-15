@@ -1,21 +1,41 @@
-@use './../../../shared/scss/breakpoint'as breakpoint;
+@use './../../../shared/scss/breakpoint' as breakpoint;
 
 .Table {
-    margin-top: 40px;
-    width: 100%;
+	margin-top: 40px;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
 
-    &__header {
-        th {
-            font-family: var(--font-family);
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 175%;
-            text-align: left;
-            color: #7d7979;
+	&__header {
+		th {
+			font-family: var(--font-family);
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 175%;
+			text-align: left;
+			color: #7d7979;
 
-            @include breakpoint.mobile {
-                font-size: 12px;
-            }
-        }
-    }
+			@include breakpoint.mobile {
+				font-size: 12px;
+			}
+		}
+	}
+	/* Закруглённые углы для первой и последней ячейки в строке */
+	td {
+		transition: all 0.2s ease-in-out;
+	}
+	tr:hover td:first-child {
+		border-top-left-radius: 20px;
+		border-bottom-left-radius: 20px;
+	}
+
+	tr:hover td:last-child {
+		border-top-right-radius: 20px;
+		border-bottom-right-radius: 20px;
+	}
+
+	/* Меняем фон всех ячеек при наведении на строку */
+	tr:hover td {
+		background-color: var(--neutral-lightest);
+	}
 }

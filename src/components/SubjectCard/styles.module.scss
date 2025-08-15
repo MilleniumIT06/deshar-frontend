@@ -18,26 +18,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-
-		span {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			border-radius: 12px;
-			height: 44px;
-			min-width: 121px;
-			font-family: var(--font-family);
-			font-weight: 400;
-			font-size: 16px;
-			line-height: 175%;
-			text-align: center;
-			color: var(--neutral-darkest);
-			background-color: var(--primary-lightest);
-
-			@include breakpoint.tablet {
-				font-size: 13px;
-			}
-		}
 	}
 
 	&__body {
@@ -77,9 +57,28 @@
 			object-fit: cover;
 		}
 	}
-}
+	&__modules {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 175%;
+		color: var(--neutral-darkest);
 
-.long {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		border-radius: 12px;
+		height: 44px;
+		min-width: 121px;
+		padding: 8px 12px;
+		text-align: center;
+		background-color: var(--primary-lightest);
+
+		@include breakpoint.tablet {
+			font-size: 13px;
+		}
+	}
 }
 
 .short {

@@ -12,7 +12,7 @@ export const CoursesBlock = () => {
             <ul className={styles.Cards}>
                 <SubjectCard
                     id={1}
-                    imageUrl="subjectbg"
+                    imageUrl="subjectbg1"
                     title="Ингушский язык"
                     description="Базовые навыки языка, алфавит, общение"
                     modulesCount={85}
@@ -20,58 +20,58 @@ export const CoursesBlock = () => {
                 />
                 <SubjectCard
                     id={2}
-                    imageUrl="subjectbg"
-                    title="Ингушский языкИнгушский язык"
-                    description="База английского языка, алфавит и умение формировать предложения"
-                    modulesCount={85}
+                    imageUrl="subjectbg2"
+                    title="Математика"
+                    description="Цифры, исчисления, арифметические вычисления"
+                    modulesCount={58}
                     type="long"
                 />
                 <SubjectCard
                     id={3}
-                    imageUrl="subjectbg"
-                    title="Ингушский язык"
-                    description="Базовые навыки языка, алфавит, общение"
-                    modulesCount={85}
+                    imageUrl="subjectbg3"
+                    title="Чтение"
+                    description="Алфавит русского языка, чтение по слагам, фонетический разбор"
+                    modulesCount={12}
                     type="long"
                 />
                 <SubjectCard
                     id={4}
-                    imageUrl="subjectbg"
-                    title="Ингушский язык"
-                    description="Базовые навыки языка, алфавит, общение"
-                    modulesCount={85}
+                    imageUrl="subjectbg4"
+                    title="Иностранный язык"
+                    description="База английского языка, алфавит и умение формировать предложения"
+                    modulesCount={95}
                     type="long"
                 />
                 <SubjectCard
                     id={5}
-                    imageUrl="subjectbg"
-                    title="Ингушский язык"
-                    description="Базовые навыки языка, алфавит, общение"
-                    modulesCount={85}
+                    imageUrl="subjectbg5"
+                    title="Окружающий мир"
+                    description="Основы билогии, экологии и строения эдементов"
+                    modulesCount={62}
                     type="long"
                 />
                 <SubjectCard
                     id={6}
-                    imageUrl="subjectbg"
-                    title="Ингушский язык"
-                    description="Базовые навыки языка, алфавит, общение"
-                    modulesCount={85}
+                    imageUrl="subjectbg6"
+                    title="Русский язык"
+                    description="Алфавит, письмо и правописание, формирование предложений"
+                    modulesCount={53}
                     type="long"
                 />
                 <SubjectCard
                     id={7}
-                    imageUrl="subjectbg"
-                    title="Ингушский язык"
-                    description="Базовые навыки языка, алфавит, общение"
-                    modulesCount={85}
+                    imageUrl="subjectbg7"
+                    title="ИЗО"
+                    description="Рисование простых фигур, основы форм, правила колористики"
+                    modulesCount={49}
                     type="long"
                 />
                 <SubjectCard
                     id={8}
-                    imageUrl="subjectbg"
-                    title="Ингушский язык"
-                    description="Базовые навыки языка, алфавит, общение"
-                    modulesCount={85}
+                    imageUrl="subjectbg8"
+                    title="Информатика"
+                    description="Основы информационной грамотности, базовое использование ПК"
+                    modulesCount={12}
                     type="long"
                 />
             </ul>

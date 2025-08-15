@@ -34,7 +34,7 @@ export interface SubjectCardProps extends VariantProps<typeof subjectCardVariant
     fullCatalog?: boolean
 }
 
-const FALLBACK_IMAGE = '/images/Subjects/fallback.png'
+const FALLBACK_IMAGE = '/images/Courses/fallback.png'
 const PLACEHOLDER_SVG =
     'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTY4IiBoZWlnaHQ9IjE2OCIgdmlld0JveD0iMCAwIDE2OCAxNjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE2OCIgaGVpZ2h0PSIxNjgiIGZpbGw9IiNFMkUyRTIiLz48L3N2Zz4='
 
@@ -51,7 +51,7 @@ const SubjectCard = ({
     fullCatalog,
 }: SubjectCardProps) => {
     const [imageError, setImageError] = useState(false)
-    const validImageUrl = imageUrl?.trim() || 'subjectcardskeleton'
+    const validImageUrl = 'images/Courses/' + imageUrl?.trim() || 'subjectcardskeleton'
 
     const handleImageError = useCallback(() => {
         setImageError(true)
@@ -97,10 +97,10 @@ const SubjectCard = ({
                         <Image
                             src={imageError ? FALLBACK_IMAGE : `/${validImageUrl}.png`}
                             alt={imageError ? 'Изображение заглушка' : `Изображение курса: ${title}`}
-                            width={168}
-                            height={168}
+                            fill
                             loading={loading}
                             priority={priority}
+                            quality={100}
                             onError={handleImageError}
                             placeholder="blur"
                             blurDataURL={PLACEHOLDER_SVG}

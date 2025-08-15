@@ -227,7 +227,6 @@ export const LearningContent = () => {
             </div>
           </div>
         </div>
-        <Button variant="secondary" size="medium" onClick={() => setIsInfoOpen(true)}>test</Button>
         <QuizModal
           isOpen={isQuizOpen}
           onClose={handleCloseModal}

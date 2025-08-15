@@ -1,20 +1,24 @@
-
-
 .index {
-    height: 100vh;
-    background: var(--neutral-lightest);
+	height: 100vh;
+	background: var(--neutral-lightest);
 }
 
 .inner {
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
 }
 
 .signIn {
-    background-image: url('/signin.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+	background-image: url('/signInBg.png');
+	background-size: 966px 552px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.signUp {
+	background-image: url('/signUpBg.png');
+	background-size: 860px 577px;
+	background-position: center;
+	background-repeat: no-repeat;
 }

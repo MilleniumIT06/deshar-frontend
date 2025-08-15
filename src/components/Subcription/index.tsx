@@ -22,7 +22,7 @@ export const Subscription = () => {
                             ]} />
                         <RateCard
                             price={999}
-                            
+
                             title='30 дней'
                             discount={10}
                             variant="standart"
@@ -34,9 +34,9 @@ export const Subscription = () => {
                             ]} />
                         <RateCard
                             price={2499}
-                            
+
                             title='120 дней'
-                            discount={10}
+                            discount={20}
                             variant="standart"
                             info={[
                                 { id: 1, content: "24 предмета" },
@@ -46,9 +46,9 @@ export const Subscription = () => {
                             ]} />
                         <RateCard
                             price={7999}
-                            
+
                             title='1 год'
-                            discount={10}
+                            discount={40}
                             variant="premium"
                             info={[
                                 { id: 1, content: "24 предмета" },

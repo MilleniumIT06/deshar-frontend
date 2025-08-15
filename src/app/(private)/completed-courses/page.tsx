@@ -8,10 +8,10 @@ export default function Completed() {
     return (
         <main>
             <div className="container">
-            <div className={styles.inner}>
-            <Breadcrumbs items={[{label:'Главная',href:'/'},{label:'Выполненные дисциплины',href:'/completed-courses'}]}/>
-            <CompletedCourses/>
-            </div>
+                <div className={styles.inner}>
+                    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Выполненные дисциплины', href: '/completed-courses' }]} />
+                    <CompletedCourses />
+                </div>
             </div>
         </main>
     );
