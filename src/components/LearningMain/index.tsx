@@ -23,12 +23,14 @@ export const LearningMain = () => {
     }
     return (
         <div className={styles.index}>
-            {status === "finish" ? <AttestationResult /> :
+            {/* {status === "finish" ? <AttestationResult /> :
                 <>
                     <LearningSidebar />
                     {render()}
                 </>
-            }
+            } */}
+            <LearningSidebar />
+            <LearningAttestation />
         </div>
     )
 }

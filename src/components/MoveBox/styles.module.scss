@@ -18,5 +18,15 @@
 	&.disabled {
 		background: var(--primary-lightest);
 		opacity: 0.5;
+		cursor: default;
 	}
+	&.dragging {
+		position: absolute;
+		z-index: 10;
+		top: 0;
+		left: 0;
+	}
+}
+.wrapper {
+	position: relative;
 }

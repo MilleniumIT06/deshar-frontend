@@ -48,6 +48,12 @@ export const DragDropTrainer = ({
         // eslint-disable-next-line no-console
         onError: () => console.log("error")
     })
+    const disableMoveBox = (value: string) => {
+        if (slots.find(item => item.current === value)) {
+            return true
+        }
+        return false
+    }
     return (
         <TrainerWrapper
             handleCheckAnswers={handleCheckAnswers}
@@ -67,6 +73,7 @@ export const DragDropTrainer = ({
                                         key={`key-${value.id}+${value.char}`}
                                         char={value.char}
                                         id={value.id}
+                                        isDisabled={disableMoveBox(value.char)}
                                     />
                                 ))}
                             </ul>
