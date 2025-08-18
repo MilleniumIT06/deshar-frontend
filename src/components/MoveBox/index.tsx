@@ -19,9 +19,9 @@ export const MoveBox = ({
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
     } : undefined;
     return (
-        <div className={styles.wrapper}>
+        <li className={styles.wrapper}>
 
-            <li
+            <span
                 className={cn(styles.index, isDisabled && styles.disabled, isDragging && styles.dragging)}
                 style={style}
                 {...listeners}
@@ -30,14 +30,14 @@ export const MoveBox = ({
             >
                 {char}
 
-            </li>
-            {isDragging && <li
+            </span>
+            {isDragging && <span
                 className={cn(styles.index, styles.disabled)}
             >
                 {char}
 
-            </li>
+            </span>
             }
-        </div>
+        </li>
     )
 }
