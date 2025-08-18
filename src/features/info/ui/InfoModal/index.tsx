@@ -8,13 +8,19 @@ interface InfoModalProps {
     isOpen: boolean;
     onClose: () => void;
     type: "success" | "fail";
+    onFail: () => void;
+    onSuccess: () => void;
 }
-export const InfoModal = ({ isOpen, onClose, type = "success" }: InfoModalProps) => {
+export const InfoModal = ({ isOpen, onClose, type = "success", onFail, onSuccess }: InfoModalProps) => {
     const handleSuccess = () => {
         console.log('success');
+        onSuccess();
+        onClose();
     }
     const handleFail = () => {
         console.log('fail');
+        onFail();
+        onClose();
     }
     return (
         <Modal

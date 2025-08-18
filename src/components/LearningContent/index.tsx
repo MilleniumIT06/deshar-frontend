@@ -81,7 +81,10 @@ export interface ILesson {
 export const LearningContent = () => {
   const { isExpired, secondsLeft, restart } = useCountdownTimer(3);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
-  const [isInfoOpen, setIsInfoOpen] = useState(false);
+
+  const [isInfoErrorOpen, setIsInfoErrorOpen] = useState(false);
+  const [isInfoSuccessOpen, setIsInfoSuccessOpen] = useState(false);
+
   const [isSelectOpen, setIsSelectOpen] = useState(false);
   const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
   const dispatch = useAppDispatch();
@@ -230,11 +233,23 @@ export const LearningContent = () => {
         <QuizModal
           isOpen={isQuizOpen}
           onClose={handleCloseModal}
+          onError={() => setIsInfoErrorOpen(true)}
+          onSuccess={() => setIsInfoSuccessOpen(true)}
         />
         <InfoModal
-          isOpen={isInfoOpen}
-          onClose={() => setIsInfoOpen(false)}
+          onFail={() => console.log('fail')}
+          onSuccess={() => setIsInfoSuccessOpen(false)}
+
+          isOpen={isInfoErrorOpen}
+          onClose={() => setIsInfoErrorOpen(false)}
           type="fail"
+        />
+        <InfoModal
+          onFail={() => console.log('fail')}
+          onSuccess={() => console.log('succ')}
+          isOpen={isInfoSuccessOpen}
+          onClose={() => setIsInfoSuccessOpen(false)}
+          type="success"
         />
         <SelectModal
           isOpen={isSelectOpen}

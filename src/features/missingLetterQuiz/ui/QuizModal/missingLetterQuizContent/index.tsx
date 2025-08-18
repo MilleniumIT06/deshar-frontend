@@ -11,7 +11,7 @@ import { useMissedWord } from '../../../../../shared/hooks/useMissedWord';
 import styles from './styles.module.scss';
 
 
-export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
+export const QuizContent = ({ onClose, onError, onSuccess }: { onClose: () => void; onSuccess: () => void; onError: () => void; }) => {
 	const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer);
 	const isLastLesson = () => {
 		if (lessons[lessons.length - 1].id === activeLessonId) {
@@ -22,6 +22,7 @@ export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
 	}
 	const handleClick = () => {
 		if (isLastLesson()) {
+			onSuccess()
 			onClose();
 			dispatch(changeStatusOfLesson({ id: activeLessonId, value: true }));
 		} else {
@@ -29,12 +30,17 @@ export const QuizContent = ({ onClose }: { onClose: () => void; }) => {
 
 			dispatch(changeStatusOfLesson({ id: activeLessonId, value: true }));
 			dispatch(nextId());
+			onSuccess()
 			onClose();
 
 		}
 	}
+	const handleError = () => {
+		onClose();
+		onError();
+	}
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const { renderSentence, isButtonDisabled, hasError, handleCheckAnswers } = useMissedWord({ data: exampleMissingData[0] as any, onSuccess: handleClick, onError: () => "error" });
+	const { renderSentence, isButtonDisabled, hasError, handleCheckAnswers } = useMissedWord({ data: exampleMissingData[0] as any, onSuccess: handleClick, onError: handleError });
 	const dispatch = useAppDispatch();
 	return (
 		<div className={styles.index__inner}>
