@@ -1,7 +1,7 @@
 import { LearningMain } from '@/components/LearningMain';
 import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
 
-import styles from './../../styles.module.scss';
+import styles from './../../../styles.module.scss';
 
 
 export default async function Learning() {
