@@ -2,6 +2,8 @@ import { Roboto, Unbounded } from "next/font/google";
 
 import type { Metadata } from "next";
 import "./../../globals.scss";
+import styles from './../styles.module.scss'
+import { LearningSidebar } from "@/components/LearningSidebar";
 
 const roboto = Roboto({
     variable: "--font-roboto-sans",
@@ -16,15 +18,15 @@ export const metadata: Metadata = {
     description: "Profile",
 };
 
-export default function Layout({
+export default function LearningLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
         <html lang="en">
-            <body className={`${roboto.variable} ${unbounded.variable}`}>
-                dd
+            <body className={`${roboto.variable} ${unbounded.variable} ${styles.learningMain}`}>
+                <LearningSidebar />
                 {children}
 
             </body>
