@@ -1,7 +1,8 @@
 
 
-import styles from './../../../styles.module.scss'
 import { LearningContent } from '@/components/LearningContent';
+
+import styles from './../../../styles.module.scss'
 
 
 export default async function Learning() {
@@ -9,13 +10,7 @@ export default async function Learning() {
 
     return (
         <main className={styles.main}>
-            <div className="container">
-
-                <LearningContent />
-
-
-
-            </div>
+            <LearningContent />
         </main>
     );
 }

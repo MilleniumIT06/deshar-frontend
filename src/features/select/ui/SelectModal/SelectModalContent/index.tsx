@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import { redirect, RedirectType } from 'next/navigation'
 
 import { useAppDispatch } from '@/app/_store/hooks';
 import { changeStatus } from '@/entities/learning/model/status.slice';
@@ -10,7 +11,9 @@ import styles from './styles.module.scss';
 export const SelectModalContent = ({ onClose }: { onClose: () => void; }) => {
     const dispatch = useAppDispatch();
     const handleClickStartBtn = () => {
+
         dispatch(changeStatus("attestation"));
+        redirect('/attestation', RedirectType.replace)
     }
     return <div className={styles.index}>
 

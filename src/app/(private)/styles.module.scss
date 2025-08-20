@@ -4,7 +4,12 @@
 .learningTitle {
 	text-align: left;
 }
-.learningMain {
+.mainInner {
+	display: flex;
+	align-items: start;
+	gap: 30px;
+}
+.mainWrapper {
 	background: var(--neutral-lightest);
 }
 .wrapper {

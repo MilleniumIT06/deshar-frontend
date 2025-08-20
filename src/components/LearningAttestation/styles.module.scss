@@ -1,6 +1,9 @@
 .index {
 	width: 904px;
-
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	gap: 30px;
 	&__quiz_wrapper {
 		margin-top: 32px;
 		border-radius: 32px;
