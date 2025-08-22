@@ -1,19 +1,22 @@
 'use client';
 import Image from 'next/image';
-import { redirect, RedirectType } from 'next/navigation'
+import { redirect, RedirectType, useParams } from 'next/navigation'
 
-import { useAppDispatch } from '@/app/_store/hooks';
+import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
 import { changeStatus } from '@/entities/learning/model/status.slice';
 import { Button } from '@/shared/ui/Button';
 
 import styles from './styles.module.scss';
 
 export const SelectModalContent = ({ onClose }: { onClose: () => void; }) => {
+    const params = useParams<{ id: string }>()
+
+    console.log("pra", params)
     const dispatch = useAppDispatch();
     const handleClickStartBtn = () => {
 
         dispatch(changeStatus("attestation"));
-        redirect('/attestation', RedirectType.replace)
+        redirect(`/attestation/${params.id}`, RedirectType.replace)
     }
     return <div className={styles.index}>
 

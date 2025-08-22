@@ -6,6 +6,7 @@ import { Button } from '@/shared/ui/Button'
 import { Notification } from '../Notification'
 
 import styles from './styles.module.scss'
+import { redirect, RedirectType } from 'next/navigation';
 
 export const TrainerWrapper = ({
     title = 'test',
@@ -31,6 +32,7 @@ export const TrainerWrapper = ({
     }
     const handleClickFinishBtn = () => {
         dispatch(changeStatus("finish"));
+        redirect(`/attestation-result`, RedirectType.replace)
     }
     return (
         <div className={styles.index}>

@@ -9,6 +9,11 @@
 	align-items: start;
 	gap: 30px;
 }
+.attestationResult {
+	background: var(--neutral-lightest);
+	display: flex;
+	justify-content: center;
+}
 .mainWrapper {
 	background: var(--neutral-lightest);
 }
