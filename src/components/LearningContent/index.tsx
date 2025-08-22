@@ -237,7 +237,7 @@ export const LearningContent = () => {
           onSuccess={() => setIsInfoSuccessOpen(true)}
         />
         <InfoModal
-          onFail={() => console.log('fail')}
+          onFail={() => 'fail'}
           onSuccess={() => setIsInfoSuccessOpen(false)}
 
           isOpen={isInfoErrorOpen}
@@ -245,8 +245,8 @@ export const LearningContent = () => {
           type="fail"
         />
         <InfoModal
-          onFail={() => console.log('fail')}
-          onSuccess={() => console.log('succ')}
+          onFail={() => 'fail'}
+          onSuccess={() => 'succ'}
           isOpen={isInfoSuccessOpen}
           onClose={() => setIsInfoSuccessOpen(false)}
           type="success"

@@ -1,5 +1,3 @@
-import { Roboto, Unbounded } from "next/font/google";
-
 
 import { Breadcrumbs } from "@/shared/ui/Breadcrumbs";
 
@@ -21,21 +19,21 @@ export default function AttestationResultLayout({
     children: React.ReactNode;
 }>) {
     return (
-      
-                <div className={styles.mainWrapper}>
 
-                    <div className="container">
-                        <Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: "Все дисциплины", href: "/courses" }, { label: "Английский язык", href: "/" }, { label: "Морфемика", href: "/" }]} />
-                        <div className={styles.wrapper}>
-                            <h1 className={styles.title}>Морфемика</h1>
+        <div className={styles.mainWrapper}>
 
-                            <div className={styles.attestationResult__inner}>
+            <div className="container">
+                <Breadcrumbs items={[{ label: "Главная", href: "/" }, { label: "Все дисциплины", href: "/courses" }, { label: "Английский язык", href: "/" }, { label: "Морфемика", href: "/" }]} />
+                <div className={styles.wrapper}>
+                    <h1 className={styles.title}>Морфемика</h1>
 
-                                {children}
-                            </div>
-                        </div>
+                    <div className={styles.attestationResult__inner}>
+
+                        {children}
                     </div>
                 </div>
+            </div>
+        </div>
 
 
     );

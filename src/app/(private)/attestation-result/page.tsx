@@ -1,6 +1,5 @@
-
-
 import { AttestationResult } from '@/components/AttestationResult';
+
 import styles from './../styles.module.scss'
 
 

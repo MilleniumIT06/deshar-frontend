@@ -1,4 +1,6 @@
 'use client';
+import { redirect, RedirectType } from 'next/navigation';
+
 import { useAppSelector, useAppDispatch } from '@/app/_store/hooks';
 import { changeStatus } from '@/entities/learning/model/status.slice';
 import { Button } from '@/shared/ui/Button'
@@ -6,7 +8,6 @@ import { Button } from '@/shared/ui/Button'
 import { Notification } from '../Notification'
 
 import styles from './styles.module.scss'
-import { redirect, RedirectType } from 'next/navigation';
 
 export const TrainerWrapper = ({
     title = 'test',
