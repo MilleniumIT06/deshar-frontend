@@ -12,7 +12,7 @@ import { Logo } from '@/shared/ui/Logo';
 import styles from './styles.module.scss';
 
 export const Header = () => {
-    const [authed] = useState(true);
+    const [authed] = useState(false);
     return (<header className={styles.index}>
         <div className={cn("container", styles.headerContainer)}>
 

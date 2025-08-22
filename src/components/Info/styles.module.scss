@@ -2,7 +2,7 @@
 @use './../../shared/scss/breakpoint' as breakpoint;
 
 .inner {
-	padding-top: 52px;
+	padding-top: 116px;
 	height: 100%;
 
 	@include breakpoint.mobile {
@@ -16,9 +16,11 @@
 .list {
 	flex-wrap: wrap;
 	height: 100%;
-	gap: 110px;
+	gap: 91px;
 
-	@include mini.flex-all-center;
+	display: flex;
+	justify-content: center;
+	align-items: start;
 
 	@include breakpoint.pre-mobile {
 		align-items: end;
@@ -32,6 +34,8 @@
 }
 
 .item {
+	flex-basis: 230px;
+	flex-grow: 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
