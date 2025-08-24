@@ -55,8 +55,8 @@
 		color: var(--neutral-darkest);
 	}
 	&.disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 		pointer-events: none;
-		opacity: 0.6;
-		cursor: default;
 	}
 }

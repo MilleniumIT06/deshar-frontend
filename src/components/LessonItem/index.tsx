@@ -1,6 +1,5 @@
 'use client';
 import cn from 'classnames'
-
 import styles from './styles.module.scss'
 
 export const LessonItem = ({
@@ -11,6 +10,7 @@ export const LessonItem = ({
 	active = false,
 	fullWidth,
 	handleClick,
+	disabled = false
 }: {
 	id: number | string
 	text: string
@@ -19,6 +19,7 @@ export const LessonItem = ({
 	active: boolean
 	fullWidth?: boolean
 	handleClick: () => void;
+	disabled?: boolean;
 }) => {
 	return (
 		<li
@@ -28,8 +29,10 @@ export const LessonItem = ({
 				completed && styles.completed,
 				active && styles.active,
 				fullWidth && styles.fullWidth,
+				disabled && styles.disabled
 			)}
-			onClick={handleClick}>
+			onClick={disabled ? undefined : handleClick}
+		>
 			<span className={styles.index__number}>{number}</span>
 			<span className={styles.index__text}>{text}</span>
 		</li>
