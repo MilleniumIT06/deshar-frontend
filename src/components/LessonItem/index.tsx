@@ -1,5 +1,6 @@
 'use client';
 import cn from 'classnames'
+
 import styles from './styles.module.scss'
 
 export const LessonItem = ({
