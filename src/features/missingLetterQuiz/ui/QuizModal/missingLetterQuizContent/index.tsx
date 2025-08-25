@@ -1,7 +1,7 @@
 'use client';
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks';
-import { Notification } from '@/components/Notification';
+import { Notification } from '@/shared/ui/Notification';
 import { nextId, changeStatusOfLesson } from '@/entities/learning/model/slice';
 import { exampleMissingData } from '@/mocks/data';
 import { Button } from '@/shared/ui/Button';
