@@ -5,39 +5,29 @@ import { Input } from '@/shared/ui/Input'
 
 import styles from './styles.module.scss'
 
-
-
 export const SignInForm = () => {
-    return (
-        <div className={styles.index}>
-            <div className={styles.inner}>
-                <h1 className={styles.title}>Вход в систему</h1>
-                <form className={styles.form}>
-                    <Input
-                        type="email"
-                        placeholder="Введите логин или email"
-                        className={styles.input}
-                    />
-                    <Input
-                        type="password"
-                        placeholder="Введите пароль"
-                        className={styles.input}
-                    />
-                    <Button className={styles.btn} size="medium">
-                        Войти
-                    </Button>
-                </form>
-                <div className={styles.bottom}>
-                    <div>
-                        Еще не зарегистрированы?
-                        <Link href="/sign-up"> Зарегистрироваться</Link>
-                    </div>
-                    <p>
-                        Продолжая, вы соглашаетесь на обработку персональных данных
-                        и принимаете условия пользоват. соглашения
-                    </p>
-                </div>
-            </div>
-        </div>
-    )
+	return (
+		<div className={styles.index}>
+			<div className={styles.inner}>
+				<h1 className={styles.title}>Вход в систему</h1>
+				<form className={styles.form}>
+					<Input type="email" placeholder="Введите логин или email" className={styles.input} />
+					<Input type="password" placeholder="Введите пароль" className={styles.input} />
+					<Button className={styles.btn} size="medium">
+						Войти
+					</Button>
+				</form>
+				<div className={styles.bottom}>
+					<div>
+						Еще не зарегистрированы?
+						<Link href="/sign-up"> Зарегистрироваться</Link>
+					</div>
+					<p>
+						Продолжая, вы соглашаетесь на обработку персональных данных и принимаете условия
+						пользоват. соглашения
+					</p>
+				</div>
+			</div>
+		</div>
+	)
 }

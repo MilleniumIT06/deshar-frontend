@@ -22,25 +22,20 @@ export const InfoModalContent = ({
 			<div className={styles.index__inner}>
 				<div className={styles.index__image}>
 					{type === 'success' ? (
-						<Image
-							fill
-							alt={successMessage}
-							src="/images/Modal/success.png"
-						/>
+						<Image fill alt={successMessage} src="/images/Modal/success.png" />
 					) : (
-						<Image
-							fill
-							alt={failMessage}
-							src="/images/Modal/fail.png"
-						/>
+						<Image fill alt={failMessage} src="/images/Modal/fail.png" />
 					)}
 				</div>
 				<div className={styles.index__bottom}>
-					<span className={styles.index__text}>
-						{type === 'success' ? successMessage : failMessage}
-					</span>
+					<span className={styles.index__text}>{type === 'success' ? successMessage : failMessage}</span>
 					{type === 'success' ? (
-						<Button className={styles.index__btn} size="small" variant="primary" fullWidth onClick={onSuccess}>
+						<Button
+							className={styles.index__btn}
+							size="small"
+							variant="primary"
+							fullWidth
+							onClick={onSuccess}>
 							Хорошо
 						</Button>
 					) : (

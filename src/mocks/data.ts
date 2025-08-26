@@ -1,4 +1,4 @@
-import { StudentData } from '@/components/TopClassmates'
+import { type StudentData } from '@/components/TopClassmates'
 
 export const areas = [
 	{ value: 100, label: 'Магас' },
@@ -719,8 +719,8 @@ export const exampleMissingData = [
 			{ id: 1, word: 'гвозди', missedLetter: 'в', wordNumber: 1 },
 			{ id: 2, word: 'починить', missedLetter: 'и', wordNumber: 2 },
 		],
-		completed:false,
-		type:'missing-word'
+		completed: false,
+		type: 'missing-word',
 	},
 	{
 		id: 2,
@@ -844,5 +844,71 @@ export const attestationExampleData = [
 			},
 		],
 		completed: false,
+	},
+]
+export const coursesB = [
+	{
+		id: 1,
+		imageUrl: 'subjectbg1',
+		title: 'Ингушский язык',
+		description: 'Базовые навыки языка, алфавит, общение',
+		modulesCount: 85,
+		type: 'long' as const,
+	},
+	{
+		id: 2,
+		imageUrl: 'subjectbg2',
+		title: 'Математика',
+		description: 'Цифры, исчисления, арифметические вычисления',
+		modulesCount: 58,
+		type: 'long' as const,
+	},
+	{
+		id: 3,
+		imageUrl: 'subjectbg3',
+		title: 'Чтение',
+		description: 'Алфавит русского языка, чтение по слогам, фонетический разбор',
+		modulesCount: 12,
+		type: 'long' as const,
+	},
+	{
+		id: 4,
+		imageUrl: 'subjectbg4',
+		title: 'Иностранный язык',
+		description: 'База английского языка, алфавит и умение формировать предложения',
+		modulesCount: 95,
+		type: 'long' as const,
+	},
+	{
+		id: 5,
+		imageUrl: 'subjectbg5',
+		title: 'Окружающий мир',
+		description: 'Основы биологии, экологии и строения элементов',
+		modulesCount: 62,
+		type: 'long' as const,
+	},
+	{
+		id: 6,
+		imageUrl: 'subjectbg6',
+		title: 'Русский язык',
+		description: 'Алфавит, письмо и правописание, формирование предложений',
+		modulesCount: 53,
+		type: 'long' as const,
+	},
+	{
+		id: 7,
+		imageUrl: 'subjectbg7',
+		title: 'ИЗО',
+		description: 'Рисование простых фигур, основы форм, правила колористики',
+		modulesCount: 49,
+		type: 'long' as const,
+	},
+	{
+		id: 8,
+		imageUrl: 'subjectbg8',
+		title: 'Информатика',
+		description: 'Основы информационной грамотности, базовое использование ПК',
+		modulesCount: 12,
+		type: 'long' as const,
 	},
 ]

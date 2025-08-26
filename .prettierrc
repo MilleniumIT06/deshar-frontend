@@ -3,12 +3,13 @@
 	"bracketSameLine": true,
 	"bracketSpacing": true,
 	"embeddedLanguageFormatting": "auto",
+	"endOfLine": "lf",
 	"htmlWhitespaceSensitivity": "css",
 	"insertPragma": false,
 	"jsxSingleQuote": false,
 	"printWidth": 120,
 	"proseWrap": "never",
-	"quoteProps": "preserve",
+	"quoteProps": "as-needed",
 	"requirePragma": false,
 	"semi": false,
 	"singleAttributePerLine": false,
@@ -16,5 +17,30 @@
 	"tabWidth": 5,
 	"trailingComma": "all",
 	"useTabs": true,
-	"vueIndentScriptAndStyle": false
+	"vueIndentScriptAndStyle": false,
+
+	"overrides": [
+		{
+			"files": "*.json",
+			"options": {
+				"tabWidth": 2,
+				"useTabs": false
+			}
+		},
+		{
+			"files": "*.md",
+			"options": {
+				"proseWrap": "preserve",
+				"tabWidth": 2,
+				"useTabs": false
+			}
+		},
+		{
+			"files": "*.yml",
+			"options": {
+				"tabWidth": 2,
+				"useTabs": false
+			}
+		}
+	]
 }

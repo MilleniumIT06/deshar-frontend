@@ -5,7 +5,9 @@
 	height: 80px;
 	cursor: pointer;
 	width: 80%;
-
+	td {
+		padding-top: 30px;
+	}
 	&__place {
 		div {
 			display: flex;
@@ -53,7 +55,6 @@
 		height: 1px;
 		background-color: var(--neutral-light);
 	}
-	
 }
 
 .tableItem__points,

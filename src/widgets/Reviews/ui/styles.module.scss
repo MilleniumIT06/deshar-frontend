@@ -4,10 +4,10 @@
 .index {
 	min-height: 500px;
 
-	@include mini.image-set-png('/Reviews/bg');
+	@include mini.image-set-png('/images/Reviews/bg');
 
 	background-position: right 150px top 10px;
-	background-size: 480px 480px;
+	background-size: 400px 400px;
 	background-repeat: no-repeat;
 }
 

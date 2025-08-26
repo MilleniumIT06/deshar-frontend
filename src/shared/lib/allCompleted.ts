@@ -1,4 +1,4 @@
-import { ILesson } from '@/components/LearningContent'
+import { type ILesson } from '@/components/LearningContent'
 
 export const isAllLessonsCompleted = (lessons: ILesson[]) => {
 	if (lessons.every(lesson => lesson.completed === true)) {

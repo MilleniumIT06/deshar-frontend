@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 import { attestationExampleData } from '@/mocks/data'
 
-import { Task } from '../LearningContent'
+import { type Task } from '../LearningContent'
 
 const initialState: {
 	data: Task[]
