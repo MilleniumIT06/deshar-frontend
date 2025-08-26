@@ -1,26 +1,26 @@
 .AttestationBar {
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    justify-content: end;
-    gap: 3px;
-    &__number {
-        font-family: var(--font-family);
-font-weight: 700;
-font-size: 14px;
-line-height: 143%;
-color: var(--primary-medium);
-    }
-    &__line {
-        border-radius: 8px;
-width: 44px;
-height: 12px;
-background: var(--neutral-light);
-&.checking {
-    background: var(--warning-medium);
-}
-&.checked {
-    background: var(--primary-medium);
-}
-    }
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	justify-content: end;
+	gap: 3px;
+	&__number {
+		font-family: var(--font-family);
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 143%;
+		color: var(--primary-medium);
+	}
+	&__line {
+		border-radius: 8px;
+		width: 44px;
+		height: 12px;
+		background: var(--neutral-light);
+		&.checking {
+			background: var(--warning-medium);
+		}
+		&.checked {
+			background: var(--primary-medium);
+		}
+	}
 }

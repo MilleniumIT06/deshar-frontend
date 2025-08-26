@@ -1,55 +1,48 @@
-"use client";
-import { useState, useMemo } from 'react';
+'use client'
+import { useState, useMemo } from 'react'
 
-import { TEST_CLASSMATES, TEST_PARALLEL } from '@/mocks/data';
-import { Tabs } from '@/shared/ui/Tabs';
+import { TEST_CLASSMATES, TEST_PARALLEL } from '@/mocks/data'
+import { Tabs } from '@/shared/ui/Tabs'
 
-import styles from './styles.module.scss';
-import { Table } from './Table';
-
+import styles from './styles.module.scss'
+import { Table } from './Table'
 
 export interface StudentData {
-    id: number;
-    type: "classmates" | "parallel";
-    class: string;
-    name: string;
-    doneModules: number;
-    placeNumber: number;
-    points: number;
-    time: string;
+	id: number
+	type: 'classmates' | 'parallel'
+	class: string
+	name: string
+	doneModules: number
+	placeNumber: number
+	points: number
+	time: string
 }
 
-
 const TABS = [
-    { id: 0, name: "Одноклассники" },
-    { id: 1, name: "Вся параллель" }
-];
-
+	{ id: 0, name: 'Одноклассники' },
+	{ id: 1, name: 'Вся параллель' },
+]
 
 export const TopClassmates = () => {
-    const [activeTab, setActiveTab] = useState(0);
+	const [activeTab, setActiveTab] = useState(0)
 
-    const tableData = useMemo(() => {
-        return activeTab === 0
-            ? { id: 1, type: "classmates" as const, students: TEST_CLASSMATES }
-            : { id: 2, type: "parallel" as const, students: TEST_PARALLEL };
-    }, [activeTab]);
+	const tableData = useMemo(() => {
+		return activeTab === 0
+			? { id: 1, type: 'classmates' as const, students: TEST_CLASSMATES }
+			: { id: 2, type: 'parallel' as const, students: TEST_PARALLEL }
+	}, [activeTab])
 
-    return (
-        <section className={styles.topClassmates}>
-            <div className="container">
-                <div className={styles.topClassmates__inner}>
-                    <h2 className="section__title">Самые активные одноклассники</h2>
+	return (
+		<section className={styles.topClassmates}>
+			<div className="container">
+				<div className={styles.topClassmates__inner}>
+					<h2 className="section__title">Самые активные одноклассники</h2>
 
-                    <Tabs
-                        activeTab={activeTab}
-                        handleTab={setActiveTab}
-                        tabs={TABS}
-                    />
+					<Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={TABS} />
 
-                    <Table data={tableData} />
-                </div>
-            </div>
-        </section>
-    );
-};
+					<Table data={tableData} />
+				</div>
+			</div>
+		</section>
+	)
+}
