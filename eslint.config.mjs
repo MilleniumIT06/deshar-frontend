@@ -69,17 +69,17 @@ const eslintConfig = [
 		},
 	},
 
-	// Новые правила
+	
 	{
 		rules: {
-			// Предотвращение распространенных ошибок
+			
 			'no-constant-binary-expression': 'error',
 			'no-promise-executor-return': 'error',
 			'no-unreachable-loop': 'error',
 			'no-self-compare': 'error',
 			'no-template-curly-in-string': 'warn',
 
-			// Качество кода
+			
 			'curly': ['error', 'multi-line'],
 			'dot-notation': 'error',
 			'no-else-return': 'error',
@@ -89,7 +89,7 @@ const eslintConfig = [
 			'prefer-const': 'error',
 			'prefer-template': 'error',
 
-			// TypeScript специфичные
+			
 			'@typescript-eslint/no-explicit-any': 'warn',
 			'@typescript-eslint/no-unused-vars': [
 				'error',
@@ -106,7 +106,7 @@ const eslintConfig = [
 				},
 			],
 
-			// React специфичные
+			
 			'react-hooks/exhaustive-deps': 'error',
 			'react/jsx-no-useless-fragment': ['error', { 'allowExpressions': true }],
 			'react/self-closing-comp': [

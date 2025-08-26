@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
-import { ILesson } from '@/components/LearningContent'
+import { type ILesson } from '@/components/LearningContent'
 import { initialLessons } from '@/mocks/data'
 // import { Review, ReviewsState } from './types'
 

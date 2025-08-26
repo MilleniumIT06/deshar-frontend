@@ -1,132 +1,121 @@
-'use client';
+'use client'
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react'
 
-import { IMissingWord } from "@/components/LearningContent";
-import MissingLetter from "@/components/MissingLetter";
-
-
-
-
+import { type IMissingWord } from '@/components/LearningContent'
+import MissingLetter from '@/components/MissingLetter'
 
 // Исправленный интерфейс данных
 export interface IMissedWordData {
-    id: number;
-    sentence: string;
-    missingWords: IMissingWord[];
-    type: string; // Конкретный тип
-    completed?:boolean;
-};
+	id: number
+	sentence: string
+	missingWords: IMissingWord[]
+	type: string // Конкретный тип
+	completed?: boolean
+}
 
 // Интерфейс для хука
 interface IUseMissedData {
-    data: IMissedWordData; // Используем исправленный тип
-    onSuccess: () => void;
-    onError: () => void;
+	data: IMissedWordData // Используем исправленный тип
+	onSuccess: () => void
+	onError: () => void
 }
 
 export const useMissedWord = ({ data, onError, onSuccess }: IUseMissedData) => {
-    const [inputValues, setInputValues] = useState<Record<number, string>>({});
-    const [errors, setErrors] = useState<Record<number, boolean>>({});
-    const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
-    const [hasError, setHasError] = useState<boolean>(false);
-    const [completed, setCompleted] = useState<boolean>(false);
+	const [inputValues, setInputValues] = useState<Record<number, string>>({})
+	const [errors, setErrors] = useState<Record<number, boolean>>({})
+	const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true)
+	const [hasError, setHasError] = useState<boolean>(false)
+	const [completed, setCompleted] = useState<boolean>(false)
 
+	useEffect(() => {
+		const initialValues: Record<number, string> = {}
+		data.missingWords.forEach(word => {
+			initialValues[word.id] = ''
+		})
+		setInputValues(initialValues)
+		setIsButtonDisabled(true)
+		setErrors({})
+		setHasError(false)
+		setCompleted(false)
+	}, [data])
 
-    useEffect(() => {
-        const initialValues: Record<number, string> = {};
-        data.missingWords.forEach(word => {
-            initialValues[word.id] = '';
-        });
-        setInputValues(initialValues);
-        setIsButtonDisabled(true);
-        setErrors({});
-        setHasError(false);
-        setCompleted(false);
-    }, [data]);
+	useEffect(() => {
+		const allFilled = data.missingWords.every(word => inputValues[word.id]?.trim().length === 1)
+		setIsButtonDisabled(!allFilled)
+	}, [inputValues, data.missingWords])
 
+	const handleInputChange = (id: number, value: string) => {
+		setCompleted(false)
 
-    useEffect(() => {
-        const allFilled = data.missingWords.every(
-            word => inputValues[word.id]?.trim().length === 1
-        );
-        setIsButtonDisabled(!allFilled);
-    }, [inputValues, data.missingWords]);
+		if (errors[id] || hasError) {
+			const newErrors = { ...errors }
+			delete newErrors[id]
+			setErrors(newErrors)
+			setHasError(Object.keys(newErrors).length > 0)
+		}
 
-    const handleInputChange = (id: number, value: string) => {
+		setInputValues(prev => ({
+			...prev,
+			[id]: value.slice(0, 1),
+		}))
+	}
 
-        setCompleted(false);
+	const handleCheckAnswers = useCallback(() => {
+		const newErrors: Record<number, boolean> = {}
+		let hasAnyError = false
 
+		data.missingWords.forEach(word => {
+			const isIncorrect = inputValues[word.id] !== word.missedLetter
+			if (isIncorrect) {
+				newErrors[word.id] = true
+				hasAnyError = true
+			}
+		})
 
-        if (errors[id] || hasError) {
-            const newErrors = { ...errors };
-            delete newErrors[id];
-            setErrors(newErrors);
-            setHasError(Object.keys(newErrors).length > 0);
-        }
+		setErrors(newErrors)
+		setHasError(hasAnyError)
 
+		if (hasAnyError && onError) {
+			onError()
+		} else {
+			onSuccess()
+			setCompleted(true)
+		}
+	}, [data.missingWords, inputValues, onSuccess, onError])
 
-        setInputValues(prev => ({
-            ...prev,
-            [id]: value.slice(0, 1),
-        }));
-    };
+	const renderSentence = () => {
+		const parts = data.sentence.split(/(\{\{\d+\}\})/g)
 
-    const handleCheckAnswers = useCallback(() => {
-        const newErrors: Record<number, boolean> = {};
-        let hasAnyError = false;
+		return parts.map((part, index) => {
+			const match = part.match(/\{\{(\d+)\}\}/)
+			if (match) {
+				const wordId = parseInt(match[1], 10)
+				const word = data.missingWords.find(w => w.id === wordId)
 
-        data.missingWords.forEach(word => {
-            const isIncorrect = inputValues[word.id] !== word.missedLetter;
-            if (isIncorrect) {
-                newErrors[word.id] = true;
-                hasAnyError = true;
-            }
-        });
+				if (!word) return <span key={`missing-${index}`}>{part}</span>
 
-        setErrors(newErrors);
-        setHasError(hasAnyError);
+				return (
+					<MissingLetter
+						key={`word-${word.id}`}
+						id={word.id}
+						missingLetter={word.missedLetter}
+						word={word.word}
+						errors={errors}
+						inputValues={inputValues}
+						handleInputChange={handleInputChange}
+					/>
+				)
+			}
+			return <span key={`text-${index}`}>{part}</span>
+		})
+	}
 
-        if (hasAnyError && onError) {
-            onError();
-        } else {
-            onSuccess();
-            setCompleted(true);
-        }
-    }, [data.missingWords, inputValues, onSuccess, onError]);
-
-    const renderSentence = () => {
-        const parts = data.sentence.split(/(\{\{\d+\}\})/g);
-
-        return parts.map((part, index) => {
-            const match = part.match(/\{\{(\d+)\}\}/);
-            if (match) {
-                const wordId = parseInt(match[1], 10);
-                const word = data.missingWords.find(w => w.id === wordId);
-
-                if (!word) return <span key={`missing-${index}`}>{part}</span>;
-
-                return (
-                    <MissingLetter
-                        key={`word-${word.id}`}
-                        id={word.id}
-                        missingLetter={word.missedLetter}
-                        word={word.word}
-                        errors={errors}
-                        inputValues={inputValues}
-                        handleInputChange={handleInputChange}
-                    />
-                );
-            }
-            return <span key={`text-${index}`}>{part}</span>;
-        });
-    };
-
-    return {
-        renderSentence,
-        hasError,
-        completed,
-        isButtonDisabled,
-        handleCheckAnswers
-    };
-};
+	return {
+		renderSentence,
+		hasError,
+		completed,
+		isButtonDisabled,
+		handleCheckAnswers,
+	}
+}
