@@ -27,7 +27,7 @@ export const ChartCandle = ({
     };
     const dateT = formatDate(date);
     return (
-        <div className={styles.index}>
+        <div className={styles.index} title={String(currentPoints)}>
             <svg
                 className={styles.index__body}
                 width="45"
