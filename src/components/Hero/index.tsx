@@ -17,7 +17,7 @@ export const Hero = () => {
 						<p>Бесплатные вводые уроки на&nbsp;первые 14&nbsp;учебных дней</p>
 
 						<Button asChild variant="secondary" className={styles.heroBtn}>
-							<Link href="/authed">Записаться</Link>
+							<Link href="/dashboard">Записаться</Link>
 						</Button>
 					</div>
 					<div className={styles.image}>

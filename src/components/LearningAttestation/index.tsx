@@ -1,18 +1,14 @@
 'use client'
 import { useAppSelector } from '@/app/_store/hooks'
-
-import { AttestationPaginator } from '../AttestationPaginator'
-import { DragDropTrainer } from '../DragDropTrainer'
-import { type Task } from '../LearningContent'
-import { MissedLetterTrainer } from '../MissedLetterTrainer'
-import { SelectAnswerQuiz } from '../SelectAnswerQuiz'
+import { AttestationPaginator } from '@/components/AttestationPaginator'
+import { DragDropTrainer } from '@/components/DragDropTrainer'
+import { type Task } from '@/components/LearningContent'
+import { MissedLetterTrainer } from '@/components/MissedLetterTrainer'
+import { SelectAnswerQuiz } from '@/components/SelectAnswerQuiz'
 
 import styles from './styles.module.scss'
 
 export const LearningAttestation = () => {
-	// const { hasError, renderSentence, completed, handleCheckAnswers, isButtonDisabled } = useMissedWord({ data: exampleMissingData[0], onError: () => console.log('eero'), onSuccess: () => console.log("succ") });
-	// const [data, setData] = useState<Task[]>(attestationExampleData as Task[]);
-	// const [currentTaskNumber, setCurrentTaskNumber] = useState(1);
 	const { data, currentTaskNumber } = useAppSelector(state => state.learningAttestationReducer)
 
 	const currentTask: Task | undefined = data[currentTaskNumber - 1]

@@ -4,8 +4,7 @@ import { redirect, RedirectType } from 'next/navigation'
 import { useAppSelector, useAppDispatch } from '@/app/_store/hooks'
 import { changeStatus } from '@/entities/learning/model/status.slice'
 import { Button } from '@/shared/ui/Button'
-
-import { Notification } from '../../shared/ui/Notification'
+import { Notification } from '@/shared/ui/Notification'
 
 import styles from './styles.module.scss'
 

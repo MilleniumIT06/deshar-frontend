@@ -1,4 +1,7 @@
-import { Successes, Continue, TopClassmates, OtherSubjects } from '@/components'
+import { Continue } from '@/components/Continue'
+import { OtherSubjects } from '@/components/OtherSubjects'
+import { Successes } from '@/components/Successes'
+import { TopClassmates } from '@/components/TopClassmates'
 
 export default function Authed() {
 	return (

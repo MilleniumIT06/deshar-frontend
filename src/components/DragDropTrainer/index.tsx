@@ -5,12 +5,11 @@ import { type DragEndEvent, DndContext } from '@dnd-kit/core'
 import cn from 'classnames'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
+import { changeCompletedStatus, changeCurrentTask } from '@/components/LearningAttestation/attestation.slice'
+import { type IMissingWordDndTask } from '@/components/LearningContent'
+import { MoveBox } from '@/components/MoveBox'
+import { TrainerWrapper } from '@/components/TrainerWrapper'
 import { useDragDropWord } from '@/shared/hooks/useDragDropWord'
-
-import { changeCompletedStatus, changeCurrentTask } from '../LearningAttestation/attestation.slice'
-import { type IMissingWordDndTask } from '../LearningContent'
-import { MoveBox } from '../MoveBox'
-import { TrainerWrapper } from '../TrainerWrapper'
 
 import styles from './styles.module.scss'
 

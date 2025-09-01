@@ -9,7 +9,6 @@ export const store = configureStore({
 		learningReducer,
 		learningStatusReducer,
 		learningAttestationReducer,
-		// другие редюсеры
 	},
 })
 

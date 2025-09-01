@@ -2,7 +2,6 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 import { type ILesson } from '@/components/LearningContent'
 import { initialLessons } from '@/mocks/data'
-// import { Review, ReviewsState } from './types'
 
 const initialState: {
 	activeLessonId: number

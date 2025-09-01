@@ -1,11 +1,10 @@
 'use client'
 
 import { useAppSelector, useAppDispatch } from '@/app/_store/hooks'
+import { changeCurrentTask, changeCompletedStatus } from '@/components/LearningAttestation/attestation.slice'
+import { type IMissingWordTask } from '@/components/LearningContent'
+import { TrainerWrapper } from '@/components/TrainerWrapper'
 import { useMissedWord } from '@/shared/hooks/useMissedWord'
-
-import { changeCurrentTask, changeCompletedStatus } from '../LearningAttestation/attestation.slice'
-import { type IMissingWordTask } from '../LearningContent'
-import { TrainerWrapper } from '../TrainerWrapper'
 
 import styles from './index.module.scss'
 
