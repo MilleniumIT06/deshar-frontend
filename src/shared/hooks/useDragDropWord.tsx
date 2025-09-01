@@ -38,30 +38,15 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
 		setErrors({})
 		setHasError(false)
 		setCompleted(false)
-	}, []) //data
+	}, []) 
 
 	useEffect(() => {
-		// const allFilled = data.missingWords.every(
-		//     word => inputValues[word.id]?.trim().length === 1
-		// );
 		if (slots) {
 			const allFilled = slots.every(slot => slot && slot.current && slot?.current?.length > 0)
 			setIsButtonDisabled(!allFilled)
 		}
 	}, [slots])
 
-	// const handleInputChange = (id: number) => {
-
-	//     setCompleted(false);
-
-	//     if (errors[id] || hasError) {
-	//         const newErrors = { ...errors };
-	//         delete newErrors[id];
-	//         setErrors(newErrors);
-	//         setHasError(Object.keys(newErrors).length > 0);
-	//     }
-
-	// };
 
 	const handleCheckAnswers = useCallback(() => {
 		const newErrors: Record<number, boolean> = {}

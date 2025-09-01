@@ -2,7 +2,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 import { attestationExampleData } from '@/mocks/data'
 
-import { type Task } from '../LearningContent'
+import { type Task } from '@/components/LearningContent'
 
 const initialState: {
 	data: Task[]
@@ -16,22 +16,6 @@ const attestationSlice = createSlice({
 	name: 'attestation',
 	initialState,
 	reducers: {
-		// changeStatusOfLesson: (state, action: PayloadAction<{ id: number; value: boolean }>) => {
-		// 	const lesson = state.lessons.find(item => item.id === action.payload.id)
-		// 	if (lesson) {
-		// 		lesson.completed = action.payload.value
-		// 	}
-		// 	console.log(state.lessons)
-		// },
-		// changeId: (state, action: PayloadAction<number>) => {
-		// 	state.activeLessonId = action.payload
-		// },
-		// nextId: state => {
-		// 	state.activeLessonId = state.activeLessonId + 1
-		// },
-		// prevId: state => {
-		// 	state.activeLessonId = state.activeLessonId - 1
-		// },
 		changeCurrentTask: (state, action: PayloadAction<number>) => {
 			state.currentTaskNumber = action.payload
 		},

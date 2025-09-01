@@ -2,12 +2,11 @@
 import { useCallback, useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
+import { AttestationItem } from '@/components/AttestationItem'
+import { type ILesson } from '@/components/LearningContent'
+import { LessonItem } from '@/components/LessonItem'
 import { changeId } from '@/entities/learning/model/slice'
 import { Button } from '@/shared/ui/Button'
-
-import { AttestationItem } from '../AttestationItem'
-import { type ILesson } from '../LearningContent'
-import { LessonItem } from '../LessonItem'
 
 import styles from './styles.module.scss'
 

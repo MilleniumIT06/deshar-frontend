@@ -74,7 +74,6 @@ const SubjectCard = ({
 
 	const linkHref = fullCatalog ? '/courses' : `/courses/${id}/modules`
 
-	// const shouldRenderImage = type === 'long' && !imageError
 	const modulesText = `${modulesCount} ${getModulesText()}`
 
 	return (

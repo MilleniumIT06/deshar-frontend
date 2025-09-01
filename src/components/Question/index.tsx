@@ -8,7 +8,6 @@ export const Question = () => {
 			<div className="container">
 				<div className={styles.index__inner}>
 					<h3 className={styles.index__title}>Остались вопросы&nbsp;&mdash; ответим!</h3>
-					{/* <button className="btn-reset btn btn--primary question__btn">Задать вопрос</button> */}
 					<Button variant="primary" size="big" className={styles.index__btn}>
 						Задать вопрос
 					</Button>

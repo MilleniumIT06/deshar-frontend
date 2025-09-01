@@ -83,16 +83,7 @@ export const LearningContent = () => {
 	const dispatch = useAppDispatch()
 
 	const currentLesson: ILesson = lessons[activeLessonId - 1]
-	// const handleFindNotCompletedLessons = () => {
-	//   if (!isAllLessonsCompleted(lessons)) {
-	//     const lesson = lessons.find(item => item.completed !== true);
-	//     if (lesson) {
 
-	//       dispatch(changeId(lesson?.id))
-	//     }
-	//     dispatch(changeId(lessons[0].id))
-	//   }
-	// }
 	const handleNextBtn = () => {
 		if (activeLessonId === lessons[lessons.length - 1].id) {
 			if (!isAllLessonsCompleted(lessons)) {

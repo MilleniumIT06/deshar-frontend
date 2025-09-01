@@ -3,10 +3,10 @@
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { nextId, changeStatusOfLesson } from '@/entities/learning/model/slice'
 import { exampleMissingData } from '@/mocks/data'
+import { useMissedWord } from '@/shared/hooks/useMissedWord'
 import { Button } from '@/shared/ui/Button'
 import { Notification } from '@/shared/ui/Notification'
 
-import { useMissedWord } from '../../../../../shared/hooks/useMissedWord'
 
 import styles from './styles.module.scss'
 
@@ -42,7 +42,7 @@ export const QuizContent = ({
 		onClose()
 		onError()
 	}
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 	const { renderSentence, isButtonDisabled, hasError, handleCheckAnswers } = useMissedWord({
 		data: exampleMissingData[0] as any,
 		onSuccess: handleClick,

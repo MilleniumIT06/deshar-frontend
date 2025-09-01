@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { LessonProgressCard } from '../../widgets/LessonProgressCard'
+import { LessonProgressCard } from '@/widgets/LessonProgressCard'
 
 import styles from './styles.module.scss'
 

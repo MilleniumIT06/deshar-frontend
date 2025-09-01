@@ -1,8 +1,9 @@
 import cn from 'classnames'
 
+import { SubjectCard } from '@/components/SubjectCard'
 import { courses } from '@/mocks/data'
 
-import { SubjectCard } from '../SubjectCard'
+
 
 import styles from './styles.module.scss'
 

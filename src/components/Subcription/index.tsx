@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import { RateCard } from '../../widgets/Home/RateCard'
+import { RateCard } from '@/widgets/Home/RateCard'
 
 import styles from './styles.module.scss'
 

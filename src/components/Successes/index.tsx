@@ -1,10 +1,10 @@
 import cn from 'classnames'
 
+import { ResultsCard } from '@/components/ResultsCard'
 import { candleDateMockData } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { Selector } from '@/shared/ui/Selector'
 
-import { ResultsCard } from '../ResultsCard'
 
 import { ChartCandle } from './ChartCandle'
 import styles from './styles.module.scss'
