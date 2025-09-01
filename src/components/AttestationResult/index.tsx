@@ -20,11 +20,11 @@ export const AttestationResult = () => {
 					</div>
 					<div className={styles.index__btns}>
 						<Button asChild size="small" variant="primary" className={styles.index__btn} fullWidth>
-							<Link href="/authed">Следующий модуль</Link>
+							<Link href="/dashboard">Следующий модуль</Link>
 						</Button>
 
 						<Button asChild variant="secondary" size="small" fullWidth className={styles.index__btn}>
-							<Link href="/authed">Вернуться в профиль</Link>
+							<Link href="/dashboard">Вернуться в профиль</Link>
 						</Button>
 					</div>
 				</div>

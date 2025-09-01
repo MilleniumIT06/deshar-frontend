@@ -11,5 +11,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-	matcher: ['/authed', '/courses', '/courses/:path*', '/completed-courses', '/learning', '/learning/:path*'],
+	matcher: ['/dashboard', '/courses', '/courses/:path*', '/completed-courses', '/learning', '/learning/:path*'],
 }
