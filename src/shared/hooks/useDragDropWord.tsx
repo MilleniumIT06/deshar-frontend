@@ -38,7 +38,7 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
 		setErrors({})
 		setHasError(false)
 		setCompleted(false)
-	}, []) 
+	}, [])
 
 	useEffect(() => {
 		if (slots) {
@@ -46,7 +46,6 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
 			setIsButtonDisabled(!allFilled)
 		}
 	}, [slots])
-
 
 	const handleCheckAnswers = useCallback(() => {
 		const newErrors: Record<number, boolean> = {}

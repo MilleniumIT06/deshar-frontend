@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
@@ -6,7 +7,6 @@ import { exampleMissingData } from '@/mocks/data'
 import { useMissedWord } from '@/shared/hooks/useMissedWord'
 import { Button } from '@/shared/ui/Button'
 import { Notification } from '@/shared/ui/Notification'
-
 
 import styles from './styles.module.scss'
 

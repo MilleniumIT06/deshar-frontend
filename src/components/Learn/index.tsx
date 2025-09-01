@@ -3,8 +3,6 @@ import cn from 'classnames'
 import { SubjectCard } from '@/components/SubjectCard'
 import { courses } from '@/mocks/data'
 
-
-
 import styles from './styles.module.scss'
 
 export const Learn = () => {

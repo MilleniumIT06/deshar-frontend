@@ -5,7 +5,6 @@ import { candleDateMockData } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { Selector } from '@/shared/ui/Selector'
 
-
 import { ChartCandle } from './ChartCandle'
 import styles from './styles.module.scss'
 
