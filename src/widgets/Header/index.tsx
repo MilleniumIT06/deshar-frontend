@@ -26,7 +26,7 @@ export const Header = () => {
 								</Link>
 							</li>
 							<li className={styles.listItem}>
-								<Link href="#" tabIndex={3}>
+								<Link href="/attestation/1" tabIndex={3}>
 									Аттестация
 								</Link>
 							</li>
