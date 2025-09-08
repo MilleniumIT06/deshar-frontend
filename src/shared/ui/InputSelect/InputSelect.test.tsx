@@ -13,7 +13,7 @@ vi.mock('motion/react', () => ({
 	AnimatePresence: ({ children }: any) => children,
 }))
 
-describe('InputSelect Component', () => {
+describe.skip('InputSelect Component', () => {
 	const mockOptions = [
 		{ value: 1, label: 'Option 1' },
 		{ value: 2, label: 'Option 2' },

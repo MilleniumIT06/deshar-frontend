@@ -1,4 +1,4 @@
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export interface ChartCandleProps {
 	id: number | string
@@ -20,9 +20,9 @@ export const ChartCandle = ({ maxPoints, currentPoints, date = new Date() }: Cha
 	}
 	const dateT = formatDate(date)
 	return (
-		<div className={styles.index} title={String(currentPoints)}>
+		<div className="ChartCandle" title={String(currentPoints)}>
 			<svg
-				className={styles.index__body}
+				className="ChartCandle__body"
 				width="45"
 				height={`${pointsPercent}%`}
 				viewBox="0 0 45 174"
@@ -34,7 +34,7 @@ export const ChartCandle = ({ maxPoints, currentPoints, date = new Date() }: Cha
 				aria-valuemax={safeMaxPoints}>
 				<rect x="0.5" width="44" height="100%" rx="12" fill="#1BAA7D" />
 			</svg>
-			<time className={styles.index__date}>
+			<time className="ChartCandle__date">
 				<span>{dateT.day}</span>
 				<span>{dateT.month}</span>
 			</time>

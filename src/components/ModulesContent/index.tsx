@@ -1,13 +1,13 @@
 import { ModuleCard } from './ModuleCard'
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const ModulesContent = () => {
 	return (
-		<section className={styles.ModulesContent}>
+		<section className="ModulesContent">
 			<div className="container">
-				<div className={styles.inner}>
+				<div className="ModulesContent__inner">
 					<h1 className="section__title">Английский язык</h1>
-					<div className={styles.cards}>
+					<div className="ModulesContent__cards">
 						<ModuleCard
 							id={1}
 							number={1}

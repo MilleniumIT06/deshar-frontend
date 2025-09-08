@@ -1,7 +1,7 @@
 import { Modal } from '@/widgets/Modal/ui'
 
 import { SelectModalContent } from './SelectModalContent'
-import styles from './styles.module.scss'
+import './styles.scss'
 
 interface SelectModalProps {
 	isOpen: boolean
@@ -9,7 +9,7 @@ interface SelectModalProps {
 }
 export const SelectModal = ({ isOpen, onClose }: SelectModalProps) => {
 	return (
-		<Modal isOpen={isOpen} onClose={onClose} variant="info" className={styles.index}>
+		<Modal isOpen={isOpen} onClose={onClose} variant="info" className="SelectModal">
 			<SelectModalContent onClose={onClose} />
 		</Modal>
 	)

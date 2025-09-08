@@ -2,15 +2,15 @@ import cn from 'classnames'
 
 import { RateCard } from '@/widgets/Home/RateCard'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const Subscription = () => {
 	return (
-		<section className={styles.index}>
+		<section className="Subscription">
 			<div className="container">
-				<div className={styles.inner}>
+				<div className="Subscription__inner">
 					<h2 className="section__title">Выбираем лучшую подписку</h2>
-					<ul className={cn('list-reset', styles.list)}>
+					<ul className={cn('list-reset', 'Subscription__list')}>
 						<RateCard
 							price={0}
 							title="14 дней"

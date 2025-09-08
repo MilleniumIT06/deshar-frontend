@@ -2,7 +2,7 @@ import cn from 'classnames'
 
 import { SelectBox } from '../SelectBox'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export interface ISelectItem {
 	id: number
@@ -22,8 +22,8 @@ export const SelectAnswerQuizContent = ({
 	checkCorrect: (data: ISelectItem[]) => void
 }) => {
 	return (
-		<div>
-			<ul className={cn('list-reset', styles.list)}>
+		<div className="SelectAnswerQuizContent">
+			<ul className={cn('list-reset', 'SelectAnswerQuizContent__list')}>
 				{data.map(item => (
 					<SelectBox
 						title={item.content}

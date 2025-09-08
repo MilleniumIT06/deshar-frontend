@@ -1,0 +1,139 @@
+.Button {
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+
+	// sizes:
+	&__big {
+		border-radius: 24px;
+		padding: 20px 36px;
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 140%;
+	}
+
+	&__medium {
+		border-radius: 20px;
+		padding: 12px 20px;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 150%;
+	}
+
+	&__small {
+		border-radius: 16px;
+		padding: 12px 16px;
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 143%;
+	}
+
+	&__iconBig {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 100%;
+		padding: 12px;
+		width: 48px;
+		height: 48px;
+	}
+
+	&__iconSmall {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 100%;
+		padding: 12px;
+		width: 36px;
+		height: 36px;
+	}
+
+	// variants:
+	&__primary {
+		color: var(--neutral-white);
+		background: var(--primary-medium);
+		font-family: var(--font-family);
+
+		&:hover {
+			background: var(--primary-dark);
+		}
+
+		&:active {
+			background: var(--primary-darkest);
+		}
+
+		&:disabled {
+			background: var(--primary-medium);
+			opacity: 0.5;
+		}
+	}
+
+	&__secondary {
+		color: var(--black-color);
+		background: var(--neutral-lightest);
+
+		&:hover {
+			background: var(--neutral-light);
+		}
+
+		&:active {
+			background: var(--neutral-medium);
+			color: var(--neutral-white);
+		}
+
+		&:disabled {
+			background: var(--neutral-lightest);
+			opacity: 0.5;
+			color: var(--neutral-darkest);
+		}
+	}
+
+	&__iconPrimary {
+		background: var(--primary-medium);
+
+		svg {
+			stroke: var(--neutral-white);
+		}
+
+		&:hover {
+			background: var(--primary-dark);
+		}
+
+		&:active {
+			border: 1px solid var(--neutral-darkest);
+		}
+	}
+
+	&__iconSecondary {
+		background: var(--neutral-lightest);
+		svg {
+			stroke: #000;
+		}
+		&:hover {
+			background: var(--neutral-light);
+		}
+
+		&:active {
+			border: 1px solid var(--neutral-darkest);
+		}
+	}
+	&__iconThird {
+		border: 1px solid var(--neutral-darkest);
+		background: transparent;
+		border: 1px solid var(--neutral-darkest);
+		svg {
+			stroke: #000;
+		}
+		&:hover {
+			background: var(--neutral-light);
+		}
+
+		&:active {
+			outline: 1px solid var(--neutral-darkest);
+		}
+	}
+
+	&__fullWidth {
+		width: 100%;
+	}
+}

@@ -8,7 +8,7 @@ import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 import { Tabs } from '@/shared/ui/Tabs'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const ProgramSelectionForm = () => {
 	const [activeTab, setActiveTab] = useState(0)
@@ -16,12 +16,12 @@ export const ProgramSelectionForm = () => {
 	const [school, setScholl] = useState<number | string>('')
 	const [classLevel, setClassLevel] = useState<number | string>('')
 	return (
-		<div className={styles.index}>
-			<div className={styles.inner}>
-				<h1 className={styles.title}>Выбор программы</h1>
+		<div className="ProgramSelectionForm">
+			<div className="ProgramSelectionForm__inner">
+				<h1 className="ProgramSelectionForm__title">Выбор программы</h1>
 				<Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={tabs} maxWidth />
 				{activeTab === 0 ? (
-					<form className={styles.form}>
+					<form className="ProgramSelectionForm__form">
 						<InputSelect
 							value={area}
 							setValue={setArea}
@@ -40,12 +40,12 @@ export const ProgramSelectionForm = () => {
 							options={classLevels}
 							placeholderValue="Выберите класс"
 						/>
-						<Button className={styles.btn} size="medium">
+						<Button className="ProgramSelectionForm__btn" size="medium">
 							Зарегистрировать
 						</Button>
 					</form>
 				) : (
-					<form className={styles.form}>
+					<form className="ProgramSelectionForm__form">
 						<InputSelect
 							value={area}
 							setValue={setArea}
@@ -64,12 +64,12 @@ export const ProgramSelectionForm = () => {
 							options={classLevels}
 							placeholderValue="Выберите класс"
 						/>
-						<Button className={styles.btn} size="medium">
+						<Button className="ProgramSelectionForm__btn" size="medium">
 							Зарегистрировать
 						</Button>
 					</form>
 				)}
-				<div className={styles.bottom}>
+				<div className="ProgramSelectionForm__bottom">
 					<div>
 						Уже зарегистрированы? <Link href="/sign-in">Войти</Link>
 					</div>

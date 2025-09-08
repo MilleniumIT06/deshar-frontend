@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import { Button } from '@/shared/ui/Button'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const InfoModalContent = ({
 	type = 'success',
@@ -18,20 +18,22 @@ export const InfoModalContent = ({
 	onFail: () => void
 }) => {
 	return (
-		<div className={styles.index}>
-			<div className={styles.index__inner}>
-				<div className={styles.index__image}>
+		<div className="InfoModalContent">
+			<div className="InfoModalContent__inner">
+				<div className="InfoModalContent__image">
 					{type === 'success' ? (
 						<Image fill alt={successMessage} src="/images/Modal/success.png" />
 					) : (
 						<Image fill alt={failMessage} src="/images/Modal/fail.png" />
 					)}
 				</div>
-				<div className={styles.index__bottom}>
-					<span className={styles.index__text}>{type === 'success' ? successMessage : failMessage}</span>
+				<div className="InfoModalContent__bottom">
+					<span className="InfoModalContent__text">
+						{type === 'success' ? successMessage : failMessage}
+					</span>
 					{type === 'success' ? (
 						<Button
-							className={styles.index__btn}
+							className="InfoModalContent__btn"
 							size="small"
 							variant="primary"
 							fullWidth
@@ -39,7 +41,7 @@ export const InfoModalContent = ({
 							Хорошо
 						</Button>
 					) : (
-						<Button className={styles.index__btn} size="small" fullWidth onClick={onFail}>
+						<Button className="InfoModalContent__btn" size="small" fullWidth onClick={onFail}>
 							Вернуться к уроку
 						</Button>
 					)}

@@ -3,21 +3,21 @@ import Link from 'next/link'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const SignInForm = () => {
 	return (
-		<div className={styles.index}>
-			<div className={styles.inner}>
-				<h1 className={styles.title}>Вход в систему</h1>
-				<form className={styles.form}>
-					<Input type="email" placeholder="Введите логин или email" className={styles.input} />
-					<Input type="password" placeholder="Введите пароль" className={styles.input} />
-					<Button className={styles.btn} size="medium">
+		<div className="SignInForm">
+			<div className="SignInForm__inner">
+				<h1 className="SignInForm__title">Вход в систему</h1>
+				<form className="SignInForm__form">
+					<Input type="email" placeholder="Введите логин или email" className="SignInForm__input" />
+					<Input type="password" placeholder="Введите пароль" className="SignInForm__input" />
+					<Button className="SignInForm__btn" size="medium">
 						Войти
 					</Button>
 				</form>
-				<div className={styles.bottom}>
+				<div className="SignInForm__bottom">
 					<div>
 						Еще не зарегистрированы?
 						<Link href="/sign-up"> Зарегистрироваться</Link>

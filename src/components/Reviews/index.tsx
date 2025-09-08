@@ -9,7 +9,7 @@ import { ReviewsCard } from '@/entities/reviews/index'
 import { reviewsMockData } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -25,11 +25,11 @@ export const Reviews = () => {
 		return null // or a placeholder loading state
 	}
 	return (
-		<section className={styles.index}>
+		<section className="Reviews">
 			<div className="container">
-				<div className={styles.inner}>
+				<div className="Reviews__inner">
 					<h2 className="section__title">Что говорят наши ученики</h2>
-					<div className={styles.sliderWrapper}>
+					<div className="Reviews__slider_wrapper">
 						{reviewsMockData && (
 							<Swiper
 								modules={[Navigation, A11y]}
@@ -73,11 +73,11 @@ export const Reviews = () => {
 								))}
 							</Swiper>
 						)}
-						<div className={styles.reviewsNavigation}>
+						<div className="Reviews__slider_navigation">
 							<Button
 								variant="iconSecondary"
 								size="iconBig"
-								className={cn('btn-reset', styles.reviewsBtn, 'slider__btn_left')}>
+								className={cn('btn-reset', 'Reviews__btn', 'slider__btn_left')}>
 								<svg
 									width="12"
 									height="18"
@@ -90,7 +90,7 @@ export const Reviews = () => {
 							<Button
 								variant="iconSecondary"
 								size="iconBig"
-								className={cn('btn-reset', styles.reviewsBtn, 'slider__btn_right')}>
+								className={cn('btn-reset', 'Reviews__btn', 'slider__btn_right')}>
 								<svg
 									width="12"
 									height="18"

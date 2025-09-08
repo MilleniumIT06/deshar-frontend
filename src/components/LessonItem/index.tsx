@@ -1,7 +1,7 @@
 'use client'
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const LessonItem = ({
 	id = 1,
@@ -26,15 +26,15 @@ export const LessonItem = ({
 		<li
 			key={id}
 			className={cn(
-				styles.index,
-				completed && styles.completed,
-				active && styles.active,
-				fullWidth && styles.fullWidth,
-				disabled && styles.disabled,
+				'LessonItem',
+				completed && 'completed',
+				active && 'active',
+				fullWidth && 'fullWidth',
+				disabled && 'disabled',
 			)}
 			onClick={disabled ? undefined : handleClick}>
-			<span className={styles.index__number}>{number}</span>
-			<span className={styles.index__text}>{text}</span>
+			<span className="LessonItem__number">{number}</span>
+			<span className="LessonItem__text">{text}</span>
 		</li>
 	)
 }

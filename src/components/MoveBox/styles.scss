@@ -1,4 +1,4 @@
-.index {
+.MoveBox {
 	border-radius: 12px;
 	padding: 12px;
 	width: 35px;
@@ -26,7 +26,7 @@
 		top: 0;
 		left: 0;
 	}
-}
-.wrapper {
-	position: relative;
+	&__wrapper {
+		position: relative;
+	}
 }

@@ -30,6 +30,26 @@
 				text-align: center;
 			}
 		}
+		&_first {
+			color: var(--neutral-white);
+			background-image: url('/svg/first.svg');
+		}
+
+		&_second {
+			color: var(--neutral-white);
+			background-image: url('/svg/second.svg');
+		}
+
+		&_third {
+			color: var(--neutral-white);
+			background-image: url('/svg/third.svg');
+		}
+
+		&_other {
+			span {
+				color: var(--black-color);
+			}
+		}
 	}
 	&__name {
 		font-family: var(--font-family);
@@ -73,25 +93,4 @@
 
 .tableItem__points {
 	color: var(--primary-medium);
-}
-
-.first {
-	color: var(--neutral-white);
-	background-image: url('/svg/first.svg');
-}
-
-.second {
-	color: var(--neutral-white);
-	background-image: url('/svg/second.svg');
-}
-
-.third {
-	color: var(--neutral-white);
-	background-image: url('/svg/third.svg');
-}
-
-.other {
-	span {
-		color: var(--black-color);
-	}
 }

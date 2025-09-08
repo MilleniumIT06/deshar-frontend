@@ -9,7 +9,7 @@ import { Input } from '@/shared/ui/Input'
 
 import { type signUpUserFormData, signUpUserSchema } from '../../model/signUp.schema'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const SignUpForm = ({ handleForm }: { handleForm: () => void }) => {
 	const {
@@ -25,14 +25,14 @@ export const SignUpForm = ({ handleForm }: { handleForm: () => void }) => {
 		console.log(data)
 	}
 	return (
-		<div className={styles.index}>
-			<div className={styles.inner}>
-				<h1 className={styles.title}>Регистрация аккаунта</h1>
-				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+		<div className="SignUpForm">
+			<div className="SignUpForm__inner">
+				<h1 className="SignUpForm__title">Регистрация аккаунта</h1>
+				<form className="SignUpForm__form" onSubmit={handleSubmit(onSubmit)}>
 					<Input
 						type="text"
 						placeholder="Введите имя"
-						className={styles.input}
+						className="SignUpForm__input"
 						error={true}
 						validationMessage={errors.name && errors.name.message}
 						{...register('name')}
@@ -40,41 +40,41 @@ export const SignUpForm = ({ handleForm }: { handleForm: () => void }) => {
 					<Input
 						type="text"
 						placeholder="Введите фамилию"
-						className={styles.input}
+						className="SignUpForm__input"
 						validationMessage={errors.surname && errors.surname.message}
 						{...register('surname')}
 					/>
 					<Input
 						type="email"
 						placeholder="Введите email"
-						className={styles.input}
+						className="SignUpForm__input"
 						validationMessage={errors.email && errors.email.message}
 						{...register('email')}
 					/>
 					<Input
 						type="password"
 						placeholder="Придумайте пароль"
-						className={styles.input}
+						className="SignUpForm__input"
 						validationMessage={errors.password && errors.password.message}
 						{...register('password')}
 					/>
 					<Input
 						type="password"
 						placeholder="Подтвердите пароль"
-						className={styles.input}
+						className="SignUpForm__input"
 						validationMessage={errors.confirmPassword && errors.confirmPassword.message}
 						{...register('confirmPassword')}
 					/>
 					<Button
 						disabled={!isValid}
-						className={styles.btn}
+						className="SignUpForm__btn"
 						size="medium"
 						type="submit"
 						onClick={handleForm}>
 						Далее
 					</Button>
 				</form>
-				<div className={styles.bottom}>
+				<div className="SignUpForm__bottom">
 					<div>
 						Уже зарегистрированы? <Link href="/sign-in">Войти</Link>
 					</div>
