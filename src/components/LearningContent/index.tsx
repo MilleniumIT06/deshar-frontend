@@ -12,7 +12,7 @@ import { SelectModal } from '@/features/select/ui/SelectModal'
 import { isAllLessonsCompleted } from '@/shared/lib/allCompleted'
 import { Button } from '@/shared/ui/Button'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 import { useCountdownTimer } from './useCountdownTimer'
 
 export interface IMissingWord {
@@ -110,15 +110,15 @@ export const LearningContent = () => {
 	}
 
 	return (
-		<section className={styles.index}>
-			<div className={styles.inner}>
-				<h2 className={styles.index__title}>
+		<section className="LearningContent">
+			<div className="LearningContent__inner">
+				<h2 className="LearningContent__title">
 					<b>{currentLesson.id}.</b> {currentLesson.title}
 				</h2>
 
-				<div className={styles.content}>
-					<div className={styles.content__inner}>
-						<div className={styles.index__image}>
+				<div className="LearningContent__content">
+					<div className="LearningContent__content_inner">
+						<div className="LearningContent__image">
 							<Image
 								fill
 								src="/images/Learning/example.jpg"
@@ -127,8 +127,8 @@ export const LearningContent = () => {
 							/>
 						</div>
 
-						<div className={styles.index__text}>
-							<div className={styles.index__text_definition}>
+						<div className="LearningContent__text">
+							<div className="LearningContent__text_definition">
 								<p>
 									<b>Орфография русского языка</b> — это система правил, регулирующих
 									написание слов и их форм. Она включает в себя множество аспектов, которые
@@ -136,7 +136,7 @@ export const LearningContent = () => {
 									рассмотреть в теории к уроку по орфографии:
 								</p>
 							</div>
-							<div className={styles.index__text_list}>
+							<div className="LearningContent__text_list">
 								<b>1. Основные понятия орфографии</b>
 								<ul className="list-reset">
 									<li>
@@ -149,7 +149,7 @@ export const LearningContent = () => {
 									</li>
 								</ul>
 							</div>
-							<div className={styles.index__text_list}>
+							<div className="LearningContent__text_list">
 								<b>2. Правила написания слов</b>
 								<ul className="list-reset">
 									<li>
@@ -165,7 +165,7 @@ export const LearningContent = () => {
 									</li>
 								</ul>
 							</div>
-							<div className={styles.index__text_list}>
+							<div className="LearningContent__text_list">
 								<b>3. Ударение</b>
 								<ul className="list-reset">
 									<li>
@@ -175,7 +175,7 @@ export const LearningContent = () => {
 									</li>
 								</ul>
 							</div>
-							<div className={styles.index__text_list}>
+							<div className="LearningContent__text_list">
 								<b>4. Сложные случаи орфографии</b>
 								<ul className="list-reset">
 									<li>
@@ -190,7 +190,7 @@ export const LearningContent = () => {
 									</li>
 								</ul>
 							</div>
-							<div className={styles.index__text_list}>
+							<div className="LearningContent__text_list">
 								<b>5. Орфографические словари</b>
 								<ul className="list-reset">
 									<li>
@@ -200,7 +200,7 @@ export const LearningContent = () => {
 									</li>
 								</ul>
 							</div>
-							<div className={styles.index__text_list}>
+							<div className="LearningContent__text_list">
 								<b>6. Практические задания</b>
 								<ul className="list-reset">
 									<li>
@@ -210,7 +210,7 @@ export const LearningContent = () => {
 									</li>
 								</ul>
 							</div>
-							<div className={styles.index__text_conclusion}>
+							<div className="LearningContent__text_conclusion">
 								<b>Заключение</b>
 								<p>
 									Орфография — это важный аспект владения русским языком, который требует
@@ -224,13 +224,13 @@ export const LearningContent = () => {
 							</div>
 						</div>
 					</div>
-					<div className={styles.index__footer}>
-						<div className={styles.index__footer_left}>
+					<div className="LearningContent__footer">
+						<div className="LearningContent__footer_left">
 							<Button variant="secondary" size="medium">
 								Назад
 							</Button>
 						</div>
-						<div className={styles.index__footer_right}>
+						<div className="LearningContent__footer_right">
 							<Button variant="secondary" size="medium">
 								Пропустить
 							</Button>

@@ -6,7 +6,7 @@ import { type Task } from '@/components/LearningContent'
 import { MissedLetterTrainer } from '@/components/MissedLetterTrainer'
 import { SelectAnswerQuiz } from '@/components/SelectAnswerQuiz'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const LearningAttestation = () => {
 	const { data, currentTaskNumber } = useAppSelector(state => state.learningAttestationReducer)
@@ -47,7 +47,7 @@ export const LearningAttestation = () => {
 	}
 
 	return (
-		<div className={styles.index}>
+		<div className="LearningAttestation">
 			<AttestationPaginator />
 
 			{renderTask()}

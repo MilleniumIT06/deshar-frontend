@@ -1,7 +1,7 @@
 'use client'
 import { useDroppable } from '@dnd-kit/core'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const DropInput = ({
 	id,
@@ -20,7 +20,7 @@ export const DropInput = ({
 
 	if (letterIndex === -1) {
 		return (
-			<span key={id} className="error">
+			<span key={id} className="DropInput__error">
 				[Ошибка в данных]
 			</span>
 		)
@@ -28,9 +28,9 @@ export const DropInput = ({
 	const before = check && letterIndex && word.substring(0, letterIndex)
 	const after = check && letterIndex && word.substring(letterIndex + 1)
 	return (
-		<span className={styles.wrapper}>
+		<span className="DropInput__wrapper">
 			{before}
-			<span ref={setNodeRef} className={styles.index}>
+			<span ref={setNodeRef} className="DropInput">
 				{current || ''}
 			</span>
 			{after}

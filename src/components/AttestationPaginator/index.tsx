@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { changeCurrentTask } from '../LearningAttestation/attestation.slice'
 
 import { StepCounter } from './StepCounter'
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const AttestationPaginator = () => {
 	const { data, currentTaskNumber } = useAppSelector(state => state.learningAttestationReducer)
@@ -15,9 +15,9 @@ export const AttestationPaginator = () => {
 		dispatch(changeCurrentTask(id))
 	}
 	return (
-		<div className={styles.index}>
-			<div className={styles.index__wrapper}>
-				<ul className={styles.index__list}>
+		<div className="AttestationPaginator">
+			<div className="AttestationPaginator__wrapper">
+				<ul className="AttestationPaginator__list">
 					{data.map(item => (
 						<StepCounter
 							key={item.id}

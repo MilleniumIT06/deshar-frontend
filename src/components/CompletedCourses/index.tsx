@@ -1,14 +1,14 @@
 import { LessonProgressCard } from '@/widgets/LessonProgressCard'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const CompletedCourses = () => {
 	return (
-		<section className={styles.completedCourses}>
+		<section className="CompletedCourses">
 			<div className="container">
-				<div className={styles.inner}>
+				<div className="CompletedCourses__inner">
 					<h1 className="section__title">Выполненные дисциплины</h1>
-					<div className={styles.lessons}>
+					<div className="CompletedCourses__lessons">
 						<LessonProgressCard
 							title="Химия"
 							countOfFinishedModules={15}

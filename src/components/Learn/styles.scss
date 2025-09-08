@@ -1,0 +1,53 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
+
+.Learn {
+	min-height: 490px;
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 140px;
+		padding-bottom: 80px;
+		gap: 40px;
+	}
+	&__items {
+		padding: 0 2%;
+		width: 100%;
+	}
+	&__list {
+		display: grid;
+		grid-auto-rows: 100px;
+		grid-template-columns: 33% 33% 33%;
+		gap: 5% 2%;
+
+		@include breakpoint.middle-tablet {
+			justify-content: center;
+			grid-template-columns: 50% 50%;
+			row-gap: 0;
+		}
+
+		@include breakpoint.pre-mobile {
+			grid-template-columns: 100%;
+			row-gap: 0;
+		}
+	}
+	&__item {
+		width: 100%;
+
+		@include breakpoint.middle-tablet {
+			grid-column: span 2;
+		}
+	}
+}
+
+.Learn__item:last-child {
+	grid-column: 3 span;
+	max-width: none;
+	@include breakpoint.middle-tablet {
+		grid-column: 2 span;
+	}
+
+	@include breakpoint.pre-mobile {
+		grid-column: auto;
+	}
+}

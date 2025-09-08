@@ -3,21 +3,21 @@ import cn from 'classnames'
 import { SubjectCard } from '@/components/SubjectCard'
 import { courses } from '@/mocks/data'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const Learn = () => {
 	return (
-		<section className={styles.index}>
+		<section className="Learn">
 			<div className="container">
-				<div className={styles.inner}>
+				<div className="Learn__inner">
 					<h2 className="section__title">Учим шаг за&nbsp;шагом</h2>
-					<div className={styles.items}>
-						<ul className={cn('list-reset', styles.learnList)}>
+					<div className="Learn__items">
+						<ul className={cn('list-reset', 'Learn__list')}>
 							{courses.map(course => (
 								<SubjectCard
 									id={course.id}
 									key={course.id}
-									className={styles.learnItem}
+									className="Learn__item"
 									type="short"
 									title={course.title}
 									description={course.description}
@@ -26,7 +26,7 @@ export const Learn = () => {
 								/>
 							))}
 							<SubjectCard
-								className={styles.learnItem}
+								className="Learn__item"
 								type="short"
 								title="Полный каталог дисциплин"
 								modulesCount={26}

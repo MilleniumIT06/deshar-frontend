@@ -1,4 +1,4 @@
-.index {
+.AttestationItem {
 	border-radius: 24px;
 	margin-top: 20px;
 	padding: 16px;
@@ -18,6 +18,11 @@
 		line-height: 143%;
 		color: var(--neutral-darkest);
 	}
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+	}
 	&__title {
 		font-family: var(--font-family);
 		font-weight: 400;
@@ -33,9 +38,4 @@
 		background: var(--neutral-white);
 		padding: 14px;
 	}
-}
-.inner {
-	display: flex;
-	flex-direction: column;
-	align-items: start;
 }

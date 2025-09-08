@@ -2,15 +2,15 @@ import Link from 'next/link'
 
 import { LessonProgressCard } from '@/widgets/LessonProgressCard'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const Continue = () => {
 	return (
-		<section className={styles.continue}>
+		<section className="Continue">
 			<div className="container">
-				<div className={styles.continue__inner}>
+				<div className="Continue__inner">
 					<h2 className="section__title">Продолжим обучение</h2>
-					<div className={styles.continue__subjects}>
+					<div className="Continue__subjects">
 						<LessonProgressCard
 							countOfFinishedModules={7}
 							countOfLeftModules={11}
@@ -26,8 +26,8 @@ export const Continue = () => {
 							title="История"
 						/>
 					</div>
-					<div className={styles.continue__footer}>
-						<Link href="/completed-courses" className={styles.continue__link}>
+					<div className="Continue__footer">
+						<Link href="/completed-courses" className="Continue__link">
 							Открыть выполненые дисциплины
 						</Link>
 					</div>

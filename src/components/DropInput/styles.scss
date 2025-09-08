@@ -1,4 +1,4 @@
-.index {
+.DropInput {
 	width: 32px;
 	height: 32px;
 	border-radius: 12px;
@@ -12,10 +12,10 @@
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-}
-.error {
-	border: 2px solid red;
-}
-.wrapper {
-	display: inline-flex;
+	&__error {
+		border: 2px solid red;
+	}
+	&__wrapper {
+		display: inline-flex;
+	}
 }

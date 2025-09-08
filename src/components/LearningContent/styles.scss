@@ -1,4 +1,4 @@
-.index {
+.LearningContent {
 	border-radius: 32px;
 	padding: 32px;
 	width: 904px;
@@ -84,15 +84,15 @@
 			gap: 10px;
 		}
 	}
-}
-.content {
-	margin-top: 30px;
-	&__inner {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+	&__content {
+		margin-top: 30px;
+		&_inner {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
 	}
-}
-.list {
-	list-style: none;
+	&__list {
+		list-style: none;
+	}
 }

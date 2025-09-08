@@ -11,7 +11,7 @@ import { MoveBox } from '@/components/MoveBox'
 import { TrainerWrapper } from '@/components/TrainerWrapper'
 import { useDragDropWord } from '@/shared/hooks/useDragDropWord'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export interface ISlot {
 	id: string | number
@@ -55,13 +55,13 @@ export const DragDropTrainer = ({ data }: { data: IMissingWordDndTask }) => {
 			isButtonDisabled={isButtonDisabled}
 			completed={completed}
 			title="Перетащите пропущенные буквы в предложении из вариантов ниже">
-			<div className={styles.index}>
+			<div className="DragDropTrainer">
 				<DndContext onDragEnd={handleDragEnd}>
-					<div className={styles.index__inner}>
-						<div className={styles.index__content}>{renderSentence()}</div>
+					<div className="DragDropTrainer__inner">
+						<div className="DragDropTrainer__content">{renderSentence()}</div>
 
-						<div className={styles.index__variants}>
-							<ul className={cn('list-reset', styles.index__list)}>
+						<div className="DragDropTrainer__variants">
+							<ul className={cn('list-reset', 'DragDropTrainer__list')}>
 								{letters.map(value => (
 									<MoveBox
 										key={`key-${value.id}+${value.char}`}

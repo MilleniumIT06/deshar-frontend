@@ -1,7 +1,7 @@
 'use client'
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const StepCounter = ({
 	active = false,
@@ -16,9 +16,7 @@ export const StepCounter = ({
 	handleClick: () => void
 }) => {
 	return (
-		<li
-			className={cn(styles.index, active && styles.active, completed && styles.completed)}
-			onClick={handleClick}>
+		<li className={cn('StepCounter', active && 'active', completed && 'completed')} onClick={handleClick}>
 			{content}
 		</li>
 	)
