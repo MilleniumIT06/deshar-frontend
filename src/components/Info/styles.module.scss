@@ -44,7 +44,7 @@
 		font-family: var(--font-family);
 		font-weight: 700;
 		font-size: 92px;
-		color: var(--text-color);
+		color: var(--primary-medium);
 
 		@include breakpoint.pre-mobile {
 			font-size: 71px;
@@ -57,7 +57,7 @@
 		font-size: 16px;
 		line-height: 175%;
 		text-align: center;
-		color: var(--text-color);
+		color: var(--neutral-black);
 
 		@include breakpoint.pre-mobile {
 			font-size: 12px;
