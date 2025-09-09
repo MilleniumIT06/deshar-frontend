@@ -6,7 +6,7 @@ import { ProgressBar } from '@/shared/ui/ProgressBar'
 
 import { AttestationBar } from '../AttestationBar'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const ModuleCard = ({
 	doneLessons,
@@ -24,19 +24,19 @@ export const ModuleCard = ({
 	processLessons: number
 }) => {
 	return (
-		<div className={cn(styles.ModuleCard, doneLessons === maxLessons && styles.ModuleCard__done)}>
-			<div className={styles.ModuleCard__inner}>
-				<div className={styles.ModuleCard__top}>
-					<div className={styles.ModuleCard__header}>
-						<span className={styles.ModuleCard__suptitle}>Модуль {number}</span>
+		<div className={cn('ModuleCard', doneLessons === maxLessons && 'ModuleCard__done')}>
+			<div className="ModuleCard__inner">
+				<div className="ModuleCard__top">
+					<div className="ModuleCard__header">
+						<span className="ModuleCard__suptitle">Модуль {number}</span>
 					</div>
-					<div className={styles.ModuleCard__body}>
+					<div className="ModuleCard__body">
 						<Link href={`/learning/${id}`}>
-							<h6 className={styles.ModuleCard__title}>{title}</h6>
+							<h6 className="ModuleCard__title">{title}</h6>
 						</Link>
 					</div>
 				</div>
-				<div className={styles.ModuleCard__footer}>
+				<div className="ModuleCard__footer">
 					<ProgressBar
 						maxLessons={maxLessons}
 						doneLessons={doneLessons}

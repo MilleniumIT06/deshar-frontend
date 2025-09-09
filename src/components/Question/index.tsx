@@ -1,14 +1,14 @@
 import { Button } from '@/shared/ui/Button'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const Question = () => {
 	return (
-		<section className={styles.index}>
+		<section className="Question">
 			<div className="container">
-				<div className={styles.index__inner}>
-					<h3 className={styles.index__title}>Остались вопросы&nbsp;&mdash; ответим!</h3>
-					<Button variant="primary" size="big" className={styles.index__btn}>
+				<div className="Question__inner">
+					<h3 className="Question__title">Остались вопросы&nbsp;&mdash; ответим!</h3>
+					<Button variant="primary" size="big" className="Question__btn">
 						Задать вопрос
 					</Button>
 				</div>

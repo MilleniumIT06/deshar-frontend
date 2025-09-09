@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 const IncreaseIcon = () => (
 	<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -36,8 +36,8 @@ export const ResultsCard = ({
 	value: string | number
 }) => {
 	return (
-		<div className={styles.index} key={id}>
-			<h6 className={styles.index__title}>
+		<div className="ResultsCard" key={id}>
+			<h6 className="ResultsCard__title">
 				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M8 12.6413L10.6027 15L16 10"
@@ -50,16 +50,16 @@ export const ResultsCard = ({
 				</svg>
 				{title}
 			</h6>
-			<div className={styles.index__info}>
-				<span className={styles.index__points}>{points}</span>
-				<div className={cn(styles.index__percent, type === 'increase' ? styles.increase : styles.decrease)}>
+			<div className="ResultsCard__info">
+				<span className="ResultsCard__points">{points}</span>
+				<div className={cn('ResultsCard__percent', type === 'increase' ? 'increase' : 'decrease')}>
 					{type === 'increase' ? <IncreaseIcon /> : <DecreaseIcon />}
 					<span>{type === 'increase' ? `+${percent}%` : `-${percent}%`}</span>
 				</div>
 			</div>
-			<div className={styles.index__summary}>
-				<span className={styles.index__summary_value}>{value}</span>
-				<span className={styles.index__summary_period}>в прошлые {period} дней</span>
+			<div className="ResultsCard__summary">
+				<span className="ResultsCard__summary_value">{value}</span>
+				<span className="ResultsCard__summary_period">в прошлые {period} дней</span>
 			</div>
 		</div>
 	)

@@ -1,0 +1,46 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
+@use '@/shared/scss/mini' as mini;
+
+.Reviews {
+	min-height: 500px;
+
+	@include mini.image-set-png('/images/Reviews/bg');
+
+	background-position: right 150px top 10px;
+	background-size: 400px 400px;
+	background-repeat: no-repeat;
+	&__slider {
+		&_wrapper {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+			gap: 30px;
+		}
+		&_pagination {
+			position: initial;
+			display: none;
+
+			@include breakpoint.post-tablet {
+				display: block;
+
+				.swiper-pagination-bullet {
+					background-color: var(--primary-medium);
+				}
+			}
+		}
+		&_navigation {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+
+			@include breakpoint.post-tablet {
+				display: none;
+			}
+		}
+	}
+	&__inner {
+		padding-top: 100px;
+		padding-bottom: 100px;
+	}
+}

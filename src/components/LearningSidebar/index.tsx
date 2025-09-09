@@ -8,7 +8,7 @@ import { LessonItem } from '@/components/LessonItem'
 import { changeId } from '@/entities/learning/model/slice'
 import { Button } from '@/shared/ui/Button'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const LearningSidebar = () => {
 	const [page, setPage] = useState(0)
@@ -71,14 +71,14 @@ export const LearningSidebar = () => {
 	const hasNextPage = endIndex < lessons.length
 
 	return (
-		<div className={styles.index}>
-			<div className={styles.inner}>
-				<div className={styles.index_wrapper}>
-					<h5 className={styles.title}>Уроки</h5>
-					<div className={styles.content}>
+		<div className="LearningSidebar">
+			<div className="LearningSidebar__inner">
+				<div className="LearningSidebar__wrapper">
+					<h5 className="LearningSidebar__title">Уроки</h5>
+					<div className="LearningSidebar__content">
 						{hasPreviousPage && (
 							<Button
-								className={styles.showBtn}
+								className="LearningSidebar__showBtn"
 								variant="secondary"
 								size="medium"
 								fullWidth
@@ -87,7 +87,7 @@ export const LearningSidebar = () => {
 							</Button>
 						)}
 
-						<ul className={styles.list}>
+						<ul className="LearningSidebar__list">
 							{paginatedLessons.map((lesson, index) => {
 								const lessonIndex = startIndex + index
 								return (
@@ -107,7 +107,7 @@ export const LearningSidebar = () => {
 
 						{hasNextPage && (
 							<Button
-								className={styles.showBtn}
+								className="LearningSidebar__showBtn"
 								variant="secondary"
 								size="medium"
 								fullWidth
@@ -117,8 +117,8 @@ export const LearningSidebar = () => {
 						)}
 					</div>
 				</div>
-				<div className={styles.bottom}>
-					<h5 className={styles.title}>Аттестация</h5>
+				<div className="LearningSidebar__bottom">
+					<h5 className="LearningSidebar__title">Аттестация</h5>
 					<AttestationItem
 						max={data.length}
 						current={numberOfCompletedTasks}

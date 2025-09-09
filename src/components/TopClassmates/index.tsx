@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react'
 import { TEST_CLASSMATES, TEST_PARALLEL } from '@/mocks/data'
 import { Tabs } from '@/shared/ui/Tabs'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 import { Table } from './Table'
 
 export interface StudentData {
@@ -33,9 +33,9 @@ export const TopClassmates = () => {
 	}, [activeTab])
 
 	return (
-		<section className={styles.topClassmates}>
+		<section className="topClassmates">
 			<div className="container">
-				<div className={styles.topClassmates__inner}>
+				<div className="topClassmates__inner">
 					<h2 className="section__title">Самые активные одноклассники</h2>
 
 					<Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={TABS} />

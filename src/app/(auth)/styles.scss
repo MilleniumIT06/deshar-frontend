@@ -1,0 +1,29 @@
+.Logo {
+	position: absolute;
+	left: 3%;
+	top: 3%;
+}
+.AuthIndex {
+	height: 100vh;
+	background: var(--neutral-lightest);
+}
+
+.Auth__inner {
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+}
+
+.signIn {
+	background-image: url('/signInBg.png');
+	background-size: 966px 552px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.signUp {
+	background-image: url('/signUpBg.png');
+	background-size: 860px 577px;
+	background-position: center;
+	background-repeat: no-repeat;
+}

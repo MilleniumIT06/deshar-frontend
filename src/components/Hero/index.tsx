@@ -5,22 +5,22 @@ import cn from 'classnames'
 
 import { Button } from '@/shared/ui/Button'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const Hero = () => {
 	return (
-		<section className={styles.index}>
-			<div className={cn('container', styles.heroContainer)}>
-				<div className={styles.inner}>
-					<div className={styles.info}>
-						<h1 className={styles.title}>Учимся онлайн в&nbsp;пару кликов</h1>
+		<section className="Hero">
+			<div className={cn('container', 'Hero__container')}>
+				<div className="Hero__inner">
+					<div className="Hero__info">
+						<h1 className="Hero__title">Учимся онлайн в&nbsp;пару кликов</h1>
 						<p>Бесплатные вводые уроки на&nbsp;первые 14&nbsp;учебных дней</p>
 
-						<Button asChild variant="secondary" className={styles.heroBtn}>
+						<Button asChild variant="secondary" className="Hero__btn">
 							<Link href="/dashboard">Записаться</Link>
 						</Button>
 					</div>
-					<div className={styles.image}>
+					<div className="Hero__image">
 						<Image src="/images/Hero/hero_image.png" alt="Hero image" width={481} height={485} />
 					</div>
 				</div>

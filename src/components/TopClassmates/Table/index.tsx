@@ -1,6 +1,6 @@
 import { TableItem } from '../TableItem'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 interface Student {
 	id: number
@@ -26,13 +26,13 @@ export const Table = ({ data }: TableProps) => {
 	const { type, students } = data
 
 	if (!students || students.length === 0) {
-		return <div className={styles.emptyTable}>Данные для отображения отсутствуют</div>
+		return <div className="emptyTable">Данные для отображения отсутствуют</div>
 	}
 
 	return (
-		<table className={styles.Table}>
+		<table className="Table">
 			<thead>
-				<tr className={styles.Table__header}>
+				<tr className="Table__header">
 					<th>Место</th>
 					<th>Ученик</th>
 					{type === 'parallel' && <th>Класс</th>}

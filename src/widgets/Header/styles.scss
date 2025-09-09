@@ -1,0 +1,79 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
+@use '@/shared/scss/mini' as mini;
+
+.Header {
+	position: relative;
+	border-bottom: 1px solid var(--neutral-light);
+	width: 100%;
+	height: 75px;
+	&__burger {
+		@include mini.burger;
+
+		z-index: 110;
+		display: none;
+
+		&.burger--active {
+			color: var(--neutral-white);
+		}
+
+		@include breakpoint.middle-tablet {
+			display: block;
+		}
+	}
+	&__nav {
+		@include breakpoint.middle-tablet {
+			display: none;
+		}
+	}
+	&__container {
+		height: 100%;
+	}
+	&__list {
+		display: flex;
+		align-items: center;
+		gap: 43px;
+	}
+	&__list_item {
+		a {
+			font-family: var(--font-family);
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 175%;
+			color: #202020;
+
+			&:hover {
+				color: var(--primary-medium);
+			}
+
+			&:focus-visible {
+				outline: 2px solid var(--primary-medium);
+			}
+		}
+	}
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 100%;
+
+		@include breakpoint.middle-tablet {
+			justify-content: start;
+		}
+		.headerBtn {
+			height: 43px;
+			padding: 12px 23px;
+			border-radius: 20px;
+			font-family: var(--font-family);
+			font-weight: 600;
+			font-size: 16px;
+			color: var(--neutral-white);
+			@include breakpoint.middle-tablet {
+				margin-right: 5%;
+			}
+
+			@include breakpoint.small-mobile {
+				display: none;
+			}
+		}
+	}
+}

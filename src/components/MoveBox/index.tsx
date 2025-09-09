@@ -2,7 +2,7 @@
 import { useDraggable } from '@dnd-kit/core'
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const MoveBox = ({ id, char = 'a', isDisabled }: { id: number | string; char: string; isDisabled: boolean }) => {
 	const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
@@ -17,16 +17,16 @@ export const MoveBox = ({ id, char = 'a', isDisabled }: { id: number | string; c
 			}
 		: undefined
 	return (
-		<li className={styles.wrapper}>
+		<li className="MoveBox__wrapper">
 			<span
-				className={cn(styles.index, isDisabled && styles.disabled, isDragging && styles.dragging)}
+				className={cn('MoveBox', isDisabled && 'disabled', isDragging && 'dragging')}
 				style={style}
 				{...listeners}
 				{...attributes}
 				ref={setNodeRef}>
 				{char}
 			</span>
-			{isDragging && <span className={cn(styles.index, styles.disabled)}>{char}</span>}
+			{isDragging && <span className="MoveBox disabled">{char}</span>}
 		</li>
 	)
 }

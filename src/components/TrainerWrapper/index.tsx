@@ -6,7 +6,7 @@ import { changeStatus } from '@/entities/learning/model/status.slice'
 import { Button } from '@/shared/ui/Button'
 import { Notification } from '@/shared/ui/Notification'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const TrainerWrapper = ({
 	title = 'test',
@@ -35,10 +35,10 @@ export const TrainerWrapper = ({
 		redirect(`/attestation-result`, RedirectType.replace)
 	}
 	return (
-		<div className={styles.index}>
-			<div className={styles.index__inner}>
-				<h6 className={styles.index__title}>{title}</h6>
-				<div className={styles.index__content}>{children}</div>
+		<div className={'TrainerWrapper'}>
+			<div className={'TrainerWrapper__inner'}>
+				<h6 className={'TrainerWrapper__title'}>{title}</h6>
+				<div className={'TrainerWrapper__content'}>{children}</div>
 
 				{hasError && (
 					<Notification
@@ -48,7 +48,7 @@ export const TrainerWrapper = ({
 						successMessage="Success"
 					/>
 				)}
-				<div className={styles.index__footer}>
+				<div className={'TrainerWrapper__footer'}>
 					<Button variant="secondary" size="small">
 						Назад
 					</Button>

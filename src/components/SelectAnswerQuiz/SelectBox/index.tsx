@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const SelectBox = ({
 	title = 'test',
@@ -12,7 +12,7 @@ export const SelectBox = ({
 	handleSelect: () => void
 }) => {
 	return (
-		<li className={cn(styles.index, selected && styles.selected)} onClick={handleSelect}>
+		<li className={cn('SelectBox', selected && 'selected')} onClick={handleSelect}>
 			{title}
 		</li>
 	)

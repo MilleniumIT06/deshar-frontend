@@ -6,7 +6,7 @@ import { type IMissingWordTask } from '@/components/LearningContent'
 import { TrainerWrapper } from '@/components/TrainerWrapper'
 import { useMissedWord } from '@/shared/hooks/useMissedWord'
 
-import styles from './index.module.scss'
+import './styles.scss'
 
 export const MissedLetterTrainer = ({ data }: { data: IMissingWordTask }) => {
 	const dispatch = useAppDispatch()
@@ -28,7 +28,7 @@ export const MissedLetterTrainer = ({ data }: { data: IMissingWordTask }) => {
 			isButtonDisabled={isButtonDisabled}
 			completed={completed}
 			title="Впишите пропущенные буквы в следующем предложении">
-			<div className={styles.index}>{renderSentence()}</div>
+			<div className="MissedLetterTrainer">{renderSentence()}</div>
 		</TrainerWrapper>
 	)
 }

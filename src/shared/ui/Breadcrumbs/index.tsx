@@ -3,7 +3,7 @@ import Link from 'next/link'
 import cn from 'classnames'
 import { ChevronRight } from 'lucide-react'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export interface BreadcrumbItem {
 	label: string
@@ -20,27 +20,27 @@ export const Breadcrumbs = ({ items, separator = <ChevronRight size={20} />, cla
 	if (!items || items.length === 0) return null
 
 	return (
-		<nav className={cn(styles.BreadcrumbsContainer, className)} aria-label="Хлебные крошки">
-			<ol className={cn('list-reset', styles.BreadcrumbsList)}>
+		<nav className={cn('Breadcrumbs__container', className)} aria-label="Хлебные крошки">
+			<ol className={cn('list-reset', 'Breadcrumbs__list')}>
 				{items.map((item, index) => {
 					const isLast = index === items.length - 1
 
 					return (
 						<li
 							key={index}
-							className={cn(styles.BreadcrumbsItem, {
-								[styles.current]: isLast,
+							className={cn('Breadcrumbs__item', {
+								current: isLast,
 							})}
 							aria-current={isLast ? 'page' : undefined}>
 							{item.href && !isLast ? (
-								<Link href={item.href} className={styles.BreadcrumbsLink}>
+								<Link href={item.href} className="Breadcrumbs__link">
 									{item.label}
 								</Link>
 							) : (
-								<span className={styles.BreadcrumbsText}>{item.label}</span>
+								<span className="Breadcrumbs__text">{item.label}</span>
 							)}
 
-							{!isLast && <span className={styles.BreadcrumbsSeparator}>{separator}</span>}
+							{!isLast && <span className="Breadcrumbs__separator">{separator}</span>}
 						</li>
 					)
 				})}

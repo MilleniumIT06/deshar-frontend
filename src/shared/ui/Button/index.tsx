@@ -4,34 +4,34 @@ import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
-const buttonVariants = cva(styles.index, {
+const buttonVariants = cva('Button', {
 	variants: {
 		variant: {
-			default: styles.primary,
-			primary: styles.primary,
-			secondary: styles.secondary,
-			iconPrimary: styles.iconPrimary,
-			iconSecondary: styles.iconSecondary,
-			iconThird: styles.iconThird,
+			default: 'Button__primary',
+			primary: 'Button__primary',
+			secondary: 'Button__secondary',
+			iconPrimary: 'Button__iconPrimary',
+			iconSecondary: 'Button__iconSecondary',
+			iconThird: 'Button__iconThird',
 		},
 		size: {
-			default: styles.big,
-			big: styles.big,
-			medium: styles.medium,
-			small: styles.small,
-			iconBig: styles.iconBig,
-			iconSmall: styles.iconSmall,
+			default: 'Button__big',
+			big: 'Button__big',
+			medium: 'Button__medium',
+			small: 'Button__small',
+			iconBig: 'Button__iconBig',
+			iconSmall: 'Button__iconSmall',
 		},
 		loading: {
-			true: styles.loading,
+			true: 'Button__loading',
 		},
 		fullWidth: {
-			true: styles.fullWidth,
+			true: 'Button__fullWidth',
 		},
 		isDisabled: {
-			true: styles.disabled,
+			true: 'Button__disabled',
 		},
 	},
 	defaultVariants: {
@@ -68,9 +68,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 		const Comp = asChild ? Slot : 'button'
 
 		const content = loading ? (
-			<span className={styles.loadingContent}>
-				<span className={styles.loader} aria-hidden="true">
-					<svg className={styles.spinner} viewBox="0 0 50 50">
+			<span className="Button__loadingContent">
+				<span className="Button__loader" aria-hidden="true">
+					<svg className="Button__spinner" viewBox="0 0 50 50">
 						<circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" strokeWidth="4" />
 					</svg>
 				</span>

@@ -1,10 +1,10 @@
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const CoursesBlock = ({ children, title }: { children: React.ReactNode; title: string }) => {
 	return (
-		<div className={styles.CoursesBlock}>
-			<h3 className={styles.title}>{title}</h3>
-			<ul className={styles.Cards}>{children}</ul>
+		<div className="CoursesBlock">
+			<h3 className="CoursesBlock__title">{title}</h3>
+			<ul className="CoursesBlock__cards">{children}</ul>
 		</div>
 	)
 }

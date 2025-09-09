@@ -1,0 +1,55 @@
+@use './../../scss/breakpoint' as breakpoint;
+.Logo {
+	&__container {
+		display: inline-block;
+		line-height: 0;
+
+		&.small {
+			width: 134px;
+			height: 20px;
+		}
+
+		&.large {
+			width: 188px;
+			height: 28px;
+		}
+
+		&.responsive {
+			width: 100%;
+			max-width: 188px;
+			height: auto;
+			aspect-ratio: 188 / 38;
+		}
+		@include breakpoint.middle-tablet {
+			margin-right: auto;
+		}
+	}
+	&__link {
+		display: inline-block;
+		outline: none;
+		&:focus-visible {
+			outline: 2px solid var(--primary-medium);
+			outline-offset: 2px;
+		}
+	}
+	&__image_wrapper {
+		display: inline-block;
+
+		&.responsive {
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
+	}
+	&__image {
+		object-fit: contain;
+
+		.responsive & {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}

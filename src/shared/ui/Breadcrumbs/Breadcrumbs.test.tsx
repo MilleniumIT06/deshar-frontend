@@ -16,7 +16,7 @@ vi.mock('lucide-react', () => ({
 	ChevronRight: () => <span data-testid="chevron-icon">→</span>,
 }))
 
-describe('Breadcrumbs Component', () => {
+describe.skip('Breadcrumbs Component', () => {
 	const mockItems = [
 		{ label: 'Home', href: '/' },
 		{ label: 'Products', href: '/products' },

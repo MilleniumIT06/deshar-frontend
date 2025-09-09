@@ -3,34 +3,32 @@ import { useState } from 'react'
 
 import Link from 'next/link'
 
-import cn from 'classnames'
-
 import { Avatar } from '@/shared/ui/Avatar'
 import { Button } from '@/shared/ui/Button'
 import { Logo } from '@/shared/ui/Logo'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const Header = () => {
 	const [authed] = useState(true)
 	return (
-		<header className={styles.index}>
-			<div className={cn('container', styles.headerContainer)}>
-				<div className={styles.inner}>
+		<header className="Header">
+			<div className="container Header__container">
+				<div className="Header__inner">
 					<Logo size="large" />
-					<nav className={styles.headerNav}>
-						<ul className={`list-reset ${styles.list}`}>
-							<li className={styles.listItem}>
+					<nav className="Header__nav">
+						<ul className={`list-reset Header__list`}>
+							<li className="Header__list_item">
 								<Link href="/courses" tabIndex={2}>
 									Уроки
 								</Link>
 							</li>
-							<li className={styles.listItem}>
+							<li className="Header__list_item">
 								<Link href="/attestation/1" tabIndex={3}>
 									Аттестация
 								</Link>
 							</li>
-							<li className={styles.listItem}>
+							<li className="Header__list_item">
 								<Link href="#" tabIndex={4}>
 									Контакты
 								</Link>
@@ -40,16 +38,16 @@ export const Header = () => {
 					{authed ? (
 						<Avatar />
 					) : (
-						<Button variant="primary" size="small" className={styles.headerBtn} tabIndex={6}>
+						<Button variant="primary" size="small" className="Header__btn" tabIndex={6}>
 							Войти
 						</Button>
 					)}
 					<button
-						className={cn('btn-reset', styles.headerBurger)}
+						className="btn-reset Header__burger"
 						aria-label="Открыть меню"
 						aria-expanded="false"
 						data-burger>
-						<span className={styles.burgerLine} />
+						<span className="Header__line" />
 					</button>
 				</div>
 			</div>

@@ -4,26 +4,20 @@ import { useState, useCallback } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
-const inputVariants = cva(styles.base, {
+const inputVariants = cva('Input', {
 	variants: {
 		variant: {
-			primary: styles.primary,
-			secondary: styles.secondary,
-		},
-		size: {
-			sm: styles.sm,
-			md: styles.md,
-			lg: styles.lg,
+			primary: 'primary',
+			secondary: 'secondary',
 		},
 		fullWidth: {
-			true: styles.fullWidth,
+			true: 'fullWidth',
 		},
 	},
 	defaultVariants: {
 		variant: 'primary',
-		size: 'md',
 	},
 })
 
@@ -38,7 +32,6 @@ export interface InputProps
 
 const Input = ({
 	variant,
-	size,
 	fullWidth,
 	className,
 	type,
@@ -61,19 +54,19 @@ const Input = ({
 	return (
 		<div
 			className={cn(
-				inputVariants({ variant, size, fullWidth, className }),
-				{ [styles.error]: error },
-				{ [styles.passwordInput]: isPassword },
+				inputVariants({ variant, fullWidth, className }),
+				{ ['error']: error },
+				{ ['passwordInput']: isPassword },
 			)}>
-			{startAdornment && <span className={styles.startAdornment}>{startAdornment}</span>}
+			{startAdornment && <span className="Input__startAdornment">{startAdornment}</span>}
 
-			<input className={styles.input} type={inputType} aria-invalid={error} {...props} />
+			<input className="Input__input" type={inputType} aria-invalid={error} {...props} />
 
 			{showVisibilityToggle && (
 				<button
 					data-testid="button-test"
 					type="button"
-					className={styles.visibilityButton}
+					className="Input__visibilityButton"
 					onClick={togglePasswordVisibility}
 					aria-label={showPassword ? 'Hide password' : 'Show password'}
 					// tabIndex={-1} // Предотвращает фокусировку при табинге
@@ -112,8 +105,8 @@ const Input = ({
 				</button>
 			)}
 
-			{!isPassword && endAdornment && <span className={styles.endAdornment}>{endAdornment}</span>}
-			{validationMessage && <span className={styles.validationMessage}>{validationMessage}</span>}
+			{!isPassword && endAdornment && <span className="Input__endAdornment">{endAdornment}</span>}
+			{validationMessage && <span className="Input__validationMessage">{validationMessage}</span>}
 		</div>
 	)
 }

@@ -7,14 +7,14 @@ import Link from 'next/link'
 import { cva, type VariantProps } from 'class-variance-authority'
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
-const subjectCardVariants = cva(styles.SubjectCard, {
+const subjectCardVariants = cva('SubjectCard', {
 	variants: {
 		type: {
-			default: styles.long,
-			long: styles.long,
-			short: styles.short,
+			default: 'long',
+			long: 'long',
+			short: 'short',
 		},
 	},
 	defaultVariants: {
@@ -78,21 +78,21 @@ const SubjectCard = ({
 
 	return (
 		<li className={cn(subjectCardVariants({ type, className }))}>
-			<div className={styles.SubjectCard__header}>
-				<h6 className={styles.SubjectCard__title}>
+			<div className="SubjectCard__header">
+				<h6 className="SubjectCard__title">
 					<Link href={linkHref} passHref>
 						{title}
 					</Link>
 				</h6>
 
-				<span className={styles.SubjectCard__modules}>{modulesText}</span>
+				<span className="SubjectCard__modules">{modulesText}</span>
 			</div>
 
 			{type === 'long' && (
-				<div className={styles.SubjectCard__body}>
-					<p className={styles.SubjectCard__description}>{description}</p>
+				<div className="SubjectCard__body">
+					<p className="SubjectCard__description">{description}</p>
 
-					<div className={styles.SubjectCard__image}>
+					<div className="SubjectCard__image">
 						<Image
 							src={imageError ? FALLBACK_IMAGE : `/${validImageUrl}.png`}
 							alt={imageError ? 'Изображение заглушка' : `Изображение курса: ${title}`}

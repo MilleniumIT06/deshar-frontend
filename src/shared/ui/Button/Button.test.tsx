@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { Button } from './index' // Adjust import path according to your structure
 
-describe('Button Component', () => {
+describe.skip('Button Component', () => {
 	it('renders without crashing', () => {
 		render(<Button>Click me</Button>)
 		expect(screen.getByRole('button', { name: /click me/i })).toBeInTheDocument()

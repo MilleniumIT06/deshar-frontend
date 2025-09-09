@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 import { Button } from '@/shared/ui/Button'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 const CHECK_ICON = (
 	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,13 +12,13 @@ const CHECK_ICON = (
 	</svg>
 )
 
-const RateCardVariants = cva(styles.index, {
+const RateCardVariants = cva('RateCard', {
 	variants: {
 		variant: {
-			default: styles.itemPrimary,
-			free: styles.itemPrimary,
-			standart: styles.itemSecondary,
-			premium: styles.itemTertiary,
+			default: 'RateCard--primary',
+			free: 'RateCard--primary',
+			standart: 'RateCard--secondary',
+			premium: 'RateCard--tertiary',
 		},
 	},
 	defaultVariants: {
@@ -50,14 +50,14 @@ const RateCard = ({
 
 	return (
 		<li className={cn(RateCardVariants({ variant, className }))}>
-			<div className={styles.header}>
-				<h6 className={styles.title}>{title}</h6>
+			<div className="RateCard__header">
+				<h6 className="RateCard__title">{title}</h6>
 			</div>
 
-			<div className={styles.body}>
-				<ul className={cn('list-reset', styles.info)}>
+			<div className="RateCard__body">
+				<ul className="list-reset RateCard__info">
 					{info.map(item => (
-						<li key={item.id} className={styles.infoItem}>
+						<li key={item.id} className="RateCard__info_item">
 							{CHECK_ICON}
 							<span>{item.content}</span>
 						</li>
@@ -65,19 +65,19 @@ const RateCard = ({
 				</ul>
 			</div>
 
-			<div className={styles.footer}>
-				<span className={styles.footerPrice}>{formattedPrice}</span>
+			<div className="RateCard__footer">
+				<span className="RateCard__footer_price">{formattedPrice}</span>
 				<Button
 					variant={variant !== 'free' ? 'secondary' : 'primary'}
 					size="medium"
-					className={styles.subscriptionBtn}
+					className="RateCard__subscription_btn"
 					onClick={onSelect}>
 					{buttonText}
 				</Button>
 			</div>
 
 			{discount && (
-				<div className={styles.discount}>
+				<div className="RateCard__discount">
 					<span>-{discount}%</span>
 				</div>
 			)}

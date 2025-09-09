@@ -2,7 +2,7 @@ import cn from 'classnames'
 
 import { ProgressBar } from '@/shared/ui/ProgressBar'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 interface AttestationItemProps {
 	max?: number
@@ -15,12 +15,12 @@ export const AttestationItem = ({ max = 5, current = 1, active = false }: Attest
 	const normalizedCurrent = Math.min(Math.max(current, 0), normalizedMax)
 
 	return (
-		<div className={cn(styles.index, active && styles.active)} aria-current={active ? 'step' : undefined}>
-			<div className={styles.inner}>
-				<div className={styles.index__top}>
-					<span className={styles.index__title}>Прогресс</span>
+		<div className={cn('AttestationItem', active && 'active')} aria-current={active ? 'step' : undefined}>
+			<div className="AttestationItem__inner">
+				<div className="AttestationItem__top">
+					<span className="AttestationItem__title">Прогресс</span>
 					<div
-						className={styles.index__counter}
+						className="AttestationItem__counter"
 						aria-label={`Текущий прогресс: ${normalizedCurrent} из ${normalizedMax}`}>
 						<span>{normalizedCurrent}</span>/<span>{normalizedMax}</span>
 					</div>
@@ -29,7 +29,7 @@ export const AttestationItem = ({ max = 5, current = 1, active = false }: Attest
 					maxLessons={normalizedMax}
 					doneLessons={0}
 					processLessons={normalizedCurrent}
-					className={styles.index__bar}
+					className={'AttestationItem__bar'}
 				/>
 			</div>
 		</div>

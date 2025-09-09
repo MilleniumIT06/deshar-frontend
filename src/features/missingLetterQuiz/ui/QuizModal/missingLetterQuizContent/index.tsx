@@ -8,7 +8,7 @@ import { useMissedWord } from '@/shared/hooks/useMissedWord'
 import { Button } from '@/shared/ui/Button'
 import { Notification } from '@/shared/ui/Notification'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const QuizContent = ({
 	onClose,
@@ -50,14 +50,14 @@ export const QuizContent = ({
 	})
 	const dispatch = useAppDispatch()
 	return (
-		<div className={styles.index__inner}>
-			<div className={styles.index__top}>
-				<h6 className={styles.index__title}>Впишите пропущенные буквы в следующем предложении</h6>
-				<div className={styles.index__content}>{renderSentence()}</div>
+		<div className="QuizContent__inner">
+			<div className="QuizContent__top">
+				<h6 className="QuizContent__title">Впишите пропущенные буквы в следующем предложении</h6>
+				<div className="QuizContent__content">{renderSentence()}</div>
 
 				{hasError && <Notification type="warning" fullWidth />}
 			</div>
-			<div className={styles.index__bottom}>
+			<div className="QuizContent__bottom">
 				<Button variant="secondary" size="medium" onClick={onClose}>
 					Отмена
 				</Button>

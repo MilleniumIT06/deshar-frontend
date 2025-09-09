@@ -4,20 +4,20 @@ import { courses } from '@/mocks/data'
 
 import { SubjectCard } from '../SubjectCard'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export const OtherSubjects = () => {
 	return (
-		<section className={styles.otherSubjects}>
+		<section className="OtherSubjects">
 			<div className="container">
-				<div className={styles.otherSubjects__inner}>
+				<div className="OtherSubjects__inner">
 					<h2 className="section__title">Другие дисциплины</h2>
-					<div className={styles.otherSubjects__top}>
-						<ul className={cn('list-reset', styles.otherSubjects__list, styles.subjectsList)}>
+					<div className="OtherSubjects__top">
+						<ul className={cn('list-reset', 'OtherSubjects__list', 'subjectsList')}>
 							{courses.map(course => (
 								<SubjectCard
 									key={course.id}
-									className={styles.otherSubjectsItem}
+									className="otherSubjectsItem"
 									type="short"
 									title={course.title}
 									description={course.description}
@@ -26,7 +26,7 @@ export const OtherSubjects = () => {
 								/>
 							))}
 							<SubjectCard
-								className={styles.otherSubjectsItem}
+								className="otherSubjectsItem"
 								type="short"
 								title="Полный каталог дисциплин"
 								modulesCount={26}

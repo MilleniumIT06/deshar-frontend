@@ -1,6 +1,6 @@
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs'
 
-import styles from './../styles.module.scss'
+import './../styles.scss'
 
 import type { Metadata } from 'next'
 
@@ -17,7 +17,7 @@ export default function AttestationResultLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<div className={styles.mainWrapper}>
+		<div className="mainWrapper">
 			<div className="container">
 				<Breadcrumbs
 					items={[
@@ -27,10 +27,10 @@ export default function AttestationResultLayout({
 						{ label: 'Морфемика', href: '/' },
 					]}
 				/>
-				<div className={styles.wrapper}>
-					<h1 className={styles.title}>Морфемика</h1>
+				<div className="wrapper">
+					<h1 className="title">Морфемика</h1>
 
-					<div className={styles.attestationResult__inner}>{children}</div>
+					<div className="attestationResult__inner">{children}</div>
 				</div>
 			</div>
 		</div>

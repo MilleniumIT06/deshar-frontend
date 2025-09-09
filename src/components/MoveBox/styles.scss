@@ -1,0 +1,32 @@
+.MoveBox {
+	border-radius: 12px;
+	padding: 12px;
+	width: 35px;
+	height: 32px;
+	background: var(--primary-lightest);
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 175%;
+	color: var(--neutral-darkest);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	&.disabled {
+		background: var(--primary-lightest);
+		opacity: 0.5;
+		cursor: default;
+	}
+	&.dragging {
+		position: absolute;
+		z-index: 10;
+		top: 0;
+		left: 0;
+	}
+	&__wrapper {
+		position: relative;
+	}
+}

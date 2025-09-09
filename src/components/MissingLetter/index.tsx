@@ -1,7 +1,7 @@
 'use client'
 import { useRef, useEffect } from 'react'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 const MissingLetter = ({
 	id = 999,
@@ -43,14 +43,14 @@ const MissingLetter = ({
 	const after = check && word.substring(letterIndex + 1)
 
 	return (
-		<span key={numberedID} className={`${styles.index} ${errors[numberedID] ? styles.index__error : ''}`}>
+		<span key={numberedID} className={`MissingLetter ${errors[numberedID] ? 'MissingLetter__error' : ''}`}>
 			{before}
 			<input
 				type="text"
 				value={inputValues[numberedID] || ''}
 				onChange={e => handleInputChange(numberedID, e.target.value)}
 				maxLength={1}
-				className={`${styles.index__input} ${errors[numberedID] ? styles.index__input_error : ''}`}
+				className={`MissingLetter__input ${errors[numberedID] ? 'MissingLetter__input_error' : ''}`}
 				aria-label={`Пропущенная буква в слове "${word}"`}
 			/>
 			{after}

@@ -4,23 +4,16 @@ import Image from 'next/image'
 
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 interface AvatarProps {
 	src?: string
 	name?: string
 	size?: 'small' | 'medium' | 'large'
-	online?: boolean
 	className?: string
 }
 
-export const Avatar = ({
-	src = '/avatar.png',
-	name = 'Заур П.',
-	size = 'medium',
-	online = false,
-	className,
-}: AvatarProps) => {
+export const Avatar = ({ src = '/avatar.png', name = 'Заур П.', size = 'medium', className }: AvatarProps) => {
 	const [imageError, setImageError] = useState(false)
 
 	const getInitials = () => {
@@ -39,25 +32,23 @@ export const Avatar = ({
 
 	const avatarSize = sizeMap[size]
 	return (
-		<div className={cn(styles.index, className)} tabIndex={6} data-testid="avatar">
-			<div className={cn(styles.avatar, styles[size])}>
+		<div className={cn('Avatar', className)} tabIndex={6} data-testid="avatar">
+			<div className={cn('Avatar__content', size)}>
 				{src && !imageError ? (
 					<Image
 						src={src}
 						alt={`Аватар ${name}`}
-						className={styles.image}
+						className="Avatar__image"
 						width={avatarSize}
 						height={avatarSize}
 						onError={() => setImageError(true)}
 					/>
 				) : (
-					<div className={styles.fallback}>{getInitials()}</div>
+					<div className="Avatar__fallback">{getInitials()}</div>
 				)}
-
-				{online && <span className={styles.onlineIndicator} data-testid="online-indicator" />}
 			</div>
 
-			{name && <span className={styles.name}>{name}</span>}
+			{name && <span className="Avatar__name">{name}</span>}
 		</div>
 	)
 }

@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 const SuccessIcon = () => (
 	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,13 +33,8 @@ export const Notification = ({
 	fullWidth?: boolean
 }) => {
 	return (
-		<div
-			className={cn(
-				styles.index,
-				type === 'success' ? styles.success : styles.warning,
-				fullWidth && styles.fullWidth,
-			)}>
-			<span className={styles.index__content}>
+		<div className={cn('Notification', type === 'success' ? 'success' : 'warning', fullWidth && 'fullWidth')}>
+			<span className="Notification__content">
 				{type === 'success' ? <SuccessIcon /> : <WarningIcon />}
 				{type === 'success' ? successMessage : warningMessage}
 			</span>

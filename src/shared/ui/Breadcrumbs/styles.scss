@@ -1,0 +1,48 @@
+.Breadcrumbs {
+	&__list {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	&__item {
+		position: relative;
+		padding: 12px 28px;
+		border: 1px solid var(--neutral-light);
+		border-radius: 32px;
+	}
+	&__separator {
+		position: absolute;
+		right: -20px;
+		top: 50%;
+		transform: translateY(-50%);
+		color: var(--neutral-medium);
+		display: flex;
+		align-items: center;
+	}
+	&__container {
+		padding: 12px 0;
+	}
+
+	&__link {
+		color: var(--text-secondary);
+		text-decoration: none;
+		transition: color 0.2s;
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 14px;
+		color: var(--neutral-darkest);
+
+		&:hover {
+			color: var(--text-primary);
+			text-decoration: underline;
+		}
+	}
+	&__text {
+		color: var(--text-secondary);
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 14px;
+		color: var(--neutral-darkest);
+	}
+}

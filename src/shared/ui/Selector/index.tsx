@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useId } from 'react'
 import cn from 'classnames'
 import { motion, AnimatePresence, easeInOut } from 'framer-motion'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 interface Option {
 	id: string
@@ -82,16 +82,16 @@ export const Selector = ({
 	return (
 		<div
 			ref={selectorRef}
-			className={cn(styles.selector, isOpen && styles.active)}
+			className={cn('Selector', isOpen && 'active')}
 			role="combobox"
 			aria-expanded={isOpen}
 			aria-haspopup="listbox"
 			aria-controls={listboxId} // Связь с выпадающим списком
 		>
-			<div className={styles.selector__header}>
+			<div className="Selector__header">
 				<span>{getCurrentLabel()}</span>
 				<button
-					className={cn('btn-reset', styles.selector__btn)}
+					className={cn('btn-reset', 'Selector__btn')}
 					onClick={() => setIsOpen(!isOpen)}
 					aria-label={isOpen ? 'Закрыть список' : 'Открыть список'}
 					aria-expanded={isOpen}>
@@ -113,19 +113,19 @@ export const Selector = ({
 			<AnimatePresence>
 				{isOpen && (
 					<motion.div
-						className={styles.selector__body}
+						className="Selector__body"
 						variants={dropdownVariants}
 						initial="closed"
 						animate="open"
 						exit="closed" // Критично для анимации закрытия
 					>
-						<div className={styles.selector__body_inner}>
-							<ul id={listboxId} className={cn('list-reset', styles.selector__list)}>
+						<div className="Selector__body_inner">
+							<ul id={listboxId} className={cn('list-reset', 'Selector__list')}>
 								{options.map(option => (
 									<li
 										key={option.id}
-										className={cn(styles.selector__list_item, {
-											[styles.selected]: option.id === selectedValue,
+										className={cn('Selector__list_item', {
+											selected: option.id === selectedValue,
 										})}
 										onClick={() => handleSelect(option.id)}>
 										<span>{option.label}</span>

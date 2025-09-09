@@ -1,0 +1,26 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
+@use '@/shared/scss/mini' as mini;
+.Subscription {
+	&__inner {
+		padding-bottom: 100px;
+	}
+	&__list {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		margin-top: 50px;
+		gap: 30px;
+
+		@include breakpoint.mobile {
+			flex-wrap: nowrap;
+			justify-content: start;
+			overflow-x: scroll;
+			padding-right: 20%;
+			padding-left: 15%;
+			width: 100%;
+			scroll-snap-type: x mandatory;
+			gap: 15%;
+		}
+	}
+}
