@@ -1,10 +1,10 @@
 import { AttestationResult } from '@/components/AttestationResult'
 
-import styles from './../styles.module.scss'
+import './../styles.scss'
 
 export default async function AttestationResultPage() {
 	return (
-		<main className={styles.main}>
+		<main className="main">
 			<AttestationResult />
 		</main>
 	)

@@ -1,12 +1,12 @@
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs'
 import { AllCourses } from '@/widgets/AllCourses'
 
-import styles from './../styles.module.scss'
+import './../styles.scss'
 
 export default function AllCoursesPage() {
 	return (
 		<main>
-			<div className={styles.inner}>
+			<div className="inner">
 				<div className="container">
 					<Breadcrumbs
 						items={[

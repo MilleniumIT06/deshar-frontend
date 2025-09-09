@@ -11,8 +11,13 @@ export const SignInForm = () => {
 			<div className="SignInForm__inner">
 				<h1 className="SignInForm__title">Вход в систему</h1>
 				<form className="SignInForm__form">
-					<Input type="email" placeholder="Введите логин или email" className="SignInForm__input" />
-					<Input type="password" placeholder="Введите пароль" className="SignInForm__input" />
+					<Input
+						fullWidth
+						type="email"
+						placeholder="Введите логин или email"
+						className="SignInForm__input"
+					/>
+					<Input fullWidth type="password" placeholder="Введите пароль" className="SignInForm__input" />
 					<Button className="SignInForm__btn" size="medium">
 						Войти
 					</Button>

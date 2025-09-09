@@ -1,6 +1,6 @@
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 interface TabsProps {
 	tabs: { id: number; name: string }[]
@@ -10,14 +10,11 @@ interface TabsProps {
 }
 export const Tabs = ({ tabs, activeTab, handleTab, maxWidth }: TabsProps) => {
 	return (
-		<div
-			className={cn(styles.tabs, maxWidth && styles.maxWidth)}
-			role="tablist"
-			aria-label="Навигация по разделам">
+		<div className={cn('Tabs', maxWidth && 'maxWidth')} role="tablist" aria-label="Навигация по разделам">
 			{tabs.map(tab => (
 				<button
 					key={tab.id}
-					className={cn(styles.tab, tab.id === activeTab && styles.active)}
+					className={cn('tab', tab.id === activeTab && 'active')}
 					onClick={() => handleTab(tab.id)}
 					role="tab"
 					aria-selected={tab.id === activeTab}

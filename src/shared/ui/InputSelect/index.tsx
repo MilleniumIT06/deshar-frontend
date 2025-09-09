@@ -1,26 +1,12 @@
 'use client'
 import { useState } from 'react'
 
-import { cva, type VariantProps } from 'class-variance-authority'
 import cn from 'classnames'
 import { motion, AnimatePresence } from 'motion/react'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
-const inputSelectVariants = cva(styles.index, {
-	variants: {
-		variant: {
-			default: styles.primary,
-			primary: styles.primary,
-			secondary: styles.secondary,
-		},
-	},
-	defaultVariants: {
-		variant: 'default',
-	},
-})
-
-export interface InputSelectProps extends VariantProps<typeof inputSelectVariants> {
+export interface InputSelectProps {
 	className?: string
 	placeholderValue: string
 	options?: { value: string | number; label: string }[]
@@ -29,7 +15,6 @@ export interface InputSelectProps extends VariantProps<typeof inputSelectVariant
 }
 
 const InputSelect = ({
-	variant,
 	className,
 	placeholderValue = 'example',
 	options = [
@@ -50,10 +35,10 @@ const InputSelect = ({
 	const selectedLabel = options.find(option => option.value === value)?.label || ''
 
 	return (
-		<div className={cn(inputSelectVariants({ variant, className }))} data-testid="input-select">
+		<div className={className} data-testid="input-select">
 			<input
 				placeholder={placeholderValue}
-				className={cn('input-reset', styles.input)}
+				className={cn('input-reset', 'InputSelect__input')}
 				value={selectedLabel}
 				type="text"
 				readOnly
@@ -61,7 +46,7 @@ const InputSelect = ({
 
 			<button
 				type="button"
-				className={cn('btn-reset', styles.openBtn)}
+				className={cn('btn-reset', 'InputSelect__openBtn')}
 				onClick={() => setOpen(!open)}
 				aria-expanded={open}
 				aria-label="Toggle dropdown">
@@ -79,7 +64,7 @@ const InputSelect = ({
 			<AnimatePresence>
 				{open && (
 					<motion.div
-						className={styles.options}
+						className="InputSelect__options"
 						initial={{ opacity: 0, height: 0 }}
 						animate={{ opacity: 1, height: 'auto' }}
 						exit={{ opacity: 0, height: 0 }}
@@ -87,8 +72,8 @@ const InputSelect = ({
 						{options.map(option => (
 							<div
 								key={option.value}
-								className={cn(styles.option, {
-									[styles.selected]: option.value === value,
+								className={cn('InputSelect__option', {
+									['selected']: option.value === value,
 								})}
 								onClick={() => handleChange(option.value)}>
 								{option.label}
@@ -101,4 +86,4 @@ const InputSelect = ({
 	)
 }
 
-export { InputSelect, inputSelectVariants }
+export { InputSelect }

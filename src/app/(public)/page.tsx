@@ -5,11 +5,9 @@ import { Question } from '@/components/Question'
 import { Reviews } from '@/components/Reviews'
 import { Subscription } from '@/components/Subcription'
 
-import styles from './../page.module.scss'
-
 export default function Home() {
 	return (
-		<main className={styles.main}>
+		<main>
 			<Hero />
 			<Info />
 			<Learn />

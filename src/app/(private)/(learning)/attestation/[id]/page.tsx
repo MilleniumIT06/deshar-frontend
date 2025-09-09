@@ -1,10 +1,10 @@
 import { LearningAttestation } from '@/components/LearningAttestation'
 
-import styles from './../../styles.module.scss'
+import './../../../styles.scss'
 
 export default async function Attestation() {
 	return (
-		<main className={styles.main}>
+		<main className="main">
 			<LearningAttestation />
 		</main>
 	)

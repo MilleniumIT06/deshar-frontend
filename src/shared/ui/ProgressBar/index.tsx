@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 // Интерфейс пропсов компонента ProgressBar
 interface ProgressBarProps {
@@ -52,7 +52,7 @@ export const ProgressBar = ({
 
 	return (
 		<div
-			className={cn(styles.ProgressBar, className)} // Основной контейнер
+			className={cn('ProgressBar', className)} // Основной контейнер
 			role="progressbar" // ARIA-роль для индикатора прогресса
 			aria-valuenow={done} // Текущее значение
 			aria-valuemin={0} // Минимальное значение
@@ -61,35 +61,26 @@ export const ProgressBar = ({
 		>
 			{/* Блок с текстовой информацией (счетчик/проценты) */}
 			{counter && (
-				<div className={styles.ProgressBar__info}>
-					<span className={styles.ProgressBar__done_count}>{done}</span>/
-					<span className={styles.ProgressBar__max_count}>{max}</span>
+				<div className="ProgressBar__info">
+					<span className="ProgressBar__done_count">{done}</span>/
+					<span className="ProgressBar__max_count">{max}</span>
 					{/* Отображение процентов рядом со счетчиком */}
 					{showPercentage && (
-						<span className={styles.ProgressBar__percentage}>{formatPercentage(percentDone)}</span>
+						<span className="ProgressBar__percentage">{formatPercentage(percentDone)}</span>
 					)}
 				</div>
 			)}
 
 			{/* Визуальное отображение прогресса */}
-			<div className={styles.ProgressBar__line}>
-				{/* Завершенная часть */}
-				<div
-					className={styles.ProgressBar__done}
-					style={{ width: `${percentDone}%` }}
-					aria-hidden="true" // Скрыть от screen readers (дублирующая информация)
-				/>
-				{/* Часть в процессе выполнения */}
-				<div
-					className={styles.ProgressBar__process}
-					style={{ width: `${percentProcess}%` }}
-					aria-hidden="true"
-				/>
+			<div className="ProgressBar__line">
+				<div className="ProgressBar__done" style={{ width: `${percentDone}%` }} aria-hidden="true" />
+
+				<div className="ProgressBar__process" style={{ width: `${percentProcess}%` }} aria-hidden="true" />
 			</div>
 
 			{/* Альтернативное отображение процентов под прогресс-баром */}
 			{!counter && showPercentage && (
-				<div className={styles.ProgressBar__info_bottom}>
+				<div className="ProgressBar__info_bottom">
 					<span>{formatPercentage(percentDone)} завершено</span>
 				</div>
 			)}

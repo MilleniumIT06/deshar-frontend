@@ -1,4 +1,4 @@
-.index {
+.Modal {
 	position: relative;
 	border-radius: 32px;
 	background: var(--neutral-white);
@@ -22,12 +22,12 @@
 		right: 16px;
 		top: 16px;
 	}
-}
-.quiz {
-	width: 800px;
-	min-height: 388px;
-}
-.info {
-	width: 440px;
-	height: 452px;
+	&--quiz {
+		width: 800px;
+		min-height: 388px;
+	}
+	&--info {
+		width: 440px;
+		height: 452px;
+	}
 }

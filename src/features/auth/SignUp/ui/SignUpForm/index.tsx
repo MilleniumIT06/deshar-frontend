@@ -30,6 +30,7 @@ export const SignUpForm = ({ handleForm }: { handleForm: () => void }) => {
 				<h1 className="SignUpForm__title">Регистрация аккаунта</h1>
 				<form className="SignUpForm__form" onSubmit={handleSubmit(onSubmit)}>
 					<Input
+						fullWidth
 						type="text"
 						placeholder="Введите имя"
 						className="SignUpForm__input"
@@ -38,6 +39,7 @@ export const SignUpForm = ({ handleForm }: { handleForm: () => void }) => {
 						{...register('name')}
 					/>
 					<Input
+						fullWidth
 						type="text"
 						placeholder="Введите фамилию"
 						className="SignUpForm__input"
@@ -45,6 +47,7 @@ export const SignUpForm = ({ handleForm }: { handleForm: () => void }) => {
 						{...register('surname')}
 					/>
 					<Input
+						fullWidth
 						type="email"
 						placeholder="Введите email"
 						className="SignUpForm__input"
@@ -52,6 +55,7 @@ export const SignUpForm = ({ handleForm }: { handleForm: () => void }) => {
 						{...register('email')}
 					/>
 					<Input
+						fullWidth
 						type="password"
 						placeholder="Придумайте пароль"
 						className="SignUpForm__input"
@@ -59,6 +63,7 @@ export const SignUpForm = ({ handleForm }: { handleForm: () => void }) => {
 						{...register('password')}
 					/>
 					<Input
+						fullWidth
 						type="password"
 						placeholder="Подтвердите пароль"
 						className="SignUpForm__input"

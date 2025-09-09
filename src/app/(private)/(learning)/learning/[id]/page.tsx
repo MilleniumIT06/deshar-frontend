@@ -1,10 +1,10 @@
 import { LearningContent } from '@/components/LearningContent'
 
-import styles from './../../../styles.module.scss'
+import './../../../styles.scss'
 
 export default async function Learning() {
 	return (
-		<main className={styles.main}>
+		<main className="main">
 			<LearningContent />
 		</main>
 	)

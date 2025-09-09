@@ -1,9 +1,8 @@
-import cn from 'classnames'
 import { type Metadata } from 'next'
 
 import { SignInForm } from '@/features/auth/SignIn/ui/SignInForm'
 
-import styles from './../../page.module.scss'
+import './../styles.scss'
 
 export const metadata: Metadata = {
 	title: 'Авторизация',
@@ -12,9 +11,9 @@ export const metadata: Metadata = {
 export default function SignIn() {
 	return (
 		<main>
-			<section className={cn(styles.index, styles.signIn)}>
+			<section className="AuthIndex signIn">
 				<div className="container">
-					<div className={styles.inner}>
+					<div className="Auth__inner">
 						<SignInForm />
 					</div>
 				</div>

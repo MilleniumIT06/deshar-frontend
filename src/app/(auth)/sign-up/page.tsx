@@ -2,7 +2,7 @@ import { type Metadata } from 'next'
 
 import { SignUpPageContent } from '@/features/auth/SignUp/ui/SignUpPageContent'
 
-import styles from './../../page.module.scss'
+import './../styles.scss'
 
 export const metadata: Metadata = {
 	title: 'Регистрация',
@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 }
 export default function SignUp() {
 	return (
-		<main className={styles.index}>
-			<section className={styles.signUp}>
+		<main className="AuthIndex">
+			<section className="signUp">
 				<div className="container">
-					<div className={styles.inner}>
+					<div className="Auth__inner">
 						<SignUpPageContent />
 					</div>
 				</div>

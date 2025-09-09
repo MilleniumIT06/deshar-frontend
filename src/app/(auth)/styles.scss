@@ -1,9 +1,14 @@
-.index {
+.Logo {
+	position: absolute;
+	left: 3%;
+	top: 3%;
+}
+.AuthIndex {
 	height: 100vh;
 	background: var(--neutral-lightest);
 }
 
-.inner {
+.Auth__inner {
 	display: flex;
 	height: 100vh;
 	justify-content: center;

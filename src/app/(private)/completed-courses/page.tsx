@@ -1,13 +1,13 @@
 import { CompletedCourses } from '@/components/CompletedCourses'
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs'
 
-import styles from './../styles.module.scss'
+import './../styles.scss'
 
 export default function Completed() {
 	return (
 		<main>
 			<div className="container">
-				<div className={styles.inner}>
+				<div className="inner">
 					<Breadcrumbs
 						items={[
 							{ label: 'Главная', href: '/' },

@@ -1,6 +1,6 @@
 import { Logo } from '@/shared/ui/Logo'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 export default function AuthLayout({
 	children,
@@ -9,7 +9,7 @@ export default function AuthLayout({
 }>) {
 	return (
 		<>
-			<Logo className={styles.Logo} size="large" />
+			<Logo className="Logo" size="large" />
 			{children}
 		</>
 	)

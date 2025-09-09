@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import cn from 'classnames'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 type LogoSize = 'small' | 'large' | 'responsive'
 
@@ -24,18 +24,18 @@ export const Logo = ({ size = 'small', className, href = '/', priority = false }
 	const dimensions = SIZE_MAP[size]
 
 	return (
-		<div className={cn(styles.logoContainer, styles[size], className)}>
-			<Link href={href} className={styles.logoLink} aria-label="Перейти на главную страницу" tabIndex={1}>
+		<div className={cn('Logo__container', size, className)}>
+			<Link href={href} className="Logo__link" aria-label="Перейти на главную страницу" tabIndex={1}>
 				<div
-					className={cn(styles.imageWrapper, {
-						[styles.responsive]: size === 'responsive',
+					className={cn('Logo__image_wrapper', {
+						responsive: size === 'responsive',
 					})}>
 					<Image
 						src="/logo.svg"
 						alt="Логотип компании"
 						{...dimensions}
 						priority={priority}
-						className={styles.logoImage}
+						className="Logo__image"
 						sizes={size === 'responsive' ? '(max-width: 768px) 50vw, 100vw' : `${dimensions.width}px`}
 					/>
 				</div>

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import styles from './styles.module.scss'
+import './styles.scss'
 
 type ProgressType = 'finished' | 'process' | 'left'
 
@@ -28,9 +28,9 @@ export const ProgressCounter = ({ count = 1, type }: ProgressCounterProps) => {
 	const config = PROGRESS_CONFIG[type]
 
 	return (
-		<li className={styles.ProgressCounter} aria-label={`${config.title}: ${count}`}>
-			<div className={styles.ProgressCounter__info}>
-				<div className={styles.ProgressCounter__icon}>
+		<li className="ProgressCounter" aria-label={`${config.title}: ${count}`}>
+			<div className="ProgressCounter__info">
+				<div className="ProgressCounter__icon">
 					<Image
 						src={config.icon}
 						alt={`Иконка: ${config.title}`}
@@ -39,9 +39,9 @@ export const ProgressCounter = ({ count = 1, type }: ProgressCounterProps) => {
 						aria-hidden="true"
 					/>
 				</div>
-				<span className={styles.ProgressCounter__title}>{config.title}</span>
+				<span className="ProgressCounter__title">{config.title}</span>
 			</div>
-			<span className={styles.ProgressCounter__count} aria-live="polite">
+			<span className="ProgressCounter__count" aria-live="polite">
 				{count}
 			</span>
 		</li>

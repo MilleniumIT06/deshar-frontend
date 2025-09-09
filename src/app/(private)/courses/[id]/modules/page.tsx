@@ -1,12 +1,12 @@
 import { ModulesContent } from '@/components/ModulesContent'
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs'
 
-import styles from './../../../styles.module.scss'
+import './../../../styles.scss'
 
 export default async function Modules() {
 	return (
 		<main>
-			<div className={styles.inner}>
+			<div className="inner">
 				<div className="container">
 					<Breadcrumbs
 						items={[
