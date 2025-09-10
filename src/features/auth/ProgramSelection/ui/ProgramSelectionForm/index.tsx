@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { useAppSelector } from '@/app/_store/hooks'
 import { areas, schools, tabs, classLevels, countries } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
@@ -31,7 +32,7 @@ type ProgramFormData = z.infer<typeof programSchema>
 
 export const ProgramSelectionForm = () => {
 	const [activeTab, setActiveTab] = useState(0)
-
+	const { formData } = useAppSelector(state => state.signUpFormReducer)
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -49,7 +50,9 @@ export const ProgramSelectionForm = () => {
 	})
 
 	const onSubmit = (data: ProgramFormData) => {
-		return data
+		// данные из обеих форм
+		// console.log({ ...data, ...formData });
+		return { ...data, ...formData }
 	}
 
 	// Функция для обработки изменений в InputSelect

@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
 import { useAppDispatch } from '@/app/_store/hooks'
-import { nextStep } from '@/features/auth/signUp.slice'
+import { nextStep, updateFormData } from '@/features/auth/signUp.slice'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 
@@ -26,6 +26,7 @@ export const SignUpForm = () => {
 	const onSubmit = (data: signUpUserFormData) => {
 		// eslint-disable-next-line no-console
 		console.log(data)
+		dispatch(updateFormData({ ...data }))
 		dispatch(nextStep())
 	}
 	return (

@@ -38,7 +38,7 @@ const signUpFormSlice = createSlice({
 	name: 'signUpForm',
 	initialState,
 	reducers: {
-		updateFormData: (state, action: PayloadAction<Partial<FormData>>) => {
+		updateFormData: (state, action: PayloadAction<Partial<SignUpFormData>>) => {
 			state.formData = { ...state.formData, ...action.payload }
 		},
 		nextStep: state => {
