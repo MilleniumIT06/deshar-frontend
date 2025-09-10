@@ -3,7 +3,7 @@ import { describe, it, expect } from 'vitest'
 
 import { Notification } from './index'
 
-describe.skip('Notification Component', () => {
+describe('Notification Component', () => {
 	it('renders without crashing', () => {
 		render(<Notification type="success" />)
 		expect(screen.getByText('Успешно выполнено!')).toBeInTheDocument()

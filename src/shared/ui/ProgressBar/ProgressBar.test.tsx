@@ -3,7 +3,7 @@ import { describe, it, expect } from 'vitest'
 
 import { ProgressBar } from './index'
 
-describe.skip('ProgressBar Component', () => {
+describe('ProgressBar Component', () => {
 	it('renders without crashing', () => {
 		render(<ProgressBar maxLessons={10} doneLessons={5} processLessons={2} />)
 		expect(screen.getByRole('progressbar')).toBeInTheDocument()

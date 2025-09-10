@@ -13,11 +13,11 @@ vi.mock('motion/react', () => ({
 	AnimatePresence: ({ children }: any) => children,
 }))
 
-describe.skip('InputSelect Component', () => {
+describe('InputSelect Component', () => {
 	const mockOptions = [
-		{ value: 1, label: 'Option 1' },
-		{ value: 2, label: 'Option 2' },
-		{ value: 3, label: 'Option 3' },
+		{ id: 1, value: 'Option 1' },
+		{ id: 2, value: 'Option 2' },
+		{ id: 3, value: 'Option 3' },
 	]
 
 	const mockSetValue = vi.fn()
@@ -40,11 +40,10 @@ describe.skip('InputSelect Component', () => {
 			<InputSelect
 				placeholderValue="Select an option"
 				options={mockOptions}
-				value={2}
+				value={'Option 2'}
 				setValue={mockSetValue}
 			/>,
 		)
-
 		expect(screen.getByDisplayValue('Option 2')).toBeInTheDocument()
 	})
 
@@ -102,7 +101,7 @@ describe.skip('InputSelect Component', () => {
 		fireEvent.click(option2)
 
 		// setValue should be called with the option's value
-		expect(mockSetValue).toHaveBeenCalledWith(2)
+		expect(mockSetValue).toHaveBeenCalledWith('Option 2')
 	})
 
 	it('closes dropdown after selecting an option', () => {

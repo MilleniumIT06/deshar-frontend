@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest'
 
 import { Button } from './index' // Adjust import path according to your structure
 
-describe.skip('Button Component', () => {
+describe('Button Component', () => {
 	it('renders without crashing', () => {
 		render(<Button>Click me</Button>)
 		expect(screen.getByRole('button', { name: /click me/i })).toBeInTheDocument()
@@ -89,6 +89,6 @@ describe.skip('Button Component', () => {
 		// This test assumes you have a way to check for the class
 		// You might need to adjust based on your actual implementation
 		const button = screen.getByRole('button')
-		expect(button).toHaveClass('fullWidth') // Adjust class name as needed
+		expect(button).toHaveClass('Button__fullWidth') // Adjust class name as needed
 	})
 })

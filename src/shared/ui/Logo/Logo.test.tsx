@@ -19,7 +19,7 @@ vi.mock('next/link', () => ({
 	},
 }))
 
-describe.skip('Logo Component', () => {
+describe('Logo Component', () => {
 	it('renders without crashing', () => {
 		render(<Logo />)
 		expect(screen.getByRole('link')).toBeInTheDocument()
