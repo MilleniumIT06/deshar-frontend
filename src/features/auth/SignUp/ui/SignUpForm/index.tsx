@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
+import { useAppDispatch } from '@/app/_store/hooks'
+import { nextStep } from '@/features/auth/signUp.slice'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 
@@ -11,7 +13,7 @@ import { type signUpUserFormData, signUpUserSchema } from '../../model/signUp.sc
 
 import './styles.scss'
 
-export const SignUpForm = ({ handleForm }: { handleForm: () => void }) => {
+export const SignUpForm = () => {
 	const {
 		register,
 		handleSubmit,
@@ -20,9 +22,11 @@ export const SignUpForm = ({ handleForm }: { handleForm: () => void }) => {
 		resolver: zodResolver(signUpUserSchema),
 		mode: 'onChange',
 	})
+	const dispatch = useAppDispatch()
 	const onSubmit = (data: signUpUserFormData) => {
 		// eslint-disable-next-line no-console
 		console.log(data)
+		dispatch(nextStep())
 	}
 	return (
 		<div className="SignUpForm">
@@ -70,12 +74,7 @@ export const SignUpForm = ({ handleForm }: { handleForm: () => void }) => {
 						validationMessage={errors.confirmPassword && errors.confirmPassword.message}
 						{...register('confirmPassword')}
 					/>
-					<Button
-						disabled={!isValid}
-						className="SignUpForm__btn"
-						size="medium"
-						type="submit"
-						onClick={handleForm}>
+					<Button disabled={!isValid} className="SignUpForm__btn" size="medium" type="submit">
 						Далее
 					</Button>
 				</form>

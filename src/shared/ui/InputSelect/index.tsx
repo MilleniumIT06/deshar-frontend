@@ -7,20 +7,20 @@ import { motion, AnimatePresence } from 'motion/react'
 import './styles.scss'
 
 export interface InputSelectProps {
-	className?: string
 	placeholderValue: string
-	options?: { value: string | number; label: string }[]
+	options?: { id: string | number; value: string }[]
 	value: number | string
 	setValue: (value: number | string) => void
+	name?: string // Добавленное свойство для интеграции с RHF
+	onBlur?: () => void // Добавленное свойство для интеграции с RHF
 }
 
 const InputSelect = ({
-	className,
 	placeholderValue = 'example',
 	options = [
-		{ value: 1, label: 'Option 1' },
-		{ value: 2, label: 'Option 2' },
-		{ value: 3, label: 'Option 3' },
+		{ id: 1, value: 'Option 1' },
+		{ id: 2, value: 'Option 2' },
+		{ id: 3, value: 'Option 3' },
 	],
 	setValue,
 	value,
@@ -32,10 +32,10 @@ const InputSelect = ({
 		setOpen(false)
 	}
 
-	const selectedLabel = options.find(option => option.value === value)?.label || ''
+	const selectedLabel = options.find(option => option.value === value)?.value || ''
 
 	return (
-		<div className={className} data-testid="input-select">
+		<div className="InputSelect" data-testid="input-select">
 			<input
 				placeholder={placeholderValue}
 				className={cn('input-reset', 'InputSelect__input')}
@@ -76,7 +76,7 @@ const InputSelect = ({
 									['selected']: option.value === value,
 								})}
 								onClick={() => handleChange(option.value)}>
-								{option.label}
+								{option.value}
 							</div>
 						))}
 					</motion.div>

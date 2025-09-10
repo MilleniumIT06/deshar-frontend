@@ -1,31 +1,35 @@
 import { type StudentData } from '@/components/TopClassmates'
 
 export const areas = [
-	{ value: 100, label: 'Магас' },
-	{ value: 200, label: 'Карабулак' },
-	{ value: 300, label: 'Малгобек' },
-	{ value: 400, label: 'Назрань' },
-	{ value: 500, label: 'Сунжа' },
+	{ id: 1, value: 'Магас' },
+	{ id: 2, value: 'Карабулак' },
+	{ id: 3, value: 'Малгобек' },
+	{ id: 4, value: 'Назрань' },
+	{ id: 5, value: 'Сунжа' },
+]
+export const countries = [
+	{ id: 1, value: 'Россия' },
+	{ id: 2, value: 'Китай' },
 ]
 export const schools = [
-	{ value: 111, label: "ГБОУ 'СОШ № 3 г. Назрань'" },
-	{ value: 112, label: "ГБОУ 'Средняя общеобразовательная школа № 7 г. Назрань'" },
-	{ value: 113, label: 'Средняя Образовательная Школа 4' },
-	{ value: 114, label: 'Гимназия №1 г. Назрань' },
-	{ value: 115, label: "ГКОУ 'СОШ №5 с.п.Орджоникидзевское'" },
+	{ id: 1, value: "ГБОУ 'СОШ № 3 г. Назрань'" },
+	{ id: 2, value: "ГБОУ 'Средняя общеобразовательная школа № 7 г. Назрань'" },
+	{ id: 3, value: 'Средняя Образовательная Школа 4' },
+	{ id: 4, value: 'Гимназия №1 г. Назрань' },
+	{ id: 5, value: "ГКОУ 'СОШ №5 с.п.Орджоникидзевское'" },
 ]
 export const classLevels = [
-	{ value: 1, label: '1' },
-	{ value: 2, label: '2' },
-	{ value: 3, label: '3' },
-	{ value: 4, label: '4' },
-	{ value: 5, label: '5' },
-	{ value: 6, label: '6' },
-	{ value: 7, label: '7' },
-	{ value: 8, label: '8' },
-	{ value: 9, label: '9' },
-	{ value: 10, label: '10' },
-	{ value: 11, label: '11' },
+	{ id: 1, value: '1' },
+	{ id: 2, value: '2' },
+	{ id: 3, value: '3' },
+	{ id: 4, value: '4' },
+	{ id: 5, value: '5' },
+	{ id: 6, value: '6' },
+	{ id: 7, value: '7' },
+	{ id: 8, value: '8' },
+	{ id: 9, value: '9' },
+	{ id: 10, value: '10' },
+	{ id: 11, value: '11' },
 ]
 export const tabs = [
 	{ id: 0, name: 'Ингушетия' },
