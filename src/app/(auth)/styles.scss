@@ -1,29 +1,81 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
 .Logo {
 	position: absolute;
 	left: 3%;
 	top: 3%;
+	@include breakpoint.extra-small-mobile {
+		top: 80px;
+		left: 50%;
+		transform: translateX(-50%);
+		&.large {
+			width: 134px;
+			height: 20px;
+			.Logo__image_wrapper {
+				width: 100%;
+				height: 100%;
+			}
+			.Logo__link {
+				width: 100%;
+				height: 100%;
+			}
+			.Logo__image {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
 }
 .AuthIndex {
-	height: 100vh;
 	background: var(--neutral-lightest);
+	@include breakpoint.small-mobile {
+		background: var(--neutral-white);
+	}
 }
 
 .Auth__inner {
 	display: flex;
-	height: 100vh;
+	height: 100%;
 	justify-content: center;
 	align-items: center;
+	@include breakpoint.tablet {
+		padding-top: 271px;
+		padding-bottom: 271px;
+	}
+	@include breakpoint.small-tablet {
+		padding-top: 150px;
+		padding-bottom: 100px;
+	}
+	@include breakpoint.small-mobile {
+		align-items: start;
+		padding-top: 50%;
+	}
 }
 
 .signIn {
+	padding-top: 111px;
+	min-height: 100vh;
 	background-image: url('/signInBg.png');
 	background-size: 966px 552px;
 	background-position: center;
 	background-repeat: no-repeat;
+	@include breakpoint.tablet {
+		padding-top: 0;
+	}
+	@include breakpoint.middle-mobile {
+		background-image: none;
+	}
 }
 .signUp {
+	padding-top: 111px;
+	min-height: 100vh;
 	background-image: url('/signUpBg.png');
 	background-size: 860px 577px;
 	background-position: center;
 	background-repeat: no-repeat;
+	@include breakpoint.tablet {
+		padding-top: 0;
+	}
+	@include breakpoint.middle-mobile {
+		background-image: none;
+	}
 }
