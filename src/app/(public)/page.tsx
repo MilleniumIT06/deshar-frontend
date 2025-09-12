@@ -1,4 +1,3 @@
-import FullScreenMenu from '@/components/FullScreenMenu'
 import { Hero } from '@/components/Hero'
 import { Info } from '@/components/Info'
 import { Learn } from '@/components/Learn'
@@ -9,7 +8,6 @@ import { Subscription } from '@/components/Subcription'
 export default function Home() {
 	return (
 		<main className="mRelative">
-			<FullScreenMenu />
 			<Hero />
 			<Info />
 			<Learn />

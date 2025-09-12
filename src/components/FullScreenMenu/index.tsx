@@ -1,4 +1,6 @@
 'use client'
+import { useState, useEffect } from 'react'
+
 import Link from 'next/link'
 
 import { motion } from 'framer-motion'
@@ -46,13 +48,19 @@ import { createPortal } from 'react-dom'
 // };
 
 export default function FullScreenMenu({ setMenuOpen }: { setMenuOpen: (value: boolean) => void }) {
+	const [isClient, setIsClient] = useState(false)
+
+	useEffect(() => {
+		setIsClient(true)
+	}, [])
+
 	const handleClickItem = () => {
 		setMenuOpen(false)
 		// { setMenuOpen }: { setMenuOpen: (value: boolean) => void; }
 		// console.log('click')
 	}
+	if (!isClient) return null
 	const mainRoot = document.querySelector('main')
-
 	if (!mainRoot) return null
 	return createPortal(
 		<motion.div
