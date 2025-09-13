@@ -9,7 +9,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			padding-top: 5%;
+			padding-top: 52px;
 		}
 	}
 	&__list {
@@ -37,6 +37,9 @@
 				@include breakpoint.pre-mobile {
 					font-size: 71px;
 				}
+				@include breakpoint.mobile {
+					font-size: 60px;
+				}
 			}
 
 			p {
@@ -46,10 +49,6 @@
 				line-height: 175%;
 				text-align: center;
 				color: var(--neutral-black);
-
-				@include breakpoint.pre-mobile {
-					font-size: 12px;
-				}
 			}
 		}
 		@include breakpoint.pre-mobile {

@@ -11,7 +11,7 @@ import { Logo } from '@/shared/ui/Logo'
 import './styles.scss'
 
 export const Header = () => {
-	const [authed] = useState(true)
+	const [authed] = useState(false)
 	const [burgerOpen, setBurgerOpen] = useState(false)
 	useEffect(() => {
 		if (burgerOpen) {

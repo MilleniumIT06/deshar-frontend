@@ -42,5 +42,12 @@
 	&__inner {
 		padding-top: 100px;
 		padding-bottom: 100px;
+		@include breakpoint.mobile {
+			padding-top: 64px;
+		}
+	}
+	@include breakpoint.mobile {
+		background-size: 185px 192px;
+		background-position: right -65px top 100px;
 	}
 }

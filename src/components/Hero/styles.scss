@@ -5,8 +5,15 @@
 	padding-top: 32px;
 	width: 100%;
 	min-height: 46vh;
+	@include breakpoint.mobile {
+		padding-top: 0;
+		min-height: 500px;
+	}
 	&__container {
 		height: 100%;
+		@include breakpoint.mobile {
+			padding: 0;
+		}
 	}
 	&__inner {
 		display: flex;
@@ -24,7 +31,6 @@
 
 		@include breakpoint.pre-tablet {
 			padding-left: 2%;
-			gap: 0;
 		}
 
 		@include breakpoint.pre-middle-tablet {
@@ -35,6 +41,10 @@
 			flex-direction: column;
 			overflow: hidden;
 			min-height: initial;
+			border-radius: 0;
+			gap: 20px;
+			// @include mini.image-set('/images/Hero/hero_bg_mob');
+			background-image: url('/images/Hero/hero_bg_mob.jpg');
 		}
 	}
 	&__info {
@@ -54,7 +64,9 @@
 			color: var(--neutral-white);
 
 			@include breakpoint.mobile {
-				font-size: 17px;
+				font-size: 16px;
+				line-height: 175%;
+				max-width: 300px;
 			}
 		}
 
@@ -85,7 +97,7 @@
 		}
 
 		@include breakpoint.mobile {
-			font-size: 37px;
+			font-size: 32px;
 		}
 	}
 	&__image {
@@ -105,9 +117,9 @@
 			justify-content: end;
 			height: 100%;
 		}
-
-		@include breakpoint.pre-middle-tablet {
-			display: none;
+		@include breakpoint.mobile {
+			width: 229px;
+			height: 229px;
 		}
 	}
 	&__btn {
@@ -118,13 +130,11 @@
 		font-size: 20px;
 		line-height: 140%;
 
-		@include breakpoint.tablet {
-			margin-top: 2%;
-		}
-
 		@include breakpoint.mobile {
 			padding: 13px 31px;
 			font-size: 15px;
+			border-radius: 20px;
+			margin-top: 32px;
 		}
 	}
 }

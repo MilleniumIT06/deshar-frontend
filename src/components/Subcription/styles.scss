@@ -3,6 +3,9 @@
 .Subscription {
 	&__inner {
 		padding-bottom: 100px;
+		@include breakpoint.mobile {
+			padding-bottom: 40px;
+		}
 	}
 	&__list {
 		display: flex;
@@ -13,14 +16,7 @@
 		gap: 30px;
 
 		@include breakpoint.mobile {
-			flex-wrap: nowrap;
-			justify-content: start;
-			overflow-x: scroll;
-			padding-right: 20%;
-			padding-left: 15%;
-			width: 100%;
-			scroll-snap-type: x mandatory;
-			gap: 15%;
+			flex-direction: column;
 		}
 	}
 }

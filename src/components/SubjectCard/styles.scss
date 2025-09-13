@@ -74,10 +74,6 @@
 		padding: 8px 12px;
 		text-align: center;
 		background-color: var(--primary-lightest);
-
-		@include breakpoint.tablet {
-			font-size: 13px;
-		}
 	}
 }
 
@@ -101,6 +97,9 @@
 
 	@include breakpoint.tablet {
 		padding: 21px 29px;
-		height: 80px;
+	}
+	@include breakpoint.mobile {
+		padding: 20px 24px;
+		height: 84px;
 	}
 }

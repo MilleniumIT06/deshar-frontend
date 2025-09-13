@@ -4,7 +4,7 @@
 .Footer {
 	width: 100%;
 	min-height: 512px;
-	background-color: #494949;
+	background-color: var(--neutral-darkest);
 
 	&__logo {
 		width: 188px;
@@ -125,6 +125,7 @@
 
 			@include breakpoint.mobile {
 				padding-bottom: 5%;
+				justify-content: start;
 			}
 		}
 	}
@@ -148,6 +149,11 @@
 					}
 				}
 			}
+		}
+		@include breakpoint.mobile {
+			flex-direction: column;
+			align-items: start;
+			justify-content: start;
 		}
 	}
 
