@@ -5,7 +5,7 @@ import { TopClassmates } from '@/components/TopClassmates'
 
 export default function Authed() {
 	return (
-		<main>
+		<main className="mRelative">
 			<Successes />
 			<Continue />
 			<TopClassmates />
