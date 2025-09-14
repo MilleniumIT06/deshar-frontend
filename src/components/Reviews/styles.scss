@@ -6,7 +6,7 @@
 
 	@include mini.image-set-png('/images/Reviews/bg');
 
-	background-position: right 150px top 10px;
+	background-position: right 250px top 50px;
 	background-size: 400px 400px;
 	background-repeat: no-repeat;
 	&__slider {
@@ -45,6 +45,9 @@
 		@include breakpoint.mobile {
 			padding-top: 64px;
 		}
+	}
+	@include breakpoint.big-tablet {
+		background-position: right -100px top 50px;
 	}
 	@include breakpoint.mobile {
 		background-size: 185px 192px;

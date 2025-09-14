@@ -13,7 +13,7 @@
 		}
 	}
 	&__list {
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		height: 100%;
 		gap: 91px;
 
@@ -33,7 +33,9 @@
 				font-weight: 700;
 				font-size: 92px;
 				color: var(--primary-medium);
-
+				@include breakpoint.pre-middle-tablet {
+					font-size: 80px;
+				}
 				@include breakpoint.pre-mobile {
 					font-size: 71px;
 				}
@@ -49,11 +51,23 @@
 				line-height: 175%;
 				text-align: center;
 				color: var(--neutral-black);
+				@include breakpoint.pre-middle-tablet {
+					font-size: 14px;
+					line-height: 143%;
+				}
+				@include breakpoint.mobile {
+					font-size: 16px;
+				}
 			}
+		}
+		@include breakpoint.small-tablet {
+			gap: 40px;
+			justify-content: center;
+			flex-wrap: wrap;
 		}
 		@include breakpoint.pre-mobile {
 			align-items: end;
-			height: 60vh;
+			min-height: 10vh;
 			gap: 50px;
 		}
 

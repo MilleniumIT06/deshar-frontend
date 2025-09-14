@@ -27,19 +27,27 @@
 		@include breakpoint.middle-tablet {
 			justify-content: center;
 			grid-template-columns: 50% 50%;
-			row-gap: 0;
+			row-gap: 20px;
 		}
 
 		@include breakpoint.pre-mobile {
+			// grid-template-columns: 100%;
+			row-gap: 10px;
+		}
+		@include breakpoint.mobile {
 			grid-template-columns: 100%;
-			row-gap: 0;
+			row-gap: 10px;
+			justify-items: center;
 		}
 	}
 	&__item {
 		width: 100%;
 
 		@include breakpoint.middle-tablet {
-			grid-column: span 2;
+			grid-column: span 1;
+		}
+		@include breakpoint.mobile {
+			max-width: none;
 		}
 	}
 }
@@ -51,7 +59,7 @@
 		grid-column: 2 span;
 	}
 
-	@include breakpoint.pre-mobile {
+	@include breakpoint.mobile {
 		grid-column: auto;
 	}
 }

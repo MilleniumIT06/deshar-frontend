@@ -74,6 +74,10 @@
 		padding: 8px 12px;
 		text-align: center;
 		background-color: var(--primary-lightest);
+		@include breakpoint.extra-small-tablet {
+			padding: 6px 8px;
+			min-width: 100px;
+		}
 	}
 }
 
@@ -98,8 +102,11 @@
 	@include breakpoint.tablet {
 		padding: 21px 29px;
 	}
+	@include breakpoint.pre-mobile {
+		padding: 10px 10px;
+		height: 84px;
+	}
 	@include breakpoint.mobile {
-		padding: 20px 24px;
 		height: 84px;
 	}
 }

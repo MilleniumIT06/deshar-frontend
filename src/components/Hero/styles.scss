@@ -5,6 +5,12 @@
 	padding-top: 32px;
 	width: 100%;
 	min-height: 46vh;
+	@include breakpoint.post-tablet {
+		position: relative;
+	}
+	@include breakpoint.small-tablet {
+		min-height: 389px;
+	}
 	@include breakpoint.mobile {
 		padding-top: 0;
 		min-height: 500px;
@@ -32,7 +38,9 @@
 		@include breakpoint.pre-tablet {
 			padding-left: 2%;
 		}
-
+		@include breakpoint.post-tablet {
+			justify-content: start;
+		}
 		@include breakpoint.pre-middle-tablet {
 			justify-content: start;
 		}
@@ -62,11 +70,17 @@
 			font-size: 20px;
 			line-height: 160%;
 			color: var(--neutral-white);
-
-			@include breakpoint.mobile {
+			@include breakpoint.small-tablet {
 				font-size: 16px;
 				line-height: 175%;
+			}
+			@include breakpoint.mobile {
+				font-size: 19px;
+				line-height: 175%;
 				max-width: 300px;
+			}
+			@include breakpoint.middle-mobile {
+				font-size: 16px;
 			}
 		}
 
@@ -75,7 +89,10 @@
 			padding-top: 0;
 			height: 100%;
 		}
-
+		@include breakpoint.small-tablet {
+			position: relative;
+			z-index: 11;
+		}
 		@include breakpoint.mobile {
 			justify-content: start;
 			padding-top: 10%;
@@ -84,6 +101,8 @@
 			background-position: 200% 200%;
 			background-size: 85% 85%;
 			background-repeat: no-repeat;
+			position: initial;
+			z-index: initial;
 		}
 	}
 	&__title {
@@ -91,12 +110,17 @@
 		font-weight: 700;
 		font-size: 60px;
 		color: var(--neutral-white);
-
 		@include breakpoint.tablet {
 			font-size: 50px;
 		}
+		@include breakpoint.small-tablet {
+			font-size: 44px;
+		}
 
 		@include breakpoint.mobile {
+			font-size: 37px;
+		}
+		@include breakpoint.middle-mobile {
 			font-size: 32px;
 		}
 	}
@@ -115,9 +139,25 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: end;
-			height: 100%;
+			height: none;
+			flex-shrink: 0;
+		}
+		@include breakpoint.post-tablet {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			z-index: 10;
+		}
+		@include breakpoint.small-tablet {
+			width: 380px;
+			height: 385px;
 		}
 		@include breakpoint.mobile {
+			width: 319px;
+			height: 319px;
+			position: unset;
+		}
+		@include breakpoint.small-mobile {
 			width: 229px;
 			height: 229px;
 		}
