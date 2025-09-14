@@ -16,18 +16,11 @@
 		@include breakpoint.middle-tablet {
 			justify-content: center;
 			grid-template-columns: 50% 50%;
-			row-gap: 0;
-		}
-
-		@include breakpoint.first-middle-tablet {
-			justify-content: center;
-			grid-template-columns: 50% 50%;
-			row-gap: 0;
+			row-gap: 16px;
 		}
 
 		@include breakpoint.pre-mobile {
 			grid-template-columns: 100%;
-			row-gap: 0;
 		}
 	}
 
@@ -50,7 +43,7 @@
 	}
 
 	@include breakpoint.middle-tablet {
-		grid-column: span 2;
+		grid-column: span 1;
 	}
 
 	&:last-child {

@@ -152,9 +152,16 @@
 			color: var(--neutral-white);
 		}
 	}
+	@include breakpoint.small-tablet {
+		flex-grow: 1;
+	}
+	@include breakpoint.pre-mobile {
+		flex-basis: 60%;
+		flex-grow: 0;
+	}
 	@include breakpoint.mobile {
-		flex-basis: auto;
 		width: 100%;
+		max-width: 328px;
 		height: auto;
 		min-height: 366px;
 	}

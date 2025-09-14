@@ -134,7 +134,10 @@
 			height: 100%;
 			object-fit: cover;
 		}
-
+		@include breakpoint.first-middle-tablet {
+			width: 430px;
+			height: 435px;
+		}
 		@include breakpoint.pre-tablet {
 			display: flex;
 			flex-direction: column;

@@ -11,7 +11,7 @@ import './styles.scss'
 export const Successes = () => {
 	return (
 		<section className="Successes">
-			<div className="container">
+			<div className="container Successes__container">
 				<div className="Successes__inner">
 					<div className="Successes__header">
 						<h1 className="Successes__title">Ваши успехи</h1>

@@ -88,7 +88,9 @@ a {
 	font-size: 44px;
 	text-align: center;
 	color: var(--neutral-darkest);
-
+	@include breakpoint.small-tablet {
+		font-size: 32px;
+	}
 	@include breakpoint.pre-mobile {
 		font-size: 37px;
 	}

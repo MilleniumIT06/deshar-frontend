@@ -34,6 +34,11 @@
 		line-height: 175%;
 		color: var(--neutral-darkest);
 		text-wrap: nowrap;
+		@include breakpoint.small-tablet {
+			text-wrap: wrap;
+			font-size: 14px;
+			font-weight: 600;
+		}
 	}
 
 	&__count {
