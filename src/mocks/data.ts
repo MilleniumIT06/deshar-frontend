@@ -420,7 +420,7 @@ export const candleDateMockData = [
 	{ id: 7, date: new Date(2024, 1, 11), currentPoints: 65 },
 
 	{ id: 8, date: new Date(2023, 0, 1), currentPoints: 100 },
-	{ id: 9, date: new Date(2023, 11, 31), currentPoints: 10 },
+	{ id: 9, date: new Date(2023, 11, 31), currentPoints: 14 },
 	{ id: 10, date: new Date(2023, 1, 29), currentPoints: 50 },
 
 	{ id: 11, date: new Date(2022, 5, 15), currentPoints: 70 },

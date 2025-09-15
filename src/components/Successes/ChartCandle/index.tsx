@@ -19,11 +19,12 @@ export const ChartCandle = ({ maxPoints, currentPoints, date = new Date() }: Cha
 		return { day: day, month: month.slice(0, 3) }
 	}
 	const dateT = formatDate(date)
+	const calcHeight = currentPoints < 15 ? '5%' : `calc(${pointsPercent}% - 10px)`
 	return (
 		<div className="ChartCandle" title={String(currentPoints)}>
 			<svg
 				className="ChartCandle__body"
-				height={`${pointsPercent}%`}
+				height={calcHeight}
 				viewBox="0 0 45 174"
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
