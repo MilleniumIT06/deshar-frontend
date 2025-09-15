@@ -23,7 +23,6 @@ export const ChartCandle = ({ maxPoints, currentPoints, date = new Date() }: Cha
 		<div className="ChartCandle" title={String(currentPoints)}>
 			<svg
 				className="ChartCandle__body"
-				width="45"
 				height={`${pointsPercent}%`}
 				viewBox="0 0 45 174"
 				fill="none"

@@ -1,3 +1,4 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
 .Tabs {
 	display: flex;
 	align-items: center;
@@ -9,6 +10,11 @@
 	background-color: var(--neutral-lightest);
 	&.maxWidth {
 		width: 100%;
+	}
+	@include breakpoint.mobile {
+		max-width: 328px;
+		width: 100%;
+		height: 44px;
 	}
 }
 
@@ -28,6 +34,10 @@
 		font-weight: 700;
 		font-size: 16px;
 		line-height: 175%;
+		@include breakpoint.mobile {
+			font-size: 14px;
+			line-height: 143%;
+		}
 	}
 
 	&.active {
@@ -37,5 +47,8 @@
 
 		border-radius: 28px;
 		background-color: var(--neutral-darkest);
+	}
+	@include breakpoint.mobile {
+		padding: 0;
 	}
 }

@@ -33,6 +33,9 @@
 		align-items: start;
 		justify-content: space-between;
 		width: 100%;
+		@include breakpoint.mobile {
+			align-items: center;
+		}
 	}
 
 	&__title {
@@ -42,6 +45,10 @@
 		line-height: 150%;
 		text-align: center;
 		color: var(--neutral-darkest);
+		@include breakpoint.mobile {
+			font-weight: 600;
+			font-size: 16px;
+		}
 	}
 	&__list {
 		width: 100%;
@@ -51,6 +58,9 @@
 		gap: 2.2%;
 		@include breakpoint.pre-tablet {
 			gap: 10px;
+		}
+		@include breakpoint.extra-small-tablet {
+			flex-wrap: wrap;
 		}
 	}
 	&__body {

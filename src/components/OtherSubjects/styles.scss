@@ -22,6 +22,9 @@
 		@include breakpoint.pre-mobile {
 			grid-template-columns: 100%;
 		}
+		@include breakpoint.mobile {
+			row-gap: 10px;
+		}
 	}
 
 	&__top {
