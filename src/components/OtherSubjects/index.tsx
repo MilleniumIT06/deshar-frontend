@@ -28,7 +28,7 @@ export const OtherSubjects = () => {
 							<SubjectCard
 								className="otherSubjectsItem"
 								type="short"
-								title="Полный каталог дисциплин"
+								title="Все дисциплины"
 								modulesCount={26}
 								imageUrl="subjectcardskeleton"
 								fullCatalog={true}

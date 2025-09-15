@@ -73,4 +73,7 @@
 		height: auto;
 		min-height: 230px;
 	}
+	@include breakpoint.mobile {
+		padding: 28px 24px 32px;
+	}
 }
