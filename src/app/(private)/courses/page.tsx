@@ -5,7 +5,7 @@ import './../styles.scss'
 
 export default function AllCoursesPage() {
 	return (
-		<main>
+		<main className="mRelative">
 			<div className="inner">
 				<div className="container">
 					<Breadcrumbs

@@ -55,7 +55,7 @@
 		@include breakpoint.pre-middle-tablet {
 			grid-template-columns: repeat(2, auto);
 		}
-		@include breakpoint.mobile {
+		@include breakpoint.middle-mobile {
 			grid-template-columns: repeat(1, auto);
 		}
 	}

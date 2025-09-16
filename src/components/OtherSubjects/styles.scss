@@ -11,8 +11,8 @@
 		grid-auto-rows: 100px;
 		grid-template-columns: 33% 33% 33%;
 		width: 100%;
-		gap: 10% 2%;
-
+		gap: 10% 8px;
+		justify-items: center;
 		@include breakpoint.middle-tablet {
 			justify-content: center;
 			grid-template-columns: 50% 50%;
@@ -38,7 +38,6 @@
 	}
 }
 .otherSubjectsItem {
-	max-width: none;
 	width: 100%;
 
 	@include breakpoint.first-middle-tablet {
@@ -50,6 +49,7 @@
 	}
 
 	&:last-child {
+		max-width: 1216px;
 		grid-column: 3 span;
 
 		@include breakpoint.first-middle-tablet {
@@ -61,7 +61,8 @@
 		}
 
 		@include breakpoint.pre-mobile {
-			grid-column: auto;
+			grid-column: 1 span;
+			max-width: 384px;
 		}
 	}
 }

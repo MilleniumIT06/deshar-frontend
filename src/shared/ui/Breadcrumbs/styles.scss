@@ -1,8 +1,10 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
 .Breadcrumbs {
 	&__list {
 		display: flex;
 		align-items: center;
 		gap: 20px;
+		overflow-x: scroll;
 	}
 
 	&__item {
@@ -10,6 +12,9 @@
 		padding: 12px 28px;
 		border: 1px solid var(--neutral-light);
 		border-radius: 32px;
+		@include breakpoint.mobile {
+			padding: 8px 16px;
+		}
 	}
 	&__separator {
 		position: absolute;
@@ -32,10 +37,14 @@
 		font-weight: 400;
 		font-size: 14px;
 		color: var(--neutral-darkest);
-
+		text-wrap: nowrap;
 		&:hover {
 			color: var(--text-primary);
 			text-decoration: underline;
+		}
+		@include breakpoint.mobile {
+			font-size: 12px;
+			line-height: 167%;
 		}
 	}
 	&__text {
@@ -44,5 +53,10 @@
 		font-weight: 400;
 		font-size: 14px;
 		color: var(--neutral-darkest);
+		text-wrap: nowrap;
+		@include breakpoint.mobile {
+			font-size: 12px;
+			line-height: 167%;
+		}
 	}
 }
