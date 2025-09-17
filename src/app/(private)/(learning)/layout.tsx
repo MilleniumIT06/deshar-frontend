@@ -1,5 +1,4 @@
 import { LearningSidebar } from '@/components/LearningSidebar'
-import { LearningTopBar } from '@/components/LearningTopBar'
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs'
 
 import './../styles.scss'
@@ -34,7 +33,6 @@ export default function LearningLayout({
 
 					<div className="mainInner LearningLayout__mainInner">
 						<LearningSidebar className="LearningSidebarMain" />
-						<LearningTopBar />
 						{children}
 					</div>
 				</div>

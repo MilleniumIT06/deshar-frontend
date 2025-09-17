@@ -1,9 +1,14 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
 .TrainerWrapper {
 	border-radius: 32px;
 	padding: 32px;
-	width: 904px; //100%
+	max-width: 904px; //100%
+	width: 100%;
 	min-height: 300px;
 	background: var(--neutral-white);
+	@include breakpoint.mobile {
+		padding: 32px 0;
+	}
 	&__inner {
 		display: flex;
 		flex-direction: column;
