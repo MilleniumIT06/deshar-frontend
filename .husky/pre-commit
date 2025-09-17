@@ -1,5 +1,3 @@
-npm test
-
 # Пропустить тесты если в сообщении коммита есть [skip tests]
 if grep -q "\[skip tests\]" "$1"; then
   npx lint-staged
