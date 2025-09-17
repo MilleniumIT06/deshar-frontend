@@ -1,21 +1,30 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
 .LearningContent {
 	border-radius: 32px;
 	padding: 32px;
-	width: 904px;
+	max-width: 904px;
+	width: 100%;
 	min-height: 300px;
 	background: var(--neutral-white);
-
+	@include breakpoint.mobile {
+		padding: 0 0 32px 0;
+	}
 	&__title {
 		font-family: var(--font-family);
 		font-weight: 700;
 		font-size: 24px;
 		line-height: 150%;
 		color: var(--neutral-darkest);
+
+		@include breakpoint.small-tablet {
+			display: none;
+		}
 	}
 
 	&__image {
 		position: relative;
-		width: 640px;
+		max-width: 640px;
+		width: 100%;
 		height: 286px;
 		border-radius: 32px;
 		overflow: hidden;
@@ -77,11 +86,33 @@
 		border-top: 1px solid var(--neutral-light);
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		&_right {
-			display: flex;
-			align-items: center;
-			gap: 10px;
+		justify-content: start;
+		gap: 12px;
+		@include breakpoint.mobile {
+			flex-wrap: wrap;
+		}
+	}
+	&__btn {
+		&_back {
+			margin-right: auto;
+			@include breakpoint.mobile {
+				margin-right: 0;
+				flex-basis: 40%;
+				flex-grow: 1;
+				flex-shrink: 1;
+			}
+		}
+		&_skip {
+			@include breakpoint.mobile {
+				flex-basis: 40%;
+				flex-grow: 1;
+				flex-shrink: 1;
+			}
+		}
+		&_next {
+			@include breakpoint.mobile {
+				width: 100%;
+			}
 		}
 	}
 	&__content {

@@ -4,8 +4,8 @@ import './../../../styles.scss'
 
 export default async function Learning() {
 	return (
-		<main className="main mRelative">
+		<div>
 			<LearningContent />
-		</main>
+		</div>
 	)
 }

@@ -1,3 +1,4 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
 .inner {
 	padding-top: 1.7%;
 }
@@ -8,6 +9,12 @@
 	display: flex;
 	align-items: start;
 	gap: 30px;
+	@include breakpoint.pre-middle-tablet {
+		gap: 10px;
+	}
+	@include breakpoint.mobile {
+		gap: 0;
+	}
 }
 .attestationResult {
 	background: var(--neutral-lightest);
@@ -16,6 +23,9 @@
 }
 .mainWrapper {
 	background: var(--neutral-lightest);
+	@include breakpoint.mobile {
+		background: transparent;
+	}
 }
 .wrapper {
 	display: flex;
@@ -30,4 +40,15 @@
 	font-size: 44px;
 	text-align: left;
 	color: var(--neutral-darkest);
+}
+.LearningSidebarMain {
+	@include breakpoint.small-tablet {
+		display: none;
+	}
+}
+.LearningLayout__mainInner {
+	@include breakpoint.small-tablet {
+		flex-direction: column;
+		align-items: start;
+	}
 }

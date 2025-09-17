@@ -4,8 +4,8 @@ import './../../../styles.scss'
 
 export default async function Attestation() {
 	return (
-		<main className="main mRelative">
+		<div>
 			<LearningAttestation />
-		</main>
+		</div>
 	)
 }

@@ -225,30 +225,32 @@ export const LearningContent = () => {
 						</div>
 					</div>
 					<div className="LearningContent__footer">
-						<div className="LearningContent__footer_left">
-							<Button variant="secondary" size="medium">
-								Назад
-							</Button>
-						</div>
-						<div className="LearningContent__footer_right">
-							<Button variant="secondary" size="medium">
-								Пропустить
-							</Button>
+						<Button variant="secondary" size="medium" className="LearningContent__btn_back">
+							Назад
+						</Button>
 
-							{isAllLessonsCompleted(lessons) ? (
-								<Button variant="secondary" size="medium" onClick={() => setIsSelectOpen(true)}>
-									Перейти к аттестации
-								</Button>
-							) : (
-								<Button
-									variant="primary"
-									size="medium"
-									disabled={isExpired ? false : true}
-									onClick={handleNextBtn}>
-									Далее {isExpired ? '' : `(${secondsLeft})`}
-								</Button>
-							)}
-						</div>
+						<Button variant="secondary" size="medium" className="LearningContent__btn_skip">
+							Пропустить
+						</Button>
+
+						{isAllLessonsCompleted(lessons) ? (
+							<Button
+								className="LearningContent__btn_next"
+								variant="secondary"
+								size="medium"
+								onClick={() => setIsSelectOpen(true)}>
+								Перейти к аттестации
+							</Button>
+						) : (
+							<Button
+								variant="primary"
+								size="medium"
+								disabled={isExpired ? false : true}
+								onClick={handleNextBtn}
+								className="LearningContent__btn_next">
+								Далее {isExpired ? '' : `(${secondsLeft})`}
+							</Button>
+						)}
 					</div>
 				</div>
 				<QuizModal
