@@ -1,6 +1,6 @@
 'use client'
 import { useDroppable } from '@dnd-kit/core'
-
+import cn from 'classnames'
 import './styles.scss'
 
 export const DropInput = ({
@@ -30,7 +30,7 @@ export const DropInput = ({
 	return (
 		<span className="DropInput__wrapper">
 			{before}
-			<span ref={setNodeRef} className="DropInput">
+			<span ref={setNodeRef} className={cn('DropInput', current !== null && 'DropInput--filled')}>
 				{current || ''}
 			</span>
 			{after}
