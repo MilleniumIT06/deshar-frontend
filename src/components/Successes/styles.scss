@@ -11,6 +11,9 @@
 			font-weight: 700;
 			font-size: 32px;
 		}
+		@include breakpoint.mobile {
+			text-align: center;
+		}
 	}
 	@include breakpoint.small-tablet {
 		&__container {
@@ -26,9 +29,9 @@
 		display: flex;
 		justify-content: space-between;
 
-		@include breakpoint.small-mobile {
+		@include breakpoint.mobile {
 			flex-direction: column;
-			align-items: start;
+			align-items: center;
 		}
 	}
 

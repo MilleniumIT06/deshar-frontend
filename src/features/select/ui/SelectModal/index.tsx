@@ -1,3 +1,6 @@
+'use client'
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery'
+import BottomSheet from '@/widgets/BottomSheet'
 import { Modal } from '@/widgets/Modal/ui'
 
 import { SelectModalContent } from './SelectModalContent'
@@ -8,9 +11,14 @@ interface SelectModalProps {
 	onClose: () => void
 }
 export const SelectModal = ({ isOpen, onClose }: SelectModalProps) => {
-	return (
+	const isMobile = useMediaQuery('(max-width: 576px)')
+	return !isMobile ? (
 		<Modal isOpen={isOpen} onClose={onClose} variant="info" className="SelectModal">
 			<SelectModalContent onClose={onClose} />
 		</Modal>
+	) : (
+		<BottomSheet isOpen={isOpen} onClose={onClose}>
+			<SelectModalContent onClose={onClose} />
+		</BottomSheet>
 	)
 }

@@ -84,22 +84,14 @@
 		align-items: center;
 		justify-content: space-between;
 		height: 100%;
-
-		.headerBtn {
-			height: 43px;
-			padding: 12px 23px;
-			border-radius: 20px;
-			font-family: var(--font-family);
-			font-weight: 600;
-			font-size: 16px;
-			color: var(--neutral-white);
-			@include breakpoint.middle-tablet {
-				margin-right: 5%;
-			}
-
-			@include breakpoint.small-mobile {
-				display: none;
-			}
-		}
+	}
+	&__btn {
+		height: 43px;
+		padding: 12px 20px;
+		border-radius: 20px;
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 16px;
+		color: var(--neutral-white);
 	}
 }
