@@ -79,8 +79,8 @@ export const Header = () => {
 						{authed ? (
 							<Avatar />
 						) : (
-							<Button variant="primary" size="small" className="Header__btn" tabIndex={6}>
-								Войти
+							<Button asChild variant="primary" size="small" className="Header__btn" tabIndex={6}>
+								<Link href="/sign-in">Войти</Link>
 							</Button>
 						)}
 						<button

@@ -15,6 +15,11 @@
 	@include breakpoint.mobile {
 		gap: 0;
 	}
+	.LearningSidebarMain {
+		@include breakpoint.small-tablet {
+			display: none;
+		}
+	}
 }
 .attestationResult {
 	background: var(--neutral-lightest);
@@ -49,11 +54,6 @@
 		font-size: 32px;
 		text-align: center;
 		color: var(--neutral-darkest);
-	}
-}
-.LearningSidebarMain {
-	@include breakpoint.small-tablet {
-		display: none;
 	}
 }
 .LearningPage {
