@@ -32,7 +32,7 @@ export const TrainerWrapper = ({
 	}
 	const handleClickFinishBtn = () => {
 		dispatch(changeStatus('finish'))
-		redirect(`/attestation-result`, RedirectType.replace)
+		redirect(`/attestation-result/1`, RedirectType.replace)
 	}
 	return (
 		<div className={'TrainerWrapper'}>

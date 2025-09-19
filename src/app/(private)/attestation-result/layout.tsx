@@ -17,7 +17,7 @@ export default function AttestationResultLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<div className="mainWrapper">
+		<div className="mainWrapper mRelative">
 			<div className="container">
 				<Breadcrumbs
 					items={[

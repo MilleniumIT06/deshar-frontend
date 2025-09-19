@@ -1,6 +1,11 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
 .AttestationResult {
 	height: 100vh;
 	width: 100%;
+	@include breakpoint.mobile {
+		height: auto;
+		min-height: 30vh;
+	}
 	&__inner {
 		background-color: var(--neutral-white);
 		border-radius: 32px;
@@ -8,6 +13,11 @@
 		height: 90%;
 		justify-content: center;
 		align-items: center;
+		@include breakpoint.mobile {
+			height: auto;
+			min-height: 30vh;
+			gap: 100px;
+		}
 	}
 	&__title {
 		font-family: var(--font-family);
