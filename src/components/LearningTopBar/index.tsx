@@ -1,8 +1,20 @@
+'use client'
+import { useAppSelector } from '@/app/_store/hooks'
 import { Button } from '@/shared/ui/Button'
-import './styles.scss'
 import { ProgressBar } from '@/shared/ui/ProgressBar'
 
+import './styles.scss'
+
 export const LearningTopBar = () => {
+	const { data } = useAppSelector(state => state.learningAttestationReducer)
+	let numberOfCompletedTasks = 0
+	data.forEach(item => {
+		if (item.completed) {
+			numberOfCompletedTasks += 1
+		}
+	})
+	const normalizedMax = Math.max(1, data.length)
+	const normalizedCurrent = Math.min(Math.max(numberOfCompletedTasks, 0), normalizedMax)
 	return (
 		<div className="LearningTopBar">
 			<div className="LearningTopBar__inner">
@@ -22,7 +34,7 @@ export const LearningTopBar = () => {
 						</svg>
 					</Button>
 					<div className="LearningTopBar__pagination">
-						<span>3</span>/<span>10</span>
+						<span>{numberOfCompletedTasks}</span>/<span>{data.length}</span>
 					</div>
 					<Button variant="iconSecondary" size="iconSmall">
 						<svg
@@ -35,7 +47,12 @@ export const LearningTopBar = () => {
 						</svg>
 					</Button>
 				</div>
-				<ProgressBar maxLessons={10} doneLessons={0} processLessons={3} className={'LearningTopBar__bar'} />
+				<ProgressBar
+					maxLessons={normalizedMax}
+					doneLessons={normalizedCurrent}
+					processLessons={normalizedCurrent}
+					className={'LearningTopBar__bar'}
+				/>
 				<h2 className="LearningTopBar__title">
 					Орфография как система правил правописания слов и форм слов
 				</h2>

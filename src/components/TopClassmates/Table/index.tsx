@@ -1,16 +1,9 @@
+import { type StudentData } from '..'
 import { TableItem } from '../TableItem'
 
 import './styles.scss'
 
-interface Student {
-	id: number
-	class: string
-	name: string
-	doneModules: number
-	placeNumber: number
-	points: number
-	time: string
-}
+type Student = Omit<StudentData, 'type'>
 
 export interface TableData {
 	id: number

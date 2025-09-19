@@ -37,6 +37,10 @@
 
 	&__body {
 		margin-top: 40px;
+		overflow-x: auto;
+		@include breakpoint.mobile {
+			overflow-x: visible;
+		}
 	}
 
 	&__selector {
