@@ -48,15 +48,9 @@ export const Successes = () => {
 							<div className="chart__body">
 								<div className="chart__points">
 									<ul className={cn('list-reset', 'chart__points_list')}>
-										<li className="chart__points_item">
-											150 <span>бал</span>
-										</li>
-										<li className="chart__points_item">
-											100 <span>бал</span>
-										</li>
-										<li className="chart__points_item">
-											50 <span>бал</span>
-										</li>
+										<li className="chart__points_item">150</li>
+										<li className="chart__points_item">100</li>
+										<li className="chart__points_item">50</li>
 									</ul>
 								</div>
 								<div className="chart__lines">
