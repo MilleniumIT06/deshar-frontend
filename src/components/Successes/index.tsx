@@ -11,11 +11,11 @@ import './styles.scss'
 export const Successes = () => {
 	return (
 		<section className="Successes">
-			<div className="container">
+			<div className="container Successes__container">
 				<div className="Successes__inner">
 					<div className="Successes__header">
 						<h1 className="Successes__title">Ваши успехи</h1>
-						<Selector />
+						<Selector className="Successes__selector" />
 					</div>
 					<div className="Successes__body">
 						<div className="chart">
@@ -43,13 +43,20 @@ export const Successes = () => {
 										</svg>
 									</Button>
 								</div>
+								<Selector className="Successes__selector--chart" />
 							</div>
 							<div className="chart__body">
 								<div className="chart__points">
 									<ul className={cn('list-reset', 'chart__points_list')}>
-										<li className="chart__points_item">150 бал</li>
-										<li className="chart__points_item">100 бал</li>
-										<li className="chart__points_item">50 бал</li>
+										<li className="chart__points_item">
+											150 <span>бал</span>
+										</li>
+										<li className="chart__points_item">
+											100 <span>бал</span>
+										</li>
+										<li className="chart__points_item">
+											50 <span>бал</span>
+										</li>
 									</ul>
 								</div>
 								<div className="chart__lines">

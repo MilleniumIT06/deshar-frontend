@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 
-import { type DragEndEvent, DndContext } from '@dnd-kit/core'
+import { type DragEndEvent, DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import cn from 'classnames'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
@@ -19,6 +19,9 @@ export interface ISlot {
 	current: null | string
 }
 export const DragDropTrainer = ({ data }: { data: IMissingWordDndTask }) => {
+	const touchSensor = useSensor(TouchSensor)
+	const mouseSensor = useSensor(MouseSensor)
+	const sensors = useSensors(touchSensor, mouseSensor)
 	const [letters] = useState(data.letters)
 	const [slots, setSlots] = useState(data.slots)
 	const handleDragEnd = (event: DragEndEvent) => {
@@ -56,7 +59,7 @@ export const DragDropTrainer = ({ data }: { data: IMissingWordDndTask }) => {
 			completed={completed}
 			title="Перетащите пропущенные буквы в предложении из вариантов ниже">
 			<div className="DragDropTrainer">
-				<DndContext onDragEnd={handleDragEnd}>
+				<DndContext onDragEnd={handleDragEnd} sensors={sensors}>
 					<div className="DragDropTrainer__inner">
 						<div className="DragDropTrainer__content">{renderSentence()}</div>
 

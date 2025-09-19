@@ -1,12 +1,49 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
 .AttestationPaginator {
 	border-radius: 32px;
 	padding: 32px;
-	width: 904px;
-	height: 108px;
+	max-width: 904px;
+	width: 100%;
+	min-height: 108px;
 	background-color: #fff;
+	@include breakpoint.mobile {
+		padding: 0;
+	}
+	&__wrapper {
+		@include breakpoint.small-tablet {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			justify-content: space-between;
+		}
+	}
 	&__list {
 		display: flex;
 		list-style: none;
 		gap: 12px;
+	}
+	&__title {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 140%;
+		color: var(--neutral-darkest);
+		display: none;
+		@include breakpoint.small-tablet {
+			display: block;
+		}
+		@include breakpoint.mobile {
+			text-align: center;
+			font-weight: 700;
+			font-size: 24px;
+			line-height: 150%;
+		}
+	}
+	&__progressBar {
+		display: none;
+		height: 12px;
+		@include breakpoint.small-tablet {
+			display: flex;
+		}
 	}
 }

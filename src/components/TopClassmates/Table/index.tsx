@@ -12,7 +12,7 @@ interface Student {
 	time: string
 }
 
-interface TableData {
+export interface TableData {
 	id: number
 	type: 'parallel' | 'classmates'
 	students: Student[]

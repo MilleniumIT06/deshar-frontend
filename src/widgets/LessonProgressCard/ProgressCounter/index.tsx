@@ -31,13 +31,7 @@ export const ProgressCounter = ({ count = 1, type }: ProgressCounterProps) => {
 		<li className="ProgressCounter" aria-label={`${config.title}: ${count}`}>
 			<div className="ProgressCounter__info">
 				<div className="ProgressCounter__icon">
-					<Image
-						src={config.icon}
-						alt={`Иконка: ${config.title}`}
-						width={24}
-						height={24}
-						aria-hidden="true"
-					/>
+					<Image src={config.icon} alt={`Иконка: ${config.title}`} fill aria-hidden="true" />
 				</div>
 				<span className="ProgressCounter__title">{config.title}</span>
 			</div>

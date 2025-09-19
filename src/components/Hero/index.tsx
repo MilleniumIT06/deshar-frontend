@@ -13,7 +13,7 @@ export const Hero = () => {
 			<div className={cn('container', 'Hero__container')}>
 				<div className="Hero__inner">
 					<div className="Hero__info">
-						<h1 className="Hero__title">Учимся онлайн в&nbsp;пару кликов</h1>
+						<h1 className="Hero__title">Учимся&nbsp;онлайн в пару кликов</h1>
 						<p>Бесплатные вводые уроки на&nbsp;первые 14&nbsp;учебных дней</p>
 
 						<Button asChild variant="secondary" className="Hero__btn">

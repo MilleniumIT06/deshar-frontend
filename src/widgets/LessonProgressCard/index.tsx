@@ -28,8 +28,8 @@ export const LessonProgressCard = ({
 			<div className="LessonProgressCard__body">
 				<ul className="list-reset LessonProgressCard__list">
 					<ProgressCounter type="finished" count={countOfFinishedModules} />
-					<ProgressCounter type="left" count={countOfLeftModules} />
 					<ProgressCounter type="process" count={countOfProcessModules} />
+					<ProgressCounter type="left" count={countOfLeftModules} />
 				</ul>
 				<ProgressBar
 					counter={false}

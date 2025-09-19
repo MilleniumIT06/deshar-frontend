@@ -1,18 +1,19 @@
 'use client'
 import { useCallback, useState } from 'react'
 
+import cn from 'classnames'
+
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { AttestationItem } from '@/components/AttestationItem'
 import { type ILesson } from '@/components/LearningContent'
 import { LessonItem } from '@/components/LessonItem'
 import { changeId } from '@/entities/learning/model/slice'
 import { Button } from '@/shared/ui/Button'
-
 import './styles.scss'
 
-export const LearningSidebar = () => {
+export const LearningSidebar = ({ className }: { className?: string }) => {
 	const [page, setPage] = useState(0)
-	const itemsPerPage = 6
+	const ITEMS_PER_PAGE = 6
 
 	const dispatch = useAppDispatch()
 	const { activeLessonId, lessons } = useAppSelector(
@@ -54,24 +55,22 @@ export const LearningSidebar = () => {
 		return status === 'attestation'
 	}
 
-	// Находим индекс первого незавершенного урока
 	const firstIncompleteIndex = lessons.findIndex(lesson => !lesson.completed)
 
 	// Определяем доступность уроков
 	const isLessonDisabled = (lessonIndex: number) => {
-		// Все уроки после первого незавершенного должны быть disabled
 		return lessonIndex > firstIncompleteIndex
 	}
 
-	const startIndex = page * itemsPerPage
-	const endIndex = startIndex + itemsPerPage
+	const startIndex = page * ITEMS_PER_PAGE
+	const endIndex = startIndex + ITEMS_PER_PAGE
 	const paginatedLessons = lessons.slice(startIndex, endIndex)
 
 	const hasPreviousPage = page > 0
 	const hasNextPage = endIndex < lessons.length
 
 	return (
-		<div className="LearningSidebar">
+		<div className={cn('LearningSidebar', className)}>
 			<div className="LearningSidebar__inner">
 				<div className="LearningSidebar__wrapper">
 					<h5 className="LearningSidebar__title">Уроки</h5>

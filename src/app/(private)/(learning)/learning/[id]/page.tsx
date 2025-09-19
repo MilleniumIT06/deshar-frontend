@@ -1,11 +1,13 @@
 import { LearningContent } from '@/components/LearningContent'
+import { LearningTopBar } from '@/components/LearningTopBar'
 
 import './../../../styles.scss'
 
 export default async function Learning() {
 	return (
-		<main className="main">
+		<div className="LearningPage">
+			<LearningTopBar />
 			<LearningContent />
-		</main>
+		</div>
 	)
 }

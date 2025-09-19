@@ -18,10 +18,10 @@ export const CompletedCourses = () => {
 						/>
 						<LessonProgressCard
 							title="Физика"
-							countOfFinishedModules={38}
-							countOfLeftModules={19}
+							countOfFinishedModules={13}
+							countOfLeftModules={25}
 							countOfModules={38}
-							countOfProcessModules={0}
+							countOfProcessModules={5}
 						/>
 						<LessonProgressCard
 							title="Алгебра"

@@ -2,9 +2,11 @@
 import { useState, useMemo } from 'react'
 
 import { TEST_CLASSMATES, TEST_PARALLEL } from '@/mocks/data'
+import { useMediaQuery } from '@/shared/hooks/useMediaQuery'
 import { Tabs } from '@/shared/ui/Tabs'
 
 import './styles.scss'
+import { List } from './List'
 import { Table } from './Table'
 
 export interface StudentData {
@@ -25,7 +27,7 @@ const TABS = [
 
 export const TopClassmates = () => {
 	const [activeTab, setActiveTab] = useState(0)
-
+	const isMobile = useMediaQuery('(max-width: 576px)')
 	const tableData = useMemo(() => {
 		return activeTab === 0
 			? { id: 1, type: 'classmates' as const, students: TEST_CLASSMATES }
@@ -40,7 +42,7 @@ export const TopClassmates = () => {
 
 					<Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={TABS} />
 
-					<Table data={tableData} />
+					{!isMobile ? <Table data={tableData} /> : <List data={tableData} />}
 				</div>
 			</div>
 		</section>

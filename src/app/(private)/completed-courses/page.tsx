@@ -5,7 +5,7 @@ import './../styles.scss'
 
 export default function Completed() {
 	return (
-		<main>
+		<main className="mRelative">
 			<div className="container">
 				<div className="inner">
 					<Breadcrumbs

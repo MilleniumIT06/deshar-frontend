@@ -10,10 +10,6 @@
 	padding: 28px;
 	height: 480px;
 
-	@include breakpoint.mobile {
-		flex: 1 0 150%;
-		scroll-snap-align: center;
-	}
 	&__header {
 		display: flex;
 		align-items: start;
@@ -79,11 +75,6 @@
 		background-size: cover;
 		background-repeat: no-repeat;
 
-		@include breakpoint.mobile {
-			right: 0;
-			top: 0;
-		}
-
 		span {
 			font-family: var(--font-family);
 			font-weight: 600;
@@ -91,6 +82,9 @@
 			line-height: 140%;
 			text-align: center;
 			color: var(--neutral-white);
+		}
+		@include breakpoint.mobile {
+			right: -3%;
 		}
 	}
 
@@ -107,6 +101,9 @@
 			font-weight: 700;
 			font-size: 32px;
 			text-align: center;
+		}
+		@include breakpoint.mobile {
+			padding-top: 30px;
 		}
 	}
 	&--primary {
@@ -154,5 +151,18 @@
 		.RateCard__footer_price {
 			color: var(--neutral-white);
 		}
+	}
+	@include breakpoint.small-tablet {
+		flex-grow: 1;
+	}
+	@include breakpoint.pre-mobile {
+		flex-basis: 60%;
+		flex-grow: 0;
+	}
+	@include breakpoint.mobile {
+		width: 100%;
+		max-width: 328px;
+		height: auto;
+		min-height: 366px;
 	}
 }

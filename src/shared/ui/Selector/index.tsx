@@ -15,6 +15,7 @@ interface SelectorProps {
 	options?: Option[]
 	defaultValue?: string
 	onChange?: (value: string) => void
+	className?: string
 }
 
 export const Selector = ({
@@ -25,6 +26,7 @@ export const Selector = ({
 	],
 	defaultValue = 'week',
 	onChange,
+	className,
 }: SelectorProps) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [selectedValue, setSelectedValue] = useState(defaultValue)
@@ -82,7 +84,7 @@ export const Selector = ({
 	return (
 		<div
 			ref={selectorRef}
-			className={cn('Selector', isOpen && 'active')}
+			className={cn('Selector', isOpen && 'active', className)}
 			role="combobox"
 			aria-expanded={isOpen}
 			aria-haspopup="listbox"

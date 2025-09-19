@@ -18,7 +18,7 @@ export default function LearningLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<div className="mainWrapper">
+		<main className="mainWrapper mRelative">
 			<div className="container">
 				<Breadcrumbs
 					items={[
@@ -31,12 +31,12 @@ export default function LearningLayout({
 				<div className="wrapper">
 					<h1 className="title">Морфемика</h1>
 
-					<div className="mainInner">
-						<LearningSidebar />
+					<div className="mainInner LearningLayout__mainInner">
+						<LearningSidebar className="LearningSidebarMain" />
 						{children}
 					</div>
 				</div>
 			</div>
-		</div>
+		</main>
 	)
 }

@@ -1,8 +1,9 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
+import FullScreenMenu from '@/components/FullScreenMenu'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Button } from '@/shared/ui/Button'
 import { Logo } from '@/shared/ui/Logo'
@@ -10,12 +11,51 @@ import { Logo } from '@/shared/ui/Logo'
 import './styles.scss'
 
 export const Header = () => {
-	const [authed] = useState(true)
+	const [authed] = useState(false)
+	const [burgerOpen, setBurgerOpen] = useState(false)
+	useEffect(() => {
+		if (burgerOpen) {
+			// Сохраняем текущую позицию скролла
+			const scrollY = window.scrollY
+
+			// Блокируем скролл
+			document.body.style.position = 'fixed'
+			document.body.style.top = `-${scrollY}px`
+			document.body.style.width = '100%'
+			document.body.style.overflow = 'hidden'
+		} else {
+			// Восстанавливаем скролл
+			const scrollY = document.body.style.top
+			document.body.style.position = ''
+			document.body.style.top = ''
+			document.body.style.width = ''
+			document.body.style.overflow = ''
+
+			// Восстанавливаем позицию скролла
+			window.scrollTo(0, parseInt(scrollY || '0') * -1)
+		}
+
+		return () => {
+			// Очистка при размонтировании компонента
+			document.body.style.position = ''
+			document.body.style.top = ''
+			document.body.style.width = ''
+			document.body.style.overflow = ''
+		}
+	}, [burgerOpen])
+	useEffect(() => {
+		const handleEsc = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') setBurgerOpen(false)
+		}
+		window.addEventListener('keydown', handleEsc)
+		return () => window.removeEventListener('keydown', handleEsc)
+	}, [])
 	return (
 		<header className="Header">
+			{burgerOpen && <FullScreenMenu setMenuOpen={setBurgerOpen} />}
 			<div className="container Header__container">
 				<div className="Header__inner">
-					<Logo size="large" />
+					<Logo size="large" className="Header__logo" />
 					<nav className="Header__nav">
 						<ul className={`list-reset Header__list`}>
 							<li className="Header__list_item">
@@ -35,20 +75,25 @@ export const Header = () => {
 							</li>
 						</ul>
 					</nav>
-					{authed ? (
-						<Avatar />
-					) : (
-						<Button variant="primary" size="small" className="Header__btn" tabIndex={6}>
-							Войти
-						</Button>
-					)}
-					<button
-						className="btn-reset Header__burger"
-						aria-label="Открыть меню"
-						aria-expanded="false"
-						data-burger>
-						<span className="Header__line" />
-					</button>
+					<div className="Header__right">
+						{authed ? (
+							<Avatar />
+						) : (
+							<Button variant="primary" size="small" className="Header__btn" tabIndex={6}>
+								Войти
+							</Button>
+						)}
+						<button
+							className={`btn-reset Header__burger ${burgerOpen ? 'active' : ''}`}
+							aria-label="Открыть меню"
+							aria-expanded="false"
+							data-burger
+							onClick={() => setBurgerOpen(prev => !prev)}>
+							<span className="Header__burger_line" />
+							<span className="Header__burger_line" />
+							<span className="Header__burger_line" />
+						</button>
+					</div>
 				</div>
 			</div>
 		</header>

@@ -1,4 +1,4 @@
-@use './../../shared/scss/breakpoint' as breakpoint;
+@use '@/shared/scss/breakpoint' as breakpoint;
 
 .Successes {
 	&__title {
@@ -7,8 +7,19 @@
 		font-size: 32px;
 		text-align: center;
 		color: var(--neutral-darkest);
+		@include breakpoint.small-tablet {
+			font-weight: 700;
+			font-size: 32px;
+		}
+		@include breakpoint.mobile {
+			text-align: center;
+		}
 	}
-
+	@include breakpoint.small-tablet {
+		&__container {
+			padding: 0 15px;
+		}
+	}
 	&__inner {
 		padding-top: 60px;
 		width: 100%;
@@ -18,9 +29,9 @@
 		display: flex;
 		justify-content: space-between;
 
-		@include breakpoint.small-mobile {
+		@include breakpoint.mobile {
 			flex-direction: column;
-			align-items: start;
+			align-items: center;
 		}
 	}
 
@@ -29,25 +40,26 @@
 	}
 
 	&__selector {
-		position: absolute;
-		right: 0;
-		top: 0;
-
-		@include breakpoint.small-mobile {
-			position: initial;
+		@include breakpoint.mobile {
+			display: none;
+		}
+		&--chart {
+			display: none;
+			@include breakpoint.mobile {
+				display: block;
+			}
 		}
 	}
 
 	&__results {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 2%;
-
-		@include breakpoint.post-tablet {
-			flex-wrap: wrap;
-			justify-content: center;
-			gap: 2%;
+		display: grid;
+		grid-template-columns: repeat(3, auto);
+		column-gap: 2%;
+		@include breakpoint.pre-middle-tablet {
+			grid-template-columns: repeat(2, auto);
+		}
+		@include breakpoint.middle-mobile {
+			grid-template-columns: repeat(1, auto);
 		}
 	}
 
@@ -66,14 +78,20 @@
 	@include breakpoint.small-tablet {
 		padding: 3% 1%;
 	}
-
+	@include breakpoint.mobile {
+		background-color: transparent;
+		padding: 3% 0;
+	}
 	&__header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 
 		@include breakpoint.small-tablet {
-			justify-content: center;
+			padding: 0 15px;
+		}
+		@include breakpoint.mobile {
+			padding: 0;
 		}
 	}
 
@@ -83,6 +101,15 @@
 		padding-bottom: 40px;
 		height: 100%;
 		gap: 20px;
+		@include breakpoint.small-tablet {
+			padding-left: 15px;
+		}
+		@include breakpoint.mobile {
+			padding-left: 0;
+			gap: 5px;
+			height: 230px;
+			padding-bottom: 0;
+		}
 	}
 
 	&__title {
@@ -92,6 +119,10 @@
 		line-height: 140%;
 		text-align: center;
 		color: var(--neutral-darkest);
+		@include breakpoint.mobile {
+			font-size: 16px;
+			line-height: 150%;
+		}
 	}
 
 	&__navigation {
@@ -100,6 +131,9 @@
 		gap: 12px;
 
 		@include breakpoint.small-tablet {
+			justify-content: space-between;
+		}
+		@include breakpoint.mobile {
 			display: none;
 		}
 	}
@@ -119,6 +153,15 @@
 			@include breakpoint.small-tablet {
 				text-align: left;
 			}
+			span {
+				@include breakpoint.mobile {
+					display: none;
+				}
+			}
+			@include breakpoint.mobile {
+				font-size: 12px;
+				line-height: 167%;
+			}
 		}
 	}
 
@@ -131,5 +174,11 @@
 		@include breakpoint.small-tablet {
 			overflow-x: scroll;
 		}
+		@include breakpoint.mobile {
+			gap: 15px;
+		}
+	}
+	@include breakpoint.mobile {
+		height: 281px;
 	}
 }

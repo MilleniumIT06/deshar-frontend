@@ -20,6 +20,7 @@ export const AllCourses = () => {
 								id={item.id}
 								imageUrl={item.imageUrl}
 								type="long"
+								className="AllCourses__card"
 							/>
 						))}
 					</CoursesBlock>
@@ -32,6 +33,7 @@ export const AllCourses = () => {
 								description={item.description}
 								id={item.id}
 								type="long"
+								className="AllCourses__card"
 							/>
 						))}
 					</CoursesBlock>

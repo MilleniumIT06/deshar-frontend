@@ -12,8 +12,9 @@
 	transition: all 1.5s ease;
 
 	@include breakpoint.mobile {
-		min-height: 30px;
-		max-height: 30px;
+		min-height: 32px;
+		max-height: 32px;
+		width: 95px;
 	}
 
 	&__header {
@@ -28,10 +29,17 @@
 			font-size: 14px;
 			line-height: 143%;
 			color: #303030;
+			@include breakpoint.mobile {
+				font-size: 12px;
+				line-height: 167%;
+				font-weight: 400;
+			}
 		}
 
 		@include breakpoint.mobile {
-			padding: 7px 15px;
+			padding: 4px 8px 4px 8px;
+			width: 100%;
+			height: 100%;
 		}
 	}
 
@@ -102,6 +110,9 @@
 				width: 100%;
 				background: var(--neutral-medium);
 			}
+		}
+		@include breakpoint.mobile {
+			width: 123px;
 		}
 	}
 }

@@ -3,20 +3,21 @@
 	padding: 12px;
 	width: 35px;
 	height: 32px;
-	background: var(--primary-lightest);
+	background: var(--primary-medium);
 	font-family: var(--font-family);
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 175%;
-	color: var(--neutral-darkest);
+	color: var(--neutral-white);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
 	cursor: pointer;
 	user-select: none;
+	touch-action: none;
 	&.disabled {
-		background: var(--primary-lightest);
+		background: var(--primary-medium);
 		opacity: 0.5;
 		cursor: default;
 	}

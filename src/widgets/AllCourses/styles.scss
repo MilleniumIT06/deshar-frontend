@@ -1,6 +1,14 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
 .AllCourses {
 	&__inner {
 		padding-top: 5%;
 		padding-bottom: 5%;
+		@include breakpoint.mobile {
+			padding-bottom: 64px;
+		}
+	}
+	&__card {
+		flex: none;
+		max-width: none;
 	}
 }

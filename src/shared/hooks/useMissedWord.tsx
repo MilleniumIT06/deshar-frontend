@@ -5,18 +5,16 @@ import { useCallback, useEffect, useState } from 'react'
 import { type IMissingWord } from '@/components/LearningContent'
 import MissingLetter from '@/components/MissingLetter'
 
-// Исправленный интерфейс данных
 export interface IMissedWordData {
 	id: number
 	sentence: string
 	missingWords: IMissingWord[]
-	type: string // Конкретный тип
+	type: string
 	completed?: boolean
 }
 
-// Интерфейс для хука
 interface IUseMissedData {
-	data: IMissedWordData // Используем исправленный тип
+	data: IMissedWordData
 	onSuccess: () => void
 	onError: () => void
 }

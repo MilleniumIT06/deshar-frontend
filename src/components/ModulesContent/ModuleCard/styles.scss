@@ -1,7 +1,11 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
 .ModuleCard {
 	border-radius: 32px;
 	padding: 24px 32px;
-	width: 280px;
+	// width: 280px;
+	flex-basis: 280px;
+	flex-grow: 1;
+	flex-shrink: 1;
 	height: 260px;
 	background-color: var(--neutral-lightest);
 	&__suptitle {
@@ -36,5 +40,8 @@
 		align-items: end;
 		justify-content: center;
 		gap: 4%;
+	}
+	@include breakpoint.mobile {
+		height: 200px;
 	}
 }

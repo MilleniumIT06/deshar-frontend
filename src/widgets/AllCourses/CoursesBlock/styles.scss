@@ -1,16 +1,35 @@
+@use '@/shared/scss/breakpoint' as breakpoint;
 .CoursesBlock {
 	padding-top: 7%;
+	margin-top: 40px;
 	&__title {
 		font-family: var(--font-family);
 		font-weight: 700;
 		font-size: 32px;
 		text-align: left;
 		color: var(--neutral-darkest);
+		@include breakpoint.mobile {
+			font-size: 24px;
+			line-height: 150%;
+		}
 	}
 	&__cards {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 2%;
-		padding-top: 30px;
+		// display: flex;
+		// flex-wrap: wrap;
+		// gap: 30px;
+		// padding-top: 30px;
+		// list-style: none;
+		// justify-content: start;
+		padding-top: 28px;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 30px 30px;
+		@include breakpoint.tablet {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@include breakpoint.mobile {
+			grid-template-columns: 1fr;
+			gap: 20px 0;
+		}
 	}
 }

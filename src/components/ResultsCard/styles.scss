@@ -2,7 +2,6 @@
 
 .ResultsCard {
 	display: flex;
-	flex: 1 1 384px;
 	flex-direction: column;
 	align-items: start;
 	border-radius: 32px;
@@ -22,10 +21,8 @@
 		align-items: center;
 		justify-content: center;
 		gap: 5px;
-
-		@include breakpoint.post-tablet {
-			font-size: 13px;
-			line-height: 70%;
+		@include breakpoint.extra-small-tablet {
+			font-size: 17px;
 		}
 	}
 
@@ -51,17 +48,9 @@
 			font-size: 16px;
 			line-height: 175%;
 			text-align: center;
-
-			@include breakpoint.post-tablet {
+			@include breakpoint.extra-small-tablet {
 				font-size: 13px;
-				line-height: 70%;
 			}
-		}
-
-		@include breakpoint.post-tablet {
-			padding: 2px 6px 2px 4px;
-			width: 77px;
-			height: 31px;
 		}
 
 		&.increase {
@@ -80,9 +69,8 @@
 		font-size: 44px;
 		text-align: center;
 		color: #303030;
-
-		@include breakpoint.post-tablet {
-			font-size: 23px;
+		@include breakpoint.extra-small-tablet {
+			font-size: 37px;
 		}
 	}
 
@@ -96,13 +84,17 @@
 		display: flex;
 		align-items: center;
 		gap: 5px;
+		@include breakpoint.extra-small-tablet {
+			font-size: 12px;
+		}
 	}
 
 	@include breakpoint.post-tablet {
-		flex-flow: row wrap;
-		justify-content: center;
+		justify-content: start;
 		margin-top: 3%;
 		padding: 5%;
-		max-height: 110px;
+	}
+	@include breakpoint.extra-small-tablet {
+		justify-content: center;
 	}
 }

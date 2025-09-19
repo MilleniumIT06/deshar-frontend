@@ -7,7 +7,7 @@ import { Subscription } from '@/components/Subcription'
 
 export default function Home() {
 	return (
-		<main>
+		<main className="mRelative">
 			<Hero />
 			<Info />
 			<Learn />
