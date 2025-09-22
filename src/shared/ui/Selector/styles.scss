@@ -69,6 +69,7 @@
 			}
 
 			&.selected {
+				background-color: var(--neutral-lightest);
 				span {
 					font-weight: 700;
 				}
@@ -86,7 +87,7 @@
 		display: flex;
 		align-items: start;
 		justify-content: start;
-		width: 143px;
+		width: 123px;
 		background-color: var(--neutral-white);
 		box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.1);
 		border-radius: 24px;
@@ -103,6 +104,8 @@
 			&::-webkit-scrollbar-track {
 				width: 100%;
 				background: var(--neutral-lightest);
+				margin: 16px 0;
+				cursor: pointer;
 			}
 
 			&::-webkit-scrollbar-thumb {

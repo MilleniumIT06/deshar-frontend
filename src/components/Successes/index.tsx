@@ -1,3 +1,4 @@
+'use client'
 import cn from 'classnames'
 
 import { ResultsCard } from '@/components/ResultsCard'
@@ -15,7 +16,19 @@ export const Successes = () => {
 				<div className="Successes__inner">
 					<div className="Successes__header">
 						<h1 className="Successes__title">Ваши успехи</h1>
-						<Selector className="Successes__selector" />
+						<Selector
+							className="Successes__selector"
+							options={[
+								{ id: 'week', label: 'Неделя' },
+								{ id: 'month', label: 'Месяц' },
+								{ id: 'year', label: 'Год' },
+								{ id: 'test', label: 'test' },
+								{ id: 'test2', label: 'test2' },
+								{ id: 'test3', label: 'test3' },
+							]}
+							defaultValue="week"
+							onChange={() => 'test'}
+						/>
 					</div>
 					<div className="Successes__body">
 						<div className="chart">

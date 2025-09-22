@@ -58,7 +58,7 @@ export const Reviews = () => {
 								}}
 								spaceBetween={50}
 								slidesPerView={1} //Number of slides per view
-								style={{ maxWidth: '1155px', margin: '0 auto' }} //Optional, for styling
+								style={{ margin: '0 auto' }} //Optional, for styling
 							>
 								{reviewsMockData.map(item => (
 									<SwiperSlide key={item.id}>
