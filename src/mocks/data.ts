@@ -916,3 +916,22 @@ export const coursesB = [
 		type: 'long' as const,
 	},
 ]
+export const barChartMockData = [
+	{ date: new Date(2023, 9, 1), value: 150 },
+	{ date: new Date(2023, 9, 2), value: 85 },
+	{ date: new Date(2023, 9, 3), value: 120 },
+	{ date: new Date(2023, 9, 4), value: 200 },
+	{ date: new Date(2023, 9, 5), value: 65 },
+	{ date: new Date(2023, 9, 6), value: 200 },
+	{ date: new Date(2023, 9, 7), value: 45 },
+	{ date: new Date(2023, 9, 8), value: 399 },
+	{ date: new Date(2023, 9, 9), value: 95 },
+	{ date: new Date(2023, 9, 10), value: 135 },
+	{ date: new Date(2023, 9, 11), value: 175 },
+	{ date: new Date(2023, 9, 12), value: 110 },
+	{ date: new Date(2023, 9, 13), value: 110 },
+	{ date: new Date(2023, 9, 14), value: 110 },
+	{ date: new Date(2023, 9, 15), value: 110 },
+	{ date: new Date(2023, 9, 16), value: 110 },
+	{ date: new Date(2023, 9, 17), value: 110 },
+]
