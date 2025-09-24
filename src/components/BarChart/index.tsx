@@ -7,26 +7,29 @@ import { barChartMockData } from '@/mocks/data'
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery'
 
 export const BarChart = () => {
-	const [size] = useState({ width: 1152, height: 225 })
+	const [size, setSize] = useState({ width: 1152, height: 225 })
 	const [displayedData, setDisplayedData] = useState(barChartMockData)
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-	const padding = 40
-	const barWidth = 56
-	const maxValue = 200
 
 	const isMobile = useMediaQuery('(max-width: 567px)')
 	const isTablet = useMediaQuery('(max-width: 768px)')
 
+	// Динамические значения для разных устройств
+	const padding = 40
+	const barGap = isMobile ? 15 : isTablet ? 13 : 22
+	const barWidth = isMobile ? 50 : isTablet ? 57 : 66
+	const barViewSize = barWidth - barGap
+	const maxValue = 200
+
 	useEffect(() => {
 		if (isMobile) {
-			setDisplayedData(barChartMockData.slice(0, 5))
-			// console.log('t1');
+			setDisplayedData(barChartMockData.slice(0, 6))
+			setSize({ width: 500, height: 225 })
 		} else if (isTablet) {
-			setDisplayedData(barChartMockData.slice(0, 10))
-			// console.log('t2');
+			setDisplayedData(barChartMockData.slice(0, 11))
+			setSize({ width: 700, height: 225 })
 		} else {
-			setDisplayedData(barChartMockData)
-			// console.log('t3');
+			setDisplayedData(barChartMockData.slice(0, 17))
 		}
 	}, [isTablet, isMobile])
 
@@ -58,7 +61,7 @@ export const BarChart = () => {
 
 	const renderBars = () =>
 		displayedData.map((item, index) => {
-			const x = padding + index * barWidth
+			const x = isMobile ? padding + index * barWidth + 3 : padding + index * barWidth + 7
 			const barHeight =
 				item.value > maxValue
 					? size.height - padding * 2
@@ -72,7 +75,7 @@ export const BarChart = () => {
 					<Rect
 						x={x + 2}
 						y={y}
-						width={barWidth - 12}
+						width={barViewSize}
 						height={barHeight}
 						fill={isHovered ? '#0f8a5e' : '#1baa7d'}
 						cornerRadius={[12, 12, 12, 12]}
@@ -81,7 +84,7 @@ export const BarChart = () => {
 					/>
 					{/* Подпись даты */}
 					<Text
-						x={x + barWidth / 2 - 20}
+						x={x}
 						y={y + barHeight + 15}
 						text={dateStr}
 						fontSize={14}
@@ -103,7 +106,7 @@ export const BarChart = () => {
 		const y = size.height - padding - barHeight
 
 		return (
-			<Label x={x + barWidth / 2 - 3} y={y} key="tooltip">
+			<Label x={x + barWidth - 82 / 2} y={y} key="tooltip">
 				<Tag
 					fill="black"
 					pointerDirection="down"
