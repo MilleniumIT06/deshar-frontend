@@ -4,7 +4,7 @@
 	padding: 24px 32px;
 	// width: 280px;
 	flex-basis: 280px;
-	flex-grow: 1;
+	flex-grow: 0;
 	flex-shrink: 1;
 	height: 260px;
 	background-color: var(--neutral-lightest);
@@ -40,6 +40,9 @@
 		align-items: end;
 		justify-content: center;
 		gap: 4%;
+	}
+	@include breakpoint.middle-tablet {
+		flex-grow: 1;
 	}
 	@include breakpoint.mobile {
 		height: 200px;
