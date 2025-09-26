@@ -37,10 +37,6 @@
 
 	&__body {
 		margin-top: 40px;
-		overflow-x: auto;
-		@include breakpoint.mobile {
-			overflow-x: visible;
-		}
 	}
 
 	&__selector {
@@ -104,10 +100,12 @@
 		padding-bottom: 40px;
 		height: 100%;
 		gap: 20px;
+		overflow-x: auto;
 		@include breakpoint.small-tablet {
 			padding-left: 15px;
 		}
 		@include breakpoint.mobile {
+			overflow-x: visible;
 			padding-left: 0;
 			gap: 5px;
 			height: 230px;
