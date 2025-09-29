@@ -3,14 +3,18 @@ import { useState, useEffect } from 'react'
 
 import { Stage, Layer, Rect, Text, Group, Label, Tag } from 'react-konva'
 
-import { barChartMockData } from '@/mocks/data'
+import { useAppSelector } from '@/app/_store/hooks'
+import { type barChartMockData } from '@/mocks/data'
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery'
 
-export const BarChart = () => {
+export const BarChart = ({ data }: { data: typeof barChartMockData }) => {
+	const currentPage = useAppSelector(state => state.barCharReducer.currentPage)
 	const [size, setSize] = useState({ width: 1152, height: 225 })
-	const [displayedData, setDisplayedData] = useState(barChartMockData)
+	const [allData] = useState(data) // Все данные
+	const [displayedData, setDisplayedData] = useState<typeof barChartMockData>([])
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 	const [touchTimeout, setTouchTimeout] = useState<NodeJS.Timeout | null>(null)
+
 	const isSmallMobile = useMediaQuery('(max-width: 450px)')
 	const isMobile = useMediaQuery('(max-width: 567px)')
 	const isTablet = useMediaQuery('(max-width: 768px)')
@@ -22,22 +26,35 @@ export const BarChart = () => {
 	const barViewSize = barWidth - barGap
 	const maxValue = 200
 
+	// Количество элементов на странице в зависимости от устройства
+	const getItemsPerPage = () => {
+		if (isSmallMobile) return 6
+		if (isMobile) return 6
+		if (isTablet) return 11
+		return 17
+	}
+
+	// Общее количество страниц
+	const itemsPerPage = getItemsPerPage()
+
+	// Обновление отображаемых данных при изменении страницы или размера экрана
 	useEffect(() => {
+		const startIndex = currentPage * itemsPerPage
+		const endIndex = startIndex + itemsPerPage
+		setDisplayedData(allData.slice(startIndex, endIndex))
+
+		// Установка размера в зависимости от устройства
 		if (isSmallMobile) {
-			setDisplayedData(barChartMockData.slice(0, 6))
 			setSize({ width: 350, height: 225 })
 		} else if (isMobile) {
-			setDisplayedData(barChartMockData.slice(0, 6))
 			setSize({ width: 500, height: 225 })
 		} else if (isTablet) {
-			setDisplayedData(barChartMockData.slice(0, 11))
 			setSize({ width: 700, height: 225 })
 		} else {
-			setDisplayedData(barChartMockData.slice(0, 17))
+			setSize({ width: 1152, height: 225 })
 		}
-	}, [isTablet, isMobile, isSmallMobile])
+	}, [isTablet, isMobile, isSmallMobile, currentPage, itemsPerPage, allData])
 
-	// Очистка таймера при размонтировании
 	useEffect(() => {
 		return () => {
 			if (touchTimeout) {
@@ -47,15 +64,12 @@ export const BarChart = () => {
 	}, [touchTimeout])
 
 	const handleTouchStart = (index: number) => {
-		// Сразу показываем тултип для сенсорного устройства
 		setHoveredIndex(index)
 
-		// Очищаем предыдущий таймер
 		if (touchTimeout) {
 			clearTimeout(touchTimeout)
 		}
 
-		// Устанавливаем таймер для автоматического скрытия тултипа через 3 секунды
 		const timeout = setTimeout(() => {
 			setHoveredIndex(null)
 		}, 3000)
@@ -106,7 +120,7 @@ export const BarChart = () => {
 			const isHovered = hoveredIndex === index
 
 			return (
-				<Group key={`bar-${index}`}>
+				<Group key={`bar-${currentPage}-${index}`}>
 					{isHovered && (
 						<Label x={TooltipX} y={y} key="tooltip">
 							<Tag
@@ -133,13 +147,10 @@ export const BarChart = () => {
 						height={barHeight}
 						fill={isHovered ? '#0f8a5e' : '#1baa7d'}
 						cornerRadius={[12, 12, 12, 12]}
-						// События для мыши
 						onMouseEnter={() => setHoveredIndex(index)}
 						onMouseLeave={() => setHoveredIndex(null)}
-						// События для сенсорных устройств
 						onTouchStart={() => handleTouchStart(index)}
 						onTouchEnd={handleTouchEnd}
-						// Важно: отключаем предупреждение Konva о событиях касаний
 						onTap={() => handleTouchStart(index)}
 					/>
 					{/* Подпись даты */}
