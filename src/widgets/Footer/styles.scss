@@ -121,6 +121,7 @@
 			@include breakpoint.small-tablet {
 				flex-flow: row-reverse wrap;
 				gap: 20px;
+				justify-content: start;
 			}
 
 			@include breakpoint.mobile {

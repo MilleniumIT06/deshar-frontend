@@ -326,7 +326,7 @@ export const TEST_CLASSMATES: StudentData[] = [
 		doneModules: 18,
 		placeNumber: 1,
 		points: 120,
-		time: '2ч 37м',
+		time: 157,
 	},
 	{
 		id: 2,
@@ -336,7 +336,7 @@ export const TEST_CLASSMATES: StudentData[] = [
 		doneModules: 15,
 		placeNumber: 2,
 		points: 115,
-		time: '2ч 15м',
+		time: 135,
 	},
 	{
 		id: 3,
@@ -346,7 +346,7 @@ export const TEST_CLASSMATES: StudentData[] = [
 		doneModules: 12,
 		placeNumber: 3,
 		points: 105,
-		time: '1ч 50м',
+		time: 110,
 	},
 	{
 		id: 4,
@@ -356,7 +356,7 @@ export const TEST_CLASSMATES: StudentData[] = [
 		doneModules: 10,
 		placeNumber: 4,
 		points: 95,
-		time: '1ч 30м',
+		time: 90,
 	},
 ]
 
@@ -369,7 +369,7 @@ export const TEST_PARALLEL: StudentData[] = [
 		doneModules: 18,
 		placeNumber: 1,
 		points: 120,
-		time: '2ч 37м',
+		time: 157,
 	},
 	{
 		id: 2,
@@ -379,7 +379,7 @@ export const TEST_PARALLEL: StudentData[] = [
 		doneModules: 16,
 		placeNumber: 2,
 		points: 118,
-		time: '2ч 20м',
+		time: 180,
 	},
 	{
 		id: 3,
@@ -389,7 +389,7 @@ export const TEST_PARALLEL: StudentData[] = [
 		doneModules: 14,
 		placeNumber: 3,
 		points: 110,
-		time: '2ч 05м',
+		time: 125,
 	},
 	{
 		id: 4,
@@ -399,7 +399,7 @@ export const TEST_PARALLEL: StudentData[] = [
 		doneModules: 12,
 		placeNumber: 4,
 		points: 100,
-		time: '1ч 45м',
+		time: 105,
 	},
 ]
 
@@ -915,4 +915,37 @@ export const coursesB = [
 		modulesCount: 12,
 		type: 'long' as const,
 	},
+]
+export const barChartMockData = [
+	{ date: new Date(2023, 9, 1), value: 150 },
+	{ date: new Date(2023, 9, 2), value: 85 },
+	{ date: new Date(2023, 9, 3), value: 120 },
+	{ date: new Date(2023, 9, 4), value: 200 },
+	{ date: new Date(2023, 9, 5), value: 65 },
+	{ date: new Date(2023, 9, 6), value: 200 },
+	{ date: new Date(2023, 9, 7), value: 45 },
+	{ date: new Date(2023, 9, 8), value: 399 },
+	{ date: new Date(2023, 9, 9), value: 95 },
+	{ date: new Date(2023, 9, 10), value: 135 },
+	{ date: new Date(2023, 9, 11), value: 175 },
+	{ date: new Date(2023, 9, 12), value: 110 },
+	{ date: new Date(2023, 9, 13), value: 110 },
+	{ date: new Date(2023, 9, 14), value: 110 },
+	{ date: new Date(2023, 9, 15), value: 110 },
+	{ date: new Date(2023, 9, 16), value: 110 },
+	{ date: new Date(2023, 9, 17), value: 110 },
+	{ date: new Date(2023, 9, 11), value: 175 },
+	{ date: new Date(2023, 9, 12), value: 110 },
+	{ date: new Date(2023, 9, 13), value: 110 },
+	{ date: new Date(2023, 9, 14), value: 110 },
+	{ date: new Date(2023, 9, 15), value: 110 },
+	{ date: new Date(2023, 9, 16), value: 110 },
+	{ date: new Date(2023, 9, 17), value: 110 },
+	{ date: new Date(2023, 9, 11), value: 175 },
+	{ date: new Date(2023, 9, 12), value: 110 },
+	{ date: new Date(2023, 9, 13), value: 110 },
+	{ date: new Date(2023, 9, 14), value: 110 },
+	{ date: new Date(2023, 9, 15), value: 110 },
+	{ date: new Date(2023, 9, 16), value: 110 },
+	{ date: new Date(2023, 9, 17), value: 110 },
 ]

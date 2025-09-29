@@ -1,10 +1,18 @@
+import dynamic from 'next/dynamic'
+
 import { Hero } from '@/components/Hero'
 import { Info } from '@/components/Info'
 import { Learn } from '@/components/Learn'
-import { Question } from '@/components/Question'
-import { Reviews } from '@/components/Reviews'
-import { Subscription } from '@/components/Subcription'
 
+const Reviews = dynamic(() => import('@/components/Reviews').then(mod => mod.Reviews), {
+	loading: () => <div>Загрузка...</div>,
+})
+const Subscription = dynamic(() => import('@/components/Subcription').then(mod => mod.Subscription), {
+	loading: () => <div>Загрузка...</div>,
+})
+const Question = dynamic(() => import('@/components/Question').then(mod => mod.Question), {
+	loading: () => <div>Загрузка...</div>,
+})
 export default function Home() {
 	return (
 		<main className="mRelative">

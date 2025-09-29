@@ -4,7 +4,7 @@ import cn from 'classnames'
 interface TopClassmatesListItemProps {
 	placeNumber: number
 	name: string
-	time: string
+	time: number
 	doneModules: number
 	points: number
 	parralelClass?: string

@@ -12,7 +12,7 @@ export default function SignIn() {
 	return (
 		<main>
 			<section className="AuthIndex signIn">
-				<div className="container">
+				<div className="container signIn__container">
 					<div className="Auth__inner">
 						<SignInForm />
 					</div>

@@ -1,13 +1,11 @@
 'use client'
-import cn from 'classnames'
 
 import { ResultsCard } from '@/components/ResultsCard'
-import { candleDateMockData } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { Selector } from '@/shared/ui/Selector'
 
-import { ChartCandle } from './ChartCandle'
 import './styles.scss'
+import { BarChart } from '../BarChart'
 
 export const Successes = () => {
 	return (
@@ -56,27 +54,22 @@ export const Successes = () => {
 										</svg>
 									</Button>
 								</div>
-								<Selector className="Successes__selector--chart" />
+								<Selector
+									className="Successes__selector--chart"
+									options={[
+										{ id: 'week', label: 'Неделя' },
+										{ id: 'month', label: 'Месяц' },
+										{ id: 'year', label: 'Год' },
+										{ id: 'test', label: 'test' },
+										{ id: 'test2', label: 'test2' },
+										{ id: 'test3', label: 'test3' },
+									]}
+									defaultValue="week"
+									onChange={() => 'test'}
+								/>
 							</div>
 							<div className="chart__body">
-								<div className="chart__points">
-									<ul className={cn('list-reset', 'chart__points_list')}>
-										<li className="chart__points_item">150</li>
-										<li className="chart__points_item">100</li>
-										<li className="chart__points_item">50</li>
-									</ul>
-								</div>
-								<div className="chart__lines">
-									{candleDateMockData.map(item => (
-										<ChartCandle
-											key={item.id}
-											id={item.id}
-											maxPoints={200}
-											currentPoints={item.currentPoints}
-											date={item.date}
-										/>
-									))}
-								</div>
+								<BarChart />
 							</div>
 						</div>
 					</div>

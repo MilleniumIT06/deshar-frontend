@@ -3,13 +3,17 @@ import './styles.scss'
 interface TableItemProps {
 	placeNumber: number
 	name: string
-	time: string
+	time: number
 	doneModules: number
 	points: number
 	parralelClass?: string
 	type: 'parallel' | 'classmates'
 }
-
+function minutesToHoursAndMinutes(totalMinutes: number) {
+	const hours = Math.floor(totalMinutes / 60)
+	const minutes = totalMinutes % 60
+	return `${hours}ч ${minutes}м`
+}
 export const TableItem = ({ doneModules, name, placeNumber, points, time, type, parralelClass }: TableItemProps) => {
 	const placeClasses = {
 		1: 'tableItem__place_first',
@@ -23,7 +27,7 @@ export const TableItem = ({ doneModules, name, placeNumber, points, time, type, 
 		// eslint-disable-next-line no-console
 		console.warn(`TableItem: parralelClass is required for type "parallel" (placeNumber: ${placeNumber})`)
 	}
-
+	const correctedTime = minutesToHoursAndMinutes(time)
 	return (
 		<tr className="tableItem">
 			<td className="tableItem__place">
@@ -38,7 +42,7 @@ export const TableItem = ({ doneModules, name, placeNumber, points, time, type, 
 
 			{type === 'parallel' && <td className="tableItem__parralelClass">{parralelClass || '—'}</td>}
 
-			<td className="tableItem__time">{time}</td>
+			<td className="tableItem__time">{correctedTime}</td>
 			<td className="tableItem__done">{doneModules}</td>
 			<td className="tableItem__points">{points}</td>
 		</tr>

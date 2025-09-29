@@ -17,7 +17,7 @@ export interface StudentData {
 	doneModules: number
 	placeNumber: number
 	points: number
-	time: string
+	time: number
 }
 
 const TABS = [
