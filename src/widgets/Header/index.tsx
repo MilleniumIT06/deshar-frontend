@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 import FullScreenMenu from '@/components/FullScreenMenu'
+import { useAuth } from '@/shared/hooks/useAuth'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Button } from '@/shared/ui/Button'
 import { Logo } from '@/shared/ui/Logo'
@@ -11,7 +12,7 @@ import { Logo } from '@/shared/ui/Logo'
 import './styles.scss'
 
 export const Header = () => {
-	const [authed] = useState(false)
+	const authed = useAuth()
 	const [burgerOpen, setBurgerOpen] = useState(false)
 	useEffect(() => {
 		if (burgerOpen) {

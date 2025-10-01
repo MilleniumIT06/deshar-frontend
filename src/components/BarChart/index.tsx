@@ -110,7 +110,7 @@ export const BarChart = ({ data }: { data: typeof barChartMockData }) => {
 	const renderBars = () =>
 		displayedData.map((item, index) => {
 			const x = isMobile ? padding + index * barWidth + 3 : padding + index * barWidth + 7
-			const TooltipX = x + barWidth / barGap + padding / 2
+			const TooltipX = isMobile ? x - 5 + barWidth / barGap + padding / 2 : x + barWidth / barGap + padding / 2
 			const barHeight =
 				item.value > maxValue
 					? size.height - padding * 2
