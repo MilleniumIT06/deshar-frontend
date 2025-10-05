@@ -40,7 +40,17 @@ export const LearningAttestation = () => {
 					/>
 				)
 			case 'choice-right':
-				return <SelectAnswerQuiz />
+				return (
+					<SelectAnswerQuiz
+						data={{
+							id: currentTask.id,
+							title: currentTask.title,
+							type: currentTask.type,
+							variants: currentTask.variants,
+							completed: currentTask.completed,
+						}}
+					/>
+				)
 			default:
 				return <div>Error</div>
 		}

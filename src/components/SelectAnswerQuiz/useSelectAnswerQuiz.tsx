@@ -2,15 +2,21 @@
 
 import { useState } from 'react'
 
-import { exampleSelectData } from '@/mocks/data'
+import { type IChoiceRightTask } from '../LearningContent'
 
 import { type ISelectItem } from './SelectAnswerQuizContent'
 
-export const useSelectAnswerQuiz = (setError: (value: boolean) => void) => {
-	const [data, setData] = useState(exampleSelectData)
+export const useSelectAnswerQuiz = ({
+	setError,
+	data,
+}: {
+	setError: (value: boolean) => void
+	data: IChoiceRightTask
+}) => {
+	const [variants, setVariants] = useState(data.variants)
 	const [selected, setSelected] = useState<ISelectItem[]>([])
 	let correctAnswersCount = 0
-	exampleSelectData.forEach(el => {
+	variants.forEach(el => {
 		if (el.correct === true) {
 			correctAnswersCount++
 		}
@@ -29,13 +35,13 @@ export const useSelectAnswerQuiz = (setError: (value: boolean) => void) => {
 	const checkSelected = (item: ISelectItem) => {
 		return selected.includes(item) ? true : false
 	}
-	const checkCorrect = (data: ISelectItem[]) => {
-		if (data.length === 0) return
-		if (data.length !== correctAnswersCount) {
+	const checkCorrect = (variants: ISelectItem[]) => {
+		if (variants.length === 0) return
+		if (variants.length !== correctAnswersCount) {
 			setError(true)
 			return
 		}
-		data.forEach(el => {
+		variants.forEach(el => {
 			if (el.correct === false) {
 				setError(true)
 			} else {
@@ -51,11 +57,11 @@ export const useSelectAnswerQuiz = (setError: (value: boolean) => void) => {
 	}
 	// useEffect(() => {
 	//     checkCorrect(selected);
-	// }, [checkCorrect, data, selected])
+	// }, [checkCorrect, variants, selected])
 	return {
-		data,
+		variants,
 		selected,
-		setData,
+		setVariants,
 		setSelected,
 		onSelect,
 		checkSelected,

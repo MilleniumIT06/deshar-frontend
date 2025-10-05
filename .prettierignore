@@ -8,3 +8,4 @@ package-lock.json
 yarn.lock
 coverage/
 .DS_Store
+plan.json
