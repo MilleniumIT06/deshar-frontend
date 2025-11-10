@@ -53,7 +53,7 @@ export const TrainerWrapper = ({
 						Назад
 					</Button>
 
-					{checkAllCompleted() ? (
+					{!hasError && checkAllCompleted() ? (
 						<Button
 							variant="primary"
 							size="small"

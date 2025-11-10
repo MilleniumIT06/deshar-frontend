@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 
+import { showBanner } from '@/shared/config/flags'
 import { Header } from '@/widgets'
 
 import type { Metadata } from 'next'
@@ -11,14 +12,15 @@ export const metadata: Metadata = {
 const Footer = dynamic(() => import('@/widgets').then(mod => mod.Footer), {
 	loading: () => <div>Загрузка...</div>,
 })
-export default function PublicLayout({
+export default async function PublicLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	const showHeader = await showBanner()
 	return (
 		<>
-			<Header />
+			{showHeader ? <Header /> : null}
 			{children}
 			<Footer />
 		</>
