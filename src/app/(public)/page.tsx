@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import { Hero } from '@/components/Hero'
 import { Info } from '@/components/Info'
 import { Learn } from '@/components/Learn'
+import { subscriptionFeat } from '@/shared/config/flags'
 
 const Reviews = dynamic(() => import('@/components/Reviews').then(mod => mod.Reviews), {
 	loading: () => <div>Загрузка...</div>,
@@ -13,14 +14,15 @@ const Subscription = dynamic(() => import('@/components/Subcription').then(mod =
 const Question = dynamic(() => import('@/components/Question').then(mod => mod.Question), {
 	loading: () => <div>Загрузка...</div>,
 })
-export default function Home() {
+export default async function Home() {
+	const enableSubscription = await subscriptionFeat()
 	return (
 		<main className="mRelative">
 			<Hero />
 			<Info />
 			<Learn />
 			<Reviews />
-			<Subscription />
+			{enableSubscription && <Subscription />}
 			<Question />
 		</main>
 	)
