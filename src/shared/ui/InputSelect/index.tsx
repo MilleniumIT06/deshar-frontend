@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import { useState } from 'react'
 
@@ -9,8 +10,8 @@ import './styles.scss'
 export interface InputSelectProps {
 	placeholderValue: string
 	options?: { id: string | number; value: string }[]
-	value: number | string
-	setValue: (value: number | string) => void
+	value: any
+	setValue: (value: any) => void
 	name?: string // Добавленное свойство для интеграции с RHF
 	onBlur?: () => void // Добавленное свойство для интеграции с RHF
 }
@@ -27,7 +28,7 @@ const InputSelect = ({
 }: InputSelectProps) => {
 	const [open, setOpen] = useState(false)
 
-	const handleChange = (selectedValue: string | number) => {
+	const handleChange = (selectedValue: any) => {
 		setValue(selectedValue)
 		setOpen(false)
 	}

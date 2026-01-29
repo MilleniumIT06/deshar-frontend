@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
 
-import { showBanner } from '@/shared/config/flags'
 import { Header } from '@/widgets'
 
 import type { Metadata } from 'next'
@@ -17,10 +16,9 @@ export default async function PublicLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	const showHeader = await showBanner()
 	return (
 		<>
-			{showHeader ? <Header /> : null}
+			<Header />
 			{children}
 			<Footer />
 		</>

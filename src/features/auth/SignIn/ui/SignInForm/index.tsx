@@ -44,13 +44,6 @@ export const SignInForm = () => {
 						validationMessage={errors.password && errors.password.message}
 						{...register('password')}
 					/>
-					{/* <Input
-						fullWidth
-						type="email"
-						placeholder="Введите логин или email"
-						className="SignInForm__input"
-					/>
-					<Input fullWidth type="password" placeholder="Введите пароль" className="SignInForm__input" /> */}
 					<Button className="SignInForm__btn" size="medium">
 						Войти
 					</Button>

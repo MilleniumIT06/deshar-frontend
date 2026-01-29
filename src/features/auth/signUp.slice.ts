@@ -6,7 +6,7 @@ export interface SignUpFormData {
 	email: string
 	password: string
 	confirmPassword: string
-	classLevel: number | null
+	classLevel: string | null
 	locality: string | null
 	country: string | null
 	school: string | null

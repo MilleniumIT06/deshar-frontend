@@ -39,8 +39,7 @@ export const SignUpForm = () => {
 						type="text"
 						placeholder="Введите имя"
 						className="SignUpForm__input"
-						error={true}
-						validationMessage={errors.name && errors.name.message}
+						validationMessage={errors.name?.message}
 						{...register('name')}
 					/>
 					<Input

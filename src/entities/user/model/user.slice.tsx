@@ -7,7 +7,7 @@ const initialState: {
 	isAuth: boolean
 } = {
 	user: null,
-	isAuth: true,
+	isAuth: false,
 }
 
 export const userSlice = createSlice({
