@@ -1,0 +1,61 @@
+.DashboardMenuItem {
+	border-radius: 12px;
+	padding: 8px;
+	width: 100%;
+	height: 36px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	&__left {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		span {
+			font-family: var(--font-family);
+			font-weight: 600;
+			font-size: 14px;
+			color: var(--neutral-medium);
+		}
+	}
+	svg {
+		rect {
+			stroke: var(--neutral-medium);
+		}
+		path {
+			stroke: var(--neutral-medium);
+		}
+	}
+	&:hover {
+		background: var(--neutral-light);
+		.DashboardMenuItem__left {
+			span {
+				color: var(--neutral-darkest);
+			}
+			svg {
+				rect {
+					stroke: var(--neutral-darkest);
+				}
+				path {
+					stroke: var(--neutral-darkest);
+				}
+			}
+		}
+	}
+	&.active {
+		background: var(--neutral-light);
+
+		.DashboardMenuItem__left {
+			span {
+				color: var(--neutral-darkest);
+			}
+			svg {
+				rect {
+					stroke: var(--neutral-darkest);
+				}
+				path {
+					stroke: var(--neutral-darkest);
+				}
+			}
+		}
+	}
+}

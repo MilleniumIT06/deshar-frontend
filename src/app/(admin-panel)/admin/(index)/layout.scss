@@ -1,0 +1,22 @@
+.AdminLayout {
+	background: var(--neutral-lightest);
+	min-height: 100vh;
+	padding-left: calc(var(--dashboardMenu-width) + 40px);
+	&__container {
+		padding: 40px;
+		display: flex;
+		// align-items: start;
+		gap: 44px;
+		// height: 100%;
+		min-height: 100vh;
+	}
+
+	&__DashboardWrapper {
+		// max-height: 120vh;
+		width: var(--dashboardMenu-width);
+		position: fixed;
+		left: 40px;
+		top: 40px;
+		height: calc(100vh - 80px);
+	}
+}

@@ -1,0 +1,52 @@
+.DashboardMenu {
+	width: var(--dashboardMenu-width);
+	height: 100%;
+	&__top {
+		height: calc(100% - 70px);
+	}
+	&__inner {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	&__logo {
+		width: 136px;
+		height: 20px;
+		&_wrapper {
+			border-bottom: 1px solid var(--neutral-light);
+			padding-bottom: 20px;
+		}
+	}
+	&__content {
+		padding-top: 20px;
+		height: calc(100% - 47px);
+		overflow-y: scroll;
+		&::-webkit-scrollbar {
+			width: 4px;
+		}
+
+		&::-webkit-scrollbar-track {
+			width: 100%;
+			background: var(--neutral-lightest);
+			margin: 16px 0;
+			cursor: pointer;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			border-radius: 2px;
+			width: 100%;
+			background: var(--neutral-medium);
+
+			&:hover {
+				background: #5a5757;
+			}
+		}
+	}
+	&__avatar {
+		&_wrapper {
+			border-top: 1px solid var(--neutral-light);
+			padding-top: 20px;
+		}
+	}
+}
