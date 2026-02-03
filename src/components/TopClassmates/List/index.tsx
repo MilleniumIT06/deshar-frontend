@@ -15,7 +15,7 @@ export const List = ({ data }: IList) => {
 					<TopClassmatesListItem
 						key={`student-${id}`}
 						type={type}
-						parralelClass={className}
+						parallelClass={className}
 						{...studentProps}
 					/>
 				)

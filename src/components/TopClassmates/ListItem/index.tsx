@@ -7,7 +7,7 @@ interface TopClassmatesListItemProps {
 	time: number
 	doneModules: number
 	points: number
-	parralelClass?: string
+	parallelClass?: string
 	type: 'parallel' | 'classmates'
 }
 
@@ -18,7 +18,7 @@ export const TopClassmatesListItem = ({
 	points,
 	time,
 	type,
-	parralelClass,
+	parallelClass,
 }: TopClassmatesListItemProps) => {
 	const placeClasses = {
 		1: 'TopClassmatesListItem__place_first',
@@ -39,7 +39,7 @@ export const TopClassmatesListItem = ({
 				{type === 'parallel' && (
 					<li className="TopClassmatesListItem__list_item">
 						<span className="TopClassmatesListItem__list_item-key">Класс</span>
-						<span className="TopClassmatesListItem__list_item-class">{parralelClass}</span>
+						<span className="TopClassmatesListItem__list_item-class">{parallelClass}</span>
 					</li>
 				)}
 				<li className="TopClassmatesListItem__list_item">

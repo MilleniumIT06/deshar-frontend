@@ -43,7 +43,7 @@ export const Table = ({ data }: TableProps) => {
 						<TableItem
 							key={`student-${id}`}
 							type={type}
-							parralelClass={className}
+							parallelClass={className}
 							{...studentProps}
 						/>
 					)

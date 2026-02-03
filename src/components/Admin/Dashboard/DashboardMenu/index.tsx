@@ -144,7 +144,7 @@ const MyClassesIcon = () => (
 		<path d="M7.5 7.5L9 9L13 5" stroke="#7D7979" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 	</svg>
 )
-const ParrallelClassessIcon = () => (
+const ParallelClassessIcon = () => (
 	<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<circle cx="15" cy="16" r="2" fill="#7D7979" />
 		<circle cx="10" cy="16" r="2" fill="#7D7979" />
@@ -208,7 +208,9 @@ export const DashboardMenu = () => {
 							<MenuAccordion title="Мои классы" icon={<MyClassesIcon />}>
 								<ul className="list-reset MenuAccordion__list">
 									{teacherMyClasses.map(item => (
-										<li className="MenuAccordion__item" key={`accordion-item-${item.id}`}>
+										<li
+											className="MenuAccordion__item"
+											key={`accordion-classes-item-${item.id}`}>
 											<Link
 												href={`/class/${item.id}`}
 												className={`MenuAccordion__link ${pathname === `/class/${item.id}` ? 'active' : ''}`}>
@@ -220,10 +222,12 @@ export const DashboardMenu = () => {
 							</MenuAccordion>
 						)}
 						{hasRole(['teacher', 'admin']) && (
-							<MenuAccordion title="Параллели" icon={<ParrallelClassessIcon />}>
+							<MenuAccordion title="Параллели" icon={<ParallelClassessIcon />}>
 								<ul className="list-reset MenuAccordion__list">
 									{teacherParallelClasses.map(item => (
-										<li className="MenuAccordion__item" key={`accordion-item-${item.id}`}>
+										<li
+											className="MenuAccordion__item"
+											key={`accordion-parallel-item-${item.id}`}>
 											<Link
 												href={`/class/${item.id}`}
 												className={`MenuAccordion__link ${pathname === `/class/${item.id}` ? 'active' : ''}`}>
@@ -238,7 +242,7 @@ export const DashboardMenu = () => {
 					</div>
 				</div>
 				<div className="DashboardMenu__avatar_wrapper">
-					<Avatar className="DashboardMenu__avatar" role={role} />
+					<Avatar src="/img/" className="DashboardMenu__avatar" role={role} />
 				</div>
 			</div>
 		</aside>

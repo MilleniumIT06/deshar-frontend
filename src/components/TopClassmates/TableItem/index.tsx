@@ -6,7 +6,7 @@ interface TableItemProps {
 	time: number
 	doneModules: number
 	points: number
-	parralelClass?: string
+	parallelClass?: string
 	type: 'parallel' | 'classmates'
 }
 function minutesToHoursAndMinutes(totalMinutes: number) {
@@ -14,7 +14,7 @@ function minutesToHoursAndMinutes(totalMinutes: number) {
 	const minutes = totalMinutes % 60
 	return `${hours}ч ${minutes}м`
 }
-export const TableItem = ({ doneModules, name, placeNumber, points, time, type, parralelClass }: TableItemProps) => {
+export const TableItem = ({ doneModules, name, placeNumber, points, time, type, parallelClass }: TableItemProps) => {
 	const placeClasses = {
 		1: 'tableItem__place_first',
 		2: 'tableItem__place_second',
@@ -23,9 +23,9 @@ export const TableItem = ({ doneModules, name, placeNumber, points, time, type, 
 
 	const placeClass = placeClasses[placeNumber as keyof typeof placeClasses] || 'tableItem__place_other'
 
-	if (type === 'parallel' && !parralelClass) {
+	if (type === 'parallel' && !parallelClass) {
 		// eslint-disable-next-line no-console
-		console.warn(`TableItem: parralelClass is required for type "parallel" (placeNumber: ${placeNumber})`)
+		console.warn(`TableItem: parallelClass is required for type "parallel" (placeNumber: ${placeNumber})`)
 	}
 	const correctedTime = minutesToHoursAndMinutes(time)
 	return (
@@ -40,7 +40,7 @@ export const TableItem = ({ doneModules, name, placeNumber, points, time, type, 
 				{name}
 			</td>
 
-			{type === 'parallel' && <td className="tableItem__parralelClass">{parralelClass || '—'}</td>}
+			{type === 'parallel' && <td className="tableItem__parallelClass">{parallelClass || '—'}</td>}
 
 			<td className="tableItem__time">{correctedTime}</td>
 			<td className="tableItem__done">{doneModules}</td>

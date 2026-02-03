@@ -13,17 +13,13 @@ export default function AdminLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
-			<body>
-				<div className="AdminLayout">
-					<div className="AdminLayout__container">
-						<div className="AdminLayout__DashboardWrapper">
-							<DashboardMenu />
-						</div>
-						{children}
-					</div>
+		<div className="AdminLayout">
+			<div className="AdminLayout__container">
+				<div className="AdminLayout__DashboardWrapper">
+					<DashboardMenu />
 				</div>
-			</body>
-		</html>
+				{children}
+			</div>
+		</div>
 	)
 }
