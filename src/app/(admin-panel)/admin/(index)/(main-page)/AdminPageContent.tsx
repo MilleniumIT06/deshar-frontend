@@ -1,13 +1,35 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
+import { getBestStudentsColumns } from '@/columns/getBestStudentsColumns'
+import { getColumnsSchool } from '@/columns/getColumnsSchool'
+import { getDepartmentColumns } from '@/columns/getDepartmentColumns'
+import { ClassCardMain } from '@/components/Admin/ClassCardMain'
 import { Loading } from '@/components/Admin/Loading'
 import { StatisticsBlock } from '@/components/Admin/StatisticsBlock'
+import { Table } from '@/components/Admin/Table'
 import { ResultsCard } from '@/components/ResultsCard'
-import { defaultPieData, defaultPieTimeData } from '@/mocks/adminMock'
+import { defaultPieData, defaultPieTimeData, departmentMockData, SchoolsMockData } from '@/mocks/adminMock'
+import { TEST_CLASSMATES } from '@/mocks/data'
 import useRole from '@/shared/hooks/admin/useRole'
+import { type Student, type DepartamentItem, type SchoolDepItem } from '@/shared/types/admin/types'
+import './AdminPageContent.scss'
 
 export const AdminPageContent = () => {
-	const { hasRole } = useRole()
+	const { hasRole, role } = useRole()
+	const redirectOnBestSchoolsClick = (item: SchoolDepItem) => {
+		// console.log(item.id);
+		// navigate(`schools/${item.id}`, { relative: "route" })
+		return item
+	}
+	const redirectOnBestDepartmentClick = (item: DepartamentItem) => {
+		// console.log(item)
+		return item
+	}
+	const redirectOnBestStudentsClick = (item: Student) => {
+		// console.log(item)
+		return item
+	}
 	return (
 		<div>
 			{hasRole(['admin', 'department', 'ministry']) && (
@@ -20,13 +42,28 @@ export const AdminPageContent = () => {
 					</Loading>
 				</div>
 			)}
-			{/* {hasRole(["admin", "department"]) && <ClassCardMain title="Лучшие школы" linkText="Полный список" linkHref="/">
-                <Table<SchoolDepItem, any> data={SchoolsMockData} getColumns={() => getColumnsSchool({ role })} handleRowClick={redirectOnBestSchoolsClick} />
-            </ClassCardMain>}
-            {hasRole(["admin", "ministry"]) && <ClassCardMain title="Лучшие управления образования" linkText="Полный список" linkHref="/">
-                <Table<DepartamentItem, any> data={departmentMockData} getColumns={() => getDepartmentColumns()} handleRowClick={redirectOnBestDepartmentClick} />
-            </ClassCardMain>}
-            <MainChart data={barChartMockData} title="Суммарная успеваемость" /> */}
+
+			{hasRole(['admin', 'department']) && (
+				<ClassCardMain title="Лучшие школы" linkText="Полный список" linkHref="/">
+					<Table<SchoolDepItem, any>
+						data={SchoolsMockData}
+						getColumns={() => getColumnsSchool({ role })}
+						handleRowClick={redirectOnBestSchoolsClick}
+					/>
+					{/* test */}
+				</ClassCardMain>
+			)}
+
+			{hasRole(['admin', 'ministry']) && (
+				<ClassCardMain title="Лучшие управления образования" linkText="Полный список" linkHref="/">
+					<Table<DepartamentItem, any>
+						data={departmentMockData}
+						getColumns={() => getDepartmentColumns()}
+						handleRowClick={redirectOnBestDepartmentClick}
+					/>
+				</ClassCardMain>
+			)}
+			{/*<MainChart data={barChartMockData} title="Суммарная успеваемость" /> */}
 			<div className="MainStatisticPageContent__result_cards">
 				<ResultsCard
 					id={1}
@@ -36,6 +73,7 @@ export const AdminPageContent = () => {
 					title="Набранные баллы"
 					type="increase"
 					value={150}
+					variant="admin"
 				/>
 				<ResultsCard
 					id={2}
@@ -45,23 +83,7 @@ export const AdminPageContent = () => {
 					title="Выполненные модули"
 					type="decrease"
 					value={29}
-					icon={
-						<svg
-							width="25"
-							height="24"
-							viewBox="0 0 25 24"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M8.33337 12.6413L10.9361 15L16.3334 10"
-								stroke="#303030"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							/>
-							<circle cx="12.3334" cy="12" r="8" stroke="#303030" stroke-width="2" />
-						</svg>
-					}
+					variant="admin"
 				/>
 				<ResultsCard
 					id={3}
@@ -100,12 +122,20 @@ export const AdminPageContent = () => {
 							/>
 						</svg>
 					}
+					variant="admin"
 				/>
 			</div>
-			{/* <ClassCardMain title={role === "ministry" ? "Лучшие ученики среди школ" : "Лучшие ученики класса"} linkText="Полный список" linkHref="/"> */}
-			{/* <ClassTable data={TEST_CLASSMATES} type='classmates' /> */}
-			{/* <Table<Student, any> data={TEST_CLASSMATES} getColumns={() => getColumns("classmates")} handleRowClick={redirectOnBestStudentsClick} /> */}
-			{/* </ClassCardMain> */}
+			<ClassCardMain
+				title={role === 'ministry' ? 'Лучшие ученики среди школ' : 'Лучшие ученики класса'}
+				linkText="Полный список"
+				linkHref="/">
+				{/* <ClassTable data={TEST_CLASSMATES} type='classmates' /> */}
+				<Table<Student, any>
+					data={TEST_CLASSMATES}
+					getColumns={() => getBestStudentsColumns('classmates')}
+					handleRowClick={redirectOnBestStudentsClick}
+				/>
+			</ClassCardMain>
 		</div>
 	)
 }

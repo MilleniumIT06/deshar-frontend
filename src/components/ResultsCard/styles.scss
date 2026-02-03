@@ -7,7 +7,6 @@
 	border-radius: 32px;
 	padding: 32px;
 	height: 212px;
-	background-color: var(--neutral-lightest);
 	gap: 29px;
 
 	&__title {
@@ -88,7 +87,12 @@
 			font-size: 12px;
 		}
 	}
-
+	&.main {
+		background-color: var(--neutral-lightest);
+	}
+	&.admin {
+		background-color: var(--neutral-white);
+	}
 	@include breakpoint.post-tablet {
 		justify-content: start;
 		margin-top: 3%;

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -59,17 +60,17 @@ export const Avatar = ({
 			role={onClick ? 'button' : undefined}>
 			<div className={cn('Avatar__content', `Avatar__content--${size}`)}>
 				{src && !imageError ? (
-					// <img
-					//     src={src}
-					//     alt={`Аватар ${name}`}
-					//     className="Avatar__image"
-					//     width={avatarSize}
-					//     height={avatarSize}
-					//     onError={() => setImageError(true)}
-					//     loading="lazy"
-					// />
-					<div>test</div>
+					<img
+						src={src}
+						alt={`Аватар ${name}`}
+						className="Avatar__image"
+						width={avatarSize}
+						height={avatarSize}
+						onError={() => setImageError(true)}
+						loading="lazy"
+					/>
 				) : (
+					// <div>test</div>
 					<div className="Avatar__fallback" style={{ width: avatarSize, height: avatarSize }}>
 						{getInitials()}
 					</div>

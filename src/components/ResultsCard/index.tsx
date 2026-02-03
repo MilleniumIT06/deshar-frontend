@@ -41,6 +41,7 @@ export const ResultsCard = ({
 	type = 'decrease',
 	value = 144,
 	icon = <DefaultIcon />,
+	variant = 'main',
 }: {
 	id: number | string
 	title: string
@@ -50,9 +51,10 @@ export const ResultsCard = ({
 	period: string | number
 	value: string | number
 	icon?: ReactNode
+	variant?: 'main' | 'admin'
 }) => {
 	return (
-		<div className="ResultsCard" key={id}>
+		<div className={cn('ResultsCard', variant)} key={id}>
 			<h6 className="ResultsCard__title">
 				{icon}
 				{title}

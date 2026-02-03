@@ -242,7 +242,7 @@ export const DashboardMenu = () => {
 					</div>
 				</div>
 				<div className="DashboardMenu__avatar_wrapper">
-					<Avatar src="/img/" className="DashboardMenu__avatar" role={role} />
+					<Avatar src="/avatar.png" className="DashboardMenu__avatar" role={role} />
 				</div>
 			</div>
 		</aside>
