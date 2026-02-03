@@ -1,0 +1,27 @@
+.DevState {
+	height: 100vh;
+	&__inner {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		h1 {
+			span {
+				color: var(--primary-medium);
+			}
+		}
+	}
+}
+
+.DevStateLogo {
+	width: 400px !important;
+	height: 200px !important;
+	img {
+		width: 400px;
+		height: 200px;
+	}
+	.Logo__container {
+		width: 400px !important;
+		height: 200px !important;
+	}
+}
