@@ -104,39 +104,29 @@ export const StatisticsBlock = ({ data, centerLabel = 'баллов' }: Statisti
 								/>
 							))}
 						</Pie>
-
-						{/* Custom positioned tooltips for each segment */}
 						<Legend
 							content={<CustomLeg data={data} />}
 							align="right"
 							layout="vertical"
 							verticalAlign="middle"
 						/>
-						{/* <Tooltip content={(data) => {
-                            console.log(data.payload);
-                            return <CustomTooltip data={data} />
-                        }
-                        }
-                        /> */}
 						<Tooltip
 							isAnimationActive={false}
 							content={data => {
 								return <CustomTooltip data={data} />
 							}}
 						/>
-						{/* if (data && data.payload) { 
-
-                                return <CustomTooltip name={data.payload[0].name} value={data.payload[0].value} />
-                             } */}
 						<Label
 							position="center"
 							fill="#000"
+							className="StatisticsBlock__label_text_value"
 							style={{ transform: 'translateY(-5px)', fontSize: 24, fontWeight: 700 }}>
 							{reducedValue}
 						</Label>
 						<Label
 							position="center"
 							fill="#666"
+							className="StatisticsBlock__label_text_label"
 							style={{ transform: 'translateY(15px)', fontSize: 12, fontWeight: 400 }}>
 							{centerLabel}
 						</Label>

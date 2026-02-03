@@ -1,0 +1,42 @@
+.MainChart {
+	border-radius: 32px;
+	padding: 32px 32px 40px;
+	width: 100%;
+	height: 357px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: var(--neutral-white);
+	margin-top: 32px;
+	&__top {
+		display: flex;
+		justify-content: space-between;
+	}
+	&__navigation {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+	&__title {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 140%;
+		text-align: center;
+		color: var(--neutral-darkest);
+	}
+}
+.recharts-surface {
+	outline: none;
+}
+.recharts-cartesian-axis-tick-line {
+	display: none;
+}
+.recharts-text {
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 143%;
+	text-align: center;
+	color: var(--neutral-medium);
+}

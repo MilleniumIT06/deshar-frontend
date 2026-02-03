@@ -61,12 +61,12 @@ export const Table = <TData, TValue>({ data, getColumns, handleRowClick }: Table
 															<path
 																d="M15 10L10 15L5 10"
 																stroke="#7D7979"
-																stroke-width="1.5"
+																strokeWidth="1.5"
 															/>
 															<path
 																d="M10 15L10 5"
 																stroke="#7D7979"
-																stroke-width="1.4"
+																strokeWidth="1.4"
 															/>
 														</g>
 													</svg>
@@ -81,12 +81,12 @@ export const Table = <TData, TValue>({ data, getColumns, handleRowClick }: Table
 														<path
 															d="M15 10L10 15L5 10"
 															stroke="#7D7979"
-															stroke-width="1.5"
+															strokeWidth="1.5"
 														/>
 														<path
 															d="M10 15L10 5"
 															stroke="#7D7979"
-															stroke-width="1.4"
+															strokeWidth="1.4"
 														/>
 													</svg>
 												),

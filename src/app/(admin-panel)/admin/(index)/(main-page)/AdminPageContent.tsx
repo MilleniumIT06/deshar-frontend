@@ -9,11 +9,18 @@ import { Loading } from '@/components/Admin/Loading'
 import { StatisticsBlock } from '@/components/Admin/StatisticsBlock'
 import { Table } from '@/components/Admin/Table'
 import { ResultsCard } from '@/components/ResultsCard'
-import { defaultPieData, defaultPieTimeData, departmentMockData, SchoolsMockData } from '@/mocks/adminMock'
+import {
+	barChartMockData,
+	defaultPieData,
+	defaultPieTimeData,
+	departmentMockData,
+	SchoolsMockData,
+} from '@/mocks/adminMock'
 import { TEST_CLASSMATES } from '@/mocks/data'
 import useRole from '@/shared/hooks/admin/useRole'
 import { type Student, type DepartamentItem, type SchoolDepItem } from '@/shared/types/admin/types'
 import './AdminPageContent.scss'
+import { MainChart } from '@/widgets/AdminWidgets/MainChart'
 
 export const AdminPageContent = () => {
 	const { hasRole, role } = useRole()
@@ -63,7 +70,7 @@ export const AdminPageContent = () => {
 					/>
 				</ClassCardMain>
 			)}
-			{/*<MainChart data={barChartMockData} title="Суммарная успеваемость" /> */}
+			<MainChart data={barChartMockData} title="Суммарная успеваемость" />
 			<div className="MainStatisticPageContent__result_cards">
 				<ResultsCard
 					id={1}
@@ -100,25 +107,25 @@ export const AdminPageContent = () => {
 							viewBox="0 0 25 24"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg">
-							<circle cx="12.6666" cy="12" r="7" stroke="#060606" stroke-width="2" />
+							<circle cx="12.6666" cy="12" r="7" stroke="#060606" strokeWidth="2" />
 							<path
 								d="M12.6666 8.12109L12.6666 12.1211L15.6666 12.1211"
 								stroke="#060606"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
 							/>
 							<path
 								d="M18.6666 4L20.7317 6.06504"
 								stroke="#060606"
-								stroke-width="2"
-								stroke-linecap="round"
+								strokeWidth="2"
+								strokeLinecap="round"
 							/>
 							<path
 								d="M6.73169 4L4.66664 6.06504"
 								stroke="#060606"
-								stroke-width="2"
-								stroke-linecap="round"
+								strokeWidth="2"
+								strokeLinecap="round"
 							/>
 						</svg>
 					}

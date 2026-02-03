@@ -181,7 +181,7 @@ export const DashboardMenu = () => {
 						<Logo className="DashboardMenu__logo" href="/" />
 					</div>
 					<div className="DashboardMenu__content">
-						<DashboardMenuItem title="Статистика" href="/" />
+						<DashboardMenuItem title="Статистика" href="/admin" />
 						{hasRole(['admin', 'department', 'ministry']) && (
 							<DashboardMenuItem title="Школы" href="/schools" icon={<SchoolsIcon />} />
 						)}

@@ -3,33 +3,6 @@
 // import type { TeacherItem } from '../components/TeachersTable'
 // import { type Option } from '../shared/ui/Selector'
 // import type { DepartamentItem, SchoolDepItem } from '../types/types'
-// export const barChartMockData = [
-// 	{ name: new Date(2023, 9, 1), value: 135 },
-// 	{ name: new Date(2023, 9, 2), value: 85 },
-// 	{ name: new Date(2023, 9, 3), value: 120 },
-// 	{ name: new Date(2023, 9, 4), value: 100 },
-// 	{ name: new Date(2023, 9, 5), value: 65 },
-// 	{ name: new Date(2023, 9, 6), value: 100 },
-// 	{ name: new Date(2023, 9, 7), value: 55 },
-// 	{ name: new Date(2023, 9, 7), value: 55 },
-// 	{ name: new Date(2023, 9, 7), value: 55 },
-// 	{ name: new Date(2023, 9, 7), value: 55 },
-// 	{ name: new Date(2023, 9, 7), value: 55 },
-// 	{ name: new Date(2023, 9, 7), value: 55 },
-// 	{ name: new Date(2023, 9, 7), value: 55 },
-// 	{ name: new Date(2023, 9, 7), value: 55 },
-// 	{ name: new Date(2023, 9, 7), value: 55 },
-// 	{ name: new Date(2023, 9, 8), value: 99 },
-// 	{ name: new Date(2023, 9, 9), value: 95 },
-// 	{ name: new Date(2023, 9, 10), value: 140 },
-// 	{ name: new Date(2023, 9, 11), value: 140 },
-// 	{ name: new Date(2023, 9, 12), value: 110 },
-// 	{ name: new Date(2023, 9, 13), value: 110 },
-// 	{ name: new Date(2023, 9, 14), value: 110 },
-// 	{ name: new Date(2023, 9, 15), value: 110 },
-// 	{ name: new Date(2023, 9, 16), value: 110 },
-// 	{ name: new Date(2023, 9, 16), value: 110 },
-// ]
 // export const TEST_CLASSMATES = [
 // 	{
 // 		id: 99,
@@ -43,6 +16,34 @@
 // 	},
 
 import { type DepartamentItem, type SchoolDepItem } from '@/shared/types/admin/types'
+
+export const barChartMockData = [
+	{ name: new Date(2023, 9, 1), value: 135 },
+	{ name: new Date(2023, 9, 2), value: 85 },
+	{ name: new Date(2023, 9, 3), value: 120 },
+	{ name: new Date(2023, 9, 4), value: 100 },
+	{ name: new Date(2023, 9, 5), value: 65 },
+	{ name: new Date(2023, 9, 6), value: 100 },
+	{ name: new Date(2023, 9, 7), value: 55 },
+	{ name: new Date(2023, 9, 7), value: 55 },
+	{ name: new Date(2023, 9, 7), value: 55 },
+	{ name: new Date(2023, 9, 7), value: 55 },
+	{ name: new Date(2023, 9, 7), value: 55 },
+	{ name: new Date(2023, 9, 7), value: 55 },
+	{ name: new Date(2023, 9, 7), value: 55 },
+	{ name: new Date(2023, 9, 7), value: 55 },
+	{ name: new Date(2023, 9, 7), value: 55 },
+	{ name: new Date(2023, 9, 8), value: 99 },
+	{ name: new Date(2023, 9, 9), value: 95 },
+	{ name: new Date(2023, 9, 10), value: 140 },
+	{ name: new Date(2023, 9, 11), value: 140 },
+	{ name: new Date(2023, 9, 12), value: 110 },
+	{ name: new Date(2023, 9, 13), value: 110 },
+	{ name: new Date(2023, 9, 14), value: 110 },
+	{ name: new Date(2023, 9, 15), value: 110 },
+	{ name: new Date(2023, 9, 16), value: 110 },
+	{ name: new Date(2023, 9, 16), value: 110 },
+]
 
 // 	{
 // 		id: 77,
