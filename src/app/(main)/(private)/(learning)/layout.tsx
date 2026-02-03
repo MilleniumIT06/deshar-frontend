@@ -5,7 +5,7 @@ import '../styles.scss'
 
 import type { Metadata } from 'next'
 
-import '../../globals.scss'
+import '../../../globals.scss'
 
 export const metadata: Metadata = {
 	title: 'Profile',
