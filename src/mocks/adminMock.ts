@@ -474,37 +474,37 @@ export const teacherParallelClasses = [
 	},
 ]
 
-// export const testOptionsTeacher: Option[] = [
-// 	{ id: '0', label: 'Класс 5-А' },
-// 	{ id: '1', label: 'Класс 6-В' },
-// 	{ id: '2', label: 'Класс 6-Д' },
-// 	{ id: '3', label: 'Класс 7-Б' },
-// 	{ id: '4', label: 'Класс 7-Г' },
-// ]
-// export const testOptionsVicePrincipal: Option[] = [
-// 	{ id: '0', label: 'Все классы', default: true },
-// 	{ id: '1', label: 'Класс 5-А' },
-// 	{ id: '2', label: 'Класс 6-В' },
-// 	{ id: '3', label: 'Класс 6-Д' },
-// 	{ id: '4', label: 'Класс 7-Б' },
-// 	{ id: '5', label: 'Класс 7-Г' },
-// ]
-// export const testOptionsDepartment: Option[] = [
-// 	{ id: '0', label: 'Все школы', default: true },
-// 	{ id: '1', label: 'ГБОУ Центр образования г. Магас' },
-// 	{ id: '2', label: 'ГБОУ Лицей – детский сад г. Магас' },
-// 	{ id: '3', label: 'ГБОУ гимназия Марем г. Магас' },
-// 	{ id: '4', label: 'ГБОУ СОШ №2 г. Магас' },
-// 	{ id: '5', label: 'ГБОУ СОШ – Детский сад № 1 г. Магас' },
-// ]
-// export const testOptionsMinistry: Option[] = [
-// 	{ id: '0', label: 'Все УО', default: true },
-// 	{ id: '1', label: 'ГБОУ Центр образования г. Магас' },
-// 	{ id: '2', label: 'ГБОУ Лицей – детский сад г. Магас' },
-// 	{ id: '3', label: 'ГБОУ гимназия Марем г. Магас' },
-// 	{ id: '4', label: 'ГБОУ СОШ №2 г. Магас' },
-// 	{ id: '5', label: 'ГБОУ СОШ – Детский сад № 1 г. Магас' },
-// ]
+export const testOptionsTeacher = [
+	{ id: '0', label: 'Класс 5-А' },
+	{ id: '1', label: 'Класс 6-В' },
+	{ id: '2', label: 'Класс 6-Д' },
+	{ id: '3', label: 'Класс 7-Б' },
+	{ id: '4', label: 'Класс 7-Г' },
+]
+export const testOptionsVicePrincipal = [
+	{ id: '0', label: 'Все классы', default: true },
+	{ id: '1', label: 'Класс 5-А' },
+	{ id: '2', label: 'Класс 6-В' },
+	{ id: '3', label: 'Класс 6-Д' },
+	{ id: '4', label: 'Класс 7-Б' },
+	{ id: '5', label: 'Класс 7-Г' },
+]
+export const testOptionsDepartment = [
+	{ id: '0', label: 'Все школы', default: true },
+	{ id: '1', label: 'ГБОУ Центр образования г. Магас' },
+	{ id: '2', label: 'ГБОУ Лицей – детский сад г. Магас' },
+	{ id: '3', label: 'ГБОУ гимназия Марем г. Магас' },
+	{ id: '4', label: 'ГБОУ СОШ №2 г. Магас' },
+	{ id: '5', label: 'ГБОУ СОШ – Детский сад № 1 г. Магас' },
+]
+export const testOptionsMinistry = [
+	{ id: '0', label: 'Все УО', default: true },
+	{ id: '1', label: 'ГБОУ Центр образования г. Магас' },
+	{ id: '2', label: 'ГБОУ Лицей – детский сад г. Магас' },
+	{ id: '3', label: 'ГБОУ гимназия Марем г. Магас' },
+	{ id: '4', label: 'ГБОУ СОШ №2 г. Магас' },
+	{ id: '5', label: 'ГБОУ СОШ – Детский сад № 1 г. Магас' },
+]
 // // Default data fallback
 // export const defaultPieData = [
 // 	{
