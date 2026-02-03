@@ -1,0 +1,111 @@
+@use './../../../scss/breakpoint' as breakpoint;
+.Tabs {
+	max-width: 90%;
+	position: relative;
+	display: flex;
+	align-items: center;
+	border-radius: 28px;
+	height: 36px;
+	background-color: var(--neutral-lightest);
+
+	&.maxWidth {
+		width: 100%;
+	}
+
+	@include breakpoint.mobile {
+		max-width: 328px;
+		width: 100%;
+		height: 44px;
+	}
+	&__scroll {
+		&_left,
+		&_right {
+			border: 1px solid var(--neutral-darkest);
+			padding: 10px;
+			width: 28px;
+			height: 28px;
+		}
+		&_left {
+			svg {
+				transform: rotate(180deg);
+			}
+		}
+	}
+}
+.tabs-container {
+	display: flex;
+	flex: 1;
+	overflow-x: auto;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+.tab {
+	max-width: 200px;
+	flex: 1 0 auto;
+	padding: 8px 20px;
+	height: 100%;
+	text-align: start;
+	cursor: pointer;
+	border: none;
+	background: transparent;
+
+	span {
+		font-family: var(--font-family);
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 143%;
+		text-wrap: nowrap;
+
+		@include breakpoint.mobile {
+			font-size: 14px;
+			line-height: 143%;
+		}
+	}
+
+	&.active {
+		span {
+			color: var(--neutral-white);
+		}
+		border-radius: 28px;
+		background-color: var(--neutral-darkest);
+	}
+
+	@include breakpoint.mobile {
+		padding: 0;
+	}
+}
+.scroll-button {
+	position: absolute;
+	z-index: 1;
+	height: 100%;
+	width: 32px;
+	border: none;
+	background: var(--neutral-lightest);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&:hover:not(:disabled) {
+		background: var(--neutral-light);
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+
+	&--left {
+		left: 0;
+		border-radius: 28px 0 0 28px;
+	}
+
+	&--right {
+		right: 0;
+		border-radius: 0 28px 28px 0;
+	}
+}

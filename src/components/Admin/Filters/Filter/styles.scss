@@ -1,0 +1,43 @@
+.Filter {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	&__title {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 143%;
+		color: var(--neutral-medium);
+	}
+	&__divider {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 143%;
+		color: var(--neutral-medium);
+	}
+	&__input {
+		border: 1px solid var(--neutral-light);
+		border-radius: 16px;
+		padding: 0px 12px 0px 20px;
+		width: 80px;
+		height: 44px;
+		background: var(--neutral-white);
+		input {
+			width: 100%;
+			height: 100%;
+			font-family: var(--font-family);
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 143%;
+			color: var(--neutral-darkest);
+			&::placeholder {
+				font-family: var(--font-family);
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 143%;
+				color: var(--neutral-medium);
+			}
+		}
+	}
+}

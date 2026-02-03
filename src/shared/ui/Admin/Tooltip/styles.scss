@@ -1,0 +1,23 @@
+.Tooltip {
+	border-radius: 8px;
+	padding: 4px 8px;
+	width: 114px;
+	height: 28px;
+	background: var(--neutral-dark);
+	position: absolute;
+	&__content {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 167%;
+		text-align: center;
+		color: var(--neutral-white);
+	}
+	&::before {
+		content: url('./arrow.svg');
+		position: absolute;
+		bottom: -10px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}

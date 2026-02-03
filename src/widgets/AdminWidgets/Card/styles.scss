@@ -1,0 +1,107 @@
+.Card {
+	border-radius: 32px;
+	padding: 40px;
+	// width: 1088px;
+	width: 100%;
+	height: 100%;
+	max-height: 100vh;
+	background: var(--neutral-white);
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+	}
+	&__content {
+		flex-grow: 1;
+		height: calc(100% - 200px);
+		padding-top: 23px;
+	}
+	&__header {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		&-top {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			&_title-wrapper {
+				display: flex;
+				align-items: center;
+				gap: 24px;
+			}
+		}
+	}
+	&__controls {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-top: 28px;
+		&-csv {
+			border-radius: 12px;
+			padding: 8px;
+			transition: background 0.1s ease-in-out;
+			&:hover {
+				background: var(--neutral-light);
+			}
+		}
+	}
+	&__title {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 140%;
+		color: var(--neutral-darkest);
+	}
+	&__footer {
+		border-top: 1px solid var(--neutral-light);
+		&-inner {
+			display: flex;
+			align-items: start;
+			justify-content: space-between;
+			padding-top: 12px;
+			span {
+				font-family: var(--font-family);
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 143%;
+				color: var(--neutral-medium);
+			}
+		}
+	}
+	&__filters {
+		border-radius: 20px;
+		padding: 12px 20px;
+		width: 100%;
+		height: 68px;
+		background: var(--neutral-lightest);
+		margin-top: 24px;
+		&-inner {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		&-list {
+			display: flex;
+			align-items: center;
+			gap: 24px;
+		}
+		&-show {
+			border-radius: 12px;
+			padding: 8px;
+			transition: background 0.1s ease-in-out;
+			&:hover {
+				background: var(--neutral-light);
+			}
+		}
+		&-reset {
+			font-family: var(--font-family);
+			font-weight: 600;
+			font-size: 14px;
+			line-height: 143%;
+			color: var(--primary-medium);
+		}
+	}
+}

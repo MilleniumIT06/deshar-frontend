@@ -1,0 +1,32 @@
+.TeacherItem {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	&__tooltip {
+		position: absolute;
+		z-index: 10;
+		top: calc(0px - 37px);
+		left: calc(0px - 47px);
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.3s ease-in-out;
+	}
+	&__icon {
+		position: relative;
+		width: 20px;
+		height: 20px;
+		&:hover {
+			.TeacherItem__tooltip {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+	&__name {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 143%;
+		color: var(--neutral-darkest);
+	}
+}
