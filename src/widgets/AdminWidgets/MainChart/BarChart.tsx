@@ -18,11 +18,7 @@ const ticks = [0, 50, 100, 150].map(value => Math.round(value * 10) / 10)
 
 export const BarChart = ({ data }: { data: BarChartDataItem[] }) => {
 	return (
-		<RechartsBar
-			style={{ width: '100%', height: '100%', aspectRatio: 1.618 }}
-			responsive
-			data={data}
-			isAnimationActive={false}>
+		<RechartsBar style={{ width: '100%', height: '100%', aspectRatio: 1.618 }} responsive data={data}>
 			<XAxis
 				dataKey="name"
 				tickFormatter={t => `${t.getDate()} ${t.toLocaleString('default', { month: 'short' })}`}
