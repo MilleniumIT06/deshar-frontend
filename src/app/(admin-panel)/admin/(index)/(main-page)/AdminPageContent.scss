@@ -1,0 +1,22 @@
+@use './../../shared/scss/breakpoint' as breakpoint;
+.MainStatisticPageContent {
+	&__cards {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+		margin-top: 32px;
+		gap: 32px;
+	}
+	&__result_cards {
+		margin-top: 32px;
+		display: grid;
+		grid-template-columns: repeat(3, auto);
+		column-gap: 2%;
+		@include breakpoint.pre-middle-tablet {
+			grid-template-columns: repeat(2, auto);
+		}
+		@include breakpoint.middle-mobile {
+			grid-template-columns: repeat(1, auto);
+		}
+	}
+}

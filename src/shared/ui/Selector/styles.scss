@@ -117,4 +117,29 @@
 			width: 123px;
 		}
 	}
+	&.mini {
+		width: 96px;
+		min-height: 32px;
+		max-height: 32px;
+		.Selector__header {
+			span {
+				font-family: var(--font-family);
+				font-weight: 400;
+				font-size: 12px;
+				line-height: 167%;
+				color: var(--neutral-darkest);
+			}
+			padding: 4px 8px;
+		}
+		.Selector__body {
+			width: 100px;
+		}
+		.Selector__list_item span {
+			font-family: var(--font-family);
+			font-weight: 400;
+			font-size: 12px;
+			line-height: 167%;
+			color: var(--neutral-darkest);
+		}
+	}
 }

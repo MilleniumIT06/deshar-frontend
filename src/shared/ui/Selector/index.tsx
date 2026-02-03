@@ -1,4 +1,3 @@
-'use client'
 import { useState, useRef, useEffect, useId } from 'react'
 
 import cn from 'classnames'
@@ -6,16 +5,18 @@ import { motion, AnimatePresence, easeInOut } from 'framer-motion'
 
 import './styles.scss'
 
-interface Option {
+export interface Option {
 	id: string
 	label: string
+	default?: boolean
 }
 
 interface SelectorProps {
 	options?: Option[]
 	defaultValue?: string
-	onChange?: (value: string) => void
+	onChange?: (item: Option) => void
 	className?: string
+	mini?: boolean
 }
 
 export const Selector = ({
@@ -27,6 +28,7 @@ export const Selector = ({
 	defaultValue = 'week',
 	onChange,
 	className,
+	mini,
 }: SelectorProps) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [selectedValue, setSelectedValue] = useState(defaultValue)
@@ -49,10 +51,10 @@ export const Selector = ({
 		return options.find(option => option.id === selectedValue)?.label || options[0]?.label
 	}
 
-	const handleSelect = (id: string) => {
-		setSelectedValue(id)
+	const handleSelect = (item: Option) => {
+		setSelectedValue(item.id)
 		setIsOpen(false)
-		if (onChange) onChange(id) // Опциональный вызов колбэка
+		if (onChange) onChange(item) // Опциональный вызов колбэка
 	}
 
 	// Анимация иконки стрелки
@@ -84,14 +86,14 @@ export const Selector = ({
 	return (
 		<div
 			ref={selectorRef}
-			className={cn('Selector', isOpen && 'active', className)}
+			className={cn('Selector', isOpen && 'active', className, mini && 'mini')}
 			role="combobox"
 			aria-expanded={isOpen}
 			aria-haspopup="listbox"
 			aria-controls={listboxId} // Связь с выпадающим списком
 		>
 			<div className="Selector__header">
-				<span>{getCurrentLabel()}</span>
+				<span title={getCurrentLabel()}>{getCurrentLabel()}</span>
 				<button
 					className={cn('btn-reset', 'Selector__btn')}
 					onClick={() => setIsOpen(!isOpen)}
@@ -129,7 +131,7 @@ export const Selector = ({
 										className={cn('Selector__list_item', {
 											selected: option.id === selectedValue,
 										})}
-										onClick={() => handleSelect(option.id)}>
+										onClick={() => handleSelect(option)}>
 										<span>{option.label}</span>
 									</li>
 								))}

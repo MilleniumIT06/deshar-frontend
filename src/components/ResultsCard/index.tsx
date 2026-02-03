@@ -1,3 +1,5 @@
+import { type ReactNode } from 'react'
+
 import cn from 'classnames'
 
 import './styles.scss'
@@ -18,6 +20,18 @@ const DecreaseIcon = () => (
 		/>
 	</svg>
 )
+const DefaultIcon = () => (
+	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path
+			d="M8 12.6413L10.6027 15L16 10"
+			stroke="#303030"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+		<circle cx="12" cy="12" r="8" stroke="#303030" strokeWidth="2" />
+	</svg>
+)
 export const ResultsCard = ({
 	id = 111,
 	percent = 5,
@@ -26,6 +40,7 @@ export const ResultsCard = ({
 	title = 'test',
 	type = 'decrease',
 	value = 144,
+	icon = <DefaultIcon />,
 }: {
 	id: number | string
 	title: string
@@ -34,20 +49,12 @@ export const ResultsCard = ({
 	type: 'increase' | 'decrease'
 	period: string | number
 	value: string | number
+	icon?: ReactNode
 }) => {
 	return (
 		<div className="ResultsCard" key={id}>
 			<h6 className="ResultsCard__title">
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path
-						d="M8 12.6413L10.6027 15L16 10"
-						stroke="#303030"
-						strokeWidth="2"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-					/>
-					<circle cx="12" cy="12" r="8" stroke="#303030" strokeWidth="2" />
-				</svg>
+				{icon}
 				{title}
 			</h6>
 			<div className="ResultsCard__info">

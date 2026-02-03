@@ -1,3 +1,5 @@
+import { AdminPageContent } from './AdminPageContent'
+
 export default function AdminPage() {
-	return <div>AdminPage</div>
+	return <AdminPageContent />
 }
