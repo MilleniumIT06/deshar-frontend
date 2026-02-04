@@ -1,21 +1,26 @@
 'use client'
+
 import { useState } from 'react'
 
 import { useRouter } from 'next/navigation'
 
-import { getEducationDepartmentColumns } from '@/columns/getEducationDepartmentColumns'
+import { getColumnsSchool } from '@/columns/getColumnsSchool'
 import { Table } from '@/components/Admin/Table'
-import { educationDepMockData } from '@/mocks/adminMock'
-// import useRole from '@/shared/hooks/admin/useRole'
-import { type IEducationDepartment } from '@/shared/types/admin/types'
+import { SchoolsMockDataDEP } from '@/mocks/adminMock'
+import useRole from '@/shared/hooks/admin/useRole'
+import { type SchoolDepItem } from '@/shared/types/admin/types'
 import { Card } from '@/widgets/AdminWidgets/Card'
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
-const TABS = [{ id: 0, title: 'Все упр.образования' }]
-export const EducationDepartmentPageContent = () => {
-	// const navigate = useNavigate();
+const TABS = [
+	{ id: 0, title: 'Все районы' },
+	{ id: 1, title: 'Магас' },
+	{ id: 2, title: 'Назрань' },
+	{ id: 3, title: 'Малгобек' },
+	{ id: 4, title: 'Насыр-Корт' },
+]
+export const UniqueEducationDepartmentContent = () => {
 	const router = useRouter()
-	// const { role } = useRole()
+	const { role } = useRole()
 	const [timeFrom, setTimeFrom] = useState<string>('')
 	const [timeTo, setTimeTo] = useState<string>('')
 
@@ -24,7 +29,6 @@ export const EducationDepartmentPageContent = () => {
 	const [pointsFrom, setPointsFrom] = useState<string>('')
 	const [pointsTo, setPointsTo] = useState<string>('')
 	const [activeTab, setActiveTab] = useState(0)
-
 	const resetFilters = () => {
 		setTimeFrom('')
 		setTimeTo('')
@@ -33,8 +37,9 @@ export const EducationDepartmentPageContent = () => {
 		setPointsFrom('')
 		setPointsTo('')
 	}
-	const redirectOnClick = (item: IEducationDepartment) => {
-		router.push(`/admin/education-department/${item.id}`)
+	const redirectOnSchoolClick = (item: SchoolDepItem) => {
+		// console.log(item.id);
+		router.push(`/admin/schools/${item.id}`)
 	}
 	return (
 		<main className="PageAdmin">
@@ -63,19 +68,19 @@ export const EducationDepartmentPageContent = () => {
 					},
 				]}
 				resetFilters={resetFilters}
-				title="Упр. образования"
+				title="УО по г. Магас и г. Назраньa"
 				tabs={TABS}
 				key={'testCard123'}
-				valueFirst="7 управлений образования"
+				valueFirst="489 школ"
 				valueSecond="584 958 баллов"
 				activeTab={activeTab}
 				setActiveTab={setActiveTab}
-				csv={true}>
-				{/* <EducationDepartmentTable data={educationDepMockData} link="/education-department/" /> */}
-				<Table<IEducationDepartment, any>
-					data={educationDepMockData}
-					getColumns={() => getEducationDepartmentColumns()}
-					handleRowClick={redirectOnClick}
+				csv={true}
+				onClickBackButton={() => router.back()}>
+				<Table<SchoolDepItem, never>
+					data={SchoolsMockDataDEP}
+					getColumns={() => getColumnsSchool({ role })}
+					handleRowClick={redirectOnSchoolClick}
 				/>
 			</Card>
 		</main>
