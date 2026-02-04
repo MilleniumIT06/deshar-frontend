@@ -1,47 +1,56 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
+
 import { useMemo, useState } from 'react'
 
-import { useReactTable, getCoreRowModel, flexRender, getSortedRowModel, type SortingState } from '@tanstack/react-table'
+import { useReactTable, getCoreRowModel, flexRender, type SortingState, getSortedRowModel } from '@tanstack/react-table'
 
-import { type AttestationsTableItemType, getAttestationsColumns } from '@/columns/getAttestationsColumns'
-import useRole from '@/shared/hooks/admin/useRole'
+import './styles.scss'
+import { getStudentTableColumns } from '@/columns/getStudentTableColumns'
+import { type AttestationStatus } from '@/shared/types/admin/types'
 
 import { StudentTableItem } from '../StudentTableItem'
-import './styles.scss'
 
-interface AttestationsTableProps {
-	data: AttestationsTableItemType[]
+export type StudentTableItemType = {
+	id: number
+	module: string
+	doneLessons: number
+	maxLessons: number
+	processLessons: number
+	learningTime: string
+	mistakes: number
+	points: number
+	attestationStatus: AttestationStatus
 }
-export const AttestationsTable = ({ data }: AttestationsTableProps) => {
-	const { role } = useRole()
-	const columns = useMemo(() => getAttestationsColumns({ role }), [])
-	// Состояние для сортировки
-	const [sorting, setSorting] = useState<SortingState>([])
 
+export const StudentTable = ({ data }: { data: StudentTableItemType[] }) => {
+	const columns = useMemo(() => getStudentTableColumns(), [])
+	const [tableData] = useState(data)
+	const [sorting, setSorting] = useState<SortingState>([])
+	// Initialize the table
 	const table = useReactTable({
-		data: data,
+		data: tableData,
 		columns,
 		state: {
-			sorting, // Передаем состояние сортировки
+			sorting,
 		},
-		onSortingChange: setSorting, // Функция для обновления сортировки
+		onSortingChange: setSorting,
 		getCoreRowModel: getCoreRowModel(),
-		getSortedRowModel: getSortedRowModel(), // Модель для сортировки
+		getSortedRowModel: getSortedRowModel(),
 	})
+
 	return (
-		<div className="AttestationsTable__scroll-container">
-			<table className="AttestationsTable">
-				<thead>
+		<div className="Table__scroll-container">
+			<table className="Table">
+				<thead className="Table__head">
 					{table.getHeaderGroups().map(headerGroup => (
-						<tr key={headerGroup.id} className="AttestationsTable__tr">
+						<tr key={headerGroup.id} className="Table__tr">
 							{headerGroup.headers.map(header => (
-								<th key={header.id} className="AttestationsTable__th" colSpan={header.colSpan}>
+								<th key={header.id} className={`Table__th Table__head_${header.id}`}>
 									{header.isPlaceholder ? null : (
 										<div
 											{...{
 												className: header.column.getCanSort()
-													? 'cursor-pointer select-none'
+													? 'cursor-pointer select-none Table__head_inner'
 													: '',
 												onClick: header.column.getToggleSortingHandler(),
 											}}>
@@ -95,10 +104,9 @@ export const AttestationsTable = ({ data }: AttestationsTableProps) => {
 						</tr>
 					))}
 				</thead>
-
 				<tbody>
 					{table.getRowModel().rows.map(row => (
-						<StudentTableItem<AttestationsTableItemType>
+						<StudentTableItem<StudentTableItemType>
 							key={row.id}
 							row={row}
 							status={row.original.attestationStatus}

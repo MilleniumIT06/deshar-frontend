@@ -16,6 +16,7 @@
 // 	},
 
 import type { AttestationsTableItemType } from '@/columns/getAttestationsColumns'
+import { type StudentTableItemType } from '@/components/Admin/StudentTable'
 import type { TeacherItem, DepartamentItem, SchoolDepItem } from '@/shared/types/admin/types'
 
 export const barChartMockData = [
@@ -221,54 +222,54 @@ export const TEST_PARALLEL = [
 		time: 105,
 	},
 ]
-// export const studentTableMockData: StudentTableItemType[] = [
-// 	{
-// 		id: 1,
-// 		module: 'Алфавит',
-// 		doneLessons: 10,
-// 		maxLessons: 10,
-// 		processLessons: 0,
-// 		learningTime: '0ч 32м',
-// 		mistakes: 3,
-// 		points: 97,
-// 		attestationStatus: 'rejected',
-// 	},
-// 	{
-// 		id: 2,
-// 		module: 'Фонетика',
-// 		doneLessons: 0,
-// 		maxLessons: 14,
-// 		processLessons: 7,
-// 		learningTime: '0ч 24м',
-// 		mistakes: 0,
-// 		points: 0,
-// 		attestationStatus: 'notCompleted',
-// 	},
-// 	{
-// 		id: 3,
-// 		module: 'Лексикология',
-// 		doneLessons: 15,
-// 		maxLessons: 15,
-// 		processLessons: 0,
-// 		learningTime: '0ч 26м',
-// 		mistakes: 0,
-// 		points: 100,
-// 		attestationStatus: 'accepted',
-// 	},
-// 	{
-// 		id: 4,
-// 		module: 'Лексикологияw',
-// 		doneLessons: 15,
-// 		maxLessons: 15,
-// 		processLessons: 0,
-// 		learningTime: '0ч 26м',
-// 		mistakes: 0,
-// 		points: 100,
-// 		attestationStatus: 'checking',
-// 	},
+export const studentTableMockData: StudentTableItemType[] = [
+	{
+		id: 1,
+		module: 'Алфавит',
+		doneLessons: 10,
+		maxLessons: 10,
+		processLessons: 0,
+		learningTime: '0ч 32м',
+		mistakes: 3,
+		points: 97,
+		attestationStatus: 'rejected',
+	},
+	{
+		id: 2,
+		module: 'Фонетика',
+		doneLessons: 0,
+		maxLessons: 14,
+		processLessons: 7,
+		learningTime: '0ч 24м',
+		mistakes: 0,
+		points: 0,
+		attestationStatus: 'notCompleted',
+	},
+	{
+		id: 3,
+		module: 'Лексикология',
+		doneLessons: 15,
+		maxLessons: 15,
+		processLessons: 0,
+		learningTime: '0ч 26м',
+		mistakes: 0,
+		points: 100,
+		attestationStatus: 'accepted',
+	},
+	{
+		id: 4,
+		module: 'Лексикологияw',
+		doneLessons: 15,
+		maxLessons: 15,
+		processLessons: 0,
+		learningTime: '0ч 26м',
+		mistakes: 0,
+		points: 100,
+		attestationStatus: 'checking',
+	},
 
-// 	// Add more student data objects here as needed
-// ]
+	// Add more student data objects here as needed
+]
 
 export const mockAttestationData: {
 	accepted: AttestationsTableItemType[]

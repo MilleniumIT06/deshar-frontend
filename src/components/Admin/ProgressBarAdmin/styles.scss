@@ -1,0 +1,44 @@
+.ProgressBarAdmin {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	&__counter {
+		display: flex;
+		align-items: center;
+		span {
+			font-family: var(--font-family);
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 143%;
+			color: var(--neutral-darkest);
+		}
+	}
+	&__bar {
+		position: relative;
+		overflow: hidden;
+		border-radius: 8px;
+		width: 60px;
+		height: 4px;
+	}
+	&__done {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 10;
+		border-radius: 8px;
+		height: 100%;
+		background-color: #1baa7d;
+		transition: all 0.4s ease-in-out;
+	}
+
+	&__process {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 9;
+		border-radius: 8px;
+		height: 100%;
+		background-color: #f06c20;
+		transition: all 0.4s ease-in-out;
+	}
+}
