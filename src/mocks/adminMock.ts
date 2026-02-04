@@ -15,6 +15,7 @@
 // 		time: 157,
 // 	},
 
+import type { AttestationsTableItemType } from '@/columns/getAttestationsColumns'
 import type { TeacherItem, DepartamentItem, SchoolDepItem } from '@/shared/types/admin/types'
 
 export const barChartMockData = [
@@ -269,142 +270,142 @@ export const barChartMockData = [
 // 	// Add more student data objects here as needed
 // ]
 
-// export const mockAttestationData: {
-// 	accepted: AttestationsTableItemType[]
-// 	rejected: AttestationsTableItemType[]
-// 	checking: AttestationsTableItemType[]
-// 	notCompleted: AttestationsTableItemType[]
-// } = {
-// 	accepted: [
-// 		{
-// 			id: 1,
-// 			date: new Date('2024-01-15'),
-// 			studentName: 'Иванов Алексей Петрович',
-// 			subjectName: 'Математика',
-// 			module: 'Алгебра и начала анализа',
-// 			mistakes: 2,
-// 			points: 88,
-// 			attestationStatus: 'accepted',
-// 			schoolName: 'ГБОУ Центр образования г. Магас',
-// 		},
-// 		{
-// 			id: 2,
-// 			date: new Date('2024-02-15'),
-// 			studentName: 'Иванов Алексей Петрович',
-// 			subjectName: 'Математика',
-// 			module: 'Алгебра и начала анализа',
-// 			mistakes: 2,
-// 			points: 88,
-// 			attestationStatus: 'accepted',
-// 			schoolName: 'ГБОУ Лицей – детский сад г. Магас',
-// 		},
-// 		{
-// 			id: 2,
-// 			date: new Date('2024-01-16'),
-// 			studentName: 'Петрова Мария Сергеевна',
-// 			subjectName: 'Русский язык',
-// 			module: 'Синтаксис и пунктуация',
-// 			mistakes: 5,
-// 			points: 75,
-// 			attestationStatus: 'accepted',
-// 			schoolName: 'ГБОУ СОШ №2 г. Магас',
-// 		},
-// 		{
-// 			id: 4,
-// 			date: new Date('2024-01-18'),
-// 			studentName: 'Козлова Анна Владимировна',
-// 			subjectName: 'Химия',
-// 			module: 'Органическая химия',
-// 			mistakes: 1,
-// 			points: 95,
-// 			attestationStatus: 'accepted',
-// 			schoolName: 'ГБОУ СОШ №2 г. Магас',
-// 		},
-// 		{
-// 			id: 8,
-// 			date: new Date('2024-01-22'),
-// 			studentName: 'Алексеева Ольга Дмитриевна',
-// 			subjectName: 'Литература',
-// 			module: 'Русская литература XIX века',
-// 			mistakes: 6,
-// 			points: 74,
-// 			attestationStatus: 'accepted',
-// 			schoolName: 'ГБОУ СОШ №2 г. Магас',
-// 		},
-// 		{
-// 			id: 10,
-// 			date: new Date('2024-01-24'),
-// 			studentName: 'Дмитриева Светлана Викторовна',
-// 			subjectName: 'Информатика',
-// 			module: 'Основы программирования',
-// 			mistakes: 4,
-// 			points: 82,
-// 			attestationStatus: 'accepted',
-// 			schoolName: 'ГБОУ СОШ №2 г. Магас',
-// 		},
-// 	],
-// 	rejected: [
-// 		{
-// 			id: 3,
-// 			date: new Date('2024-01-17'),
-// 			studentName: 'Сидоров Дмитрий Иванович',
-// 			subjectName: 'Физика',
-// 			module: 'Механика',
-// 			mistakes: 8,
-// 			points: 62,
-// 			attestationStatus: 'rejected',
-// 			schoolName: 'ГБОУ СОШ №2 г. Магас',
-// 		},
-// 		{
-// 			id: 6,
-// 			date: new Date('2024-01-20'),
-// 			studentName: 'Николаева Екатерина Олеговна',
-// 			subjectName: 'История',
-// 			module: 'Древний мир',
-// 			mistakes: 12,
-// 			points: 48,
-// 			attestationStatus: 'rejected',
-// 			schoolName: 'ГБОУ СОШ №2 г. Магас',
-// 		},
-// 	],
-// 	checking: [
-// 		{
-// 			id: 5,
-// 			date: new Date('2024-01-19'),
-// 			studentName: 'Федоров Сергей Николаевич',
-// 			subjectName: 'Биология',
-// 			module: 'Ботаника',
-// 			mistakes: 0,
-// 			points: 100,
-// 			attestationStatus: 'checking',
-// 			schoolName: 'ГБОУ СОШ №2 г. Магас',
-// 		},
-// 		{
-// 			id: 7,
-// 			date: new Date('2024-01-21'),
-// 			studentName: 'Васильев Павел Андреевич',
-// 			subjectName: 'География',
-// 			module: 'Физическая география России',
-// 			mistakes: 3,
-// 			points: 85,
-// 			attestationStatus: 'checking',
-// 			schoolName: 'ГБОУ СОШ №2 г. Магас',
-// 		},
-// 	],
-// 	notCompleted: [
-// 		{
-// 			id: 9,
-// 			date: new Date('2024-01-23'),
-// 			studentName: 'Григорьев Иван Петрович',
-// 			subjectName: 'Английский язык',
-// 			module: 'Грамматика времен',
-// 			mistakes: 15,
-// 			points: 35,
-// 			attestationStatus: 'notCompleted',
-// 			schoolName: 'ГБОУ СОШ №2 г. Магас',
-// 		},
-// 	],
-// }
+export const mockAttestationData: {
+	accepted: AttestationsTableItemType[]
+	rejected: AttestationsTableItemType[]
+	checking: AttestationsTableItemType[]
+	notCompleted: AttestationsTableItemType[]
+} = {
+	accepted: [
+		{
+			id: 1,
+			date: new Date('2024-01-15'),
+			studentName: 'Иванов Алексей Петрович',
+			subjectName: 'Математика',
+			module: 'Алгебра и начала анализа',
+			mistakes: 2,
+			points: 88,
+			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ Центр образования г. Магас',
+		},
+		{
+			id: 2,
+			date: new Date('2024-02-15'),
+			studentName: 'Иванов Алексей Петрович',
+			subjectName: 'Математика',
+			module: 'Алгебра и начала анализа',
+			mistakes: 2,
+			points: 88,
+			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ Лицей – детский сад г. Магас',
+		},
+		{
+			id: 2,
+			date: new Date('2024-01-16'),
+			studentName: 'Петрова Мария Сергеевна',
+			subjectName: 'Русский язык',
+			module: 'Синтаксис и пунктуация',
+			mistakes: 5,
+			points: 75,
+			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
+		},
+		{
+			id: 4,
+			date: new Date('2024-01-18'),
+			studentName: 'Козлова Анна Владимировна',
+			subjectName: 'Химия',
+			module: 'Органическая химия',
+			mistakes: 1,
+			points: 95,
+			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
+		},
+		{
+			id: 8,
+			date: new Date('2024-01-22'),
+			studentName: 'Алексеева Ольга Дмитриевна',
+			subjectName: 'Литература',
+			module: 'Русская литература XIX века',
+			mistakes: 6,
+			points: 74,
+			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
+		},
+		{
+			id: 10,
+			date: new Date('2024-01-24'),
+			studentName: 'Дмитриева Светлана Викторовна',
+			subjectName: 'Информатика',
+			module: 'Основы программирования',
+			mistakes: 4,
+			points: 82,
+			attestationStatus: 'accepted',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
+		},
+	],
+	rejected: [
+		{
+			id: 3,
+			date: new Date('2024-01-17'),
+			studentName: 'Сидоров Дмитрий Иванович',
+			subjectName: 'Физика',
+			module: 'Механика',
+			mistakes: 8,
+			points: 62,
+			attestationStatus: 'rejected',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
+		},
+		{
+			id: 6,
+			date: new Date('2024-01-20'),
+			studentName: 'Николаева Екатерина Олеговна',
+			subjectName: 'История',
+			module: 'Древний мир',
+			mistakes: 12,
+			points: 48,
+			attestationStatus: 'rejected',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
+		},
+	],
+	checking: [
+		{
+			id: 5,
+			date: new Date('2024-01-19'),
+			studentName: 'Федоров Сергей Николаевич',
+			subjectName: 'Биология',
+			module: 'Ботаника',
+			mistakes: 0,
+			points: 100,
+			attestationStatus: 'checking',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
+		},
+		{
+			id: 7,
+			date: new Date('2024-01-21'),
+			studentName: 'Васильев Павел Андреевич',
+			subjectName: 'География',
+			module: 'Физическая география России',
+			mistakes: 3,
+			points: 85,
+			attestationStatus: 'checking',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
+		},
+	],
+	notCompleted: [
+		{
+			id: 9,
+			date: new Date('2024-01-23'),
+			studentName: 'Григорьев Иван Петрович',
+			subjectName: 'Английский язык',
+			module: 'Грамматика времен',
+			mistakes: 15,
+			points: 35,
+			attestationStatus: 'notCompleted',
+			schoolName: 'ГБОУ СОШ №2 г. Магас',
+		},
+	],
+}
 
 export const teacherMyClasses = [
 	{

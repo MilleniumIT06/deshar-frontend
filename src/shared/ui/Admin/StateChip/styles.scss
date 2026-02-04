@@ -1,0 +1,29 @@
+.StateChip {
+	border-radius: 16px;
+	padding: 4px 12px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	&__text {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 10px;
+		line-height: 120%;
+		color: var(--neutral-white);
+	}
+
+	&-rejected {
+		background: var(--negative-medium);
+	}
+	&-accepted {
+		background: var(--primary-medium);
+	}
+	&-checking {
+		background: var(--warning-medium);
+	}
+	&-notCompleted {
+		background: var(--neutral-medium);
+	}
+}
