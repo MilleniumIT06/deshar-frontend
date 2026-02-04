@@ -1,5 +1,5 @@
 import { TeachersPageContent } from './TeachersPageContent'
 
-export default function SchoolsAdminPage() {
+export default function TeachersAdminPage() {
 	return <TeachersPageContent />
 }

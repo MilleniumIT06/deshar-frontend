@@ -1,26 +1,23 @@
 'use client'
+
 import { useState } from 'react'
 
 import { useRouter } from 'next/navigation'
 
-import { getTeacherColumns } from '@/columns/getTeacherColumns'
+import { getUniqueTeacherColumns } from '@/columns/getUniqueTeacherColumns'
 import { Table } from '@/components/Admin/Table'
-import { mockTeachers } from '@/mocks/adminMock'
-// import useRole from '@/shared/hooks/admin/useRole'
-import { type TeacherItem } from '@/shared/types/admin/types'
+import { mockTeacherStudentsList } from '@/mocks/adminMock'
+import { type UniqueTeacherStudentItem } from '@/shared/types/admin/types'
 import { Card } from '@/widgets/AdminWidgets/Card'
 
 const TABS = [
-	{ id: 0, title: 'Все предметы' },
-	{ id: 1, title: 'Математика' },
-	{ id: 2, title: 'Русский язык' },
-	{ id: 3, title: 'Ингушский язык' },
-	{ id: 4, title: 'Литература' },
-	{ id: 5, title: 'География' },
+	{ id: 0, title: 'Все классы' },
+	{ id: 1, title: '5 “А”' },
+	{ id: 2, title: '5 ”Б”' },
+	{ id: 3, title: '6 “Б”' },
+	{ id: 4, title: '6 “В”' },
 ]
-export const TeachersPageContent = () => {
-	// const navigate = useNavigate();
-	// const { role } = useRole()
+export const UniqueTeacherPageContent = () => {
 	const router = useRouter()
 	const [timeFrom, setTimeFrom] = useState<string>('')
 	const [timeTo, setTimeTo] = useState<string>('')
@@ -30,7 +27,6 @@ export const TeachersPageContent = () => {
 	const [pointsFrom, setPointsFrom] = useState<string>('')
 	const [pointsTo, setPointsTo] = useState<string>('')
 	const [activeTab, setActiveTab] = useState(0)
-
 	const resetFilters = () => {
 		setTimeFrom('')
 		setTimeTo('')
@@ -39,8 +35,8 @@ export const TeachersPageContent = () => {
 		setPointsFrom('')
 		setPointsTo('')
 	}
-	const redirectOnClick = (item: TeacherItem) => {
-		router.push(`/admin/teachers/${item.id}`)
+	const redirectOnClick = (item: UniqueTeacherStudentItem) => {
+		router.push(`/admin/student/${item.id}`)
 	}
 	return (
 		<main className="PageAdmin">
@@ -69,18 +65,18 @@ export const TeachersPageContent = () => {
 					},
 				]}
 				resetFilters={resetFilters}
-				title="Учителя"
+				title="Татриева Зина"
 				tabs={TABS}
 				key={'testCard123'}
-				valueFirst="247 учителей"
-				valueSecond="67 585 баллов"
+				valueFirst="85 учителей"
+				valueSecond="12 585 баллов"
 				activeTab={activeTab}
 				setActiveTab={setActiveTab}
-				type="teachers"
+				onClickBackButton={() => router.back()}
 				csv={true}>
-				<Table<TeacherItem, never>
-					data={mockTeachers}
-					getColumns={() => getTeacherColumns()}
+				<Table<UniqueTeacherStudentItem, never>
+					data={mockTeacherStudentsList}
+					getColumns={() => getUniqueTeacherColumns()}
 					handleRowClick={redirectOnClick}
 				/>
 			</Card>

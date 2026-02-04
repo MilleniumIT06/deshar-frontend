@@ -43,11 +43,11 @@ export const StatisticsLayoutContent = ({ children }: StatisticsLayoutContentPro
 	}
 
 	const handleSelectChange = (item: Option) => {
-		if (role === 'department' || role === 'vicePrincipal' || role === 'ministry') {
+		if (role === 'department' || role === 'vicePrincipal' || role === 'ministry' || role === 'admin') {
 			if (item.default) {
-				router.push('/')
+				router.push('/admin')
 			} else {
-				router.push(`/${item.id}`)
+				router.push(`/admin/${item.id}`)
 			}
 		}
 	}

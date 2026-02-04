@@ -86,3 +86,12 @@ export interface TeacherItem {
 	doneModules: number
 	points: number
 }
+
+export interface UniqueTeacherStudentItem {
+	id: number
+	place: number
+	name: string
+	learningTime: number
+	doneModules: number
+	points: number
+}
