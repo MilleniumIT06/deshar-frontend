@@ -1,26 +1,24 @@
 'use client'
+
 import { useState } from 'react'
 
 import { useRouter } from 'next/navigation'
 
-import { getColumnsSchool } from '@/columns/getColumnsSchool'
+import { getSchoolStatisticColumns } from '@/columns/getSchoolStatisticColumns'
 import { Table } from '@/components/Admin/Table'
-import { SchoolsMockData } from '@/mocks/adminMock'
-import useRole from '@/shared/hooks/admin/useRole'
-import { type SchoolDepItem, type SchoolItem } from '@/shared/types/admin/types'
+import { SchoolStatMockData } from '@/mocks/adminMock'
+import { type SchoolStatItem } from '@/shared/types/admin/types'
 import { Card } from '@/widgets/AdminWidgets/Card'
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 const TABS = [
-	{ id: 0, title: 'Все районы' },
-	{ id: 1, title: 'Магас' },
-	{ id: 2, title: 'Назрань' },
-	{ id: 3, title: 'Насыр-Корт' },
+	{ id: 0, title: 'Все классы' },
+	{ id: 1, title: '5-ые' },
+	{ id: 2, title: '6-ые' },
+	{ id: 3, title: '7-ые' },
+	{ id: 4, title: '8-ые' },
+	{ id: 5, title: '9-ые' },
 ]
-export const SchoolsPageContent = () => {
-	// const navigate = useNavigate();
-	const router = useRouter()
-	const { role } = useRole()
+export const SchoolsStatPageContent = () => {
 	const [timeFrom, setTimeFrom] = useState<string>('')
 	const [timeTo, setTimeTo] = useState<string>('')
 
@@ -29,7 +27,7 @@ export const SchoolsPageContent = () => {
 	const [pointsFrom, setPointsFrom] = useState<string>('')
 	const [pointsTo, setPointsTo] = useState<string>('')
 	const [activeTab, setActiveTab] = useState(0)
-
+	const router = useRouter()
 	const resetFilters = () => {
 		setTimeFrom('')
 		setTimeTo('')
@@ -38,8 +36,12 @@ export const SchoolsPageContent = () => {
 		setPointsFrom('')
 		setPointsTo('')
 	}
-	const redirectOnSchoolClick = (item: SchoolItem) => {
-		router.push(`${item.id}`)
+	const redirectOnClick = (item: SchoolStatItem) => {
+		// console.log(item.id);
+		router.push(`/class/${item.id}`)
+	}
+	const onClickBackButton = () => {
+		router.back()
 	}
 	return (
 		<main className="PageAdmin">
@@ -68,19 +70,19 @@ export const SchoolsPageContent = () => {
 					},
 				]}
 				resetFilters={resetFilters}
-				title="Школы"
+				title="ГБОУ СОШ Детский сад № 1 г. Магас"
 				tabs={TABS}
 				key={'testCard123'}
-				valueFirst="45 школ"
-				valueSecond="487 585 баллов"
+				valueFirst="38 классов"
+				valueSecond="64 585 баллов"
 				activeTab={activeTab}
 				setActiveTab={setActiveTab}
-				csv={role === 'admin'}>
-				{/* <SchoolsTable data={SchoolsMockData} link="/schools/" /> */}
-				<Table<SchoolDepItem, any>
-					data={SchoolsMockData}
-					getColumns={() => getColumnsSchool({ role })}
-					handleRowClick={redirectOnSchoolClick}
+				onClickBackButton={onClickBackButton}>
+				{/* <SchoolClassesList data={SchoolStatMockData} link="/class/" /> */}
+				<Table<SchoolStatItem, never>
+					data={SchoolStatMockData}
+					getColumns={() => getSchoolStatisticColumns()}
+					handleRowClick={redirectOnClick}
 				/>
 			</Card>
 		</main>

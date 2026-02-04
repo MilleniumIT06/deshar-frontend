@@ -1,3 +1,5 @@
+import { SchoolsStatPageContent } from './SchoolStatPageContent'
+
 export default function SchoolStat() {
-	return <div>test</div>
+	return <SchoolsStatPageContent />
 }

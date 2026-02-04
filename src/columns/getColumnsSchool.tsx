@@ -33,7 +33,7 @@ export const getColumnsSchool = ({ role }: { role?: Role }) => [
 			</span>
 		),
 	}),
-	...(role === 'ministry'
+	...(role === 'ministry' || role === 'admin'
 		? [
 				columnHelper.accessor('department', {
 					header: ({ column }) => (

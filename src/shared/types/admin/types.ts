@@ -35,6 +35,17 @@ export interface SchoolItem {
 	doneModules: number
 	points: number
 }
+export interface SchoolStatItem {
+	id: number
+	place: number
+	className: string
+	classLetter: string
+	classLevel: number
+	classTeacher: string
+	learningTime: number
+	doneModules: number
+	points: number
+}
 export interface DepartamentItem {
 	id: number
 	placeNumber: number
