@@ -178,7 +178,7 @@ export const DashboardMenu = () => {
 			<div className="DashboardMenu__inner">
 				<div className="DashboardMenu__top">
 					<div className="DashboardMenu__logo_wrapper">
-						<Logo className="DashboardMenu__logo" href="/" />
+						<Logo className="DashboardMenu__logo" href="/admin" />
 					</div>
 					<div className="DashboardMenu__content">
 						<DashboardMenuItem title="Статистика" href="/admin" />
@@ -188,17 +188,17 @@ export const DashboardMenu = () => {
 						{hasRole(['admin', 'ministry']) && (
 							<DashboardMenuItem
 								title="Упр. образования"
-								href="/education-department"
+								href="/admin/education-department"
 								icon={<EducationDepartmentIcon />}
 							/>
 						)}
 						{hasRole(['admin', 'department', 'ministry']) && (
-							<DashboardMenuItem title="Учителя" href="/teachers" icon={<TeachersIcon />} />
+							<DashboardMenuItem title="Учителя" href="/admin/teachers" icon={<TeachersIcon />} />
 						)}
 						{hasRole(['vicePrincipal', 'admin', 'department', 'ministry']) && (
 							<DashboardMenuItem
 								title="Аттестации"
-								href="/attestations"
+								href="/admin/attestations"
 								icon={<AttestationsIcon />}
 								count={25}
 							/>
@@ -212,8 +212,8 @@ export const DashboardMenu = () => {
 											className="MenuAccordion__item"
 											key={`accordion-classes-item-${item.id}`}>
 											<Link
-												href={`/class/${item.id}`}
-												className={`MenuAccordion__link ${pathname === `/class/${item.id}` ? 'active' : ''}`}>
+												href={`/admin/class/${item.id}`}
+												className={`MenuAccordion__link ${pathname === `/admin/class/${item.id}` ? 'active' : ''}`}>
 												{item.title}
 											</Link>
 										</li>
@@ -229,8 +229,8 @@ export const DashboardMenu = () => {
 											className="MenuAccordion__item"
 											key={`accordion-parallel-item-${item.id}`}>
 											<Link
-												href={`/class/${item.id}`}
-												className={`MenuAccordion__link ${pathname === `/class/${item.id}` ? 'active' : ''}`}>
+												href={`/admin/class/${item.id}`}
+												className={`MenuAccordion__link ${pathname === `/admin/class/${item.id}` ? 'active' : ''}`}>
 												{item.title}
 											</Link>
 										</li>

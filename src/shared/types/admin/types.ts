@@ -59,3 +59,19 @@ export interface IEducationDepartment {
 	doneModules: number
 	points: number
 }
+interface ClassItem {
+	id: number
+	className: string
+	classLetter: string
+	classLevel: number
+}
+export interface TeacherItem {
+	id: number
+	place: number
+	teacherName: string
+	schoolName: string
+	classes: ClassItem[]
+	studentsCount: number
+	doneModules: number
+	points: number
+}

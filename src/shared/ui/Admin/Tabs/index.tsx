@@ -67,7 +67,7 @@ export const Tabs = ({ tabs, activeTab, handleTab, maxWidth }: TabsProps) => {
 						<path
 							d="M0.53125 0.53125L6.53125 6.53125L0.53125 12.5313"
 							stroke="#303030"
-							stroke-width="1.5"
+							strokeWidth="1.5"
 						/>
 					</svg>
 				</Button>
@@ -98,7 +98,7 @@ export const Tabs = ({ tabs, activeTab, handleTab, maxWidth }: TabsProps) => {
 						<path
 							d="M0.53125 0.53125L6.53125 6.53125L0.53125 12.5313"
 							stroke="#303030"
-							stroke-width="1.5"
+							strokeWidth="1.5"
 						/>
 					</svg>
 				</Button>
