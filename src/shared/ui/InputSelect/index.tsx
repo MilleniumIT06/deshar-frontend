@@ -7,13 +7,14 @@ import { motion, AnimatePresence } from 'motion/react'
 
 import './styles.scss'
 
-export interface InputSelectProps {
+interface InputSelectProps {
 	placeholderValue: string
 	options?: { id: string | number; value: string }[]
 	value: any
 	setValue: (value: any) => void
 	name?: string // Добавленное свойство для интеграции с RHF
 	onBlur?: () => void // Добавленное свойство для интеграции с RHF
+	variant?: 'admin' | 'common'
 }
 
 const InputSelect = ({
@@ -25,6 +26,7 @@ const InputSelect = ({
 	],
 	setValue,
 	value,
+	variant = 'common',
 }: InputSelectProps) => {
 	const [open, setOpen] = useState(false)
 
@@ -36,7 +38,7 @@ const InputSelect = ({
 	const selectedLabel = options.find(option => option.value === value)?.value || ''
 
 	return (
-		<div className="InputSelect" data-testid="input-select">
+		<div className={cn('InputSelect', variant === 'admin' && 'adminVariant')} data-testid="input-select">
 			<input
 				placeholder={placeholderValue}
 				className={cn('input-reset', 'InputSelect__input')}

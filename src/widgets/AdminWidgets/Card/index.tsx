@@ -6,6 +6,7 @@ import { Filter } from '@/components/Admin/Filters/Filter'
 import useRole from '@/shared/hooks/admin/useRole'
 import { Tabs } from '@/shared/ui/Admin/Tabs'
 import { TeacherItem } from '@/shared/ui/Admin/TeacherItem'
+import { InputSelect } from '@/shared/ui/InputSelect'
 
 interface Tab {
 	id: number
@@ -19,11 +20,18 @@ interface FilterType {
 	setValueFrom: React.Dispatch<React.SetStateAction<string>>
 	setValueTo: React.Dispatch<React.SetStateAction<string>>
 }
-
+interface FilterByStatusType {
+	type: 'status'
+	value: null | string
+	options: { id: number | string; value: string }[]
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	handleChange: (value: any) => void
+}
+type TFilters = FilterType | FilterByStatusType
 interface CardProps {
 	title?: string
 	tabs?: Tab[]
-	filters?: FilterType[]
+	filters?: TFilters[]
 	resetFilters: () => void
 	valueFirst?: string
 	valueSecond?: string
@@ -145,16 +153,34 @@ export const Card = ({
 						<div className="Card__filters">
 							<div className="Card__filters-inner">
 								<div className="Card__filters-list">
-									{filters.map((filter, index) => (
-										<Filter
-											key={`${filter.type}-${index}`}
-											type={filter.type}
-											fromValue={filter.valueFrom}
-											onFromChange={filter.setValueFrom}
-											toValue={filter.valueTo}
-											onToChange={filter.setValueTo}
-										/>
-									))}
+									{filters.map((filter, index) => {
+										if (filter.type === 'status') {
+											return (
+												<div
+													className="Card__inputSelect_wrapper"
+													key={`${filter.type}-${index}`}>
+													<span>Статус</span>
+													<InputSelect
+														variant="admin"
+														placeholderValue="test"
+														value={filter.value}
+														setValue={filter.handleChange}
+														options={filter.options}
+													/>
+												</div>
+											)
+										}
+										return (
+											<Filter
+												key={`${filter.type}-${index}`}
+												type={filter.type}
+												fromValue={filter.valueFrom}
+												onFromChange={filter.setValueFrom}
+												toValue={filter.valueTo}
+												onToChange={filter.setValueTo}
+											/>
+										)
+									})}
 								</div>
 								<button className="btn-reset Card__filters-reset" onClick={resetFilters}>
 									Сбросить

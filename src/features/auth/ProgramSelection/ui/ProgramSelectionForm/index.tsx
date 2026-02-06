@@ -12,9 +12,11 @@ import { OtherRegionsForm } from '../../OtherRegionsForm'
 
 export const ProgramSelectionForm = () => {
 	const [activeTab, setActiveTab] = useState(0)
-
+	const [isTabsDisabled, setIsTabsDisabled] = useState(false)
 	const handleTabChange = (tabIndex: number) => {
-		setActiveTab(tabIndex)
+		if (!isTabsDisabled) {
+			setActiveTab(tabIndex)
+		}
 	}
 
 	return (
@@ -23,7 +25,11 @@ export const ProgramSelectionForm = () => {
 				<h1 className="ProgramSelectionForm__title">Выбор программы</h1>
 				<Tabs activeTab={activeTab} handleTab={handleTabChange} tabs={tabs} maxWidth />
 
-				{activeTab === 0 ? <IngushetiaForm /> : <OtherRegionsForm />}
+				{activeTab === 0 ? (
+					<IngushetiaForm disableTab={setIsTabsDisabled} />
+				) : (
+					<OtherRegionsForm disableTab={setIsTabsDisabled} />
+				)}
 
 				<div className="ProgramSelectionForm__bottom">
 					<div>

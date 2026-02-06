@@ -11,12 +11,30 @@ import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
 const validateSchema = z.object({
-	country: z.string({ message: 'Пожалуйста, выберите страну' }).min(4).max(20).nullable(),
-	school: z.string({ message: 'Пожалуйста, выберите школу' }).nullable(),
-	classLevel: z.string({ message: 'Пожалуйста, выберите класс' }).nullable(),
+	country: z
+		.string({ message: 'Пожалуйста, выберите страну' })
+		.min(1, { message: 'Пожалуйста, выберите страну' })
+		.nullable()
+		.refine(val => val !== null, {
+			message: 'Пожалуйста, выберите страну',
+		}),
+	school: z
+		.string({ message: 'Пожалуйста, выберите школу' })
+		.min(1, { message: 'Пожалуйста, выберите школу' })
+		.nullable()
+		.refine(val => val !== null, {
+			message: 'Пожалуйста, выберите школу',
+		}),
+	classLevel: z
+		.string({ message: 'Пожалуйста, выберите класс' })
+		.min(1, { message: 'Пожалуйста, выберите класс' })
+		.nullable()
+		.refine(val => val !== null, {
+			message: 'Пожалуйста, выберите класс',
+		}),
 })
 
-export const OtherRegionsForm = () => {
+export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) => void }) => {
 	const { formData } = useAppSelector(state => state.signUpFormReducer)
 	const dispatch = useAppDispatch()
 
@@ -41,7 +59,13 @@ export const OtherRegionsForm = () => {
 		// console.log('Russia form data:', completeData)
 		dispatch(updateFormData(completeData))
 		dispatch(submitForm())
-		form.reset()
+		if (form.formState.isSubmitting) {
+			disableTab(true)
+		}
+		if (form.formState.isSubmitted) {
+			form.reset()
+			disableTab(false)
+		}
 	}
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
@@ -85,7 +109,7 @@ export const OtherRegionsForm = () => {
 				className="ProgramSelectionForm__btn"
 				size="medium"
 				type="submit"
-				disabled={!form.formState.isValid}>
+				disabled={!form.formState.isValid || form.formState.isSubmitting}>
 				Зарегистрировать
 			</Button>
 		</form>
