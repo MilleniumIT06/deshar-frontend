@@ -1,6 +1,3 @@
-'use client'
-import { useState, useEffect } from 'react'
-
 import cn from 'classnames'
 import { Navigation, A11y } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -15,15 +12,6 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 
 export const Reviews = () => {
-	const [isMounted, setIsMounted] = useState(false)
-
-	useEffect(() => {
-		setIsMounted(true)
-	}, [])
-
-	if (!isMounted) {
-		return null // or a placeholder loading state
-	}
 	return (
 		<section className="Reviews">
 			<div className="container">
