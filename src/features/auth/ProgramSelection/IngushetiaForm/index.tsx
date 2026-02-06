@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react' // Добавляем useEffect
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -11,12 +13,14 @@ import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
 const validateSchema = z.object({
-	locality: z.string().min(4).max(20).nullable(),
-	school: z.string({ message: 'Пожалуйста, выберите школу' }),
-	classLevel: z.string({ message: 'Пожалуйста, выберите класс' }).nullable(),
+	locality: z
+		.string({ message: 'Пожалуйста, выберите населенный пункт' })
+		.min(1, { message: 'Пожалуйста, выберите населенный пункт' }),
+	school: z.string({ message: 'Пожалуйста, выберите школу' }).min(1, { message: 'Пожалуйста, выберите школу' }),
+	classLevel: z.string({ message: 'Пожалуйста, выберите класс' }).min(1, { message: 'Пожалуйста, выберите класс' }),
 })
 
-export const IngushetiaForm = () => {
+export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) => void }) => {
 	const { formData } = useAppSelector(state => state.signUpFormReducer)
 	const dispatch = useAppDispatch()
 
@@ -25,23 +29,48 @@ export const IngushetiaForm = () => {
 		defaultValues: {
 			locality: formData.locality || '',
 			school: formData.school || '',
-			classLevel: formData.classLevel || null,
+			classLevel: formData.classLevel || '',
 		},
 		mode: 'onChange',
 	})
-	const onSubmit = (data: z.infer<typeof validateSchema>) => {
-		const completeData = {
-			...formData,
-			country: 'Россия',
-			locality: String(data.locality),
-			school: String(data.school),
-			classLevel: String(data.classLevel),
-		}
 
-		// console.log('Russia form data:', completeData)
-		dispatch(updateFormData(completeData))
-		dispatch(submitForm())
+	useEffect(() => {
+		if (form.formState.isSubmitting) {
+			disableTab(true)
+		} else {
+			disableTab(false)
+		}
+	}, [form.formState.isSubmitting, disableTab])
+
+	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
+		try {
+			const completeData = {
+				...formData,
+				country: 'Россия',
+				locality: String(data.locality),
+				school: String(data.school),
+				classLevel: String(data.classLevel),
+			}
+
+			// console.log('Russia form data:', completeData)
+
+			dispatch(updateFormData(completeData))
+
+			dispatch(submitForm())
+
+			// form.reset()
+		} catch (error) {
+			return error
+			// console.error('Form submission error:', error)
+		}
 	}
+
+	// const handleReset = () => {
+	// 	form.reset()
+	// 	dispatch(resetForm())
+	// 	disableTab(false)
+	// }
+
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
 			<div className="ProgramSelectionForm__field">
@@ -82,13 +111,15 @@ export const IngushetiaForm = () => {
 				)}
 			</div>
 
-			<Button
-				className="ProgramSelectionForm__btn"
-				size="medium"
-				type="submit"
-				disabled={!form.formState.isValid}>
-				Зарегистрировать
-			</Button>
+			<div style={{ display: 'flex', gap: '10px' }}>
+				<Button
+					className="ProgramSelectionForm__btn"
+					size="medium"
+					type="submit"
+					disabled={!form.formState.isValid || form.formState.isSubmitting}>
+					{form.formState.isSubmitting ? 'Отправка...' : 'Зарегистрировать'}
+				</Button>
+			</div>
 		</form>
 	)
 }
