@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { SignInForm } from '@/components/Admin/SignInForm'
 import './styles.scss'
 
@@ -9,7 +10,8 @@ export const SignInContent = () => {
 					<div className="SignInContent__image_wrapper">
 						<div className="SignInContent__image_tint" />
 						<div className="SignInContent__image">
-							<div>test</div>
+							{/* <div>test</div> */}
+							<img src="/images/Admin/SignInPage/image.png" alt="SignIn page background image" />
 						</div>
 					</div>
 				</div>

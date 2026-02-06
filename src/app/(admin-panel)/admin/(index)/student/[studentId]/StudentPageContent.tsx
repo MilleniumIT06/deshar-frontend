@@ -22,6 +22,7 @@ export const StudentPageContent = () => {
 	const [modulesTo, setModulesTo] = useState<string>('')
 	const [pointsFrom, setPointsFrom] = useState<string>('')
 	const [pointsTo, setPointsTo] = useState<string>('')
+	const [inputSelect, setInputSelect] = useState<string>('')
 	const router = useRouter()
 	const resetFilters = () => {
 		setTimeFrom('')
@@ -30,6 +31,7 @@ export const StudentPageContent = () => {
 		setModulesTo('')
 		setPointsFrom('')
 		setPointsTo('')
+		setInputSelect('')
 	}
 	return (
 		<main className="PageAdmin">
@@ -57,6 +59,25 @@ export const StudentPageContent = () => {
 						valueFrom: pointsFrom,
 						valueTo: pointsTo,
 					},
+					{
+						type: 'status',
+						options: [
+							{
+								id: 1,
+								value: 'Test1',
+							},
+							{
+								id: 2,
+								value: 'Test2',
+							},
+							{
+								id: 3,
+								value: 'Test3',
+							},
+						],
+						value: inputSelect,
+						handleChange: setInputSelect,
+					},
 				]}
 				resetFilters={resetFilters}
 				title="Аспиев Лорс"
@@ -67,6 +88,7 @@ export const StudentPageContent = () => {
 				activeTab={activeTab}
 				setActiveTab={setActiveTab}
 				onClickBackButton={() => router.back()}>
+				{inputSelect}
 				<StudentTable data={studentTableMockData} />
 				{/* <Table<StudentTableItemType, any> data={studentTableMockData} getColumns={() => getStudentTableColumns()} /> */}
 			</Card>
