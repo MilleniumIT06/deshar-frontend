@@ -14,7 +14,7 @@ export const SignInForm = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isValid, isSubmitting },
 	} = useForm<signInUserFormData>({
 		resolver: zodResolver(signInUserFormSchema),
 		mode: 'onChange',
@@ -44,7 +44,7 @@ export const SignInForm = () => {
 						validationMessage={errors.password && errors.password.message}
 						{...register('password')}
 					/>
-					<Button className="SignInForm__btn" size="medium">
+					<Button className="SignInForm__btn" size="medium" disabled={!isValid || isSubmitting}>
 						Войти
 					</Button>
 				</form>
