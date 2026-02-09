@@ -109,10 +109,7 @@ export const UniqueItemStatisticContent = () => {
 					/>
 				</div>
 				<ClassCardMain title="Лучшие ученики школы" linkText="Полный список" linkHref="/">
-					<Table<Student, never>
-						data={TEST_CLASSMATES}
-						getColumns={() => getBestStudentsColumns('classmates')}
-					/>
+					<Table<Student, never> data={TEST_CLASSMATES} getColumns={() => getBestStudentsColumns()} />
 				</ClassCardMain>
 			</div>
 		</main>

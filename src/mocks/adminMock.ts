@@ -3,21 +3,72 @@
 // import type { TeacherItem } from '../components/TeachersTable'
 // import { type Option } from '../shared/ui/Selector'
 // import type { DepartamentItem, SchoolDepItem } from '../types/types'
-// export const TEST_CLASSMATES = [
-// 	{
-// 		id: 99,
-// 		type: 'classmates',
-// 		class: '5 "А"',
-// 		name: 'Дзауров Ахмед',
-// 		doneModules: 18,
-// 		placeNumber: 1,
-// 		points: 120,
-// 		time: 157,
-// 	},
-
 import type { AttestationsTableItemType } from '@/columns/getAttestationsColumns'
 import { type StudentTableItemType } from '@/components/Admin/StudentTable'
 import type { TeacherItem, DepartamentItem, SchoolDepItem } from '@/shared/types/admin/types'
+
+export const TEST_CLASSMATES = [
+	{
+		id: 99,
+		type: 'classmates',
+		class: '5 "А"',
+		name: 'Дзауров Ахмед',
+		doneModules: 18,
+		placeNumber: 1,
+		points: 120,
+		time: 157,
+	},
+	{
+		id: 77,
+		type: 'classmates',
+		class: '6 "Б"',
+		name: 'Кодзоева Мадина',
+		doneModules: 15,
+		placeNumber: 2,
+		points: 115,
+		time: 135,
+	},
+	{
+		id: 3,
+		type: 'classmates',
+		class: '5 "Г"',
+		name: 'Богатырев Исмаил',
+		doneModules: 12,
+		placeNumber: 3,
+		points: 105,
+		time: 110,
+	},
+	{
+		id: 4,
+		type: 'classmates',
+		class: '7 "В"',
+		name: 'Эсмурзиева Амина',
+		doneModules: 10,
+		placeNumber: 4,
+		points: 95,
+		time: 90,
+	},
+	{
+		id: 5,
+		type: 'classmates',
+		class: '6 "Б"',
+		name: 'Эсмурзиева Амина',
+		doneModules: 10,
+		placeNumber: 4,
+		points: 95,
+		time: 90,
+	},
+	{
+		id: 6,
+		type: 'classmates',
+		class: '5 "Б"',
+		name: 'Эсмурзиева Аминаd',
+		doneModules: 10,
+		placeNumber: 4,
+		points: 95,
+		time: 90,
+	},
+]
 
 export const barChartMockData = [
 	{ name: new Date(2023, 9, 1), value: 135 },
@@ -47,57 +98,6 @@ export const barChartMockData = [
 	{ name: new Date(2023, 9, 16), value: 110 },
 ]
 
-// 	{
-// 		id: 77,
-// 		type: 'classmates',
-// 		class: '6 "Б"',
-// 		name: 'Кодзоева Мадина',
-// 		doneModules: 15,
-// 		placeNumber: 2,
-// 		points: 115,
-// 		time: 135,
-// 	},
-// 	{
-// 		id: 3,
-// 		type: 'classmates',
-// 		class: '5 "Г"',
-// 		name: 'Богатырев Исмаил',
-// 		doneModules: 12,
-// 		placeNumber: 3,
-// 		points: 105,
-// 		time: 110,
-// 	},
-// 	{
-// 		id: 4,
-// 		type: 'classmates',
-// 		class: '7 "В"',
-// 		name: 'Эсмурзиева Амина',
-// 		doneModules: 10,
-// 		placeNumber: 4,
-// 		points: 95,
-// 		time: 90,
-// 	},
-// 	{
-// 		id: 5,
-// 		type: 'classmates',
-// 		class: '6 "Б"',
-// 		name: 'Эсмурзиева Амина',
-// 		doneModules: 10,
-// 		placeNumber: 4,
-// 		points: 95,
-// 		time: 90,
-// 	},
-// 	{
-// 		id: 6,
-// 		type: 'classmates',
-// 		class: '5 "Б"',
-// 		name: 'Эсмурзиева Аминаd',
-// 		doneModules: 10,
-// 		placeNumber: 4,
-// 		points: 95,
-// 		time: 90,
-// 	},
-// ]
 export const TEST_FLOW = [
 	{
 		id: 99,

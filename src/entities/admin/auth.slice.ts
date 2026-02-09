@@ -4,7 +4,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { type AuthState, type Role } from '@/shared/types/admin/auth'
 
 const initialState: AuthState = {
-	role: 'admin',
+	role: 'teacher',
 	isLoading: false,
 	error: null,
 }

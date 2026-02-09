@@ -57,7 +57,6 @@ export const AdminPageContent = () => {
 						getColumns={() => getColumnsSchool({ role })}
 						handleRowClick={redirectOnBestSchoolsClick}
 					/>
-					{/* test */}
 				</ClassCardMain>
 			)}
 
@@ -139,7 +138,7 @@ export const AdminPageContent = () => {
 				{/* <ClassTable data={TEST_CLASSMATES} type='classmates' /> */}
 				<Table<Student, any>
 					data={TEST_CLASSMATES}
-					getColumns={() => getBestStudentsColumns('classmates')}
+					getColumns={() => getBestStudentsColumns()}
 					handleRowClick={redirectOnBestStudentsClick}
 				/>
 			</ClassCardMain>

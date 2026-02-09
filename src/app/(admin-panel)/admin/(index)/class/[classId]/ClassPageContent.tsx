@@ -5,9 +5,10 @@ import { useCallback, useMemo, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 
 import { getBestStudentsColumns } from '@/columns/getBestStudentsColumns'
+import { getBestStudentsFlowColumns } from '@/columns/getBestStudentsFlowColumn'
 import { Table } from '@/components/Admin/Table'
-import { TEST_FLOW } from '@/mocks/adminMock'
-import { TEST_CLASSMATES } from '@/mocks/data'
+import { TEST_FLOW, TEST_CLASSMATES } from '@/mocks/adminMock'
+// import { TEST_CLASSMATES } from '@/mocks/data'
 import { type Student } from '@/shared/types/admin/types'
 import { Card } from '@/widgets/AdminWidgets/Card'
 
@@ -123,7 +124,7 @@ export const ClassPageContent = () => {
 				title='Класс 5 "А"'
 				tabs={TABS}
 				key={'testCard123'}
-				valueFirst="28 чуваков"
+				valueFirst="28 учеников"
 				valueSecond="1 384 баллов"
 				activeTab={activeTab}
 				setActiveTab={setActiveTab}
@@ -131,14 +132,16 @@ export const ClassPageContent = () => {
 				type="class">
 				{activeTab === 0 ? (
 					<Table<Student, never>
+						key={`classmates-filtered-data-table`}
 						data={filteredClassmates}
-						getColumns={() => getBestStudentsColumns('classmates')}
+						getColumns={() => getBestStudentsColumns()}
 						handleRowClick={redirectOnStudentItemClick}
 					/>
 				) : (
 					<Table<Student, never>
+						key={`flow-classmates-filtered-data-table`}
 						data={filteredFlow}
-						getColumns={() => getBestStudentsColumns('parallel')}
+						getColumns={() => getBestStudentsFlowColumns()}
 						handleRowClick={redirectOnStudentItemClick}
 					/>
 				)}
