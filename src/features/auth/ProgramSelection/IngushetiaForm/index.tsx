@@ -1,13 +1,13 @@
 'use client'
 
-import { useEffect } from 'react' // Добавляем useEffect
+import { useEffect } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
-import { updateFormData, submitForm } from '@/features/auth/signUp.slice'
+import { updateFormData, submitForm, resetForm } from '@/features/auth/signUp.slice'
 import { areas, schools, classLevels } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
@@ -52,24 +52,26 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 				classLevel: String(data.classLevel),
 			}
 
-			// console.log('Russia form data:', completeData)
+			// console.log('Ingushetia form data:', completeData)
+
+			// тестовая задержка
+			// await new Promise(resolve => { setTimeout(resolve, 5000) })
 
 			dispatch(updateFormData(completeData))
-
 			dispatch(submitForm())
-
-			// form.reset()
 		} catch (error) {
-			return error
 			// console.error('Form submission error:', error)
+			return error
+		} finally {
+			handleReset()
 		}
 	}
 
-	// const handleReset = () => {
-	// 	form.reset()
-	// 	dispatch(resetForm())
-	// 	disableTab(false)
-	// }
+	const handleReset = () => {
+		form.reset()
+		dispatch(resetForm())
+		disableTab(false)
+	}
 
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
