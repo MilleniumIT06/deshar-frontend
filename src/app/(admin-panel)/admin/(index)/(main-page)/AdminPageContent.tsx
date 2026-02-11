@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-
 import { getBestStudentsColumns } from '@/columns/getBestStudentsColumns'
 import { getColumnsSchool } from '@/columns/getColumnsSchool'
 import { getDepartmentColumns } from '@/columns/getDepartmentColumns'

@@ -4,7 +4,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { type AuthState, type Role } from '@/shared/types/admin/auth'
 
 const initialState: AuthState = {
-	role: 'teacher',
+	role: null,
 	isLoading: false,
 	error: null,
 }
@@ -37,17 +37,20 @@ const authSlice = createSlice({
 })
 
 export const { setRoleStart, setRoleSuccess, setRoleFailure, clearRole, setError } = authSlice.actions
+// export const setRoleAsync = (newRole: Role) => async (dispatch: any) => {
+// 	try {
+// 		dispatch(setRoleStart())
 
-export const setRoleAsync = () => async () => {
-	return 't'
-	// try {
-	// 	dispatch(setRoleStart())
+// 		// Имитация API вызова
+// 		// await new Promise(resolve => setTimeout(resolve, 1000))
 
-	// 	dispatch(setRoleSuccess(newRole))
-	// } catch (e) {
-	// 	console.log(e)
-	// 	dispatch(setRoleFailure('Ошибка при установке роли'))
-	// }
-}
+// 		// Здесь может быть реальный API вызов
+// 		// const response = await api.setUserRole(newRole);
+
+// 		dispatch(setRoleSuccess(newRole))
+// 	} catch (error) {
+// 		dispatch(setRoleFailure('Ошибка при установке роли'))
+// 	}
+// }
 
 export default authSlice.reducer

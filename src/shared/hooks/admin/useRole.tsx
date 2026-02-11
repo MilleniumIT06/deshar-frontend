@@ -12,7 +12,7 @@ const useRole = (): UseRoleReturn => {
 	// Функция для установки роли
 	const setRole = useCallback(
 		(newRole: Role) => {
-			dispatch(setRoleAsync())
+			dispatch(setRoleAsync(newRole))
 			return newRole
 		},
 		[dispatch],
