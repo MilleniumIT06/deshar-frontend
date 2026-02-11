@@ -1,13 +1,14 @@
 'use client'
 
-import { useEffect } from 'react' // Добавляем useEffect
+import { useEffect } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+// import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
-import { updateFormData, submitForm } from '@/features/auth/signUp.slice'
+import { updateFormData, submitForm, resetForm } from '@/features/auth/signUp.slice'
 import { areas, schools, classLevels } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
@@ -52,24 +53,21 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 				classLevel: String(data.classLevel),
 			}
 
-			// console.log('Russia form data:', completeData)
-
 			dispatch(updateFormData(completeData))
-
 			dispatch(submitForm())
-
-			// form.reset()
 		} catch (error) {
+			// console.log("Error", error)
 			return error
-			// console.error('Form submission error:', error)
+		} finally {
+			handleReset()
 		}
 	}
 
-	// const handleReset = () => {
-	// 	form.reset()
-	// 	dispatch(resetForm())
-	// 	disableTab(false)
-	// }
+	const handleReset = () => {
+		form.reset()
+		dispatch(resetForm())
+		disableTab(false)
+	}
 
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
@@ -111,7 +109,7 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 				)}
 			</div>
 
-			<div style={{ display: 'flex', gap: '10px' }}>
+			<div>
 				<Button
 					className="ProgramSelectionForm__btn"
 					size="medium"

@@ -1,3 +1,4 @@
+'use client'
 import cn from 'classnames'
 import { Navigation, A11y } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
