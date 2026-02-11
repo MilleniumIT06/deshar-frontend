@@ -53,10 +53,15 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 				classLevel: String(data.classLevel),
 			}
 
+			// console.log('Ingushetia form data:', completeData)
+
+			// тестовая задержка
+			// await new Promise(resolve => { setTimeout(resolve, 5000) })
+
 			dispatch(updateFormData(completeData))
 			dispatch(submitForm())
 		} catch (error) {
-			// console.log("Error", error)
+			// console.error('Form submission error:', error)
 			return error
 		} finally {
 			handleReset()

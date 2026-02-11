@@ -1,11 +1,13 @@
 'use client'
 
+import { useEffect } from 'react'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
-import { updateFormData, submitForm } from '@/features/auth/signUp.slice'
+import { updateFormData, submitForm, resetForm } from '@/features/auth/signUp.slice'
 import { schools, classLevels, countries } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
@@ -47,25 +49,40 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 		},
 		mode: 'onChange',
 	})
-	const onSubmit = (data: z.infer<typeof validateSchema>) => {
-		// console.log(data);
-		const completeData = {
-			...formData,
-			country: String(data.country),
-			school: String(data.school),
-			classLevel: String(data.classLevel),
-		}
-
-		// console.log('Russia form data:', completeData)
-		dispatch(updateFormData(completeData))
-		dispatch(submitForm())
+	useEffect(() => {
 		if (form.formState.isSubmitting) {
 			disableTab(true)
-		}
-		if (form.formState.isSubmitted) {
-			form.reset()
+		} else {
 			disableTab(false)
 		}
+	}, [form.formState.isSubmitting, disableTab])
+
+	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
+		try {
+			const completeData = {
+				...formData,
+				country: String(data.country),
+				school: String(data.school),
+				classLevel: String(data.classLevel),
+			}
+
+			// console.log('Other form data:', completeData)
+
+			dispatch(updateFormData(completeData))
+
+			dispatch(submitForm())
+		} catch (error) {
+			// console.error('Form submission error:', error)
+			return error
+		} finally {
+			handleReset()
+		}
+	}
+
+	const handleReset = () => {
+		form.reset()
+		dispatch(resetForm())
+		disableTab(false)
 	}
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">

@@ -1,4 +1,4 @@
-import { createColumnHelper } from '@tanstack/react-table'
+import { createColumnHelper, type Column } from '@tanstack/react-table'
 import cn from 'classnames'
 
 import { SortableHeader } from '@/components/Admin/SortableHeader'
@@ -7,7 +7,7 @@ import { type Student } from '@/shared/types/admin/types'
 
 const columnHelper = createColumnHelper<Student>()
 
-export const getBestStudentsColumns = () => [
+export const getBestStudentsFlowColumns = () => [
 	columnHelper.accessor('placeNumber', {
 		header: ({ column }) => <SortableHeader title="Место" column={column} />,
 		enableSorting: true,
@@ -27,6 +27,18 @@ export const getBestStudentsColumns = () => [
 				</div>
 			)
 		},
+	}),
+	columnHelper.accessor('class', {
+		header: ({ column }: { column: Column<Student, string> }) => (
+			<SortableHeader<Student, string> title="Класс" column={column} />
+		),
+		enableSorting: true,
+		sortingFn: 'alphanumeric',
+		cell: info => (
+			<span title={info.getValue()} className="TableItem__class">
+				{info.getValue() || '—'}
+			</span>
+		),
 	}),
 	columnHelper.accessor('name', {
 		header: ({ column }) => <SortableHeader<Student, string> title="Ученик" column={column} />,
