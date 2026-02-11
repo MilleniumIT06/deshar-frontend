@@ -209,7 +209,7 @@ export const DashboardMenu = () => {
 								<ul className="list-reset MenuAccordion__list">
 									{teacherMyClasses.map(item => (
 										<li
-											className="MenuAccordion__item"
+											className={`MenuAccordion__item ${pathname === `/admin/class/${item.id}` ? 'active' : ''}`}
 											key={`accordion-classes-item-${item.id}`}>
 											<Link
 												href={`/admin/class/${item.id}`}
@@ -226,8 +226,8 @@ export const DashboardMenu = () => {
 								<ul className="list-reset MenuAccordion__list">
 									{teacherParallelClasses.map(item => (
 										<li
-											className="MenuAccordion__item"
-											key={`accordion-parallel-item-${item.id}`}>
+											className={`MenuAccordion__item ${pathname === `/admin/class/${item.id}` ? 'active' : ''}`}
+											key={`accordion-classes-item-${item.id}`}>
 											<Link
 												href={`/admin/class/${item.id}`}
 												className={`MenuAccordion__link ${pathname === `/admin/class/${item.id}` ? 'active' : ''}`}>

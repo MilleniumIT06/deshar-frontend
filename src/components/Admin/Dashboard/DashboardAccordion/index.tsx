@@ -12,7 +12,7 @@ interface MenuAccordionProps {
 
 const DefaultToggleIcon = () => (
 	<svg width="14" height="9" viewBox="0 0 14 9" fill="none">
-		<path d="M13 1L7 7L1 0.999999" stroke="#7D7979" strokeWidth="1.5" />
+		<path d="M13 1L7 7L1 0.999999" strokeWidth="1.5" />
 	</svg>
 )
 const DefaultIcon = () => (
