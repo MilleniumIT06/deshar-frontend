@@ -1,28 +1,16 @@
 import { useCallback, useMemo } from 'react'
 
-import { type RootState, type AppDispatch } from '@/app/_store'
-import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
-import { clearRole, setError, setRoleAsync } from '@/entities/admin/auth.slice'
-import { type Role, type UseRoleReturn } from '@/shared/types/admin/auth'
+import { useAppSelector } from '@/app/_store/hooks'
+import { type Role } from '@/shared/types/admin/auth'
 
-const useRole = (): UseRoleReturn => {
-	const dispatch: AppDispatch = useAppDispatch()
-	const { role, isLoading, error } = useAppSelector((state: RootState) => state.adminAuthReducer)
+const useRole = () => {
+	const user = useAppSelector(state => state.adminUserReducer.user)
+	const isAuth = useAppSelector(state => state.adminUserReducer.isAuth)
+	const role = user?.role ?? null
 
-	// Функция для установки роли
-	const setRole = useCallback(
-		(newRole: Role) => {
-			dispatch(setRoleAsync(newRole))
-			return newRole
-		},
-		[dispatch],
-	)
-
-	// Функция для проверки роли
 	const hasRole = useCallback(
 		(allowedRole: Role | Role[]): boolean => {
 			if (!role) return false
-
 			if (Array.isArray(allowedRole)) {
 				return allowedRole.includes(role)
 			}
@@ -31,31 +19,15 @@ const useRole = (): UseRoleReturn => {
 		[role],
 	)
 
-	// Функция для очистки роли
-	const clearRoleHandler = useCallback(() => {
-		dispatch(clearRole())
-	}, [dispatch])
-
-	// Функция для очистки ошибок
-	const clearError = useCallback(() => {
-		dispatch(setError(null))
-	}, [dispatch])
-
-	// Мемоизируем возвращаемый объект
-	const roleApi = useMemo(
+	return useMemo(
 		() => ({
+			user,
 			role,
 			hasRole,
-			setRole,
-			clearRole: clearRoleHandler,
-			isLoading,
-			error,
-			clearError,
+			isAuth,
 		}),
-		[role, hasRole, setRole, clearRoleHandler, isLoading, error, clearError],
+		[role, user, hasRole, isAuth],
 	)
-
-	return roleApi
 }
 
 export default useRole

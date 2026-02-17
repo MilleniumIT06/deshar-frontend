@@ -20,7 +20,7 @@ import {
 } from '../icons'
 
 export const DashboardMenu = () => {
-	const { role, hasRole, isLoading } = useRole()
+	const { hasRole, user } = useRole()
 	const pathname = usePathname()
 	return (
 		<aside className="DashboardMenu">
@@ -90,11 +90,12 @@ export const DashboardMenu = () => {
 					</div>
 				</div>
 				<div className="DashboardMenu__avatar_wrapper">
-					{isLoading ? (
-						'...loading'
-					) : (
-						<Avatar src="/avatar.png" className="DashboardMenu__avatar" role={role} />
-					)}
+					<Avatar
+						src="/avatar.png"
+						name={user?.name}
+						className="DashboardMenu__avatar"
+						role={user.role}
+					/>
 				</div>
 			</div>
 		</aside>

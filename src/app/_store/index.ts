@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import barCharReducer from '@/components/BarChart/BarChart.slice'
 import learningAttestationReducer from '@/components/LearningAttestation/attestation.slice'
-import adminAuthReducer from '@/entities/admin/auth.slice'
+import adminUserReducer from '@/entities/admin/user.slice'
 import learningReducer from '@/entities/learning/model/slice'
 import learningStatusReducer from '@/entities/learning/model/status.slice'
 import userReducer from '@/entities/user/model/user.slice'
@@ -16,7 +16,7 @@ export const store = configureStore({
 		signUpFormReducer,
 		barCharReducer,
 		user: userReducer,
-		adminAuthReducer,
+		adminUserReducer,
 	},
 })
 
