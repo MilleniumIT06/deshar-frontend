@@ -1,6 +1,6 @@
 import { Roboto, Unbounded } from 'next/font/google'
 
-import { StoreProvider } from './_providers/StoreProvider'
+import { Providers } from './_providers/providers'
 
 import type { Metadata } from 'next'
 
@@ -46,7 +46,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${roboto.variable} ${unbounded.variable}`}>
-				<StoreProvider>{children}</StoreProvider>
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	)

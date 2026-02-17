@@ -9,21 +9,21 @@ import './styles.scss'
 
 interface InputSelectProps {
 	placeholderValue: string
-	options?: { id: string | number; value: string }[]
+	options: { id: string | number; name: string }[]
 	value: any
 	setValue: (value: any) => void
-	name?: string // Добавленное свойство для интеграции с RHF
-	onBlur?: () => void // Добавленное свойство для интеграции с RHF
+	name?: string
+	onBlur?: () => void
 	variant?: 'admin' | 'common'
+	isLoading?: boolean
+	isError?: boolean
 }
 
 const InputSelect = ({
+	isLoading,
+	isError,
 	placeholderValue = 'example',
-	options = [
-		{ id: 1, value: 'Option 1' },
-		{ id: 2, value: 'Option 2' },
-		{ id: 3, value: 'Option 3' },
-	],
+	options,
 	setValue,
 	value,
 	variant = 'common',
@@ -35,14 +35,14 @@ const InputSelect = ({
 		setOpen(false)
 	}
 
-	const selectedLabel = options.find(option => option.value === value)?.value || ''
+	// const selectedLabel = options.find(option => option.name === value)?.name || ''
 
 	return (
 		<div className={cn('InputSelect', variant === 'admin' && 'adminVariant')} data-testid="input-select">
 			<input
 				placeholder={placeholderValue}
 				className={cn('input-reset', 'InputSelect__input')}
-				value={selectedLabel}
+				value={value}
 				type="text"
 				readOnly
 			/>
@@ -72,16 +72,24 @@ const InputSelect = ({
 						animate={{ opacity: 1, height: 'auto' }}
 						exit={{ opacity: 0, height: 0 }}
 						transition={{ duration: 0.2, ease: 'easeInOut' }}>
-						{options.map(option => (
-							<div
-								key={option.value}
-								className={cn('InputSelect__option', {
-									['selected']: option.value === value,
-								})}
-								onClick={() => handleChange(option.value)}>
-								{option.value}
-							</div>
-						))}
+						{isLoading ? (
+							<div>Loading...</div>
+						) : isError ? (
+							<div>Something went wrong...</div>
+						) : !isLoading && !isError && options.length === 0 ? (
+							<div>No options available</div>
+						) : (
+							options.map(option => (
+								<div
+									key={option.id}
+									className={cn('InputSelect__option', {
+										['selected']: option.name === value,
+									})}
+									onClick={() => handleChange(option.name)}>
+									{option.name}
+								</div>
+							))
+						)}
 					</motion.div>
 				)}
 			</AnimatePresence>

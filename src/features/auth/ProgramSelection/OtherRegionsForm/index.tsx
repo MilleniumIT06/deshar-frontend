@@ -8,7 +8,9 @@ import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { updateFormData, submitForm, resetForm } from '@/features/auth/signUp.slice'
-import { schools, classLevels, countries } from '@/mocks/data'
+import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
+import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
+// import {classLevels } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
@@ -84,6 +86,9 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 		dispatch(resetForm())
 		disableTab(false)
 	}
+
+	const { countries, isLoading: isCountriesLoading, isError: isCountriesError } = useGetCountries()
+	const { schools, isLoading: isSchoolsLoading, isError: isSchoolsError } = useGetSchools()
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
 			<div className="ProgramSelectionForm__field">
@@ -92,6 +97,8 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 					setValue={value => form.setValue('country', value, { shouldValidate: true })}
 					options={countries}
 					placeholderValue="Выберите страну"
+					isLoading={isCountriesLoading}
+					isError={isCountriesError}
 				/>
 				{form.formState.errors.country && (
 					<p className="ProgramSelectionForm__error">{form.formState.errors.country.message}</p>
@@ -104,6 +111,8 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 					setValue={value => form.setValue('school', value, { shouldValidate: true })}
 					options={schools}
 					placeholderValue="Выберите школу"
+					isLoading={isSchoolsLoading}
+					isError={isSchoolsError}
 				/>
 				{form.formState.errors.school && (
 					<p className="ProgramSelectionForm__error">{form.formState.errors.school.message}</p>
@@ -114,7 +123,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 				<InputSelect
 					value={form.watch('classLevel')}
 					setValue={value => form.setValue('classLevel', value, { shouldValidate: true })}
-					options={classLevels}
+					options={[]}
 					placeholderValue="Выберите класс"
 				/>
 				{form.formState.errors.classLevel && (

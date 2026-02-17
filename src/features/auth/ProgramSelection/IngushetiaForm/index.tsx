@@ -3,18 +3,18 @@
 import { useEffect } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-// import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { updateFormData, submitForm, resetForm } from '@/features/auth/signUp.slice'
-import { areas, schools, classLevels } from '@/mocks/data'
+import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
+import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
 const validateSchema = z.object({
-	locality: z
+	district: z
 		.string({ message: 'Пожалуйста, выберите населенный пункт' })
 		.min(1, { message: 'Пожалуйста, выберите населенный пункт' }),
 	school: z.string({ message: 'Пожалуйста, выберите школу' }).min(1, { message: 'Пожалуйста, выберите школу' }),
@@ -68,18 +68,21 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 		dispatch(resetForm())
 		disableTab(false)
 	}
-
+	const { isError: isDistrictsError, districts, isLoading: isDistrictsLoading } = useGetDistricts()
+	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
 			<div className="ProgramSelectionForm__field">
 				<InputSelect
-					value={form.watch('locality')}
-					setValue={value => form.setValue('locality', value, { shouldValidate: true })}
-					options={areas}
+					value={form.watch('district')}
+					setValue={value => form.setValue('district', value, { shouldValidate: true })}
+					options={districts}
+					isLoading={isDistrictsLoading}
+					isError={isDistrictsError}
 					placeholderValue="Выберите населенный пункт"
 				/>
-				{form.formState.errors.locality && (
-					<p className="ProgramSelectionForm__error">{form.formState.errors.locality.message}</p>
+				{form.formState.errors.district && (
+					<p className="ProgramSelectionForm__error">{form.formState.errors.district.message}</p>
 				)}
 			</div>
 
@@ -88,6 +91,8 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 					value={form.watch('school')}
 					setValue={value => form.setValue('school', value, { shouldValidate: true })}
 					options={schools}
+					isLoading={isSchoolsLoading}
+					isError={isSchoolsError}
 					placeholderValue="Выберите школу"
 				/>
 				{form.formState.errors.school && (
@@ -101,7 +106,7 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 					setValue={value => {
 						return form.setValue('classLevel', value, { shouldValidate: true })
 					}}
-					options={classLevels}
+					options={[]}
 					placeholderValue="Выберите класс"
 				/>
 				{form.formState.errors.classLevel && (

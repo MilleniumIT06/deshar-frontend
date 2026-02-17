@@ -7,7 +7,7 @@ export interface SignUpFormData {
 	password: string
 	confirmPassword: string
 	classLevel: string | null
-	locality: string | null
+	district: string | null
 	country: string | null
 	school: string | null
 }
@@ -27,7 +27,7 @@ const initialState: SignUpFormState = {
 		password: '',
 		confirmPassword: '',
 		classLevel: null,
-		locality: null,
+		district: null,
 		country: null,
 		school: null,
 	},
