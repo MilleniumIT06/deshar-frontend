@@ -9,33 +9,28 @@ import { z } from 'zod'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { updateFormData, submitForm, resetForm } from '@/features/auth/signUp.slice'
 import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
-import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
+// import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
 // import {classLevels } from '@/mocks/data'
+import { classLevels, schools } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
+import { type RegistrationCompleteData } from '../IngushetiaForm'
+
 const validateSchema = z.object({
-	country: z
-		.string({ message: 'Пожалуйста, выберите страну' })
-		.min(1, { message: 'Пожалуйста, выберите страну' })
-		.nullable()
-		.refine(val => val !== null, {
-			message: 'Пожалуйста, выберите страну',
-		}),
-	school: z
-		.string({ message: 'Пожалуйста, выберите школу' })
-		.min(1, { message: 'Пожалуйста, выберите школу' })
-		.nullable()
-		.refine(val => val !== null, {
-			message: 'Пожалуйста, выберите школу',
-		}),
-	classLevel: z
-		.string({ message: 'Пожалуйста, выберите класс' })
-		.min(1, { message: 'Пожалуйста, выберите класс' })
-		.nullable()
-		.refine(val => val !== null, {
-			message: 'Пожалуйста, выберите класс',
-		}),
+	country: z.object({
+		id: z.number({ required_error: 'Выберите страну' }),
+		name: z.string().min(1, { message: 'Пожалуйста, выберите страну' }),
+	}),
+	school: z.object({
+		id: z.number({ required_error: 'Пожалуйста, выберите школу' }),
+		name: z.string().min(1, { message: 'Пожалуйста, выберите школу' }),
+	}),
+
+	classLevel: z.object({
+		id: z.number({ required_error: 'Пожалуйста, выберите класс' }),
+		name: z.string().min(1, { message: 'Пожалуйста, выберите класс' }),
+	}),
 })
 
 export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) => void }) => {
@@ -45,9 +40,9 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 	const form = useForm({
 		resolver: zodResolver(validateSchema),
 		defaultValues: {
-			country: formData.country || null,
-			school: formData.school || '',
-			classLevel: formData.classLevel || null,
+			country: { id: 0, name: '' },
+			school: { id: 0, name: '' },
+			classLevel: { id: 0, name: '' },
 		},
 		mode: 'onChange',
 	})
@@ -61,11 +56,18 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 
 	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
 		try {
-			const completeData = {
-				...formData,
-				country: String(data.country),
-				school: String(data.school),
-				classLevel: String(data.classLevel),
+			const completeData: RegistrationCompleteData = {
+				name: `${formData.name} ${formData.surname}`,
+				email: formData.email,
+				avatar: 'defaultAvatar.png',
+				password: formData.password,
+				password_confirmation: formData.confirmPassword,
+				country_id: data.country.id,
+				birth_date: '2000-01-02',
+				district_id: 1,
+				region_id: 1,
+				role_id: 1,
+				user_type: 'student',
 			}
 
 			// console.log('Other form data:', completeData)
@@ -88,7 +90,9 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 	}
 
 	const { countries, isLoading: isCountriesLoading, isError: isCountriesError } = useGetCountries()
-	const { schools, isLoading: isSchoolsLoading, isError: isSchoolsError } = useGetSchools()
+	// const { schools, isLoading: isSchoolsLoading, isError: isSchoolsError } = useGetSchools()
+	// console.log(countries)
+	// console.log(schools)
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
 			<div className="ProgramSelectionForm__field">
@@ -111,8 +115,8 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 					setValue={value => form.setValue('school', value, { shouldValidate: true })}
 					options={schools}
 					placeholderValue="Выберите школу"
-					isLoading={isSchoolsLoading}
-					isError={isSchoolsError}
+					isLoading={false}
+					isError={false}
 				/>
 				{form.formState.errors.school && (
 					<p className="ProgramSelectionForm__error">{form.formState.errors.school.message}</p>
@@ -123,7 +127,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 				<InputSelect
 					value={form.watch('classLevel')}
 					setValue={value => form.setValue('classLevel', value, { shouldValidate: true })}
-					options={[]}
+					options={classLevels}
 					placeholderValue="Выберите класс"
 				/>
 				{form.formState.errors.classLevel && (

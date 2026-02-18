@@ -26,37 +26,3 @@ export function useSignUp() {
 	})
 	return { mutate, isPending }
 }
-
-// avatar
-// :
-// "defaultAvatar.png"
-// birth_date
-// :
-// "2000-01-01"
-// country_id
-// :
-// 1
-// district_id
-// :
-// 1
-// email
-// :
-// "islamparchev006@gmail.com"
-// name
-// :
-// "Ислам Парчиев"
-// password
-// :
-// "12345678"
-// password_confirmation
-// :
-// "12345678"
-// region_id
-// :
-// 1
-// role_id
-// :
-// 1
-// user_type
-// :
-// "student"
