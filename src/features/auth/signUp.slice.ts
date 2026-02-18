@@ -7,8 +7,8 @@ export interface SignUpFormData {
 	password: string
 	confirmPassword: string
 	classLevel: string | null
-	district: string | null
-	country: string | null
+	district: number | null
+	country: number | null
 	school: string | null
 }
 

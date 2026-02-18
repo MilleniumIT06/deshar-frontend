@@ -5,11 +5,12 @@ import { useState } from 'react'
 import cn from 'classnames'
 import { motion, AnimatePresence } from 'motion/react'
 
+import { useOutsideClick } from '@/shared/hooks/useOutsideClick'
 import './styles.scss'
 
 interface InputSelectProps {
 	placeholderValue: string
-	options: { id: string | number; name: string }[]
+	options: { id: string | number; name: string }[] | undefined
 	value: any
 	setValue: (value: any) => void
 	name?: string
@@ -29,20 +30,25 @@ const InputSelect = ({
 	variant = 'common',
 }: InputSelectProps) => {
 	const [open, setOpen] = useState(false)
-
+	const selectRef = useOutsideClick(() => {
+		if (open) setOpen(false)
+	})
 	const handleChange = (selectedValue: any) => {
 		setValue(selectedValue)
 		setOpen(false)
 	}
 
 	// const selectedLabel = options.find(option => option.name === value)?.name || ''
-
+	const displayValue = typeof value === 'object' && value !== null ? value.name : value
 	return (
-		<div className={cn('InputSelect', variant === 'admin' && 'adminVariant')} data-testid="input-select">
+		<div
+			className={cn('InputSelect', variant === 'admin' && 'adminVariant')}
+			ref={selectRef}
+			data-testid="input-select">
 			<input
 				placeholder={placeholderValue}
 				className={cn('input-reset', 'InputSelect__input')}
-				value={value}
+				value={displayValue || ''}
 				type="text"
 				readOnly
 			/>
@@ -76,16 +82,17 @@ const InputSelect = ({
 							<div>Loading...</div>
 						) : isError ? (
 							<div>Something went wrong...</div>
-						) : !isLoading && !isError && options.length === 0 ? (
+						) : !isLoading && !isError && options && options.length === 0 ? (
 							<div>No options available</div>
 						) : (
+							options &&
 							options.map(option => (
 								<div
 									key={option.id}
 									className={cn('InputSelect__option', {
-										['selected']: option.name === value,
+										['selected']: option.name === value.name,
 									})}
-									onClick={() => handleChange(option.name)}>
+									onClick={() => handleChange(option)}>
 									{option.name}
 								</div>
 							))

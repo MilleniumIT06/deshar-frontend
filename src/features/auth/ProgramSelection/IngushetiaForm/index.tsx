@@ -7,30 +7,53 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
-import { updateFormData, submitForm, resetForm } from '@/features/auth/signUp.slice'
+import { submitForm, resetForm } from '@/features/auth/signUp.slice'
 import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
-import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
+// import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
+import { classLevels, schools } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
-const validateSchema = z.object({
-	district: z
-		.string({ message: 'Пожалуйста, выберите населенный пункт' })
-		.min(1, { message: 'Пожалуйста, выберите населенный пункт' }),
-	school: z.string({ message: 'Пожалуйста, выберите школу' }).min(1, { message: 'Пожалуйста, выберите школу' }),
-	classLevel: z.string({ message: 'Пожалуйста, выберите класс' }).min(1, { message: 'Пожалуйста, выберите класс' }),
-})
+import { useSignUp } from '../../SignUp/useSignUp'
 
+const validateSchema = z.object({
+	district: z.object({
+		id: z.number({ required_error: 'Выберите населенный пункт' }),
+		name: z.string().min(1, { message: 'Пожалуйста, выберите населенный пункт' }),
+	}),
+	school: z.object({
+		id: z.number({ required_error: 'Пожалуйста, выберите школу' }),
+		name: z.string().min(1, { message: 'Пожалуйста, выберите школу' }),
+	}),
+
+	classLevel: z.object({
+		id: z.number({ required_error: 'Пожалуйста, выберите класс' }),
+		name: z.string().min(1, { message: 'Пожалуйста, выберите класс' }),
+	}),
+})
+export interface RegistrationCompleteData {
+	name: string
+	email: string
+	password: string
+	password_confirmation: string
+	avatar: string
+	country_id: number
+	region_id: number
+	district_id: number
+	role_id: number
+	birth_date: string
+	user_type: 'student'
+}
 export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) => void }) => {
 	const { formData } = useAppSelector(state => state.signUpFormReducer)
 	const dispatch = useAppDispatch()
-
+	const { isPending, mutate } = useSignUp()
 	const form = useForm({
 		resolver: zodResolver(validateSchema),
 		defaultValues: {
-			district: formData.district || '',
-			school: formData.school || '',
-			classLevel: formData.classLevel || '',
+			district: { id: 0, name: '' },
+			school: { id: 0, name: '' },
+			classLevel: { id: 0, name: '' },
 		},
 		mode: 'onChange',
 	})
@@ -45,15 +68,23 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 
 	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
 		try {
-			const completeData = {
-				...formData,
-				country: 'Россия',
-				locality: String(data.district),
-				school: String(data.school),
-				classLevel: String(data.classLevel),
+			// console.log(data);
+			// // dispatch(updateFormData(completeData))
+			const fCompletData: RegistrationCompleteData = {
+				name: `${formData.name} ${formData.surname}`,
+				email: formData.email,
+				avatar: 'defaultAvatar.png',
+				password: formData.password,
+				password_confirmation: formData.confirmPassword,
+				country_id: 1,
+				birth_date: '2000-01-02',
+				district_id: data.district.id,
+				region_id: 1,
+				role_id: 1,
+				user_type: 'student',
 			}
-
-			dispatch(updateFormData(completeData))
+			// console.log(fCompletData)
+			mutate(fCompletData)
 			dispatch(submitForm())
 		} catch (error) {
 			// console.error('Form submission error:', error)
@@ -69,7 +100,7 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 		disableTab(false)
 	}
 	const { isError: isDistrictsError, districts, isLoading: isDistrictsLoading } = useGetDistricts()
-	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
+	// const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
 			<div className="ProgramSelectionForm__field">
@@ -91,8 +122,8 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 					value={form.watch('school')}
 					setValue={value => form.setValue('school', value, { shouldValidate: true })}
 					options={schools}
-					isLoading={isSchoolsLoading}
-					isError={isSchoolsError}
+					isLoading={false}
+					isError={false}
 					placeholderValue="Выберите школу"
 				/>
 				{form.formState.errors.school && (
@@ -106,7 +137,7 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 					setValue={value => {
 						return form.setValue('classLevel', value, { shouldValidate: true })
 					}}
-					options={[]}
+					options={classLevels}
 					placeholderValue="Выберите класс"
 				/>
 				{form.formState.errors.classLevel && (
@@ -119,8 +150,8 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 					className="ProgramSelectionForm__btn"
 					size="medium"
 					type="submit"
-					disabled={!form.formState.isValid || form.formState.isSubmitting}>
-					{form.formState.isSubmitting ? 'Отправка...' : 'Зарегистрировать'}
+					disabled={!form.formState.isValid || form.formState.isSubmitting || isPending}>
+					{form.formState.isSubmitting || isPending ? 'Отправка...' : 'Зарегистрировать'}
 				</Button>
 			</div>
 		</form>
