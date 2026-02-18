@@ -28,7 +28,7 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 	const form = useForm({
 		resolver: zodResolver(validateSchema),
 		defaultValues: {
-			locality: formData.locality || '',
+			district: formData.district || '',
 			school: formData.school || '',
 			classLevel: formData.classLevel || '',
 		},
@@ -48,7 +48,7 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 			const completeData = {
 				...formData,
 				country: 'Россия',
-				locality: String(data.locality),
+				locality: String(data.district),
 				school: String(data.school),
 				classLevel: String(data.classLevel),
 			}
