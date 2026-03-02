@@ -43,7 +43,7 @@ export const ProgramSelectionForm = () => {
 				<h1 className="ProgramSelectionForm__title">Выбор программы</h1>
 				<Tabs activeTab={activeTab} handleTab={handleTabChange} tabs={tabs} maxWidth />
 
-				<div style={{ overflow: 'hidden', width: '100%' }}>
+				<div style={{ width: '100%' }}>
 					<AnimatePresence mode="wait" custom={direction}>
 						<motion.div
 							key={activeTab}
@@ -52,7 +52,7 @@ export const ProgramSelectionForm = () => {
 							initial="initial"
 							animate="animate"
 							exit="exit"
-							transition={{ duration: 0.3, ease: 'easeInOut' }}
+							transition={{ duration: 0.1, ease: 'easeInOut' }}
 							className={'ProgramSelectionForm__animation-wrapper'}>
 							{activeTab === 0 ? (
 								<IngushetiaForm disableTab={setIsTabsDisabled} />

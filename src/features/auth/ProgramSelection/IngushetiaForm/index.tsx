@@ -38,7 +38,7 @@ export interface RegistrationCompleteData {
 	password_confirmation: string
 	avatar: string
 	country_id: number
-	region_id: number
+	region_id: number | null
 	district_id: number
 	role_id: number
 	birth_date: string

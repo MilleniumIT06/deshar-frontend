@@ -11,7 +11,7 @@ import { updateFormData, submitForm, resetForm } from '@/features/auth/signUp.sl
 import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
 // import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
 // import {classLevels } from '@/mocks/data'
-import { classLevels, cities } from '@/mocks/data'
+import { classLevels, cities, regions } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
@@ -22,6 +22,13 @@ const validateSchema = z.object({
 		id: z.number({ required_error: 'Выберите страну' }),
 		name: z.string().min(1, { message: 'Пожалуйста, выберите страну' }),
 	}),
+	region: z
+		.object({
+			id: z.number(),
+			name: z.string(),
+		})
+		.nullable()
+		.optional(),
 	city: z.object({
 		id: z.number({ required_error: 'Пожалуйста, выберите город' }),
 		name: z.string().min(1, { message: 'Пожалуйста, выберите город' }),
@@ -43,6 +50,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 			country: { id: 0, name: '' },
 			city: { id: 0, name: '' },
 			classLevel: { id: 0, name: '' },
+			region: { id: 0, name: '' },
 		},
 		mode: 'onChange',
 	})
@@ -65,7 +73,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 				country_id: data.country.id,
 				birth_date: '2000-01-02',
 				district_id: 1,
-				region_id: 1,
+				region_id: data.region?.id || null,
 				role_id: 1,
 				user_type: 'student',
 			}
@@ -111,6 +119,19 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 
 			<div className="ProgramSelectionForm__field">
 				<InputSelect
+					value={form.watch('region')}
+					setValue={value => form.setValue('region', value, { shouldValidate: true })}
+					options={regions}
+					placeholderValue="Выберите регион (опционально)"
+					isLoading={false}
+					isError={false}
+				/>
+				{form.formState.errors.region && (
+					<p className="ProgramSelectionForm__error">{form.formState.errors.region.message}</p>
+				)}
+			</div>
+			<div className="ProgramSelectionForm__field">
+				<InputSelect
 					value={form.watch('city')}
 					setValue={value => form.setValue('city', value, { shouldValidate: true })}
 					options={cities}
@@ -122,7 +143,6 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 					<p className="ProgramSelectionForm__error">{form.formState.errors.city.message}</p>
 				)}
 			</div>
-
 			<div className="ProgramSelectionForm__field">
 				<InputSelect
 					value={form.watch('classLevel')}
