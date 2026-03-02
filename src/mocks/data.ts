@@ -18,6 +18,11 @@ export const schools = [
 	{ id: 4, name: 'Гимназия №1 г. Назрань' },
 	{ id: 5, name: "ГКОУ 'СОШ №5 с.п.Орджоникидзевское'" },
 ]
+export const cities = [
+	{ id: 1, name: 'Москва' },
+	{ id: 2, name: 'Санкт-Петербург' },
+	{ id: 3, name: 'Грозный' },
+]
 export const classLevels = [
 	{ id: 1, name: '1' },
 	{ id: 2, name: '2' },
