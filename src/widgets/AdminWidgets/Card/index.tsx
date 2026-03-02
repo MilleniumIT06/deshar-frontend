@@ -23,7 +23,7 @@ interface FilterType {
 interface FilterByStatusType {
 	type: 'status'
 	value: null | string
-	options: { id: number | string; value: string }[]
+	options: { id: number | string; name: string }[]
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	handleChange: (value: any) => void
 }

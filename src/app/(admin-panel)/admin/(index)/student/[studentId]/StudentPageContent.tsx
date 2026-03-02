@@ -64,15 +64,15 @@ export const StudentPageContent = () => {
 						options: [
 							{
 								id: 1,
-								value: 'Test1',
+								name: 'Test1',
 							},
 							{
 								id: 2,
-								value: 'Test2',
+								name: 'Test2',
 							},
 							{
 								id: 3,
-								value: 'Test3',
+								name: 'Test3',
 							},
 						],
 						value: inputSelect,
