@@ -5,6 +5,7 @@ export const signUpUserSchema = z
 		name: z.string().min(3, 'Введите имя').max(20),
 		surname: z.string().min(3, 'Введите фамилию').max(20),
 		email: z.string().email('Некорректный email'),
+		birthDate: z.string().length(10, { message: 'Введите дату полностью (ДД.ММ.ГГГГ)' }),
 		password: z.string({ message: 'Пароль обязателен для заполнения' }),
 		// .min(8, 'Пароль должен быть не менее 8 символов')
 		// .regex(/[A-Z]/, 'Пароль должен содержать хотя бы одну заглавную букву')

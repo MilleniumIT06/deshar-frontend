@@ -2,7 +2,7 @@
 import Link from 'next/link'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 
 import { useAppDispatch } from '@/app/_store/hooks'
 import { nextStep, updateFormData } from '@/features/auth/signUp.slice'
@@ -14,13 +14,30 @@ import { type signUpUserFormData, signUpUserSchema } from '../../model/signUp.sc
 import './styles.scss'
 
 export const SignUpForm = () => {
+	const formatDateMask = (value: string) => {
+		const digits = value.replace(/\D/g, '') // Только цифры
+		const limited = digits.substring(0, 8) // Максимум 8 цифр
+
+		if (limited.length <= 2) return limited
+		if (limited.length <= 4) return `${limited.slice(0, 2)}.${limited.slice(2)}`
+		return `${limited.slice(0, 2)}.${limited.slice(2, 4)}.${limited.slice(4)}`
+	}
 	const {
 		register,
+		control,
 		handleSubmit,
 		formState: { errors, isValid },
 	} = useForm<signUpUserFormData>({
 		resolver: zodResolver(signUpUserSchema),
 		mode: 'onChange',
+		defaultValues: {
+			name: '',
+			surname: '',
+			email: '',
+			birthDate: '',
+			password: '',
+			confirmPassword: '',
+		},
 	})
 	const dispatch = useAppDispatch()
 	const onSubmit = (data: signUpUserFormData) => {
@@ -49,6 +66,25 @@ export const SignUpForm = () => {
 						className="SignUpForm__input"
 						validationMessage={errors.surname && errors.surname.message}
 						{...register('surname')}
+					/>
+					<Controller
+						control={control}
+						name="birthDate"
+						render={({ field: { onChange, value, ref } }) => (
+							<Input
+								fullWidth
+								type="text"
+								placeholder="Дата рождения (ДД.ММ.ГГГГ)"
+								className="SignUpForm__input"
+								validationMessage={errors.birthDate && errors.birthDate.message}
+								value={value}
+								ref={ref}
+								onChange={e => {
+									const masked = formatDateMask(e.target.value)
+									onChange(masked)
+								}}
+							/>
+						)}
 					/>
 					<Input
 						fullWidth

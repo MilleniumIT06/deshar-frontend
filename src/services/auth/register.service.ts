@@ -9,6 +9,7 @@ class RegisterService {
 			method: 'POST',
 			data,
 		})
+		// console.log('RegisterService response', response)
 		return response
 	}
 }

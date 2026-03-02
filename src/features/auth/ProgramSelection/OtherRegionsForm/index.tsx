@@ -15,6 +15,7 @@ import { classLevels, schools } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
+import { useSignUp } from '../../SignUp/useSignUp'
 import { type RegistrationCompleteData } from '../IngushetiaForm'
 
 const validateSchema = z.object({
@@ -36,7 +37,7 @@ const validateSchema = z.object({
 export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) => void }) => {
 	const { formData } = useAppSelector(state => state.signUpFormReducer)
 	const dispatch = useAppDispatch()
-
+	const { isPending, mutate } = useSignUp()
 	const form = useForm({
 		resolver: zodResolver(validateSchema),
 		defaultValues: {
@@ -56,6 +57,11 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 
 	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
 		try {
+			let formattedBirthDate = formData.birthDate
+			if (formData.birthDate.includes('.')) {
+				const [day, month, year] = formData.birthDate.split('.')
+				formattedBirthDate = `${year}-${month}-${day}`
+			}
 			const completeData: RegistrationCompleteData = {
 				name: `${formData.name} ${formData.surname}`,
 				email: formData.email,
@@ -63,8 +69,8 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 				password: formData.password,
 				password_confirmation: formData.confirmPassword,
 				country_id: data.country.id,
-				birth_date: '2000-01-02',
-				district_id: 1,
+				birth_date: formattedBirthDate,
+				district_id: data.district.id,
 				region_id: 1,
 				role_id: 1,
 				user_type: 'student',
@@ -73,7 +79,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 			// console.log('Other form data:', completeData)
 
 			dispatch(updateFormData(completeData))
-
+			mutate(completeData)
 			dispatch(submitForm())
 		} catch (error) {
 			// console.error('Form submission error:', error)
@@ -139,8 +145,8 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 				className="ProgramSelectionForm__btn"
 				size="medium"
 				type="submit"
-				disabled={!form.formState.isValid || form.formState.isSubmitting}>
-				Зарегистрировать
+				disabled={!form.formState.isValid || form.formState.isSubmitting || isPending}>
+				{isPending ? 'Загрузка...' : 'Зарегистрировать'}
 			</Button>
 		</form>
 	)

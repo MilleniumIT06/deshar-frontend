@@ -8,14 +8,22 @@ import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { submitForm, resetForm } from '@/features/auth/signUp.slice'
+import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
 import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
 // import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
 import { classLevels, schools } from '@/mocks/data'
+import { type Country } from '@/shared/types/types'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
 import { useSignUp } from '../../SignUp/useSignUp'
+/* TODO: добавить загрузку школ по выбранному району,
+ добавить обработку ошибок при загрузке районов и школ, 
+ добавить отображение ошибок в форме, добавить отображение ошибок при регистрации, добавить отображение загрузки при регистрации*/
 
+/* TODO: Добавить поле выбора возраста */
+
+/* FIXME:*/
 const validateSchema = z.object({
 	district: z.object({
 		id: z.number({ required_error: 'Выберите населенный пункт' }),
@@ -48,6 +56,12 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 	const { formData } = useAppSelector(state => state.signUpFormReducer)
 	const dispatch = useAppDispatch()
 	const { isPending, mutate } = useSignUp()
+
+	const { isError: isDistrictsError, districts, isLoading: isDistrictsLoading } = useGetDistricts()
+	// const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
+	const { countries } = useGetCountries()
+	const russiaId = countries?.find((c: Country) => c.name === 'Россия' || c.name === 'Russia')?.id || 1
+	const ingushetiaId = 1
 	const form = useForm({
 		resolver: zodResolver(validateSchema),
 		defaultValues: {
@@ -68,26 +82,30 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 
 	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
 		try {
-			// console.log(data);
-			// // dispatch(updateFormData(completeData))
-			const fCompletData: RegistrationCompleteData = {
+			let formattedBirthDate = formData.birthDate
+			if (formData.birthDate.includes('.')) {
+				const [day, month, year] = formData.birthDate.split('.')
+				formattedBirthDate = `${year}-${month}-${day}`
+			}
+
+			const completData: RegistrationCompleteData = {
 				name: `${formData.name} ${formData.surname}`,
 				email: formData.email,
 				avatar: 'defaultAvatar.png',
 				password: formData.password,
 				password_confirmation: formData.confirmPassword,
-				country_id: 1,
-				birth_date: '2000-01-02',
+				country_id: russiaId,
+				birth_date: formattedBirthDate,
 				district_id: data.district.id,
-				region_id: 1,
+				region_id: ingushetiaId,
 				role_id: 1,
 				user_type: 'student',
 			}
-			// console.log(fCompletData)
-			mutate(fCompletData)
+
+			// console.log(completData)
+			mutate(completData)
 			dispatch(submitForm())
 		} catch (error) {
-			// console.error('Form submission error:', error)
 			return error
 		} finally {
 			handleReset()
@@ -99,8 +117,6 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 		dispatch(resetForm())
 		disableTab(false)
 	}
-	const { isError: isDistrictsError, districts, isLoading: isDistrictsLoading } = useGetDistricts()
-	// const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
 			<div className="ProgramSelectionForm__field">

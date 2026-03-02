@@ -89,6 +89,9 @@
 			background: var(--neutral-lightest);
 		}
 	}
+	&__openBtn {
+		padding: 4px;
+	}
 	&.adminVariant {
 		background: var(--neutral-white);
 		border: 1px solid var(--neutral-light);

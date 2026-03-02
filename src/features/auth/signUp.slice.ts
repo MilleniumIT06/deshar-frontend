@@ -4,6 +4,7 @@ export interface SignUpFormData {
 	name: string
 	surname: string
 	email: string
+	birthDate: string
 	password: string
 	confirmPassword: string
 	classLevel: string | null
@@ -24,6 +25,7 @@ const initialState: SignUpFormState = {
 		name: '',
 		surname: '',
 		email: '',
+		birthDate: '',
 		password: '',
 		confirmPassword: '',
 		classLevel: null,
