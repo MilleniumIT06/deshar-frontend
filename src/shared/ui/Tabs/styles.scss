@@ -19,7 +19,7 @@
 }
 
 .tab {
-	// border-radius: 28px;
+	position: relative;
 	flex-basis: 100%;
 	flex-grow: 1;
 	padding: 12px 0;
@@ -29,11 +29,18 @@
 	cursor: pointer;
 	border: none;
 	background: transparent;
+	outline: none; // Убираем дефолтный аутлайн
+
 	span {
+		position: relative; // Нужно, чтобы текст был выше анимации
+		z-index: 2;
 		font-family: var(--font-family);
 		font-weight: 700;
 		font-size: 16px;
 		line-height: 175%;
+		color: var(--neutral-darkest); // Цвет текста неактивного таба
+		transition: color 0.3s ease; // Плавная смена цвета текста
+
 		@include breakpoint.mobile {
 			font-size: 14px;
 			line-height: 143%;
@@ -42,13 +49,17 @@
 
 	&.active {
 		span {
-			color: var(--neutral-white);
+			color: var(--neutral-white); // Текст становится белым
 		}
-
-		border-radius: 28px;
-		background-color: var(--neutral-darkest);
+		// УБРАЛИ background-color и border-radius отсюда!
 	}
+
 	@include breakpoint.mobile {
 		padding: 0;
 	}
+}
+
+// Эту часть можно даже оставить пустой, так как мы всё прописали в inline-styles motion.div
+.active-indicator {
+	pointer-events: none;
 }

@@ -94,7 +94,7 @@ export const DashboardMenu = () => {
 						src="/avatar.png"
 						name={user?.name}
 						className="DashboardMenu__avatar"
-						role={user.role}
+						role={user?.role}
 					/>
 				</div>
 			</div>

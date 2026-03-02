@@ -11,6 +11,7 @@ export interface SignUpFormData {
 	district: number | null
 	country: number | null
 	school: string | null
+	region: number | null
 }
 
 interface SignUpFormState {
@@ -32,6 +33,7 @@ const initialState: SignUpFormState = {
 		district: null,
 		country: null,
 		school: null,
+		region: null,
 	},
 	isSubmitted: false,
 }
