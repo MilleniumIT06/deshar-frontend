@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -17,13 +17,7 @@ import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
 import { useSignUp } from '../../SignUp/useSignUp'
-/* TODO: добавить загрузку школ по выбранному району,
- добавить обработку ошибок при загрузке районов и школ, 
- добавить отображение ошибок в форме, добавить отображение ошибок при регистрации, добавить отображение загрузки при регистрации*/
 
-/* TODO: Добавить поле выбора возраста */
-
-/* FIXME:*/
 const validateSchema = z.object({
 	district: z.object({
 		id: z.number({ required_error: 'Выберите населенный пункт' }),
@@ -60,7 +54,15 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 	const { isError: isDistrictsError, districts, isLoading: isDistrictsLoading } = useGetDistricts()
 	// const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
 	const { countries } = useGetCountries()
-	const russiaId = countries?.find((c: Country) => c.name === 'Россия' || c.name === 'Russia')?.id || 1
+	const russiaId = useMemo(
+		() =>
+			countries?.find(
+				(c: Country) =>
+					c.name.toLowerCase() === 'Россия'.toLowerCase() ||
+					c.name.toLowerCase() === 'Russia'.toLowerCase(),
+			)?.id || 1,
+		[countries],
+	)
 	const ingushetiaId = 1
 	const form = useForm({
 		resolver: zodResolver(validateSchema),
@@ -122,7 +124,10 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 			<div className="ProgramSelectionForm__field">
 				<InputSelect
 					value={form.watch('district')}
-					setValue={value => form.setValue('district', value, { shouldValidate: true })}
+					setValue={value => {
+						form.setValue('district', value, { shouldValidate: true })
+						form.setValue('school', { id: 0, name: '' })
+					}}
 					options={districts}
 					isLoading={isDistrictsLoading}
 					isError={isDistrictsError}

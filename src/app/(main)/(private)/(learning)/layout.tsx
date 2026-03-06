@@ -8,8 +8,8 @@ import type { Metadata } from 'next'
 import '../../../globals.scss'
 
 export const metadata: Metadata = {
-	title: 'Profile',
-	description: 'Profile',
+	title: 'Learning',
+	description: 'Learning',
 }
 
 export default function LearningLayout({
