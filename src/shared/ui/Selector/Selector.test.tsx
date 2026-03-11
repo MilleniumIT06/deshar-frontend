@@ -60,7 +60,7 @@ describe('Selector Component', () => {
 		fireEvent.click(monthOption)
 
 		// onChange should be called with the option's id
-		expect(mockOnChange).toHaveBeenCalledWith('month')
+		expect(mockOnChange).toHaveBeenCalledWith(mockOptions[1])
 	})
 
 	it('updates displayed value when an option is selected', () => {

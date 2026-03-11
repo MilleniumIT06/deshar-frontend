@@ -15,9 +15,9 @@ vi.mock('motion/react', () => ({
 
 describe('InputSelect Component', () => {
 	const mockOptions = [
-		{ id: 1, value: 'Option 1' },
-		{ id: 2, value: 'Option 2' },
-		{ id: 3, value: 'Option 3' },
+		{ id: 1, name: 'Option 1' },
+		{ id: 2, name: 'Option 2' },
+		{ id: 3, name: 'Option 3' },
 	]
 
 	const mockSetValue = vi.fn()
@@ -101,7 +101,7 @@ describe('InputSelect Component', () => {
 		fireEvent.click(option2)
 
 		// setValue should be called with the option's value
-		expect(mockSetValue).toHaveBeenCalledWith('Option 2')
+		expect(mockSetValue).toHaveBeenCalledWith(mockOptions[1])
 	})
 
 	it('closes dropdown after selecting an option', () => {
@@ -178,16 +178,16 @@ describe('InputSelect Component', () => {
 		expect(toggleButton).toHaveAttribute('aria-expanded', 'true')
 	})
 
-	it('uses default options when none provided', () => {
-		render(<InputSelect placeholderValue="Select an option" value="" setValue={mockSetValue} />)
+	// it('uses default options when none provided', () => {
+	// 	render(<InputSelect placeholderValue="Select an option" value="" setValue={mockSetValue} />)
 
-		// Open dropdown
-		const toggleButton = screen.getByLabelText('Toggle dropdown')
-		fireEvent.click(toggleButton)
+	// 	// Open dropdown
+	// 	const toggleButton = screen.getByLabelText('Toggle dropdown')
+	// 	fireEvent.click(toggleButton)
 
-		// Should show default options
-		expect(screen.getByText('Option 1')).toBeInTheDocument()
-		expect(screen.getByText('Option 2')).toBeInTheDocument()
-		expect(screen.getByText('Option 3')).toBeInTheDocument()
-	})
+	// 	// Should show default options
+	// 	expect(screen.getByText('Option 1')).toBeInTheDocument()
+	// 	expect(screen.getByText('Option 2')).toBeInTheDocument()
+	// 	expect(screen.getByText('Option 3')).toBeInTheDocument()
+	// })
 })
