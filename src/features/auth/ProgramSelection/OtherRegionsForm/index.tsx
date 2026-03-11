@@ -8,10 +8,11 @@ import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { updateFormData, submitForm, resetForm } from '@/features/auth/signUp.slice'
+import { useGetCities } from '@/hooks/queries/cities/useGetCities'
 import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
 // import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
 // import {classLevels } from '@/mocks/data'
-import { classLevels, cities, regions } from '@/mocks/data'
+import { classLevels, regions } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
@@ -104,7 +105,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 	}
 
 	const { countries, isLoading: isCountriesLoading, isError: isCountriesError } = useGetCountries()
-	// const { schools, isLoading: isSchoolsLoading, isError: isSchoolsError } = useGetSchools()
+	const { cities, isLoading: isCitiesLoading, isError: isCitiesError } = useGetCities()
 	// console.log(countries)
 	// console.log(schools)
 	return (
@@ -142,8 +143,8 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 					setValue={value => form.setValue('city', value, { shouldValidate: true })}
 					options={cities}
 					placeholderValue="Выберите город"
-					isLoading={false}
-					isError={false}
+					isLoading={isCitiesLoading}
+					isError={isCitiesError}
 				/>
 				{form.formState.errors.city && (
 					<p className="ProgramSelectionForm__error">{form.formState.errors.city.message}</p>
