@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import barCharReducer from '@/components/BarChart/BarChart.slice'
 import learningAttestationReducer from '@/components/LearningAttestation/attestation.slice'
 import adminUserReducer from '@/entities/admin/user.slice'
 import learningReducer from '@/entities/learning/model/slice'
@@ -14,7 +13,6 @@ export const store = configureStore({
 		learningStatusReducer,
 		learningAttestationReducer,
 		signUpFormReducer,
-		barCharReducer,
 		user: userReducer,
 		adminUserReducer,
 	},

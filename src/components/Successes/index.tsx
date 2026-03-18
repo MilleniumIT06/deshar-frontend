@@ -1,4 +1,6 @@
 'use client'
+import { useState } from 'react'
+
 import { ResultsCard } from '@/components/ResultsCard'
 import { barChartMockData } from '@/mocks/adminMock'
 import { Button } from '@/shared/ui/Button'
@@ -6,7 +8,16 @@ import { Selector } from '@/shared/ui/Selector'
 import './styles.scss'
 import { BarChart } from '@/widgets/AdminWidgets/MainChart/BarChart'
 
+const VISIBLE_COUNT = 19
+const STEP = 6
 export const Successes = () => {
+	const [startIndex, setStartIndex] = useState(0)
+
+	const handlePrev = () => setStartIndex(prev => Math.max(0, prev - STEP))
+	const handleNext = () => setStartIndex(prev => Math.min(barChartMockData.length - VISIBLE_COUNT, prev + STEP))
+
+	const visibleData = barChartMockData.slice(startIndex, startIndex + VISIBLE_COUNT)
+
 	return (
 		<section className="Successes">
 			<div className="container Successes__container">
@@ -32,7 +43,7 @@ export const Successes = () => {
 							<div className="chart__header">
 								<h4 className="chart__title">Ежедневная активность</h4>
 								<div className="chart__navigation">
-									<Button variant="iconThird" size="iconSmall">
+									<Button variant="iconThird" size="iconSmall" onClick={() => handlePrev()}>
 										<svg
 											width="9"
 											height="14"
@@ -42,7 +53,7 @@ export const Successes = () => {
 											<path d="M8 1L2 7L8 13" stroke="#303030" strokeWidth="1.5" />
 										</svg>
 									</Button>
-									<Button variant="iconThird" size="iconSmall">
+									<Button variant="iconThird" size="iconSmall" onClick={() => handleNext()}>
 										<svg
 											width="9"
 											height="14"
@@ -69,7 +80,7 @@ export const Successes = () => {
 							</div>
 							<div className="chart__body">
 								{/* <BarChart data={barChartMockData} /> */}
-								<BarChart data={barChartMockData} />
+								<BarChart data={visibleData} />
 							</div>
 						</div>
 					</div>
