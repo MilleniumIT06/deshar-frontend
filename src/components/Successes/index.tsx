@@ -1,43 +1,12 @@
 'use client'
-
-import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { ResultsCard } from '@/components/ResultsCard'
-import { barChartMockData } from '@/mocks/data'
-import { useMediaQuery } from '@/shared/hooks/useMediaQuery'
+import { barChartMockData } from '@/mocks/adminMock'
 import { Button } from '@/shared/ui/Button'
 import { Selector } from '@/shared/ui/Selector'
-
 import './styles.scss'
-import { BarChart } from '../BarChart'
-import { nextPage, prevPage } from '../BarChart/BarChart.slice'
+import { BarChart } from '@/widgets/AdminWidgets/MainChart/BarChart'
 
 export const Successes = () => {
-	const isSmallMobile = useMediaQuery('(max-width: 450px)')
-	const isMobile = useMediaQuery('(max-width: 567px)')
-	const isTablet = useMediaQuery('(max-width: 768px)')
-	const getItemsPerPage = () => {
-		if (isSmallMobile) return 6
-		if (isMobile) return 6
-		if (isTablet) return 11
-		return 17
-	}
-
-	// Общее количество страниц
-	const itemsPerPage = getItemsPerPage()
-	const dispatch = useAppDispatch()
-	const currentPage = useAppSelector(state => state.barCharReducer.currentPage)
-	const totalPages = Math.ceil(barChartMockData.length / itemsPerPage)
-	const handleNextPage = () => {
-		if (currentPage < totalPages - 1) {
-			dispatch(nextPage())
-		}
-	}
-
-	const handlePrevPage = () => {
-		if (currentPage > 0) {
-			dispatch(prevPage())
-		}
-	}
 	return (
 		<section className="Successes">
 			<div className="container Successes__container">
@@ -63,7 +32,7 @@ export const Successes = () => {
 							<div className="chart__header">
 								<h4 className="chart__title">Ежедневная активность</h4>
 								<div className="chart__navigation">
-									<Button variant="iconThird" size="iconSmall" onClick={handlePrevPage}>
+									<Button variant="iconThird" size="iconSmall">
 										<svg
 											width="9"
 											height="14"
@@ -73,7 +42,7 @@ export const Successes = () => {
 											<path d="M8 1L2 7L8 13" stroke="#303030" strokeWidth="1.5" />
 										</svg>
 									</Button>
-									<Button variant="iconThird" size="iconSmall" onClick={handleNextPage}>
+									<Button variant="iconThird" size="iconSmall">
 										<svg
 											width="9"
 											height="14"
@@ -99,6 +68,7 @@ export const Successes = () => {
 								/>
 							</div>
 							<div className="chart__body">
+								{/* <BarChart data={barChartMockData} /> */}
 								<BarChart data={barChartMockData} />
 							</div>
 						</div>
