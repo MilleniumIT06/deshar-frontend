@@ -43,7 +43,7 @@ export const BarChart = ({ data }: { data: BarChartDataItem[] }) => {
 					isAnimationActive={false}
 					offset={-30}
 				/>
-				<Bar radius={12} dataKey="value" fill="#1baa7d" />
+				<Bar radius={14} dataKey="value" fill="#1baa7d" />
 			</RechartsBar>
 		</div>
 	)

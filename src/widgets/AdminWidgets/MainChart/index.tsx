@@ -10,7 +10,7 @@ export interface BarChartDataItem {
 	value: number
 }
 
-const VISIBLE_COUNT = 19
+const VISIBLE_COUNT = 23
 const STEP = 6
 
 export const MainChart = ({ data, title = 'TITLE' }: { data: BarChartDataItem[]; title: string }) => {
