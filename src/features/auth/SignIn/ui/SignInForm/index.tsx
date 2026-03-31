@@ -1,9 +1,15 @@
 'use client'
+
+import { useState } from 'react'
+
 import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
+import { apiClient } from '@/shared/lib/api'
+import { auth } from '@/shared/lib/auth'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 
@@ -11,51 +17,93 @@ import './styles.scss'
 import { signInUserFormSchema, type signInUserFormData } from '../../model/signIn.schema'
 
 export const SignInForm = () => {
+	const router = useRouter()
+	const searchParams = useSearchParams()
+	const [serverError, setServerError] = useState<string>('')
+	const [isLoading, setIsLoading] = useState(false)
+
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isValid, isSubmitting },
+		formState: { errors, isValid },
 	} = useForm<signInUserFormData>({
 		resolver: zodResolver(signInUserFormSchema),
 		mode: 'onChange',
 	})
-	const onSubmit = (data: signInUserFormData) => {
-		// eslint-disable-next-line no-console
-		console.log(data)
+
+	const onSubmit = async (data: signInUserFormData) => {
+		try {
+			setIsLoading(true)
+			setServerError('')
+
+			const response = await apiClient.login(data.email, data.password)
+
+			if (response.success) {
+				// Сохраняем токен и пользователя (автоматически установит cookie)
+				auth.setToken(response.token)
+				auth.setUser(response.user)
+
+				// Получаем callback URL из query параметров
+				const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
+
+				// Перенаправляем пользователя
+				router.push(callbackUrl)
+				router.refresh() // Обновляем серверные компоненты
+			}
+		} catch (error) {
+			setServerError(error instanceof Error ? error.message : 'Ошибка авторизации')
+		} finally {
+			setIsLoading(false)
+		}
 	}
+
 	return (
 		<div className="SignInForm">
 			<div className="SignInForm__inner">
 				<h1 className="SignInForm__title">Вход в систему</h1>
+
+				{serverError && (
+					<div className="SignInForm__error" role="alert">
+						{serverError}
+					</div>
+				)}
+
 				<form className="SignInForm__form" onSubmit={handleSubmit(onSubmit)}>
 					<Input
 						fullWidth
 						type="email"
 						placeholder="Введите email"
 						className="SignInForm__input"
-						validationMessage={errors.email && errors.email.message}
+						validationMessage={errors.email?.message}
+						disabled={isLoading}
 						{...register('email')}
 					/>
 					<Input
 						fullWidth
 						type="password"
-						placeholder="Придумайте пароль"
+						placeholder="Введите пароль"
 						className="SignInForm__input"
-						validationMessage={errors.password && errors.password.message}
+						validationMessage={errors.password?.message}
+						disabled={isLoading}
 						{...register('password')}
 					/>
-					<Button className="SignInForm__btn" size="medium" disabled={!isValid || isSubmitting}>
-						Войти
+					<Button
+						className="SignInForm__btn"
+						size="medium"
+						disabled={!isValid || isLoading}
+						type="submit">
+						{isLoading ? 'Вход...' : 'Войти'}
 					</Button>
 				</form>
+
 				<div className="SignInForm__bottom">
 					<div>
 						Еще не зарегистрированы?
 						<Link href="/sign-up"> Зарегистрироваться</Link>
 					</div>
 					<p>
-						Продолжая, вы соглашаетесь на обработку персональных данных и принимаете условия
-						пользоват. соглашения
+						Продолжая, вы соглашаетесь на обработку персональных данных и принимаете условия
+						пользовательского соглашения
 					</p>
 				</div>
 			</div>
