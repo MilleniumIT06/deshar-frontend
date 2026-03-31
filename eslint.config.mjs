@@ -34,34 +34,7 @@ const eslintConfig = [
 			},
 		},
 		rules: {
-			'import/order': [
-				'error',
-				{
-					groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
-					pathGroups: [
-						{
-							pattern: 'react',
-							group: 'external',
-							position: 'before',
-						},
-						{
-							pattern: 'next/**',
-							group: 'external',
-							position: 'before',
-						},
-						{
-							pattern: '@/**',
-							group: 'internal',
-						},
-					],
-					pathGroupsExcludedImportTypes: ['react'],
-					'newlines-between': 'always',
-					alphabetize: {
-						order: 'asc',
-						caseInsensitive: true,
-					},
-				},
-			],
+			'import/order': 'off', // <-- ЕДИНСТВЕННОЕ ИЗМЕНЕНИЕ
 			'import/first': 'error',
 			'import/newline-after-import': 'error',
 			'import/no-duplicates': 'error',

@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -13,12 +12,16 @@ import { auth } from '@/shared/lib/auth'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 
-import './styles.scss'
 import { signInUserFormSchema, type signInUserFormData } from '../../model/signIn.schema'
 
-export const SignInForm = () => {
+import './styles.scss'
+
+interface SignInFormProps {
+	callbackUrl?: string
+}
+
+export const SignInForm = ({ callbackUrl = '/dashboard' }: SignInFormProps) => {
 	const router = useRouter()
-	const searchParams = useSearchParams()
 	const [serverError, setServerError] = useState<string>('')
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -39,16 +42,11 @@ export const SignInForm = () => {
 			const response = await apiClient.login(data.email, data.password)
 
 			if (response.success) {
-				// Сохраняем токен и пользователя (автоматически установит cookie)
 				auth.setToken(response.token)
 				auth.setUser(response.user)
 
-				// Получаем callback URL из query параметров
-				const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
-
-				// Перенаправляем пользователя
 				router.push(callbackUrl)
-				router.refresh() // Обновляем серверные компоненты
+				router.refresh()
 			}
 		} catch (error) {
 			setServerError(error instanceof Error ? error.message : 'Ошибка авторизации')
