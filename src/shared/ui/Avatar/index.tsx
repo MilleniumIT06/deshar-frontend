@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import Image from 'next/image'
 import cn from 'classnames'
 import { useAuth } from '@/shared/hooks/useAuth'
@@ -18,9 +18,9 @@ interface AvatarProps {
 	name?: string
 	size?: 'small' | 'medium' | 'large'
 	className?: string
-	user?: User | null // Добавляем возможность передавать пользователя
-	showName?: boolean // Опционально: показывать имя или нет
-	onClick?: () => void // Добавляем обработчик клика
+	user?: User | null
+	showName?: boolean
+	onClick?: () => void
 }
 
 export const Avatar = ({
@@ -35,14 +35,38 @@ export const Avatar = ({
 	const { user: hookUser } = useAuth()
 	const [imageError, setImageError] = useState(false)
 
-	// Используем переданного пользователя или из хука
 	const currentUser = propUser || hookUser
-
-	// Определяем имя для отображения
 	const displayName = name || currentUser?.name || 'Пользователь'
 
-	// Определяем src для аватара
-	const avatarSrc = src || currentUser?.avatar || '/avatar.png'
+	// Функция для валидации и форматирования URL аватара
+	const getValidAvatarUrl = (avatarUrl?: string) => {
+		if (!avatarUrl) return null
+
+		// Если это уже полный URL
+		if (avatarUrl.startsWith('http://') || avatarUrl.startsWith('https://')) {
+			return avatarUrl
+		}
+
+		// Если это data URL
+		if (avatarUrl.startsWith('data:')) {
+			return avatarUrl
+		}
+
+		// Если это относительный путь, добавляем base URL
+		if (avatarUrl.startsWith('/')) {
+			const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:8000'
+			return `${baseUrl}${avatarUrl}`
+		}
+
+		// Для других случаев (например, просто имя файла)
+		const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:8000'
+		return `${baseUrl}/storage/${avatarUrl}`
+	}
+
+	const avatarSrc = useMemo(() => {
+		const rawSrc = src || currentUser?.avatar || '/avatar.png'
+		return getValidAvatarUrl(rawSrc)
+	}, [src, currentUser?.avatar])
 
 	const getInitials = () => {
 		if (!displayName || displayName === 'Пользователь') return 'U'
@@ -51,7 +75,7 @@ export const Avatar = ({
 			.map(n => n[0])
 			.join('')
 			.toUpperCase()
-			.slice(0, 2) // Максимум 2 буквы
+			.slice(0, 2)
 	}
 
 	const sizeMap: Record<string, number> = {
@@ -62,6 +86,25 @@ export const Avatar = ({
 
 	const avatarSize = sizeMap[size]
 
+	// Если нет валидного URL или есть ошибка, показываем fallback
+	if (!avatarSrc || imageError) {
+		return (
+			<div
+				className={cn('Avatar', className, { 'Avatar--clickable': onClick })}
+				tabIndex={onClick ? 0 : undefined}
+				data-testid="avatar"
+				onClick={onClick}
+				style={{ cursor: onClick ? 'pointer' : 'default' }}>
+				<div className={cn('Avatar__content', size)}>
+					<div className="Avatar__fallback">{getInitials()}</div>
+				</div>
+				{showName && displayName && displayName !== 'Пользователь' && (
+					<span className="Avatar__name">{displayName}</span>
+				)}
+			</div>
+		)
+	}
+
 	return (
 		<div
 			className={cn('Avatar', className, { 'Avatar--clickable': onClick })}
@@ -70,20 +113,15 @@ export const Avatar = ({
 			onClick={onClick}
 			style={{ cursor: onClick ? 'pointer' : 'default' }}>
 			<div className={cn('Avatar__content', size)}>
-				{avatarSrc && !imageError ? (
-					<Image
-						src={avatarSrc}
-						alt={`Аватар ${displayName}`}
-						className="Avatar__image"
-						width={avatarSize}
-						height={avatarSize}
-						onError={() => setImageError(true)}
-					/>
-				) : (
-					<div className="Avatar__fallback">{getInitials()}</div>
-				)}
+				<Image
+					src={avatarSrc}
+					alt={`Аватар ${displayName}`}
+					className="Avatar__image"
+					width={avatarSize}
+					height={avatarSize}
+					onError={() => setImageError(true)}
+				/>
 			</div>
-
 			{showName && displayName && displayName !== 'Пользователь' && (
 				<span className="Avatar__name">{displayName}</span>
 			)}
