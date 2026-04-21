@@ -54,6 +54,7 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 	const { isError: isDistrictsError, districts, isLoading: isDistrictsLoading } = useGetDistricts()
 	// const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
 	const { countries } = useGetCountries()
+
 	const russiaId = useMemo(
 		() =>
 			countries?.find(

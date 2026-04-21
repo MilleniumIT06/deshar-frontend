@@ -1,4 +1,5 @@
 import { type StudentData } from '@/components/TopClassmates'
+import { type TrainerType } from '@/features/trainers-engine/trainersMap'
 
 export const areas = [
 	{ id: 1, value: 'Магас' },
@@ -985,4 +986,393 @@ export const barChartMockData = [
 	{ date: new Date(2023, 9, 22), value: 110 },
 	{ date: new Date(2023, 9, 23), value: 110 },
 	{ date: new Date(2023, 9, 24), value: 110 },
+]
+export const testCardMock: {
+	type: TrainerType
+	payload: unknown
+	title?: string
+	subTitle?: string
+	scoring: {
+		points: number
+		penaltyPerMistake: number
+	}
+}[] = [
+	{
+		type: 'accent-trainer',
+		scoring: {
+			points: 7,
+			penaltyPerMistake: 3,
+		},
+		payload: {
+			variants: [
+				{ id: 1, letter: 'Б' },
+				{ id: 2, letter: 'А' },
+				{ id: 3, letter: 'Н' },
+				{ id: 4, letter: 'Т' },
+				{ id: 5, letter: 'Ы' },
+			],
+			correctVariantIds: [2],
+		},
+		title: 'Поставьте ударение',
+	},
+	{
+		type: 'fix-sentence',
+		payload: {
+			sentence: 'Мы купили {{1}} яблоки.',
+			words: ['красное', 'красные', 'красную'],
+			correctAnswer: 'красные',
+		},
+		scoring: {
+			points: 7,
+			penaltyPerMistake: 3,
+		},
+		title: 'Исправьте предложение',
+		subTitle: 'test1',
+	},
+	{
+		type: 'alphabetic-sorter',
+		title: 'Расставь слова в алфавитном порядке',
+		subTitle: 'test2',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		payload: {
+			slots: [
+				{
+					id: 1,
+					correctValue: 'абрикос',
+					slotTitle: '1',
+				},
+				{
+					id: 2,
+					correctValue: 'виноград',
+					slotTitle: '2',
+				},
+			],
+			variants: [
+				{
+					id: 1,
+					value: 'виноград',
+				},
+				{
+					id: 2,
+					value: 'абрикос',
+				},
+			],
+		},
+	},
+	{
+		type: 'category-matcher',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		payload: {
+			items: [
+				{ id: 'w0', label: 'Яблоко', correct: 'cat-1', color: '#28da8f' },
+				{ id: 'w1', label: 'Морковь', correct: 'cat-0', color: '#da2848' },
+				{ id: 'w2', label: 'Банан', correct: 'cat-1', color: '#28da8f' },
+				{ id: 'w3', label: 'Картофель', correct: 'cat-0', color: '#da2848' },
+			],
+			categories: [
+				{ id: 'cat-0', label: 'Овощи', color: '#da2848' },
+				{ id: 'cat-1', label: 'Фрукты', color: '#28da8f' },
+			],
+		},
+		title: 'Соедини слова с нужной категорией',
+	},
+	{
+		type: 'colorize-words',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		payload: {
+			tools: [
+				{
+					type: 'paint',
+					toolName: 'Люди и животные',
+					toolColor: '#698eff',
+				},
+				{
+					type: 'paint',
+					toolName: 'Неживые предметы и явления',
+					toolColor: '#ff4e8c',
+				},
+				{
+					type: 'erase',
+					toolName: 'Стереть',
+				},
+			],
+			variants: [
+				{ id: 1, content: 'Кошка', correctColor: '#698eff' },
+				{ id: 2, content: 'Стол', correctColor: '#ff4e8c' },
+				{ id: 3, content: 'Собака', correctColor: '#698eff' },
+				{ id: 4, content: 'Дождь', correctColor: '#ff4e8c' },
+				{ id: 5, content: 'Учитель', correctColor: '#698eff' },
+				{ id: 6, content: 'Ветер', correctColor: '#ff4e8c' },
+			],
+		},
+		title: 'Раскрась слова в нужные цвета',
+	},
+	{
+		type: 'conclusion',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 2,
+		},
+		payload: {
+			data: [
+				{
+					id: 1,
+					value: 'Слова в предложении предложении предложении предложении  {{связаны}} между собой {{по смыслу}} .',
+					completed: false,
+					variants: [
+						{
+							id: 1,
+							value: 'изменять',
+						},
+						{
+							id: 2,
+							value: 'заглавная',
+						},
+						{
+							id: 3,
+							value: 'по смыслу',
+						},
+						{
+							id: 4,
+							value: 'точка',
+						},
+						{
+							id: 5,
+							value: 'связаны',
+						},
+						{
+							id: 6,
+							value: 'собой',
+						},
+					],
+					slots: [
+						{ id: 1, current: null, correct: 'по смыслу' },
+						{ id: 2, current: null, correct: 'связаны' },
+					],
+				},
+			],
+		},
+		title: 'Сделай вывод',
+	},
+	{
+		type: 'delete-extra-letter',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		payload: {
+			variants: [
+				{ id: 1, letter: 'М' },
+				{ id: 'extra-1', letter: 'Х' },
+				{ id: 2, letter: 'О' },
+				{ id: 3, letter: 'Л' },
+				{ id: 'extra-2', letter: 'Ь' },
+				{ id: 4, letter: 'О' },
+				{ id: 5, letter: 'К' },
+				{ id: 6, letter: 'О' },
+			],
+			correctVariantIds: ['extra-1', 'extra-2'],
+		},
+		title: 'Нажми на лишнюю букву',
+	},
+	{
+		type: 'drop-word-to-image',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		payload: {
+			items: [
+				{ id: 1, imageUrl: '/castle.png', correctVariantId: 101 },
+				{ id: 2, imageUrl: '/sh.png', correctVariantId: 102 },
+				{ id: 3, imageUrl: '/ticva.png', correctVariantId: 103 },
+			],
+			variants: [
+				{ id: 101, value: 'castle' },
+				{ id: 102, value: 'sh' },
+				{ id: 103, value: 'ticva' },
+			],
+		},
+		title: 'Перемести слова к нужной картинке',
+	},
+	{
+		type: 'drop-word-to-text',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		payload: {
+			items: [
+				{
+					id: 101,
+					content: 'Катись, катись, яблочко наливное, по серебряному блюдечку!',
+					correctVariantId: 3,
+				},
+				{
+					id: 102,
+					content: 'Яблоко - плод яблони, один из самых доступных источников витаминов.',
+					correctVariantId: 1,
+				},
+				{
+					id: 103,
+					content: 'Хочешь куснуть яблоко?',
+					correctVariantId: 2,
+				},
+			],
+			variants: [
+				{
+					id: 1,
+					value: 'энциклопедия',
+				},
+				{
+					id: 2,
+					value: 'разговор',
+				},
+				{
+					id: 3,
+					value: 'книга сказок',
+				},
+			],
+		},
+		title: 'Распредели по категориям',
+		subTitle: 'Перетащи подходящее слово к каждой картинке',
+	},
+	{
+		type: 'multi-quiz',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		payload: {
+			variants: [
+				{ id: 1, itemNumber: 1, title: 'Общаться' },
+				{ id: 2, itemNumber: 2, title: 'Рычать' },
+				{ id: 3, itemNumber: 3, title: 'Передавать мысли' },
+				{ id: 4, itemNumber: 4, title: 'Петь песни' },
+			],
+			correctVariantIds: [1, 3],
+		},
+		title: 'Выберите все правильные варианты',
+	},
+	{
+		type: 'reorder-items',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		payload: {
+			data: [
+				{ id: '1', content: 'C' },
+				{ id: '2', content: 'B' },
+				{ id: '3', content: 'E' },
+				{ id: '4', content: 'F' },
+				{ id: '5', content: 'A' },
+			],
+			correctOrderIds: ['5', '2', '1', '3', '4'],
+		},
+		title: 'Расставь буквы по порядку',
+	},
+	{
+		type: 'sequence-builder',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		payload: {
+			slots: [
+				{
+					slotId: 'part-1',
+					content: 'Вступление',
+					correctValue: 'Однажды я увидел на стене необычную тень. Она была похожа на дракона.',
+				},
+				{
+					slotId: 'part-2',
+					content: 'Развитие событий',
+					correctValue: 'Я затаил дыхание и медленно подошёл ближе, чтобы рассмотреть чудовище.',
+				},
+				{
+					slotId: 'part-3',
+					content: 'Заключение',
+					correctValue: 'Оказалось, это была всего лишь тень от кактуса на подоконнике.',
+				},
+			],
+			variants: [
+				{
+					id: 1,
+					content: 'Оказалось, это была всего лишь тень от кактуса на подоконнике.',
+				},
+				{
+					id: 2,
+					content: 'Однажды я увидел на стене необычную тень. Она была похожа на дракона.',
+				},
+				{
+					id: 3,
+					content: 'Я затаил дыхание и медленно подошёл ближе, чтобы рассмотреть чудовище.',
+				},
+			],
+		},
+		title: 'Собери историю',
+	},
+	{
+		type: 'single-quiz',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		payload: {
+			variants: [
+				{ id: 1, itemNumber: 1, title: 'useEffect' },
+				{ id: 2, itemNumber: 2, title: 'useState' },
+				{ id: 3, itemNumber: 3, title: 'useContext' },
+				{ id: 4, itemNumber: 4, title: 'useMemo' },
+			],
+			correctVariantId: 2,
+		},
+		title: 'Основы React',
+		subTitle: 'Какой хук используется для хранения состояния?',
+	},
+	{
+		type: 'word-by-image',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		payload: {
+			id: 'task_1',
+			correctAnswer: 'ГОРОД',
+			imageUrl: '/citt.jpg',
+			availableLetters: [
+				{ id: 1, letter: 'Г' },
+				{ id: 2, letter: 'О' },
+				{ id: 3, letter: 'З' },
+				{ id: 4, letter: 'Д' },
+				{ id: 5, letter: 'Р' },
+				{ id: 6, letter: 'О' },
+			],
+		},
+		title: 'Угадай слово по картинке',
+		subTitle: 'Собери слово из доступных букв',
+	},
+	{
+		type: 'word-picker',
+		scoring: {
+			points: 5,
+			penaltyPerMistake: 1,
+		},
+		title: 'Нажми на слова в которых ВСЕ согласные ТВЕРДЫЕ',
+		subTitle: 'Выберите существительные в предложении',
+		payload: {
+			text: 'Учёба и труд рядом идут',
+			correctValues: ['Учёба', 'труд'],
+		},
+	},
 ]

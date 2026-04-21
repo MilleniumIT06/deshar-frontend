@@ -1,0 +1,49 @@
+.alphabetical-slot {
+	width: 100%;
+	max-width: 600px;
+	height: 58px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 12px;
+	padding: 12px;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+
+	border: 2px solid var(--gray-bg);
+	border-radius: 12px;
+	background-color: var(--white);
+
+	&--filled {
+		border-color: var(--green-color);
+		background-color: rgba(27, 170, 125, 0.1);
+	}
+
+	&__number {
+		width: 30px;
+		height: 30px;
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+
+		border: 2px solid var(--gray-bg);
+		border-radius: 8px;
+
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 16px;
+		color: var(--bg-gray-color);
+	}
+
+	&__value {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 16px;
+		color: var(--text-color);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}

@@ -4,10 +4,12 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useAppSelector } from '@/app/_store/hooks'
 import { ProgramSelectionForm } from '@/features/auth/ProgramSelection/ui/ProgramSelectionForm'
 import { SignUpForm } from '@/features/auth/SignUp/ui/SignUpForm'
+// import { useGetTokens } from '@/hooks/queries/useGetTokens'
 
 export const SignUpPageContent = () => {
 	const { currentStep } = useAppSelector(state => state.signUpFormReducer)
-
+	// const { tokens, isLoading } = useGetTokens();
+	// { !isLoading && tokens && console.log('tokens', tokens) }
 	return (
 		<AnimatePresence mode="wait">
 			{currentStep === 1 && (

@@ -1,0 +1,55 @@
+.timer {
+	width: 240px; // w-60
+	height: 83px; // h-20.75
+	border-radius: 20px;
+	border: 0.5px solid var(--bg-gray-color);
+	background-color: #ffffff;
+	color: #5f697b; // цвет иконки по умолчанию
+
+	&__container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 22.5px;
+		height: 100%;
+	}
+
+	&__icon-wrapper {
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+	}
+
+	&__icon {
+		display: block;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	&__digits {
+		font-weight: 500;
+		font-size: 48px;
+		line-height: 0.88;
+		color: var(--green-color); // по умолчанию зеленый
+	}
+
+	&__label {
+		font-weight: 600;
+		font-size: 13px;
+		color: var(--color-text);
+	}
+
+	// Модификатор критического времени
+	&--urgent {
+		.timer__digits {
+			color: #ff4347;
+		}
+
+		// Если нужно, чтобы иконка тоже краснела:
+		// color: #ff4347;
+	}
+}

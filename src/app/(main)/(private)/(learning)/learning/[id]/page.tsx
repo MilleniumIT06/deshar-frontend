@@ -1,7 +1,7 @@
 import { LearningContent } from '@/components/LearningContent'
 import { LearningTopBar } from '@/components/LearningTopBar'
 
-import '../../../styles.scss'
+import './../../../styles.scss'
 
 export default async function Learning() {
 	return (

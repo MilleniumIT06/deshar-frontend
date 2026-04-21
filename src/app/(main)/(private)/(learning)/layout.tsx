@@ -6,6 +6,7 @@ import '../styles.scss'
 import type { Metadata } from 'next'
 
 import '../../../globals.scss'
+// import { TrainersEngine } from '@/features/trainers-engine'
 
 export const metadata: Metadata = {
 	title: 'Learning',
@@ -37,6 +38,7 @@ export default function LearningLayout({
 					</div>
 				</div>
 			</div>
+			{/* <TrainersEngine /> */}
 		</main>
 	)
 }

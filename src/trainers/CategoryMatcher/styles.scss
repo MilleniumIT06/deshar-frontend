@@ -1,0 +1,94 @@
+.category-matcher {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 40px; // p-10
+
+	&__container {
+		display: flex;
+		gap: 100px;
+		align-items: flex-start;
+	}
+
+	&__column {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	// Общие стили для карточек (items и categories)
+	&__card {
+		position: relative;
+		width: 280px;
+		height: 74px;
+		border-radius: 8px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		user-select: none;
+
+		// Градиент и тени
+		background: linear-gradient(136deg, #feffff 0%, #f8faff 100%);
+		box-shadow:
+			5px 5px 15px 0 #e9ecf4,
+			-5px -5px 15px 0 white;
+
+		transition: all 0.2s ease;
+
+		span {
+			font-size: 20px;
+			color: #434553;
+		}
+
+		&--active {
+			box-shadow: 0 0 0 2px var(--tw-ring-color); // Эмуляция ring-2
+		}
+
+		&--clickable {
+			cursor: pointer;
+		}
+
+		// Точки соединений (базовый стиль)
+		&::after,
+		&::before {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 12px; // w-3
+			height: 12px; // h-3
+			border-radius: 50%;
+			background-color: var(--dot-color);
+			box-shadow: 0 0 0 1px #4f46e5;
+		}
+
+		// Точка справа для левой колонки
+		&--source {
+			&::after {
+				content: '';
+				right: -8px;
+			}
+			// Если не тянем и нет коннекта — скрываем точку
+			&:not(.is-active):not(.is-connected)::after {
+				display: none;
+			}
+		}
+
+		// Точка слева для правой колонки
+		&--target {
+			&::before {
+				content: '';
+				left: -8px;
+			}
+			&:not(.is-targeted)::before {
+				display: none;
+			}
+
+			&:hover.can-receive {
+				background-color: #f5f3ff; // hover:bg-indigo-50
+			}
+		}
+	}
+}

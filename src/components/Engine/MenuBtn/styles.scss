@@ -1,0 +1,29 @@
+.menu-btn {
+	position: relative;
+	z-index: 21;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px; // gap-2
+
+	padding: 16px 24px; // py-4 px-6
+	border: none;
+	border-radius: 20px;
+	background-color: #fff;
+
+	box-shadow:
+		0 4px 6px -1px rgba(0, 0, 0, 0.1),
+		0 2px 4px -1px rgba(0, 0, 0, 0.06); // shadow-md
+	cursor: pointer;
+	transition:
+		transform 0.1s ease,
+		box-shadow 0.1s ease;
+
+	&:hover {
+		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+	}
+
+	&:active {
+		transform: scale(0.98);
+	}
+}

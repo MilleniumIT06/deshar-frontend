@@ -1,0 +1,44 @@
+.trainer-title {
+	display: flex;
+	align-items: center;
+	gap: 12px; // gap-3
+
+	&__voice-btn {
+		width: 42px; // w-10.5
+		height: 42px;
+		flex-shrink: 0;
+		border-radius: 50%;
+		background-color: var(--green-color);
+		border: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition:
+			transform 0.2s,
+			opacity 0.2s;
+
+		&:hover {
+			opacity: 0.9;
+		}
+
+		&:active {
+			transform: scale(0.95);
+		}
+	}
+
+	&__voice-icon {
+		display: block;
+		// fill: white; // Если нужно управлять цветом через CSS
+	}
+
+	&__text {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 30px;
+		line-height: 1.4;
+		text-align: center;
+		color: var(--text-color);
+		margin: 0;
+	}
+}

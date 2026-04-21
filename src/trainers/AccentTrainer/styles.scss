@@ -1,0 +1,34 @@
+.accent-trainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 24px; // p-6
+
+	&__container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 24px; // space-y-6
+		text-align: center;
+	}
+
+	&__subtitle {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 30px;
+		line-height: 1.4;
+		text-align: center;
+		color: var(--text-color);
+		margin: 0;
+	}
+
+	&__letters {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px; // gap-2
+		flex-wrap: wrap; // Чтобы длинные слова переносились на мобилках
+	}
+}

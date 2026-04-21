@@ -1,0 +1,87 @@
+.hint-box {
+	position: absolute;
+	right: 40px;
+	bottom: 0;
+	z-index: 20;
+
+	&__trigger {
+		background: transparent;
+		padding: 0;
+		margin: 0;
+		border: none;
+		cursor: pointer;
+		border-radius: 50%;
+		width: 80px;
+		height: 80px;
+		transition: transform 0.2s;
+
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+
+	&__content {
+		position: relative;
+		width: 350px;
+		height: 470px;
+		cursor: pointer;
+	}
+
+	&__bubble {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 250px;
+		min-height: 200px;
+		background-image: url('/images/Engine/Vector.png');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		filter: drop-shadow(5px 10px 10px rgba(0, 0, 0, 0.1));
+
+		animation: bubble-in 0.3s ease-out;
+	}
+
+	&__text {
+		padding: 8px;
+		width: 220px; // w-55
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 1.33;
+		text-align: center;
+		color: var(--text-color);
+	}
+
+	&__character {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		animation: eagle-slide-up 0.4s ease-out;
+	}
+}
+
+@keyframes bubble-in {
+	from {
+		opacity: 0;
+		transform: scale(0.8) translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+}
+
+@keyframes eagle-slide-up {
+	from {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

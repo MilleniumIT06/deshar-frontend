@@ -1,0 +1,88 @@
+.error-footer {
+	width: 100%;
+	height: 115px; // h-28.75
+	padding-top: 16px; // pt-4
+	background-color: rgba(250, 203, 203, 0.6);
+	border-top: 1px solid rgba(255, 67, 71, 0.2);
+
+	&__container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10%;
+		height: 100%;
+	}
+
+	// Блок статуса (иконка + текст)
+	&__status {
+		display: flex;
+		align-items: center;
+		gap: 30px; // gap-7.5
+	}
+
+	&__icon-wrapper {
+		flex-shrink: 0;
+		color: #ff4347; // для fill="currentColor" в SVG
+	}
+
+	&__text-block {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	&__title {
+		margin: 0;
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 30px;
+		line-height: 1.4;
+		color: var(--color-red);
+	}
+
+	&__discuss-btn {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		font-family: var(--third-family);
+		font-weight: 500;
+		font-size: 15px;
+		line-height: 1.2;
+		color: #f35d61;
+		transition: opacity 0.2s;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+
+	// Блок кнопок действий
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	&__btn {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+
+		&--continue {
+			background-color: #b88d8d;
+			color: #ffffff;
+
+			&:hover {
+				background-color: #a67c7c; // чуть темнее для ховера
+			}
+		}
+	}
+
+	&__btn-icon {
+		flex-shrink: 0;
+	}
+}

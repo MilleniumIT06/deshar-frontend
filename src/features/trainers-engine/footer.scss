@@ -1,0 +1,30 @@
+.engine-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-top: 1px solid var(--gray-bg);
+	padding-top: 16px;
+	height: 115px;
+
+	&__container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		max-width: 80%;
+	}
+
+	&__back-btn {
+		padding: 0 40px;
+	}
+
+	&__back-content {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	&__back-icon {
+		flex-shrink: 0;
+	}
+}

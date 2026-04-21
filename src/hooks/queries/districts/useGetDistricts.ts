@@ -7,9 +7,10 @@ export const useGetDistricts = () => {
 		data: districts,
 		isLoading,
 		isError,
+		error,
 	} = useQuery({
 		queryKey: ['districts'],
 		queryFn: () => districtsService.getAllDistricts(),
 	})
-	return { districts, isLoading, isError }
+	return { districts, isLoading, isError, error }
 }

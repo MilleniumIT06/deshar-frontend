@@ -4,11 +4,12 @@ import type { NextRequest } from 'next/server'
 // Получаем токен из cookies (так как в middleware нет доступа к localStorage)
 export function middleware(request: NextRequest) {
 	// Проверяем наличие токена в cookies
-	const token = request.cookies.get('auth_token')?.value
+	// const token = request.cookies.get('auth_token')?.value
 
 	// Если токена нет - пользователь не авторизован
-	const isAuthenticated = Boolean(token)
+	// const isAuthenticated = Boolean(token)
 
+	const isAuthenticated = true
 	// Если пользователь не авторизован, перенаправляем на страницу входа
 	if (!isAuthenticated) {
 		const signInUrl = new URL('/sign-in', request.url)

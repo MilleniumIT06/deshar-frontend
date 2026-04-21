@@ -1,0 +1,55 @@
+.accent-letter {
+	display: flex;
+	width: 95px;
+	height: 107px;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--white);
+	border: 0.5px solid var(--bg-gray-color);
+	border-radius: 8px;
+	cursor: pointer;
+
+	box-shadow:
+		5px 5px 15px 0 #e9ecf4,
+		-5px -5px 15px 0 var(--white);
+
+	transition: all 0.2s ease-in-out;
+
+	&:active {
+		transform: scale(0.95);
+		box-shadow: 2px 2px 5px 0 #e9ecf4;
+	}
+
+	&__text {
+		position: relative;
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 30px;
+		line-height: 1.4;
+		color: #434553;
+		text-transform: uppercase;
+	}
+
+	&__mark {
+		position: absolute;
+		top: -10px;
+		right: -4px;
+		font-size: 24px;
+		font-weight: 700;
+		color: #434553;
+		transform: rotate(15deg);
+		display: none;
+	}
+
+	&--checked {
+		border-color: var(--green-color);
+
+		.accent-letter__mark {
+			display: block;
+		}
+
+		.accent-letter__text {
+			color: var(--green-color);
+		}
+	}
+}

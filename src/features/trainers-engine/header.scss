@@ -1,0 +1,35 @@
+.engine-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 40px 40px 0; // pt-10 pr-10 pl-10
+
+	&__menu-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px; // небольшой отступ между иконкой и текстом
+	}
+
+	&__menu-text {
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 700;
+		font-size: 14px;
+		text-transform: uppercase;
+		text-align: center;
+		color: var(--text-color);
+	}
+
+	&__progress {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		max-width: 600px; // ограничиваем ширину полосы прогресса, чтобы она не растягивалась слишком сильно
+		margin: 0 20px;
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+	}
+}

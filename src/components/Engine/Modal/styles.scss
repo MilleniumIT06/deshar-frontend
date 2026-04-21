@@ -1,0 +1,55 @@
+.EngineModal {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.35); // bg-black/35
+	padding: 16px;
+
+	&__container {
+		position: relative;
+		background-color: #ffffff;
+		border-radius: 32px;
+		transition: all 0.3s ease;
+		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+
+		&--alert {
+			width: 604px;
+			min-height: 233px;
+		}
+
+		&--support {
+			width: 604px;
+			min-height: 425px;
+		}
+	}
+
+	&__close {
+		position: absolute;
+		top: 16px; // right-4
+		right: 16px; // top-4
+		z-index: 20;
+		padding: 4px;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		color: #575f6e;
+		transition: opacity 0.2s;
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+
+	&__close-icon {
+		display: block;
+	}
+
+	&__content {
+		padding: 4px; // p-1
+		height: 100%;
+		overflow-y: auto;
+	}
+}
