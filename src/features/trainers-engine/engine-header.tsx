@@ -2,13 +2,14 @@ import { FinishBtn } from '@/components/Engine/FinishBtn'
 import './header.scss'
 import { IconClose, IconOpen } from './icons'
 import { MenuBtn } from '@/components/Engine/MenuBtn'
+import { ProgressBar } from '@/components/Engine/ProgressBar'
 
 export const EngineHeader = ({
 	handleMenuClick,
 	menuIsOpen,
 	handleHelpMenuOpen,
-	// currentTrainerIndex,
-	// totalTrainersCount
+	currentTrainerIndex,
+	totalTrainersCount,
 }: {
 	handleMenuClick: () => void
 	handleHelpMenuOpen: () => void
@@ -35,7 +36,7 @@ export const EngineHeader = ({
 			</MenuBtn>
 
 			<div className="engine-header__progress">
-				{/* <ProgressBar current={currentTrainerIndex + 1} total={totalTrainersCount} /> */}
+				<ProgressBar current={currentTrainerIndex + 1} total={totalTrainersCount} />
 			</div>
 
 			<div className="engine-header__actions">

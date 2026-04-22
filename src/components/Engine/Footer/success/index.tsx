@@ -1,4 +1,5 @@
 import { EngineButton } from '../../Button'
+import './styles.scss'
 
 export const SuccessFooter = ({ onContinueBtnClick }: { onContinueBtnClick: () => void }) => {
 	return (

@@ -27,6 +27,8 @@ import RenderTrainer from './render-trainer'
 import { testCardMock } from '@/mocks/data'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 
+import './styles.scss'
+
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
 	ssr: false,
 })

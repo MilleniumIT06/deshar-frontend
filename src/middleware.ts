@@ -33,5 +33,7 @@ export const config = {
 		'/completed-courses/:path*',
 		'/learning',
 		'/learning/:path*',
+		// '/practice',
+		// '/practice/:path*'
 	],
 }

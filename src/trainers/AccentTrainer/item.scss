@@ -4,20 +4,25 @@
 	height: 107px;
 	align-items: center;
 	justify-content: center;
-	background-color: var(--white);
+	background-color: var(--neutral-white);
 	border: 0.5px solid var(--bg-gray-color);
 	border-radius: 8px;
 	cursor: pointer;
 
 	box-shadow:
 		5px 5px 15px 0 #e9ecf4,
-		-5px -5px 15px 0 var(--white);
+		-5px -5px 15px 0 var(--neutral-white);
 
 	transition: all 0.2s ease-in-out;
 
 	&:active {
 		transform: scale(0.95);
 		box-shadow: 2px 2px 5px 0 #e9ecf4;
+	}
+	&:hover {
+		.accent-letter__text {
+			color: var(--primary-medium);
+		}
 	}
 
 	&__text {
@@ -42,14 +47,15 @@
 	}
 
 	&--checked {
-		border-color: var(--green-color);
+		border-color: var(--primary-medium);
 
 		.accent-letter__mark {
 			display: block;
+			color: var(--primary-medium);
 		}
 
 		.accent-letter__text {
-			color: var(--green-color);
+			color: var(--primary-medium);
 		}
 	}
 }

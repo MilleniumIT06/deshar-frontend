@@ -1,6 +1,7 @@
 import { EngineButton } from '../Button'
 import { EngineInput } from '../Input'
 import { Textarea } from '../Textarea'
+import './styles.scss'
 
 export const SupportModalContent = ({ onSubmit, onCancel }: { onSubmit?: () => void; onCancel?: () => void }) => {
 	return (

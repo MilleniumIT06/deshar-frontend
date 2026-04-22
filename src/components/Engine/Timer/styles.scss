@@ -28,13 +28,14 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
+		font-family: var(--font-monserrat);
 	}
 
 	&__digits {
 		font-weight: 500;
 		font-size: 48px;
 		line-height: 0.88;
-		color: var(--green-color); // по умолчанию зеленый
+		color: var(--primary-medium); // по умолчанию зеленый
 	}
 
 	&__label {
