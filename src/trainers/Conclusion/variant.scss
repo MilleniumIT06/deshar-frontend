@@ -1,0 +1,40 @@
+.conclusion-variant {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 0.5rem; // p-2
+	border-radius: 8px;
+	border: 0.5px solid var(--bg-gray-color);
+	background-color: var(--white);
+	color: var(--neutral-darkest);
+	box-shadow:
+		5px 5px 15px 0 #e9ecf4,
+		-5px -5px 15px 0 var(--white);
+
+	user-select: none;
+	touch-action: none;
+	cursor: grab;
+	transition:
+		transform 0.2s,
+		opacity 0.2s,
+		box-shadow 0.2s;
+
+	// Состояние перетаскивания
+	&--dragging {
+		opacity: 0.9;
+		transform: scale(1.05); // scale-105 добавится к inline-стилям dnd-kit
+		cursor: grabbing;
+		box-shadow:
+			0 20px 25px -5px rgb(0 0 0 / 0.1),
+			0 8px 10px -6px rgb(0 0 0 / 0.1); // shadow-xl
+	}
+
+	// Состояние заблокировано (уже использовано)
+	&--disabled {
+		opacity: 0.5;
+		cursor: default;
+		box-shadow: none;
+		pointer-events: none;
+	}
+}

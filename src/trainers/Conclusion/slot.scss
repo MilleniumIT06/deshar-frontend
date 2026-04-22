@@ -1,0 +1,22 @@
+.slot-input {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 5px;
+	width: 174px;
+	height: 48px;
+	border-radius: 8px;
+	border: 0.5px solid var(--bg-gray-color);
+	background-color: var(--white);
+	transition: all 0.2s ease;
+
+	// Модификатор, когда значение внутри есть
+	&--filled {
+		border: none;
+		white-space: nowrap;
+		padding: 0;
+		width: auto;
+		height: auto;
+	}
+}

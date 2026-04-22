@@ -4,6 +4,7 @@ import { ArcherContainer, ArcherElement } from 'react-archer'
 import { useCategoryMatcher } from './useCategoryMatcher'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import cn from 'classnames'
+import './styles.scss'
 
 export interface CategoryMatcherItem {
 	id: string
