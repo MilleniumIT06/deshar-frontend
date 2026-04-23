@@ -1,0 +1,35 @@
+.reorder-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 95px;
+	height: 107px;
+
+	background-color: var(--white);
+	border: 0.5px solid var(--bg-gray-color);
+	border-radius: 8px;
+	box-shadow:
+		5px 5px 15px 0 #e9ecf4,
+		-5px -5px 15px 0 var(--white);
+
+	cursor: grab;
+	user-select: none;
+	touch-action: none;
+	transition: opacity 0.2s ease;
+
+	&.is-dragging {
+		opacity: 0.5;
+		z-index: 10;
+		cursor: grabbing;
+	}
+
+	&__text {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 30px;
+		line-height: 140%;
+		text-align: center;
+		color: #434553;
+	}
+}

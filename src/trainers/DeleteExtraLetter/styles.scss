@@ -1,0 +1,63 @@
+.delete-extra-letter {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 24px; // p-6
+
+	&__container {
+		width: 100%;
+		text-align: center;
+
+		// Аналог space-y-8
+		& > * + * {
+			margin-top: 32px;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 16px; // gap-4
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.5s ease-in-out;
+		width: 70px;
+		margin: 0;
+
+		&.is-selected {
+			width: 0;
+			opacity: 0;
+			margin: 0;
+			pointer-events: none;
+		}
+	}
+
+	&__button {
+		font-family: var(--font-family);
+		font-size: 110px;
+		line-height: 1;
+		letter-spacing: 0.2em;
+		text-align: center;
+		color: #434553;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		background: transparent;
+		border: none;
+		padding: 0;
+
+		&:hover {
+			color: var(--primary-medium);
+		}
+
+		&.is-selected {
+			transform: scale(0) rotate(12deg);
+		}
+	}
+}

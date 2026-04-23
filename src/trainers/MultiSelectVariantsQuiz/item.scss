@@ -1,0 +1,71 @@
+.ms-variant-item {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 12px;
+
+	width: 100%;
+	max-width: 600px;
+	height: 58px;
+	padding: 12px;
+
+	background-color: var(--white);
+	border: 2px solid var(--gray-bg);
+	border-radius: 12px;
+
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	// Состояние: Выбрано
+	&.is-selected {
+		border-color: var(--primary-medium);
+		background-color: rgba(27, 170, 125, 0.1);
+
+		.variant-item__number {
+			border-color: var(--primary-medium);
+			color: var(--primary-medium);
+		}
+	}
+
+	// Состояние: Ошибка
+	&.is-error {
+		border-color: #ef4444; // red-500
+		background-color: #fef2f2; // red-50;
+
+		.variant-item__number {
+			border-color: #ef4444;
+			color: #ef4444;
+		}
+	}
+
+	&__number {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+
+		width: 30px;
+		height: 30px;
+
+		border: 2px solid var(--gray-bg);
+		border-radius: 8px;
+
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 16px;
+		color: var(--bg-gray-color);
+		text-align: center;
+		transition: all 0.2s ease;
+	}
+
+	&__title {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 16px;
+		color: var(--text-color);
+
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis; // truncate
+	}
+}

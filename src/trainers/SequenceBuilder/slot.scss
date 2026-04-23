@@ -1,0 +1,49 @@
+.sequence-slot {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 13px;
+
+	width: 501px;
+	min-height: 149px;
+	padding: 20px;
+
+	background-color: var(--gray-bg);
+	border-radius: 8px;
+	border: 2px solid transparent; // Зарезервированное место под рамку
+	transition: all 0.2s ease;
+
+	// Состояние, когда значение выбрано
+	&.is-filled {
+		border-color: var(--primary-medium);
+	}
+
+	&__audio-button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+
+		width: 36px;
+		height: 36px;
+		padding: 0;
+
+		background-color: var(--primary-medium);
+		border-radius: 9999px;
+		border: none;
+		cursor: pointer;
+
+		svg {
+			width: 19px;
+			height: 16px;
+		}
+	}
+
+	&__text {
+		font-family: var(--font-family);
+		font-weight: 500;
+		font-size: 20px;
+		color: var(--text-color);
+		margin: 0;
+	}
+}

@@ -1,0 +1,43 @@
+.variant {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	width: 196px; // w-[196px]
+	height: 74px; // h-[74px]
+
+	background-color: var(--white);
+	border: 0.5px solid var(--bg-gray-color);
+	border-radius: 8px;
+
+	// Тень с использованием переменной для белого цвета
+	box-shadow:
+		5px 5px 15px 0 #e9ecf4,
+		-5px -5px 15px 0 var(--white);
+
+	cursor: grab;
+	user-select: none;
+	transition:
+		opacity 0.2s ease,
+		border-color 0.2s ease;
+
+	&.is-dragging {
+		cursor: grabbing;
+		z-index: 1000;
+	}
+
+	&.is-disabled {
+		opacity: 0.5;
+		cursor: default;
+		pointer-events: none;
+	}
+
+	&__text {
+		font-family: var(--font-family);
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 2.2;
+		color: #434553;
+	}
+}

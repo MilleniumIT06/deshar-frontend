@@ -1,7 +1,7 @@
 import { useState, forwardRef, useImperativeHandle } from 'react'
 import { AlphabeticalSlot } from './Slot'
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
-import { Variant } from './Variant'
+import { AlphabeticalSorterVariant } from './Variant'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import './styles.scss'
@@ -87,7 +87,7 @@ export const AlphabeticalSorter = forwardRef<AlphabeticalSorterRef, Alphabetical
 					<div className="alphabetical-sorter__variants-container">
 						<ul className="alphabetical-sorter__list">
 							{payload.variants.map(variant => (
-								<Variant
+								<AlphabeticalSorterVariant
 									key={variant.id}
 									id={variant.id}
 									isDisabled={disableVariant(variant.value)}

@@ -1,0 +1,32 @@
+.slot {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 0.5px solid var(--bg-gray-color);
+	border-radius: 8px;
+	width: 231px; // Аналог w-57.75 (57.75 * 4px)
+	height: 48px; // h-12
+	background-color: var(--white);
+	transition:
+		background-color 0.2s ease,
+		border-color 0.2s ease;
+
+	// Состояние, когда над слотом держат элемент
+	&.is-over {
+		background-color: #f0fdf4; // bg-green-50
+		border-color: #4ade80; // border-green-400
+	}
+
+	&__text {
+		font-family: var(--font-family);
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 2.2; // leading-[220%]
+		color: #434553;
+		text-align: center;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		padding: 0 10px;
+	}
+}

@@ -1,0 +1,19 @@
+.trainer-dnd {
+	&__subtitle {
+		color: #6b7280;
+		margin-top: 0.5rem;
+	}
+
+	&__drop-zone {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		margin-top: 40px;
+	}
+
+	&__variants {
+		display: flex;
+		gap: 12px;
+		margin-top: 40px;
+	}
+}

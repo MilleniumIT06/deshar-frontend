@@ -1,0 +1,58 @@
+.move-box {
+	position: relative;
+	list-style: none;
+
+	&__item {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		user-select: none;
+		touch-action: none;
+		cursor: grab;
+
+		width: 60px;
+		height: 60px;
+		border-radius: 8px;
+		border: 0.5px solid var(--bg-gray-color);
+		background-color: var(--white);
+		color: var(--neutral-darkest);
+
+		// Неоморфизм-тень
+		box-shadow:
+			5px 5px 15px 0 #e9ecf4,
+			-5px -5px 15px 0 var(--white);
+		transition:
+			transform 0.2s ease,
+			opacity 0.2s ease;
+
+		&.is-dragging {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			opacity: 0.9;
+			transform: scale(1.05);
+			cursor: grabbing;
+		}
+
+		&.is-disabled {
+			opacity: 0.5;
+			cursor: default;
+			box-shadow: none;
+			pointer-events: none;
+		}
+	}
+
+	&__placeholder {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 60px;
+		height: 60px;
+		border-radius: 8px;
+		border: 0.5px solid var(--bg-gray-color);
+		background-color: var(--white);
+		opacity: 0.3;
+	}
+}

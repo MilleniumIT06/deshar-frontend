@@ -1,0 +1,32 @@
+.drop-word-trainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 40px;
+	padding-top: 20px;
+
+	&__header {
+		text-align: center;
+	}
+
+	&__subtitle {
+		color: #6b7280;
+		margin-top: 8px;
+	}
+
+	&__items-list {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		width: 100%;
+		max-width: 800px;
+	}
+
+	&__variants-pool {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 20px;
+		width: 100%;
+	}
+}
