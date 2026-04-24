@@ -83,7 +83,6 @@ export const Conclusion = forwardRef(
 				)
 			},
 		}))
-
 		const handleDragEnd = useCallback(
 			(event: DragEndEvent) => {
 				const { active, over } = event

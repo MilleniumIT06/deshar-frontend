@@ -1192,9 +1192,9 @@ export const testCardMock: {
 		},
 		payload: {
 			items: [
-				{ id: 1, imageUrl: '/castle.png', correctVariantId: 101 },
-				{ id: 2, imageUrl: '/sh.png', correctVariantId: 102 },
-				{ id: 3, imageUrl: '/ticva.png', correctVariantId: 103 },
+				{ id: 1, imageUrl: '/images/Engine/castle.png', correctVariantId: 101 },
+				{ id: 2, imageUrl: '/images/Engine/sh.png', correctVariantId: 102 },
+				{ id: 3, imageUrl: '/images/Engine/ticva.png', correctVariantId: 103 },
 			],
 			variants: [
 				{ id: 101, value: 'castle' },
@@ -1349,7 +1349,7 @@ export const testCardMock: {
 		payload: {
 			id: 'task_1',
 			correctAnswer: 'ГОРОД',
-			imageUrl: '/citt.jpg',
+			imageUrl: '/images/Engine/citt.jpg',
 			availableLetters: [
 				{ id: 1, letter: 'Г' },
 				{ id: 2, letter: 'О' },

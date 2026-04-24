@@ -6,7 +6,7 @@
 	border-radius: 8px;
 	width: 231px; // Аналог w-57.75 (57.75 * 4px)
 	height: 48px; // h-12
-	background-color: var(--white);
+	background-color: var(--neutral-white);
 	transition:
 		background-color 0.2s ease,
 		border-color 0.2s ease;
@@ -18,7 +18,7 @@
 	}
 
 	&__text {
-		font-family: var(--font-family);
+		font-family: var(--font-monserrat);
 		font-weight: 500;
 		font-size: 20px;
 		line-height: 2.2; // leading-[220%]

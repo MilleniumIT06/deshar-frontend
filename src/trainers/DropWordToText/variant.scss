@@ -7,14 +7,14 @@
 	width: 196px; // w-[196px]
 	height: 74px; // h-[74px]
 
-	background-color: var(--white);
+	background-color: var(--neutral-white);
 	border: 0.5px solid var(--bg-gray-color);
 	border-radius: 8px;
 
 	// Тень с использованием переменной для белого цвета
 	box-shadow:
 		5px 5px 15px 0 #e9ecf4,
-		-5px -5px 15px 0 var(--white);
+		-5px -5px 15px 0 var(--neutral-white);
 
 	cursor: grab;
 	user-select: none;
@@ -34,7 +34,7 @@
 	}
 
 	&__text {
-		font-family: var(--font-family);
+		font-family: var(--font-monserrat);
 		font-weight: 500;
 		font-size: 20px;
 		line-height: 2.2;

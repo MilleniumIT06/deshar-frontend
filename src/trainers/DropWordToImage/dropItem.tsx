@@ -16,7 +16,7 @@ export const DropItem = ({ id, imageUrl, currentValue }: DropItemProps) => {
 	return (
 		<div ref={setNodeRef} className={cn('drop-item', { 'is-over': isOver })}>
 			<div className="drop-item__image-container">
-				<Image src={imageUrl} alt="Drop item" className="drop-item__image" />
+				<Image src={imageUrl} alt="Drop item" className="drop-item__image" width={186} height={172} />
 			</div>
 
 			{currentValue && (

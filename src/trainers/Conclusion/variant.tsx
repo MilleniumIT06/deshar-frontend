@@ -1,6 +1,7 @@
 import { useDraggable } from '@dnd-kit/core'
-import { CSS } from '@dnd-kit/utilities'
 import cn from 'classnames'
+
+import './variant.scss'
 
 export const ConclusionVariant = ({
 	id,
@@ -17,11 +18,15 @@ export const ConclusionVariant = ({
 		disabled: isDisabled,
 	})
 
-	const style = {
-		transform: CSS.Translate.toString(transform),
-		zIndex: isDragging ? 100 : undefined,
-	}
-
+	// const style = {
+	// transform: CSS.Translate.toString(transform),
+	// zIndex: isDragging ? 100 : undefined,
+	// }
+	const style = transform
+		? {
+				transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+			}
+		: undefined
 	return (
 		<button
 			ref={setNodeRef}

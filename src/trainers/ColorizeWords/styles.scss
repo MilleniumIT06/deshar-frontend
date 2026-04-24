@@ -37,13 +37,17 @@
 		border: 0.5px solid var(--bg-gray-color);
 		cursor: pointer;
 		transition: all 0.2s ease;
-
+		box-shadow:
+			5px 5px 15px 0 #e9ecf4,
+			-5px -5px 15px 0 var(--neutral-white);
+		background: var(--neutral-white);
 		span {
 			font-weight: 500;
 			font-size: 20px;
 			line-height: 220%;
 			color: #434553;
 			user-select: none;
+			font-family: var(--font-monserrat);
 		}
 	}
 

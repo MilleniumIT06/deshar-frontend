@@ -90,7 +90,7 @@ export const WordByImage = forwardRef<WordByImageRef, WordByImageProps>(
 						</div>
 
 						<div className="word-image-trainer__image-wrapper">
-							<Image src={imageUrl} alt={title} className="word-image-trainer__image" />
+							<Image src={imageUrl} alt={title} className="word-image-trainer__image" fill />
 						</div>
 
 						<div className="word-image-trainer__slots-container">
