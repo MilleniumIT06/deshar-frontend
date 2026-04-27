@@ -1038,7 +1038,7 @@ export const testCardMock: {
 			],
 			correctVariantId: 1,
 		},
-		title: 'test',
+		title: 'Нажми на картинку, где люди общаются правильно',
 		scoring: {
 			points: 3,
 			penaltyPerMistake: 1,

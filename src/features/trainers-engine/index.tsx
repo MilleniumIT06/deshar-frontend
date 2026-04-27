@@ -28,6 +28,7 @@ import { testCardMock } from '@/mocks/data'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 
 import './styles.scss'
+// import { DragWordToPocket } from '@/trainers/DragWordToPocket'
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
 	ssr: false,
@@ -111,6 +112,7 @@ export const TrainersEngine = () => {
 								onError={() => 'error'}
 								onSuccess={handleSuccess}
 							/>
+							{/* <DragWordToPocket/> */}
 						</div>
 					</main>
 
