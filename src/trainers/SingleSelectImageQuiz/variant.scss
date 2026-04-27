@@ -1,0 +1,31 @@
+.SingleSelectImageQuizVariant {
+	position: relative;
+	border-radius: 20px;
+	// overflow: hidden;
+	transition: transform 0.3s ease-in-out;
+	cursor: pointer;
+	&.disabled {
+		opacity: 0.2;
+	}
+	&.is-selected {
+		border: 2px solid var(--primary-medium);
+	}
+	&.is-error {
+		border: 2px solid var(--negative-medium);
+	}
+	&.is-incorrect {
+		opacity: 0.5;
+	}
+	&:hover {
+		transform: scale(1.01);
+	}
+	&__icon {
+		position: absolute;
+		top: -15px;
+		right: -15px;
+		z-index: 10;
+	}
+	img {
+		border-radius: 20px;
+	}
+}

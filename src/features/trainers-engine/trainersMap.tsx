@@ -17,6 +17,7 @@ export type TrainerType =
 	| 'single-quiz'
 	| 'word-by-image'
 	| 'word-picker'
+	| 'single-select-image-quiz'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const trainersMap: Record<TrainerType, ComponentType<any>> = {
 	'accent-trainer': dynamic(() => import('../../trainers/AccentTrainer').then(mod => mod.AccentTrainer), {
@@ -79,4 +80,11 @@ export const trainersMap: Record<TrainerType, ComponentType<any>> = {
 		ssr: false,
 		loading: () => <div>Loading...</div>,
 	}),
+	'single-select-image-quiz': dynamic(
+		() => import('../../trainers/SingleSelectImageQuiz').then(mod => mod.SingleSelectImageQuiz),
+		{
+			ssr: false,
+			loading: () => <div>Loading...</div>,
+		},
+	),
 }

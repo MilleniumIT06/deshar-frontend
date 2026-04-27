@@ -1016,6 +1016,35 @@ export const testCardMock: {
 		title: 'Поставьте ударение',
 	},
 	{
+		type: 'single-select-image-quiz',
+		payload: {
+			variants: [
+				{
+					id: 1,
+					imageUrl: '/images/Engine/cci1.jpg',
+				},
+				{
+					id: 2,
+					imageUrl: '/images/Engine/cci2.jpg',
+				},
+				{
+					id: 3,
+					imageUrl: '/images/Engine/cci3.jpg',
+				},
+				{
+					id: 4,
+					imageUrl: '/images/Engine/cci4.jpg',
+				},
+			],
+			correctVariantId: 1,
+		},
+		title: 'test',
+		scoring: {
+			points: 3,
+			penaltyPerMistake: 1,
+		},
+	},
+	{
 		type: 'fix-sentence',
 		payload: {
 			sentence: 'Мы купили {{1}} яблоки.',
