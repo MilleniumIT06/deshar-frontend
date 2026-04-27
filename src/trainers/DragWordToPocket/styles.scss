@@ -1,8 +1,19 @@
 .DragWordToPocket {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	// gap: 100px;
 	&__variants {
+		margin-top: 40px;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 30px;
+	}
+	&__pockets {
+		margin-top: 100px;
+		display: flex;
+		justify-content: center;
+		gap: 10%;
 	}
 }
 .DragWordToPocketVariant {
@@ -20,6 +31,7 @@
 	justify-content: center;
 	cursor: grab;
 	user-select: none;
+	z-index: 10;
 	&__btn {
 		width: 42px;
 		height: 42px;

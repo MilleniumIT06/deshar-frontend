@@ -29,6 +29,7 @@ import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 
 import './styles.scss'
 // import { DragWordToPocket } from '@/trainers/DragWordToPocket'
+// import { DragWordToPocket } from '@/trainers/DragWordToPocket'
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
 	ssr: false,
@@ -112,7 +113,38 @@ export const TrainersEngine = () => {
 								onError={() => 'error'}
 								onSuccess={handleSuccess}
 							/>
-							{/* <DragWordToPocket/> */}
+							{/* <DragWordToPocket
+								ref={trainerRef}
+								title="test"
+								subTitle='test2'
+								changeStatus={changeStatus}
+								onError={() => 'error'}
+								onSuccess={handleSuccess}
+								payload={{
+									items: [
+										{
+											id: 101,
+											imageUrl: '/images/Engine/pocketItem1.png',
+											correctVariantId: 4,
+										},
+										{
+											id: 102,
+											imageUrl: '/images/Engine/pocketItem2.png', 
+											correctVariantId: 1,
+										},
+										{
+											id: 103,
+											imageUrl: '/images/Engine/pocketItem3.png',
+											correctVariantId: 2,
+										},
+									],
+									variants: [
+										{ id: 1, value: 'Кошка' },
+										{ id: 2, value: 'Собака' },
+										{ id: 3, value: 'Птица' },
+										{ id: 4, value: 'Человек' },
+									],
+								}} /> */}
 						</div>
 					</main>
 

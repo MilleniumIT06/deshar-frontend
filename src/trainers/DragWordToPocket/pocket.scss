@@ -1,11 +1,13 @@
 .DropPocket {
 	width: 230px;
+	flex-shrink: 0;
 	height: 300px; // Увеличил высоту, чтобы влез и предмет, и карман
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-end;
+	transition: transform 0.3s ease;
 	&__content {
 		width: 100%;
 		height: 237px;
@@ -60,5 +62,8 @@
 			top: -20%;
 			right: -10%;
 		}
+	}
+	&--over {
+		transform: scale(1.05);
 	}
 }
