@@ -1,4 +1,5 @@
 'use client'
+import dynamic from 'next/dynamic'
 
 import { getBestStudentsColumns } from '@/columns/getBestStudentsColumns'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
@@ -7,8 +8,12 @@ import { ResultsCard } from '@/components/ResultsCard'
 import { barChartMockData } from '@/mocks/adminMock'
 import { TEST_CLASSMATES } from '@/mocks/data'
 import { type Student } from '@/shared/types/admin/types'
-import { MainChart } from '@/widgets/AdminWidgets/MainChart'
 import './styles.scss'
+
+const MainChart = dynamic(() => import('@/widgets/AdminWidgets/MainChart').then(mod => mod.MainChart), {
+	ssr: false,
+	loading: () => <div className="StatisticsBlock-placeholder">Загрузка графиков...</div>,
+})
 
 export const UniqueItemStatisticContent = () => {
 	return (

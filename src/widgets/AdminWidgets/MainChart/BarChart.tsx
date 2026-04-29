@@ -1,6 +1,6 @@
 import { BarChart as RechartsBar, Bar, XAxis, YAxis, Tooltip } from 'recharts'
 
-import { type BarChartDataItem } from '.'
+import type { BarChartDataItem } from './index'
 
 const CustomTooltip = ({ value }: { value: number }) => {
 	if (value) {

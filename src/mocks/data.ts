@@ -1,5 +1,5 @@
 import { type StudentData } from '@/components/TopClassmates'
-import { type TrainerType } from '@/features/trainers-engine/trainersMap'
+import { type TrainerType } from '@/widgets/trainers-engine/trainersMap'
 
 export const areas = [
 	{ id: 1, value: 'Магас' },

@@ -9,9 +9,6 @@ import { SuccessFooter } from '@/components/Engine/Footer/success'
 import { ErrorFooter } from '@/components/Engine/Footer/error'
 import { HelpTrigger } from '@/components/Engine/HelpTrigger'
 import { Hint } from '@/components/Engine/Hint'
-import { EngineFinishScreen } from '@/components/Engine/FinishScreen'
-import { AlertModal } from '@/components/Engine/AlertModal'
-import { SupportModal } from '@/components/Engine/SupportModal'
 import { type TimerRef } from '@/components/Engine/Timer'
 import {
 	resetTrainers,
@@ -35,6 +32,14 @@ import './styles.scss'
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
 	ssr: false,
 })
+const AlertModal = dynamic(() => import('@/components/Engine/AlertModal').then(mod => mod.AlertModal), { ssr: false })
+const SupportModal = dynamic(() => import('@/components/Engine/SupportModal').then(mod => mod.SupportModal), {
+	ssr: false,
+})
+const EngineFinishScreen = dynamic(
+	() => import('@/components/Engine/FinishScreen').then(mod => mod.EngineFinishScreen),
+	{ ssr: false },
+)
 // bg-[url('/Frame.jpg')]
 export interface TrainerRef {
 	handleCheck: () => void

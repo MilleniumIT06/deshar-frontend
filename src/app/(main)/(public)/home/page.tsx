@@ -6,12 +6,15 @@ import { Learn } from '@/components/Learn'
 import { subscriptionFeat } from '@/shared/config/flags'
 
 const Reviews = dynamic(() => import('@/components/Reviews').then(mod => mod.Reviews), {
+	// ssr: false,
 	loading: () => <div>Загрузка...</div>,
 })
 const Subscription = dynamic(() => import('@/components/Subcription').then(mod => mod.Subscription), {
+	// ssr: false,
 	loading: () => <div>Загрузка...</div>,
 })
 const Question = dynamic(() => import('@/components/Question').then(mod => mod.Question), {
+	// ssr: false,
 	loading: () => <div>Загрузка...</div>,
 })
 export default async function Home() {

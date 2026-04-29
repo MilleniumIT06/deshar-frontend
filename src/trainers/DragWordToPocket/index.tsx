@@ -5,7 +5,7 @@ import { Variant } from './variant'
 import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
-import { type TrainerRef } from '@/features/trainers-engine'
+import { type TrainerRef } from '@/widgets/trainers-engine'
 
 interface DragWordToPocketProps {
 	title: string

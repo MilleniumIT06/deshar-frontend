@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import cn from 'classnames'
-import { ChevronRight } from 'lucide-react'
 
 import './styles.scss'
 
@@ -15,8 +14,12 @@ interface BreadcrumbsProps {
 	separator?: React.ReactNode
 	className?: string
 }
-
-export const Breadcrumbs = ({ items, separator = <ChevronRight size={20} />, className }: BreadcrumbsProps) => {
+const SeparatorIcon = () => (
+	<svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M0.530273 0.530273L6.53027 6.53027L0.530273 12.5303" stroke="#7D7979" stroke-width="1.5" />
+	</svg>
+)
+export const Breadcrumbs = ({ items, separator = <SeparatorIcon />, className }: BreadcrumbsProps) => {
 	if (!items || items.length === 0) return null
 
 	return (

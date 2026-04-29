@@ -1,5 +1,5 @@
-import { TrainersEngine } from '@/features/trainers-engine'
+import { PracticeContent } from './content'
 
 export default async function Practice() {
-	return <TrainersEngine />
+	return <PracticeContent />
 }
