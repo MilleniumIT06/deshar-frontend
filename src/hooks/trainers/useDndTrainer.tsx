@@ -3,8 +3,8 @@ import { useState, useImperativeHandle, type ForwardedRef } from 'react'
 import { type DragEndEvent } from '@dnd-kit/core'
 
 interface TrainerItem {
-	id: number
-	correctVariantId: number
+	id: number | string
+	correctVariantId: number | string
 }
 
 interface UseDndTrainerProps<T extends TrainerItem> {
@@ -23,7 +23,7 @@ export const useDndTrainer = <T extends TrainerItem>({
 	ref,
 }: UseDndTrainerProps<T>) => {
 	const [isSubmitted, setIsSubmitted] = useState(false)
-	const [selections, setSelections] = useState<Record<number, number | null>>(
+	const [selections, setSelections] = useState<Record<number | string, number | string | null>>(
 		Object.fromEntries(items.map(item => [item.id, null])),
 	)
 
@@ -63,7 +63,7 @@ export const useDndTrainer = <T extends TrainerItem>({
 		}
 	}
 
-	const isVariantUsed = (variantId: number) => Object.values(selections).includes(variantId)
+	const isVariantUsed = (variantId: number | string) => Object.values(selections).includes(variantId)
 
 	return {
 		selections,

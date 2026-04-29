@@ -28,6 +28,7 @@ import { testCardMock } from '@/mocks/data'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 
 import './styles.scss'
+// import { PhraseImageMatcher } from '@/trainers/PhraseImageMatcher'
 // import { DragWordToPocket } from '@/trainers/DragWordToPocket'
 // import { DragWordToPocket } from '@/trainers/DragWordToPocket'
 
@@ -113,37 +114,26 @@ export const TrainersEngine = () => {
 								onError={() => 'error'}
 								onSuccess={handleSuccess}
 							/>
-							{/* <DragWordToPocket
+							{/* <PhraseImageMatcher
 								ref={trainerRef}
-								title="test"
-								subTitle='test2'
+								subTitle='q'
 								changeStatus={changeStatus}
 								onError={() => 'error'}
 								onSuccess={handleSuccess}
+								title='Перемести нужную фразу к иллюстрации'
 								payload={{
 									items: [
 										{
-											id: 101,
-											imageUrl: '/images/Engine/pocketItem1.png',
-											correctVariantId: 4,
-										},
-										{
-											id: 102,
-											imageUrl: '/images/Engine/pocketItem2.png', 
-											correctVariantId: 1,
-										},
-										{
-											id: 103,
-											imageUrl: '/images/Engine/pocketItem3.png',
+											id: 1,
 											correctVariantId: 2,
-										},
+											imageUrl: "/images/Engine/Uya.jpg",
+										}
 									],
 									variants: [
-										{ id: 1, value: 'Кошка' },
-										{ id: 2, value: 'Собака' },
-										{ id: 3, value: 'Птица' },
-										{ id: 4, value: 'Человек' },
-									],
+										{ id: 1, value: "Привет! В эфире новости." },
+										{ id: 2, value: "У нас хорошая погода" },
+										{ id: 3, value: "Вариант 3" }
+									]
 								}} /> */}
 						</div>
 					</main>

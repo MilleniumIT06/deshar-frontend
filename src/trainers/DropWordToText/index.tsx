@@ -46,7 +46,7 @@ export const DropWordToText = forwardRef<DropWordRef, DropWordToTextProps>(
 			ref,
 		})
 
-		const getVariantValueById = (id: number | null) => {
+		const getVariantValueById = (id: number | string | null) => {
 			return payload.variants.find(v => v.id === id)?.value || null
 		}
 
