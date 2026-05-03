@@ -11,12 +11,13 @@ import { submitForm, resetForm } from '@/features/auth/signUp.slice'
 import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
 import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
 // import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
-import { classLevels, schools } from '@/mocks/data'
+import { classLevels } from '@/mocks/data'
 import { type Country } from '@/shared/types/types'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
 import { useSignUp } from '../../SignUp/useSignUp'
+import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
 
 const validateSchema = z.object({
 	district: z.object({
@@ -52,7 +53,7 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 	const { isPending, mutate } = useSignUp()
 
 	const { isError: isDistrictsError, districts, isLoading: isDistrictsLoading } = useGetDistricts()
-	// const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
+	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
 	const { countries } = useGetCountries()
 
 	const russiaId = useMemo(
@@ -144,8 +145,8 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 					value={form.watch('school')}
 					setValue={value => form.setValue('school', value, { shouldValidate: true })}
 					options={schools}
-					isLoading={false}
-					isError={false}
+					isLoading={isSchoolsLoading}
+					isError={isSchoolsError}
 					placeholderValue="Выберите школу"
 				/>
 				{form.formState.errors.school && (

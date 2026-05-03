@@ -3,21 +3,24 @@ import { type ComponentType } from 'react'
 
 export type TrainerType =
 	| 'accent-trainer'
-	| 'sequence-builder'
-	| 'category-matcher'
-	| 'drop-word-to-image'
-	| 'drop-word-to-text'
-	| 'fix-sentence'
 	| 'alphabetic-sorter'
+	| 'category-matcher'
 	| 'colorize-words'
 	| 'conclusion'
 	| 'delete-extra-letter'
+	| 'sequence-builder'
+	| 'drop-word-to-image'
+	| 'drop-word-to-text'
+	| 'fix-sentence'
 	| 'multi-quiz'
 	| 'reorder-items'
 	| 'single-quiz'
 	| 'word-by-image'
 	| 'word-picker'
 	| 'single-select-image-quiz'
+	| 'phrase-image-matcher'
+	| 'drag-word-to-pocket'
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const trainersMap: Record<TrainerType, ComponentType<any>> = {
 	'accent-trainer': dynamic(() => import('../../trainers/AccentTrainer').then(mod => mod.AccentTrainer), {
@@ -87,4 +90,15 @@ export const trainersMap: Record<TrainerType, ComponentType<any>> = {
 			loading: () => <div>Loading...</div>,
 		},
 	),
+	'phrase-image-matcher': dynamic(
+		() => import('../../trainers/PhraseImageMatcher').then(mod => mod.PhraseImageMatcher),
+		{
+			ssr: false,
+			loading: () => <div>Loading...</div>,
+		},
+	),
+	'drag-word-to-pocket': dynamic(() => import('../../trainers/DragWordToPocket').then(mod => mod.DragWordToPocket), {
+		ssr: false,
+		loading: () => <div>Loading...</div>,
+	}),
 }

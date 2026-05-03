@@ -1404,4 +1404,58 @@ export const testCardMock: {
 			correctValues: ['Учёба', 'труд'],
 		},
 	},
+	{
+		type: 'drag-word-to-pocket',
+		scoring: {
+			penaltyPerMistake: 1,
+			points: 5,
+		},
+		payload: {
+			items: [
+				{
+					id: 1,
+					imageUrl: '/images/Engine/pocketItem1.png',
+					correctVariantId: 1,
+				},
+				{
+					id: 2,
+					imageUrl: '/images/Engine/pocketItem2.png',
+					correctVariantId: 2,
+				},
+				{
+					id: 3,
+					imageUrl: '/images/Engine/pocketItem3.png',
+					correctVariantId: 3,
+				},
+			],
+			variants: [
+				{ id: 1, value: 'Человек' },
+				{ id: 2, value: 'Кот' },
+				{ id: 3, value: 'Собака' },
+			],
+		},
+		title: 'Перетащи слово к нужной картинке',
+	},
+	{
+		type: 'phrase-image-matcher',
+		scoring: {
+			penaltyPerMistake: 1,
+			points: 5,
+		},
+		payload: {
+			items: [
+				{
+					id: 1,
+					correctVariantId: 2,
+					imageUrl: '/images/Engine/Uya.jpg',
+				},
+			],
+			variants: [
+				{ id: 1, value: 'Привет! В эфире новости.' },
+				{ id: 2, value: 'У нас хорошая погода' },
+				{ id: 3, value: 'Вариант 3' },
+			],
+		},
+		title: 'Перетащи слово к нужной картинке',
+	},
 ]

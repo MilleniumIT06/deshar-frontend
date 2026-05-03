@@ -4,7 +4,6 @@ import { getBestStudentsColumns } from '@/columns/getBestStudentsColumns'
 import { getColumnsSchool } from '@/columns/getColumnsSchool'
 import { getDepartmentColumns } from '@/columns/getDepartmentColumns'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
-import { Loading } from '@/components/Admin/Loading'
 import { Table } from '@/components/Admin/Table'
 import { ResultsCard } from '@/components/ResultsCard'
 import {
@@ -26,6 +25,7 @@ const StatisticsBlock = dynamic(() => import('@/components/Admin/StatisticsBlock
 })
 const MainChart = dynamic(() => import('@/widgets/AdminWidgets/MainChart').then(mod => mod.MainChart), {
 	ssr: false,
+	loading: () => <div className="StatisticsBlock-placeholder">Загрузка графиков...</div>,
 })
 export const AdminPageContent = () => {
 	const { hasRole, role } = useRole()
@@ -46,12 +46,9 @@ export const AdminPageContent = () => {
 		<div>
 			{hasRole(['admin', 'department', 'ministry']) && (
 				<div className="MainStatisticPageContent__cards">
-					<Loading type="component" content="loading...." isLoading={false}>
-						<StatisticsBlock data={defaultPieData} centerLabel="баллов" />
-					</Loading>
-					<Loading type="component" content="loading...." isLoading={false}>
-						<StatisticsBlock data={defaultPieTimeData} centerLabel="часов" />
-					</Loading>
+					<StatisticsBlock data={defaultPieData} centerLabel="баллов" />
+
+					<StatisticsBlock data={defaultPieTimeData} centerLabel="часов" />
 				</div>
 			)}
 

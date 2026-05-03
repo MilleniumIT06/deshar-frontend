@@ -15,6 +15,8 @@ import { Input } from '@/shared/ui/Input'
 import { signInUserFormSchema, type signInUserFormData } from '../../model/signIn.schema'
 
 import './styles.scss'
+import { useAppDispatch } from '@/app/_store/hooks'
+import { login } from '@/entities/user/model/user.slice'
 
 interface SignInFormProps {
 	callbackUrl?: string
@@ -22,6 +24,7 @@ interface SignInFormProps {
 
 export const SignInForm = ({ callbackUrl = '/dashboard' }: SignInFormProps) => {
 	const router = useRouter()
+	const dispatch = useAppDispatch()
 	const [serverError, setServerError] = useState<string>('')
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -44,7 +47,8 @@ export const SignInForm = ({ callbackUrl = '/dashboard' }: SignInFormProps) => {
 			if (response.success) {
 				auth.setToken(response.token)
 				auth.setUser(response.user)
-
+				// console.log('chhh', response.user);
+				dispatch(login({ name: response.user.name }))
 				router.push(callbackUrl)
 				router.refresh()
 			}

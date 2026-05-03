@@ -10,10 +10,18 @@ import { Button } from '@/shared/ui/Button'
 import { Logo } from '@/shared/ui/Logo'
 
 import './styles.scss'
+import { useAppDispatch } from '@/app/_store/hooks'
+import { logout } from '@/entities/user/model/user.slice'
 
 export const Header = () => {
-	const authed = useAuth()
 	const [burgerOpen, setBurgerOpen] = useState(false)
+	const isAuth = useAuth()
+	console.log('Header render, isAuth:', isAuth)
+	const [mounted, setMounted] = useState(false)
+	const dispatch = useAppDispatch()
+	useEffect(() => {
+		setMounted(true)
+	}, [])
 	useEffect(() => {
 		if (burgerOpen) {
 			// Сохраняем текущую позицию скролла
@@ -76,14 +84,16 @@ export const Header = () => {
 							</li>
 						</ul>
 					</nav>
+					<button onClick={() => dispatch(logout())}>logout</button>
 					<div className="Header__right">
-						{authed ? (
-							<Avatar />
-						) : (
-							<Button asChild variant="primary" size="small" className="Header__btn" tabIndex={6}>
-								<Link href="/sign-in">Войти</Link>
-							</Button>
-						)}
+						{mounted &&
+							(isAuth ? (
+								<Avatar />
+							) : (
+								<Button asChild variant="primary" size="small">
+									<Link href="/sign-in">Войти</Link>
+								</Button>
+							))}
 						<button
 							className={`btn-reset Header__burger ${burgerOpen ? 'active' : ''}`}
 							aria-label="Открыть меню"
