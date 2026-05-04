@@ -3,27 +3,21 @@ import { SingleSelectImageQuizVariant } from './variant'
 import './styles.scss'
 import { useQuizLogic } from '@/hooks/trainers/useQuiz'
 import { forwardRef } from 'react'
+import { type TrainerCommonProps } from '@/shared/types/types'
+import { type TrainerRef } from '@/widgets/trainers-engine'
 
-export interface TrainerRef {
-	handleCheck: () => void
-	handleReset: () => void
-}
 interface IVariant {
 	id: number
 	imageUrl: string
 }
-interface SingleSelectImageQuizProps {
-	title: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface SingleSelectImageQuizProps extends TrainerCommonProps {
 	payload: {
 		variants: IVariant[]
 		correctVariantId: number
 	}
 }
 export const SingleSelectImageQuiz = forwardRef<TrainerRef, SingleSelectImageQuizProps>(
-	({ changeStatus, onError, onSuccess, payload, title }, ref) => {
+	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle }, ref) => {
 		const { selected, isSubmitted, handleSelect } = useQuizLogic<number>({
 			ref,
 			correctValue: payload.correctVariantId,
@@ -40,9 +34,9 @@ export const SingleSelectImageQuiz = forwardRef<TrainerRef, SingleSelectImageQui
 		return (
 			<div className="SingleSelectImageQuiz">
 				<div className="SingleSelectImageQuiz__inner">
-					<span className="trainer-number-title">Тренажер 1</span>
+					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 					<TrainerTitle title={title} />
-
+					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="SingleSelectImageQuiz__content">
 						{payload.variants.map(item => (
 							<SingleSelectImageQuizVariant

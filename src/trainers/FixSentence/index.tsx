@@ -2,13 +2,9 @@ import { useState, forwardRef, useImperativeHandle } from 'react'
 import { FixSentenceItem } from './item'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import './styles.scss'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
-interface FixSentenceProps {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface FixSentenceProps extends TrainerCommonProps {
 	payload: {
 		sentence: string
 		words: string[]
@@ -17,7 +13,7 @@ interface FixSentenceProps {
 }
 
 export const FixSentence = forwardRef(
-	({ payload, onSuccess, onError, changeStatus, title, subTitle }: FixSentenceProps, ref) => {
+	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex }: FixSentenceProps, ref) => {
 		const [selectedIndex, setSelectedIndex] = useState<number>(0)
 
 		useImperativeHandle(ref, () => ({
@@ -68,10 +64,10 @@ export const FixSentence = forwardRef(
 
 		return (
 			<div className="fix-sentence">
-				<span className="trainer-number-title">Тренажер 1</span>
+				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 				<TrainerTitle title={title} />
 
-				{subTitle && <h2 className="fix-sentence__subtitle">{subTitle}</h2>}
+				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 				<div className="fix-sentence__content">{renderSentence()}</div>
 			</div>

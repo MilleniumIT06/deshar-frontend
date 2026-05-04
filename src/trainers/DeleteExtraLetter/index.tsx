@@ -4,18 +4,14 @@ import cn from 'classnames'
 import { useLetterClickTrainer } from '@/hooks/trainers/useLetterClickTrainer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import './styles.scss'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
 interface IVariant {
 	id: number | string
 	letter: string
 }
 
-interface DeleteExtraLetterProps {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface DeleteExtraLetterProps extends TrainerCommonProps {
 	payload: {
 		variants: IVariant[]
 		correctVariantIds: (number | string)[]
@@ -23,7 +19,10 @@ interface DeleteExtraLetterProps {
 }
 
 export const DeleteExtraLetter = forwardRef(
-	({ payload, title, onSuccess, onError, changeStatus }: DeleteExtraLetterProps, ref) => {
+	(
+		{ payload, title, onSuccess, onError, changeStatus, currentTrainerIndex, subTitle }: DeleteExtraLetterProps,
+		ref,
+	) => {
 		const { selectedIds, handleSelect } = useLetterClickTrainer({
 			ref,
 			correctIds: payload.correctVariantIds,
@@ -36,9 +35,9 @@ export const DeleteExtraLetter = forwardRef(
 		return (
 			<div className="delete-extra-letter">
 				<div className="delete-extra-letter__container">
-					<span className="trainer-number-title">Тренажер 1</span>
+					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 					<TrainerTitle title={title} />
-
+					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="delete-extra-letter__list">
 						{payload.variants.map(variant => {
 							const isSelected = selectedIds.includes(variant.id)

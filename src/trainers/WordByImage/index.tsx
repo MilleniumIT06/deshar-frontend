@@ -8,6 +8,8 @@ import { useWordTrainer } from '@/hooks/trainers/useWordTrainer'
 
 import './styles.scss'
 import Image from 'next/image'
+import { type TrainerCommonProps } from '@/shared/types/types'
+import { type TrainerRef } from '@/widgets/trainers-engine'
 
 export interface IWordLetter {
 	id: number | string
@@ -18,14 +20,8 @@ export interface IWordSlot {
 	current: string | null
 }
 
-interface WordByImageProps {
-	title: string
-	subTitle?: string
-	status: 'idle' | 'error' | 'success' | 'finish'
-	isLoading?: boolean
-	changeStatus: (status: 'idle' | 'error' | 'success' | 'finish') => void
-	onSuccess?: () => void
-	onError?: () => void
+interface WordByImageProps extends TrainerCommonProps {
+	status: 'idle' | 'error' | 'success'
 	payload: {
 		id: number | string
 		correctAnswer: string
@@ -34,13 +30,8 @@ interface WordByImageProps {
 	}
 }
 
-export interface WordByImageRef {
-	handleCheck: () => void
-	handleReset: () => void
-}
-
-export const WordByImage = forwardRef<WordByImageRef, WordByImageProps>(
-	({ title, subTitle, status, isLoading = false, changeStatus, onSuccess, onError, payload }, ref) => {
+export const WordByImage = forwardRef<TrainerRef, WordByImageProps>(
+	({ title, subTitle, status, changeStatus, onSuccess, onError, payload, currentTrainerIndex }, ref) => {
 		const { correctAnswer, availableLetters, imageUrl, id } = payload
 
 		const {
@@ -76,18 +67,14 @@ export const WordByImage = forwardRef<WordByImageRef, WordByImageProps>(
 			handleCheck: wrappedHandleCheck,
 			handleReset,
 		}))
-
-		if (isLoading) return <div className="p-10 text-center">Загрузка...</div>
-		if (!id) return <div className="p-10 text-center text-red-500">Ошибка загрузки</div>
-
 		return (
 			<div className="word-image-trainer">
 				<DndContext onDragEnd={handleDragEnd} sensors={sensors}>
 					<div className="word-image-trainer__content">
 						<div className="word-image-trainer__header">
-							<span className="trainer-number-title">Тренажер 1</span>
+							<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 							<TrainerTitle title={title} />
-							{subTitle && <h2 className="word-image-trainer__subtitle">{subTitle}</h2>}
+							{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 						</div>
 
 						<div className="word-image-trainer__image-wrapper">

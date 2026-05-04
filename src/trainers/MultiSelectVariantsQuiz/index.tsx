@@ -5,6 +5,8 @@ import { forwardRef } from 'react'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import './styles.scss'
+import { type TrainerCommonProps } from '@/shared/types/types'
+import { type TrainerRef } from '@/widgets/trainers-engine'
 
 interface IVariant {
 	id: number
@@ -12,17 +14,7 @@ interface IVariant {
 	title: string
 }
 
-export interface TrainerRef {
-	handleCheck: () => void
-	handleReset: () => void
-}
-
-interface MultiSelectProps {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface MultiSelectProps extends TrainerCommonProps {
 	payload: {
 		variants: IVariant[]
 		correctVariantIds: number[]
@@ -30,7 +22,7 @@ interface MultiSelectProps {
 }
 
 export const MultiSelectVariantsQuiz = forwardRef<TrainerRef, MultiSelectProps>(
-	({ payload, changeStatus, onError, onSuccess, title, subTitle }, ref) => {
+	({ payload, changeStatus, onError, onSuccess, title, subTitle, currentTrainerIndex }, ref) => {
 		const { selected, isSubmitted, handleSelect } = useQuizLogic<number>({
 			ref,
 			correctValue: payload.correctVariantIds,
@@ -43,10 +35,10 @@ export const MultiSelectVariantsQuiz = forwardRef<TrainerRef, MultiSelectProps>(
 
 		return (
 			<div className="multi-select-quiz">
-				<span className="trainer-number-title">Тренажер 1</span>
+				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 				<TrainerTitle title={title} />
 
-				<h2 className="multi-select-quiz__subtitle">{subTitle}</h2>
+				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 				<div className="multi-select-quiz__wrapper">
 					<ul className="multi-select-quiz__list">

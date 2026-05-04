@@ -3,6 +3,7 @@ import { useImperativeHandle, forwardRef } from 'react'
 import { ArcherContainer, ArcherElement } from 'react-archer'
 import { useCategoryMatcher } from './useCategoryMatcher'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { type TrainerCommonProps } from '@/shared/types/types'
 import cn from 'classnames'
 import './styles.scss'
 
@@ -19,11 +20,7 @@ export interface Category {
 	color: string
 }
 
-interface CategoryMatcherProps {
-	title?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface CategoryMatcherProps extends TrainerCommonProps {
 	payload: {
 		items: CategoryMatcherItem[]
 		categories: Category[]
@@ -31,7 +28,10 @@ interface CategoryMatcherProps {
 }
 
 export const CategoryMatcher = forwardRef(
-	({ payload, onSuccess, onError, changeStatus, title }: CategoryMatcherProps, ref) => {
+	(
+		{ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex }: CategoryMatcherProps,
+		ref,
+	) => {
 		const { items, categories } = payload
 
 		const { connections, activeSource, startConnection, endConnection, mousePos, resetConnections } =
@@ -69,8 +69,9 @@ export const CategoryMatcher = forwardRef(
 
 		return (
 			<div className="category-matcher">
-				<span className="trainer-number-title">Тренажер 1</span>
+				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 				{title && <TrainerTitle title={title} />}
+				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 				<ArcherContainer strokeColor="#4f46e5" strokeWidth={3} endShape={{ arrow: { arrowLength: 0 } }}>
 					<div className="category-matcher__container">
 						{/* Левая колонка (Items) */}

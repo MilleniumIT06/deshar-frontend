@@ -8,8 +8,9 @@
 	}
 
 	&__label {
-		font-size: 14px;
+		font-family: var(--font-family);
 		font-weight: 600;
+		font-size: 14px;
 		color: var(--color-text);
 		margin-left: 4px;
 	}

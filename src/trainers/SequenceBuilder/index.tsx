@@ -6,6 +6,7 @@ import { Slot } from './slot'
 import { Variant } from './variant'
 import './styles.scss'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
 interface ISequenceSlot {
 	slotId: number | string
@@ -18,12 +19,7 @@ interface ISequenceVariant {
 	content: string
 }
 
-interface SequenceBuilderProps {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success' | 'finish') => void
+interface SequenceBuilderProps extends TrainerCommonProps {
 	payload: {
 		slots: ISequenceSlot[]
 		variants: ISequenceVariant[]
@@ -31,7 +27,10 @@ interface SequenceBuilderProps {
 }
 
 export const SequenceBuilder = forwardRef(
-	({ payload, title, subTitle, onSuccess, onError, changeStatus }: SequenceBuilderProps, ref) => {
+	(
+		{ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex }: SequenceBuilderProps,
+		ref,
+	) => {
 		const [currentValues, setCurrentValues] = useState<Record<string | number, string | null>>(
 			Object.fromEntries(payload.slots.map(s => [s.slotId, null])),
 		)
@@ -75,10 +74,10 @@ export const SequenceBuilder = forwardRef(
 			<div className="sequence-builder">
 				<DndContext onDragEnd={handleDragEnd}>
 					<div className="sequence-builder__content">
-						<span className="trainer-number-title">Тренажер 1</span>
+						<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 						<TrainerTitle title={title} />
 
-						{subTitle && <h2 className="sequence-builder__subtitle">{subTitle}</h2>}
+						{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 						<div className="sequence-builder__columns">
 							<div className="sequence-builder__column">

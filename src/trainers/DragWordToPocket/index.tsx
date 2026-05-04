@@ -6,13 +6,9 @@ import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
 import { type TrainerRef } from '@/widgets/trainers-engine'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
-interface DragWordToPocketProps {
-	title: string
-	subTitle: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface DragWordToPocketProps extends TrainerCommonProps {
 	payload: {
 		items: {
 			id: number
@@ -26,7 +22,7 @@ interface DragWordToPocketProps {
 	}
 }
 export const DragWordToPocket = forwardRef<TrainerRef, DragWordToPocketProps>(
-	({ changeStatus, onError, onSuccess, payload, title }, ref) => {
+	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle }, ref) => {
 		const { selections, handleDragEnd, isVariantUsed } = useDndTrainer({
 			items: payload.items,
 			onSuccess,
@@ -41,8 +37,9 @@ export const DragWordToPocket = forwardRef<TrainerRef, DragWordToPocketProps>(
 		return (
 			<DndContext onDragEnd={handleDragEnd}>
 				<div className="DragWordToPocket">
-					<span className="trainer-number-title">Тренажер 1</span>
+					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 					<TrainerTitle title={title} />
+					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="DragWordToPocket__variants">
 						{payload.variants.map(variant => (
 							<Variant

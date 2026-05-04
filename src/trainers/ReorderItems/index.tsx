@@ -21,6 +21,8 @@ import { ReorderableItem } from './item'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import './styles.scss'
+import { type TrainerRef } from '@/widgets/trainers-engine'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
 export interface IOrderItem {
 	id: UniqueIdentifier
@@ -32,22 +34,13 @@ export interface IReorderPayload {
 	correctOrderIds: UniqueIdentifier[]
 }
 
-export interface ReorderItemsRef {
-	handleCheck: () => void
-	handleReset: () => void
-}
-
-interface ReorderItemsProps {
+interface ReorderItemsProps extends TrainerCommonProps {
 	status: 'idle' | 'error' | 'success'
-	title: string
-	changeStatus: (value: 'idle' | 'error' | 'success') => void
 	payload: IReorderPayload
-	onSuccess?: () => void
-	onError?: () => void
 }
 
-export const ReorderItems = forwardRef<ReorderItemsRef, ReorderItemsProps>(
-	({ status, changeStatus, payload, onSuccess, onError, title }, ref) => {
+export const ReorderItems = forwardRef<TrainerRef, ReorderItemsProps>(
+	({ status, changeStatus, payload, onSuccess, onError, title, currentTrainerIndex, subTitle }, ref) => {
 		const [data, setData] = useState<IReorderPayload>(payload)
 
 		const sensors = useSensors(
@@ -91,8 +84,9 @@ export const ReorderItems = forwardRef<ReorderItemsRef, ReorderItemsProps>(
 
 		return (
 			<div className="reorder-items">
-				<span className="trainer-number-title">Тренажер 1</span>
+				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 				<TrainerTitle title={title} />
+				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 				<DndContext
 					sensors={sensors}
 					collisionDetection={closestCenter}

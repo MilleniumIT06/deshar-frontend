@@ -21,3 +21,13 @@ export interface Role {
 	deleted_at: null
 	updated_at: null
 }
+
+export interface TrainerCommonProps {
+	currentTrainerIndex: number
+	title: string
+	subTitle?: string
+	onSuccess: () => void
+	onError: () => void
+	changeStatus: (status: 'idle' | 'error' | 'success') => void
+}
+// {subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}

@@ -4,25 +4,21 @@ import { forwardRef } from 'react'
 import './styles.scss'
 import { AccentLetter } from './item'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
 interface IVariant {
 	id: number | string
 	letter: string
 }
 
-interface AccentTrainerProps {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface AccentTrainerProps extends TrainerCommonProps {
 	payload: {
 		variants: IVariant[]
 		correctVariantIds: (number | string)[]
 	}
 }
 export const AccentTrainer = forwardRef(
-	({ payload, title, subTitle, onSuccess, onError, changeStatus }: AccentTrainerProps, ref) => {
+	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex }: AccentTrainerProps, ref) => {
 		const { selectedIds, handleSelect } = useLetterClickTrainer({
 			ref,
 			correctIds: payload.correctVariantIds,
@@ -37,10 +33,10 @@ export const AccentTrainer = forwardRef(
 		return (
 			<div className="accent-trainer">
 				<div className="accent-trainer__container">
-					<span className="trainer-number-title">Тренажер 1</span>
+					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 					<TrainerTitle title={title} className="accent-trainer__title" />
 
-					{subTitle && <h2 className="accent-trainer__subtitle">{subTitle}</h2>}
+					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 					<div className="accent-trainer__letters">
 						{payload.variants.map(variant => (

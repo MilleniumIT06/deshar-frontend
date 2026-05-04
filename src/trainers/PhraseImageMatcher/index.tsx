@@ -5,13 +5,9 @@ import { Variant } from '../DragWordToPocket/variant'
 import { PhraseImageMatcherItem } from './item'
 import './styles.scss'
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
-interface Props {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface Props extends TrainerCommonProps {
 	payload: {
 		items: {
 			id: number | string
@@ -25,7 +21,7 @@ interface Props {
 	}
 }
 export const PhraseImageMatcher = forwardRef(
-	({ changeStatus, onError, onSuccess, payload, title, subTitle }: Props, ref) => {
+	({ changeStatus, onError, onSuccess, payload, title, subTitle, currentTrainerIndex }: Props, ref) => {
 		const { selections, isSubmitted, handleDragEnd, isVariantUsed } = useDndTrainer({
 			items: payload.items,
 			onSuccess,
@@ -39,9 +35,9 @@ export const PhraseImageMatcher = forwardRef(
 		return (
 			<div className="PhraseImageMatcher">
 				<DndContext onDragEnd={handleDragEnd}>
-					<span className="trainer-number-title">Тренажер 1</span>
+					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 					<TrainerTitle title={title} />
-					{subTitle && <p className="PhraseImageMatcher__subtitle">{subTitle}</p>}
+					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="PhraseImageMatcher__items">
 						{payload.items.map(item => (
 							<PhraseImageMatcherItem

@@ -6,6 +6,7 @@ import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import cn from 'classnames'
 import './styles.scss'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
 type Slot = {
 	id: number
@@ -26,19 +27,25 @@ type ConclusionItem = {
 	completed: boolean
 }
 
-interface ConclusionProps {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface ConclusionProps extends TrainerCommonProps {
 	payload: {
 		data: ConclusionItem[]
 	}
 }
 
 export const Conclusion = forwardRef(
-	({ payload: { data }, onSuccess, onError, changeStatus, title, subTitle }: ConclusionProps, ref) => {
+	(
+		{
+			payload: { data },
+			onSuccess,
+			onError,
+			changeStatus,
+			title,
+			subTitle,
+			currentTrainerIndex,
+		}: ConclusionProps,
+		ref,
+	) => {
 		const [content, setContent] = useState<ConclusionItem[]>([...data])
 		const [currentItemIndex, setCurrentItemIndex] = useState(0)
 		const [isError] = useState(false)
@@ -148,10 +155,10 @@ export const Conclusion = forwardRef(
 		return (
 			<div className="conclusion-trainer">
 				<DndContext onDragEnd={handleDragEnd}>
-					<span className="trainer-number-title">Тренажер 1</span>
+					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 					<TrainerTitle title={title} />
 
-					{subTitle && <h2 className="conclusion-trainer__subtitle">{subTitle}</h2>}
+					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 					<div className="conclusion-trainer__container">
 						<div

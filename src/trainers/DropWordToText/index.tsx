@@ -7,6 +7,8 @@ import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import './styles.scss'
+import { type TrainerCommonProps } from '@/shared/types/types'
+import { type TrainerRef } from '@/widgets/trainers-engine'
 
 interface IVariant {
 	id: number
@@ -19,25 +21,15 @@ interface IPayloadItem {
 	correctVariantId: number
 }
 
-interface DropWordToTextProps {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface DropWordToTextProps extends TrainerCommonProps {
 	payload: {
 		items: IPayloadItem[]
 		variants: IVariant[]
 	}
 }
 
-export interface DropWordRef {
-	handleCheck: () => void
-	handleReset: () => void
-}
-
-export const DropWordToText = forwardRef<DropWordRef, DropWordToTextProps>(
-	({ title, subTitle, onSuccess, onError, changeStatus, payload }, ref) => {
+export const DropWordToText = forwardRef<TrainerRef, DropWordToTextProps>(
+	({ title, subTitle, onSuccess, onError, changeStatus, payload, currentTrainerIndex }, ref) => {
 		const { selections, isSubmitted, handleDragEnd, isVariantUsed } = useDndTrainer({
 			items: payload.items,
 			onSuccess,
@@ -54,9 +46,9 @@ export const DropWordToText = forwardRef<DropWordRef, DropWordToTextProps>(
 			<DndContext onDragEnd={handleDragEnd}>
 				<div className="drop-word-trainer">
 					<div className="drop-word-trainer__header">
-						<span className="trainer-number-title">Тренажер 1</span>
+						<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 						<TrainerTitle title={title} />
-						{subTitle && <p className="drop-word-trainer__subtitle">{subTitle}</p>}
+						{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					</div>
 
 					<div className="drop-word-trainer__items-list">

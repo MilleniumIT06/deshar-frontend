@@ -116,28 +116,8 @@ export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 
 								changeStatus={changeStatus}
 								onError={() => 'error'}
 								onSuccess={handleSuccess}
+								currentIndex={currentTrainerIndex + 1}
 							/>
-							{/* <PhraseImageMatcher
-								ref={trainerRef}
-								subTitle='q'
-								changeStatus={changeStatus}
-								onError={() => 'error'}
-								onSuccess={handleSuccess}
-								title='Перемести нужную фразу к иллюстрации'
-								payload={{
-									items: [
-										{
-											id: 1,
-											correctVariantId: 2,
-											imageUrl: "/images/Engine/Uya.jpg",
-										}
-									],
-									variants: [
-										{ id: 1, value: "Привет! В эфире новости." },
-										{ id: 2, value: "У нас хорошая погода" },
-										{ id: 3, value: "Вариант 3" }
-									]
-								}} /> */}
 						</div>
 					</main>
 

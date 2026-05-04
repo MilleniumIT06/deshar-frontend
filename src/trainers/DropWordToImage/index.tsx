@@ -6,13 +6,10 @@ import { forwardRef } from 'react'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
 import './styles.scss'
+import { type TrainerCommonProps } from '@/shared/types/types'
+import { type TrainerRef } from '@/widgets/trainers-engine'
 
-interface DropWordToImageProps {
-	title: string
-	subTitle: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success' | 'finish') => void
+interface DropWordToImageProps extends TrainerCommonProps {
 	payload: {
 		items: {
 			id: number
@@ -25,13 +22,9 @@ interface DropWordToImageProps {
 		}[]
 	}
 }
-export interface DropWordToImageRef {
-	handleCheck: () => void
-	handleReset: () => void
-}
 
-export const DropWordToImage = forwardRef<DropWordToImageRef, DropWordToImageProps>(
-	({ payload, onSuccess, onError, changeStatus, title, subTitle }, ref) => {
+export const DropWordToImage = forwardRef<TrainerRef, DropWordToImageProps>(
+	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex }, ref) => {
 		const { selections, isSubmitted, handleDragEnd, isVariantUsed } = useDndTrainer({
 			items: payload.items,
 			onSuccess,
@@ -48,9 +41,9 @@ export const DropWordToImage = forwardRef<DropWordToImageRef, DropWordToImagePro
 		return (
 			<DndContext onDragEnd={handleDragEnd}>
 				<div className="trainer-dnd">
-					<span className="trainer-number-title">Тренажер 1</span>
+					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 					<TrainerTitle title={title} />
-					{subTitle && <p className="trainer-dnd__subtitle">{subTitle}</p>}
+					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 					<div className="trainer-dnd__drop-zone">
 						{payload.items.map(item => (

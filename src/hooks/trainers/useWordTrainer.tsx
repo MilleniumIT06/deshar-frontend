@@ -15,7 +15,7 @@ interface UseWordTrainerProps {
 	id: string | number
 	correctAnswer: string
 	availableLetters: ILetter[]
-	changeStatus: (status: 'idle' | 'error' | 'success' | 'finish') => void
+	changeStatus: (status: 'idle' | 'error' | 'success') => void
 }
 
 export const useWordTrainer = ({ id, correctAnswer, availableLetters, changeStatus }: UseWordTrainerProps) => {

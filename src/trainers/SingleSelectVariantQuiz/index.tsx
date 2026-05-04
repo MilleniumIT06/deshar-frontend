@@ -5,6 +5,7 @@ import { Variant } from '../MultiSelectVariantsQuiz/item'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { useQuizLogic } from '@/hooks/trainers/useQuiz'
 import './styles.scss'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
 interface IVariant {
 	id: number
@@ -17,13 +18,7 @@ export interface TrainerRef {
 	handleReset: () => void
 }
 
-interface SingleSelectProps {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	// status: "idle" | "error" | "success";
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface SingleSelectProps extends TrainerCommonProps {
 	payload: {
 		variants: IVariant[]
 		correctVariantId: number
@@ -31,7 +26,7 @@ interface SingleSelectProps {
 }
 
 export const SingleSelectVariantQuiz = forwardRef<TrainerRef, SingleSelectProps>(
-	({ payload, changeStatus, onError, onSuccess, title, subTitle }, ref) => {
+	({ payload, changeStatus, onError, onSuccess, title, subTitle, currentTrainerIndex }, ref) => {
 		const { selected, isSubmitted, handleSelect } = useQuizLogic<number>({
 			ref,
 			correctValue: payload.correctVariantId,
@@ -41,10 +36,10 @@ export const SingleSelectVariantQuiz = forwardRef<TrainerRef, SingleSelectProps>
 		})
 		return (
 			<div className="single-select-quiz">
-				<span className="trainer-number-title">Тренажер 1</span>
+				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 				<TrainerTitle title={title} />
 
-				{subTitle && <h2 className="single-select-quiz__subtitle">{subTitle}</h2>}
+				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 				<div className="single-select-quiz__container">
 					<ul className="single-select-quiz__list">

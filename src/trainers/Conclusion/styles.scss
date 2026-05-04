@@ -8,14 +8,6 @@
 	padding-top: 40px;
 	gap: 30px;
 
-	&__subtitle {
-		font-weight: 600;
-		font-size: 30px;
-		line-height: 140%;
-		text-align: center;
-		color: var(--text-color);
-	}
-
 	&__container {
 		max-width: 1000px;
 		display: flex;

@@ -11,13 +11,8 @@ export const SupportModalContent = ({ onSubmit, onCancel }: { onSubmit?: () => v
 			<div className="support-form__divider" />
 
 			<div className="support-form__fields">
-				<EngineInput fullWidth placeholder="E-mail" label="E-mail" className="support-form__input" />
-				<Textarea
-					fullWidth
-					placeholder="Комментарий"
-					label="Комментарий"
-					className="support-form__textarea"
-				/>
+				<EngineInput fullWidth label="E-mail" className="support-form__input" />
+				<Textarea fullWidth label="Комментарий" className="support-form__textarea" />
 			</div>
 
 			<div className="support-form__actions">

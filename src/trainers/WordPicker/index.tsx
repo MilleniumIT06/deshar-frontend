@@ -4,13 +4,9 @@ import { forwardRef, useImperativeHandle } from 'react'
 import cn from 'classnames'
 
 import './styles.scss'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
-interface WordPickerProps {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface WordPickerProps extends TrainerCommonProps {
 	payload: {
 		text: string
 		correctValues: string[]
@@ -18,7 +14,7 @@ interface WordPickerProps {
 }
 
 export const WordPicker = forwardRef(
-	({ title, subTitle, onError, onSuccess, changeStatus, payload }: WordPickerProps, ref) => {
+	({ title, subTitle, onError, onSuccess, changeStatus, payload, currentTrainerIndex }: WordPickerProps, ref) => {
 		const { words, toggleWord, checkResult, reset } = useWordPicker({
 			text: payload.text,
 			correctValues: payload.correctValues,
@@ -35,10 +31,10 @@ export const WordPicker = forwardRef(
 		return (
 			<div className="word-picker">
 				<div className="word-picker__content">
-					<span className="trainer-number-title">Тренажер 1</span>
+					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 					<TrainerTitle title={title} />
 
-					{subTitle && <h2 className="word-picker__subtitle">{subTitle}</h2>}
+					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 					<div className="word-picker__interactive-zone">
 						<button type="button" className="word-picker__audio-button">

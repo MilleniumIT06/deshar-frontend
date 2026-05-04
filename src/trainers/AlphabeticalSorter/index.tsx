@@ -3,15 +3,11 @@ import { AlphabeticalSlot } from './Slot'
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
 import { AlphabeticalSorterVariant } from './Variant'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
 import './styles.scss'
 
-interface AlphabeticalSorterProps {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (value: 'idle' | 'error' | 'success') => void
+interface AlphabeticalSorterProps extends TrainerCommonProps {
 	payload: {
 		slots: {
 			id: number
@@ -31,7 +27,7 @@ export interface AlphabeticalSorterRef {
 }
 
 export const AlphabeticalSorter = forwardRef<AlphabeticalSorterRef, AlphabeticalSorterProps>(
-	({ payload, onSuccess, onError, changeStatus, title }, ref) => {
+	({ payload, onSuccess, onError, changeStatus, title, currentTrainerIndex, subTitle }, ref) => {
 		const [slots, setSlots] = useState(
 			payload.slots.map(item => ({ ...item, currentValue: null as string | null })),
 		)
@@ -71,9 +67,9 @@ export const AlphabeticalSorter = forwardRef<AlphabeticalSorterRef, Alphabetical
 		return (
 			<div className="alphabetical-sorter">
 				<DndContext onDragEnd={handleDragEnd}>
-					<span className="trainer-number-title">Тренажер 1</span>
+					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 					<TrainerTitle title={title} />
-
+					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="alphabetical-sorter__grid">
 						{slots.map((slot, index) => (
 							<AlphabeticalSlot

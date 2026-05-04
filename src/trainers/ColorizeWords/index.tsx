@@ -3,6 +3,7 @@ import './styles.scss'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { EngineButton } from '@/components/Engine/Button'
 import cn from 'classnames'
+import { type TrainerCommonProps } from '@/shared/types/types'
 
 export interface Tool {
 	type: 'paint' | 'erase'
@@ -16,12 +17,7 @@ interface IVariant {
 	correctColor: string
 }
 
-interface ColorizeWordsProps {
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+interface ColorizeWordsProps extends TrainerCommonProps {
 	payload: {
 		variants: IVariant[]
 		tools: Tool[]
@@ -33,7 +29,7 @@ interface WordState extends IVariant {
 }
 
 export const ColorizeWords = forwardRef(
-	({ payload, title, subTitle, onSuccess, onError, changeStatus }: ColorizeWordsProps, ref) => {
+	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex }: ColorizeWordsProps, ref) => {
 		const { variants, tools } = payload
 
 		const [selectedTool, setSelectedTool] = useState<Tool>(tools[0])
@@ -79,10 +75,10 @@ export const ColorizeWords = forwardRef(
 
 		return (
 			<div className="colorize-words">
-				<span className="trainer-number-title">Тренажер 1</span>
+				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 				<TrainerTitle title={title} />
 
-				{subTitle && <h2 className="colorize-words__subtitle">{subTitle}</h2>}
+				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 				<div className="colorize-words__content">
 					<div className="colorize-words__grid">
