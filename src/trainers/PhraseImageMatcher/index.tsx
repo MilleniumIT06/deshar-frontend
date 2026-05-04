@@ -39,6 +39,7 @@ export const PhraseImageMatcher = forwardRef(
 		return (
 			<div className="PhraseImageMatcher">
 				<DndContext onDragEnd={handleDragEnd}>
+					<span className="trainer-number-title">Тренажер 1</span>
 					<TrainerTitle title={title} />
 					{subTitle && <p className="PhraseImageMatcher__subtitle">{subTitle}</p>}
 					<div className="PhraseImageMatcher__items">

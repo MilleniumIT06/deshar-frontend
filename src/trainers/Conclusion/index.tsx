@@ -148,6 +148,7 @@ export const Conclusion = forwardRef(
 		return (
 			<div className="conclusion-trainer">
 				<DndContext onDragEnd={handleDragEnd}>
+					<span className="trainer-number-title">Тренажер 1</span>
 					<TrainerTitle title={title} />
 
 					{subTitle && <h2 className="conclusion-trainer__subtitle">{subTitle}</h2>}

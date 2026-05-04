@@ -41,6 +41,7 @@ export const SingleSelectVariantQuiz = forwardRef<TrainerRef, SingleSelectProps>
 		})
 		return (
 			<div className="single-select-quiz">
+				<span className="trainer-number-title">Тренажер 1</span>
 				<TrainerTitle title={title} />
 
 				{subTitle && <h2 className="single-select-quiz__subtitle">{subTitle}</h2>}

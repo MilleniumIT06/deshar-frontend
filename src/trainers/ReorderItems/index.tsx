@@ -20,6 +20,8 @@ import { restrictToHorizontalAxis } from '@dnd-kit/modifiers'
 import { ReorderableItem } from './item'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
+import './styles.scss'
+
 export interface IOrderItem {
 	id: UniqueIdentifier
 	content: string
@@ -88,7 +90,8 @@ export const ReorderItems = forwardRef<ReorderItemsRef, ReorderItemsProps>(
 		}
 
 		return (
-			<div>
+			<div className="reorder-items">
+				<span className="trainer-number-title">Тренажер 1</span>
 				<TrainerTitle title={title} />
 				<DndContext
 					sensors={sensors}

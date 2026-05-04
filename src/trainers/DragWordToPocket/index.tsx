@@ -41,6 +41,7 @@ export const DragWordToPocket = forwardRef<TrainerRef, DragWordToPocketProps>(
 		return (
 			<DndContext onDragEnd={handleDragEnd}>
 				<div className="DragWordToPocket">
+					<span className="trainer-number-title">Тренажер 1</span>
 					<TrainerTitle title={title} />
 					<div className="DragWordToPocket__variants">
 						{payload.variants.map(variant => (

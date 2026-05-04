@@ -79,6 +79,7 @@ export const ColorizeWords = forwardRef(
 
 		return (
 			<div className="colorize-words">
+				<span className="trainer-number-title">Тренажер 1</span>
 				<TrainerTitle title={title} />
 
 				{subTitle && <h2 className="colorize-words__subtitle">{subTitle}</h2>}

@@ -43,6 +43,7 @@ export const MultiSelectVariantsQuiz = forwardRef<TrainerRef, MultiSelectProps>(
 
 		return (
 			<div className="multi-select-quiz">
+				<span className="trainer-number-title">Тренажер 1</span>
 				<TrainerTitle title={title} />
 
 				<h2 className="multi-select-quiz__subtitle">{subTitle}</h2>

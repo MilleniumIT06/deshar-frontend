@@ -71,6 +71,7 @@ export const AlphabeticalSorter = forwardRef<AlphabeticalSorterRef, Alphabetical
 		return (
 			<div className="alphabetical-sorter">
 				<DndContext onDragEnd={handleDragEnd}>
+					<span className="trainer-number-title">Тренажер 1</span>
 					<TrainerTitle title={title} />
 
 					<div className="alphabetical-sorter__grid">

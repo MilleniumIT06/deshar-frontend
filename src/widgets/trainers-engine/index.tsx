@@ -108,7 +108,6 @@ export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 
 							<HelpTrigger handleClick={handleSupportModalClick} />
 							<Hint handleClick={() => 'clicked'} hintText={'Test text'} />
 						</div>
-
 						<div className="trainers-engine__content">
 							<RenderTrainer
 								ref={trainerRef}

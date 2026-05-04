@@ -69,6 +69,7 @@ export const CategoryMatcher = forwardRef(
 
 		return (
 			<div className="category-matcher">
+				<span className="trainer-number-title">Тренажер 1</span>
 				{title && <TrainerTitle title={title} />}
 				<ArcherContainer strokeColor="#4f46e5" strokeWidth={3} endShape={{ arrow: { arrowLength: 0 } }}>
 					<div className="category-matcher__container">

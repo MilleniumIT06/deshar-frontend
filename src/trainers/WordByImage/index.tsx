@@ -85,6 +85,7 @@ export const WordByImage = forwardRef<WordByImageRef, WordByImageProps>(
 				<DndContext onDragEnd={handleDragEnd} sensors={sensors}>
 					<div className="word-image-trainer__content">
 						<div className="word-image-trainer__header">
+							<span className="trainer-number-title">Тренажер 1</span>
 							<TrainerTitle title={title} />
 							{subTitle && <h2 className="word-image-trainer__subtitle">{subTitle}</h2>}
 						</div>

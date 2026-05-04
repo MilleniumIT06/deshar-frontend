@@ -40,6 +40,7 @@ export const SingleSelectImageQuiz = forwardRef<TrainerRef, SingleSelectImageQui
 		return (
 			<div className="SingleSelectImageQuiz">
 				<div className="SingleSelectImageQuiz__inner">
+					<span className="trainer-number-title">Тренажер 1</span>
 					<TrainerTitle title={title} />
 
 					<div className="SingleSelectImageQuiz__content">

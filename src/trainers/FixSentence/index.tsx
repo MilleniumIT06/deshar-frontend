@@ -68,6 +68,7 @@ export const FixSentence = forwardRef(
 
 		return (
 			<div className="fix-sentence">
+				<span className="trainer-number-title">Тренажер 1</span>
 				<TrainerTitle title={title} />
 
 				{subTitle && <h2 className="fix-sentence__subtitle">{subTitle}</h2>}

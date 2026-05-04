@@ -36,6 +36,7 @@ export const DeleteExtraLetter = forwardRef(
 		return (
 			<div className="delete-extra-letter">
 				<div className="delete-extra-letter__container">
+					<span className="trainer-number-title">Тренажер 1</span>
 					<TrainerTitle title={title} />
 
 					<div className="delete-extra-letter__list">

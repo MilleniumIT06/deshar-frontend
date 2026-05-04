@@ -37,6 +37,7 @@ export const AccentTrainer = forwardRef(
 		return (
 			<div className="accent-trainer">
 				<div className="accent-trainer__container">
+					<span className="trainer-number-title">Тренажер 1</span>
 					<TrainerTitle title={title} className="accent-trainer__title" />
 
 					{subTitle && <h2 className="accent-trainer__subtitle">{subTitle}</h2>}

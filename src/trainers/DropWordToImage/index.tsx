@@ -48,6 +48,7 @@ export const DropWordToImage = forwardRef<DropWordToImageRef, DropWordToImagePro
 		return (
 			<DndContext onDragEnd={handleDragEnd}>
 				<div className="trainer-dnd">
+					<span className="trainer-number-title">Тренажер 1</span>
 					<TrainerTitle title={title} />
 					{subTitle && <p className="trainer-dnd__subtitle">{subTitle}</p>}
 

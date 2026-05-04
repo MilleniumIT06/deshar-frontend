@@ -75,6 +75,7 @@ export const SequenceBuilder = forwardRef(
 			<div className="sequence-builder">
 				<DndContext onDragEnd={handleDragEnd}>
 					<div className="sequence-builder__content">
+						<span className="trainer-number-title">Тренажер 1</span>
 						<TrainerTitle title={title} />
 
 						{subTitle && <h2 className="sequence-builder__subtitle">{subTitle}</h2>}

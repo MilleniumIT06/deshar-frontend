@@ -54,6 +54,7 @@ export const DropWordToText = forwardRef<DropWordRef, DropWordToTextProps>(
 			<DndContext onDragEnd={handleDragEnd}>
 				<div className="drop-word-trainer">
 					<div className="drop-word-trainer__header">
+						<span className="trainer-number-title">Тренажер 1</span>
 						<TrainerTitle title={title} />
 						{subTitle && <p className="drop-word-trainer__subtitle">{subTitle}</p>}
 					</div>

@@ -35,6 +35,7 @@ export const WordPicker = forwardRef(
 		return (
 			<div className="word-picker">
 				<div className="word-picker__content">
+					<span className="trainer-number-title">Тренажер 1</span>
 					<TrainerTitle title={title} />
 
 					{subTitle && <h2 className="word-picker__subtitle">{subTitle}</h2>}
