@@ -44,7 +44,7 @@ export interface TrainerRef {
 	handleCheck: () => void
 	handleReset: () => void
 }
-export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 'forest' | 's' | 'default' }) => {
+export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 'forest' | 's' | 'o' | 'default' }) => {
 	const dispatch = useAppDispatch()
 	const { status, currentTrainerIndex, isMenuOpen, isHelpOpen, isSupportModalOpen } = useAppSelector(
 		(state: RootState) => state.engine,

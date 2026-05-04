@@ -40,16 +40,19 @@
 	background-size: cover;
 	background-position: center;
 	&.towers {
-		background-image: url('/images/Engine/theme-towers.jpg');
+		background-image: url('/images/Engine/Themes/theme-towers.jpg');
 	}
 	&.forest {
-		background-image: url('/images/Engine/theme-forest.jpg');
+		background-image: url('/images/Engine/Themes/theme-forest.jpg');
 	}
 	&.ocean {
-		background-image: url('/images/Engine/theme-ocean.jpg');
+		background-image: url('/images/Engine/Themes/theme-ocean.jpg');
 	}
 	&.s {
-		background-image: url('/images/Engine/theme-s.jpg');
+		background-image: url('/images/Engine/Themes/theme-s.jpg');
+	}
+	&.o {
+		background-image: url('/images/Engine/Themes/theme-o.jpg');
 	}
 	&.default {
 		background-image: none;
