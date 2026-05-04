@@ -27,6 +27,7 @@ import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import cn from 'classnames'
 
 import './styles.scss'
+// import { m, AnimatePresence } from 'motion/react'
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
 	ssr: false,
@@ -90,6 +91,17 @@ export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 
 	const handleSuccess = () => {
 		dispatch(addPoints(currentTrainerData.scoring.points))
 	}
+
+	useEffect(() => {
+		let timeoutId: NodeJS.Timeout
+		if (status === 'success') {
+			timeoutId = setTimeout(() => {
+				handleNext()
+			}, 1000)
+		}
+		return () => clearTimeout(timeoutId)
+	}, [status])
+
 	return (
 		<div className={cn('trainers-engine', themeName)}>
 			{status !== 'finish' && (
@@ -109,6 +121,15 @@ export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 
 							<Hint handleClick={() => 'clicked'} hintText={'Test text'} />
 						</div>
 						<div className="trainers-engine__content">
+							{/* <AnimatePresence mode="wait"> 
+								<m.div
+									key={currentTrainerIndex}
+									initial={{ opacity: 0, x: 20 }}   
+									animate={{ opacity: 1, x: 0 }}    
+									exit={{ opacity: 0, x: -20 }}
+									transition={{ duration: 0.3 }}    
+								> */}
+
 							<RenderTrainer
 								ref={trainerRef}
 								type={currentTrainerData.type}
@@ -118,6 +139,8 @@ export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 
 								onSuccess={handleSuccess}
 								currentIndex={currentTrainerIndex + 1}
 							/>
+							{/* </m.div> */}
+							{/* </AnimatePresence> */}
 						</div>
 					</main>
 
@@ -129,7 +152,7 @@ export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 
 								timerRef={timerRef}
 							/>
 						)}
-						{status === 'success' && <SuccessFooter onContinueBtnClick={handleNext} />}
+						{status === 'success' && <SuccessFooter />}
 						{status === 'error' && <ErrorFooter handleReset={onResetButtonClick} />}
 					</footer>
 				</div>
