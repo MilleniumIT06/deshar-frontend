@@ -10,15 +10,15 @@ import { Button } from '@/shared/ui/Button'
 import { Logo } from '@/shared/ui/Logo'
 
 import './styles.scss'
-import { useAppDispatch } from '@/app/_store/hooks'
-import { logout } from '@/entities/user/model/user.slice'
+// import { useAppDispatch } from '@/app/_store/hooks'
+// import { logout } from '@/entities/user/model/user.slice'
 
 export const Header = () => {
 	const [burgerOpen, setBurgerOpen] = useState(false)
 	const isAuth = useAuth()
-	console.log('Header render, isAuth:', isAuth)
+	// console.log('Header render, isAuth:', isAuth)
 	const [mounted, setMounted] = useState(false)
-	const dispatch = useAppDispatch()
+	// const dispatch = useAppDispatch()
 	useEffect(() => {
 		setMounted(true)
 	}, [])
@@ -84,7 +84,7 @@ export const Header = () => {
 							</li>
 						</ul>
 					</nav>
-					<button onClick={() => dispatch(logout())}>logout</button>
+					{/* <button onClick={() => dispatch(logout())}>logout</button> */}
 					<div className="Header__right">
 						{mounted &&
 							(isAuth ? (

@@ -4,12 +4,12 @@ import type { NextRequest } from 'next/server'
 export function proxy(request: NextRequest) {
 	// Получаем токен из cookies (в proxy/middleware нет доступа к localStorage)
 	const token = request.cookies.get('auth_token')?.value
-	const { pathname } = request.nextUrl
+	// const { pathname } = request.nextUrl
 	// Для теста оставим true, но логика проверки токена ниже:
-	const isAuthenticated = Boolean(token)
-	if (isAuthenticated && (pathname === '/' || pathname === '/sign-in')) {
-		return NextResponse.redirect(new URL('/dashboard', request.url))
-	}
+	const isAuthenticated = Boolean(token) || true
+	// if (isAuthenticated && (pathname === '/' || pathname === '/sign-in')) {
+	// 	return NextResponse.redirect(new URL('/dashboard', request.url))
+	// }
 	// Если пользователь не авторизован, перенаправляем на страницу входа
 	if (!isAuthenticated) {
 		const signInUrl = new URL('/sign-in', request.url)

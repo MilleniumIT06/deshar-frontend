@@ -36,4 +36,22 @@
 		align-items: center;
 		justify-content: center;
 	}
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	&.towers {
+		background-image: url('/images/Engine/theme-towers.jpg');
+	}
+	&.forest {
+		background-image: url('/images/Engine/theme-forest.jpg');
+	}
+	&.ocean {
+		background-image: url('/images/Engine/theme-ocean.jpg');
+	}
+	&.s {
+		background-image: url('/images/Engine/theme-s.jpg');
+	}
+	&.default {
+		background-image: none;
+	}
 }

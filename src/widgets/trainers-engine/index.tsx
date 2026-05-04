@@ -24,10 +24,9 @@ import RenderTrainer from './render-trainer'
 import { testCardMock } from '@/mocks/data'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 
+import cn from 'classnames'
+
 import './styles.scss'
-// import { PhraseImageMatcher } from '@/trainers/PhraseImageMatcher'
-// import { DragWordToPocket } from '@/trainers/DragWordToPocket'
-// import { DragWordToPocket } from '@/trainers/DragWordToPocket'
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
 	ssr: false,
@@ -45,7 +44,7 @@ export interface TrainerRef {
 	handleCheck: () => void
 	handleReset: () => void
 }
-export const TrainersEngine = () => {
+export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 'forest' | 's' | 'default' }) => {
 	const dispatch = useAppDispatch()
 	const { status, currentTrainerIndex, isMenuOpen, isHelpOpen, isSupportModalOpen } = useAppSelector(
 		(state: RootState) => state.engine,
@@ -92,7 +91,7 @@ export const TrainersEngine = () => {
 		dispatch(addPoints(currentTrainerData.scoring.points))
 	}
 	return (
-		<div className="trainers-engine">
+		<div className={cn('trainers-engine', themeName)}>
 			{status !== 'finish' && (
 				<div className="trainers-engine__container">
 					<EngineHeader
