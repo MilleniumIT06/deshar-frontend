@@ -66,7 +66,7 @@ export const ErrorFooter = ({ handleReset }: { handleReset: () => void }) => {
 							/>
 						</svg>
 					</EngineButton>
-					<EngineButton variant="secondary" className="error-footer__btn error-footer__btn--continue">
+					{/* <EngineButton variant="secondary" className="error-footer__btn error-footer__btn--continue">
 						продолжить
 						<svg
 							className="error-footer__btn-icon"
@@ -79,7 +79,7 @@ export const ErrorFooter = ({ handleReset }: { handleReset: () => void }) => {
 								fill="white"
 							/>
 						</svg>
-					</EngineButton>
+					</EngineButton> */}
 				</div>
 			</div>
 		</footer>

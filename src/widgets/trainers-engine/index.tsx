@@ -23,11 +23,11 @@ import { initTimer } from '@/entities/engine/model/timer.slice'
 import RenderTrainer from './render-trainer'
 import { testCardMock } from '@/mocks/data'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
+import { m, AnimatePresence } from 'motion/react'
 
 import cn from 'classnames'
 
 import './styles.scss'
-// import { m, AnimatePresence } from 'motion/react'
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
 	ssr: false,
@@ -121,26 +121,24 @@ export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 
 							<Hint handleClick={() => 'clicked'} hintText={'Test text'} />
 						</div>
 						<div className="trainers-engine__content">
-							{/* <AnimatePresence mode="wait"> 
+							<AnimatePresence mode="wait">
 								<m.div
 									key={currentTrainerIndex}
-									initial={{ opacity: 0, x: 20 }}   
-									animate={{ opacity: 1, x: 0 }}    
+									initial={{ opacity: 0, x: 20 }}
+									animate={{ opacity: 1, x: 0 }}
 									exit={{ opacity: 0, x: -20 }}
-									transition={{ duration: 0.3 }}    
-								> */}
-
-							<RenderTrainer
-								ref={trainerRef}
-								type={currentTrainerData.type}
-								data={currentTrainerData}
-								changeStatus={changeStatus}
-								onError={() => 'error'}
-								onSuccess={handleSuccess}
-								currentIndex={currentTrainerIndex + 1}
-							/>
-							{/* </m.div> */}
-							{/* </AnimatePresence> */}
+									transition={{ duration: 0.3 }}>
+									<RenderTrainer
+										ref={trainerRef}
+										type={currentTrainerData.type}
+										data={currentTrainerData}
+										changeStatus={changeStatus}
+										onError={() => 'error'}
+										onSuccess={handleSuccess}
+										currentIndex={currentTrainerIndex + 1}
+									/>
+								</m.div>
+							</AnimatePresence>
 						</div>
 					</main>
 
