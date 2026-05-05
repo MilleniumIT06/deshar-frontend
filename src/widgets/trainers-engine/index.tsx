@@ -17,6 +17,7 @@ import {
 	setIsMenuOpen,
 	setHelpModalOpen,
 	setSupportModalOpen,
+	setTheme,
 } from '@/entities/engine/model/engine.slice'
 import { resetScore, addPoints } from '@/entities/engine/model/scoring.slice'
 import { initTimer } from '@/entities/engine/model/timer.slice'
@@ -28,6 +29,7 @@ import { m, AnimatePresence } from 'motion/react'
 import cn from 'classnames'
 
 import './styles.scss'
+import { type TrainerTheme } from '@/shared/types/types'
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
 	ssr: false,
@@ -45,7 +47,15 @@ export interface TrainerRef {
 	handleCheck: () => void
 	handleReset: () => void
 }
-export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 'forest' | 's' | 'o' | 'default' }) => {
+interface TrainersEngineProps {
+	config: {
+		themeName: TrainerTheme
+		time: number
+	}
+}
+export const TrainersEngine = ({ config }: TrainersEngineProps) => {
+	const { themeName, time } = config
+
 	const dispatch = useAppDispatch()
 	const { status, currentTrainerIndex, isMenuOpen, isHelpOpen, isSupportModalOpen } = useAppSelector(
 		(state: RootState) => state.engine,
@@ -62,13 +72,14 @@ export const TrainersEngine = ({ themeName }: { themeName: 'towers' | 'ocean' | 
 		trainerRef.current?.handleReset()
 		if (isFinished && status === 'error') {
 			dispatch(resetTrainers())
-			dispatch(initTimer(2 * 60))
+			dispatch(initTimer(time))
 			dispatch(resetScore())
 		}
 	}
 
 	useEffect(() => {
-		dispatch(initTimer(2 * 60))
+		dispatch(initTimer(time))
+		dispatch(setTheme(themeName))
 	}, [])
 	const handleNext = () => {
 		dispatch(nextTrainer({ totalTrainers: testCardMock.length }))

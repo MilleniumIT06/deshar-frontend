@@ -3,7 +3,13 @@ import { useState } from 'react'
 import './styles.scss'
 
 const EagleModel = () => (
-	<svg width="199" height="272" viewBox="0 0 199 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<svg
+		className="HintEagleModel"
+		width="199"
+		height="272"
+		viewBox="0 0 199 272"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg">
 		<g clipPath="url(#clip0_23_2364)">
 			<path
 				d="M157.888 258.782C159.459 247.031 125.399 232.794 81.8131 226.984C38.2275 221.174 1.62121 225.99 0.0506944 237.742C-1.51982 249.493 32.5402 263.73 76.1258 269.54C119.711 275.35 156.318 270.534 157.888 258.782Z"

@@ -1,7 +1,10 @@
+'use client'
 import { type RefObject } from 'react'
 import './footer.scss'
 import { EngineButton } from '@/components/Engine/Button'
 import { Timer, type TimerRef } from '@/components/Engine/Timer'
+import { useAppSelector } from '@/app/_store/hooks'
+import cn from 'classnames'
 
 export const EngineFooter = ({
 	timerRef,
@@ -12,8 +15,10 @@ export const EngineFooter = ({
 	onTimerEnd: () => void
 	onClickBtn: () => void
 }) => {
+	const theme = useAppSelector(state => state.engine.theme)
+
 	return (
-		<footer className="engine-footer">
+		<footer className={cn('engine-footer', theme)}>
 			<div className="engine-footer__container">
 				<EngineButton variant="secondary" className="engine-footer__back-btn">
 					<div className="engine-footer__back-content">

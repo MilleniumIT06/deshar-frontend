@@ -31,3 +31,5 @@ export interface TrainerCommonProps {
 	changeStatus: (status: 'idle' | 'error' | 'success') => void
 }
 // {subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
+
+export type TrainerTheme = 'towers' | 'ocean' | 'forest' | 's' | 'o' | 'default'

@@ -7,5 +7,5 @@ const TrainersEngine = dynamic(() => import('@/widgets/trainers-engine').then(mo
 })
 
 export const PracticeContent = () => {
-	return <TrainersEngine themeName="forest" />
+	return <TrainersEngine config={{ themeName: 'towers', time: 3 * 60 }} />
 }
