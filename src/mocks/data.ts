@@ -996,6 +996,9 @@ export const testCardMock: {
 		points: number
 		penaltyPerMistake: number
 	}
+	// нужны ли поля:
+	// errorExplanation - пояснение к ошибке
+	// hint - подсказка
 }[] = [
 	{
 		type: 'accent-trainer',

@@ -118,7 +118,6 @@ export const TrainersEngine = ({ config }: TrainersEngineProps) => {
 			{status !== 'finish' && (
 				<div className="trainers-engine__container">
 					<EngineHeader
-						// className="trainers-engine__header"
 						handleMenuClick={handleMenuClick}
 						menuIsOpen={isMenuOpen}
 						handleHelpMenuOpen={handleHelpMenuClick}
@@ -129,7 +128,10 @@ export const TrainersEngine = ({ config }: TrainersEngineProps) => {
 					<main className="trainers-engine__main">
 						<div className="trainers-engine__side-controls">
 							<HelpTrigger handleClick={handleSupportModalClick} />
-							<Hint handleClick={() => 'clicked'} hintText={'Test text'} />
+							<Hint
+								handleClick={() => 'clicked'}
+								hintText={'Test text loremaqe west? Hellot Ye;yj'}
+							/>
 						</div>
 						<div className="trainers-engine__content">
 							<AnimatePresence mode="wait">
