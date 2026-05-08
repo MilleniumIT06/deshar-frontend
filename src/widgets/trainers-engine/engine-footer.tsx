@@ -30,7 +30,10 @@ export const EngineFooter = ({
 	return (
 		<div className={cn('engine-footer', theme)}>
 			<div className="engine-footer__container">
-				<EngineButton variant="secondary" className="engine-footer__back-btn">
+				<EngineButton
+					disabled={isBlocked || status !== 'idle'}
+					variant="secondary"
+					className="engine-footer__back-btn">
 					<div className="engine-footer__back-content">
 						<svg
 							className="engine-footer__back-icon"
