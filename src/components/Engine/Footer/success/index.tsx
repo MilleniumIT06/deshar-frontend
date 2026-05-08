@@ -3,7 +3,7 @@ import './styles.scss'
 
 export const SuccessFooter = ({ onContinueBtnClick }: { onContinueBtnClick?: () => void }) => {
 	return (
-		<footer className="success-footer">
+		<div className="success-footer">
 			<div className="success-footer__container">
 				<div className="success-footer__status">
 					<div className="success-footer__icon-wrapper">
@@ -47,6 +47,6 @@ export const SuccessFooter = ({ onContinueBtnClick }: { onContinueBtnClick?: () 
 					)}
 				</div>
 			</div>
-		</footer>
+		</div>
 	)
 }

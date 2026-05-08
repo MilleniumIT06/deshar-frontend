@@ -6,12 +6,12 @@
 	width: 95px;
 	height: 107px;
 
-	background-color: var(--white);
+	background-color: var(--neutral-white);
 	border: 0.5px solid var(--bg-gray-color);
 	border-radius: 8px;
 	box-shadow:
 		5px 5px 15px 0 #e9ecf4,
-		-5px -5px 15px 0 var(--white);
+		-5px -5px 15px 0 var(--neutral-white);
 
 	cursor: grab;
 	user-select: none;

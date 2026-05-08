@@ -1,5 +1,5 @@
 'use client'
-import { type RefObject } from 'react'
+import { useEffect, useState, type RefObject } from 'react'
 import './footer.scss'
 import { EngineButton } from '@/components/Engine/Button'
 import { Timer, type TimerRef } from '@/components/Engine/Timer'
@@ -15,10 +15,20 @@ export const EngineFooter = ({
 	onTimerEnd: () => void
 	onClickBtn: () => void
 }) => {
-	const theme = useAppSelector(state => state.engine.theme)
+	const { theme, status } = useAppSelector(state => state.engine)
+	const [isBlocked, setIsBlocked] = useState(true)
+
+	useEffect(() => {
+		setIsBlocked(true)
+		const timer = setTimeout(() => {
+			setIsBlocked(false)
+		}, 1500)
+
+		return () => clearTimeout(timer)
+	}, [])
 
 	return (
-		<footer className={cn('engine-footer', theme)}>
+		<div className={cn('engine-footer', theme)}>
 			<div className="engine-footer__container">
 				<EngineButton variant="secondary" className="engine-footer__back-btn">
 					<div className="engine-footer__back-content">
@@ -45,12 +55,13 @@ export const EngineFooter = ({
 				<div className="engine-footer__actions">
 					<EngineButton
 						variant="primary"
+						disabled={isBlocked || status !== 'idle'}
 						onClick={() => onClickBtn()}
 						className="engine-footer__submit-btn">
 						ПРОВЕРИТЬ
 					</EngineButton>
 				</div>
 			</div>
-		</footer>
+		</div>
 	)
 }

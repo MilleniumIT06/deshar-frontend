@@ -82,6 +82,7 @@ export const TrainersEngine = ({ config }: TrainersEngineProps) => {
 		dispatch(setTheme(themeName))
 	}, [])
 	const handleNext = () => {
+		if (status !== 'success') return
 		dispatch(nextTrainer({ totalTrainers: testCardMock.length }))
 	}
 	const handleTimerEnd = () => {
@@ -111,7 +112,7 @@ export const TrainersEngine = ({ config }: TrainersEngineProps) => {
 			}, 1000)
 		}
 		return () => clearTimeout(timeoutId)
-	}, [status])
+	}, [status, currentTrainerIndex])
 
 	return (
 		<div className={cn('trainers-engine', themeName)}>

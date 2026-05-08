@@ -40,8 +40,8 @@ export const trainersSlice = createSlice({
 		},
 		nextTrainer: (state, { payload }: PayloadAction<{ totalTrainers: number }>) => {
 			if (state.currentTrainerIndex !== payload.totalTrainers - 1) {
-				state.currentTrainerIndex += 1
 				state.status = 'idle'
+				state.currentTrainerIndex += 1
 			} else {
 				state.status = 'finish'
 			}

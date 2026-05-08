@@ -4,7 +4,7 @@ import './styles.scss'
 
 export const ErrorFooter = ({ handleReset }: { handleReset: () => void }) => {
 	return (
-		<footer className="error-footer">
+		<div className="error-footer">
 			<div className="error-footer__container">
 				<div className="error-footer__status">
 					<div className="error-footer__icon-wrapper">
@@ -82,6 +82,6 @@ export const ErrorFooter = ({ handleReset }: { handleReset: () => void }) => {
 					</EngineButton> */}
 				</div>
 			</div>
-		</footer>
+		</div>
 	)
 }
