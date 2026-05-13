@@ -23,7 +23,7 @@ interface DragWordToPocketProps extends TrainerCommonProps {
 }
 export const DragWordToPocket = forwardRef<TrainerRef, DragWordToPocketProps>(
 	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle }, ref) => {
-		const { selections, handleDragEnd, isVariantUsed } = useDndTrainer({
+		const { selections, handleDragEnd, isVariantUsed, setSelections } = useDndTrainer({
 			items: payload.items,
 			onSuccess,
 			onError,
@@ -33,6 +33,13 @@ export const DragWordToPocket = forwardRef<TrainerRef, DragWordToPocketProps>(
 		const getSelectedValue = (itemId: number) => {
 			const variantId = selections[itemId]
 			return payload.variants.find(v => v.id === variantId)?.value || null
+		}
+
+		const removeItemFromSelections = (itemId: number | string) => {
+			setSelections(prev => ({
+				...prev,
+				[itemId]: null,
+			}))
 		}
 		return (
 			<DndContext onDragEnd={handleDragEnd}>
@@ -57,6 +64,7 @@ export const DragWordToPocket = forwardRef<TrainerRef, DragWordToPocketProps>(
 								id={item.id}
 								imageUrl={item.imageUrl}
 								currentValue={getSelectedValue(item.id)}
+								removeItem={removeItemFromSelections}
 								// isError={isSubmitted && selections[item.id] !== item.correctVariantId}
 							/>
 						))}

@@ -7,15 +7,16 @@ interface Props {
 	id: number | string
 	imageUrl: string
 	currentValue: string | null
+	removeItem: (id: number | string) => void
 }
-export const Pocket = ({ id, imageUrl, currentValue }: Props) => {
+export const Pocket = ({ id, imageUrl, currentValue, removeItem }: Props) => {
 	const { setNodeRef, isOver } = useDroppable({ id })
 	return (
 		<div className={cn('DropPocket', { 'DropPocket--over': isOver })} ref={setNodeRef}>
 			{currentValue && (
 				<div className="DropPocket__item">
 					<span>{currentValue}</span>
-					<button>
+					<button onClick={() => removeItem(id)}>
 						<svg
 							width="19"
 							height="19"
