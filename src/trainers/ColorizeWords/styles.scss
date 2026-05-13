@@ -50,6 +50,11 @@
 			user-select: none;
 			font-family: var(--font-monserrat);
 		}
+		&.filled {
+			span {
+				color: #fff;
+			}
+		}
 	}
 
 	&__toolbar {

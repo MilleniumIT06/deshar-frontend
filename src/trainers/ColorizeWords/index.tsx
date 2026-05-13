@@ -87,7 +87,7 @@ export const ColorizeWords = forwardRef(
 								key={word.id}
 								onClick={() => handleWordClick(word.id)}
 								style={{ backgroundColor: word.color || 'var(--neutral-white)' }}
-								className="colorize-words__word-card">
+								className={cn('colorize-words__word-card', word.color && 'filled')}>
 								<span>{word.content}</span>
 							</div>
 						))}
