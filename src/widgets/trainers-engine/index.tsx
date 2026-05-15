@@ -19,7 +19,7 @@ import {
 	setSupportModalOpen,
 	setTheme,
 } from '@/entities/engine/model/engine.slice'
-import { resetScore, addPoints } from '@/entities/engine/model/scoring.slice'
+import { resetScore, addPoints, subtractPoints } from '@/entities/engine/model/scoring.slice'
 import { initTimer } from '@/entities/engine/model/timer.slice'
 import RenderTrainer from './render-trainer'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
@@ -117,7 +117,10 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 		if (!currentTrainerData) return
 		dispatch(addPoints(currentTrainerData.scoring.points))
 	}
-
+	const handleError = () => {
+		if (!currentTrainerData) return
+		dispatch(subtractPoints(currentTrainerData.scoring.penaltyPerMistake))
+	}
 	useEffect(() => {
 		let timeoutId: NodeJS.Timeout
 		if (status === 'success') {
@@ -164,7 +167,7 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 											type={currentTrainerData.type}
 											data={currentTrainerData}
 											changeStatus={changeStatus}
-											onError={() => 'error'}
+											onError={handleError}
 											onSuccess={handleSuccess}
 											currentIndex={currentTrainerIndex + 1}
 										/>
