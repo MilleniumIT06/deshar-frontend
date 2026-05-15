@@ -22,7 +22,6 @@ import {
 import { resetScore, addPoints } from '@/entities/engine/model/scoring.slice'
 import { initTimer } from '@/entities/engine/model/timer.slice'
 import RenderTrainer from './render-trainer'
-import { testCardMock } from '@/mocks/data'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { m, AnimatePresence } from 'motion/react'
 
@@ -30,6 +29,7 @@ import cn from 'classnames'
 
 import './styles.scss'
 import { type TrainerTheme } from '@/shared/types/types'
+import { type TrainerType } from './trainersMap'
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
 	ssr: false,
@@ -52,8 +52,21 @@ interface TrainersEngineProps {
 		themeName: TrainerTheme
 		time: number
 	}
+	data:
+		| {
+				type: TrainerType
+				payload: unknown
+				title?: string
+				subTitle?: string
+				scoring: {
+					points: number
+					penaltyPerMistake: number
+				}
+		  }[]
+		| null
+	engineStatus: 'engineLoading' | 'engineSuccess' | 'engineError'
 }
-export const TrainersEngine = ({ config }: TrainersEngineProps) => {
+export const TrainersEngine = ({ data, config, engineStatus }: TrainersEngineProps) => {
 	const { themeName, time } = config
 
 	const dispatch = useAppDispatch()
@@ -62,7 +75,7 @@ export const TrainersEngine = ({ config }: TrainersEngineProps) => {
 	)
 	const { isFinished } = useAppSelector((state: RootState) => state.timer)
 	// const { totalScore } = useAppSelector(state => state.scoreReducer);
-	const currentTrainerData = testCardMock[currentTrainerIndex]
+	const currentTrainerData = data ? data[currentTrainerIndex] : null
 	const timerRef = useRef<TimerRef>(null)
 	const trainerRef = useRef<TrainerRef>(null)
 	const onMainButtonClick = () => {
@@ -82,8 +95,8 @@ export const TrainersEngine = ({ config }: TrainersEngineProps) => {
 		dispatch(setTheme(themeName))
 	}, [])
 	const handleNext = () => {
-		if (status !== 'success') return
-		dispatch(nextTrainer({ totalTrainers: testCardMock.length }))
+		if (status !== 'success' || !data) return
+		dispatch(nextTrainer({ totalTrainers: data.length }))
 	}
 	const handleTimerEnd = () => {
 		dispatch(setStatus('error'))
@@ -101,6 +114,7 @@ export const TrainersEngine = ({ config }: TrainersEngineProps) => {
 		dispatch(setSupportModalOpen(!isSupportModalOpen))
 	}
 	const handleSuccess = () => {
+		if (!currentTrainerData) return
 		dispatch(addPoints(currentTrainerData.scoring.points))
 	}
 
@@ -114,71 +128,77 @@ export const TrainersEngine = ({ config }: TrainersEngineProps) => {
 		return () => clearTimeout(timeoutId)
 	}, [status, currentTrainerIndex])
 
-	return (
-		<div className={cn('trainers-engine', themeName)}>
-			{status !== 'finish' && (
-				<div className="trainers-engine__container">
-					<EngineHeader
-						handleMenuClick={handleMenuClick}
-						menuIsOpen={isMenuOpen}
-						handleHelpMenuOpen={handleHelpMenuClick}
-						currentTrainerIndex={currentTrainerIndex}
-						totalTrainersCount={testCardMock.length}
-					/>
+	if (engineStatus === 'engineLoading') return <div>Loading...</div>
+	if (engineStatus === 'engineError') return <div>Something went wrong</div>
+	if (engineStatus === 'engineSuccess' && data && currentTrainerData) {
+		return (
+			<div className={cn('trainers-engine', themeName)}>
+				{status !== 'finish' && (
+					<div className="trainers-engine__container">
+						<EngineHeader
+							handleMenuClick={handleMenuClick}
+							menuIsOpen={isMenuOpen}
+							handleHelpMenuOpen={handleHelpMenuClick}
+							currentTrainerIndex={currentTrainerIndex}
+							totalTrainersCount={data.length}
+						/>
 
-					<main className="trainers-engine__main">
-						<div className="trainers-engine__side-controls">
-							<HelpTrigger handleClick={handleSupportModalClick} />
-							<Hint
-								handleClick={() => 'clicked'}
-								hintText={'Test text loremaqe west? Hellot Ye;yj'}
-							/>
-						</div>
-						<div className="trainers-engine__content">
-							<AnimatePresence mode="wait">
-								<m.div
-									key={currentTrainerIndex}
-									initial={{ opacity: 0, x: 20 }}
-									animate={{ opacity: 1, x: 0 }}
-									exit={{ opacity: 0, x: -20 }}
-									transition={{ duration: 0.3 }}>
-									<RenderTrainer
-										ref={trainerRef}
-										type={currentTrainerData.type}
-										data={currentTrainerData}
-										changeStatus={changeStatus}
-										onError={() => 'error'}
-										onSuccess={handleSuccess}
-										currentIndex={currentTrainerIndex + 1}
-									/>
-								</m.div>
-							</AnimatePresence>
-						</div>
-					</main>
+						<main className="trainers-engine__main">
+							<div className="trainers-engine__side-controls">
+								<HelpTrigger handleClick={handleSupportModalClick} />
+								<Hint
+									handleClick={() => 'clicked'}
+									hintText={'Test text loremaqe west? Hellot Ye;yj'}
+								/>
+							</div>
+							<div className="trainers-engine__content">
+								<AnimatePresence mode="wait">
+									<m.div
+										key={currentTrainerIndex}
+										initial={{ opacity: 0, x: 20 }}
+										animate={{ opacity: 1, x: 0 }}
+										exit={{ opacity: 0, x: -20 }}
+										transition={{ duration: 0.3 }}>
+										<RenderTrainer
+											ref={trainerRef}
+											type={currentTrainerData.type}
+											data={currentTrainerData}
+											changeStatus={changeStatus}
+											onError={() => 'error'}
+											onSuccess={handleSuccess}
+											currentIndex={currentTrainerIndex + 1}
+										/>
+									</m.div>
+								</AnimatePresence>
+							</div>
+						</main>
 
-					<footer className="trainers-engine__footer">
-						{status === 'idle' && (
-							<EngineFooter
-								onClickBtn={onMainButtonClick}
-								onTimerEnd={handleTimerEnd}
-								timerRef={timerRef}
-							/>
-						)}
-						{status === 'success' && <SuccessFooter />}
-						{status === 'error' && <ErrorFooter handleReset={onResetButtonClick} />}
-					</footer>
-				</div>
-			)}
+						<footer className="trainers-engine__footer">
+							{status === 'idle' && (
+								<EngineFooter
+									onClickBtn={onMainButtonClick}
+									onTimerEnd={handleTimerEnd}
+									timerRef={timerRef}
+								/>
+							)}
+							{status === 'success' && <SuccessFooter />}
+							{status === 'error' && <ErrorFooter handleReset={onResetButtonClick} />}
+						</footer>
+					</div>
+				)}
 
-			{status === 'finish' && (
-				<div className="trainers-engine__finish-screen">
-					<EngineFinishScreen />
-				</div>
-			)}
+				{status === 'finish' && (
+					<div className="trainers-engine__finish-screen">
+						<EngineFinishScreen />
+					</div>
+				)}
 
-			<Menu isOpen={isMenuOpen} onClose={() => dispatch(setIsMenuOpen(false))} />
-			{isHelpOpen && <AlertModal isOpen={isHelpOpen} onClose={handleHelpMenuClick} />}
-			{isSupportModalOpen && <SupportModal isOpen={isSupportModalOpen} onClose={handleSupportModalClick} />}
-		</div>
-	)
+				<Menu isOpen={isMenuOpen} onClose={() => dispatch(setIsMenuOpen(false))} />
+				{isHelpOpen && <AlertModal isOpen={isHelpOpen} onClose={handleHelpMenuClick} />}
+				{isSupportModalOpen && (
+					<SupportModal isOpen={isSupportModalOpen} onClose={handleSupportModalClick} />
+				)}
+			</div>
+		)
+	}
 }
