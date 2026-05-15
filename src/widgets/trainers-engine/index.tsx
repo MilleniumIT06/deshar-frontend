@@ -1,5 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
+/* eslint-disable react-hooks/exhaustive-deps */
 import { type RootState } from '@/app/_store'
 import dynamic from 'next/dynamic'
 import { EngineHeader } from './engine-header'

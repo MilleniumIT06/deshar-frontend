@@ -21,9 +21,9 @@ export const PracticeContent = () => {
 				}) // Задержка 1.5 сек
 				setBackendData(testCardMock)
 				setStatus('engineSuccess')
-			} catch (e) {
+			} catch {
 				setStatus('engineError')
-				console.log(e)
+				// console.log(e)
 			}
 		}
 
