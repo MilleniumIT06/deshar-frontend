@@ -1,0 +1,59 @@
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	25% {
+		transform: translateX(-4px);
+	}
+	75% {
+		transform: translateX(4px);
+	}
+}
+
+.drop-input {
+	display: inline-flex;
+
+	&__box {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		user-select: none;
+		transition: all 0.2s ease;
+
+		width: 60px;
+		height: 60px;
+		border-radius: 8px;
+		background-color: var(--gray-bg);
+		border: 0.5px solid transparent;
+
+		font-family: var(--font-family);
+		font-size: 16px;
+		line-height: 1.75;
+		font-weight: 400;
+		color: var(--neutral-darkest);
+
+		// Состояние при наведении (isOver)
+		&.is-over {
+			box-shadow: 0 0 0 2px #60a5fa; // ring-2 ring-blue-400
+			transform: scale(1.05);
+			background-color: rgba(255, 255, 255, 0.5);
+		}
+
+		// Состояние, когда слот заполнен
+		&.is-filled {
+			background-color: #ffffff;
+			border-color: var(--bg-gray-color);
+			box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); // shadow-sm
+		}
+
+		// Состояние ошибки
+		&.is-error {
+			background-color: #ef4444; // bg-red-500
+			color: #ffffff;
+			border-color: transparent;
+			animation: shake 0.3s ease-in-out;
+		}
+	}
+}

@@ -1,0 +1,22 @@
+.single-select-quiz {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 40px;
+	gap: 30px;
+
+	&__container {
+		max-width: 600px;
+		width: 100%;
+		margin-top: 24px; // mt-6
+	}
+
+	&__list {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 12px; // gap-3
+		padding: 0;
+		margin: 0;
+	}
+}

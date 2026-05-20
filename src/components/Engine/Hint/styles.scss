@@ -50,7 +50,7 @@
 		width: 220px; // w-55
 		font-family: 'Montserrat', sans-serif;
 		font-weight: 500;
-		font-size: 18px;
+		font-size: 14px;
 		line-height: 1.33;
 		text-align: center;
 		color: var(--text-color);
@@ -84,4 +84,7 @@
 		opacity: 1;
 		transform: translateY(0);
 	}
+}
+.HintEagleModel {
+	filter: drop-shadow(1px 1px 1px #bdb8b8);
 }

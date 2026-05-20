@@ -11,11 +11,6 @@ vi.mock('next/link', () => ({
 	},
 }))
 
-// Mock lucide-react icons
-vi.mock('lucide-react', () => ({
-	ChevronRight: () => <span data-testid="chevron-icon">→</span>,
-}))
-
 describe('Breadcrumbs Component', () => {
 	const mockItems = [
 		{ label: 'Home', href: '/' },

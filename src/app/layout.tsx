@@ -1,4 +1,4 @@
-import { Roboto, Unbounded } from 'next/font/google'
+import { Montserrat, Roboto, Unbounded } from 'next/font/google'
 
 import { Providers } from './_providers/providers'
 
@@ -6,6 +6,10 @@ import type { Metadata } from 'next'
 
 import './globals.scss'
 
+const montserrat = Montserrat({
+	subsets: ['latin', 'cyrillic'],
+	variable: '--font-monserrat',
+})
 const roboto = Roboto({
 	variable: '--font-roboto-sans',
 	subsets: ['latin'],
@@ -45,7 +49,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${roboto.variable} ${unbounded.variable}`}>
+			<body className={`${roboto.variable} ${unbounded.variable} ${montserrat.variable}`}>
 				<Providers>{children}</Providers>
 			</body>
 		</html>

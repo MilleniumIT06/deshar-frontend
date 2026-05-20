@@ -1,4 +1,5 @@
 'use client'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 
 import { ResultsCard } from '@/components/ResultsCard'
@@ -6,8 +7,11 @@ import { barChartMockData } from '@/mocks/adminMock'
 import { Button } from '@/shared/ui/Button'
 import { Selector } from '@/shared/ui/Selector'
 import './styles.scss'
-import { BarChart } from '@/widgets/AdminWidgets/MainChart/BarChart'
 
+const BarChart = dynamic(() => import('@/widgets/AdminWidgets/MainChart/BarChart').then(mod => mod.BarChart), {
+	ssr: false,
+	loading: () => <div className="StatisticsBlock-placeholder">Загрузка графиков...</div>,
+})
 const VISIBLE_COUNT = 19
 const STEP = 6
 export const Successes = () => {

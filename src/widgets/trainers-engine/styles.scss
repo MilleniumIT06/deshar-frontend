@@ -1,0 +1,60 @@
+.trainers-engine {
+	min-height: 100vh;
+	background-color: #f8faff;
+	background-size: contain;
+	display: flex;
+	flex-direction: column;
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
+	&__main {
+		position: relative;
+		min-height: 75vh;
+		padding: 0 40px 40px; // pr-10 pl-10 pb-10
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+	}
+
+	&__content {
+		padding-top: 0;
+		width: 100%;
+		max-width: 1200px;
+	}
+
+	&__footer {
+		margin-top: auto;
+	}
+
+	&__finish-screen {
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	&.towers {
+		background-image: url('/images/Engine/Themes/theme-towers.jpg');
+	}
+	&.forest {
+		background-image: url('/images/Engine/Themes/theme-forest.jpg');
+	}
+	&.ocean {
+		background-image: url('/images/Engine/Themes/theme-ocean.jpg');
+	}
+	&.s {
+		background-image: url('/images/Engine/Themes/theme-s.jpg');
+	}
+	&.o {
+		background-image: url('/images/Engine/Themes/theme-o.jpg');
+	}
+	&.default {
+		background-image: none;
+	}
+}

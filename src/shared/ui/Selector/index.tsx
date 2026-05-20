@@ -1,7 +1,7 @@
+'use client'
 import { useState, useRef, useEffect, useId } from 'react'
-
 import cn from 'classnames'
-import { motion, AnimatePresence, easeInOut } from 'framer-motion'
+import { m, AnimatePresence } from 'motion/react'
 
 import './styles.scss'
 
@@ -33,16 +33,14 @@ export const Selector = ({
 	const [isOpen, setIsOpen] = useState(false)
 	const [selectedValue, setSelectedValue] = useState(defaultValue)
 	const selectorRef = useRef<HTMLDivElement>(null)
-	const listboxId = useId() // Для корректной работы ARIA атрибутов
+	const listboxId = useId()
 
-	// Обработка кликов вне компонента
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (selectorRef.current && !selectorRef.current.contains(event.target as Node)) {
 				setIsOpen(false)
 			}
 		}
-
 		document.addEventListener('mousedown', handleClickOutside)
 		return () => document.removeEventListener('mousedown', handleClickOutside)
 	}, [])
@@ -54,34 +52,26 @@ export const Selector = ({
 	const handleSelect = (item: Option) => {
 		setSelectedValue(item.id)
 		setIsOpen(false)
-		if (onChange) onChange(item) // Опциональный вызов колбэка
+		if (onChange) onChange(item)
 	}
 
-	// Анимация иконки стрелки
 	const arrowVariants = {
 		open: { rotate: 180 },
 		closed: { rotate: 0 },
 	}
 
-	// Варианты анимации для плавного раскрытия/закрытия
 	const dropdownVariants = {
 		open: {
-			height: 'auto', // Автоматическая высота контента
+			height: 'auto',
 			opacity: 1,
-			transition: {
-				duration: 0.2,
-				ease: easeInOut,
-			},
+			transition: { duration: 0.2, ease: 'easeInOut' },
 		},
 		closed: {
-			height: 0, // Схлопывание контейнера
+			height: 0,
 			opacity: 0,
-			transition: {
-				duration: 0.2,
-				ease: easeInOut,
-			},
+			transition: { duration: 0.2, ease: 'easeInOut' },
 		},
-	}
+	} as const
 
 	return (
 		<div
@@ -90,16 +80,15 @@ export const Selector = ({
 			role="combobox"
 			aria-expanded={isOpen}
 			aria-haspopup="listbox"
-			aria-controls={listboxId} // Связь с выпадающим списком
-		>
+			aria-controls={listboxId}>
 			<div className="Selector__header">
 				<span title={getCurrentLabel()}>{getCurrentLabel()}</span>
 				<button
+					type="button"
 					className={cn('btn-reset', 'Selector__btn')}
 					onClick={() => setIsOpen(!isOpen)}
-					aria-label={isOpen ? 'Закрыть список' : 'Открыть список'}
-					aria-expanded={isOpen}>
-					<motion.svg
+					aria-label={isOpen ? 'Закрыть список' : 'Открыть список'}>
+					<m.svg
 						width="14"
 						height="9"
 						viewBox="0 0 14 9"
@@ -109,20 +98,18 @@ export const Selector = ({
 						animate={isOpen ? 'open' : 'closed'}
 						transition={{ duration: 0.2 }}>
 						<path d="M13 1L7 7L1 0.999999" stroke="#303030" strokeWidth="1.5" />
-					</motion.svg>
+					</m.svg>
 				</button>
 			</div>
 
-			{/* Анимация при unmount компонента */}
 			<AnimatePresence>
 				{isOpen && (
-					<motion.div
+					<m.div
 						className="Selector__body"
 						variants={dropdownVariants}
 						initial="closed"
 						animate="open"
-						exit="closed" // Критично для анимации закрытия
-					>
+						exit="closed">
 						<div className="Selector__body_inner">
 							<ul id={listboxId} className={cn('list-reset', 'Selector__list')}>
 								{options.map(option => (
@@ -137,7 +124,7 @@ export const Selector = ({
 								))}
 							</ul>
 						</div>
-					</motion.div>
+					</m.div>
 				)}
 			</AnimatePresence>
 		</div>

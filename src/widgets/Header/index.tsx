@@ -9,6 +9,8 @@ import { Avatar } from '@/shared/ui/Avatar'
 import { Button } from '@/shared/ui/Button'
 import { Logo } from '@/shared/ui/Logo'
 import './styles.scss'
+// import { useAppDispatch } from '@/app/_store/hooks'
+// import { logout } from '@/entities/user/model/user.slice'
 
 export const Header = () => {
 	const { isAuth, user, loading, logout } = useAuth() // Получаем logout из хука
@@ -92,6 +94,7 @@ export const Header = () => {
 							</li>
 						</ul>
 					</nav>
+					{/* <button onClick={() => dispatch(logout())}>logout</button> */}
 					<div className="Header__right">
 						{loading ? (
 							<div className="Header__loader">Загрузка...</div>

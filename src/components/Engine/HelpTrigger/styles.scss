@@ -17,7 +17,13 @@
 		transform 0.2s ease-in-out,
 		opacity 0.2s;
 	z-index: 10;
+	background: rgba(255, 255, 255, 0.9);
+	// border: 4px solid rgba(255, 255, 255, 0.3);
+	// Добавляем outline как внешнюю рамку
+	outline: 4px solid rgba(255, 255, 255, 0.3);
 
+	// Устанавливаем расстояние (например, 4px)
+	outline-offset: 4px;
 	&:hover {
 		transform: scale(1.05);
 		opacity: 0.9;
@@ -26,10 +32,7 @@
 	&:active {
 		transform: scale(0.95);
 	}
-
-	&__icon {
-		display: block;
-		width: 100%;
-		height: 100%;
-	}
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

@@ -12,10 +12,10 @@
 
 	border: 2px solid var(--gray-bg);
 	border-radius: 12px;
-	background-color: var(--white);
+	background-color: var(--neutral-white);
 
 	&--filled {
-		border-color: var(--green-color);
+		border-color: var(--primary-medium);
 		background-color: rgba(27, 170, 125, 0.1);
 	}
 

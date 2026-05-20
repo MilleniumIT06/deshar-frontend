@@ -1,0 +1,18 @@
+.DragWordToPocket {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	// gap: 100px;
+	&__variants {
+		margin-top: 40px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px;
+	}
+	&__pockets {
+		margin-top: 100px;
+		display: flex;
+		justify-content: center;
+		gap: 10%;
+	}
+}

@@ -3,7 +3,15 @@ import cn from 'classnames'
 
 import './styles.scss'
 
-export const Variant = ({ id, value, isDisabled }: { id: number | string; value: string; isDisabled: boolean }) => {
+export const AlphabeticalSorterVariant = ({
+	id,
+	value,
+	isDisabled,
+}: {
+	id: number | string
+	value: string
+	isDisabled: boolean
+}) => {
 	const { attributes, listeners, setNodeRef, transform } = useDraggable({
 		id,
 		data: { value },
@@ -22,8 +30,8 @@ export const Variant = ({ id, value, isDisabled }: { id: number | string; value:
 			style={style}
 			{...listeners}
 			{...attributes}
-			className={cn('variant', {
-				'variant--disabled': isDisabled,
+			className={cn('AlphabeticalSorterVariant', {
+				'AlphabeticalSorterVariant--disabled': isDisabled,
 			})}>
 			{value}
 		</li>

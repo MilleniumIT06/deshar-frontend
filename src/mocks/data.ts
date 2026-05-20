@@ -1,5 +1,5 @@
 import { type StudentData } from '@/components/TopClassmates'
-import { type TrainerType } from '@/features/trainers-engine/trainersMap'
+import { type TrainerType } from '@/widgets/trainers-engine/trainersMap'
 
 export const areas = [
 	{ id: 1, value: 'Магас' },
@@ -996,6 +996,9 @@ export const testCardMock: {
 		points: number
 		penaltyPerMistake: number
 	}
+	// нужны ли поля:
+	// errorExplanation - пояснение к ошибке
+	// hint - подсказка
 }[] = [
 	{
 		type: 'accent-trainer',
@@ -1014,6 +1017,35 @@ export const testCardMock: {
 			correctVariantIds: [2],
 		},
 		title: 'Поставьте ударение',
+	},
+	{
+		type: 'single-select-image-quiz',
+		payload: {
+			variants: [
+				{
+					id: 1,
+					imageUrl: '/images/Engine/cci1.jpg',
+				},
+				{
+					id: 2,
+					imageUrl: '/images/Engine/cci2.jpg',
+				},
+				{
+					id: 3,
+					imageUrl: '/images/Engine/cci3.jpg',
+				},
+				{
+					id: 4,
+					imageUrl: '/images/Engine/cci4.jpg',
+				},
+			],
+			correctVariantId: 1,
+		},
+		title: 'Нажми на картинку, где люди общаются правильно',
+		scoring: {
+			points: 3,
+			penaltyPerMistake: 1,
+		},
 	},
 	{
 		type: 'fix-sentence',
@@ -1192,9 +1224,9 @@ export const testCardMock: {
 		},
 		payload: {
 			items: [
-				{ id: 1, imageUrl: '/castle.png', correctVariantId: 101 },
-				{ id: 2, imageUrl: '/sh.png', correctVariantId: 102 },
-				{ id: 3, imageUrl: '/ticva.png', correctVariantId: 103 },
+				{ id: 1, imageUrl: '/images/Engine/castle.png', correctVariantId: 101 },
+				{ id: 2, imageUrl: '/images/Engine/sh.png', correctVariantId: 102 },
+				{ id: 3, imageUrl: '/images/Engine/ticva.png', correctVariantId: 103 },
 			],
 			variants: [
 				{ id: 101, value: 'castle' },
@@ -1349,7 +1381,7 @@ export const testCardMock: {
 		payload: {
 			id: 'task_1',
 			correctAnswer: 'ГОРОД',
-			imageUrl: '/citt.jpg',
+			imageUrl: '/images/Engine/citt.jpg',
 			availableLetters: [
 				{ id: 1, letter: 'Г' },
 				{ id: 2, letter: 'О' },
@@ -1374,5 +1406,59 @@ export const testCardMock: {
 			text: 'Учёба и труд рядом идут',
 			correctValues: ['Учёба', 'труд'],
 		},
+	},
+	{
+		type: 'drag-word-to-pocket',
+		scoring: {
+			penaltyPerMistake: 1,
+			points: 5,
+		},
+		payload: {
+			items: [
+				{
+					id: 1,
+					imageUrl: '/images/Engine/pocketItem1.png',
+					correctVariantId: 1,
+				},
+				{
+					id: 2,
+					imageUrl: '/images/Engine/pocketItem2.png',
+					correctVariantId: 2,
+				},
+				{
+					id: 3,
+					imageUrl: '/images/Engine/pocketItem3.png',
+					correctVariantId: 3,
+				},
+			],
+			variants: [
+				{ id: 1, value: 'Человек' },
+				{ id: 2, value: 'Кот' },
+				{ id: 3, value: 'Собака' },
+			],
+		},
+		title: 'Перетащи слово к нужной картинке',
+	},
+	{
+		type: 'phrase-image-matcher',
+		scoring: {
+			penaltyPerMistake: 1,
+			points: 5,
+		},
+		payload: {
+			items: [
+				{
+					id: 1,
+					correctVariantId: 2,
+					imageUrl: '/images/Engine/Uya.jpg',
+				},
+			],
+			variants: [
+				{ id: 1, value: 'Привет! В эфире новости.' },
+				{ id: 2, value: 'У нас хорошая погода' },
+				{ id: 3, value: 'Вариант 3' },
+			],
+		},
+		title: 'Перетащи слово к нужной картинке',
 	},
 ]

@@ -1,3 +1,4 @@
+import { type TrainerTheme } from '@/shared/types/types'
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 interface TrainersState {
@@ -6,6 +7,7 @@ interface TrainersState {
 	isSupportModalOpen: boolean
 	status: 'idle' | 'error' | 'success' | 'finish'
 	currentTrainerIndex: number
+	theme: TrainerTheme
 }
 
 const initialState: TrainersState = {
@@ -14,6 +16,7 @@ const initialState: TrainersState = {
 	isSupportModalOpen: false,
 	status: 'idle',
 	currentTrainerIndex: 0,
+	theme: 'default',
 }
 
 export const trainersSlice = createSlice({
@@ -32,10 +35,13 @@ export const trainersSlice = createSlice({
 		setStatus: (state, action: PayloadAction<TrainersState['status']>) => {
 			state.status = action.payload
 		},
+		setTheme: (state, action: PayloadAction<TrainerTheme>) => {
+			state.theme = action.payload
+		},
 		nextTrainer: (state, { payload }: PayloadAction<{ totalTrainers: number }>) => {
 			if (state.currentTrainerIndex !== payload.totalTrainers - 1) {
-				state.currentTrainerIndex += 1
 				state.status = 'idle'
+				state.currentTrainerIndex += 1
 			} else {
 				state.status = 'finish'
 			}
@@ -47,7 +53,7 @@ export const trainersSlice = createSlice({
 	},
 })
 
-export const { setIsMenuOpen, setHelpModalOpen, setSupportModalOpen, setStatus, nextTrainer, resetTrainers } =
+export const { setIsMenuOpen, setHelpModalOpen, setSupportModalOpen, setStatus, nextTrainer, resetTrainers, setTheme } =
 	trainersSlice.actions
 
 export default trainersSlice.reducer

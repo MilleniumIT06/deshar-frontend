@@ -101,6 +101,22 @@
 		align-items: center;
 		gap: 8px;
 		color: inherit;
+		&-retry {
+			color: var(--text-color);
+			svg {
+				path {
+					fill: currentColor;
+				}
+			}
+		}
+		&-continue {
+			color: var(--neutral-white);
+			svg {
+				path {
+					fill: currentColor;
+				}
+			}
+		}
 	}
 
 	&__btn-icon {

@@ -4,7 +4,7 @@ import './styles.scss'
 
 export const ErrorFooter = ({ handleReset }: { handleReset: () => void }) => {
 	return (
-		<footer className="error-footer">
+		<div className="error-footer">
 			<div className="error-footer__container">
 				<div className="error-footer__status">
 					<div className="error-footer__icon-wrapper">
@@ -66,7 +66,7 @@ export const ErrorFooter = ({ handleReset }: { handleReset: () => void }) => {
 							/>
 						</svg>
 					</EngineButton>
-					<EngineButton variant="secondary" className="error-footer__btn error-footer__btn--continue">
+					{/* <EngineButton variant="secondary" className="error-footer__btn error-footer__btn--continue">
 						продолжить
 						<svg
 							className="error-footer__btn-icon"
@@ -79,9 +79,9 @@ export const ErrorFooter = ({ handleReset }: { handleReset: () => void }) => {
 								fill="white"
 							/>
 						</svg>
-					</EngineButton>
+					</EngineButton> */}
 				</div>
 			</div>
-		</footer>
+		</div>
 	)
 }

@@ -46,7 +46,13 @@ export const auth = {
 		if (typeof window === 'undefined') return
 		localStorage.setItem('user', JSON.stringify(user))
 	},
-
+	getInitialState() {
+		const user = this.getUser()
+		return {
+			user,
+			isAuth: Boolean(user) && Boolean(this.getToken()),
+		}
+	},
 	removeUser(): void {
 		if (typeof window === 'undefined') return
 		localStorage.removeItem('user')
