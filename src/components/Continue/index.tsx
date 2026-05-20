@@ -18,13 +18,6 @@ export const Continue = () => {
 							countOfProcessModules={3}
 							title="Ингушский язык"
 						/>
-						<LessonProgressCard
-							countOfFinishedModules={10}
-							countOfLeftModules={19}
-							countOfModules={38}
-							countOfProcessModules={0}
-							title="История"
-						/>
 					</div>
 					<div className="Continue__footer">
 						<Link href="/completed-courses" className="Continue__link">

@@ -4,10 +4,19 @@ const nextConfig: NextConfig = {
 	env: {
 		SERVER_URL: process.env.SERVER_URL,
 	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: '**', // разрешает все HTTPS хосты
+			},
+			{
+				protocol: 'http',
+				hostname: '**', // разрешает все HTTP хосты
+			},
+		],
+	},
 	/* config options here */
 }
-// const withBundleAnalyzer = require('@next/bundle-analyzer')({
-// 	enabled: process.env.ANALYZE === 'true',
-// })
+
 export default nextConfig
-// module.exports = withBundleAnalyzer(nextConfig)
