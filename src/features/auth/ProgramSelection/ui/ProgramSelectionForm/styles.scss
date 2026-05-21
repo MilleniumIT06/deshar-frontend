@@ -66,4 +66,7 @@
 			color: var(--neutral-medium);
 		}
 	}
+	@include breakpoint.mobile {
+		width: 95%;
+	}
 }
