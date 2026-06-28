@@ -9,7 +9,7 @@ export const AllCourses = () => {
 		<section className="AllCourses">
 			<div className="container">
 				<div className="AllCourses__inner">
-					<h1 className="section__title">Все дисциплины</h1>
+					<h1 className="section__title">Программа</h1>
 					<CoursesBlock title="1-4 класс">
 						{coursesB.map(item => (
 							<SubjectCard

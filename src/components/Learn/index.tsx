@@ -25,14 +25,6 @@ export const Learn = () => {
 									imageUrl="subjectcardskeleton"
 								/>
 							))}
-							<SubjectCard
-								className="Learn__item"
-								type="short"
-								title="Другие дисциплины"
-								modulesCount={26}
-								imageUrl="subjectcardskeleton"
-								fullCatalog={true}
-							/>
 						</ul>
 					</div>
 				</div>
