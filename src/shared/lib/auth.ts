@@ -1,82 +1,166 @@
-'use client'
+// shared/lib/auth/index.ts
 
-// Создаем интерфейсы вместо использования any
-interface User {
-	id: number
-	name: string
-	email: string
-	[key: string]: unknown // если есть дополнительные поля
+import { apiClient } from '../lib/api'
+
+export interface User {
+    id: number
+    name: string
+    email: string
+    avatar: string
+    user_type: 'student' | 'teacher' | 'admin'
+    level: number
+    level_name: string
+    level_color: string
+    level_progress: number
+    xp: number
+    xp_to_next_level: number
+    current_streak: number
+    max_streak: number
+    is_online: boolean
+    is_active: boolean
+    is_banned: boolean
+    last_activity: string
+    last_login_at: string | null
+    role?: {
+        id: number
+        name: string
+        slug: string
+    }
+    school?: {
+        id: number
+        name: string
+    }
+    school_class?: {
+        id: number
+        name: string
+        grade: string
+        letter: string
+    }
+    location?: {
+        country?: string
+        region?: string
+        district?: string
+        city?: string
+    }
+    stats?: {
+        total_tasks_completed: number
+        total_lessons_completed: number
+        total_pieces_completed: number
+        total_modules_completed: number
+    }
+    preferences?: Record<string, any>
+    settings?: Record<string, any>
+    created_at: string
+    updated_at: string
 }
 
 export const auth = {
-	getToken(): string | null {
-		if (typeof window === 'undefined') return null
-		return localStorage.getItem('auth_token')
-	},
+    getToken(): string | null {
+        if (typeof window === 'undefined') return null
+        return localStorage.getItem('auth_token')
+    },
 
-	setToken(token: string): void {
-		if (typeof window === 'undefined') return
+    setToken(token: string): void {
+        if (typeof window === 'undefined') return
 
-		// Сохраняем в localStorage
-		localStorage.setItem('auth_token', token)
+        localStorage.setItem('auth_token', token)
+        document.cookie = `auth_token=${token}; path=/; max-age=604800; SameSite=Lax; domain=.desharing.ru`
+    },
 
-		// Устанавливаем cookie для middleware
-		document.cookie = `auth_token=${token}; path=/; max-age=604800; SameSite=Lax`
-	},
+    removeToken(): void {
+        if (typeof window === 'undefined') return
 
-	removeToken(): void {
-		if (typeof window === 'undefined') return
+        localStorage.removeItem('auth_token')
+        document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT; domain=.desharing.ru'
+    },
 
-		localStorage.removeItem('auth_token')
-		document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
-	},
+    getUser(): User | null {
+        if (typeof window === 'undefined') return null
+        const userStr = localStorage.getItem('user')
+        if (!userStr) return null
+        try {
+            return JSON.parse(userStr) as User
+        } catch {
+            return null
+        }
+    },
 
-	getUser(): User | null {
-		if (typeof window === 'undefined') return null
-		const userStr = localStorage.getItem('user')
-		if (!userStr) return null
-		try {
-			return JSON.parse(userStr) as User
-		} catch {
-			return null
-		}
-	},
+    setUser(user: User): void {
+        if (typeof window === 'undefined') return
+        localStorage.setItem('user', JSON.stringify(user))
+    },
 
-	setUser(user: User): void {
-		if (typeof window === 'undefined') return
-		localStorage.setItem('user', JSON.stringify(user))
-	},
-	getInitialState() {
-		const user = this.getUser()
-		return {
-			user,
-			isAuth: Boolean(user) && Boolean(this.getToken()),
-		}
-	},
-	removeUser(): void {
-		if (typeof window === 'undefined') return
-		localStorage.removeItem('user')
-	},
+    removeUser(): void {
+        if (typeof window === 'undefined') return
+        localStorage.removeItem('user')
+    },
 
-	isAuthenticated(): boolean {
-		return Boolean(this.getToken())
-	},
+    getInitialState() {
+        const user = this.getUser()
+        return {
+            user,
+            isAuth: Boolean(user) && Boolean(this.getToken()),
+        }
+    },
 
-	async logout(): Promise<void> {
-		try {
-			const token = this.getToken()
-			if (token) {
-				await fetch(`${process.env.NEXT_PUBLIC_API_URL}/logout`, {
-					method: 'POST',
-					headers: {
-						Authorization: `Bearer ${token}`,
-						'Content-Type': 'application/json',
-					},
-				})
-			}
-		} finally {
-			this.removeToken()
-			this.removeUser()
-		}
-	},
+    isAuthenticated(): boolean {
+        return Boolean(this.getToken()) && Boolean(this.getUser())
+    },
+
+    isAdmin(): boolean {
+        const user = this.getUser()
+        return user?.user_type === 'admin' || user?.role?.slug === 'admin'
+    },
+
+    isTeacher(): boolean {
+        const user = this.getUser()
+        return user?.user_type === 'teacher' || user?.role?.slug === 'teacher'
+    },
+
+    isStudent(): boolean {
+        const user = this.getUser()
+        return user?.user_type === 'student' || user?.role?.slug === 'student'
+    },
+
+    async login(email: string, password: string) {
+        const result = await apiClient.login(email, password)
+        
+        if (result.success && result.user) {
+            this.setUser(result.user)
+        }
+        
+        return result
+    },
+
+    async register(data: any) {
+        const result = await apiClient.register(data)
+        
+        if (result.success && result.user) {
+            this.setUser(result.user)
+        }
+        
+        return result
+    },
+
+    async logout(): Promise<void> {
+        try {
+            await apiClient.logout()
+        } finally {
+            this.removeToken()
+            this.removeUser()
+        }
+    },
+
+    async refreshUser(): Promise<User | null> {
+        try {
+            const result = await apiClient.getCurrentUser()
+            if (result.success && result.user) {
+                this.setUser(result.user)
+                return result.user
+            }
+        } catch {
+            await this.logout()
+        }
+        return null
+    },
 }

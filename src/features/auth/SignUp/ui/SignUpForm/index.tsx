@@ -1,129 +1,159 @@
+
 'use client'
+
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
-import { useAppDispatch } from '@/app/_store/hooks'
-import { nextStep, updateFormData } from '@/features/auth/signUp.slice'
+import { auth } from '@/shared/lib/auth'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
+import { useAppDispatch } from '@/app/_store/hooks'
+import { login } from '@/entities/user/model/user.slice'
 
-import { type signUpUserFormData, signUpUserSchema } from '../../model/signUp.schema'
+import { signUpUserSchema, type signUpUserFormData } from '../../model/signUp.schema'
 
 import './styles.scss'
 
 export const SignUpForm = () => {
-	const formatDateMask = (value: string) => {
-		const digits = value.replace(/\D/g, '') // Только цифры
-		const limited = digits.substring(0, 8) // Максимум 8 цифр
+    const router = useRouter()
+    const dispatch = useAppDispatch()
+    const [serverError, setServerError] = useState<string>('')
+    const [isLoading, setIsLoading] = useState(false)
 
-		if (limited.length <= 2) return limited
-		if (limited.length <= 4) return `${limited.slice(0, 2)}.${limited.slice(2)}`
-		return `${limited.slice(0, 2)}.${limited.slice(2, 4)}.${limited.slice(4)}`
-	}
-	const {
-		register,
-		control,
-		handleSubmit,
-		formState: { errors, isValid },
-	} = useForm<signUpUserFormData>({
-		resolver: zodResolver(signUpUserSchema),
-		mode: 'onChange',
-		defaultValues: {
-			name: '',
-			surname: '',
-			email: '',
-			birthDate: '',
-			password: '',
-			confirmPassword: '',
-		},
-	})
-	const dispatch = useAppDispatch()
-	const onSubmit = (data: signUpUserFormData) => {
-		// eslint-disable-next-line no-console
-		console.log(data)
-		dispatch(updateFormData({ ...data }))
-		dispatch(nextStep())
-	}
-	return (
-		<div className="SignUpForm">
-			<div className="SignUpForm__inner">
-				<h1 className="SignUpForm__title">Регистрация аккаунта</h1>
-				<form className="SignUpForm__form" onSubmit={handleSubmit(onSubmit)}>
-					<Input
-						fullWidth
-						type="text"
-						placeholder="Введите имя"
-						className="SignUpForm__input"
-						validationMessage={errors.name?.message}
-						{...register('name')}
-					/>
-					<Input
-						fullWidth
-						type="text"
-						placeholder="Введите фамилию"
-						className="SignUpForm__input"
-						validationMessage={errors.surname && errors.surname.message}
-						{...register('surname')}
-					/>
-					<Controller
-						control={control}
-						name="birthDate"
-						render={({ field: { onChange, value, ref } }) => (
-							<Input
-								fullWidth
-								type="text"
-								placeholder="Дата рождения (ДД.ММ.ГГГГ)"
-								className="SignUpForm__input"
-								validationMessage={errors.birthDate && errors.birthDate.message}
-								value={value}
-								ref={ref}
-								onChange={e => {
-									const masked = formatDateMask(e.target.value)
-									onChange(masked)
-								}}
-							/>
-						)}
-					/>
-					<Input
-						fullWidth
-						type="email"
-						placeholder="Введите email"
-						className="SignUpForm__input"
-						validationMessage={errors.email && errors.email.message}
-						{...register('email')}
-					/>
-					<Input
-						fullWidth
-						type="password"
-						placeholder="Придумайте пароль"
-						className="SignUpForm__input"
-						validationMessage={errors.password && errors.password.message}
-						{...register('password')}
-					/>
-					<Input
-						fullWidth
-						type="password"
-						placeholder="Подтвердите пароль"
-						className="SignUpForm__input"
-						validationMessage={errors.confirmPassword && errors.confirmPassword.message}
-						{...register('confirmPassword')}
-					/>
-					<Button disabled={!isValid} className="SignUpForm__btn" size="medium" type="submit">
-						Далее
-					</Button>
-				</form>
-				<div className="SignUpForm__bottom">
-					<div>
-						Уже зарегистрированы? <Link href="/sign-in">Войти</Link>
-					</div>
-					<p>
-						Продолжая, вы соглашаетесь на обработку персональных данных и принимаете условия
-						пользоват. соглашения
-					</p>
-				</div>
-			</div>
-		</div>
-	)
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors, isValid },
+    } = useForm<signUpUserFormData>({
+        resolver: zodResolver(signUpUserSchema),
+        mode: 'onChange',
+    })
+
+    const onSubmit = async (data: signUpUserFormData) => {
+        try {
+            setIsLoading(true)
+            setServerError('')
+
+            const response = await auth.register({
+                name: data.name,
+                email: data.email,
+                password: data.password,
+                password_confirmation: data.confirmPassword,
+                user_type: 'student',
+                birth_date: data.birthDate,
+                // Добавьте другие поля если есть
+            })
+
+            if (response.success && response.user) {
+                dispatch(login(response.user))
+                router.push('/')
+                router.refresh()
+            }
+        } catch (error) {
+            setServerError(error instanceof Error ? error.message : 'Ошибка регистрации')
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    return (
+        <div className="SignUpForm">
+            <div className="SignUpForm__inner">
+                <h1 className="SignUpForm__title">Регистрация</h1>
+
+                {serverError && (
+                    <div className="SignUpForm__error" role="alert">
+                        {serverError}
+                    </div>
+                )}
+
+                <form className="SignUpForm__form" onSubmit={handleSubmit(onSubmit)}>
+                    <Input
+                        fullWidth
+                        type="text"
+                        placeholder="Имя"
+                        className="SignUpForm__input"
+                        validationMessage={errors.name?.message}
+                        disabled={isLoading}
+                        {...register('name')}
+                    />
+
+                    <Input
+                        fullWidth
+                        type="text"
+                        placeholder="Фамилия"
+                        className="SignUpForm__input"
+                        validationMessage={errors.surname?.message}
+                        disabled={isLoading}
+                        {...register('surname')}
+                    />
+
+                    <Input
+                        fullWidth
+                        type="email"
+                        placeholder="Email"
+                        className="SignUpForm__input"
+                        validationMessage={errors.email?.message}
+                        disabled={isLoading}
+                        {...register('email')}
+                    />
+
+                    <Input
+                        fullWidth
+                        type="date"
+                        placeholder="Дата рождения"
+                        className="SignUpForm__input"
+                        validationMessage={errors.birthDate?.message}
+                        disabled={isLoading}
+                        {...register('birthDate')}
+                    />
+
+                    <Input
+                        fullWidth
+                        type="password"
+                        placeholder="Пароль"
+                        className="SignUpForm__input"
+                        validationMessage={errors.password?.message}
+                        disabled={isLoading}
+                        {...register('password')}
+                    />
+
+                    <Input
+                        fullWidth
+                        type="password"
+                        placeholder="Подтвердите пароль"
+                        className="SignUpForm__input"
+                        validationMessage={errors.confirmPassword?.message}
+                        disabled={isLoading}
+                        {...register('confirmPassword')}
+                    />
+
+                    <Button
+                        className="SignUpForm__btn"
+                        size="medium"
+                        disabled={!isValid || isLoading}
+                        type="submit"
+                    >
+                        {isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
+                    </Button>
+                </form>
+
+                <div className="SignUpForm__bottom">
+                    <div>
+                        Уже есть аккаунт?
+                        <Link href="/sign-in"> Войти</Link>
+                    </div>
+                    <p>
+                        Продолжая, вы соглашаетесь на обработку персональных данных и принимаете условия
+                        пользовательского соглашения
+                    </p>
+                </div>
+            </div>
+        </div>
+    )
 }

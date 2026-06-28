@@ -1,6 +1,6 @@
 import { type Metadata } from 'next'
 
-import { SignUpPageContent } from '@/features/auth/SignUp/ui/SignUpPageContent'
+import { SignUpPageContent } from '@/features/auth/SignUp/ui/SignUpPageContent/index'
 
 import '../styles.scss'
 
