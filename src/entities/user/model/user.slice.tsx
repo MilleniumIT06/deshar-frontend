@@ -1,32 +1,34 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { type User } from './user.type'
-import { auth } from '@/shared/lib/auth'
 
+// Инициализируем строго значениями по умолчанию для SSR безопасности
 const initialState: {
 	user: User | null
 	isAuth: boolean
 } = {
-	user: auth.getUser(),
-	isAuth: auth.isAuthenticated(),
+	user: null,
+	isAuth: false,
 }
 
 export const userSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
+		// Экшен для установки данных пользователя при инициализации на клиенте
+		setUser: (state, action: PayloadAction<User | null>) => {
+			state.user = action.payload
+			state.isAuth = Boolean(action.payload)
+		},
 		login: (state, action: PayloadAction<User>) => {
 			state.user = action.payload
 			state.isAuth = true
 		},
-		logout: state => {
-			auth.removeToken()
-			auth.removeUser()
-
+		logoutAction: state => {
 			state.isAuth = false
 			state.user = null
 		},
 	},
 })
 
-export const { login, logout } = userSlice.actions
+export const { login, logoutAction, setUser } = userSlice.actions
 export default userSlice.reducer

@@ -1,33 +1,19 @@
 'use client'
-
-import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
-import { apiClient } from '@/shared/lib/api'
-import { auth } from '@/shared/lib/auth'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 
 import { signInUserFormSchema, type signInUserFormData } from '../../model/signIn.schema'
 
 import './styles.scss'
-import { useAppDispatch } from '@/app/_store/hooks'
-import { login } from '@/entities/user/model/user.slice'
+import { useAuth } from '@/hooks/auth/useAuth'
 
-interface SignInFormProps {
-	callbackUrl?: string
-}
-
-export const SignInForm = ({ callbackUrl = '/dashboard' }: SignInFormProps) => {
-	const router = useRouter()
-	const dispatch = useAppDispatch()
-	const [serverError, setServerError] = useState<string>('')
-	const [isLoading, setIsLoading] = useState(false)
-
+export const SignInForm = () => {
+	const { isLoading, login, serverError } = useAuth()
 	const {
 		register,
 		handleSubmit,
@@ -38,25 +24,7 @@ export const SignInForm = ({ callbackUrl = '/dashboard' }: SignInFormProps) => {
 	})
 
 	const onSubmit = async (data: signInUserFormData) => {
-		try {
-			setIsLoading(true)
-			setServerError('')
-
-			const response = await apiClient.login(data.email, data.password)
-
-			if (response.success) {
-				auth.setToken(response.token)
-				auth.setUser(response.user)
-				// console.log('chhh', response.user);
-				dispatch(login({ name: response.user.name }))
-				router.push(callbackUrl)
-				router.refresh()
-			}
-		} catch (error) {
-			setServerError(error instanceof Error ? error.message : 'Ошибка авторизации')
-		} finally {
-			setIsLoading(false)
-		}
+		login(data)
 	}
 
 	return (

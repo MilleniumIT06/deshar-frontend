@@ -1,0 +1,38 @@
+import { axiosClassic } from '@/api/api.helper'
+import { API_URL } from '@/config/api.config'
+import type { IAuthResponse } from '@/shared/types/types'
+import { type signInUserFormData } from '@/features/auth/SignIn/model/signIn.schema'
+import { getTokenFromCookie, removeTokenFromCookie } from './auth-token.service'
+
+class LoginService {
+	async login(data: signInUserFormData) {
+		const { data: response } = await axiosClassic<IAuthResponse>({
+			url: API_URL.login(),
+			method: 'POST',
+			data,
+		})
+		return response
+	}
+	async logout(): Promise<void> {
+		try {
+			const token = getTokenFromCookie()
+
+			if (token) {
+				// Отправляем запрос на бэкенд Laravel через настроенный axiosClassic
+				await axiosClassic({
+					url: API_URL.logout(), // Если в API_URL есть метод, замените на API_URL.logout()
+					method: 'POST',
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				})
+			}
+		} catch (error) {
+			// eslint-disable-next-line no-console
+			console.error('Ошибка при отправке запроса logout на бэкенд:', error)
+		} finally {
+			removeTokenFromCookie()
+		}
+	}
+}
+export const loginService = new LoginService()

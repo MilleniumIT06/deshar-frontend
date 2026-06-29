@@ -41,8 +41,6 @@ export const SignUpForm = () => {
 	})
 	const dispatch = useAppDispatch()
 	const onSubmit = (data: signUpUserFormData) => {
-		// eslint-disable-next-line no-console
-		console.log(data)
 		dispatch(updateFormData({ ...data }))
 		dispatch(nextStep())
 	}
