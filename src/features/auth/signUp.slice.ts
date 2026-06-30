@@ -7,10 +7,10 @@ export interface SignUpFormData {
 	birthDate: string
 	password: string
 	confirmPassword: string
-	classLevel: string | null
+	school_class_id: number | null
 	district: number | null
-	country: number | null
-	school: string | null
+	country_id: number | null
+	school_id: number | null
 	region: number | null
 }
 
@@ -29,10 +29,10 @@ const initialState: SignUpFormState = {
 		birthDate: '',
 		password: '',
 		confirmPassword: '',
-		classLevel: null,
+		school_class_id: null,
 		district: null,
-		country: null,
-		school: null,
+		country_id: null,
+		school_id: null,
 		region: null,
 	},
 	isSubmitted: false,

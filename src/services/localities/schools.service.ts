@@ -3,7 +3,7 @@ import { API_URL } from '@/config/api.config'
 
 class SchoolsService {
 	async getAllSchools() {
-		const { data } = await axiosClassic({
+		const { data } = await axiosClassic<{ data: { id: number; name: string }[] }>({
 			url: API_URL.schools(),
 			method: 'GET',
 		})

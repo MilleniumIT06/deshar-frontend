@@ -8,7 +8,7 @@ import { type RegistrationCompleteData } from '../ProgramSelection/IngushetiaFor
 
 export function useSignUp() {
 	const router = useRouter()
-	const { mutate, isPending } = useMutation({
+	const { mutate, isPending, isSuccess } = useMutation({
 		mutationKey: ['create user'],
 		mutationFn: (data: RegistrationCompleteData) => registerService.register(data),
 		onSuccess: () => {
@@ -25,5 +25,5 @@ export function useSignUp() {
 			}
 		},
 	})
-	return { mutate, isPending }
+	return { mutate, isPending, isSuccess }
 }

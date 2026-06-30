@@ -1,27 +1,27 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+// import { useState } from 'react'
+// import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
-import { auth } from '@/shared/lib/auth'
+// import { auth } from '@/shared/lib/auth'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
-import { useAppDispatch } from '@/app/_store/hooks'
-import { login } from '@/entities/user/model/user.slice'
+// import { useAppDispatch } from '@/app/_store/hooks'
+// import { login } from '@/entities/user/model/user.slice'
 
 import { signUpUserSchema, type signUpUserFormData } from '../../model/signUp.schema'
 
 import './styles.scss'
+import { useAppDispatch } from '@/app/_store/hooks'
+import { nextStep, updateFormData } from '@/features/auth/signUp.slice'
 
 export const SignUpForm = () => {
-	const router = useRouter()
+	// const router = useRouter()
 	const dispatch = useAppDispatch()
-	const [serverError, setServerError] = useState<string>('')
-	const [isLoading, setIsLoading] = useState(false)
 
 	const {
 		register,
@@ -33,30 +33,51 @@ export const SignUpForm = () => {
 	})
 
 	const onSubmit = async (data: signUpUserFormData) => {
-		try {
-			setIsLoading(true)
-			setServerError('')
+		// try {
+		// 	setIsLoading(true)
+		// 	setServerError('')
 
-			const response = await auth.register({
-				name: data.name,
-				email: data.email,
-				password: data.password,
-				password_confirmation: data.confirmPassword,
-				user_type: 'student',
-				birth_date: data.birthDate,
-				// Добавьте другие поля если есть
-			})
+		// 	const response = await auth.register({
+		// 		name: data.name,
+		// 		email: data.email,
+		// 		password: data.password,
+		// 		password_confirmation: data.confirmPassword,
+		// 		user_type: 'student',
+		// 		birth_date: data.birthDate,
+		// 		// Добавьте другие поля если есть
+		// 	})
 
-			if (response.success && response.user) {
-				dispatch(login(response.user))
-				router.push('/')
-				router.refresh()
-			}
-		} catch (error) {
-			setServerError(error instanceof Error ? error.message : 'Ошибка регистрации')
-		} finally {
-			setIsLoading(false)
+		// 	if (response.success && response.user) {
+		// 		dispatch(login(response.user))
+		// 		router.push('/')
+		// 		router.refresh()
+		// 	}
+		// } catch (error) {
+		// 	setServerError(error instanceof Error ? error.message : 'Ошибка регистрации')
+		// } finally {
+		// 	setIsLoading(false)
+		// }
+		if (isValid) {
+			// const firstFormData = {
+			// 		name: data.name,
+			// 		email: data.email,
+			// 		password: data.password,
+			// 		password_confirmation: data.confirmPassword,
+			// 		role_id: 1,
+			// 		birth_date: data.birthDate,
+			// 	}
+			dispatch(
+				updateFormData({
+					name: data.name,
+					email: data.email,
+					password: data.password,
+					confirmPassword: data.confirmPassword,
+					birthDate: data.birthDate,
+				}),
+			)
+			dispatch(nextStep())
 		}
+		// console.log('FirstForm',data)
 	}
 
 	return (
@@ -64,11 +85,11 @@ export const SignUpForm = () => {
 			<div className="SignUpForm__inner">
 				<h1 className="SignUpForm__title">Регистрация</h1>
 
-				{serverError && (
+				{/* {serverError && (
 					<div className="SignUpForm__error" role="alert">
 						{serverError}
 					</div>
-				)}
+				)} */}
 
 				<form className="SignUpForm__form" onSubmit={handleSubmit(onSubmit)}>
 					<Input
@@ -77,7 +98,7 @@ export const SignUpForm = () => {
 						placeholder="Имя"
 						className="SignUpForm__input"
 						validationMessage={errors.name?.message}
-						disabled={isLoading}
+						// disabled={isLoading}
 						{...register('name')}
 					/>
 
@@ -87,7 +108,7 @@ export const SignUpForm = () => {
 						placeholder="Фамилия"
 						className="SignUpForm__input"
 						validationMessage={errors.surname?.message}
-						disabled={isLoading}
+						// disabled={isLoading}
 						{...register('surname')}
 					/>
 
@@ -97,7 +118,7 @@ export const SignUpForm = () => {
 						placeholder="Email"
 						className="SignUpForm__input"
 						validationMessage={errors.email?.message}
-						disabled={isLoading}
+						// disabled={isLoading}
 						{...register('email')}
 					/>
 
@@ -107,7 +128,7 @@ export const SignUpForm = () => {
 						placeholder="Дата рождения"
 						className="SignUpForm__input"
 						validationMessage={errors.birthDate?.message}
-						disabled={isLoading}
+						// disabled={isLoading}
 						{...register('birthDate')}
 					/>
 
@@ -117,7 +138,7 @@ export const SignUpForm = () => {
 						placeholder="Пароль"
 						className="SignUpForm__input"
 						validationMessage={errors.password?.message}
-						disabled={isLoading}
+						// disabled={isLoading}
 						{...register('password')}
 					/>
 
@@ -127,16 +148,17 @@ export const SignUpForm = () => {
 						placeholder="Подтвердите пароль"
 						className="SignUpForm__input"
 						validationMessage={errors.confirmPassword?.message}
-						disabled={isLoading}
+						// disabled={isLoading}
 						{...register('confirmPassword')}
 					/>
 
 					<Button
 						className="SignUpForm__btn"
 						size="medium"
-						disabled={!isValid || isLoading}
-						type="submit">
-						{isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
+						// disabled={!isValid || isLoading}
+					>
+						{/* {isLoading ? 'Регистрация...' : 'Зарегистрироваться'} */}
+						Далее
 					</Button>
 				</form>
 

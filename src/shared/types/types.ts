@@ -2,7 +2,7 @@ type Id = number
 export interface District {
 	id: Id
 	name: string
-	region_id: number
+	// region_id: number
 }
 export interface Country {
 	id: Id
@@ -24,10 +24,18 @@ export interface TrainerCommonProps {
 // {subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 export type TrainerTheme = 'towers' | 'ocean' | 'forest' | 's' | 'o' | 'default'
-
+interface IUserResponse {
+	id: number
+	name: string
+	email: string
+	avatar: string
+	user_type: string
+	level: number
+	points: number
+}
 export interface IAuthResponse {
 	success: boolean
 	message: string
-	user: any
+	user: IUserResponse
 	token: string
 }
