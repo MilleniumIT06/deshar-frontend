@@ -2,19 +2,21 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function proxy(request: NextRequest) {
-	// Получаем токен из cookies (в proxy/middleware нет доступа к localStorage)
-	const token = request.cookies.get('auth_token')?.value
-	// const { pathname } = request.nextUrl
-	// Для теста оставим true, но логика проверки токена ниже:
-	const isAuthenticated = Boolean(token) || true
-	// if (isAuthenticated && (pathname === '/' || pathname === '/sign-in')) {
-	// 	return NextResponse.redirect(new URL('/dashboard', request.url))
-	// }
-	// Если пользователь не авторизован, перенаправляем на страницу входа
-	if (!isAuthenticated) {
+	const token = request.cookies.get('jwt_token')?.value
+	const { pathname } = request.nextUrl
+
+	const isAuthenticated = Boolean(token)
+	const isAuthPage = pathname === '/sign-in'
+
+	if (isAuthenticated && (pathname === '/' || isAuthPage)) {
+		return NextResponse.redirect(new URL('/dashboard', request.url))
+	}
+
+	if (!isAuthenticated && !isAuthPage) {
 		const signInUrl = new URL('/sign-in', request.url)
-		// Сохраняем URL для возврата после логина
-		signInUrl.searchParams.set('callbackUrl', request.nextUrl.pathname)
+
+		// signInUrl.searchParams.set('callbackUrl', pathname)
+
 		return NextResponse.redirect(signInUrl)
 	}
 
@@ -22,18 +24,13 @@ export function proxy(request: NextRequest) {
 	return NextResponse.next()
 }
 
-// Конфигурация путей остается прежней
 export const config = {
 	matcher: [
 		'/',
 		'/sign-in',
-		'/dashboard',
 		'/dashboard/:path*',
-		'/courses',
 		'/courses/:path*',
-		'/completed-courses',
 		'/completed-courses/:path*',
-		'/learning',
 		'/learning/:path*',
 	],
 }

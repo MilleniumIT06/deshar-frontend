@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { districtsService } from '@/services/districts.service'
+import { districtsService } from '@/services/localities/districts.service'
 
 export const useGetDistricts = () => {
 	const {
