@@ -8,27 +8,33 @@ import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { resetForm } from '@/features/auth/signUp.slice'
-// import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
-// import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
-import { classLevels } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
 import { useSignUp } from '../../SignUp/useSignUp'
 import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
 import { useGetLocalities } from '@/hooks/queries/useGetLocalities'
+import { useGetSchoolClasses } from '@/hooks/queries/useGetSchoolClasses'
+import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
+import { useGetRegions } from '@/hooks/queries/useGetRegions'
+import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
+import type { UserType } from '@/shared/types/types'
 
 const validateSchema = z.object({
 	locality: z.object({
 		id: z.number({ required_error: 'Выберите населенный пункт' }),
 		name: z.string().min(1, { message: 'Пожалуйста, выберите населенный пункт' }),
 	}),
+	district: z.object({
+		id: z.number({ required_error: 'Пожалуйста, выберите район' }),
+		name: z.string().min(1, { message: 'Пожалуйста, выберите район' }),
+	}),
 	school: z.object({
 		id: z.number({ required_error: 'Пожалуйста, выберите школу' }),
 		name: z.string().min(1, { message: 'Пожалуйста, выберите школу' }),
 	}),
 
-	classLevel: z.object({
+	schoolClass: z.object({
 		id: z.number({ required_error: 'Пожалуйста, выберите класс' }),
 		name: z.string().min(1, { message: 'Пожалуйста, выберите класс' }),
 	}),
@@ -43,33 +49,36 @@ export interface RegistrationCompleteData {
 	school_id: number
 	school_class_id: number
 	// avatar: string
-	// region_id: number | null
-	// district_id: number
-	// birth_date: string
-	// user_type: 'student'
+	region_id: number | null
+	district_id: number
+	locality_id: number
+	birth_date: string
+	user_type: UserType
+}
+const defaultValues = {
+	locality: { id: 0, name: '' },
+	district: { id: 0, name: '' },
+	school: { id: 0, name: '' },
+	schoolClass: { id: 0, name: '' },
 }
 export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) => void }) => {
 	const { formData } = useAppSelector(state => state.signUpFormReducer)
 	const dispatch = useAppDispatch()
 	const { isPending, mutate, isSuccess } = useSignUp()
 
-	// const { isError: isDistrictsError, districts, isLoading: isDistrictsLoading } = useGetDistricts()
+	const { districts, isLoading: isDistrictsLoading, isError: isDistrictsError } = useGetDistricts()
 	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
+	const { countries, isLoading: isCountriesLoading } = useGetCountries()
 	const { isError: isLocalitiesError, localities, isLoading: isLocalitiesLoading } = useGetLocalities()
-	// const { countries } = useGetCountries()
-
-	// const countryId = 1;
-	// const ingushetiaId = 1
+	const { regions, isLoading: isRegionsLoading } = useGetRegions()
+	const { schoolClasses, isLoading: isSchoolClassesLoading } = useGetSchoolClasses()
+	// console.log('countries', countries)
 	const form = useForm({
 		resolver: zodResolver(validateSchema),
-		defaultValues: {
-			locality: { id: 0, name: '' },
-			school: { id: 0, name: '' },
-			classLevel: { id: 0, name: '' },
-		},
+		defaultValues: defaultValues,
 		mode: 'onChange',
 	})
-	// console.log(localities,schools)
+
 	useEffect(() => {
 		if (form.formState.isSubmitting) {
 			disableTab(true)
@@ -79,31 +88,30 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 	}, [form.formState.isSubmitting, disableTab])
 
 	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
-		if (form.formState.isValid) {
-			// let formattedBirthDate = formData.birthDate
-			// if (formData.birthDate.includes('.')) {
-			// 	const [day, month, year] = formData.birthDate.split('.')
-			// 	formattedBirthDate = `${year}-${month}-${day}`
-			// }
+		if (form.formState.isValid && !isCountriesLoading && !isRegionsLoading) {
+			let formattedBirthDate = formData.birthDate
+			if (formData.birthDate.includes('.')) {
+				const [day, month, year] = formData.birthDate.split('.')
+				formattedBirthDate = `${year}-${month}-${day}`
+			}
 			const completeData: RegistrationCompleteData = {
 				name: `${formData.name} ${formData.surname}`,
 				email: formData.email,
 				password: formData.password,
 				password_confirmation: formData.confirmPassword,
-				role_id: 1,
-				country_id: 1,
+				role_id: 9,
+				country_id: countries?.data.find(country => country.name === 'Россия')?.id || 1,
 				school_id: data.school.id,
-				school_class_id: data.classLevel.id,
-				// birth_date: formattedBirthDate,
-				// district_id: data.district.id,
-				// region_id: 1,
+				school_class_id: data.schoolClass.id,
+				district_id: data.district.id,
+				locality_id: data.locality.id,
+				birth_date: formattedBirthDate,
+				region_id: regions?.data.find(region => region.name === 'Ингушетия')?.id || 1,
+				user_type: formData.user_type,
 			}
-			mutate(completeData)
-			// dispatch(submitForm())
 			// console.log(completeData)
+			mutate(completeData)
 		}
-		// console.log("formData",formData)
-		// console.log(data);
 	}
 
 	useEffect(() => {
@@ -116,6 +124,22 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
+			<div className="ProgramSelectionForm__field">
+				<InputSelect
+					value={form.watch('district')}
+					setValue={value => {
+						form.setValue('district', value, { shouldValidate: true })
+						form.setValue('school', { id: 0, name: '' })
+					}}
+					options={districts?.data}
+					isLoading={isDistrictsLoading}
+					isError={isDistrictsError}
+					placeholderValue="Выберите район"
+				/>
+				{form.formState.errors.district && (
+					<p className="ProgramSelectionForm__error">{form.formState.errors.district.message}</p>
+				)}
+			</div>
 			<div className="ProgramSelectionForm__field">
 				<InputSelect
 					value={form.watch('locality')}
@@ -149,15 +173,16 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 
 			<div className="ProgramSelectionForm__field">
 				<InputSelect
-					value={form.watch('classLevel')}
+					value={form.watch('schoolClass')}
 					setValue={value => {
-						return form.setValue('classLevel', value, { shouldValidate: true })
+						return form.setValue('schoolClass', value, { shouldValidate: true })
 					}}
-					options={classLevels}
+					options={schoolClasses?.data}
 					placeholderValue="Выберите класс"
+					isLoading={isSchoolClassesLoading}
 				/>
-				{form.formState.errors.classLevel && (
-					<p className="ProgramSelectionForm__error">{form.formState.errors.classLevel.message}</p>
+				{form.formState.errors.schoolClass && (
+					<p className="ProgramSelectionForm__error">{form.formState.errors.schoolClass.message}</p>
 				)}
 			</div>
 

@@ -1,14 +1,14 @@
 import { axiosClassic } from '@/api/api.helper'
 import { API_URL } from '@/config/api.config'
 
-class CountryService {
-	async getAllCountries() {
+class RegionService {
+	async getAllRegions() {
 		const { data } = await axiosClassic<{ data: { id: number; name: string }[] }>({
-			url: API_URL.countries(),
+			url: API_URL.regions(),
 			method: 'GET',
 		})
 		return data
 	}
 }
 
-export const countryService = new CountryService()
+export const regionService = new RegionService()
