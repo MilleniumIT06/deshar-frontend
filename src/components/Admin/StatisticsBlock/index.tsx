@@ -1,4 +1,4 @@
-import { Pie, PieChart, Tooltip, Label, Legend, Cell, type TooltipContentProps } from 'recharts'
+import { Pie, PieChart, Tooltip, Label, Legend, type TooltipContentProps } from 'recharts'
 
 import './styles.scss'
 import { Selector } from '@/shared/ui/Selector'
@@ -14,6 +14,7 @@ export interface PieDataItem {
 }
 
 interface StatisticsBlockProps {
+	title: string
 	data: PieDataItem[]
 	centerLabel?: string
 }
@@ -60,13 +61,13 @@ const CustomTooltip = ({ data }: { data: TooltipContentProps<ValueType, NameType
 	return null
 }
 
-export const StatisticsBlock = ({ data, centerLabel = 'баллов' }: StatisticsBlockProps) => {
+export const StatisticsBlock = ({ title = 'test', data, centerLabel = 'баллов' }: StatisticsBlockProps) => {
 	const reducedValue = data.reduce((acc, curr) => acc + Number(curr.value), 0)
 	return (
 		<div className="StatisticsBlock">
 			<div className="StatisticsBlock__inner">
 				<div className="StatisticsBlock__header">
-					<h3 className="StatisticsBlock__title">Лучшая успеваемость</h3>
+					<h3 className="StatisticsBlock__title">{title}</h3>
 					<Selector
 						className="StatisticsBlock__selector"
 						options={selectorOptions}
@@ -92,18 +93,9 @@ export const StatisticsBlock = ({ data, centerLabel = 'баллов' }: Statisti
 							fill="#8884d8"
 							paddingAngle={5}
 							dataKey="value"
-							isAnimationActive={false}>
-							{data.map((entry, index) => (
-								<Cell
-									key={`cell - ${index} `}
-									fill={entry.fill}
-									style={{
-										cursor: 'pointer',
-										transition: 'all 0.3s',
-									}}
-								/>
-							))}
-						</Pie>
+							isAnimationActive={false}
+						/>
+
 						<Legend
 							content={<CustomLeg data={data} />}
 							align="right"

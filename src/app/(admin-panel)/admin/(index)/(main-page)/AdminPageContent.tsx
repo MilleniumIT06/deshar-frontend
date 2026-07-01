@@ -46,9 +46,9 @@ export const AdminPageContent = () => {
 		<div>
 			{hasRole(['admin', 'department', 'ministry']) && (
 				<div className="MainStatisticPageContent__cards">
-					<StatisticsBlock data={defaultPieData} centerLabel="баллов" />
+					<StatisticsBlock data={defaultPieData} centerLabel="баллов" title="Лучшая успеваемость" />
 
-					<StatisticsBlock data={defaultPieTimeData} centerLabel="часов" />
+					<StatisticsBlock data={defaultPieTimeData} centerLabel="часов" title="Время обучения" />
 				</div>
 			)}
 
