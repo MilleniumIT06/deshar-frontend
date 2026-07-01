@@ -1,4 +1,4 @@
-export const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8000'
+export const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8111'
 
 const prefix = '/api'
 export const API_URL = {
@@ -12,5 +12,6 @@ export const API_URL = {
 	schools: () => API_URL.root(`${prefix}/schools`),
 	districts: () => API_URL.root(`${prefix}/districts`),
 	cities: () => API_URL.root(`${prefix}/cities`),
+	localities: () => API_URL.root(`${prefix}/localities`),
 	roles: () => API_URL.root(`${prefix}/roles`),
 }

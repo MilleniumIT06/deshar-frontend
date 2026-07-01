@@ -8,7 +8,7 @@ import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { resetForm } from '@/features/auth/signUp.slice'
-import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
+// import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
 // import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
 import { classLevels } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
@@ -16,9 +16,10 @@ import { InputSelect } from '@/shared/ui/InputSelect'
 
 import { useSignUp } from '../../SignUp/useSignUp'
 import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
+import { useGetLocalities } from '@/hooks/queries/useGetLocalities'
 
 const validateSchema = z.object({
-	district: z.object({
+	locality: z.object({
 		id: z.number({ required_error: 'Выберите населенный пункт' }),
 		name: z.string().min(1, { message: 'Пожалуйста, выберите населенный пункт' }),
 	}),
@@ -52,8 +53,9 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 	const dispatch = useAppDispatch()
 	const { isPending, mutate, isSuccess } = useSignUp()
 
-	const { isError: isDistrictsError, districts, isLoading: isDistrictsLoading } = useGetDistricts()
+	// const { isError: isDistrictsError, districts, isLoading: isDistrictsLoading } = useGetDistricts()
 	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
+	const { isError: isLocalitiesError, localities, isLoading: isLocalitiesLoading } = useGetLocalities()
 	// const { countries } = useGetCountries()
 
 	// const countryId = 1;
@@ -61,13 +63,13 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 	const form = useForm({
 		resolver: zodResolver(validateSchema),
 		defaultValues: {
-			district: { id: 0, name: '' },
+			locality: { id: 0, name: '' },
 			school: { id: 0, name: '' },
 			classLevel: { id: 0, name: '' },
 		},
 		mode: 'onChange',
 	})
-	// console.log(districts,schools)
+	// console.log(localities,schools)
 	useEffect(() => {
 		if (form.formState.isSubmitting) {
 			disableTab(true)
@@ -116,18 +118,18 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
 			<div className="ProgramSelectionForm__field">
 				<InputSelect
-					value={form.watch('district')}
+					value={form.watch('locality')}
 					setValue={value => {
-						form.setValue('district', value, { shouldValidate: true })
+						form.setValue('locality', value, { shouldValidate: true })
 						form.setValue('school', { id: 0, name: '' })
 					}}
-					options={districts?.data}
-					isLoading={isDistrictsLoading}
-					isError={isDistrictsError}
+					options={localities?.data}
+					isLoading={isLocalitiesLoading}
+					isError={isLocalitiesError}
 					placeholderValue="Выберите населенный пункт"
 				/>
-				{form.formState.errors.district && (
-					<p className="ProgramSelectionForm__error">{form.formState.errors.district.message}</p>
+				{form.formState.errors.locality && (
+					<p className="ProgramSelectionForm__error">{form.formState.errors.locality.message}</p>
 				)}
 			</div>
 
