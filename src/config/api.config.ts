@@ -1,4 +1,4 @@
-export const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8111'
+export const SERVER_URL = process.env.SERVER_URL
 
 const prefix = '/api'
 export const API_URL = {
