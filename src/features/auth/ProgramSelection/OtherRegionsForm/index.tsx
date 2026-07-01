@@ -6,8 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
-import { updateFormData, submitForm, resetForm } from '@/features/auth/signUp.slice'
+// import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
+// import { updateFormData, submitForm, resetForm } from '@/features/auth/signUp.slice'
 import { useGetCities } from '@/hooks/queries/cities/useGetCities'
 import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
 // import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
@@ -17,7 +17,7 @@ import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
 import { useSignUp } from '../../SignUp/useSignUp'
-import { type RegistrationCompleteData } from '../IngushetiaForm'
+// import { type RegistrationCompleteData } from '../IngushetiaForm'
 
 const validateSchema = z.object({
 	country: z.object({
@@ -43,9 +43,9 @@ const validateSchema = z.object({
 })
 
 export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) => void }) => {
-	const { formData } = useAppSelector(state => state.signUpFormReducer)
-	const dispatch = useAppDispatch()
-	const { isPending, mutate } = useSignUp()
+	// const { formData } = useAppSelector(state => state.signUpFormReducer)
+	// const dispatch = useAppDispatch()
+	const { isPending } = useSignUp()
 	const form = useForm({
 		resolver: zodResolver(validateSchema),
 		defaultValues: {
@@ -64,45 +64,42 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 		}
 	}, [form.formState.isSubmitting, disableTab])
 
-	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
+	const onSubmit = async () => {
 		try {
-			let formattedBirthDate = formData.birthDate
-			if (formData.birthDate.includes('.')) {
-				const [day, month, year] = formData.birthDate.split('.')
-				formattedBirthDate = `${year}-${month}-${day}`
-			}
-			const completeData: RegistrationCompleteData = {
-				name: `${formData.name} ${formData.surname}`,
-				email: formData.email,
-				avatar: 'defaultAvatar.png',
-				password: formData.password,
-				password_confirmation: formData.confirmPassword,
-				country_id: data.country.id,
-				birth_date: formattedBirthDate,
-				district_id: 1,
-				region_id: data.region?.id || null,
-				role_id: 1,
-				user_type: 'student',
-			}
-
+			// let formattedBirthDate = formData.birthDate
+			// if (formData.birthDate.includes('.')) {
+			// 	const [day, month, year] = formData.birthDate.split('.')
+			// 	formattedBirthDate = `${year}-${month}-${day}`
+			// }
+			// const completeData: RegistrationCompleteData = {
+			// 	name: `${formData.name} ${formData.surname}`,
+			// 	email: formData.email,
+			// 	password: formData.password,
+			// 	password_confirmation: formData.confirmPassword,
+			// 	country_id: data.country.id,
+			// 	// birth_date: formattedBirthDate,
+			// 	// district_id: 1,
+			// 	region_id: data.region?.id || null,
+			// 	role_id: 1,
+			// 	user_type: 'student',
+			// }
 			// console.log('Other form data:', completeData)
-
-			dispatch(updateFormData(completeData))
-			mutate(completeData)
-			dispatch(submitForm())
+			// dispatch(updateFormData(completeData))
+			// mutate(completeData)
+			// dispatch(submitForm())
 		} catch (error) {
 			// console.error('Form submission error:', error)
 			return error
 		} finally {
-			handleReset()
+			// handleReset()
 		}
 	}
 
-	const handleReset = () => {
-		form.reset()
-		dispatch(resetForm())
-		disableTab(false)
-	}
+	// const handleReset = () => {
+	// 	form.reset()
+	// 	dispatch(resetForm())
+	// 	disableTab(false)
+	// }
 
 	const { countries, isLoading: isCountriesLoading, isError: isCountriesError } = useGetCountries()
 	const { cities, isLoading: isCitiesLoading, isError: isCitiesError } = useGetCities()
