@@ -108,9 +108,11 @@
 }
 
 .Header__user-name-display {
-	font-size: 0.875rem;
-	font-weight: 500;
-	color: #374151;
+	font-family: var(--font-family);
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 150%;
+	color: var(--neutral-darkest);
 }
 
 .Header__user-menu {
@@ -138,14 +140,19 @@
 }
 
 .Header__user-name {
+	font-family: var(--font-family);
 	font-weight: 600;
-	color: #111827;
+	font-size: 16px;
+	line-height: 150%;
+	color: var(--neutral-darkest);
 }
 
 .Header__user-email {
-	font-size: 0.75rem;
+	font-family: var(--font-family);
+	font-weight: 600;
+	font-size: 11px;
+	line-height: 150%;
 	color: #6b7280;
-	margin-top: 0.25rem;
 }
 
 .Header__user-menu-divider {

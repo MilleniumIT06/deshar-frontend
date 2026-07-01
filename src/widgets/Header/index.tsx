@@ -22,17 +22,15 @@ export const Header = () => {
 	const userMenuRef = useOutsideClick(() => {
 		setIsMenuOpen(false)
 	})
-	// const {user,isAuth} = useAppSelector(state=>state.user)
 	const dispatch = useAppDispatch()
 	const router = useRouter()
-	const { isLoading, user } = useProfile()
-	// Убираем console.log или оставляем с eslint-disable-next-line
+	const { isLoading, profileData } = useProfile()
 	useEffect(() => {
-		if (user) {
+		if (profileData) {
 			// eslint-disable-next-line no-console
-			console.log('User data in Header:', user.user)
+			console.log('User data in Header:', profileData.user)
 		}
-	}, [user])
+	}, [profileData])
 
 	useEffect(() => {
 		if (burgerOpen) {
@@ -70,7 +68,7 @@ export const Header = () => {
 	}, [])
 
 	const handleAvatarClick = () => {
-		setIsMenuOpen(!isMenuOpen)
+		setIsMenuOpen(prev => !prev)
 	}
 
 	const handleLogout = async () => {
@@ -111,29 +109,30 @@ export const Header = () => {
 							</li>
 						</ul>
 					</nav>
-					{/* <button onClick={() => dispatch(logout())}>logout</button> */}
 					<div className="Header__right">
 						{isLoading ? (
 							'Loading...'
-						) : user ? (
-							<div className="Header__user">
-								<div className="Header__user-info-wrapper" onClick={handleAvatarClick}>
-									{user?.user.name && (
-										<span className="Header__user-name-display">{user.user.name}</span>
-									)}
-									<Avatar user={user.user} size="medium" showName={false} />
+						) : profileData ? (
+							<div className="Header__user" ref={userMenuRef}>
+								<div className="Header__user-info-wrapper">
+									<Avatar
+										user={profileData.user}
+										size="medium"
+										showName={true}
+										onClick={() => handleAvatarClick()}
+									/>
 								</div>
 
 								{isMenuOpen && (
-									<div className="Header__user-menu" ref={userMenuRef}>
+									<div className="Header__user-menu">
 										<div className="Header__user-menu-header">
-											<Avatar user={user.user} size="small" showName={false} />
+											<Avatar user={profileData.user} size="small" showName={false} />
 											<div className="Header__user-info">
 												<div className="Header__user-name">
-													{user?.user.name || 'Пользователь'}
+													{profileData?.user.name || 'Пользователь'}
 												</div>
 												<div className="Header__user-email">
-													{user?.user.email || ''}
+													{profileData?.user.email || ''}
 												</div>
 											</div>
 										</div>

@@ -14,6 +14,13 @@
 		font-size: 16px;
 		line-height: 150%;
 		color: var(--neutral-darkest);
+		.small + & {
+			font-size: 0.85rem;
+		}
+
+		.large + & {
+			font-size: 1.2rem;
+		}
 		@include breakpoint.mobile {
 			display: none;
 		}
@@ -58,18 +65,5 @@
 		color: #757575;
 		font-weight: 600;
 		font-size: 0.8em;
-	}
-
-	&__name {
-		font-size: 1rem;
-		font-weight: 500;
-
-		.small + & {
-			font-size: 0.85rem;
-		}
-
-		.large + & {
-			font-size: 1.2rem;
-		}
 	}
 }
