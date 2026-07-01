@@ -1,5 +1,16 @@
-type Id = number
+export type Id = number
+export type UserType = 'student' | 'teacher' | 'parent' | 'admin'
 export interface District {
+	id: Id
+	name: string
+	// region_id: number
+}
+export interface Locality {
+	id: Id
+	name: string
+	// region_id: number
+}
+export interface SchoolClass {
 	id: Id
 	name: string
 	// region_id: number
@@ -10,7 +21,7 @@ export interface Country {
 }
 export interface Role {
 	id: Id
-	name: 'Admin' | 'Superadmin'
+	name: string
 }
 
 export interface TrainerCommonProps {

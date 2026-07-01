@@ -42,6 +42,9 @@
 			opacity: 0.6;
 			cursor: not-allowed;
 		}
+		&:focus-within {
+			outline: 1px solid var(--neutral-light);
+		}
 	}
 
 	&.primary {

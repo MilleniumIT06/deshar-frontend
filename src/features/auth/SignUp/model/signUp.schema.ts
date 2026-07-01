@@ -14,6 +14,9 @@ export const signUpUserSchema = z
 			.regex(/[0-9]/, 'Пароль должен содержать хотя бы одну цифру')
 			.regex(/[!@#$%^&*(),.?":{}|<>]/, 'Пароль должен содержать хотя бы один спецсимвол'),
 		confirmPassword: z.string(),
+		user_type: z.enum(['student', 'teacher'], {
+			errorMap: () => ({ message: 'Выберите роль' }),
+		}),
 	})
 	.refine(data => data.password === data.confirmPassword, {
 		message: 'Пароли не совпадают',

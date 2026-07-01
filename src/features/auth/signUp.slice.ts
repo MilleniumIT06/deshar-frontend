@@ -1,3 +1,4 @@
+import { type UserType } from '@/shared/types/types'
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 export interface SignUpFormData {
@@ -12,6 +13,8 @@ export interface SignUpFormData {
 	country_id: number | null
 	school_id: number | null
 	region: number | null
+	role_id: number | null
+	user_type: UserType
 }
 
 interface SignUpFormState {
@@ -34,6 +37,8 @@ const initialState: SignUpFormState = {
 		country_id: null,
 		school_id: null,
 		region: null,
+		role_id: null,
+		user_type: 'student',
 	},
 	isSubmitted: false,
 }

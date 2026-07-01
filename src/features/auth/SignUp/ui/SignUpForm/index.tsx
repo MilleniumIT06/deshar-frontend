@@ -12,6 +12,8 @@ import { signUpUserSchema, type signUpUserFormData } from '../../model/signUp.sc
 import './styles.scss'
 import { useAppDispatch } from '@/app/_store/hooks'
 import { nextStep, updateFormData } from '@/features/auth/signUp.slice'
+import { RadioButton } from '@/shared/ui/RadioButton'
+// import { useGetRoles } from '@/hooks/queries/useGetRoles'
 
 export const SignUpForm = () => {
 	// const router = useRouter()
@@ -25,7 +27,8 @@ export const SignUpForm = () => {
 		resolver: zodResolver(signUpUserSchema),
 		mode: 'onChange',
 	})
-
+	// const { roles ,isLoading} = useGetRoles()
+	// console.log('roles', roles)
 	const onSubmit = async (data: signUpUserFormData) => {
 		if (isValid) {
 			dispatch(
@@ -35,6 +38,8 @@ export const SignUpForm = () => {
 					password: data.password,
 					confirmPassword: data.confirmPassword,
 					birthDate: data.birthDate,
+					user_type: data.user_type,
+					// role_id: data.role_id,
 				}),
 			)
 			dispatch(nextStep())
@@ -99,7 +104,13 @@ export const SignUpForm = () => {
 						validationMessage={errors.confirmPassword?.message}
 						{...register('confirmPassword')}
 					/>
-
+					<div className="SignUpForm__role-selection">
+						<div className="SignUpForm__roles">
+							<RadioButton label="Я Ученик" value="student" register={register('user_type')} />
+							<RadioButton label="Я Учитель" value="teacher" register={register('user_type')} />
+						</div>
+						{errors.user_type && <p className="SignUpForm__error">{errors.user_type.message}</p>}
+					</div>
 					<Button className="SignUpForm__btn" size="medium">
 						Далее
 					</Button>
