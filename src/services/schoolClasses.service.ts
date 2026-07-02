@@ -3,10 +3,11 @@ import { API_URL } from '@/config/api.config'
 import type { SchoolClass } from '@/shared/types/types'
 
 class SchoolClassesService {
-	async getAllSchoolClasses() {
+	async getAllSchoolClasses(schoolId?: number | null) {
 		const { data } = await axiosClassic<SchoolClass[]>({
 			url: API_URL.schoolClasses(),
 			method: 'GET',
+			params: schoolId && schoolId > 0 ? { school_id: schoolId } : {}
 		})
 		return data
 	}

@@ -2,15 +2,16 @@ import { useQuery } from '@tanstack/react-query'
 
 import { schoolClassesService } from '@/services/schoolClasses.service'
 
-export const useGetSchoolClasses = () => {
+export const useGetSchoolClasses = ({ schoolId }: { schoolId?: number | null }) => {
 	const {
 		data: schoolClasses,
 		isLoading,
 		isError,
 		error,
 	} = useQuery({
-		queryKey: ['schoolClasses'],
-		queryFn: () => schoolClassesService.getAllSchoolClasses(),
+		queryKey: ['schoolClasses', schoolId],
+		queryFn: () => schoolClassesService.getAllSchoolClasses(schoolId),
+		staleTime: 5 * 60 * 1000,
 	})
 	return { schoolClasses, isLoading, isError, error }
 }
