@@ -111,7 +111,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 				<InputSelect
 					value={form.watch('country')}
 					setValue={value => form.setValue('country', value, { shouldValidate: true })}
-					options={countries}
+					options={countries?.data}
 					placeholderValue="Выберите страну"
 					isLoading={isCountriesLoading}
 					isError={isCountriesError}
