@@ -109,7 +109,7 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 				region_id: regions?.data.find(region => region.name === 'Ингушетия')?.id || 1,
 				user_type: formData.user_type,
 			}
-			// console.log(completeData)
+			console.log(completeData)
 			mutate(completeData)
 		}
 	}

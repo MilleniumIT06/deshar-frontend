@@ -34,6 +34,7 @@ export const SignUpForm = () => {
 			dispatch(
 				updateFormData({
 					name: data.name,
+					surname: data.surname,
 					email: data.email,
 					password: data.password,
 					confirmPassword: data.confirmPassword,
