@@ -73,8 +73,8 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 const selectedDistrict = form.watch('district')
 const selectedLocality = form.watch('locality')
 
-// для теста можно тут поставить  selectedSchool = {id:1}, чтобы подгружались все классы, а не только по выбранной школе, так как в базе данных нет школ с классами, кроме школы с id = 1
-const selectedSchool ={id: null}
+// для теста можно тут поставить  selectedSchool = {id:0}, чтобы подгружались все классы
+const selectedSchool = {id:0}
 // const selectedSchool = form.watch('school')
 	const { districts, isLoading: isDistrictsLoading, isError: isDistrictsError } = useGetDistricts()
 	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools({
