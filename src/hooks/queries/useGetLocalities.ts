@@ -14,7 +14,7 @@ export const useGetLocalities = ({ districtId }: { districtId?: number | null })
 	})
 
 	return {
-		localities: data?.data || undefined,
+		localities: data || undefined,
 		isLoading,
 		isError,
 		error

@@ -4,7 +4,7 @@ import type { SchoolClass } from '@/shared/types/types'
 
 class SchoolClassesService {
 	async getAllSchoolClasses() {
-		const { data } = await axiosClassic<{ data: SchoolClass[] }>({
+		const { data } = await axiosClassic<SchoolClass[]>({
 			url: API_URL.schoolClasses(),
 			method: 'GET',
 		})

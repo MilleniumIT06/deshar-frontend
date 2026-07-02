@@ -4,10 +4,11 @@ import { type District } from '@/shared/types/types'
 
 class DistrictsService {
 	async getAllDistricts() {
-		const { data } = await axiosClassic<{ data: District[] }>({
+		const {data} = await axiosClassic<District[]>({
 			url: API_URL.districts(),
 			method: 'GET',
 		})
+		console.log('districts', data)
 		return data
 	}
 }

@@ -4,7 +4,7 @@ import type { Locality } from '@/shared/types/types'
 
 class LocalitiesService {
 	async getAllLocalities(districtId?: number | null) {
-    const {data} = await axiosClassic<{ data: Locality[] }>({
+    const {data} = await axiosClassic<Locality[]>({
         url: API_URL.localities(),
         method: 'GET',
         params: districtId && districtId > 0 ? { district_id: districtId } : {}

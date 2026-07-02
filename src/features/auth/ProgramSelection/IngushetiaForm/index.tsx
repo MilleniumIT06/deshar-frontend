@@ -79,7 +79,12 @@ const selectedDistrict = form.watch('district')
 })
 	const { regions, isLoading: isRegionsLoading } = useGetRegions()
 	const { schoolClasses, isLoading: isSchoolClassesLoading } = useGetSchoolClasses()
-	// console.log('countries', countries)
+	console.log('countries', countries)
+	console.log('districts', districts)
+	console.log('localities', localities)
+	console.log('schools', schools)
+	console.log('schoolClasses', schoolClasses)
+	console.log('regions', regions)
 
 	useEffect(() => {
 		if (form.formState.isSubmitting) {
@@ -137,7 +142,7 @@ useEffect(() => {
 						form.setValue('district', value, { shouldValidate: true })
 						form.setValue('school', { id: 0, name: '' })
 					}}
-					options={districts?.data}
+					options={districts}
 					isLoading={isDistrictsLoading}
 					isError={isDistrictsError}
 					placeholderValue="Выберите район"
@@ -167,7 +172,7 @@ useEffect(() => {
 				<InputSelect
 					value={form.watch('school')}
 					setValue={value => form.setValue('school', value, { shouldValidate: true })}
-					options={schools?.data}
+					options={schools}
 					isLoading={isSchoolsLoading}
 					isError={isSchoolsError}
 					placeholderValue="Выберите школу"
@@ -183,7 +188,7 @@ useEffect(() => {
 					setValue={value => {
 						return form.setValue('schoolClass', value, { shouldValidate: true })
 					}}
-					options={schoolClasses?.data}
+					options={schoolClasses}
 					placeholderValue="Выберите класс"
 					isLoading={isSchoolClassesLoading}
 				/>
