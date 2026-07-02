@@ -3,7 +3,7 @@ import { API_URL } from '@/config/api.config'
 
 class CitiesService {
 	async getAllCities() {
-		const { data } = await axiosClassic({
+		const { data } = await axiosClassic<{ id: number; name: string }[]>({
 			url: API_URL.cities(),
 			method: 'GET',
 		})
