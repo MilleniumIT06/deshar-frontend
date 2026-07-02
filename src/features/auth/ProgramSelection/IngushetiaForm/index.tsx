@@ -73,9 +73,9 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 const selectedDistrict = form.watch('district')
 const selectedLocality = form.watch('locality')
 
-// для теста можно тут поставить  selectedSchool = 1, чтобы подгружались все классы, а не только по выбранной школе, так как в базе данных нет школ с классами, кроме школы с id = 1
-const selectedSchool = form.watch('school')
-
+// для теста можно тут поставить  selectedSchool = {id:1}, чтобы подгружались все классы, а не только по выбранной школе, так как в базе данных нет школ с классами, кроме школы с id = 1
+const selectedSchool ={id: null}
+// const selectedSchool = form.watch('school')
 	const { districts, isLoading: isDistrictsLoading, isError: isDistrictsError } = useGetDistricts()
 	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools({
 		localityId:selectedLocality?.id
@@ -104,9 +104,14 @@ const selectedSchool = form.watch('school')
 	}, [form.formState.isSubmitting, disableTab])
 useEffect(() => {
     form.setValue('locality', { id: 0, name: '' })
-	console.log(selectedDistrict)
-}, [selectedDistrict?.id, form,selectedDistrict])
+	form.setValue('school', { id: 0, name: '' })
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [selectedDistrict, selectedDistrict.id])
+useEffect(() => {
+    form.setValue('school', { id: 0, name: '' })
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [selectedLocality.id,selectedDistrict])
 	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
 		if (form.formState.isValid && !isCountriesLoading && !isRegionsLoading) {
 			let formattedBirthDate = formData.birthDate
