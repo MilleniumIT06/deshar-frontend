@@ -111,13 +111,13 @@ useEffect(() => {
 				password: formData.password,
 				password_confirmation: formData.confirmPassword,
 				role_id: 9,
-				country_id: countries?.data.find(country => country.name === 'Россия')?.id || 1,
+				country_id: countries?.find(country => country.name === 'Россия')?.id || 1,
 				school_id: data.school.id,
 				school_class_id: data.schoolClass.id,
 				district_id: data.district.id,
 				locality_id: data.locality.id,
 				birth_date: formattedBirthDate,
-				region_id: regions?.data.find(region => region.name === 'Ингушетия')?.id || 1,
+				region_id: regions?.find(region => region.name === 'Ингушетия')?.id || 1,
 				user_type: formData.user_type,
 			}
 			console.log(completeData)

@@ -3,7 +3,7 @@ import { API_URL } from '@/config/api.config'
 
 class RegionService {
 	async getAllRegions() {
-		const { data } = await axiosClassic<{ data: { id: number; name: string }[] }>({
+		const { data } = await axiosClassic<{ id: number; name: string }[]>({
 			url: API_URL.regions(),
 			method: 'GET',
 		})

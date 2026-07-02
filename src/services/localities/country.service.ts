@@ -4,7 +4,7 @@ import { Country } from '@/shared/types/types'
 
 class CountryService {
 	async getAllCountries() {
-		const { data } = await axiosClassic<{ data: Country[] }>({
+		const { data } = await axiosClassic<Country[]>({
 			url: API_URL.countries(),
 			method: 'GET',
 		})
