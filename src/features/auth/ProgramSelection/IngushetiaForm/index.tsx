@@ -65,19 +65,21 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 	const { formData } = useAppSelector(state => state.signUpFormReducer)
 	const dispatch = useAppDispatch()
 	const { isPending, mutate, isSuccess } = useSignUp()
-
-	const { districts, isLoading: isDistrictsLoading, isError: isDistrictsError } = useGetDistricts()
-	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
-	const { countries, isLoading: isCountriesLoading } = useGetCountries()
-	const { isError: isLocalitiesError, localities, isLoading: isLocalitiesLoading } = useGetLocalities()
-	const { regions, isLoading: isRegionsLoading } = useGetRegions()
-	const { schoolClasses, isLoading: isSchoolClassesLoading } = useGetSchoolClasses()
-	// console.log('countries', countries)
 	const form = useForm({
 		resolver: zodResolver(validateSchema),
 		defaultValues: defaultValues,
 		mode: 'onChange',
 	})
+const selectedDistrict = form.watch('district')
+	const { districts, isLoading: isDistrictsLoading, isError: isDistrictsError } = useGetDistricts()
+	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools()
+	const { countries, isLoading: isCountriesLoading } = useGetCountries()
+	const { localities, isLoading: isLocalitiesLoading, isError: isLocalitiesError } = useGetLocalities({
+    districtId: selectedDistrict?.id
+})
+	const { regions, isLoading: isRegionsLoading } = useGetRegions()
+	const { schoolClasses, isLoading: isSchoolClassesLoading } = useGetSchoolClasses()
+	// console.log('countries', countries)
 
 	useEffect(() => {
 		if (form.formState.isSubmitting) {
@@ -86,6 +88,10 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 			disableTab(false)
 		}
 	}, [form.formState.isSubmitting, disableTab])
+useEffect(() => {
+    form.setValue('locality', { id: 0, name: '' })
+	console.log(selectedDistrict)
+}, [selectedDistrict?.id, form,selectedDistrict])
 
 	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
 		if (form.formState.isValid && !isCountriesLoading && !isRegionsLoading) {
@@ -147,7 +153,7 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 						form.setValue('locality', value, { shouldValidate: true })
 						form.setValue('school', { id: 0, name: '' })
 					}}
-					options={localities?.data}
+					options={localities}
 					isLoading={isLocalitiesLoading}
 					isError={isLocalitiesError}
 					placeholderValue="Выберите населенный пункт"
