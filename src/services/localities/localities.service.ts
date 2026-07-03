@@ -7,7 +7,7 @@ class LocalitiesService {
     const {data} = await axiosClassic<Locality[]>({
         url: API_URL.localities(),
         method: 'GET',
-        params: districtId && districtId > 0 ? { district_id: districtId } : {}
+        params: districtId && districtId > -1 ? { district_id: districtId } : {}
     })
 	console.log('localities', data)
     return data

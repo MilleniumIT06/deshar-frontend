@@ -56,10 +56,10 @@ export interface RegistrationCompleteData {
 	user_type: UserType
 }
 const defaultValues = {
-	locality: { id: 0, name: '' },
-	district: { id: 0, name: '' },
-	school: { id: 0, name: '' },
-	schoolClass: { id: 0, name: '' },
+	locality: { id: -1, name: '' },
+	district: { id: -1, name: '' },
+	school: { id: -1, name: '' },
+	schoolClass: { id: -1, name: '' },
 }
 export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) => void }) => {
 	const { formData } = useAppSelector(state => state.signUpFormReducer)
@@ -74,7 +74,7 @@ const selectedDistrict = form.watch('district')
 const selectedLocality = form.watch('locality')
 
 // для теста можно тут поставить  selectedSchool = {id:0}, чтобы подгружались все классы
-const selectedSchool = {id:0}
+const selectedSchool = {id:-1}
 // const selectedSchool = form.watch('school')
 	const { districts, isLoading: isDistrictsLoading, isError: isDistrictsError } = useGetDistricts()
 	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools({
@@ -88,12 +88,12 @@ const selectedSchool = {id:0}
 	const { schoolClasses, isLoading: isSchoolClassesLoading } = useGetSchoolClasses({
     schoolId: selectedSchool?.id
 })
-	console.log('countries', countries)
-	console.log('districts', districts)
-	console.log('localities', localities)
-	console.log('schools', schools)
-	console.log('schoolClasses', schoolClasses)
-	console.log('regions', regions)
+	// console.log('countries', countries)
+	// console.log('districts', districts)
+	// console.log('localities', localities)
+	// console.log('schools', schools)
+	// console.log('schoolClasses', schoolClasses)
+	// console.log('regions', regions)
 
 	useEffect(() => {
 		if (form.formState.isSubmitting) {
@@ -103,13 +103,13 @@ const selectedSchool = {id:0}
 		}
 	}, [form.formState.isSubmitting, disableTab])
 useEffect(() => {
-    form.setValue('locality', { id: 0, name: '' })
-	form.setValue('school', { id: 0, name: '' })
+    form.setValue('locality', { id: -1, name: '' })
+	form.setValue('school', { id: -1, name: '' })
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [selectedDistrict, selectedDistrict.id])
 useEffect(() => {
-    form.setValue('school', { id: 0, name: '' })
+    form.setValue('school', { id: -1, name: '' })
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [selectedLocality.id,selectedDistrict])
 	const onSubmit = async (data: z.infer<typeof validateSchema>) => {

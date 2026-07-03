@@ -6,7 +6,7 @@ class SchoolsService {
 		const { data } = await axiosClassic<{ id: number; name: string }[]>({
 			url: API_URL.schools(),
 			method: 'GET',
-			params: localityId && localityId > 0 ? { locality_id: localityId } : {}
+			params: localityId && localityId > -1 ? { locality_id: localityId } : {}
 		})
 		return data
 	}

@@ -93,7 +93,9 @@ const InputSelect = ({
 										['selected']: option.name === value.name,
 									})}
 									onClick={() => handleChange(option)}>
-									{option.name}
+									<span>
+										{option.name}
+										</span>
 								</div>
 							))
 						)}
