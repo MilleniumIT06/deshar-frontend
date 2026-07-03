@@ -9,7 +9,6 @@ export const useCategoryMatcher = () => {
 	const [connections, setConnections] = useState<Connection[]>([])
 	const [activeSource, setActiveSource] = useState<string | null>(null)
 	const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-
 	useEffect(() => {
 		const handleMouseMove = (e: MouseEvent) => {
 			if (activeSource) {
@@ -20,14 +19,16 @@ export const useCategoryMatcher = () => {
 		return () => window.removeEventListener('mousemove', handleMouseMove)
 	}, [activeSource])
 
-	const startConnection = useCallback(
-		(id: string) => {
-			// Если уже есть связь для этого источника, ничего не делаем
-			if (connections.some(c => c.source === id)) return
-			setActiveSource(id)
-		},
-		[connections],
-	)
+const startConnection = useCallback(
+    (id: string, e: React.MouseEvent) => {
+        if (connections.some(c => c.source === id)) return;
+
+        setMousePos({ x: e.clientX, y: e.clientY });
+
+        setActiveSource(id);
+    },
+    [connections]
+);
 
 	const endConnection = useCallback(
 		(targetId: string) => {

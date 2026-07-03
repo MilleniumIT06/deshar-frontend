@@ -7,7 +7,9 @@
 	justify-content: center;
 	gap: 30px;
 	padding: 40px; // p-10
-
+svg{
+    pointer-events: none;
+}
 	&__container {
 		display: flex;
 		gap: 100px;

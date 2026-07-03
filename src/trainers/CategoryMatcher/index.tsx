@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useImperativeHandle, forwardRef } from 'react'
+import { useImperativeHandle, forwardRef,useRef } from 'react'
 import { ArcherContainer, ArcherElement } from 'react-archer'
 import { useCategoryMatcher } from './useCategoryMatcher'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
@@ -33,7 +33,7 @@ export const CategoryMatcher = forwardRef(
 		ref,
 	) => {
 		const { items, categories } = payload
-
+const archerRef = useRef<any>(null)
 		const { connections, activeSource, startConnection, endConnection, mousePos, resetConnections } =
 			useCategoryMatcher()
 
@@ -61,18 +61,20 @@ export const CategoryMatcher = forwardRef(
 				resetConnections()
 			},
 		}))
-
-		const onStartConnect = (id: string) => {
+		const onStartConnect = (e: React.MouseEvent, id: string) => {
+    changeStatus('idle')
+    startConnection(id, e)
+}
+		const onEndConnect = (targetId: string) => {
 			changeStatus('idle')
-			startConnection(id)
+			endConnection(targetId)
 		}
-
 		return (
 			<div className="category-matcher">
 				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
 				{title && <TrainerTitle title={title} />}
 				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
-				<ArcherContainer strokeColor="#4f46e5" strokeWidth={3} endShape={{ arrow: { arrowLength: 0 } }}>
+				<ArcherContainer ref={archerRef} strokeColor="#4f46e5" strokeWidth={3} endShape={{ arrow: { arrowLength: 0 } }}>
 					<div className="category-matcher__container">
 						{/* Левая колонка (Items) */}
 						<div className="category-matcher__column">
@@ -120,7 +122,7 @@ export const CategoryMatcher = forwardRef(
 													'--tw-ring-color': isDragging ? '#4f46e5' : w.color,
 												} as React.CSSProperties
 											}
-											onClick={() => onStartConnect(w.id)}>
+											onClick={(e) => onStartConnect(e, w.id)}>
 											<span>{w.label}</span>
 										</div>
 									</ArcherElement>
@@ -136,7 +138,7 @@ export const CategoryMatcher = forwardRef(
 								return (
 									<ArcherElement key={c.id} id={c.id}>
 										<div
-											onClick={() => endConnection(c.id)}
+											onClick={() => onEndConnect(c.id)}
 											className={cn(
 												'category-matcher__card category-matcher__card--target',
 												{
