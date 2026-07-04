@@ -2,10 +2,13 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
+import { useAppSelector } from "@/app/_store/hooks"
 import { useSignUp } from "@/features/auth/SignUp/useSignUp"
+import { useGetCountries } from "@/hooks/queries/countries/useGetCountries"
 import { useGetDistricts } from "@/hooks/queries/districts/useGetDistricts"
 import { useGetSchools } from "@/hooks/queries/schools/useGetSchools"
 import { useGetLocalities } from "@/hooks/queries/useGetLocalities"
+import { useGetRegions } from "@/hooks/queries/useGetRegions"
 import { useGetSchoolClasses } from "@/hooks/queries/useGetSchoolClasses"
 import { Button } from "@/shared/ui/Button"
 import { InputSelect } from "@/shared/ui/InputSelect"
@@ -47,7 +50,10 @@ export const TeacherForm = () => {
         defaultValues: defaultValues,
         mode: 'onChange',
     })
+	const { formData } = useAppSelector(state => state.signUpFormReducer)
 	const { isPending, mutate, isSuccess } = useSignUp()
+const { regions, isLoading: isRegionsLoading } = useGetRegions()
+	const { countries, isLoading: isCountriesLoading } = useGetCountries()
 	const { districts, isLoading: isDistrictsLoading, isError: isDistrictsError } = useGetDistricts()
 	const { localities, isLoading: isLocalitiesLoading, isError: isLocalitiesError } = useGetLocalities({
 	districtId: null
@@ -59,8 +65,29 @@ export const TeacherForm = () => {
 	schoolId: null
 })
 	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
-		console.log(data)
-
+		if (form.formState.isValid && !isCountriesLoading && !isRegionsLoading) {
+					let formattedBirthDate = formData.birthDate
+					if (formData.birthDate.includes('.')) {
+						const [day, month, year] = formData.birthDate.split('.')
+						formattedBirthDate = `${year}-${month}-${day}`
+					}
+					const completeData = {
+						name: `${formData.name} ${formData.surname}`,
+						email: formData.email,
+						password: formData.password,
+						password_confirmation: formData.confirmPassword,
+						role_id: 8,
+						country_id: countries?.find(country => country.name === 'Россия')?.id || 1,
+						school_id: data.school.id,
+						school_classes_ids: [...data.schoolClasses],
+						district_id: data.district.id,
+						locality_id: data.locality.id,
+						birth_date: formattedBirthDate,
+						region_id: regions?.find(region => region.name === 'Ингушетия')?.id || 1,
+						user_type: formData.user_type,
+					}
+					console.log('TeacherRegisterData',completeData)
+				}
 		}
 
 
