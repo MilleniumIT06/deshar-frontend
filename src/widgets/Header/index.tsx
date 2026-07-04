@@ -29,7 +29,7 @@ export const Header = () => {
 	useEffect(() => {
 		if (profileData) {
 			// eslint-disable-next-line no-console
-			console.log('User data in Header:', profileData.user)
+			console.log('User data in Header:', profileData.data.user)
 		}
 	}, [profileData])
 
@@ -117,7 +117,7 @@ export const Header = () => {
 							<div className="Header__user" ref={userMenuRef}>
 								<div className="Header__user-info-wrapper">
 									<Avatar
-										user={profileData.user}
+										user={profileData.data.user}
 										size="medium"
 										showName={true}
 										onClick={() => handleAvatarClick()}
@@ -127,13 +127,13 @@ export const Header = () => {
 								{isMenuOpen && (
 									<div className="Header__user-menu">
 										<div className="Header__user-menu-header">
-											<Avatar user={profileData.user} size="small" showName={false} />
+											<Avatar user={profileData.data.user} size="small" showName={false} />
 											<div className="Header__user-info">
 												<div className="Header__user-name">
-													{profileData?.user.name || 'Пользователь'}
+													{profileData.data.user.name || 'Пользователь'}
 												</div>
 												<div className="Header__user-email">
-													{profileData?.user.email || ''}
+													{profileData.data.user.email || ''}
 												</div>
 											</div>
 										</div>

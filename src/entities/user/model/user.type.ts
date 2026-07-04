@@ -65,6 +65,7 @@ export interface User {
 	user_type: string
 }
 export interface ProfileResponse {
-	success: boolean
+	// success: boolean
+	stats:any;
 	user: User
 }
