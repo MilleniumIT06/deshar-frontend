@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useMemo, useState } from 'react'
-
 import {
 	useReactTable,
 	getCoreRowModel,
@@ -10,6 +8,8 @@ import {
 	type AccessorKeyColumnDefBase,
 	type IdIdentifier,
 } from '@tanstack/react-table'
+import { useMemo, useState } from 'react'
+
 import './styles.scss'
 
 interface TableProps<TableItemType, T> {

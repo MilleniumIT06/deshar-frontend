@@ -1,7 +1,7 @@
+import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import cn from 'classnames'
 
 import { Button } from '@/shared/ui/Button'
 

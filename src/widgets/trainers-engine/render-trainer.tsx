@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { forwardRef } from 'react'
+
 import { trainersMap, type TrainerType } from './trainersMap'
 
 interface RenderTrainerProps {

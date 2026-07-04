@@ -5,8 +5,9 @@ import { AnimatePresence, motion } from 'motion/react'
 
 import { useAppSelector } from '@/app/_store/hooks'
 import { ProgramSelectionForm } from '@/features/auth/ProgramSelection/ui/ProgramSelectionForm'
-import { SignUpForm } from '@/features/auth/SignUp/ui/SignUpForm'
+import { TeacherForm } from '@/features/auth/ProgramSelection/ui/TeacherForm'
 import { SelectRoleForm } from '@/features/auth/SelectRoleForm'
+import { SignUpForm } from '@/features/auth/SignUp/ui/SignUpForm'
 
 export const SignUpPageContent = () => {
     const { currentStep,formData } = useAppSelector(state => state.signUpFormReducer)
@@ -44,7 +45,7 @@ export const SignUpPageContent = () => {
                     transition={{ duration: 0.3 }}
                 >
                      {/* <ProgramSelectionForm /> */}
-                    {formData.user_type === 'student' ? <ProgramSelectionForm />:<div>Форма заполнения данных для учителя</div>}
+                    {formData.user_type === 'student' ? <ProgramSelectionForm />:<TeacherForm/>}
                 </motion.div>
             )}
         </AnimatePresence>

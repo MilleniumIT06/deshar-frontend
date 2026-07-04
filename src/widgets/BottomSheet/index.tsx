@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 
 import { useDraggable, DndContext, type DragEndEvent, type UniqueIdentifier, type DragMoveEvent } from '@dnd-kit/core'
 import { restrictToVerticalAxis, restrictToWindowEdges } from '@dnd-kit/modifiers'
+import { useEffect, useState } from 'react'
 
 import './styles.scss'
 

@@ -1,12 +1,13 @@
 'use client'
 
 import './styles.scss'
-import type { ReactNode } from 'react'
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { Badge } from '@/shared/ui/Admin/Badge'
+
+import type { ReactNode } from 'react'
 
 const DefaultIcon = () => (
 	<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

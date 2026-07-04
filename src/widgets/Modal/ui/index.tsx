@@ -1,8 +1,8 @@
 'use client'
-import React, { type ReactNode, useEffect } from 'react'
 
 import { cva, type VariantProps } from 'class-variance-authority'
 import cn from 'classnames'
+import React, { type ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
 import { Button } from '@/shared/ui/Button'

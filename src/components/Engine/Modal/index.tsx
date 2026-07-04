@@ -1,6 +1,6 @@
 'use client'
-import { type ReactNode, useEffect } from 'react'
 import cn from 'classnames'
+import { type ReactNode, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import './styles.scss'
 

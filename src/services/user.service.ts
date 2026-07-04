@@ -1,6 +1,7 @@
+import Cookies from 'js-cookie' // Импортируем для чтения куки на клиенте
+
 import { axiosClassic } from '@/api/api.helper'
 import { API_URL } from '@/config/api.config'
-import Cookies from 'js-cookie' // Импортируем для чтения куки на клиенте
 
 class UserService {
 	async getProfile() {

@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 
+import cn from 'classnames'
 import { useState, useEffect } from 'react'
 
-import cn from 'classnames'
 
 import './styles.scss'
 import { ROLE_LABELS } from '@/shared/admin/utils'

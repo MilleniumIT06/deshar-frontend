@@ -1,8 +1,9 @@
 'use client'
 import { useEffect, useImperativeHandle, forwardRef } from 'react'
+
 import './styles.scss'
-import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { type RootState } from '@/app/_store'
+import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { stopTimer, tick } from '@/entities/engine/model/timer.slice'
 
 interface TimerProps {

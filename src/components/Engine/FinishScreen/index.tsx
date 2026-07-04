@@ -1,10 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import Image from 'next/image'
-import { EngineButton } from '../Button'
+
 import { useAppSelector } from '@/app/_store/hooks'
 
+
 import './styles.scss'
+import { EngineButton } from '../Button'
 import { FinishBtn } from '../FinishBtn'
 
 export const EngineFinishScreen = () => {

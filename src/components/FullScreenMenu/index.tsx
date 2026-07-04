@@ -1,9 +1,8 @@
 'use client'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { createPortal } from 'react-dom'
-
 import { m } from 'motion/react'
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import './styles.scss'
 
 export default function FullScreenMenu({ setMenuOpen }: { setMenuOpen: (value: boolean) => void }) {

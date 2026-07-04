@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import { useState } from 'react'
 
 import cn from 'classnames'
 import { motion, AnimatePresence } from 'motion/react'
+import { useState } from 'react'
 
 import { useOutsideClick } from '@/shared/hooks/useOutsideClick'
 import './styles.scss'

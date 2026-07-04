@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { changeCompletedStatus } from '../LearningAttestation/attestation.slice'
 import { type IChoiceRightTask } from '../LearningContent'
 import { TrainerWrapper } from '../TrainerWrapper'
-
 import { SelectAnswerQuizContent } from './SelectAnswerQuizContent'
 import { useSelectAnswerQuiz } from './useSelectAnswerQuiz'
 

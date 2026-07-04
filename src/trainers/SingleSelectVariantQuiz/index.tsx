@@ -1,11 +1,14 @@
 'use client'
 
 import { forwardRef } from 'react'
-import { Variant } from '../MultiSelectVariantsQuiz/item'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+
+
 import { useQuizLogic } from '@/hooks/trainers/useQuiz'
 import './styles.scss'
 import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+
+import { Variant } from '../MultiSelectVariantsQuiz/item'
 
 interface IVariant {
 	id: number

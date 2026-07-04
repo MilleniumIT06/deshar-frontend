@@ -1,9 +1,9 @@
 'use client'
+import { motion, AnimatePresence } from 'motion/react'
+import Link from 'next/link'
 import { useState } from 'react'
 
-import Link from 'next/link'
 
-import { motion, AnimatePresence } from 'motion/react'
 
 import { tabs } from '@/mocks/data'
 import { Tabs } from '@/shared/ui/Tabs'

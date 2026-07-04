@@ -1,8 +1,11 @@
 import { useState, forwardRef, useImperativeHandle } from 'react'
-import { FixSentenceItem } from './item'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
-import './styles.scss'
+
 import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+
+import { FixSentenceItem } from './item'
+
+import './styles.scss'
 
 interface FixSentenceProps extends TrainerCommonProps {
 	payload: {

@@ -1,12 +1,14 @@
 'use client'
 /* eslint-disable react-hooks/exhaustive-deps */
-import { type RootState } from '@/app/_store'
+import cn from 'classnames'
+import { m, AnimatePresence } from 'motion/react'
 import dynamic from 'next/dynamic'
-import { EngineHeader } from './engine-header'
 import { useEffect, useRef } from 'react'
-import { EngineFooter } from './engine-footer'
-import { SuccessFooter } from '@/components/Engine/Footer/success'
+
+import { type RootState } from '@/app/_store'
+import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { ErrorFooter } from '@/components/Engine/Footer/error'
+import { SuccessFooter } from '@/components/Engine/Footer/success'
 import { HelpTrigger } from '@/components/Engine/HelpTrigger'
 import { Hint } from '@/components/Engine/Hint'
 import { type TimerRef } from '@/components/Engine/Timer'
@@ -21,14 +23,12 @@ import {
 } from '@/entities/engine/model/engine.slice'
 import { resetScore, addPoints, subtractPoints } from '@/entities/engine/model/scoring.slice'
 import { initTimer } from '@/entities/engine/model/timer.slice'
-import RenderTrainer from './render-trainer'
-import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
-import { m, AnimatePresence } from 'motion/react'
-
-import cn from 'classnames'
-
 import './styles.scss'
 import { type TrainerTheme } from '@/shared/types/types'
+
+import { EngineFooter } from './engine-footer'
+import { EngineHeader } from './engine-header'
+import RenderTrainer from './render-trainer'
 import { type TrainerType } from './trainersMap'
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {

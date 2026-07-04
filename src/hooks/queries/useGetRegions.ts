@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+
 import { regionService } from '@/services/localities/regions.service'
 
 export const useGetRegions = () => {

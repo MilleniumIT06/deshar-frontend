@@ -1,8 +1,10 @@
-import { FinishBtn } from '@/components/Engine/FinishBtn'
+
 import './header.scss'
-import { IconClose, IconOpen } from './icons'
+import { FinishBtn } from '@/components/Engine/FinishBtn'
 import { MenuBtn } from '@/components/Engine/MenuBtn'
 import { ProgressBar } from '@/components/Engine/ProgressBar'
+
+import { IconClose, IconOpen } from './icons'
 
 export const EngineHeader = ({
 	handleMenuClick,

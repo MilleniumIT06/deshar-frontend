@@ -1,8 +1,8 @@
 'use client'
-import { useState, useCallback, forwardRef } from 'react'
 
 import { cva, type VariantProps } from 'class-variance-authority'
 import cn from 'classnames'
+import { useState, useCallback, forwardRef } from 'react'
 
 import './styles.scss'
 

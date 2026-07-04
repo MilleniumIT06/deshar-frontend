@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useImperativeHandle, forwardRef,useRef } from 'react'
-import { ArcherContainer, ArcherElement } from 'react-archer'
-import { useCategoryMatcher } from './useCategoryMatcher'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
-import { type TrainerCommonProps } from '@/shared/types/types'
 import cn from 'classnames'
+import { useImperativeHandle, forwardRef,useRef, useEffect } from 'react'
+import { ArcherContainer, ArcherElement } from 'react-archer'
+
+import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+
+import { useCategoryMatcher } from './useCategoryMatcher'
 import './styles.scss'
 
 export interface CategoryMatcherItem {
@@ -61,6 +63,11 @@ const archerRef = useRef<any>(null)
 				resetConnections()
 			},
 		}))
+		useEffect(() => {
+    if (activeSource && archerRef.current) {
+        archerRef.current.refreshScreen()
+    }
+}, [mousePos, activeSource])
 		const onStartConnect = (e: React.MouseEvent, id: string) => {
     changeStatus('idle')
     startConnection(id, e)
@@ -169,11 +176,26 @@ const archerRef = useRef<any>(null)
 									position: 'fixed',
 									left: mousePos.x,
 									top: mousePos.y,
+									width: 1, // Небольшой размер, чтобы Archer мог зацепиться
+									height: 1,
 									pointerEvents: 'none',
 								}}
 							/>
 						</ArcherElement>
 					)}
+					{/* <ArcherElement id="mouse-pointer">
+    <div
+        style={{
+            position: 'fixed',
+            left: mousePos.x,
+            top: mousePos.y,
+            width: 1, // Небольшой размер, чтобы Archer мог зацепиться
+            height: 1,
+            pointerEvents: 'none',
+            visibility: activeSource ? 'visible' : 'hidden' // Скрываем, когда нет тяги
+        }}
+    />
+</ArcherElement> */}
 				</ArcherContainer>
 			</div>
 		)

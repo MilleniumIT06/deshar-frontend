@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+
 import { localitiesService } from '@/services/localities/localities.service'
 
 export const useGetLocalities = ({ districtId }: { districtId?: number | null }) => {

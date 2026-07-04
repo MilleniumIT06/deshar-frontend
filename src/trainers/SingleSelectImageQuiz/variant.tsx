@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import cn from 'classnames'
+import Image from 'next/image'
 import './variant.scss'
 
 const Icon = () => (

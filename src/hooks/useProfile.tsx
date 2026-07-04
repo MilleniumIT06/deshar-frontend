@@ -1,8 +1,10 @@
-import type { ProfileResponse } from '@/entities/user/model/user.type'
+import { useQuery } from '@tanstack/react-query'
 
 import { userService } from '@/services/user.service'
 
-import { useQuery } from '@tanstack/react-query'
+import type { ProfileResponse } from '@/entities/user/model/user.type'
+
+
 
 export function useProfile() {
 	const { data: profileData, isLoading } = useQuery<ProfileResponse>({

@@ -1,8 +1,8 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { useRouter } from 'next/navigation'
 
 import { getColumnsSchool } from '@/columns/getColumnsSchool'
 import { Table } from '@/components/Admin/Table'

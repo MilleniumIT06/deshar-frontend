@@ -1,10 +1,11 @@
-import { useWordPicker } from '@/hooks/trainers/useWordPicker'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
-import { forwardRef, useImperativeHandle } from 'react'
 import cn from 'classnames'
+import { forwardRef, useImperativeHandle } from 'react'
+
+import { useWordPicker } from '@/hooks/trainers/useWordPicker'
+import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import './styles.scss'
-import { type TrainerCommonProps } from '@/shared/types/types'
 
 interface WordPickerProps extends TrainerCommonProps {
 	payload: {

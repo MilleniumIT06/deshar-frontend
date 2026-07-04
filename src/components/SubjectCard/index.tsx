@@ -1,11 +1,10 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
-
-import Image from 'next/image'
-import Link from 'next/link'
 
 import { cva, type VariantProps } from 'class-variance-authority'
 import cn from 'classnames'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useState, useEffect, useCallback } from 'react'
 
 import './styles.scss'
 

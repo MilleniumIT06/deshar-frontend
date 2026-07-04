@@ -1,6 +1,6 @@
 'use client'
-import { forwardRef } from 'react'
 import cn from 'classnames'
+import { forwardRef } from 'react'
 import './styles.scss'
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {

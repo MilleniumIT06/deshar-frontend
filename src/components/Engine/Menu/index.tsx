@@ -1,7 +1,7 @@
 'use client'
-import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import './styles.scss'
 
 interface MenuProps {

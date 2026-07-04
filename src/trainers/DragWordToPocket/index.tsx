@@ -1,12 +1,15 @@
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+
 import './styles.scss'
-import { Pocket } from './pocket'
-import { Variant } from './variant'
 import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
+
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
-import { type TrainerRef } from '@/widgets/trainers-engine'
 import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { type TrainerRef } from '@/widgets/trainers-engine'
+
+import { Pocket } from './pocket'
+import { Variant } from './variant'
 
 interface DragWordToPocketProps extends TrainerCommonProps {
 	payload: {

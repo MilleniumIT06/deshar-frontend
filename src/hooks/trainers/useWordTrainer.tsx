@@ -1,6 +1,6 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
 import { type DragEndEvent, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
+import { useState, useEffect, useCallback } from 'react'
 
 export interface IWordSlot {
 	id: number | string

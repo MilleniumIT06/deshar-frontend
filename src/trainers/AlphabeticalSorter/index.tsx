@@ -1,9 +1,12 @@
-import { useState, forwardRef, useImperativeHandle } from 'react'
-import { AlphabeticalSlot } from './Slot'
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
-import { AlphabeticalSorterVariant } from './Variant'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { useState, forwardRef, useImperativeHandle } from 'react'
+
 import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+
+import { AlphabeticalSlot } from './Slot'
+import { AlphabeticalSorterVariant } from './Variant'
+
 
 import './styles.scss'
 

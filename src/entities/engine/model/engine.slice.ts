@@ -1,5 +1,6 @@
-import { type TrainerTheme } from '@/shared/types/types'
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+
+import { type TrainerTheme } from '@/shared/types/types'
 
 interface TrainersState {
 	isMenuOpen: boolean

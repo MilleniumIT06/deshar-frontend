@@ -1,12 +1,13 @@
-import { useState, useMemo, useCallback, useImperativeHandle, forwardRef } from 'react'
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
-import { ConclusionVariant } from './variant'
-import { SlotInput } from './slot'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
-
 import cn from 'classnames'
+import { useState, useMemo, useCallback, useImperativeHandle, forwardRef } from 'react'
+
 import './styles.scss'
 import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+
+import { SlotInput } from './slot'
+import { ConclusionVariant } from './variant'
 
 type Slot = {
 	id: number

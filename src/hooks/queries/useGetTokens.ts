@@ -1,5 +1,6 @@
-import { tokenService } from '@/services/token.service'
 import { useQuery } from '@tanstack/react-query'
+
+import { tokenService } from '@/services/token.service'
 
 export const useGetTokens = () => {
 	const {

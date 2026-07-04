@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import './pocket.scss'
 import { useDroppable } from '@dnd-kit/core'
 import cn from 'classnames'
+import Image from 'next/image'
 
 interface Props {
 	id: number | string

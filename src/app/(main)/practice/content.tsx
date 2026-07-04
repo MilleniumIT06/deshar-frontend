@@ -1,6 +1,7 @@
 'use client'
-import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
+import { useState, useEffect } from 'react'
+
 import { testCardMock } from '@/mocks/data'
 
 const TrainersEngine = dynamic(() => import('@/widgets/trainers-engine').then(mod => mod.TrainersEngine), {

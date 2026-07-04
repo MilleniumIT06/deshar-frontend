@@ -3,7 +3,6 @@
 import { useState } from 'react'
 
 import { type IChoiceRightTask } from '../LearningContent'
-
 import { type ISelectItem } from './SelectAnswerQuizContent'
 
 export const useSelectAnswerQuiz = ({

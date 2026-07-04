@@ -1,5 +1,6 @@
-import { type UserType } from '@/shared/types/types'
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+
+import { type UserType } from '@/shared/types/types'
 
 export interface SignUpFormData {
 	name: string

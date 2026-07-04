@@ -1,14 +1,15 @@
 'use client'
-import { Variant } from './variant'
 import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
-import { DropWordToTextItem } from './item'
-import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
-import './styles.scss'
+import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
 import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import './styles.scss'
 import { type TrainerRef } from '@/widgets/trainers-engine'
+
+import { DropWordToTextItem } from './item'
+import { Variant } from './variant'
 
 interface IVariant {
 	id: number

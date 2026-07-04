@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import dynamic from 'next/dynamic'
+
 import { useAppSelector } from '@/app/_store/hooks'
 import { AttestationPaginator } from '@/components/AttestationPaginator'
 import { type Task } from '@/components/LearningContent'

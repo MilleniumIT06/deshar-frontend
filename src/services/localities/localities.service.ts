@@ -1,5 +1,6 @@
 import { axiosClassic } from '@/api/api.helper'
 import { API_URL } from '@/config/api.config'
+
 import type { Locality } from '@/shared/types/types'
 
 class LocalitiesService {

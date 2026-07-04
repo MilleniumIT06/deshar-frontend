@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useImperativeHandle, type ForwardedRef } from 'react'
 import { type DragEndEvent } from '@dnd-kit/core'
+import { useState, useImperativeHandle, type ForwardedRef } from 'react'
 
 interface TrainerItem {
 	id: number | string

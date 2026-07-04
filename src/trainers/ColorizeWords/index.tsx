@@ -1,9 +1,12 @@
-import { forwardRef, useImperativeHandle, useState } from 'react'
-import './styles.scss'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
-import { EngineButton } from '@/components/Engine/Button'
 import cn from 'classnames'
+import { forwardRef, useImperativeHandle, useState } from 'react'
+
+import './styles.scss'
+import { EngineButton } from '@/components/Engine/Button'
 import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+
+
 
 export interface Tool {
 	type: 'paint' | 'erase'

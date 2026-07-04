@@ -1,7 +1,7 @@
 'use client'
+import cn from 'classnames'
 import { useRef, useEffect, useState } from 'react'
 
-import cn from 'classnames'
 
 import './styles.scss'
 import { Button } from '../../Button'

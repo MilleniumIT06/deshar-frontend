@@ -1,12 +1,14 @@
 'use client'
-import { useState, forwardRef, useImperativeHandle, useCallback } from 'react'
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
+import { useState, forwardRef, useImperativeHandle, useCallback } from 'react'
+
+import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { Slot } from './slot'
 import { Variant } from './variant'
+
 import './styles.scss'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
-import { type TrainerCommonProps } from '@/shared/types/types'
 
 interface ISequenceSlot {
 	slotId: number | string

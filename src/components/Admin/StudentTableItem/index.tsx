@@ -1,7 +1,7 @@
 'use client'
+import { flexRender, type Row } from '@tanstack/react-table'
 import { useState, useMemo } from 'react'
 
-import { flexRender, type Row } from '@tanstack/react-table'
 
 import useRole from '@/shared/hooks/admin/useRole'
 import { type Role } from '@/shared/types/admin/auth'

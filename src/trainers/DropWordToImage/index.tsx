@@ -1,13 +1,15 @@
 'use client'
-import { Variant } from './variant'
-import { DropItem } from './dropItem'
 import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
 import './styles.scss'
 import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { type TrainerRef } from '@/widgets/trainers-engine'
+
+import { DropItem } from './dropItem'
+import { Variant } from './variant'
 
 interface DropWordToImageProps extends TrainerCommonProps {
 	payload: {

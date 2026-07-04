@@ -1,6 +1,6 @@
+import cn from 'classnames'
 import { useMemo } from 'react'
 
-import cn from 'classnames'
 
 import './styles.scss'
 

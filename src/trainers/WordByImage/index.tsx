@@ -1,15 +1,17 @@
 'use client'
-import { DndContext } from '@dnd-kit/core'
-import { useImperativeHandle, forwardRef } from 'react'
-import { MoveBoxImage } from './MoveBox'
-import { DropInput } from './DropInput'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
-import { useWordTrainer } from '@/hooks/trainers/useWordTrainer'
 
-import './styles.scss'
+import { DndContext } from '@dnd-kit/core'
 import Image from 'next/image'
+import { useImperativeHandle, forwardRef } from 'react'
+import './styles.scss'
+
+import { useWordTrainer } from '@/hooks/trainers/useWordTrainer'
 import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { type TrainerRef } from '@/widgets/trainers-engine'
+
+import { DropInput } from './DropInput'
+import { MoveBoxImage } from './MoveBox'
 
 export interface IWordLetter {
 	id: number | string

@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react'
 
 import cn from 'classnames'
 
 import type { Column } from '@tanstack/react-table'
+import type { ReactNode } from 'react'
 
 interface SortableHeaderProps<TData, TValue> {
 	title: string | ReactNode

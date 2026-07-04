@@ -1,10 +1,12 @@
 'use client'
+import cn from 'classnames'
 import { useEffect, useState, type RefObject } from 'react'
+
 import './footer.scss'
+import { useAppSelector } from '@/app/_store/hooks'
 import { EngineButton } from '@/components/Engine/Button'
 import { Timer, type TimerRef } from '@/components/Engine/Timer'
-import { useAppSelector } from '@/app/_store/hooks'
-import cn from 'classnames'
+
 
 export const EngineFooter = ({
 	timerRef,

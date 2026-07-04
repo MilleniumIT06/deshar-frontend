@@ -1,5 +1,5 @@
-import cn from 'classnames'
 import { useDroppable } from '@dnd-kit/core'
+import cn from 'classnames'
 import './slot.scss'
 
 export const SlotInput = ({ id, value }: { id: number | string; value: string | null }) => {

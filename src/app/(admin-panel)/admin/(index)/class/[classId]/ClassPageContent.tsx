@@ -1,8 +1,8 @@
 'use client'
 
+import { useParams, useRouter } from 'next/navigation'
 import { useCallback, useMemo, useState } from 'react'
 
-import { useParams, useRouter } from 'next/navigation'
 
 import { getBestStudentsColumns } from '@/columns/getBestStudentsColumns'
 import { getBestStudentsFlowColumns } from '@/columns/getBestStudentsFlowColumn'

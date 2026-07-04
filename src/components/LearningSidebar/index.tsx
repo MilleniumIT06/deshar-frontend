@@ -1,7 +1,7 @@
 'use client'
+import cn from 'classnames'
 import { useCallback, useState } from 'react'
 
-import cn from 'classnames'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { AttestationItem } from '@/components/AttestationItem'

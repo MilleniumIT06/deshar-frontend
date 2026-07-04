@@ -1,18 +1,17 @@
 // features/auth/SignIn/ui/SignInForm.tsx
 
 'use client'
-import Link from 'next/link'
-
 import { zodResolver } from '@hookform/resolvers/zod'
+import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 
+import { useAuth } from '@/hooks/auth/useAuth'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 
 import { signInUserFormSchema, type signInUserFormData } from '../../model/signIn.schema'
 
 import './styles.scss'
-import { useAuth } from '@/hooks/auth/useAuth'
 
 export const SignInForm = () => {
 	const { isLoading, login, serverError } = useAuth()

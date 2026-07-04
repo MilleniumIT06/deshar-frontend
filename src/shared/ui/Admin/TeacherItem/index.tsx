@@ -1,6 +1,7 @@
+import { Tooltip } from '../Tooltip'
+
 import type { ReactNode } from 'react'
 
-import { Tooltip } from '../Tooltip'
 
 import './styles.scss'
 

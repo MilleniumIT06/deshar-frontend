@@ -1,17 +1,16 @@
 'use client'
-import Link from 'next/link'
-
 import { zodResolver } from '@hookform/resolvers/zod'
+import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 
+import { useAppDispatch } from '@/app/_store/hooks'
+import { nextStep, updateFormData } from '@/features/auth/signUp.slice'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 
 import { signUpUserSchema, type signUpUserFormData } from '../../model/signUp.schema'
 
 import './styles.scss'
-import { useAppDispatch } from '@/app/_store/hooks'
-import { nextStep, updateFormData } from '@/features/auth/signUp.slice'
 // import { useGetRoles } from '@/hooks/queries/useGetRoles'
 
 export const SignUpForm = () => {

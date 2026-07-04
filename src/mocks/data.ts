@@ -818,6 +818,7 @@ export const testCardMock: {
 			correctVariantIds: [2],
 		},
 		title: 'Поставьте ударение',
+		subTitle: 'Выберите букву, на которую падает ударение в слове',
 	},
 	{
 		type: 'single-select-image-quiz',
@@ -860,12 +861,12 @@ export const testCardMock: {
 			penaltyPerMistake: 3,
 		},
 		title: 'Исправьте предложение',
-		subTitle: 'test1',
+		subTitle: 'Нажмите на слово, которое нужно исправить в предложении и подберите правильный вариант',
 	},
 	{
 		type: 'alphabetic-sorter',
 		title: 'Расставь слова в алфавитном порядке',
-		subTitle: 'test2',
+		subTitle: 'Перетащите слова в правильные последовательности',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -959,7 +960,7 @@ export const testCardMock: {
 			data: [
 				{
 					id: 1,
-					value: 'Слова в предложении предложении предложении предложении  {{связаны}} между собой {{по смыслу}} .',
+					value: 'Слова в предложении  {{связаны}} между собой {{по смыслу}} .',
 					completed: false,
 					variants: [
 						{
@@ -995,6 +996,7 @@ export const testCardMock: {
 			],
 		},
 		title: 'Сделай вывод',
+		subTitle: 'Выбери слова, которые подходят в пропуски и составь вывод',
 	},
 	{
 		type: 'delete-extra-letter',
@@ -1016,6 +1018,7 @@ export const testCardMock: {
 			correctVariantIds: ['extra-1', 'extra-2'],
 		},
 		title: 'Нажми на лишнюю букву',
+		subTitle: 'Нажмите на лишние буквы в слове чтобы получить правильное написание',
 	},
 	{
 		type: 'drop-word-to-image',
@@ -1030,9 +1033,9 @@ export const testCardMock: {
 				{ id: 3, imageUrl: '/images/Engine/ticva.png', correctVariantId: 103 },
 			],
 			variants: [
-				{ id: 101, value: 'castle' },
-				{ id: 102, value: 'sh' },
-				{ id: 103, value: 'ticva' },
+				{ id: 101, value: 'Замок' },
+				{ id: 102, value: 'Шапка' },
+				{ id: 103, value: 'Тыква' },
 			],
 		},
 		title: 'Перемести слова к нужной картинке',
@@ -1077,7 +1080,7 @@ export const testCardMock: {
 			],
 		},
 		title: 'Распредели по категориям',
-		subTitle: 'Перетащи подходящее слово к каждой картинке',
+		subTitle: 'Перетащи подходящее слово к каждому тексту',
 	},
 	{
 		type: 'multi-quiz',
@@ -1095,6 +1098,7 @@ export const testCardMock: {
 			correctVariantIds: [1, 3],
 		},
 		title: 'Выберите все правильные варианты',
+		subTitle: 'Для чего люди используют речь?',
 	},
 	{
 		type: 'reorder-items',
@@ -1113,6 +1117,7 @@ export const testCardMock: {
 			correctOrderIds: ['5', '2', '1', '3', '4'],
 		},
 		title: 'Расставь буквы по порядку',
+		subTitle: 'Перетащите буквы в правильной последовательности',
 	},
 	{
 		type: 'sequence-builder',
@@ -1154,6 +1159,7 @@ export const testCardMock: {
 			],
 		},
 		title: 'Собери историю',
+		subTitle: 'Перетащите части истории из правой колонки в левую в правильной последовательности',
 	},
 	{
 		type: 'single-quiz',
@@ -1260,6 +1266,6 @@ export const testCardMock: {
 				{ id: 3, value: 'Вариант 3' },
 			],
 		},
-		title: 'Перетащи слово к нужной картинке',
+		title: 'Перетащи слово подходящее к картинке',
 	},
 ]

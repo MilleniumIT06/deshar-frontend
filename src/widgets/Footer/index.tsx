@@ -1,6 +1,6 @@
+import cn from 'classnames'
 import Image from 'next/image'
 
-import cn from 'classnames'
 
 import './styles.scss'
 

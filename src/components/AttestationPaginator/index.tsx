@@ -3,9 +3,9 @@
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { ProgressBar } from '@/shared/ui/ProgressBar'
 
+import { StepCounter } from './StepCounter'
 import { changeCurrentTask } from '../LearningAttestation/attestation.slice'
 
-import { StepCounter } from './StepCounter'
 
 import './styles.scss'
 

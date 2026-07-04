@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
+import dynamic from 'next/dynamic'
+
 import { getBestStudentsColumns } from '@/columns/getBestStudentsColumns'
 import { getColumnsSchool } from '@/columns/getColumnsSchool'
 import { getDepartmentColumns } from '@/columns/getDepartmentColumns'
@@ -16,8 +18,8 @@ import {
 import { TEST_CLASSMATES } from '@/mocks/data'
 import useRole from '@/shared/hooks/admin/useRole'
 import { type Student, type DepartamentItem, type SchoolDepItem } from '@/shared/types/admin/types'
+
 import './AdminPageContent.scss'
-import dynamic from 'next/dynamic'
 
 const StatisticsBlock = dynamic(() => import('@/components/Admin/StatisticsBlock').then(mod => mod.StatisticsBlock), {
 	ssr: false,

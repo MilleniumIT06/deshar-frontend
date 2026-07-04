@@ -1,11 +1,14 @@
-import { forwardRef } from 'react'
 import { DndContext } from '@dnd-kit/core'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
-import { Variant } from '../DragWordToPocket/variant'
-import { PhraseImageMatcherItem } from './item'
-import './styles.scss'
+import { forwardRef } from 'react'
+
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
 import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+
+import { PhraseImageMatcherItem } from './item'
+import { Variant } from '../DragWordToPocket/variant'
+
+import './styles.scss'
 
 interface Props extends TrainerCommonProps {
 	payload: {

@@ -1,8 +1,8 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { useRouter } from 'next/navigation'
 
 import { StudentTable } from '@/components/Admin/StudentTable'
 import { studentTableMockData } from '@/mocks/adminMock'

@@ -1,8 +1,8 @@
 'use client'
 
+import { useReactTable, getCoreRowModel, flexRender, type SortingState, getSortedRowModel } from '@tanstack/react-table'
 import { useMemo, useState } from 'react'
 
-import { useReactTable, getCoreRowModel, flexRender, type SortingState, getSortedRowModel } from '@tanstack/react-table'
 
 import './styles.scss'
 import { getStudentTableColumns } from '@/columns/getStudentTableColumns'

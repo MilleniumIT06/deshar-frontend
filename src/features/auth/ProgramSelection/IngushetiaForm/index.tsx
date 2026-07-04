@@ -1,23 +1,23 @@
 'use client'
 
-import { useEffect } from 'react'
-
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { resetForm } from '@/features/auth/signUp.slice'
+import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
+import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
+import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
+import { useGetLocalities } from '@/hooks/queries/useGetLocalities'
+import { useGetRegions } from '@/hooks/queries/useGetRegions'
+import { useGetSchoolClasses } from '@/hooks/queries/useGetSchoolClasses'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
 import { useSignUp } from '../../SignUp/useSignUp'
-import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
-import { useGetLocalities } from '@/hooks/queries/useGetLocalities'
-import { useGetSchoolClasses } from '@/hooks/queries/useGetSchoolClasses'
-import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
-import { useGetRegions } from '@/hooks/queries/useGetRegions'
-import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
+
 import type { UserType } from '@/shared/types/types'
 
 const validateSchema = z.object({
@@ -88,12 +88,6 @@ const selectedSchool = {id:-1}
 	const { schoolClasses, isLoading: isSchoolClassesLoading } = useGetSchoolClasses({
     schoolId: selectedSchool?.id
 })
-	// console.log('countries', countries)
-	// console.log('districts', districts)
-	// console.log('localities', localities)
-	// console.log('schools', schools)
-	// console.log('schoolClasses', schoolClasses)
-	// console.log('regions', regions)
 
 	useEffect(() => {
 		if (form.formState.isSubmitting) {
@@ -134,7 +128,6 @@ useEffect(() => {
 				region_id: regions?.find(region => region.name === 'Ингушетия')?.id || 1,
 				user_type: formData.user_type,
 			}
-			console.log(completeData)
 			mutate(completeData)
 		}
 	}

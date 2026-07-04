@@ -1,5 +1,4 @@
 'use client'
-import { useState, useImperativeHandle, forwardRef } from 'react'
 import {
 	DndContext,
 	type DragEndEvent,
@@ -10,19 +9,21 @@ import {
 	closestCenter,
 	type UniqueIdentifier,
 } from '@dnd-kit/core'
+import { restrictToHorizontalAxis } from '@dnd-kit/modifiers'
 import {
 	arrayMove,
 	SortableContext,
 	sortableKeyboardCoordinates,
 	horizontalListSortingStrategy,
 } from '@dnd-kit/sortable'
-import { restrictToHorizontalAxis } from '@dnd-kit/modifiers'
-import { ReorderableItem } from './item'
-import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { useState, useImperativeHandle, forwardRef } from 'react'
 
+import { type TrainerCommonProps } from '@/shared/types/types'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import './styles.scss'
 import { type TrainerRef } from '@/widgets/trainers-engine'
-import { type TrainerCommonProps } from '@/shared/types/types'
+
+import { ReorderableItem } from './item'
 
 export interface IOrderItem {
 	id: UniqueIdentifier

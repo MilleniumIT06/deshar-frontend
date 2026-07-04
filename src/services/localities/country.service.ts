@@ -1,6 +1,7 @@
 import { axiosClassic } from '@/api/api.helper'
 import { API_URL } from '@/config/api.config'
-import { Country } from '@/shared/types/types'
+
+import type { Country } from '@/shared/types/types'
 
 class CountryService {
 	async getAllCountries() {

@@ -32,6 +32,15 @@
 	&__input {
 		width: 100%;
 		max-width: none;
+
+		&[type="password"] {
+		&::-webkit-reveal,
+		&::-webkit-clear-button,
+		&::-ms-reveal,
+		&::-ms-clear {
+			display: none;
+		}
+	}
 	}
 
 	&__btn {

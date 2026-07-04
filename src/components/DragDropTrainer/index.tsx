@@ -1,8 +1,8 @@
 'use client'
-import { useState } from 'react'
 
 import { type DragEndEvent, DndContext, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import cn from 'classnames'
+import { useState } from 'react'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { changeCompletedStatus, changeCurrentTask } from '@/components/LearningAttestation/attestation.slice'

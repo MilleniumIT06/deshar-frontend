@@ -1,4 +1,5 @@
 import axios, { type AxiosInstance, type InternalAxiosRequestConfig } from 'axios'
+
 import { SERVER_URL } from '@/config/api.config'
 
 const axiosClassic: AxiosInstance = axios.create({

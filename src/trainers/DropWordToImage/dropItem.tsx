@@ -1,6 +1,5 @@
 import { useDroppable } from '@dnd-kit/core'
 import cn from 'classnames'
-
 import './dropItem.scss'
 import Image from 'next/image'
 

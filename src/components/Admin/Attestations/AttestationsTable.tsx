@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
+import { useReactTable, getCoreRowModel, flexRender, getSortedRowModel, type SortingState } from '@tanstack/react-table'
 import { useMemo, useState } from 'react'
 
-import { useReactTable, getCoreRowModel, flexRender, getSortedRowModel, type SortingState } from '@tanstack/react-table'
 
 import { type AttestationsTableItemType, getAttestationsColumns } from '@/columns/getAttestationsColumns'
 import useRole from '@/shared/hooks/admin/useRole'

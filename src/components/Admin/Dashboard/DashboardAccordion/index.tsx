@@ -1,6 +1,6 @@
+import cn from 'classnames'
 import { type ReactNode, useState } from 'react'
 
-import cn from 'classnames'
 import './styles.scss'
 
 interface MenuAccordionProps {
