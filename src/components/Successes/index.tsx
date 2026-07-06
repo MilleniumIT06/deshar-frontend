@@ -117,7 +117,7 @@ export const Successes = () => {
 								value={profileData.data.stats.overall.total_xp}
 								mode='value'
 							/>
-							<ResultsCard
+							{/* <ResultsCard
 								percent={profileData.data.stats.overall.completion_rate}
 								period={7}
 								title="completion_rate"
@@ -130,7 +130,7 @@ export const Successes = () => {
 								title="rank"
 								value={profileData.data.stats.overall.rank}
 								mode='value'
-							/>
+							/> */}
 							<ResultsCard
 								percent={profileData.data.stats.tasks.percentage}
 								period={7}
