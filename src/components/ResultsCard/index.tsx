@@ -63,6 +63,30 @@ export const ResultsCard = ({
 	variant?: 'main' | 'admin'
 	 mode: 'value' | 'time';
 }) => {
+	const percentIcon =  ()=> {
+		switch (true) {
+        case percent > 0:
+            return <IncreaseIcon />;
+        case percent < 0:
+            return <DecreaseIcon />;
+		case percent === 0:
+			return ""
+        default:
+            return null;
+    }
+}
+const percentClass =  ()=> {
+		switch (true) {
+        case percent > 0:
+            return 'increase';
+        case percent < 0:
+            return 'decrease';
+		case percent === 0:
+			return 'default';
+        default:
+            return null;
+    }
+}
 	return (
 		<div className={cn('ResultsCard', variant)}>
 			<h6 className="ResultsCard__title">
@@ -71,8 +95,8 @@ export const ResultsCard = ({
 			</h6>
 			<div className="ResultsCard__info">
 				<span className="ResultsCard__points">  {formatDisplayValue(value, mode)}</span>
-				<div className={cn('ResultsCard__percent', percent>0 ? 'increase' : 'decrease')}>
-					{percent > 0 ?  <IncreaseIcon /> : <DecreaseIcon />}
+				<div className={cn('ResultsCard__percent', percentClass())}>
+					{percentIcon()}
 					<span>{percent > 0 ?  `+${percent}%` : `${percent}%`}</span>
 				</div>
 			</div>

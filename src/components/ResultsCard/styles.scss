@@ -60,6 +60,10 @@
 			color: var(--negative-medium);
 			background: var(--negative-lightest);
 		}
+		&.default {
+			color: var(--neutral-medium);
+			background: var(--neutral-lightest);
+		}
 	}
 
 	&__points {
