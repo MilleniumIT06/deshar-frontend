@@ -32,44 +32,58 @@ const DefaultIcon = () => (
 		<circle cx="12" cy="12" r="8" stroke="#303030" strokeWidth="2" />
 	</svg>
 )
+const formatDisplayValue = (val: string | number, mode: 'value' | 'time') => {
+  if (mode === 'time') {
+    const totalMinutes = Number(val);
+    if (isNaN(totalMinutes)) return val;
+
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+
+
+    const hoursStr = hours > 0 ? `${hours}ч ` : '';
+    return `${hoursStr}${minutes}м`;
+  }
+  return val;
+};
 export const ResultsCard = ({
-	id = 111,
 	percent = 5,
 	period = 7,
-	points = 99,
+	value = 99,
 	title = 'test',
-	type = 'decrease',
-	value = 144,
 	icon = <DefaultIcon />,
 	variant = 'main',
+	mode
 }: {
-	id: number | string
 	title: string
-	points: number
 	percent: number
-	type: 'increase' | 'decrease'
 	period: string | number
 	value: string | number
 	icon?: ReactNode
 	variant?: 'main' | 'admin'
+	 mode: 'value' | 'time';
 }) => {
 	return (
-		<div className={cn('ResultsCard', variant)} key={id}>
+		<div className={cn('ResultsCard', variant)}>
 			<h6 className="ResultsCard__title">
 				{icon}
 				{title}
 			</h6>
 			<div className="ResultsCard__info">
-				<span className="ResultsCard__points">{points}</span>
-				<div className={cn('ResultsCard__percent', type === 'increase' ? 'increase' : 'decrease')}>
-					{type === 'increase' ? <IncreaseIcon /> : <DecreaseIcon />}
-					<span>{type === 'increase' ? `+${percent}%` : `-${percent}%`}</span>
+				<span className="ResultsCard__points">  {formatDisplayValue(value, mode)}</span>
+				<div className={cn('ResultsCard__percent', percent>0 ? 'increase' : 'decrease')}>
+					{percent > 0 ?  <IncreaseIcon /> : <DecreaseIcon />}
+					<span>{percent > 0 ?  `+${percent}%` : `${percent}%`}</span>
 				</div>
 			</div>
 			<div className="ResultsCard__summary">
-				<span className="ResultsCard__summary_value">{value}</span>
-				<span className="ResultsCard__summary_period">в прошлые {period} дней</span>
-			</div>
+        <span className="ResultsCard__summary_value">
+          {formatDisplayValue(value, mode)}
+        </span>
+        <span className="ResultsCard__summary_period">
+          в прошлые {period} дней
+        </span>
+      </div>
 		</div>
 	)
 }

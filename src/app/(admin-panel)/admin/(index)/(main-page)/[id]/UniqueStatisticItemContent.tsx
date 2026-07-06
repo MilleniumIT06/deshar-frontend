@@ -22,14 +22,12 @@ export const UniqueItemStatisticContent = () => {
 				<MainChart data={barChartMockData} title="Успеваемость школы" />
 				<div className="SchoolDashboard__result_cards">
 					<ResultsCard
-						id={1}
 						percent={25}
 						period={7}
-						points={182}
+						value={182}
 						title="Набранные баллы"
-						type="increase"
 						variant="admin"
-						value={150}
+						mode='value'
 						icon={
 							<svg
 								width="24"
@@ -42,17 +40,15 @@ export const UniqueItemStatisticContent = () => {
 									stroke="#060606"
 									strokeWidth="2"
 								/>
-								<path d="M9 20H15" stroke="#060606" strokeWidth="2" stroke-linecap="round" />
+								<path d="M9 20H15" stroke="#060606" strokeWidth="2" strokeLinecap="round" />
 							</svg>
 						}
 					/>
 					<ResultsCard
-						id={2}
 						percent={12}
 						period={7}
-						points={26}
 						title="Выполненные модули"
-						type="decrease"
+						mode='value'
 						variant="admin"
 						value={29}
 						icon={
@@ -66,21 +62,19 @@ export const UniqueItemStatisticContent = () => {
 									d="M8.33337 12.6413L10.9361 15L16.3334 10"
 									stroke="#303030"
 									strokeWidth="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 								/>
 								<circle cx="12.3334" cy="12" r="8" stroke="#303030" strokeWidth="2" />
 							</svg>
 						}
 					/>
 					<ResultsCard
-						id={3}
 						percent={12}
 						period={7}
-						points={30}
+						mode='time'
 						title="Время обучения"
-						type="increase"
-						value="2ч 12м"
+						value={312}
 						variant="admin"
 						icon={
 							<svg
@@ -94,20 +88,20 @@ export const UniqueItemStatisticContent = () => {
 									d="M12.6666 8.12109L12.6666 12.1211L15.6666 12.1211"
 									stroke="#060606"
 									strokeWidth="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 								/>
 								<path
 									d="M18.6666 4L20.7317 6.06504"
 									stroke="#060606"
 									strokeWidth="2"
-									stroke-linecap="round"
+									strokeLinecap="round"
 								/>
 								<path
 									d="M6.73169 4L4.66664 6.06504"
 									stroke="#060606"
 									strokeWidth="2"
-									stroke-linecap="round"
+									strokeLinecap="round"
 								/>
 							</svg>
 						}
