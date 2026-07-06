@@ -20,9 +20,8 @@ class LoginService {
 			const token = getTokenFromCookie()
 
 			if (token) {
-				// Отправляем запрос на бэкенд Laravel через настроенный axiosClassic
 				await axiosClassic({
-					url: API_URL.logout(), // Если в API_URL есть метод, замените на API_URL.logout()
+					url: API_URL.logout(),
 					method: 'POST',
 					headers: {
 						Authorization: `Bearer ${token}`,

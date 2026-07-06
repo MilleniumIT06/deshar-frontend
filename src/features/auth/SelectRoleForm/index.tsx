@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import './styles.scss';
 import { nextStep, updateFormData } from '../signUp.slice';
 
-import type { UserType } from '@/shared/types/types';
+import type { UserType } from '@/shared/types/user.types';
 
 export const SelectRoleForm = () => {
 const { formData } = useAppSelector(state => state.signUpFormReducer)

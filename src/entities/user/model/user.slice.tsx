@@ -1,8 +1,8 @@
 // entities/user/model/user.slice.ts
-
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
-import { type User } from './user.type'
+import type  { User } from '@/shared/types/user.types'
+
 
 // Инициализируем строго значениями по умолчанию для SSR безопасности
 const initialState: {

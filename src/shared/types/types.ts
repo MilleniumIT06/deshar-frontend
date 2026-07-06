@@ -1,5 +1,6 @@
+import { User } from "./user.types"
+
 export type Id = number
-export type UserType = 'student' | 'teacher' | 'parent' | 'admin'
 export interface District {
 	id: Id
 	name: string
@@ -35,13 +36,7 @@ export interface TrainerCommonProps {
 // {subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 export type TrainerTheme = 'towers' | 'ocean' | 'forest' | 's' | 'o' | 'default'
-interface IUserResponse {
-	id: number
-	name: string
-	email: string
-	avatar: string
-	user_type: string
-	level: number
+interface IUserResponse extends User{
 	points: number
 }
 export interface IAuthResponse {

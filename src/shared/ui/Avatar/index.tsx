@@ -3,7 +3,8 @@ import cn from 'classnames'
 import Image from 'next/image'
 import './styles.scss'
 
-import type { User } from '@/entities/user/model/user.type'
+import type { User } from '@/shared/types/user.types'
+
 
 interface AvatarProps {
 	size?: 'small' | 'medium' | 'large'

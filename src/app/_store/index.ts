@@ -7,7 +7,7 @@ import scoringSlice from '@/entities/engine/model/scoring.slice'
 import timerSlice from '@/entities/engine/model/timer.slice'
 import learningReducer from '@/entities/learning/model/slice'
 import learningStatusReducer from '@/entities/learning/model/status.slice'
-import userReducer from '@/entities/user/model/user.slice'
+// import userReducer from '@/entities/user/model/user.slice'
 import signUpFormReducer from '@/features/auth/signUp.slice'
 
 export const store = configureStore({
@@ -16,7 +16,7 @@ export const store = configureStore({
 		learningStatusReducer,
 		learningAttestationReducer,
 		signUpFormReducer,
-		user: userReducer,
+		// user: userReducer,
 		adminUserReducer,
 		engine: engineSlice,
 		timer: timerSlice,

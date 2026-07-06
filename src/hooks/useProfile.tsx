@@ -7,6 +7,7 @@ export function useProfile() {
 		queryKey: ['profile'],
 		queryFn: () => userService.getProfile(),
 	})
+	console.log(profileData?.data.user.id,'dddeed')
 	return {
 		profileData,
 		isLoading,

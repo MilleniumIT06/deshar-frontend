@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { resetForm } from '@/features/auth/signUp.slice'
 import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
@@ -18,7 +19,7 @@ import { InputSelect } from '@/shared/ui/InputSelect'
 
 import { useSignUp } from '../../SignUp/useSignUp'
 
-import type { UserType } from '@/shared/types/types'
+import type { UserType } from '@/shared/types/user.types'
 
 const validateSchema = z.object({
 	locality: z.object({

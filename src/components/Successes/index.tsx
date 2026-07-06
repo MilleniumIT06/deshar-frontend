@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 
 import { ResultsCard } from '@/components/ResultsCard'
+import { useProfile } from '@/hooks/useProfile'
 import { barChartMockData } from '@/mocks/adminMock'
 import { Button } from '@/shared/ui/Button'
 import { Selector } from '@/shared/ui/Selector'
@@ -21,7 +22,7 @@ export const Successes = () => {
 	const handleNext = () => setStartIndex(prev => Math.min(barChartMockData.length - VISIBLE_COUNT, prev + STEP))
 
 	const visibleData = barChartMockData.slice(startIndex, startIndex + VISIBLE_COUNT)
-
+	const {isLoading,profileData} = useProfile()
 	return (
 		<section className="Successes">
 			<div className="container Successes__container">
@@ -89,11 +90,12 @@ export const Successes = () => {
 						</div>
 					</div>
 					<div className="Successes__footer">
+						{isLoading ? <div>Loading...</div> :
 						<div className="Successes__results">
 							<ResultsCard
 								percent={25}
 								period={7}
-								value={182}
+								value={profileData && profileData.data.stats.modules.completed ? profileData.data.stats.modules.completed : 0}
 								title="Баллов набрано"
 								mode='value'
 								icon={<svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -124,6 +126,7 @@ export const Successes = () => {
 								}
 							/>
 						</div>
+}
 					</div>
 				</div>
 			</div>

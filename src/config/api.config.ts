@@ -16,4 +16,7 @@ export const API_URL = {
 	regions: () => API_URL.root(`${prefix}/regions`),
 	roles: () => API_URL.root(`${prefix}/roles`),
 	schoolClasses: () => API_URL.root(`${prefix}/school-classes`),
+
+	// stats
+	stats:()=> API_URL.root(`${prefix}/auth/stats`)
 }
