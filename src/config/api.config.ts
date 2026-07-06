@@ -2,7 +2,7 @@ export const SERVER_URL = process.env.SERVER_URL
 
 const prefix = '/api'
 export const API_URL = {
-	root: (url = '') => `${SERVER_URL}${url}`, // Исправлено: добавляем SERVER_URL
+	root: (url = '') => `${url}`,
 
 	register: () => API_URL.root(`${prefix}/auth/register`),
 	login: () => API_URL.root(`${prefix}/auth/login`),
