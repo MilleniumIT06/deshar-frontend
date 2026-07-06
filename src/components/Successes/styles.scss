@@ -53,8 +53,9 @@
 
 	&__results {
 		display: grid;
-		grid-template-columns: repeat(3, auto);
+		grid-template-columns: repeat(3, 1fr);
 		column-gap: 2%;
+		row-gap:2%;
 		@include breakpoint.pre-middle-tablet {
 			grid-template-columns: repeat(2, auto);
 		}
