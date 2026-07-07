@@ -19,5 +19,9 @@ export const API_URL = {
 	schoolClasses: () => API_URL.root(`${prefix}/school-classes`),
 
 	// stats
-	stats:()=> API_URL.root(`${prefix}/auth/stats`)
+	stats:()=> API_URL.root(`${prefix}/auth/stats`),
+
+
+	// education
+	ingModules:()=> API_URL.root(`${prefix}/modules`),
 }

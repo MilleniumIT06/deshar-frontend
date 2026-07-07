@@ -102,6 +102,11 @@ export const Header = () => {
 								</Link>
 							</li>
 							<li className="Header__list_item">
+								<Link href="/ing-modules" tabIndex={3}>
+									Ингушский язык
+								</Link>
+							</li>
+							<li className="Header__list_item">
 								<Link href="#" tabIndex={4}>
 									Контакты
 								</Link>

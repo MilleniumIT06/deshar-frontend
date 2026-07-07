@@ -1,0 +1,41 @@
+'use client'
+
+import { ModuleCard } from '@/components/ModulesContent/ModuleCard'
+import { useGetModules } from '@/hooks/queries/education/modules/useGetModules'
+
+import './styles.scss';
+
+export const IngModulesPageContent = () => {
+	const { modules, isLoading, isError } = useGetModules()
+    if(isLoading) return "Modules loading..."
+    if(isError)  return "Something went wrong"
+	return (
+		<section className="IngModulesPageContent">
+			<div className="container">
+				<div className="IngModulesPageContent__inner">
+					<h1 className="section__title">Ингушский язык</h1>
+					<div className="IngModulesPageContent__cards">
+                        {modules?.data.map(module => <ModuleCard
+							id={module.id}
+                            key={`ing-module-${module.id}`}
+							linkHref='ing-modules'
+							number={module.id}
+							title={module.name}
+							maxLessons={12}
+							doneLessons={12}
+							processLessons={0}
+						/>)}
+						{/* <ModuleCard
+							id={1}
+							number={1}
+							title="Алфавит"
+							maxLessons={12}
+							doneLessons={12}
+							processLessons={0}
+						/> */}
+					</div>
+				</div>
+			</div>
+		</section>
+	)
+}

@@ -15,6 +15,8 @@ export const ModuleCard = ({
 	processLessons,
 	title,
 	id,
+	linkHref="/learning",
+	name="Модуль"
 }: {
 	id: number | string
 	number: number
@@ -22,16 +24,18 @@ export const ModuleCard = ({
 	maxLessons: number
 	doneLessons: number
 	processLessons: number
+	linkHref?:string;
+	name?:string;
 }) => {
 	return (
 		<div className={cn('ModuleCard', doneLessons === maxLessons && 'ModuleCard__done')}>
 			<div className="ModuleCard__inner">
 				<div className="ModuleCard__top">
 					<div className="ModuleCard__header">
-						<span className="ModuleCard__suptitle">Модуль {number}</span>
+						<span className="ModuleCard__suptitle">{name} {number}</span>
 					</div>
 					<div className="ModuleCard__body">
-						<Link href={`/learning/${id}`}>
+						<Link href={`${linkHref}/${id}`}>
 							<h6 className="ModuleCard__title">{title}</h6>
 						</Link>
 					</div>
