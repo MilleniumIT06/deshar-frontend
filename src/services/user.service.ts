@@ -2,7 +2,7 @@ import Cookies from 'js-cookie' // Импортируем для чтения к
 
 import { axiosClassic } from '@/api/api.helper'
 import { API_URL } from '@/config/api.config'
-import { UserProfileResponse } from '@/shared/types/user.types'
+import { UpdateUser, User, UserProfileResponse } from '@/shared/types/user.types'
 
 class UserService {
 	async getProfile() {
@@ -16,6 +16,18 @@ class UserService {
 			},
 		})
 		console.log('dataprodsad',data?.data.user.id)
+		return data
+	}
+	async updateProfile(userData: UpdateUser) {
+		const token = Cookies.get('jwt_token')
+		const { data } = await axiosClassic<User>({
+			url: API_URL.updateProfile(),
+			method: 'PUT',
+			headers: {
+				Authorization: token ? `Bearer ${token}` : '',
+			},
+			data:userData
+		})
 		return data
 	}
 }

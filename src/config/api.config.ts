@@ -8,6 +8,7 @@ export const API_URL = {
 	login: () => API_URL.root(`${prefix}/auth/login`),
 	logout: () => API_URL.root(`${prefix}/auth/logout`),
 	me: () => API_URL.root(`${prefix}/auth/me`),
+	updateProfile:()=>API_URL.root(`${prefix}/auth/profile`),
 	countries: () => API_URL.root(`${prefix}/countries`),
 	schools: () => API_URL.root(`${prefix}/schools`),
 	districts: () => API_URL.root(`${prefix}/districts`),

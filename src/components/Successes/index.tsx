@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { useState } from 'react'
 
 import { ResultsCard } from '@/components/ResultsCard'
-import { useProfile } from '@/hooks/useProfile'
+import { useProfile } from '@/hooks/user/useProfile'
 import { barChartMockData } from '@/mocks/adminMock'
 import { Button } from '@/shared/ui/Button'
 import { Selector } from '@/shared/ui/Selector'

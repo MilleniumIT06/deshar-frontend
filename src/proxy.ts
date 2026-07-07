@@ -44,7 +44,7 @@ export async function proxy(request: NextRequest) {
                 if (user.is_banned === false && pathname === '/user-banned') {
                  return NextResponse.redirect(new URL('/dashboard', request.url));
                 }
-                if (user.confirmed === false || user.data?.confirmed === false) {
+                if (user.confirmed === false) {
                     if (pathname !== '/not-confirmed') {
                         return NextResponse.redirect(new URL('/not-confirmed', request.url))
                     }

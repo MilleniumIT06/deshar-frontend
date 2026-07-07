@@ -37,7 +37,7 @@ export interface User {
 	created_at: string;
 	updated_at: string;
 }
-
+export interface UpdateUser extends Pick<User,"name"|"email"> {}
 export interface StatItem {
 	completed: number;
 	total: number;

@@ -3,7 +3,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { useProfile } from "@/hooks/useProfile";
+import { useProfile } from "@/hooks/user/useProfile";
+import { useUpdateProfile } from "@/hooks/user/useUpdateProfile";
+import { Avatar } from "@/shared/ui/Avatar";
 import { Button } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input"
 
@@ -11,7 +13,8 @@ import { type profileFormData,profileFormSchema } from "../schema/profileForm.sc
 import './styles.scss';
 
 export const ProfileForm = () => {
-    const {isError,profileData,isFetching} = useProfile()
+    const {profileData,isFetching} = useProfile()
+    const {isPending,updateProfile} = useUpdateProfile()
     useEffect(()=> {
         console.log(profileData)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,19 +33,24 @@ export const ProfileForm = () => {
         }
     });
 
-    useEffect(() => {
-        if (profileData?.data.user) {
-            reset({
-                name: profileData.data.user.name,
-                email: profileData.data.user.email
-            });
-        }
-    }, [profileData, reset]);
+useEffect(() => {
+    if (profileData?.data.user) {
+        reset({
+            name: profileData.data.user.name,
+            email: profileData.data.user.email
+        });
+    }
+}, [profileData, reset]);
         const onSubmit = async (data: profileFormData) => {
-            console.log(data)
+            console.log('updatedasdsadasdaspp',data)
+            updateProfile(data)
         }
     return (
-        <form className="ProfileForm" onSubmit={handleSubmit(onSubmit)}>
+        <div>
+<div>
+                    <Avatar user={profileData?.data.user} size="large" showName={false}/>
+                </div>
+        <form className="ProfileForm"   onSubmit={handleSubmit(onSubmit)}>
 					{isFetching ? "Loading..." :<>
 
                     <Input
@@ -64,10 +72,11 @@ export const ProfileForm = () => {
 						validationMessage={errors.email?.message}
 						{...register('email')}
                         />
-					<Button size="medium" className="ProfileForm__btn" disabled={isFetching || !isDirty}>
-						Подтвердить
+					<Button size="medium" type="submit"  className="ProfileForm__btn" disabled={isFetching || !isDirty}>
+						{isPending ? "Сохранение..." : "Подтвердить"}
 					</Button>
                         </>}
 				</form>
+                        </div>
     )
 }
