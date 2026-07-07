@@ -16,10 +16,10 @@ import { Logo } from '@/shared/ui/Logo'
 import './styles.scss'
 // import { useAppDispatch } from '@/app/_store/hooks'
 // import { logout } from '@/entities/user/model/user.slice'
-
 export const Header = () => {
 	const [burgerOpen, setBurgerOpen] = useState(false)
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
+
 	const userMenuRef = useOutsideClick(() => {
 		setIsMenuOpen(false)
 	})
@@ -32,7 +32,6 @@ export const Header = () => {
 			console.log('User data in Header:', profileData.data.user)
 		}
 	}, [profileData])
-
 	useEffect(() => {
 		if (burgerOpen) {
 			const scrollY = window.scrollY
@@ -56,7 +55,6 @@ export const Header = () => {
 			document.body.style.overflow = ''
 		}
 	}, [burgerOpen])
-
 	useEffect(() => {
 		const handleEsc = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') {

@@ -71,6 +71,7 @@ export const config = {
         '/attestation/:path*',
         '/attestation-result/:path*',
         '/courses/:path*',
-        '/practice/:path*'
+        '/practice/:path*',
+        '/profile/:path*',
     ],
 }
