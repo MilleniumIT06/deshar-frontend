@@ -1,6 +1,6 @@
 import { Id } from "./types";
 
-export type UserType = 'student' | 'teacher' | 'parent' | 'admin'
+export type UserType = 'student' | 'teacher' | 'parent' | 'admin'|'department'|'ministry'|'vicePrincipal'|'principal'|'manager'
 export interface UserProfileResponse {
 	data: ProfileData;
 }

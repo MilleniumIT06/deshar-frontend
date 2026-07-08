@@ -3,7 +3,7 @@
 import { ModuleCard } from '@/components/ModulesContent/ModuleCard'
 import { useGetModules } from '@/hooks/queries/education/modules/useGetModules'
 import './styles.scss';
-import Loader from '@/shared/ui/Loader';
+import {Loader} from '@/shared/ui/Loader';
 
 export const IngModulesPageContent = () => {
 	const { modules, isLoading, isError } = useGetModules()

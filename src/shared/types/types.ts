@@ -14,6 +14,7 @@ export interface Locality {
 export interface SchoolClass {
 	id: Id
 	name: string
+	school_id: Id
 	// region_id: number
 }
 export interface Country {

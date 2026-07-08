@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { schoolClassesService } from '@/services/schoolClasses.service'
+import { schoolClassesService } from '@/services/organization/classes/schoolClasses.service'
 
 export const useGetSchoolClasses = ({ schoolId }: { schoolId?: number | null }) => {
 	const {

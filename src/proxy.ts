@@ -37,7 +37,7 @@ export async function proxy(request: NextRequest) {
             if (response.ok) {
                 const res = await response.json()
 				const user = res.data.user;
-				// console.log(user,"proxy")
+				console.log(user,"proxy")
 				if (user.is_banned === true && pathname !== '/user-banned') {
                  return NextResponse.redirect(new URL('/user-banned', request.url));
                 }
@@ -47,6 +47,11 @@ export async function proxy(request: NextRequest) {
                 if (user.confirmed === false) {
                     if (pathname !== '/not-confirmed') {
                         return NextResponse.redirect(new URL('/not-confirmed', request.url))
+                    }
+                }
+                if(user.user_type==="student") {
+                    if(pathname === '/admin') {
+                        return NextResponse.redirect(new URL('/dashboard', request.url))
                     }
                 }
             }
@@ -73,5 +78,6 @@ export const config = {
         '/courses/:path*',
         '/practice/:path*',
         '/profile/:path*',
+        '/admin/:path*',
     ],
 }

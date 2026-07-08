@@ -1,15 +1,18 @@
 import { useCallback, useMemo } from 'react'
 
 import { useAppSelector } from '@/app/_store/hooks'
-import { type Role } from '@/shared/types/admin/auth'
+import { useProfile } from '@/hooks/user/useProfile'
+
+// import { type Role } from '@/shared/types/admin/auth'
+import type { UserType } from '@/shared/types/user.types'
 
 const useRole = () => {
 	const user = useAppSelector(state => state.adminUserReducer.user)
 	const isAuth = useAppSelector(state => state.adminUserReducer.isAuth)
-	const role = user?.role ?? null
-
+	const { profileData } = useProfile()
+	const role = profileData?.data.user.user_type ?? null
 	const hasRole = useCallback(
-		(allowedRole: Role | Role[]): boolean => {
+		(allowedRole: UserType | UserType[]): boolean => {
 			if (!role) return false
 			if (Array.isArray(allowedRole)) {
 				return allowedRole.includes(role)

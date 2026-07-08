@@ -3,9 +3,7 @@
 import { useReactTable, getCoreRowModel, flexRender, getSortedRowModel, type SortingState } from '@tanstack/react-table'
 import { useMemo, useState } from 'react'
 
-
 import { type AttestationsTableItemType, getAttestationsColumns } from '@/columns/getAttestationsColumns'
-import useRole from '@/shared/hooks/admin/useRole'
 
 import { StudentTableItem } from '../StudentTableItem'
 import './styles.scss'
@@ -14,8 +12,7 @@ interface AttestationsTableProps {
 	data: AttestationsTableItemType[]
 }
 export const AttestationsTable = ({ data }: AttestationsTableProps) => {
-	const { role } = useRole()
-	const columns = useMemo(() => getAttestationsColumns({ role }), [])
+	const columns = useMemo(() => getAttestationsColumns({ role:"teacher" }), [])
 	// Состояние для сортировки
 	const [sorting, setSorting] = useState<SortingState>([])
 

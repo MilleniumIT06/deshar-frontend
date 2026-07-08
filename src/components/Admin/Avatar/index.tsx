@@ -6,15 +6,17 @@ import { useState, useEffect } from 'react'
 
 
 import './styles.scss'
-import { ROLE_LABELS } from '@/shared/admin/utils'
-import { type Role } from '@/shared/types/admin/auth'
+import type { UserType } from '@/shared/types/user.types'
+// import { ROLE_LABELS } from '@/shared/admin/utils'
+
+// import type { AdminUserType } from '@/shared/types/user.types'
 
 interface AvatarProps {
 	src?: string
 	name?: string
 	size?: 'small' | 'medium' | 'large'
 	className?: string
-	role?: Role
+	role?: UserType
 	onClick?: () => void
 }
 
@@ -58,7 +60,7 @@ export const Avatar = ({
 			data-testid="avatar"
 			onClick={onClick}
 			role={onClick ? 'button' : undefined}>
-			<div className={cn('Avatar__content', `Avatar__content--${size}`)}>
+			<div className={cn('Avatar__content', `${size}`)}>
 				{src && !imageError ? (
 					<img
 						src={src}
@@ -78,7 +80,7 @@ export const Avatar = ({
 			</div>
 			<div className="Avatar__info">
 				{name && <span className="Avatar__name">{name}</span>}
-				{role && <span className="Avatar__role">{ROLE_LABELS[role]}</span>}
+				{role && <span className="Avatar__role">{role}</span>}
 			</div>
 		</div>
 	)

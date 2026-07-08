@@ -2,8 +2,11 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import { useGetSchoolClasses } from '@/hooks/admin/useGetSchoolClasses'
+import { useProfile } from '@/hooks/user/useProfile'
 import { teacherMyClasses, teacherParallelClasses } from '@/mocks/adminMock'
 import useRole from '@/shared/hooks/admin/useRole'
+import {Loader} from '@/shared/ui/Loader'
 import { Logo } from '@/shared/ui/Logo'
 
 import { Avatar } from '../../Avatar'
@@ -20,7 +23,10 @@ import {
 } from '../icons'
 
 export const DashboardMenu = () => {
-	const { hasRole, user } = useRole()
+	const { hasRole } = useRole()
+	const { isLoading, profileData } = useProfile()
+		const {isLoading:isSchoolClassesLoading,schoolClassesData,isError} = useGetSchoolClasses()
+		console.log(schoolClassesData)
 	const pathname = usePathname()
 	return (
 		<aside className="DashboardMenu">
@@ -53,22 +59,22 @@ export const DashboardMenu = () => {
 							/>
 						)}
 
-						{hasRole(['teacher', 'vicePrincipal', 'admin']) && (
-							<MenuAccordion title="Мои классы" icon={<MyClassesIcon />}>
+						{hasRole(['teacher','manager', 'vicePrincipal', 'admin']) && (
+							isSchoolClassesLoading ? "Loading...": isError? "Error": schoolClassesData&&schoolClassesData.data.length>0 ? <MenuAccordion title="Мои классы" icon={<MyClassesIcon />}>
 								<ul className="list-reset MenuAccordion__list">
-									{teacherMyClasses.map(item => (
+									{schoolClassesData.data.map(item => (
 										<li
 											className={`MenuAccordion__item ${pathname === `/admin/class/${item.id}` ? 'active' : ''}`}
 											key={`accordion-classes-item-${item.id}`}>
 											<Link
 												href={`/admin/class/${item.id}`}
 												className={`MenuAccordion__link ${pathname === `/admin/class/${item.id}` ? 'active' : ''}`}>
-												{item.title}
+												{item.name}
 											</Link>
 										</li>
 									))}
 								</ul>
-							</MenuAccordion>
+							</MenuAccordion>:"Список классов пуст"
 						)}
 						{hasRole(['teacher', 'admin']) && (
 							<MenuAccordion title="Параллели" icon={<ParallelClassessIcon />}>
@@ -90,12 +96,13 @@ export const DashboardMenu = () => {
 					</div>
 				</div>
 				<div className="DashboardMenu__avatar_wrapper">
-					<Avatar
-						src="/avatar.png"
-						name={user?.name}
+					{isLoading? <Loader/>:<Avatar
+						src={profileData?.data.user.avatar}
+						name={profileData?.data.user.name}
 						className="DashboardMenu__avatar"
-						role={user?.role}
-					/>
+						size='medium'
+						role={profileData?.data.user.user_type}
+					/>}
 				</div>
 			</div>
 		</aside>

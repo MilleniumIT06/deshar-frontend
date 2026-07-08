@@ -58,7 +58,7 @@ export const AdminPageContent = () => {
 				<ClassCardMain title="Лучшие школы" linkText="Полный список" linkHref="/">
 					<Table<SchoolDepItem, any>
 						data={SchoolsMockData}
-						getColumns={() => getColumnsSchool({ role })}
+						getColumns={() => getColumnsSchool({ role:"teacher" })}
 						handleRowClick={redirectOnBestSchoolsClick}
 					/>
 				</ClassCardMain>

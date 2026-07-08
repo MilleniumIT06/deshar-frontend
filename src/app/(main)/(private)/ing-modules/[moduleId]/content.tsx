@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 import { ModuleCard } from '@/components/ModulesContent/ModuleCard';
 import './../styles.scss';
 import { useGetModuleById } from '@/hooks/queries/education/modules/useGetModuleById';
-import Loader from '@/shared/ui/Loader';
+import {Loader} from '@/shared/ui/Loader';
 
 export const ModuleContent = () => {
     const params = useParams<{moduleId:string}>()

@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react'
 
 
 import useRole from '@/shared/hooks/admin/useRole'
-import { type Role } from '@/shared/types/admin/auth'
+// import { type Role } from '@/shared/types/admin/auth'
 import { type AttestationStatus } from '@/shared/types/admin/types'
 import { Button } from '@/shared/ui/Button'
 import './styles.scss'
@@ -13,7 +13,7 @@ interface StudentTableItemProps<TData> {
 	row: Row<TData>
 	status: AttestationStatus
 }
-const ROLE_TYPES: Role[] = ['vicePrincipal', 'department', 'ministry', 'admin']
+// const ROLE_TYPES: Role[] = ['vicePrincipal', 'department', 'ministry', 'admin']
 const STATUS_CONFIG = {
 	checking: {
 		text: 'Аттестация ожидает принятия',
@@ -156,7 +156,7 @@ const AttestationResultsHeader = () => {
 }
 const AttestationResultsFooter = ({ status }: { status: AttestationResultsFooterStatus }) => {
 	const { hasRole } = useRole()
-	const canManageAttestation = hasRole(ROLE_TYPES)
+	const canManageAttestation = hasRole("admin")
 
 	const statusConfig = STATUS_CONFIG[status]
 	const isStatusWithDetails = status === 'accepted' || status === 'rejected'

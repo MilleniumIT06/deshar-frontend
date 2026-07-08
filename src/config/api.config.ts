@@ -1,3 +1,5 @@
+import { Id } from "@/shared/types/types"
+
 export const SERVER_URL = process.env.SERVER_URL
 
 const prefix = '/api'
@@ -24,4 +26,7 @@ export const API_URL = {
 
 	// education
 	ingModules:()=> API_URL.root(`${prefix}/modules`),
+	// organization for admin
+	adminClasses:()=> API_URL.root(`${prefix}/school/classes`),
+	adminClassStatistics:(id:Id)=> API_URL.root(`${prefix}/school/classes/${id}/statistics`),
 }

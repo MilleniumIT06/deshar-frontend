@@ -79,7 +79,7 @@ export const SchoolsPageContent = () => {
 				{/* <SchoolsTable data={SchoolsMockData} link="/schools/" /> */}
 				<Table<SchoolDepItem, any>
 					data={SchoolsMockData}
-					getColumns={() => getColumnsSchool({ role })}
+					getColumns={() => getColumnsSchool({ role:"teacher" })}
 					handleRowClick={redirectOnSchoolClick}
 				/>
 			</Card>

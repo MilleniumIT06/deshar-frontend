@@ -7,7 +7,6 @@ import { useState } from 'react'
 import { getColumnsSchool } from '@/columns/getColumnsSchool'
 import { Table } from '@/components/Admin/Table'
 import { SchoolsMockDataDEP } from '@/mocks/adminMock'
-import useRole from '@/shared/hooks/admin/useRole'
 import { type SchoolDepItem } from '@/shared/types/admin/types'
 import { Card } from '@/widgets/AdminWidgets/Card'
 
@@ -20,7 +19,6 @@ const TABS = [
 ]
 export const UniqueEducationDepartmentContent = () => {
 	const router = useRouter()
-	const { role } = useRole()
 	const [timeFrom, setTimeFrom] = useState<string>('')
 	const [timeTo, setTimeTo] = useState<string>('')
 
@@ -79,7 +77,7 @@ export const UniqueEducationDepartmentContent = () => {
 				onClickBackButton={() => router.back()}>
 				<Table<SchoolDepItem, never>
 					data={SchoolsMockDataDEP}
-					getColumns={() => getColumnsSchool({ role })}
+					getColumns={() => getColumnsSchool({ role:"teacher" })}
 					handleRowClick={redirectOnSchoolClick}
 				/>
 			</Card>
