@@ -16,7 +16,8 @@ export const ModuleCard = ({
 	title,
 	id,
 	linkHref="/learning",
-	name="Модуль"
+	name="Модуль",
+	isDisabled=false
 }: {
 	id: number | string
 	number: number
@@ -26,6 +27,7 @@ export const ModuleCard = ({
 	processLessons: number
 	linkHref?:string;
 	name?:string;
+isDisabled?:boolean;
 }) => {
 	return (
 		<div className={cn('ModuleCard', doneLessons === maxLessons && 'ModuleCard__done')}>
@@ -35,9 +37,13 @@ export const ModuleCard = ({
 						<span className="ModuleCard__suptitle">{name} {number}</span>
 					</div>
 					<div className="ModuleCard__body">
-						<Link href={`${linkHref}/${id}`}>
+						{isDisabled ? (
 							<h6 className="ModuleCard__title">{title}</h6>
-						</Link>
+						) : (
+							<Link href={`${linkHref}/${id}`}>
+								<h6 className="ModuleCard__title">{title}</h6>
+							</Link>
+						)}
 					</div>
 				</div>
 				<div className="ModuleCard__footer">

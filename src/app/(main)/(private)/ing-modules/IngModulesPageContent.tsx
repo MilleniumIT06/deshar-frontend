@@ -2,12 +2,12 @@
 
 import { ModuleCard } from '@/components/ModulesContent/ModuleCard'
 import { useGetModules } from '@/hooks/queries/education/modules/useGetModules'
-
 import './styles.scss';
+import Loader from '@/shared/ui/Loader';
 
 export const IngModulesPageContent = () => {
 	const { modules, isLoading, isError } = useGetModules()
-    if(isLoading) return "Modules loading..."
+    if(isLoading) return <div style={{display:"flex",height:"100vh",justifyContent:"center",alignItems:"center"}}><Loader/></div>
     if(isError)  return "Something went wrong"
 	return (
 		<section className="IngModulesPageContent">
@@ -24,6 +24,7 @@ export const IngModulesPageContent = () => {
 							maxLessons={12}
 							doneLessons={12}
 							processLessons={0}
+							isDisabled={false}
 						/>)}
 						{/* <ModuleCard
 							id={1}

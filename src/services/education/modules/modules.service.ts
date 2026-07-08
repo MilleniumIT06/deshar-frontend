@@ -4,13 +4,14 @@ import { axiosClassic } from '@/api/api.helper'
 import { API_URL } from '@/config/api.config'
 import { Id } from '@/shared/types/types'
 
-interface IModule {
+export interface IModule {
             id: Id;
 			name: string;
 			slug: string;
 			image: string|null;
 			description: string|null;
 			complexity:number;
+			is_published:boolean;
 			total_xp_reward: number|null;
             total_pieces: number|null;
             total_lessons: number|null;
@@ -53,6 +54,7 @@ class ModulesService {
 				Authorization: token ? `Bearer ${token}` : '',
 			},
 		})
+		console.log('getModules',data)
 		return data
 	}
     async getModuleById(id:Id) {

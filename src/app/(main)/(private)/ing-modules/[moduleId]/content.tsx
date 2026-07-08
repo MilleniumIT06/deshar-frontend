@@ -4,12 +4,13 @@ import { useParams } from 'next/navigation';
 import { ModuleCard } from '@/components/ModulesContent/ModuleCard';
 import './../styles.scss';
 import { useGetModuleById } from '@/hooks/queries/education/modules/useGetModuleById';
+import Loader from '@/shared/ui/Loader';
 
 export const ModuleContent = () => {
     const params = useParams<{moduleId:string}>()
 
     const {module:uniqueModule,isLoading} = useGetModuleById(Number(params.moduleId))
-    if(isLoading) return <>Loading...</>
+    if(isLoading) return <div style={{display:"flex",height:"100vh",justifyContent:"center",alignItems:"center"}}><Loader/></div>
     console.log('onemodule',uniqueModule)
     return (
         <section className="IngModulesPageContent">
