@@ -17,7 +17,9 @@ export const ModuleCard = ({
 	id,
 	linkHref="/learning",
 	name="Модуль",
-	isDisabled=false
+	isDisabled=false,
+	progressPercentage,
+	status
 }: {
 	id: number | string
 	number: number
@@ -28,9 +30,11 @@ export const ModuleCard = ({
 	linkHref?:string;
 	name?:string;
 isDisabled?:boolean;
+progressPercentage:number;
+status:string;
 }) => {
 	return (
-		<div className={cn('ModuleCard', doneLessons === maxLessons && 'ModuleCard__done')}>
+		<div className={cn('ModuleCard')}>
 			<div className="ModuleCard__inner">
 				<div className="ModuleCard__top">
 					<div className="ModuleCard__header">
@@ -53,7 +57,7 @@ isDisabled?:boolean;
 						processLessons={processLessons}
 						counter
 					/>
-					<AttestationBar points={100} status="checked" />
+					<AttestationBar percentage={progressPercentage} status={status} />
 				</div>
 			</div>
 		</div>

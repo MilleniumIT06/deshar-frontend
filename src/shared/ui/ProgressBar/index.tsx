@@ -26,8 +26,7 @@ export const ProgressBar = ({
 }: ProgressBarProps) => {
 	// Валидация и нормализация входных значений
 	const validatedValues = useMemo(() => {
-		// Гарантируем, что maxLessons будет не меньше 1
-		const max = Math.max(1, maxLessons)
+		const max = Math.max(0, maxLessons)
 		// Ограничиваем doneLessons в диапазоне [0, max]
 		const done = Math.max(0, Math.min(doneLessons, max))
 		// Ограничиваем processLessons с учетом оставшихся уроков

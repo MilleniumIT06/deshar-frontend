@@ -25,6 +25,13 @@ export interface IModule {
                 completed_at: string|null;
             };
         }
+		interface IModulePieceProgress {
+completed_at:null|string;
+is_completed:boolean;
+progress_percentage:number;
+started_at:string;
+status:string;
+		}
 interface UniqueModule {
 			module:{
 				id:Id;
@@ -35,7 +42,7 @@ interface UniqueModule {
 				fon:string|null;
 				lessons:any[];
 				name:string;
-				progress:any;
+				progress:IModulePieceProgress;
 				sort_order:number;
 				total_lessons:number;
 			}[]

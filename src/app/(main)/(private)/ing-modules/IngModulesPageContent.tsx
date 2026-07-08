@@ -21,10 +21,12 @@ export const IngModulesPageContent = () => {
 							linkHref='ing-modules'
 							number={module.id}
 							title={module.name}
-							maxLessons={12}
-							doneLessons={12}
+							maxLessons={module.total_pieces||0}
+							doneLessons={0}
 							processLessons={0}
 							isDisabled={false}
+							progressPercentage={module.progress.progress_percentage}
+							status={module.progress.status}
 						/>)}
 						{/* <ModuleCard
 							id={1}

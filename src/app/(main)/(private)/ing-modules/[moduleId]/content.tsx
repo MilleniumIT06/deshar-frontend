@@ -23,9 +23,11 @@ export const ModuleContent = () => {
                             key={`ing-module-piece-${piece.id}`}
                             number={piece.id}
                             title={piece.name}
-                            maxLessons={12}
+                            maxLessons={piece.total_lessons}
                             doneLessons={12}
                             processLessons={0}
+                            progressPercentage={piece.progress.progress_percentage}
+                            status={piece.progress.status}
                             name='Часть'
                         />)}
                      </div>
