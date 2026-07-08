@@ -13,7 +13,8 @@ interface SchoolClassStatistic {
 		active_percentage: number;
 	}
 		class: {id:Id,name:string;};
-		success: boolean
+		success: boolean;
+		top_students:{id:Id;level:number;level_name:string;name:string;rank:number;xp:0}[]
 	}
 class SchoolClassesService {
 	async getAllSchoolClasses(schoolId?: number | null) {

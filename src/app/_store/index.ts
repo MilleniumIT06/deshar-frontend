@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import learningAttestationReducer from '@/components/LearningAttestation/attestation.slice'
-import adminUserReducer from '@/entities/admin/user.slice'
+// import adminUserReducer from '@/entities/admin/user.slice'
 import engineSlice from '@/entities/engine/model/engine.slice'
 import scoringSlice from '@/entities/engine/model/scoring.slice'
 import timerSlice from '@/entities/engine/model/timer.slice'
@@ -17,7 +17,7 @@ export const store = configureStore({
 		learningAttestationReducer,
 		signUpFormReducer,
 		// user: userReducer,
-		adminUserReducer,
+		// adminUserReducer,
 		engine: engineSlice,
 		timer: timerSlice,
 		scoreReducer: scoringSlice,

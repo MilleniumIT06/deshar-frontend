@@ -12,7 +12,7 @@ interface AttestationsTableProps {
 	data: AttestationsTableItemType[]
 }
 export const AttestationsTable = ({ data }: AttestationsTableProps) => {
-	const columns = useMemo(() => getAttestationsColumns({ role:"teacher" }), [])
+	const columns = useMemo(() => getAttestationsColumns({ role:"Учитель" }), [])
 	// Состояние для сортировки
 	const [sorting, setSorting] = useState<SortingState>([])
 

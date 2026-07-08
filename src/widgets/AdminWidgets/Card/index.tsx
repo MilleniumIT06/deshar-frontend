@@ -123,7 +123,7 @@ export const Card = ({
 							)}
 							<h2 className="Card__title">{title}</h2>
 						</div>
-						{(type === 'class' && hasRole(['vicePrincipal', 'department', 'ministry', 'admin'])) ||
+						{(type === 'class' && hasRole(['Представитель школы', 'Пр. Управления образования', 'Представитель министерства', 'Админ'])) ||
 						isParallel ? (
 							<TeacherItem name="Татриева Зарема" />
 						) : null}

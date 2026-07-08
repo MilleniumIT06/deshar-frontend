@@ -1,9 +1,10 @@
 import { createColumnHelper } from '@tanstack/react-table'
 
 import { SortableHeader } from '@/components/Admin/SortableHeader'
-import { type Role } from '@/shared/types/admin/auth'
 import { type AttestationStatus } from '@/shared/types/admin/types'
 import { StateChip } from '@/shared/ui/Admin/StateChip'
+
+import type { RoleName } from '@/shared/types/user.types'
 
 export type AttestationsTableItemType = {
 	id: number
@@ -18,7 +19,7 @@ export type AttestationsTableItemType = {
 }
 const columnHelper = createColumnHelper<AttestationsTableItemType>()
 
-export const getAttestationsColumns = ({ role }: { role?: Role }) => [
+export const getAttestationsColumns = ({ role }: { role?: RoleName }) => [
 	columnHelper.accessor('date', {
 		header: ({ column }) => <SortableHeader<AttestationsTableItemType, Date> title="Дата" column={column} />,
 		enableSorting: true,
@@ -37,7 +38,7 @@ export const getAttestationsColumns = ({ role }: { role?: Role }) => [
 	//       cell: info => <span title={info.getValue()} className='tableItem__class'>{info.getValue() || '—'}</span>
 	//     })]
 	//     : []),
-	...(role === 'department'
+	...(role === 'Пр. Управления образования'
 		? [
 				columnHelper.accessor('schoolName', {
 					header: ({ column }) => (

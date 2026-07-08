@@ -117,7 +117,7 @@ const AttestationResultsHeader = () => {
 							24.04.25 16:35
 						</time>
 					</div>
-					{hasRole(['department', 'admin']) && (
+					{hasRole(['Пр. Управления образования', 'Админ']) && (
 						<div className="AttestationResultsHeader__item">
 							<span className="AttestationResultsHeader__item_title">Модуль</span>
 							<span className="AttestationResultsHeader__item_content">Произведения 20 века</span>
@@ -133,7 +133,7 @@ const AttestationResultsHeader = () => {
 						<span className="AttestationResultsHeader__item_title">Ошибки</span>
 						<span className="AttestationResultsHeader__item_content">4</span>
 					</div>
-					{hasRole(['department', 'admin']) && (
+					{hasRole(['Пр. Управления образования', 'Админ']) && (
 						<div className="AttestationResultsHeader__item">
 							<span className="AttestationResultsHeader__item_title">Предмет</span>
 							<span className="AttestationResultsHeader__item_content">Литература</span>
@@ -156,7 +156,7 @@ const AttestationResultsHeader = () => {
 }
 const AttestationResultsFooter = ({ status }: { status: AttestationResultsFooterStatus }) => {
 	const { hasRole } = useRole()
-	const canManageAttestation = hasRole("admin")
+	const canManageAttestation = hasRole("Админ")
 
 	const statusConfig = STATUS_CONFIG[status]
 	const isStatusWithDetails = status === 'accepted' || status === 'rejected'
@@ -222,7 +222,7 @@ export const StudentTableItem = <TData,>({ row, status }: StudentTableItemProps<
 			<tr>
 				<td colSpan={8}>
 					<div className="attestationResults__wrapper">
-						{hasRole(['vicePrincipal', 'department', 'admin']) && <AttestationResultsHeader />}
+						{hasRole(['Представитель школы', 'Пр. Управления образования', 'Админ']) && <AttestationResultsHeader />}
 						<div className="attestationResults__container">
 							<AttestationResultsTable />
 						</div>

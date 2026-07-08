@@ -1,4 +1,4 @@
-import { User } from "./user.types"
+import { RoleName, User } from "./user.types"
 
 export type Id = number
 export interface District {
@@ -23,7 +23,7 @@ export interface Country {
 }
 export interface Role {
 	id: Id
-	name: string
+	name: RoleName
 }
 
 export interface TrainerCommonProps {

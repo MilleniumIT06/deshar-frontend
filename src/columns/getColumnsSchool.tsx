@@ -3,12 +3,13 @@ import cn from 'classnames'
 
 import { SortableHeader } from '@/components/Admin/SortableHeader'
 import { minutesToHoursAndMinutes } from '@/shared/admin/utils'
-import { type Role } from '@/shared/types/admin/auth'
-import { type SchoolDepItem } from '@/shared/types/admin/types'
+
+import type{  SchoolDepItem } from '@/shared/types/admin/types'
+import type { RoleName } from '@/shared/types/user.types'
 
 const columnHelper = createColumnHelper<SchoolDepItem>()
 
-export const getColumnsSchool = ({ role }: { role?: Role }) => [
+export const getColumnsSchool = ({ role }: { role?: RoleName }) => [
 	columnHelper.accessor('place', {
 		header: ({ column }) => <SortableHeader title="Место" column={column} />,
 		enableSorting: true,
@@ -33,7 +34,7 @@ export const getColumnsSchool = ({ role }: { role?: Role }) => [
 			</span>
 		),
 	}),
-	...(role === 'ministry' || role === 'admin'
+	...(role === 'Представитель министерства' || role === 'Админ'
 		? [
 				columnHelper.accessor('department', {
 					header: ({ column }) => (

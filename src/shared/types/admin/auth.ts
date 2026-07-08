@@ -1,15 +1,16 @@
-export type Role = 'admin' | 'teacher' | 'vicePrincipal' | 'principal' | 'department' | 'ministry' | null
+import type { RoleName } from "../user.types"
+
 
 export interface AuthState {
-	role: Role
+	role: RoleName
 	isLoading: boolean
 	error: string | null
 }
 
 export interface UseRoleReturn {
-	role: Role
-	hasRole: (allowedRole: Role | Role[]) => boolean
-	setRole: (newRole: Role) => void
+	role: RoleName
+	hasRole: (allowedRole: RoleName | RoleName[]) => boolean
+	setRole: (newRole: RoleName) => void
 	clearRole: () => void
 	isLoading: boolean
 	error: string | null

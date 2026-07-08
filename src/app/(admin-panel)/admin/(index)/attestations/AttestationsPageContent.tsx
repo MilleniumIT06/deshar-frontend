@@ -71,7 +71,7 @@ export const AttestationsPageContent = () => {
 				valueFirst="147 аттестаций"
 				activeTab={activeTab}
 				setActiveTab={setActiveTab}
-				csv={role === 'department' && true}>
+				csv={role === 'Пр. Управления образования' && true}>
 				<AttestationsTable data={data} />
 			</Card>
 		</main>

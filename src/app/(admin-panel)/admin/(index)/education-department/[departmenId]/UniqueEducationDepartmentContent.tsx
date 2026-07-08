@@ -77,7 +77,7 @@ export const UniqueEducationDepartmentContent = () => {
 				onClickBackButton={() => router.back()}>
 				<Table<SchoolDepItem, never>
 					data={SchoolsMockDataDEP}
-					getColumns={() => getColumnsSchool({ role:"teacher" })}
+					getColumns={() => getColumnsSchool({ role:"Учитель" })}
 					handleRowClick={redirectOnSchoolClick}
 				/>
 			</Card>

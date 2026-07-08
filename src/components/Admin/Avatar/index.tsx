@@ -6,7 +6,9 @@ import { useState, useEffect } from 'react'
 
 
 import './styles.scss'
-import type { UserType } from '@/shared/types/user.types'
+import type { RoleName } from '@/shared/types/user.types'
+
+// import type { UserType } from '@/shared/types/user.types'
 // import { ROLE_LABELS } from '@/shared/admin/utils'
 
 // import type { AdminUserType } from '@/shared/types/user.types'
@@ -16,7 +18,7 @@ interface AvatarProps {
 	name?: string
 	size?: 'small' | 'medium' | 'large'
 	className?: string
-	role?: UserType
+	role?: RoleName;
 	onClick?: () => void
 }
 
@@ -25,7 +27,7 @@ export const Avatar = ({
 	name = 'Ислам Парчиев',
 	size = 'medium',
 	className,
-	role = 'admin',
+	role = 'Админ',
 	onClick,
 }: AvatarProps) => {
 	const [imageError, setImageError] = useState(false)

@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 
 import { useGetSchoolClasses } from '@/hooks/admin/useGetSchoolClasses'
 import { useProfile } from '@/hooks/user/useProfile'
-import { teacherMyClasses, teacherParallelClasses } from '@/mocks/adminMock'
+import { teacherParallelClasses } from '@/mocks/adminMock'
 import useRole from '@/shared/hooks/admin/useRole'
 import {Loader} from '@/shared/ui/Loader'
 import { Logo } from '@/shared/ui/Logo'
@@ -36,21 +36,23 @@ export const DashboardMenu = () => {
 						<Logo className="DashboardMenu__logo" href="/admin" />
 					</div>
 					<div className="DashboardMenu__content">
+							{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства']) && (
 						<DashboardMenuItem title="Статистика" href="/admin" />
-						{hasRole(['admin', 'department', 'ministry']) && (
+							)}
+						{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства']) && (
 							<DashboardMenuItem title="Школы" href="/admin/schools" icon={<SchoolsIcon />} />
 						)}
-						{hasRole(['admin', 'ministry']) && (
+						{hasRole(['Админ', 'Представитель министерства']) && (
 							<DashboardMenuItem
 								title="Упр. образования"
 								href="/admin/education-department"
 								icon={<EducationDepartmentIcon />}
 							/>
 						)}
-						{hasRole(['admin', 'department', 'ministry']) && (
+						{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства']) && (
 							<DashboardMenuItem title="Учителя" href="/admin/teachers" icon={<TeachersIcon />} />
 						)}
-						{hasRole(['vicePrincipal', 'admin', 'department', 'ministry']) && (
+						{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства']) && (
 							<DashboardMenuItem
 								title="Аттестации"
 								href="/admin/attestations"
@@ -59,7 +61,7 @@ export const DashboardMenu = () => {
 							/>
 						)}
 
-						{hasRole(['teacher','manager', 'vicePrincipal', 'admin']) && (
+						{hasRole(['Учитель','Представитель школы', 'Админ']) && (
 							isSchoolClassesLoading ? "Loading...": isError? "Error": schoolClassesData&&schoolClassesData.data.length>0 ? <MenuAccordion title="Мои классы" icon={<MyClassesIcon />}>
 								<ul className="list-reset MenuAccordion__list">
 									{schoolClassesData.data.map(item => (
@@ -76,7 +78,7 @@ export const DashboardMenu = () => {
 								</ul>
 							</MenuAccordion>:"Список классов пуст"
 						)}
-						{hasRole(['teacher', 'admin']) && (
+						{hasRole(['Учитель', 'Админ']) && (
 							<MenuAccordion title="Параллели" icon={<ParallelClassessIcon />}>
 								<ul className="list-reset MenuAccordion__list">
 									{teacherParallelClasses.map(item => (
@@ -101,7 +103,7 @@ export const DashboardMenu = () => {
 						name={profileData?.data.user.name}
 						className="DashboardMenu__avatar"
 						size='medium'
-						role={profileData?.data.user.user_type}
+						role={profileData?.data.user.role.name}
 					/>}
 				</div>
 			</div>

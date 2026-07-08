@@ -3,16 +3,16 @@ import { useQuery } from '@tanstack/react-query'
 import { schoolClassesService } from '@/services/organization/classes/schoolClasses.service'
 import { Id } from '@/shared/types/types'
 
-export const useGetSchoolClasses = (id:Id) => {
+export const useGetUniqueClassStatistic = (id:Id) => {
 	const {
-		data: schoolClassesData,
+		data: classStatistic,
 		isLoading,
 		isError,
 		error,
 	} = useQuery({
-		queryKey: ['schoolClassesAdmin'],
+		queryKey: ['uniqueClassStatisticAdmin', id],
 		queryFn: () => schoolClassesService.getUniqueClassStatisticAdmin(id),
 		staleTime: 10 * 60 * 1000,
 	})
-	return { schoolClassesData, isLoading, isError, error }
+	return { classStatistic, isLoading, isError, error }
 }

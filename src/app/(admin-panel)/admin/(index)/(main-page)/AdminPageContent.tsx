@@ -46,7 +46,7 @@ export const AdminPageContent = () => {
 	}
 	return (
 		<div>
-			{hasRole(['admin', 'department', 'ministry']) && (
+			{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства']) && (
 				<div className="MainStatisticPageContent__cards">
 					<StatisticsBlock data={defaultPieData} centerLabel="баллов" title="Лучшая успеваемость" />
 
@@ -54,17 +54,17 @@ export const AdminPageContent = () => {
 				</div>
 			)}
 
-			{hasRole(['admin', 'department']) && (
+			{hasRole(['Админ', 'Пр. Управления образования']) && (
 				<ClassCardMain title="Лучшие школы" linkText="Полный список" linkHref="/">
 					<Table<SchoolDepItem, any>
 						data={SchoolsMockData}
-						getColumns={() => getColumnsSchool({ role:"teacher" })}
+						getColumns={() => getColumnsSchool({ role:"Учитель" })}
 						handleRowClick={redirectOnBestSchoolsClick}
 					/>
 				</ClassCardMain>
 			)}
 
-			{hasRole(['admin', 'ministry']) && (
+			{hasRole(['Админ', 'Представитель министерства']) && (
 				<ClassCardMain title="Лучшие управления образования" linkText="Полный список" linkHref="/">
 					<Table<DepartamentItem, any>
 						data={departmentMockData}
@@ -113,7 +113,7 @@ export const AdminPageContent = () => {
 							/>
 			</div>
 			<ClassCardMain
-				title={role === 'ministry' ? 'Лучшие ученики среди школ' : 'Лучшие ученики класса'}
+				title={role === 'Представитель министерства' ? 'Лучшие ученики среди школ' : 'Лучшие ученики класса'}
 				linkText="Полный список"
 				linkHref="/">
 				{/* <ClassTable data={TEST_CLASSMATES} type='classmates' /> */}

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { User } from './shared/types/user.types'
 
 export async function proxy(request: NextRequest) {
     const token = request.cookies.get('jwt_token')?.value
@@ -17,7 +18,7 @@ export async function proxy(request: NextRequest) {
         return NextResponse.redirect(new URL('/sign-in', request.url))
     }
 
-	console.log('proxyTest')
+	// console.log('proxyTest')
     if (isAuthenticated) {
         try {
             const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8000'
@@ -36,20 +37,20 @@ export async function proxy(request: NextRequest) {
 
             if (response.ok) {
                 const res = await response.json()
-				const user = res.data.user;
-				console.log(user,"proxy")
+				const user:User = res.data.user;
+				// console.log(user,"proxy")
 				if (user.is_banned === true && pathname !== '/user-banned') {
                  return NextResponse.redirect(new URL('/user-banned', request.url));
                 }
                 if (user.is_banned === false && pathname === '/user-banned') {
                  return NextResponse.redirect(new URL('/dashboard', request.url));
                 }
-                if (user.confirmed === false) {
-                    if (pathname !== '/not-confirmed') {
-                        return NextResponse.redirect(new URL('/not-confirmed', request.url))
-                    }
-                }
-                if(user.user_type==="student") {
+                // if (user.confirmed === false) {
+                //     if (pathname !== '/not-confirmed') {
+                //         return NextResponse.redirect(new URL('/not-confirmed', request.url))
+                //     }
+                // }
+                if(user.user_type==="student"&&user.role.name==="Ученик") {
                     if(pathname === '/admin') {
                         return NextResponse.redirect(new URL('/dashboard', request.url))
                     }

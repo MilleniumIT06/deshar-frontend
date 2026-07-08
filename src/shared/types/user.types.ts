@@ -1,4 +1,15 @@
 import { Id } from "./types";
+export type RoleName =
+'Супер-админ' |
+'Админ' |
+'Модератор' |
+'Представитель министерства' |
+'Пр. Управления образования' |
+'Представитель школы' |
+'Директор школы'|
+'Учитель'|
+'Ученик'|
+ null
 
 export type UserType = 'student' | 'teacher' | 'parent' | 'admin'|'department'|'ministry'|'vicePrincipal'|'principal'|'manager'
 export interface UserProfileResponse {
@@ -36,6 +47,11 @@ export interface User {
 	settings:any;
 	created_at: string;
 	updated_at: string;
+	role: {
+				id:Id;
+				name: RoleName;
+				slug: string|null
+			}
 }
 export interface UpdateUser extends Pick<User,"name"|"email"> {}
 export interface StatItem {

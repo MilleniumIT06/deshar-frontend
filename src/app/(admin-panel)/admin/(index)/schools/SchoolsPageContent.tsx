@@ -75,11 +75,11 @@ export const SchoolsPageContent = () => {
 				valueSecond="487 585 баллов"
 				activeTab={activeTab}
 				setActiveTab={setActiveTab}
-				csv={role === 'admin'}>
+				csv={role === 'Админ'}>
 				{/* <SchoolsTable data={SchoolsMockData} link="/schools/" /> */}
 				<Table<SchoolDepItem, any>
 					data={SchoolsMockData}
-					getColumns={() => getColumnsSchool({ role:"teacher" })}
+					getColumns={() => getColumnsSchool({ role:"Учитель" })}
 					handleRowClick={redirectOnSchoolClick}
 				/>
 			</Card>
