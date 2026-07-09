@@ -38,8 +38,8 @@ interface CardProps {
 	valueSecond?: string
 	children: ReactNode
 	isParallel?: boolean
-	activeTab: number
-	setActiveTab: React.Dispatch<React.SetStateAction<number>>
+	activeTab?: number
+	setActiveTab?: React.Dispatch<React.SetStateAction<number>>
 	onClickBackButton?: () => void
 	type?: 'class' | 'teachers'
 	csv?: boolean
@@ -135,7 +135,7 @@ export const Card = ({
 					</div>
 
 					<div className="Card__controls">
-						{tabs.length > 0 && <Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={tabs} />}
+						{tabs.length > 0 && activeTab&& setActiveTab&& <Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={tabs} />}
 						<div className="Card__controls-spacer">
 							{csv && onClickCsvBtn && (csvIsLoading ? <Loader size='small'/>:
 								<button className="btn-reset Card__controls-csv" onClick={onClickCsvBtn}>

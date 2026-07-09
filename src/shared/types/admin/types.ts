@@ -1,3 +1,5 @@
+import { Id } from "../types"
+
 export type Student = {
 	id: number
 	placeNumber: number
@@ -8,7 +10,12 @@ export type Student = {
 	parallelClass?: string
 	class: string
 }
-
+export interface StudentCommonData {
+	id:Id;
+	level:number;
+	name:string;
+	xp:0
+}
 export type StudentTableProps = {
 	data: Student[]
 	type: 'parallel' | 'classmates'

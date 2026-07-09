@@ -1,5 +1,4 @@
-import Cookies from 'js-cookie'
-import { axiosClassic } from '@/api/api.helper'
+import { axiosClassic, axiosWithAuth } from '@/api/api.helper'
 import { API_URL } from '@/config/api.config'
 
 import type { Id, SchoolClass } from '@/shared/types/types'
@@ -27,8 +26,7 @@ class SchoolClassesService {
 	}
 
 	async getAllSchoolClassesAdmin() {
-		const token = Cookies.get('jwt_token')
-		const { data } = await axiosClassic<{ data: {
+		const { data } = await axiosWithAuth<{ data: {
 			id:Id;
 			name: string;
 			students_count: number;
@@ -39,21 +37,14 @@ class SchoolClassesService {
 		}[]; meta: any; success: boolean }>({
 			url: API_URL.adminClasses(),
 			method: 'GET',
-			headers: {
-				Authorization: token ? `Bearer ${token}` : '',
-			},
 		})
 		return data
 	}
 
 	async getUniqueClassStatisticAdmin(id:Id) {
-		const token = Cookies.get('jwt_token')
-		const { data } = await axiosClassic<SchoolClassStatistic>({
+		const { data } = await axiosWithAuth<SchoolClassStatistic>({
 			url: API_URL.adminClassStatistics(id),
 			method: 'GET',
-			headers: {
-				Authorization: token ? `Bearer ${token}` : '',
-			},
 		})
 		return data
 	}

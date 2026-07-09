@@ -1,5 +1,4 @@
-import Cookies from 'js-cookie'
-import { axiosClassic } from '@/api/api.helper'
+import { axiosWithAuth } from '@/api/api.helper'
 import { API_URL } from '@/config/api.config'
 import { Id } from '@/shared/types/types';
 
@@ -32,27 +31,17 @@ interface ISchoolExportResponse {
 }
 class TeachersService {
 async getSchoolTeachersAdmin() {
-    const token = Cookies.get('jwt_token')
-    const { data } = await axiosClassic<ITeachersResponseData>({
+    const { data } = await axiosWithAuth<ITeachersResponseData>({
         url: API_URL.adminTeachers(),
         method: 'GET',
-        headers: {
-            Authorization: token ? `Bearer ${token}` : '',
-        },
     })
-    console.log(data);
     return data
 }
 
 async exportSchoolDataAdmin() {
-        const token = Cookies.get('jwt_token')
-        const { data } = await axiosClassic<ISchoolExportResponse>({
-
+        const { data } = await axiosWithAuth<ISchoolExportResponse>({
             url:  API_URL.adminExportSchoolCsv(),
             method: 'GET',
-            headers: {
-                Authorization: token ? `Bearer ${token}` : '',
-            },
         })
         return data
     }

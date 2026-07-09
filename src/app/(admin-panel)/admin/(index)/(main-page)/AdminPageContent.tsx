@@ -8,18 +8,20 @@ import { getDepartmentColumns } from '@/columns/getDepartmentColumns'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
 import { Table } from '@/components/Admin/Table'
 import { ResultsCard } from '@/components/ResultsCard'
+import { useGetSchoolStatistic } from '@/hooks/admin/statistic/useGetSchoolStatistic'
 import {
 	barChartMockData,
 	defaultPieData,
 	defaultPieTimeData,
 	departmentMockData,
 	SchoolsMockData,
-} from '@/mocks/adminMock'
+} from '@/mocks/adminMock';
 import { TEST_CLASSMATES } from '@/mocks/data'
 import useRole from '@/shared/hooks/admin/useRole'
 import { type Student, type DepartamentItem, type SchoolDepItem } from '@/shared/types/admin/types'
 
 import './AdminPageContent.scss'
+import { Loader } from '@/shared/ui/Loader'
 
 const StatisticsBlock = dynamic(() => import('@/components/Admin/StatisticsBlock').then(mod => mod.StatisticsBlock), {
 	ssr: false,
@@ -31,6 +33,8 @@ const MainChart = dynamic(() => import('@/widgets/AdminWidgets/MainChart').then(
 })
 export const AdminPageContent = () => {
 	const { hasRole, role } = useRole()
+	const {schoolStatisticAdminData,isLoading:isSchoolStatisticsLoading} =useGetSchoolStatistic()
+	console.log(schoolStatisticAdminData,'testDatatRYYYYY')
 	const redirectOnBestSchoolsClick = (item: SchoolDepItem) => {
 		// console.log(item.id);
 		// navigate(`schools/${item.id}`, { relative: "route" })
@@ -75,10 +79,12 @@ export const AdminPageContent = () => {
 			)}
 			<MainChart data={barChartMockData} title="Суммарная успеваемость" />
 			<div className="MainStatisticPageContent__result_cards">
+				{isSchoolStatisticsLoading ? <Loader/>: schoolStatisticAdminData && <>
+
 					<ResultsCard
 								percent={25}
 								period={7}
-								value={182}
+								value={schoolStatisticAdminData.statistics.school_progress.total_xp}
 								title="Баллов набрано"
 								mode='value'
 								variant='admin'
@@ -88,14 +94,16 @@ export const AdminPageContent = () => {
 </svg>}
 							/>
 							<ResultsCard
-								percent={12}
+								percent={0}
 								period={7}
 								title="Модулей выполнено"
-								value={29}
+								value={schoolStatisticAdminData.statistics.school_progress.completed_modules_total}
 								mode='value'
 								variant='admin'
 							/>
-							<ResultsCard
+							</>
+}
+							{/* <ResultsCard
 								percent={-12}
 								period={7}
 								title="Времени затрачено"
@@ -110,7 +118,7 @@ export const AdminPageContent = () => {
   <path d="M6.06506 4L4.00002 6.06504" stroke="#060606" strokeWidth="2" strokeLinecap="round" />
 </svg>
 								}
-							/>
+							/> */}
 			</div>
 			<ClassCardMain
 				title={role === 'Представитель министерства' ? 'Лучшие ученики среди школ' : 'Лучшие ученики класса'}

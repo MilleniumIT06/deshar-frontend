@@ -3,9 +3,13 @@ import cn from 'classnames'
 
 import { SortableHeader } from '@/components/Admin/SortableHeader'
 
-import type { Id } from '@/shared/types/types'
+import  type { StudentCommonData } from '@/shared/types/admin/types'
 
-const columnHelper = createColumnHelper<{id:Id;level:number;level_name:string;name:string;rank:number;xp:0}>()
+interface ClassStudentUnique extends StudentCommonData {
+    level_name:string;
+    rank:number;
+}
+const columnHelper = createColumnHelper<ClassStudentUnique>()
 
 export const getUniqueClassStudentsColumns = () => [
     columnHelper.accessor('level', {

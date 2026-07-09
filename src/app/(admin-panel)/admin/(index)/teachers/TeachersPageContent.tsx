@@ -2,7 +2,6 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-
 import { getTeacherColumns } from '@/columns/getTeacherColumns'
 import { Table } from '@/components/Admin/Table'
 import { useExportSchoolData } from '@/hooks/admin/useExportSchoolData'

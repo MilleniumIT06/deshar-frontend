@@ -21,7 +21,7 @@ export const API_URL = {
 	schoolClasses: () => API_URL.root(`${prefix}/school-classes`),
 
 	// stats
-	stats:()=> API_URL.root(`${prefix}/auth/stats`),
+	userStats:()=> API_URL.root(`${prefix}/auth/stats`),
 
 
 	// education
@@ -31,4 +31,6 @@ export const API_URL = {
 	adminClassStatistics:(id:Id)=> API_URL.root(`${prefix}/school/classes/${id}/statistics`),
 	adminTeachers:()=> API_URL.root(`${prefix}/school/teachers`),
 	adminExportSchoolCsv:()=> API_URL.root(`${prefix}/school/export`),
+	adminSchoolStats:()=> API_URL.root(`${prefix}/school/statistics`),
+	adminGetAllSchoolStudents:()=> API_URL.root(`${prefix}/school/students`),
 }

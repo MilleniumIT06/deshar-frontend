@@ -1,6 +1,4 @@
-import Cookies from 'js-cookie'
-
-import { axiosClassic } from '@/api/api.helper'
+import { axiosWithAuth } from '@/api/api.helper'
 import { API_URL } from '@/config/api.config'
 import { Id } from '@/shared/types/types'
 
@@ -53,25 +51,17 @@ interface UniqueModule {
 class ModulesService {
 
 	async getModules() {
-        const token = Cookies.get('jwt_token')
-		const { data } = await axiosClassic<{data:IModule[];meta:any;success:boolean}>({
+		const { data } = await axiosWithAuth<{data:IModule[];meta:any;success:boolean}>({
 			url: API_URL.ingModules(),
 			method: 'GET',
-            headers: {
-				Authorization: token ? `Bearer ${token}` : '',
-			},
 		})
 		console.log('getModules',data)
 		return data
 	}
     async getModuleById(id:Id) {
- const token = Cookies.get('jwt_token')
-		const { data } = await axiosClassic<UniqueModule>({
+		const { data } = await axiosWithAuth<UniqueModule>({
 			url: `${API_URL.ingModules()}/${id}`,
 			method: 'GET',
-            headers: {
-				Authorization: token ? `Bearer ${token}` : '',
-			},
 		})
 		return data
     }

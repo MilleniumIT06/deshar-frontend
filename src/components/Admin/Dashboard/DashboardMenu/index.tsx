@@ -36,12 +36,17 @@ export const DashboardMenu = () => {
 						<Logo className="DashboardMenu__logo" href="/admin" />
 					</div>
 					<div className="DashboardMenu__content">
-							{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства']) && (
+
+							{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства','Представитель школы']) && (
 						<DashboardMenuItem title="Статистика" href="/admin" />
 							)}
+						{hasRole(['Учитель','Директор школы','Представитель школы']) && (
+							<DashboardMenuItem title="Все ученики школы" href="/admin/school/all-students" />
+						)}
 						{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства']) && (
 							<DashboardMenuItem title="Школы" href="/admin/schools" icon={<SchoolsIcon />} />
 						)}
+
 						{hasRole(['Админ', 'Представитель министерства']) && (
 							<DashboardMenuItem
 								title="Упр. образования"
@@ -49,9 +54,11 @@ export const DashboardMenu = () => {
 								icon={<EducationDepartmentIcon />}
 							/>
 						)}
+
 						{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства','Представитель школы']) && (
 							<DashboardMenuItem title="Учителя" href="/admin/teachers" icon={<TeachersIcon />} />
 						)}
+
 						{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства']) && (
 							<DashboardMenuItem
 								title="Аттестации"
@@ -78,6 +85,7 @@ export const DashboardMenu = () => {
 								</ul>
 							</MenuAccordion>:"Список классов пуст"
 						)}
+
 						{hasRole(['Учитель', 'Админ']) && (
 							<MenuAccordion title="Параллели" icon={<ParallelClassessIcon />}>
 								<ul className="list-reset MenuAccordion__list">

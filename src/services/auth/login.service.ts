@@ -1,4 +1,4 @@
-import { axiosClassic } from '@/api/api.helper'
+import { axiosClassic, axiosWithAuth } from '@/api/api.helper'
 import { API_URL } from '@/config/api.config'
 import { type signInUserFormData } from '@/features/auth/SignIn/model/signIn.schema'
 
@@ -17,17 +17,11 @@ class LoginService {
 	}
 	async logout(): Promise<void> {
 		try {
-			const token = getTokenFromCookie()
-
-			if (token) {
-				await axiosClassic({
+				await axiosWithAuth({
 					url: API_URL.logout(),
 					method: 'POST',
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
 				})
-			}
+
 		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.error('Ошибка при отправке запроса logout на бэкенд:', error)
