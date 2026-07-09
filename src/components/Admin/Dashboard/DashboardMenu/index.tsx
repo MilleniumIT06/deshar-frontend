@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { useGetSchoolClasses } from '@/hooks/admin/useGetSchoolClasses'
+import { useGetSchoolTeachers } from '@/hooks/admin/useGetSchoolTeachers'
 import { useProfile } from '@/hooks/user/useProfile'
 import { teacherParallelClasses } from '@/mocks/adminMock'
 import useRole from '@/shared/hooks/admin/useRole'
@@ -26,7 +27,6 @@ export const DashboardMenu = () => {
 	const { hasRole } = useRole()
 	const { isLoading, profileData } = useProfile()
 		const {isLoading:isSchoolClassesLoading,schoolClassesData,isError} = useGetSchoolClasses()
-		console.log(schoolClassesData)
 	const pathname = usePathname()
 	return (
 		<aside className="DashboardMenu">
@@ -49,7 +49,7 @@ export const DashboardMenu = () => {
 								icon={<EducationDepartmentIcon />}
 							/>
 						)}
-						{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства']) && (
+						{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства','Представитель школы']) && (
 							<DashboardMenuItem title="Учителя" href="/admin/teachers" icon={<TeachersIcon />} />
 						)}
 						{hasRole(['Админ', 'Пр. Управления образования', 'Представитель министерства']) && (

@@ -29,4 +29,6 @@ export const API_URL = {
 	// organization for admin
 	adminClasses:()=> API_URL.root(`${prefix}/school/classes`),
 	adminClassStatistics:(id:Id)=> API_URL.root(`${prefix}/school/classes/${id}/statistics`),
+	adminTeachers:()=> API_URL.root(`${prefix}/school/teachers`),
+	adminExportSchoolCsv:()=> API_URL.root(`${prefix}/school/export`),
 }

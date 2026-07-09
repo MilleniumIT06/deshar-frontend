@@ -5,10 +5,13 @@ import { useState } from 'react'
 
 import { getTeacherColumns } from '@/columns/getTeacherColumns'
 import { Table } from '@/components/Admin/Table'
-import { mockTeachers } from '@/mocks/adminMock'
-// import useRole from '@/shared/hooks/admin/useRole'
-import { type TeacherItem } from '@/shared/types/admin/types'
+import { useExportSchoolData } from '@/hooks/admin/useExportSchoolData'
+import { useGetSchoolTeachers } from '@/hooks/admin/useGetSchoolTeachers'
+import { Loader } from '@/shared/ui/Loader'
 import { Card } from '@/widgets/AdminWidgets/Card'
+
+import type { Id } from '@/shared/types/types'
+
 
 const TABS = [
 	{ id: 0, title: 'Все предметы' },
@@ -22,6 +25,8 @@ export const TeachersPageContent = () => {
 	// const navigate = useNavigate();
 	// const { role } = useRole()
 	const router = useRouter()
+const {isLoading:isSchoolTeachersLoading,teachersData,isError:isSchoolTeachersError} = useGetSchoolTeachers()
+ const { exportData, isExporting } = useExportSchoolData();
 	const [timeFrom, setTimeFrom] = useState<string>('')
 	const [timeTo, setTimeTo] = useState<string>('')
 
@@ -39,9 +44,21 @@ export const TeachersPageContent = () => {
 		setPointsFrom('')
 		setPointsTo('')
 	}
-	const redirectOnClick = (item: TeacherItem) => {
+	const redirectOnClick = (item: {
+							id:Id;
+							name: string;
+							email: string;
+							avatar: string;
+							is_online: boolean;
+							last_activity: string;
+							students_count: number;
+							classes_count: number;
+						}) => {
 		router.push(`/admin/teachers/${item.id}`)
 	}
+	if(isSchoolTeachersLoading) return <div className='PageAdmin'> <Loader/></div>
+	if(isSchoolTeachersError) return <div>Error</div>
+	if(teachersData && !teachersData.data) return  <div>Error</div>
 	return (
 		<main className="PageAdmin">
 			<Card
@@ -72,14 +89,24 @@ export const TeachersPageContent = () => {
 				title="Учителя"
 				tabs={TABS}
 				key={'testCard123'}
-				valueFirst="247 учителей"
-				valueSecond="67 585 баллов"
+				valueFirst={`${teachersData?.meta.total} учителей`}
 				activeTab={activeTab}
 				setActiveTab={setActiveTab}
 				type="teachers"
-				csv={true}>
-				<Table<TeacherItem, never>
-					data={mockTeachers}
+				csv={true}
+				csvIsLoading={isExporting}
+				onClickCsvBtn={()=> exportData()}>
+				<Table<{
+							id:Id;
+							name: string;
+							email: string;
+							avatar: string;
+							is_online: boolean;
+							last_activity: string;
+							students_count: number;
+							classes_count: number;
+						}, never>
+					data={teachersData&&teachersData.data||[]}
 					getColumns={() => getTeacherColumns()}
 					handleRowClick={redirectOnClick}
 				/>

@@ -1,93 +1,95 @@
 import { createColumnHelper } from '@tanstack/react-table'
 
 import { SortableHeader } from '@/components/Admin/SortableHeader'
-import { type TeacherItem } from '@/shared/types/admin/types'
 
-const columnHelper = createColumnHelper<TeacherItem>()
+import type { Id } from '@/shared/types/types';
+
+const columnHelper = createColumnHelper<{
+			id:Id;
+			name: string;
+			email: string;
+			avatar: string;
+			is_online: boolean;
+			last_activity: string;
+			students_count: number;
+			classes_count: number;
+		}>()
+
 
 export const getTeacherColumns = () => [
-	columnHelper.accessor('place', {
-		header: ({ column }) => <SortableHeader title="Место" column={column} />,
+	// columnHelper.accessor('avatar', {
+	// 	header: ({ column }) => <SortableHeader title="Аватарка" column={column} />,
+	// 	enableSorting: true,
+	// 	sortingFn: 'basic',
+	// 	cell: info => {
+	// 		return (
+	// 			// <div className={'TableItem__name'}>
+	// 			// 	<span>{info.getValue()}</span>
+	// 			// </div>
+	// 			<Avatar
+	// 			size='small'
+	// 			src={info.getValue()}/>
+	// 		)
+	// 	},
+	// }),
+	columnHelper.accessor('name', {
+		header: ({ column }) => <SortableHeader title="Имя" column={column} />,
 		enableSorting: true,
 		sortingFn: 'basic',
 		cell: info => {
-			const placeNumber = info.getValue()
-
 			return (
-				<div className={'TableItem__place'}>
-					<span>{placeNumber}</span>
+				<div className={'TableItem__name'}>
+					<span>{info.getValue()}</span>
 				</div>
 			)
 		},
 	}),
-	columnHelper.accessor('teacherName', {
-		header: ({ column }) => <SortableHeader<TeacherItem, string> title="Учитель" column={column} />,
-		enableSorting: true,
-		sortingFn: 'alphanumeric',
-		cell: info => (
-			<span title={info.getValue()} className="TableItem__name">
-				{info.getValue()}
-			</span>
-		),
-	}),
-	columnHelper.accessor('schoolName', {
-		header: ({ column }) => <SortableHeader<TeacherItem, string> title="Школа" column={column} />,
-		enableSorting: true,
-		sortingFn: 'alphanumeric',
-		cell: info => (
-			<span title={info.getValue()} className="TableItem__name">
-				{info.getValue()}
-			</span>
-		),
-	}),
-
-	columnHelper.accessor('classes', {
-		header: ({ column }) => <SortableHeader title="Классы" column={column} />,
+columnHelper.accessor('email', {
+		header: ({ column }) => <SortableHeader title="E-mail" column={column} />,
 		enableSorting: true,
 		sortingFn: 'basic',
 		cell: info => {
-			let value = ''
-			info.getValue().forEach((item, index) => {
-				value += `${item.classLevel}“${item.classLetter}”`
-				if (index !== info.getValue().length - 1) {
-					value += ', '
-				}
-			})
 			return (
-				<span title={value} className="TableItem__classes">
-					{value}
-				</span>
+				<div className={'TableItem__name'}>
+					<span>{info.getValue()}</span>
+				</div>
 			)
 		},
 	}),
-	columnHelper.accessor('studentsCount', {
-		header: ({ column }) => <SortableHeader title="Кол. учеников" column={column} />,
+	columnHelper.accessor('classes_count', {
+		header: ({ column }) => <SortableHeader title="Кол-во классов" column={column} />,
 		enableSorting: true,
 		sortingFn: 'basic',
-		cell: info => (
-			<span title={String(info.getValue())} className="TableItem__studentsCount">
-				{info.getValue()}
-			</span>
-		),
+		cell: info => {
+			return (
+				<div className={'TableItem__name'}>
+					<span>{info.getValue()}</span>
+				</div>
+			)
+		},
 	}),
-	columnHelper.accessor('doneModules', {
-		header: ({ column }) => <SortableHeader title="Вып. модулей" column={column} />,
+	columnHelper.accessor('is_online', {
+		header: ({ column }) => <SortableHeader title="Статус" column={column} />,
 		enableSorting: true,
 		sortingFn: 'basic',
-		cell: info => (
-			<span title={String(info.getValue())} className="TableItem__modules">
-				{info.getValue()}
-			</span>
-		),
+		cell: info => {
+			return (
+				<div className={'TableItem__name'}>
+					<span>{info.getValue() ? "В сети": "Оффлайн"}</span>
+				</div>
+			)
+		},
 	}),
-	columnHelper.accessor('points', {
-		header: ({ column }) => <SortableHeader title="Баллы" column={column} />,
+	columnHelper.accessor('students_count', {
+		header: ({ column }) => <SortableHeader title="Кол-во учеников" column={column} />,
 		enableSorting: true,
 		sortingFn: 'basic',
-		cell: info => (
-			<span title={String(info.getValue())} className="TableItem__points">
-				{info.getValue()}
-			</span>
-		),
+		cell: info => {
+			return (
+				<div className={'TableItem__name'}>
+					<span>{info.getValue()}</span>
+				</div>
+			)
+		},
 	}),
 ]

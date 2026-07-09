@@ -7,6 +7,7 @@ import useRole from '@/shared/hooks/admin/useRole'
 import { Tabs } from '@/shared/ui/Admin/Tabs'
 import { TeacherItem } from '@/shared/ui/Admin/TeacherItem'
 import { InputSelect } from '@/shared/ui/InputSelect'
+import { Loader } from '@/shared/ui/Loader'
 
 interface Tab {
 	id: number
@@ -42,6 +43,8 @@ interface CardProps {
 	onClickBackButton?: () => void
 	type?: 'class' | 'teachers'
 	csv?: boolean
+	onClickCsvBtn?:()=>void;
+	csvIsLoading?:boolean
 }
 
 const FilterIcon = () => (
@@ -94,6 +97,8 @@ export const Card = ({
 	isParallel,
 	type,
 	csv,
+	onClickCsvBtn,
+	csvIsLoading
 }: CardProps) => {
 	const [showFilters, setShowFilters] = useState(false)
 	const { hasRole } = useRole()
@@ -132,10 +137,11 @@ export const Card = ({
 					<div className="Card__controls">
 						{tabs.length > 0 && <Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={tabs} />}
 						<div className="Card__controls-spacer">
-							{csv && (
-								<button className="btn-reset Card__controls-csv">
+							{csv && onClickCsvBtn && (csvIsLoading ? <Loader size='small'/>:
+								<button className="btn-reset Card__controls-csv" onClick={onClickCsvBtn}>
 									<CsvIcon />
 								</button>
+
 							)}
 							{hasFilters && (
 								<button
