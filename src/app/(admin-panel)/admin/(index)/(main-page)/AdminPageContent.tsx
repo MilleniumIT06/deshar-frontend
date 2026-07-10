@@ -19,7 +19,6 @@ import {
 import { TEST_CLASSMATES } from '@/mocks/data'
 import useRole from '@/shared/hooks/admin/useRole'
 import { type Student, type DepartamentItem, type SchoolDepItem } from '@/shared/types/admin/types'
-
 import './AdminPageContent.scss'
 import { Loader } from '@/shared/ui/Loader'
 

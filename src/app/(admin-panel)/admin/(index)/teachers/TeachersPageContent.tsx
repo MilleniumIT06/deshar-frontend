@@ -25,7 +25,6 @@ export const TeachersPageContent = () => {
 	// const { role } = useRole()
 	const router = useRouter()
 const {isLoading:isSchoolTeachersLoading,teachersData,isError:isSchoolTeachersError} = useGetSchoolTeachers()
- const { exportData, isExporting } = useExportSchoolData();
 	const [timeFrom, setTimeFrom] = useState<string>('')
 	const [timeTo, setTimeTo] = useState<string>('')
 
@@ -92,9 +91,7 @@ const {isLoading:isSchoolTeachersLoading,teachersData,isError:isSchoolTeachersEr
 				activeTab={activeTab}
 				setActiveTab={setActiveTab}
 				type="teachers"
-				csv={true}
-				csvIsLoading={isExporting}
-				onClickCsvBtn={()=> exportData()}>
+				csv={false}>
 				<Table<{
 							id:Id;
 							name: string;

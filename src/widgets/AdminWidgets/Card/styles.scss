@@ -47,6 +47,9 @@
 				background: var(--neutral-light);
 			}
 		}
+		&-spacer {
+			margin-left: auto;
+		}
 	}
 	&__title {
 		font-family: var(--font-family);

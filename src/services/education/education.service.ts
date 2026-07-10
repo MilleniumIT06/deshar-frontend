@@ -1,6 +1,7 @@
 import { axiosWithAuth } from '@/api/api.helper'
 import { API_URL } from '@/config/api.config'
 import { Id } from '@/shared/types/types'
+import { TrainerType } from '@/widgets/trainers-engine/trainersMap';
 
 export interface IModule {
             id: Id;
@@ -48,7 +49,35 @@ interface UniqueModule {
 			success:boolean;
 
 		}
-class ModulesService {
+		interface UniqueTask {
+			task: {
+				audio: null|string;
+				config:any;
+				created_at:string;
+				description:string;
+				hints:string[];
+				id:Id;
+				image:string|null;
+				is_published:boolean;
+				is_required:boolean;
+				lesson_id:Id;
+				max_attempts:number;
+				sort_order:number;
+				task_type_id:Id;
+				task_type:{
+					description:string;
+					id:Id;
+					name:string;
+					slug:TrainerType;
+				}
+				time_limit_seconds:number;
+				title:string;
+				updated_at:string;
+				video:string|null;
+				xp_reward:number;
+			}
+		}
+class EducationService {
 
 	async getModules() {
 		const { data } = await axiosWithAuth<{data:IModule[];meta:any;success:boolean}>({
@@ -65,6 +94,27 @@ class ModulesService {
 		})
 		return data
     }
+	async getPiece(moduleId:Id,pieceId:Id) {
+		const { data } = await axiosWithAuth<{lessons:{id:Id; name: string; sort_order:number; total_tasks: number; progress:any}[];piece:{name:string}}>({
+			url: `${API_URL.ingModules()}/${moduleId}/pieces/${pieceId}`,
+			method: 'GET',
+		})
+		return data
+	}
+	async getLessonTasks(moduleId:Id,pieceId:Id,lessonId:Id) {
+const { data } = await axiosWithAuth<{data:{id:Id}[]}>({
+			url: `${API_URL.ingModules()}/${moduleId}/pieces/${pieceId}/lessons/${lessonId}/tasks`,
+			method: 'GET',
+		})
+		return data
+	}
+	async getLessonTaskByTaskId(moduleId:Id,pieceId:Id,lessonId:Id,taskId:Id) {
+const { data } = await axiosWithAuth<UniqueTask>({
+			url: `${API_URL.ingModules()}/${moduleId}/pieces/${pieceId}/lessons/${lessonId}/tasks/${taskId}`,
+			method: 'GET',
+		})
+		return data
+	}
 }
 
-export const modulesService = new ModulesService()
+export const educationService = new EducationService()

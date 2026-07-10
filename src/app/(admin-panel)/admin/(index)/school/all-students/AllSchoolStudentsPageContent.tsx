@@ -2,19 +2,24 @@
 
 import { getSchoolAllStudents } from "@/columns/getSchoolAllStudents";
 import { Table } from "@/components/Admin/Table";
+import { useExportSchoolData } from "@/hooks/admin/useExportSchoolData";
 import { useGetAllSchoolStudents } from "@/hooks/admin/useGetAllSchoolStudents";
 import { Loader } from "@/shared/ui/Loader";
 import { Card } from "@/widgets/AdminWidgets/Card";
 
 export const AllSchoolStudentsPageContent = () => {
     const {schoolClassesData,isLoading,isError} = useGetAllSchoolStudents()
-    console.log(schoolClassesData)
+    const { exportData, isExporting } = useExportSchoolData();
+    console.log(schoolClassesData,'Все ученики школы')
     return (
         <main className="PageAdmin">
             <Card
                 resetFilters={()=>console.log('resetfilters')}
                 title={`Все ученики школы ${schoolClassesData?.meta.school_name}`}
                 valueFirst={`${schoolClassesData?.meta.total} учеников`}
+                csv={true}
+				csvIsLoading={isExporting}
+				onClickCsvBtn={()=> exportData()}
               >
                 {/* <SchoolsTable data={SchoolsMockData} link="/schools/" /> */}
                {isLoading? <Loader/>:!isError&& schoolClassesData&&schoolClassesData.data.length>0 ? <Table<any, any>

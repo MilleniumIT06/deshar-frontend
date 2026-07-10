@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { statsService } from '@/services/stats.service'
+import { statsService } from '@/services/admin/stats.service'
 
 export const useGetAllSchoolStudents = () => {
 	const {

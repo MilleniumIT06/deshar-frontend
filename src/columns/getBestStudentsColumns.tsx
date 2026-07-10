@@ -7,6 +7,7 @@ import { type Student } from '@/shared/types/admin/types'
 
 const columnHelper = createColumnHelper<Student>()
 
+
 export const getBestStudentsColumns = () => [
 	columnHelper.accessor('placeNumber', {
 		header: ({ column }) => <SortableHeader title="Место" column={column} />,

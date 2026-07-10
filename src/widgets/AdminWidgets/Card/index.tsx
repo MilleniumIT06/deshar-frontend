@@ -135,7 +135,7 @@ export const Card = ({
 					</div>
 
 					<div className="Card__controls">
-						{tabs.length > 0 && activeTab&& setActiveTab&& <Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={tabs} />}
+						{tabs.length > 0 && activeTab&& setActiveTab? <Tabs activeTab={activeTab} handleTab={setActiveTab} tabs={tabs} />:""}
 						<div className="Card__controls-spacer">
 							{csv && onClickCsvBtn && (csvIsLoading ? <Loader size='small'/>:
 								<button className="btn-reset Card__controls-csv" onClick={onClickCsvBtn}>

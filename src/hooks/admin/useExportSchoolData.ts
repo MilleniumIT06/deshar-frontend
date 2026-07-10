@@ -1,4 +1,4 @@
-import { teachersService } from "@/services/organization/teachers/teachers.service";
+import { teachersService } from "@/services/admin/organization/teachers/teachers.service";
 import { useMutation } from "@tanstack/react-query";
 
 export const useExportSchoolData = () => {

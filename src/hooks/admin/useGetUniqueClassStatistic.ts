@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { schoolClassesService } from '@/services/organization/classes/schoolClasses.service'
+import { schoolClassesService } from '@/services/admin/organization/classes/schoolClasses.service'
 import { Id } from '@/shared/types/types'
 
 export const useGetUniqueClassStatistic = (id:Id) => {

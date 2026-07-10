@@ -3,6 +3,7 @@
 import cn from 'classnames'
 import { m, AnimatePresence } from 'motion/react'
 import dynamic from 'next/dynamic'
+import { useParams } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 
 import { type RootState } from '@/app/_store'
@@ -24,12 +25,14 @@ import {
 import { resetScore, addPoints, subtractPoints } from '@/entities/engine/model/scoring.slice'
 import { initTimer } from '@/entities/engine/model/timer.slice'
 import './styles.scss'
-import { type TrainerTheme } from '@/shared/types/types'
+import { useGetLessonUniqueTask } from '@/hooks/queries/education/useGetTasks'
 
 import { EngineFooter } from './engine-footer'
 import { EngineHeader } from './engine-header'
 import RenderTrainer from './render-trainer'
-import { type TrainerType } from './trainersMap'
+
+import type { Id, TrainerTheme } from '@/shared/types/types'
+
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
 	ssr: false,
@@ -52,18 +55,7 @@ interface TrainersEngineProps {
 		themeName: TrainerTheme
 		time: number
 	}
-	data:
-		| {
-				type: TrainerType
-				payload: unknown
-				title?: string
-				subTitle?: string
-				scoring: {
-					points: number
-					penaltyPerMistake: number
-				}
-		  }[]
-		| null
+	data:{id:Id;}[]
 	engineStatus: 'engineLoading' | 'engineSuccess' | 'engineError'
 }
 export const TrainersEngine = ({ data, config, engineStatus }: TrainersEngineProps) => {
@@ -73,7 +65,24 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 	const { status, currentTrainerIndex, isMenuOpen, isHelpOpen, isSupportModalOpen } = useAppSelector(
 		(state: RootState) => state.engine,
 	)
+	const {
+		lessonId,
+		moduleId,
+		pieceId,
+	} = useParams<{moduleId: string; pieceId: string; lessonId: string;}>()
+	const {
+		data:taskData,
+		isLoading
+	} = useGetLessonUniqueTask(Number(moduleId),Number(pieceId),Number(lessonId),Number(data[0].id))
+	useEffect(()=> {
+		console.log(taskData,'engine78')
+
+	},[isLoading])
+
+
+
 	const { isFinished } = useAppSelector((state: RootState) => state.timer)
+
 	// const { totalScore } = useAppSelector(state => state.scoreReducer);
 	const currentTrainerData = data ? data[currentTrainerIndex] : null
 	const timerRef = useRef<TimerRef>(null)
@@ -115,11 +124,11 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 	}
 	const handleSuccess = () => {
 		if (!currentTrainerData) return
-		dispatch(addPoints(currentTrainerData.scoring.points))
+		dispatch(addPoints(taskData?.task.xp_reward||0))
 	}
 	const handleError = () => {
 		if (!currentTrainerData) return
-		dispatch(subtractPoints(currentTrainerData.scoring.penaltyPerMistake))
+		dispatch(subtractPoints(0))
 	}
 	useEffect(() => {
 		let timeoutId: NodeJS.Timeout
@@ -130,10 +139,14 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 		}
 		return () => clearTimeout(timeoutId)
 	}, [status, currentTrainerIndex])
-
 	if (engineStatus === 'engineLoading') return <div>Loading...</div>
+
 	if (engineStatus === 'engineError') return <div>Something went wrong</div>
-	if (engineStatus === 'engineSuccess' && data && currentTrainerData) {
+
+	if(isLoading) return <div>Задание грузится...</div>
+
+	if (engineStatus === 'engineSuccess' && data && currentTrainerData && taskData) {
+
 		return (
 			<div className={cn('trainers-engine', themeName)}>
 				{status !== 'finish' && (
@@ -151,7 +164,7 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 								<HelpTrigger handleClick={handleSupportModalClick} />
 								<Hint
 									handleClick={() => 'clicked'}
-									hintText={'Test text loremaqe west? Hellot Ye;yj'}
+									hintText={taskData?.task.hints[0]||""}
 								/>
 							</div>
 							<div className="trainers-engine__content">
@@ -164,8 +177,12 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 										transition={{ duration: 0.3 }}>
 										<RenderTrainer
 											ref={trainerRef}
-											type={currentTrainerData.type}
-											data={currentTrainerData}
+											type={taskData?.task.task_type.slug}
+											data={{
+												payload:taskData?.task.config,
+												title:taskData?.task.title,
+												subTitle:taskData?.task.description
+											}}
 											changeStatus={changeStatus}
 											onError={handleError}
 											onSuccess={handleSuccess}

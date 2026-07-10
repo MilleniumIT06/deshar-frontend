@@ -2,20 +2,20 @@ import { educationService } from '@/services/education/education.service'
 import { Id } from '@/shared/types/types'
 import { useQuery } from '@tanstack/react-query'
 
-export const useGetModuleById = (id:Id) => {
+export const useGetPieceById = (moduleId:Id,pieceId:Id) => {
 	const {
 		data,
 		isLoading,
 		isError,
 		error,
 	} = useQuery({
-		queryKey: ['ing-module-by-id', id],
-		queryFn: () => educationService.getModuleById(id),
+		queryKey: ['ing-module-piece',moduleId,pieceId],
+		queryFn: () => educationService.getPiece(moduleId,pieceId),
 		staleTime: 20 * 60 * 1000,
 	})
 
 	return {
-		module: data || undefined,
+		data: data || undefined,
 		isLoading,
 		isError,
 		error

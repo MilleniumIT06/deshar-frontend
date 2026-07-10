@@ -1,5 +1,4 @@
-import { modulesService } from '@/services/education/modules/modules.service'
-import { Id } from '@/shared/types/types'
+import { educationService } from '@/services/education/education.service'
 import { useQuery } from '@tanstack/react-query'
 
 export const useGetModules = () => {
@@ -10,7 +9,7 @@ export const useGetModules = () => {
 		error,
 	} = useQuery({
 		queryKey: ['ing-modules'],
-		queryFn: () => modulesService.getModules(),
+		queryFn: () => educationService.getModules(),
 		staleTime: 20 * 60 * 1000,
 	})
 

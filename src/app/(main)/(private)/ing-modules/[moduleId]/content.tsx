@@ -7,7 +7,7 @@ import { useGetModuleById } from '@/hooks/queries/education/modules/useGetModule
 import {Loader} from '@/shared/ui/Loader';
 
 export const ModuleContent = () => {
-    const params = useParams<{moduleId:string}>()
+    const params = useParams<{moduleId:string;pieceId:string}>()
 
     const {module:uniqueModule,isLoading} = useGetModuleById(Number(params.moduleId))
     if(isLoading) return <div style={{display:"flex",height:"100vh",justifyContent:"center",alignItems:"center"}}><Loader/></div>
@@ -26,6 +26,7 @@ export const ModuleContent = () => {
                             maxLessons={piece.total_lessons}
                             doneLessons={12}
                             processLessons={0}
+                            linkHref={`${params.moduleId}/pieces`}
                             progressPercentage={piece.progress.progress_percentage}
                             status={piece.progress.status}
                             name='Часть'
