@@ -7,8 +7,10 @@ interface TrainersState {
 	isHelpOpen: boolean
 	isSupportModalOpen: boolean
 	status: 'idle' | 'error' | 'success' | 'finish'
-	currentTrainerIndex: number
-	theme: TrainerTheme
+	currentTrainerIndex: number;
+	currentLessonIndex: number;
+	theme: TrainerTheme;
+	mode:'practice' | 'theory'
 }
 
 const initialState: TrainersState = {
@@ -18,6 +20,8 @@ const initialState: TrainersState = {
 	status: 'idle',
 	currentTrainerIndex: 0,
 	theme: 'default',
+	mode: 'theory',
+	currentLessonIndex: 0
 }
 
 export const trainersSlice = createSlice({
@@ -40,9 +44,17 @@ export const trainersSlice = createSlice({
 			state.theme = action.payload
 		},
 		nextTrainer: (state, { payload }: PayloadAction<{ totalTrainers: number }>) => {
-			if (state.currentTrainerIndex !== payload.totalTrainers - 1) {
+	if (state.currentTrainerIndex < payload.totalTrainers - 1) {
+		state.currentTrainerIndex += 1
+		state.status = 'idle'
+	} else {
+		state.status = 'finish'
+	}
+},
+			nextLesson: (state, { payload }: PayloadAction<{ totalLessons: number }>) => {
+			if (state.currentLessonIndex !== payload.totalLessons - 1) {
 				state.status = 'idle'
-				state.currentTrainerIndex += 1
+				state.currentLessonIndex += 1
 			} else {
 				state.status = 'finish'
 			}
@@ -51,10 +63,13 @@ export const trainersSlice = createSlice({
 			state.currentTrainerIndex = 0
 			state.status = 'idle'
 		},
+		changeMode: (state, action: PayloadAction<'practice' | 'theory'>) => {
+			state.mode = action.payload
+		}
 	},
 })
 
-export const { setIsMenuOpen, setHelpModalOpen, setSupportModalOpen, setStatus, nextTrainer, resetTrainers, setTheme } =
+export const { setIsMenuOpen, setHelpModalOpen, setSupportModalOpen, setStatus, nextTrainer, resetTrainers, setTheme,changeMode,nextLesson } =
 	trainersSlice.actions
 
 export default trainersSlice.reducer

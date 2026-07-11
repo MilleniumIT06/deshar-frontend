@@ -21,14 +21,18 @@ import {
 	setHelpModalOpen,
 	setSupportModalOpen,
 	setTheme,
+	changeMode,
+	nextLesson
 } from '@/entities/engine/model/engine.slice'
 import { resetScore, addPoints, subtractPoints } from '@/entities/engine/model/scoring.slice'
 import { initTimer } from '@/entities/engine/model/timer.slice'
 import './styles.scss'
-import { useGetLessonUniqueTask } from '@/hooks/queries/education/useGetTasks'
+import { useGetLessonTasks, useGetLessonUniqueTask } from '@/hooks/queries/education/useGetTasks'
+import { Button } from '@/shared/ui/Button'
 
 import { EngineFooter } from './engine-footer'
 import { EngineHeader } from './engine-header'
+import { EngineTheory } from './engine-theory'
 import RenderTrainer from './render-trainer'
 
 import type { Id, TrainerTheme } from '@/shared/types/types'
@@ -45,7 +49,7 @@ const EngineFinishScreen = dynamic(
 	() => import('@/components/Engine/FinishScreen').then(mod => mod.EngineFinishScreen),
 	{ ssr: false },
 )
-// bg-[url('/Frame.jpg')]
+
 export interface TrainerRef {
 	handleCheck: () => void
 	handleReset: () => void
@@ -55,39 +59,72 @@ interface TrainersEngineProps {
 		themeName: TrainerTheme
 		time: number
 	}
-	data:{id:Id;}[]
+	data:{
+        id: Id;
+        name: string;
+        description: string;
+        sort_order: number;
+        total_tasks: number;
+    }[]
 	engineStatus: 'engineLoading' | 'engineSuccess' | 'engineError'
 }
 export const TrainersEngine = ({ data, config, engineStatus }: TrainersEngineProps) => {
 	const { themeName, time } = config
 
 	const dispatch = useAppDispatch()
-	const { status, currentTrainerIndex, isMenuOpen, isHelpOpen, isSupportModalOpen } = useAppSelector(
+	const { status, currentTrainerIndex, isMenuOpen, isHelpOpen, isSupportModalOpen,mode,currentLessonIndex } = useAppSelector(
 		(state: RootState) => state.engine,
 	)
+	const currentLessonData = data ? data[currentLessonIndex] : null
 	const {
-		lessonId,
 		moduleId,
 		pieceId,
-	} = useParams<{moduleId: string; pieceId: string; lessonId: string;}>()
-	const {
-		data:taskData,
-		isLoading
-	} = useGetLessonUniqueTask(Number(moduleId),Number(pieceId),Number(lessonId),Number(data[0].id))
-	useEffect(()=> {
-		console.log(taskData,'engine78')
+	} = useParams<{moduleId: string; pieceId: string;}>()
 
-	},[isLoading])
+const {
+    data: taskData,
+    isLoading
+} = useGetLessonTasks(
+    Number(moduleId),
+    Number(pieceId),
+    currentLessonData?.id || 0,
+    Boolean(currentLessonData?.id && currentLessonData.total_tasks > 0 && mode === "practice")
+);
+
+const activeIndex = currentTrainerIndex;
 
 
+const currentTaskData = taskData && taskData.data && taskData.data.length > 0
+    ? taskData.data[activeIndex]
+    : undefined;
 
+const {
+    data: uniqueTask,
+    isLoading: isUniqueTaskLoading,
+    isError: isUniqueTaskError
+} = useGetLessonUniqueTask(
+    Number(moduleId),
+    Number(pieceId),
+    currentLessonData?.id || 0,
+    currentTaskData?.id,
+    Boolean(mode === "practice" && currentTaskData?.id)
+);
+
+	const startPractice = () => {
+		dispatch(changeMode("practice"))
+	}
 	const { isFinished } = useAppSelector((state: RootState) => state.timer)
 
 	// const { totalScore } = useAppSelector(state => state.scoreReducer);
-	const currentTrainerData = data ? data[currentTrainerIndex] : null
 	const timerRef = useRef<TimerRef>(null)
 	const trainerRef = useRef<TrainerRef>(null)
 	const onMainButtonClick = () => {
+		if(currentLessonIndex===data.length-1){
+			dispatch(setStatus("finish"))
+			// console.log('tut problema')
+		}else if(currentLessonIndex!==data.length-1&&mode==="practice"&&activeIndex===undefined) {
+				dispatch(changeMode("theory"))
+			}
 		trainerRef.current?.handleCheck()
 	}
 	const onResetButtonClick = () => {
@@ -103,10 +140,29 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 		dispatch(initTimer(time))
 		dispatch(setTheme(themeName))
 	}, [])
-	const handleNext = () => {
-		if (status !== 'success' || !data) return
-		dispatch(nextTrainer({ totalTrainers: data.length }))
-	}
+const handleNext = () => {
+    if (status !== 'success' || !data || !taskData) return;
+
+    const activeIndex = currentTrainerIndex !== null && currentTrainerIndex !== undefined
+        ? currentTrainerIndex
+        : 0;
+
+    const isLastTrainer = activeIndex === taskData.data.length - 1;
+    const hasNextLesson = currentLessonIndex < data.length - 1;
+
+    if (isLastTrainer) {
+        if (hasNextLesson) {
+            dispatch(resetTrainers());
+            dispatch(changeMode("theory"));
+            dispatch(nextLesson({ totalLessons: data.length }));
+        } else {
+            // console.log('Курс полностью завершен');
+			dispatch(setStatus("finish"))
+        }
+    } else {
+        dispatch(nextTrainer({ totalTrainers: taskData.data.length }));
+    }
+};
 	const handleTimerEnd = () => {
 		dispatch(setStatus('error'))
 	}
@@ -123,11 +179,11 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 		dispatch(setSupportModalOpen(!isSupportModalOpen))
 	}
 	const handleSuccess = () => {
-		if (!currentTrainerData) return
-		dispatch(addPoints(taskData?.task.xp_reward||0))
+		if (!currentTaskData) return
+		dispatch(addPoints(uniqueTask?.task.xp_reward||0))
 	}
 	const handleError = () => {
-		if (!currentTrainerData) return
+		if (!currentTaskData) return
 		dispatch(subtractPoints(0))
 	}
 	useEffect(() => {
@@ -142,21 +198,71 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 	if (engineStatus === 'engineLoading') return <div>Loading...</div>
 
 	if (engineStatus === 'engineError') return <div>Something went wrong</div>
+	if(status==="finish") {return <div className={cn('trainers-engine', themeName)}>
+		<div className="trainers-engine__finish-screen">
+						<EngineFinishScreen />
+					</div>
+	</div>}
+	if(mode==="theory"&&currentLessonData) {
+		return (
+				<div className={cn('trainers-engine', themeName)}>
+					<div className="trainers-engine__container trainers-engine__container_theory">
+						<main className="trainers-engine__main trainers-engine__main--theory">
 
-	if(isLoading) return <div>Задание грузится...</div>
+						<EngineTheory description={currentLessonData.description} title={currentLessonData.name}/>
+						</main>
+						<footer className="trainers-engine__footer--theory">
+	{currentLessonData.total_tasks > 0 ? (
+		<Button
+			className="trainers-engine__button"
+			onClick={() => startPractice()}
+			size={"medium"}
+		>
+			Приступить к заданиям
+		</Button>
+	) : (
+		<Button
+			className="trainers-engine__button"
+			onClick={() => dispatch(nextLesson({ totalLessons: data.length }))}
+			size={"medium"}
+		>
+			Перейти на след урок
+		</Button>
+	)}
+</footer>
+					</div>
+					</div>
+		)
+	}
 
-	if (engineStatus === 'engineSuccess' && data && currentTrainerData && taskData) {
+	if (data && currentLessonData && currentLessonData.total_tasks > 0 && mode === "practice") {
 
+    if (isLoading) {
+        return "Loading tasks list...";
+    }
+    if (isUniqueTaskLoading) {
+        return "isUniqueTaskLoading";
+    }
+    if (!uniqueTask && (isUniqueTaskLoading || currentTaskData?.id)) {
+        return "Loading specific task...";
+    }
+
+    if (isUniqueTaskError) {
+        return "isUniqueTaskeRROR";
+    }
+
+    if (!uniqueTask) {
+        return "Task noFound";
+    }
 		return (
 			<div className={cn('trainers-engine', themeName)}>
-				{status !== 'finish' && (
 					<div className="trainers-engine__container">
 						<EngineHeader
 							handleMenuClick={handleMenuClick}
 							menuIsOpen={isMenuOpen}
 							handleHelpMenuOpen={handleHelpMenuClick}
-							currentTrainerIndex={currentTrainerIndex}
-							totalTrainersCount={data.length}
+							currentTrainerIndex={currentTrainerIndex||0}
+							totalTrainersCount={currentLessonData.total_tasks}
 						/>
 
 						<main className="trainers-engine__main">
@@ -164,7 +270,7 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 								<HelpTrigger handleClick={handleSupportModalClick} />
 								<Hint
 									handleClick={() => 'clicked'}
-									hintText={taskData?.task.hints[0]||""}
+									hintText={""}
 								/>
 							</div>
 							<div className="trainers-engine__content">
@@ -177,16 +283,16 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 										transition={{ duration: 0.3 }}>
 										<RenderTrainer
 											ref={trainerRef}
-											type={taskData?.task.task_type.slug}
+											type={uniqueTask?.task.task_type.slug}
 											data={{
-												payload:taskData?.task.config,
-												title:taskData?.task.title,
-												subTitle:taskData?.task.description
+												payload:uniqueTask.task.config,
+												title:uniqueTask.task.title,
+												subTitle:uniqueTask.task.description
 											}}
 											changeStatus={changeStatus}
 											onError={handleError}
 											onSuccess={handleSuccess}
-											currentIndex={currentTrainerIndex + 1}
+											currentIndex={(currentTrainerIndex===null?0:currentTrainerIndex) + 1}
 										/>
 									</m.div>
 								</AnimatePresence>
@@ -205,13 +311,6 @@ export const TrainersEngine = ({ data, config, engineStatus }: TrainersEnginePro
 							{status === 'error' && <ErrorFooter handleReset={onResetButtonClick} />}
 						</footer>
 					</div>
-				)}
-
-				{status === 'finish' && (
-					<div className="trainers-engine__finish-screen">
-						<EngineFinishScreen />
-					</div>
-				)}
 
 				<Menu isOpen={isMenuOpen} onClose={() => dispatch(setIsMenuOpen(false))} />
 				{isHelpOpen && <AlertModal isOpen={isHelpOpen} onClose={handleHelpMenuClick} />}

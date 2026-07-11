@@ -10,10 +10,10 @@ export const useGetPieceById = (moduleId:Id,pieceId:Id) => {
 		error,
 	} = useQuery({
 		queryKey: ['ing-module-piece',moduleId,pieceId],
-		queryFn: () => educationService.getPiece(moduleId,pieceId),
+		queryFn: () => educationService.getPieceLessons(moduleId,pieceId),
 		staleTime: 20 * 60 * 1000,
 	})
-
+	
 	return {
 		data: data || undefined,
 		isLoading,
