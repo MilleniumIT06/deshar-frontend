@@ -95,8 +95,15 @@ class EducationService {
 		return data
     }
 	async getPiece(moduleId:Id,pieceId:Id) {
-		const { data } = await axiosWithAuth<{lessons:{id:Id; name: string; sort_order:number; total_tasks: number; progress:any}[];piece:{name:string}}>({
+		const { data } = await axiosWithAuth<{lessons:{id:Id; name: string; description:string; sort_order:number; total_tasks: number; progress:any}[];piece:{name:string}}>({
 			url: `${API_URL.ingModules()}/${moduleId}/pieces/${pieceId}`,
+			method: 'GET',
+		})
+		return data
+	}
+		async getPieceLessons(moduleId:Id,pieceId:Id) {
+		const { data } = await axiosWithAuth<{data:{id:Id; name: string; description:string; sort_order:number; total_tasks: number; progress:any}[];piece:{name:string}}>({
+			url: `${API_URL.ingModules()}/${moduleId}/pieces/${pieceId}/lessons`,
 			method: 'GET',
 		})
 		return data
