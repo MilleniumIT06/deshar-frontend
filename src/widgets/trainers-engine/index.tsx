@@ -36,6 +36,8 @@ import { EngineTheory } from './engine-theory'
 import RenderTrainer from './render-trainer'
 
 import type { Id, TrainerTheme } from '@/shared/types/types'
+import { LearningSidebar } from '@/components/LearningSidebar'
+import { LessonsSidebar } from '@/components/LessonsSidebar'
 
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
@@ -208,28 +210,10 @@ const handleNext = () => {
 				<div className={cn('trainers-engine', themeName)}>
 					<div className="trainers-engine__container trainers-engine__container_theory">
 						<main className="trainers-engine__main trainers-engine__main--theory">
+					<LessonsSidebar handleLessonClick={()=>console.log('testclick')} lessons={data} currentLessonId={currentLessonIndex}/>
 
-						<EngineTheory description={currentLessonData.description} title={currentLessonData.name}/>
+						<EngineTheory handleClickTasksBtn={() => startPractice()} hasTasks={currentLessonData.total_tasks > 0} description={currentLessonData.description} title={currentLessonData.name} handleNextBtn={() => dispatch(nextLesson({ totalLessons: data.length }))}/>
 						</main>
-						<footer className="trainers-engine__footer--theory">
-	{currentLessonData.total_tasks > 0 ? (
-		<Button
-			className="trainers-engine__button"
-			onClick={() => startPractice()}
-			size={"medium"}
-		>
-			Приступить к заданиям
-		</Button>
-	) : (
-		<Button
-			className="trainers-engine__button"
-			onClick={() => dispatch(nextLesson({ totalLessons: data.length }))}
-			size={"medium"}
-		>
-			Перейти на след урок
-		</Button>
-	)}
-</footer>
 					</div>
 					</div>
 		)

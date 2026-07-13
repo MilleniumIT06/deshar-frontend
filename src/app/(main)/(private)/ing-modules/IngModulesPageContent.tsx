@@ -28,14 +28,6 @@ export const IngModulesPageContent = () => {
 							progressPercentage={module.progress.progress_percentage}
 							status={module.progress.status}
 						/>)}
-						{/* <ModuleCard
-							id={1}
-							number={1}
-							title="Алфавит"
-							maxLessons={12}
-							doneLessons={12}
-							processLessons={0}
-						/> */}
 					</div>
 				</div>
 			</div>
