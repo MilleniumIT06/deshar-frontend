@@ -2,7 +2,6 @@
 import cn from 'classnames'
 import { useCallback, useState } from 'react'
 
-import { AttestationItem } from '@/components/AttestationItem'
 import { LessonItem } from '@/components/LessonItem'
 import { Button } from '@/shared/ui/Button'
 
@@ -34,9 +33,6 @@ export const LessonsSidebar = ({ className,lessons,currentLessonId,handleLessonC
 		return false
 	}
 
-	const isActiveAttestationItem = () => {
-		return status === 'attestation'
-	}
 
 	const startIndex = page * ITEMS_PER_PAGE
 	const endIndex = startIndex + ITEMS_PER_PAGE

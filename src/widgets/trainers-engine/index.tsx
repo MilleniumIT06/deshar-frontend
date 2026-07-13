@@ -13,6 +13,7 @@ import { SuccessFooter } from '@/components/Engine/Footer/success'
 import { HelpTrigger } from '@/components/Engine/HelpTrigger'
 import { Hint } from '@/components/Engine/Hint'
 import { type TimerRef } from '@/components/Engine/Timer'
+import { LessonsSidebar } from '@/components/LessonsSidebar'
 import {
 	resetTrainers,
 	nextTrainer,
@@ -28,7 +29,6 @@ import { resetScore, addPoints, subtractPoints } from '@/entities/engine/model/s
 import { initTimer } from '@/entities/engine/model/timer.slice'
 import './styles.scss'
 import { useGetLessonTasks, useGetLessonUniqueTask } from '@/hooks/queries/education/useGetTasks'
-import { Button } from '@/shared/ui/Button'
 
 import { EngineFooter } from './engine-footer'
 import { EngineHeader } from './engine-header'
@@ -36,8 +36,7 @@ import { EngineTheory } from './engine-theory'
 import RenderTrainer from './render-trainer'
 
 import type { Id, TrainerTheme } from '@/shared/types/types'
-import { LearningSidebar } from '@/components/LearningSidebar'
-import { LessonsSidebar } from '@/components/LessonsSidebar'
+
 
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
