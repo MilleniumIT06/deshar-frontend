@@ -66,6 +66,7 @@ interface TrainersEngineProps {
         description: string;
         sort_order: number;
         total_tasks: number;
+		is_required:boolean;
     }[]
 	engineStatus: 'engineLoading' | 'engineSuccess' | 'engineError'
 }
@@ -211,7 +212,7 @@ const handleNext = () => {
 						<main className="trainers-engine__main trainers-engine__main--theory">
 					<LessonsSidebar handleLessonClick={()=>console.log('testclick')} lessons={data} currentLessonId={currentLessonIndex}/>
 
-						<EngineTheory handleClickTasksBtn={() => startPractice()} hasTasks={currentLessonData.total_tasks > 0} description={currentLessonData.description} title={currentLessonData.name} handleNextBtn={() => dispatch(nextLesson({ totalLessons: data.length }))}/>
+						<EngineTheory isLastLesson={currentLessonData.id===data[data.length-1].id} isRequired={currentLessonData.is_required} handleClickTasksBtn={() => startPractice()} hasTasks={currentLessonData.total_tasks > 0} description={currentLessonData.description} title={currentLessonData.name} handleNextBtn={() => dispatch(nextLesson({ totalLessons: data.length }))}/>
 						</main>
 					</div>
 					</div>

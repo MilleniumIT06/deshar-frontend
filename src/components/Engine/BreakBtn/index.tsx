@@ -17,7 +17,7 @@ const Icon = () => (
 	</svg>
 )
 
-export const FinishBtn = ({ handleClick, className }: { handleClick: () => void; className?: string }) => {
+export const BreakBtn = ({ handleClick, className }: { handleClick: () => void; className?: string }) => {
 	return (
 		<button onClick={handleClick} className={cn('finish-button', className)} aria-label="Закрыть">
 			<Icon />
