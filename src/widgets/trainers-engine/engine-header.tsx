@@ -1,6 +1,6 @@
 
 import './header.scss'
-import { FinishBtn } from '@/components/Engine/FinishBtn'
+import { BreakBtn } from '@/components/Engine/BreakBtn'
 import { MenuBtn } from '@/components/Engine/MenuBtn'
 import { ProgressBar } from '@/components/Engine/ProgressBar'
 
@@ -42,7 +42,7 @@ export const EngineHeader = ({
 			</div>
 
 			<div className="engine-header__actions">
-				<FinishBtn handleClick={handleHelpMenuOpen} />
+				<BreakBtn handleClick={handleHelpMenuOpen} />
 			</div>
 		</header>
 	)

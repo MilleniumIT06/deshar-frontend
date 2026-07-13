@@ -65,11 +65,12 @@ export const trainersSlice = createSlice({
 		},
 		changeMode: (state, action: PayloadAction<'practice' | 'theory'>) => {
 			state.mode = action.payload
-		}
+		},
+		resetState: () => initialState
 	},
 })
 
-export const { setIsMenuOpen, setHelpModalOpen, setSupportModalOpen, setStatus, nextTrainer, resetTrainers, setTheme,changeMode,nextLesson } =
+export const { setIsMenuOpen, setHelpModalOpen, setSupportModalOpen, setStatus, nextTrainer, resetTrainers, setTheme,changeMode,nextLesson,resetState } =
 	trainersSlice.actions
 
 export default trainersSlice.reducer

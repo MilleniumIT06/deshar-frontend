@@ -13,6 +13,7 @@ import { SuccessFooter } from '@/components/Engine/Footer/success'
 import { HelpTrigger } from '@/components/Engine/HelpTrigger'
 import { Hint } from '@/components/Engine/Hint'
 import { type TimerRef } from '@/components/Engine/Timer'
+import { LessonsSidebar } from '@/components/LessonsSidebar'
 import {
 	resetTrainers,
 	nextTrainer,
@@ -28,7 +29,6 @@ import { resetScore, addPoints, subtractPoints } from '@/entities/engine/model/s
 import { initTimer } from '@/entities/engine/model/timer.slice'
 import './styles.scss'
 import { useGetLessonTasks, useGetLessonUniqueTask } from '@/hooks/queries/education/useGetTasks'
-import { Button } from '@/shared/ui/Button'
 
 import { EngineFooter } from './engine-footer'
 import { EngineHeader } from './engine-header'
@@ -36,6 +36,7 @@ import { EngineTheory } from './engine-theory'
 import RenderTrainer from './render-trainer'
 
 import type { Id, TrainerTheme } from '@/shared/types/types'
+
 
 
 const Menu = dynamic(() => import('@/components/Engine/Menu').then(mod => mod.Menu), {
@@ -65,6 +66,7 @@ interface TrainersEngineProps {
         description: string;
         sort_order: number;
         total_tasks: number;
+		is_required:boolean;
     }[]
 	engineStatus: 'engineLoading' | 'engineSuccess' | 'engineError'
 }
@@ -208,28 +210,10 @@ const handleNext = () => {
 				<div className={cn('trainers-engine', themeName)}>
 					<div className="trainers-engine__container trainers-engine__container_theory">
 						<main className="trainers-engine__main trainers-engine__main--theory">
+					<LessonsSidebar handleLessonClick={()=>console.log('testclick')} lessons={data} currentLessonId={currentLessonIndex}/>
 
-						<EngineTheory description={currentLessonData.description} title={currentLessonData.name}/>
+						<EngineTheory isLastLesson={currentLessonData.id===data[data.length-1].id} isRequired={currentLessonData.is_required} handleClickTasksBtn={() => startPractice()} hasTasks={currentLessonData.total_tasks > 0} description={currentLessonData.description} title={currentLessonData.name} handleNextBtn={() => dispatch(nextLesson({ totalLessons: data.length }))}/>
 						</main>
-						<footer className="trainers-engine__footer--theory">
-	{currentLessonData.total_tasks > 0 ? (
-		<Button
-			className="trainers-engine__button"
-			onClick={() => startPractice()}
-			size={"medium"}
-		>
-			Приступить к заданиям
-		</Button>
-	) : (
-		<Button
-			className="trainers-engine__button"
-			onClick={() => dispatch(nextLesson({ totalLessons: data.length }))}
-			size={"medium"}
-		>
-			Перейти на след урок
-		</Button>
-	)}
-</footer>
 					</div>
 					</div>
 		)

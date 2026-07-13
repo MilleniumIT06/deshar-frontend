@@ -11,6 +11,7 @@
 		flex: 1;
 		&_theory {
 			align-items: center;
+			padding-top:35px;
 		}
 	}
 	&__main {
@@ -21,7 +22,8 @@
 		align-items: flex-start;
 		justify-content: center;
 		&--theory {
-			align-items: center;
+			align-items: start;
+			gap:35px;
 		}
 	}
 
@@ -66,7 +68,7 @@
 }
 .EngineTheory {
 	width: 100%;
-	max-width: 1200px;
+	max-width: 900px;
 	min-height: 60vh;
 	padding: 40px;
 	background-color: #fff;
@@ -82,20 +84,22 @@
 		width: 100%;
 		margin: 0 0 32px;
 
-		font-size: 36px;
+		font-family: var(--font-family);
 		font-weight: 700;
-		line-height: 1.2;
-		color: #1f2937;
+		font-size: 24px;
+		line-height: 150%;
+		color: var(--neutral-darkest);
+	}
 
-		text-align: center;
+	&__main {
+		width: 100%;
+		flex: 1 1 auto;
+		display: flex;
+		align-items: flex-start;
 	}
 
 	&__description {
 		width: 100%;
-		flex: 1;
-
-		display: flex;
-		align-items: flex-start;
 
 		font-size: 18px;
 		line-height: 1.6;
@@ -105,6 +109,27 @@
 			width: 100%;
 			margin: 0;
 			white-space: pre-line;
+			font-family: var(--font-family);
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 175%;
+			color: var(--neutral-darkest);
+		}
+	}
+
+	&__footer {
+		border-top: 1px solid #d6d6d6;
+		padding-top: 30px;
+		width: 100%;
+		flex: 0 0 auto;
+		margin-top: auto;
+
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		&-left-btns > button:first-child {
+			margin-right: 15px;
 		}
 	}
 
@@ -120,6 +145,10 @@
 
 		&__description {
 			font-size: 16px;
+		}
+
+		&__footer {
+			flex-wrap: wrap;
 		}
 	}
 }

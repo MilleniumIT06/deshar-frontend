@@ -2,19 +2,24 @@
 'use client'
 import Image from 'next/image'
 
-import { useAppSelector } from '@/app/_store/hooks'
+import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
+import { resetState } from '@/entities/engine/model/engine.slice'
 
 
 import './styles.scss'
+import { BreakBtn } from '../BreakBtn'
 import { EngineButton } from '../Button'
-import { FinishBtn } from '../FinishBtn'
 
 export const EngineFinishScreen = () => {
 	const { totalScore } = useAppSelector(state => state.scoreReducer)
+	const dispatch = useAppDispatch()
 
+	const reset = () => {
+	dispatch(resetState())
+	}
 	return (
 		<section className="finish-screen">
-			<FinishBtn handleClick={() => 'test'} className="finish-screen__close-btn" />
+			<BreakBtn handleClick={() => 'test'} className="finish-screen__close-btn" />
 
 			<div className="finish-screen__container">
 				<div className="finish-screen__content">
@@ -54,7 +59,7 @@ export const EngineFinishScreen = () => {
 
 					{/* Кнопки действий */}
 					<div className="finish-screen__actions">
-						<EngineButton variant="secondary" className="finish-screen__btn finish-screen__btn-retry">
+						<EngineButton variant="secondary" className="finish-screen__btn finish-screen__btn-retry" onClick={reset}>
 							<svg
 								className="finish-screen__btn-icon"
 								width="33"
