@@ -113,16 +113,17 @@ const {
     Boolean(mode === "practice" && currentTaskData?.id)
 );
 
-	const startPractice = () => {
-		dispatch(changeMode("practice"))
-	}
-	const { isFinished } = useAppSelector((state: RootState) => state.timer)
+const { isFinished } = useAppSelector((state: RootState) => state.timer)
 
-	// const { totalScore } = useAppSelector(state => state.scoreReducer);
-	const timerRef = useRef<TimerRef>(null)
-	const trainerRef = useRef<TrainerRef>(null)
-	const { isExpired, secondsLeft } = useCountdownTimer(10)
-	const onMainButtonClick = () => {
+// const { totalScore } = useAppSelector(state => state.scoreReducer);
+const timerRef = useRef<TimerRef>(null)
+const trainerRef = useRef<TrainerRef>(null)
+const { isExpired, secondsLeft,restart } = useCountdownTimer(10)
+const startPractice = () => {
+	dispatch(changeMode("practice"))
+	restart()
+}
+const onMainButtonClick = () => {
 		if(currentLessonIndex===data.length-1){
 			dispatch(setStatus("finish"))
 			// console.log('tut problema')
@@ -135,7 +136,6 @@ const {
 		trainerRef.current?.handleReset()
 		if (isFinished && status === 'error') {
 			dispatch(resetTrainers())
-			dispatch(initTimer(time))
 			dispatch(resetScore())
 		}
 	}
@@ -146,27 +146,36 @@ const {
 	}, [])
 const handleNext = () => {
     if (status !== 'success' || !data || !taskData) return;
-
     const activeIndex = currentTrainerIndex !== null && currentTrainerIndex !== undefined
         ? currentTrainerIndex
         : 0;
-
     const isLastTrainer = activeIndex === taskData.data.length - 1;
     const hasNextLesson = currentLessonIndex < data.length - 1;
-
     if (isLastTrainer) {
         if (hasNextLesson) {
             dispatch(resetTrainers());
             dispatch(changeMode("theory"));
             dispatch(nextLesson({ totalLessons: data.length }));
+			dispatch(initTimer(time))
+			restart()
         } else {
-            // console.log('Курс полностью завершен');
 			dispatch(setStatus("finish"))
         }
     } else {
         dispatch(nextTrainer({ totalTrainers: taskData.data.length }));
     }
 };
+const handleTheoryNext = () => {
+    if (!data) return
+    const hasNextLesson = currentLessonIndex < data.length - 1
+    if (hasNextLesson) {
+        dispatch(resetTrainers())
+        dispatch(changeMode('theory'))
+        dispatch(nextLesson({ totalLessons: data.length }))
+    } else {
+        dispatch(setStatus('finish'))
+    }
+}
 	const handleTimerEnd = () => {
 		dispatch(setStatus('error'))
 	}
@@ -266,7 +275,8 @@ const handleNext = () => {
         <EngineButton
 		variant='primary'
             className="trainers-engine__button"
-            onClick={handleNext}
+            onClick={handleTheoryNext}
+			disabled={!isExpired}
         >
            {isLastLesson?"Завершить": "Перейти на след урок"} {isExpired ? '' : `(${secondsLeft})`}
         </EngineButton>
