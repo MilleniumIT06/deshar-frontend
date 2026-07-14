@@ -42,7 +42,7 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 
 	const { moduleId, pieceId } = useParams<{ moduleId: string; pieceId: string }>()
 	const currentLesson = lessons ? lessons[currentLessonIndex] : null
-	console.log('lessons-v',lessons)
+
 	const trainerRef = useRef<TrainerRef>(null)
 	const timerRef = useRef<TimerRef>(null)
 
