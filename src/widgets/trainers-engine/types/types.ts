@@ -12,7 +12,8 @@ export interface LessonListItem {
 	description: string
 	sort_order: number
 	total_tasks: number
-	is_required: boolean
+	is_required: boolean;
+	audio:string|null;
 }
 
 export interface TrainersEngineProps {

@@ -57,7 +57,7 @@ export function TheoryScreen({
 
 				<main className="trainers-engine__main trainers-engine__main--theory">
 					<h6>Урок {lessonIndex + 1}</h6>
-					<EngineTheory description={lesson.description} title={lesson.name} />
+					<EngineTheory description={lesson.description} title={lesson.name} audio={lesson.audio}/>
 				</main>
 
 				<footer>
