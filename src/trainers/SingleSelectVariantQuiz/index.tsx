@@ -27,7 +27,7 @@ interface SingleSelectProps extends TrainerCommonProps {
 }
 
 export const SingleSelectVariantQuiz = forwardRef<TrainerRef, SingleSelectProps>(
-	({ payload, changeStatus, onError, onSuccess, title, subTitle, currentTrainerIndex }, ref) => {
+	({ payload, changeStatus, onError, onSuccess, title, subTitle, currentTrainerIndex,audio }, ref) => {
 		const { selected, isSubmitted, handleSelect } = useQuizLogic<number>({
 			ref,
 			correctValue: payload.correctVariantId,
@@ -38,7 +38,7 @@ export const SingleSelectVariantQuiz = forwardRef<TrainerRef, SingleSelectProps>
 		return (
 			<div className="single-select-quiz">
 				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-				<TrainerTitle title={title} />
+				<TrainerTitle title={title} audio={audio}/>
 
 				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 

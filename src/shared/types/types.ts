@@ -27,6 +27,7 @@ export interface Role {
 }
 
 export interface TrainerCommonProps {
+	audio: string|null;
 	currentTrainerIndex: number
 	title: string
 	subTitle?: string

@@ -44,6 +44,7 @@ export const Conclusion = forwardRef(
 			title,
 			subTitle,
 			currentTrainerIndex,
+			audio,
 		}: ConclusionProps,
 		ref,
 	) => {
@@ -157,7 +158,7 @@ export const Conclusion = forwardRef(
 			<div className="conclusion-trainer">
 				<DndContext onDragEnd={handleDragEnd}>
 					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-					<TrainerTitle title={title} />
+					<TrainerTitle title={title} audio={audio}/>
 
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 

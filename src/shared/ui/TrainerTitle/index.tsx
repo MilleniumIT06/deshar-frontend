@@ -1,16 +1,20 @@
+'use client';
+import { useAudioPlayer } from '@/shared/hooks/useAudioPlayer';
 import './styles.scss'
 
 interface TrainerTitleProps {
 	title: string
-	onVoiceOver?: () => void
 	className?: string
+	audio:string|null;
 }
 
-export const TrainerTitle = ({ title, onVoiceOver, className = '' }: TrainerTitleProps) => {
+export const TrainerTitle = ({ title, audio, className = '' }: TrainerTitleProps) => {
+	const {isLoading,togglePlay} = useAudioPlayer(`/${audio}`);
 	return (
 		<div className={`trainer-title ${className}`}>
-			<button
-				onClick={onVoiceOver}
+			{audio ? <button
+				onClick={togglePlay}
+				disabled={isLoading}
 				type="button"
 				className="trainer-title__voice-btn"
 				aria-label="Озвучить заголовок">
@@ -20,7 +24,7 @@ export const TrainerTitle = ({ title, onVoiceOver, className = '' }: TrainerTitl
 						fill="white"
 					/>
 				</svg>
-			</button>
+			</button>:null}
 
 			<h2 className="trainer-title__text">{title}</h2>
 		</div>

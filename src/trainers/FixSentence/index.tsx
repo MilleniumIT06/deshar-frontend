@@ -16,7 +16,7 @@ interface FixSentenceProps extends TrainerCommonProps {
 }
 
 export const FixSentence = forwardRef(
-	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex }: FixSentenceProps, ref) => {
+	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex,audio }: FixSentenceProps, ref) => {
 		const [selectedIndex, setSelectedIndex] = useState<number>(0)
 
 		useImperativeHandle(ref, () => ({
@@ -68,7 +68,7 @@ export const FixSentence = forwardRef(
 		return (
 			<div className="fix-sentence">
 				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-				<TrainerTitle title={title} />
+				<TrainerTitle title={title} audio={audio}/>
 
 				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 

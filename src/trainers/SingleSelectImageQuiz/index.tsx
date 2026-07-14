@@ -22,7 +22,7 @@ interface SingleSelectImageQuizProps extends TrainerCommonProps {
 	}
 }
 export const SingleSelectImageQuiz = forwardRef<TrainerRef, SingleSelectImageQuizProps>(
-	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle }, ref) => {
+	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle,audio }, ref) => {
 		const { selected, isSubmitted, handleSelect } = useQuizLogic<number>({
 			ref,
 			correctValue: payload.correctVariantId,
@@ -40,7 +40,7 @@ export const SingleSelectImageQuiz = forwardRef<TrainerRef, SingleSelectImageQui
 			<div className="SingleSelectImageQuiz">
 				<div className="SingleSelectImageQuiz__inner">
 					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-					<TrainerTitle title={title} />
+					<TrainerTitle title={title} audio={audio}/>
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="SingleSelectImageQuiz__content">
 						{payload.variants.map(item => (

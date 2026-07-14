@@ -31,7 +31,7 @@ interface CategoryMatcherProps extends TrainerCommonProps {
 
 export const CategoryMatcher = forwardRef(
 	(
-		{ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex }: CategoryMatcherProps,
+		{ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex,audio }: CategoryMatcherProps,
 		ref,
 	) => {
 		const { items, categories } = payload
@@ -79,7 +79,7 @@ const archerRef = useRef<any>(null)
 		return (
 			<div className="category-matcher">
 				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-				{title && <TrainerTitle title={title} />}
+				{title && <TrainerTitle title={title} audio={audio}/>}
 				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 				<ArcherContainer ref={archerRef} strokeColor="#4f46e5" strokeWidth={3} endShape={{ arrow: { arrowLength: 0 } }}>
 					<div className="category-matcher__container">

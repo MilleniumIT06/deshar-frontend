@@ -32,7 +32,7 @@ interface WordState extends IVariant {
 }
 
 export const ColorizeWords = forwardRef(
-	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex }: ColorizeWordsProps, ref) => {
+	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex,audio }: ColorizeWordsProps, ref) => {
 		const { variants, tools } = payload
 
 		const [selectedTool, setSelectedTool] = useState<Tool>(tools[0])
@@ -79,7 +79,7 @@ export const ColorizeWords = forwardRef(
 		return (
 			<div className="colorize-words">
 				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-				<TrainerTitle title={title} />
+				<TrainerTitle title={title} audio={audio}/>
 
 				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
