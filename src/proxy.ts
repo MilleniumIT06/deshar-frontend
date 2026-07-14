@@ -18,7 +18,6 @@ export async function proxy(request: NextRequest) {
         return NextResponse.redirect(new URL('/sign-in', request.url))
     }
 
-	// console.log('proxyTest')
     if (isAuthenticated) {
         try {
             const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8000'
@@ -28,7 +27,6 @@ export async function proxy(request: NextRequest) {
                     'Accept': 'application/json',
                 },
             })
-			// console.log('proxy',response)
             if (response.status === 401) {
                 const res = NextResponse.redirect(new URL('/sign-in', request.url))
                 res.cookies.delete('jwt_token')
@@ -38,16 +36,21 @@ export async function proxy(request: NextRequest) {
             if (response.ok) {
                 const res = await response.json()
 				const user:User = res.data.user;
-				// console.log(user,"proxy")
 				if (user.is_banned === true && pathname !== '/user-banned') {
                  return NextResponse.redirect(new URL('/user-banned', request.url));
                 }
                 if (user.is_banned === false && pathname === '/user-banned') {
                  return NextResponse.redirect(new URL('/dashboard', request.url));
                 }
+                // выключил чтобы не мешало разработке
                 // if (user.confirmed === false) {
                 //     if (pathname !== '/not-confirmed') {
                 //         return NextResponse.redirect(new URL('/not-confirmed', request.url))
+                //     }
+                // }
+                // if(user.user_type==="admin"&&user.role.name==="Учитель") {
+                //     if(pathname !== '/admin') {
+                //         return NextResponse.redirect(new URL('/admin', request.url))
                 //     }
                 // }
                 if(user.user_type==="student"&&user.role.name==="Ученик") {
@@ -55,6 +58,7 @@ export async function proxy(request: NextRequest) {
                         return NextResponse.redirect(new URL('/dashboard', request.url))
                     }
                 }
+
             }
         } catch (error) {
             console.error('Middleware Auth Error:', error)

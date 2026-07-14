@@ -4,7 +4,9 @@
 	background-size: contain;
 	display: flex;
 	flex-direction: column;
-
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 	&__container {
 		display: flex;
 		flex-direction: column;
@@ -50,9 +52,6 @@ color: var(--color-text);
 		align-items: center;
 		justify-content: center;
 	}
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
 	&.towers {
 		background-image: url('/images/Engine/Themes/theme-towers.jpg');
 	}

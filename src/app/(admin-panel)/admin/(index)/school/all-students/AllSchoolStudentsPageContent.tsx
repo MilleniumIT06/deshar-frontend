@@ -10,7 +10,6 @@ import { Card } from "@/widgets/AdminWidgets/Card";
 export const AllSchoolStudentsPageContent = () => {
     const {schoolClassesData,isLoading,isError} = useGetAllSchoolStudents()
     const { exportData, isExporting } = useExportSchoolData();
-    console.log(schoolClassesData,'Все ученики школы')
     return (
         <main className="PageAdmin">
             <Card

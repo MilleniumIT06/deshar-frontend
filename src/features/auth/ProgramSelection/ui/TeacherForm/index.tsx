@@ -51,7 +51,7 @@ export const TeacherForm = () => {
         mode: 'onChange',
     })
 	const { formData } = useAppSelector(state => state.signUpFormReducer)
-	const { isPending, mutate, isSuccess } = useSignUp()
+	const { isPending } = useSignUp()
 const { regions, isLoading: isRegionsLoading } = useGetRegions()
 	const { countries, isLoading: isCountriesLoading } = useGetCountries()
 	const { districts, isLoading: isDistrictsLoading, isError: isDistrictsError } = useGetDistricts()
@@ -61,7 +61,7 @@ const { regions, isLoading: isRegionsLoading } = useGetRegions()
 	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools({
 		localityId:null
 	})
-	const { schoolClasses, isLoading: isSchoolClassesLoading,isError:isSchoolClassesError } = useGetSchoolClasses({
+	const { isLoading: isSchoolClassesLoading,isError:isSchoolClassesError } = useGetSchoolClasses({
 	schoolId: null
 })
 	const onSubmit = async (data: z.infer<typeof validateSchema>) => {

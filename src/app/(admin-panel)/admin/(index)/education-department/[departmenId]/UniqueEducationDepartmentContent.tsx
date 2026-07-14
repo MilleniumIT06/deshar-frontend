@@ -36,7 +36,6 @@ export const UniqueEducationDepartmentContent = () => {
 		setPointsTo('')
 	}
 	const redirectOnSchoolClick = (item: SchoolDepItem) => {
-		// console.log(item.id);
 		router.push(`/admin/schools/${item.id}`)
 	}
 	return (

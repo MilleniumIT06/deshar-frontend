@@ -11,7 +11,6 @@ export const ModuleContent = () => {
 
     const {module:uniqueModule,isLoading} = useGetModuleById(Number(params.moduleId))
     if(isLoading) return <div style={{display:"flex",height:"100vh",justifyContent:"center",alignItems:"center"}}><Loader/></div>
-    console.log('onemodule',uniqueModule)
     return (
         <section className="IngModulesPageContent">
             <div className="container">
