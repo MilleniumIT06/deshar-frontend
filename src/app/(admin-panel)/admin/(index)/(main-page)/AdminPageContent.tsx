@@ -33,18 +33,14 @@ const MainChart = dynamic(() => import('@/widgets/AdminWidgets/MainChart').then(
 export const AdminPageContent = () => {
 	const { hasRole, role } = useRole()
 	const {schoolStatisticAdminData,isLoading:isSchoolStatisticsLoading} =useGetSchoolStatistic()
-	console.log(schoolStatisticAdminData,'testDatatRYYYYY')
 	const redirectOnBestSchoolsClick = (item: SchoolDepItem) => {
-		// console.log(item.id);
 		// navigate(`schools/${item.id}`, { relative: "route" })
 		return item
 	}
 	const redirectOnBestDepartmentClick = (item: DepartamentItem) => {
-		// console.log(item)
 		return item
 	}
 	const redirectOnBestStudentsClick = (item: Student) => {
-		// console.log(item)
 		return item
 	}
 	return (

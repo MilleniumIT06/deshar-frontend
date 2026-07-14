@@ -10,6 +10,8 @@ import { AlphabeticalSorterVariant } from './Variant'
 
 import './styles.scss'
 
+import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
+
 interface AlphabeticalSorterProps extends TrainerCommonProps {
 	payload: {
 		slots: {
@@ -24,12 +26,8 @@ interface AlphabeticalSorterProps extends TrainerCommonProps {
 	}
 }
 
-export interface AlphabeticalSorterRef {
-	handleCheck: () => void
-	handleReset: () => void
-}
 
-export const AlphabeticalSorter = forwardRef<AlphabeticalSorterRef, AlphabeticalSorterProps>(
+export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps>(
 	({ payload, onSuccess, onError, changeStatus, title, currentTrainerIndex, subTitle }, ref) => {
 		const [slots, setSlots] = useState(
 			payload.slots.map(item => ({ ...item, currentValue: null as string | null })),

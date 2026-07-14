@@ -20,8 +20,6 @@ export const useSelectAnswerQuiz = ({
 			correctAnswersCount++
 		}
 	})
-	// eslint-disable-next-line no-console
-	console.log(correctAnswersCount)
 	const onSelect = (item: ISelectItem) => {
 		setSelected(prev => {
 			if (prev.find(el => el.id === item.id)) {

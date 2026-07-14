@@ -37,7 +37,6 @@ export const SchoolsStatPageContent = () => {
 		setPointsTo('')
 	}
 	const redirectOnClick = (item: SchoolStatItem) => {
-		// console.log(item.id);
 		router.push(`/class/${item.id}`)
 	}
 	const onClickBackButton = () => {

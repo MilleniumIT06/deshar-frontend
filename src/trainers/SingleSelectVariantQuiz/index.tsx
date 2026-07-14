@@ -10,16 +10,14 @@ import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { Variant } from '../MultiSelectVariantsQuiz/item'
 
+import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
+
 interface IVariant {
 	id: number
 	itemNumber: number
 	title: string
 }
 
-export interface TrainerRef {
-	handleCheck: () => void
-	handleReset: () => void
-}
 
 interface SingleSelectProps extends TrainerCommonProps {
 	payload: {

@@ -13,7 +13,6 @@ export const PiecesContent = () => {
         isError,
         isLoading
     } = useGetPieceById(Number(moduleId),Number(pieceId))
-    console.log(data,'tok')
     if(isLoading) return <Loader/>
     if(isError) return "ERROR"
        return (

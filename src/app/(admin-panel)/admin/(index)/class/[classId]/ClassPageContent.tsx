@@ -31,7 +31,6 @@ export const ClassPageContent = () => {
 	const [pointsTo, setPointsTo] = useState<string>('')
 	const [activeTab, setActiveTab] = useState(0)
 	const {isLoading,classStatistic} = useGetUniqueClassStatistic(Number(params.classId))
-	// console.log(classStatistic)
 	const resetFilters = () => {
 		setTimeFrom('')
 		setTimeTo('')

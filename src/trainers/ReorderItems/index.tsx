@@ -18,12 +18,13 @@ import {
 } from '@dnd-kit/sortable'
 import { useState, useImperativeHandle, forwardRef } from 'react'
 
-import { type TrainerCommonProps } from '@/shared/types/types'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import './styles.scss'
-import { type TrainerRef } from '@/widgets/trainers-engine'
 
 import { ReorderableItem } from './item'
+
+import type { TrainerCommonProps } from '@/shared/types/types'
+import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 export interface IOrderItem {
 	id: UniqueIdentifier

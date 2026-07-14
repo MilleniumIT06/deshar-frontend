@@ -1,5 +1,5 @@
 
-import './header.scss'
+import './../styles/header.scss'
 import { BreakBtn } from '@/components/Engine/BreakBtn'
 import { MenuBtn } from '@/components/Engine/MenuBtn'
 import { ProgressBar } from '@/components/Engine/ProgressBar'

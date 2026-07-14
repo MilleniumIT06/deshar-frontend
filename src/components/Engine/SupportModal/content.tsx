@@ -23,13 +23,11 @@ export const SupportModalContent = ({ onCancel }: { onCancel?: () => void }) => 
 		mode: 'onChange',
 	})
 
-	const onSubmit = async (data: supportFormData) => {
+	const onSubmit = async () => {
 		try {
 			setIsLoading(true)
 			setServerError('')
 
-			// eslint-disable-next-line no-console
-			console.log(data)
 		} catch (error) {
 			setServerError(error instanceof Error ? error.message : 'Ошибка Отправки формы')
 		} finally {

@@ -86,6 +86,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		padding-bottom: 20px;
 
 		@include breakpoint.small-tablet {
 			padding: 0 15px;
@@ -93,7 +94,6 @@
 		@include breakpoint.mobile {
 			padding: 0;
 		}
-		padding-bottom: 20px;
 	}
 
 	&__body {
@@ -153,13 +153,13 @@
 			text-align: right;
 			color: #7d7979;
 			text-wrap: nowrap;
-			@include breakpoint.small-tablet {
-				text-align: left;
-			}
 			span {
 				@include breakpoint.mobile {
 					display: none;
 				}
+			}
+			@include breakpoint.small-tablet {
+				text-align: left;
 			}
 			@include breakpoint.mobile {
 				font-size: 12px;
