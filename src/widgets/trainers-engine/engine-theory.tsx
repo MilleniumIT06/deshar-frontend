@@ -1,19 +1,19 @@
 'use client'
-import { useCountdownTimer } from '@/components/LearningContent/useCountdownTimer';
-import { Button } from '@/shared/ui/Button';
+import { TrainerTitle } from '@/shared/ui/TrainerTitle';
 import './styles.scss';
 
-export const EngineTheory = ({isLastLesson,description,title,handleNextBtn,hasTasks,handleClickTasksBtn,isRequired}:{isLastLesson:boolean;isRequired:boolean;hasTasks:boolean;title:string;description:string;handleNextBtn:()=>void;handleClickTasksBtn:()=>void;}) => {
-    const { isExpired, secondsLeft } = useCountdownTimer(10)
+export const EngineTheory = ({description,title}:{title:string;description:string;}) => {
+    // const { isExpired, secondsLeft } = useCountdownTimer(10)
     return (
         <div className='EngineTheory'>
-            <h1 className='EngineTheory__title'>{title}</h1>
+            {/* <h1 className='EngineTheory__title'>{title}</h1> */}
+            <TrainerTitle title={title}/>
            <div className="EngineTheory__main">
              <div className='EngineTheory__description'>
                 <p>{description}</p>
             </div>
            </div>
-            <div className="EngineTheory__footer">
+            {/* <div className="EngineTheory__footer">
                 <div className='EngineTheory__footer-left-btns'>
 
 						<Button variant="secondary" size="medium" className="EngineTheory__btn_back">
@@ -44,7 +44,7 @@ export const EngineTheory = ({isLastLesson,description,title,handleNextBtn,hasTa
            {isLastLesson?"Завершить": "Перейти на след урок"} {isExpired ? '' : `(${secondsLeft})`}
         </Button>
     )}
-					</div>
+					</div> */}
         </div>
     )
 }
