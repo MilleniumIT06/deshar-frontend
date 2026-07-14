@@ -1,0 +1,2 @@
+export const PRACTICE_UNLOCK_DELAY_SECONDS = 10
+export const AUTO_ADVANCE_DELAY_MS = 1000
