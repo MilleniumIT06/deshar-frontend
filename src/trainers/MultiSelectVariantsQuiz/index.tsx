@@ -5,9 +5,10 @@ import { useQuizLogic } from '@/hooks/trainers/useQuiz'
 import './styles.scss'
 import { type TrainerCommonProps } from '@/shared/types/types'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
-import { type TrainerRef } from '@/widgets/trainers-engine'
 
 import { Variant } from './item'
+
+import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 interface IVariant {
 	id: number

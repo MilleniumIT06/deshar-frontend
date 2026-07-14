@@ -6,9 +6,10 @@ import { forwardRef } from 'react'
 import { useQuizLogic } from '@/hooks/trainers/useQuiz'
 import { type TrainerCommonProps } from '@/shared/types/types'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
-import { type TrainerRef } from '@/widgets/trainers-engine'
 
 import { SingleSelectImageQuizVariant } from './variant'
+
+import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 interface IVariant {
 	id: number

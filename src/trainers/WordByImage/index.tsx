@@ -8,10 +8,11 @@ import './styles.scss'
 import { useWordTrainer } from '@/hooks/trainers/useWordTrainer'
 import { type TrainerCommonProps } from '@/shared/types/types'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
-import { type TrainerRef } from '@/widgets/trainers-engine'
 
 import { DropInput } from './DropInput'
 import { MoveBoxImage } from './MoveBox'
+
+import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 export interface IWordLetter {
 	id: number | string
