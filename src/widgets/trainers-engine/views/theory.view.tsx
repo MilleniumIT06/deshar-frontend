@@ -5,6 +5,7 @@ import { EngineButton } from '@/components/Engine/Button'
 import { EngineHeader } from '../components/engine-header'
 import { EngineTheory } from '../components/engine-theory'
 import { BackArrowIcon } from '../components/icons'
+import { Menu } from '../dynamic-imports'
 
 
 import type { LessonListItem } from '../types/types'
@@ -93,6 +94,7 @@ export function TheoryScreen({
 					</div>
 				</footer>
 			</div>
+			<Menu isOpen={isMenuOpen} onClose={()=>"test"} />
 		</div>
 	)
 }
