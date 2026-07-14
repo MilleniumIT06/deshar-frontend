@@ -24,7 +24,7 @@ interface Props extends TrainerCommonProps {
 	}
 }
 export const PhraseImageMatcher = forwardRef(
-	({ changeStatus, onError, onSuccess, payload, title, subTitle, currentTrainerIndex }: Props, ref) => {
+	({ changeStatus, onError, onSuccess, payload, title, subTitle, currentTrainerIndex,audio }: Props, ref) => {
 		const { selections, isSubmitted, handleDragEnd, isVariantUsed } = useDndTrainer({
 			items: payload.items,
 			onSuccess,
@@ -39,7 +39,7 @@ export const PhraseImageMatcher = forwardRef(
 			<div className="PhraseImageMatcher">
 				<DndContext onDragEnd={handleDragEnd}>
 					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-					<TrainerTitle title={title} />
+					<TrainerTitle title={title} audio={audio}/>
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="PhraseImageMatcher__items">
 						{payload.items.map(item => (

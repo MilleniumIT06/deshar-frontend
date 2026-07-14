@@ -30,7 +30,7 @@ interface SequenceBuilderProps extends TrainerCommonProps {
 
 export const SequenceBuilder = forwardRef(
 	(
-		{ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex }: SequenceBuilderProps,
+		{ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex,audio }: SequenceBuilderProps,
 		ref,
 	) => {
 		const [currentValues, setCurrentValues] = useState<Record<string | number, string | null>>(
@@ -77,7 +77,7 @@ export const SequenceBuilder = forwardRef(
 				<DndContext onDragEnd={handleDragEnd}>
 					<div className="sequence-builder__content">
 						<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-						<TrainerTitle title={title} />
+						<TrainerTitle title={title} audio={audio}/>
 
 						{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 

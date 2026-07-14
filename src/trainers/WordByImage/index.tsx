@@ -34,7 +34,7 @@ interface WordByImageProps extends TrainerCommonProps {
 }
 
 export const WordByImage = forwardRef<TrainerRef, WordByImageProps>(
-	({ title, subTitle, status, changeStatus, onSuccess, onError, payload, currentTrainerIndex }, ref) => {
+	({ title, subTitle, status, changeStatus, onSuccess, onError, payload, currentTrainerIndex,audio }, ref) => {
 		const { correctAnswer, availableLetters, imageUrl, id } = payload
 
 		const {
@@ -76,7 +76,7 @@ export const WordByImage = forwardRef<TrainerRef, WordByImageProps>(
 					<div className="word-image-trainer__content">
 						<div className="word-image-trainer__header">
 							<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-							<TrainerTitle title={title} />
+							<TrainerTitle title={title} audio={audio}/>
 							{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 						</div>
 

@@ -15,7 +15,7 @@ interface WordPickerProps extends TrainerCommonProps {
 }
 
 export const WordPicker = forwardRef(
-	({ title, subTitle, onError, onSuccess, changeStatus, payload, currentTrainerIndex }: WordPickerProps, ref) => {
+	({ title, subTitle, onError, onSuccess, changeStatus, payload, currentTrainerIndex,audio }: WordPickerProps, ref) => {
 		const { words, toggleWord, checkResult, reset } = useWordPicker({
 			text: payload.text,
 			correctValues: payload.correctValues,
@@ -33,7 +33,7 @@ export const WordPicker = forwardRef(
 			<div className="word-picker">
 				<div className="word-picker__content">
 					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-					<TrainerTitle title={title} />
+					<TrainerTitle title={title} audio={audio}/>
 
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 

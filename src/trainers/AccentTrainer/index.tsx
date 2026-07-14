@@ -19,7 +19,7 @@ interface AccentTrainerProps extends TrainerCommonProps {
 	}
 }
 export const AccentTrainer = forwardRef(
-	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex }: AccentTrainerProps, ref) => {
+	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex,audio }: AccentTrainerProps, ref) => {
 		const { selectedIds, handleSelect } = useLetterClickTrainer({
 			ref,
 			correctIds: payload.correctVariantIds,
@@ -35,7 +35,7 @@ export const AccentTrainer = forwardRef(
 			<div className="accent-trainer">
 				<div className="accent-trainer__container">
 					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-					<TrainerTitle title={title} className="accent-trainer__title" />
+					<TrainerTitle audio={audio} title={title} className="accent-trainer__title" />
 
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 

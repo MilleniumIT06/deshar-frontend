@@ -26,7 +26,7 @@ interface DragWordToPocketProps extends TrainerCommonProps {
 	}
 }
 export const DragWordToPocket = forwardRef<TrainerRef, DragWordToPocketProps>(
-	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle }, ref) => {
+	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle,audio }, ref) => {
 		const { selections, handleDragEnd, isVariantUsed, setSelections } = useDndTrainer({
 			items: payload.items,
 			onSuccess,
@@ -49,7 +49,7 @@ export const DragWordToPocket = forwardRef<TrainerRef, DragWordToPocketProps>(
 			<DndContext onDragEnd={handleDragEnd}>
 				<div className="DragWordToPocket">
 					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-					<TrainerTitle title={title} />
+					<TrainerTitle title={title} audio={audio}/>
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="DragWordToPocket__variants">
 						{payload.variants.map(variant => (

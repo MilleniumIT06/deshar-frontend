@@ -28,7 +28,7 @@ interface AlphabeticalSorterProps extends TrainerCommonProps {
 
 
 export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps>(
-	({ payload, onSuccess, onError, changeStatus, title, currentTrainerIndex, subTitle }, ref) => {
+	({ payload, onSuccess, onError, changeStatus, title, currentTrainerIndex, subTitle, audio}, ref) => {
 		const [slots, setSlots] = useState(
 			payload.slots.map(item => ({ ...item, currentValue: null as string | null })),
 		)
@@ -69,7 +69,7 @@ export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps
 			<div className="alphabetical-sorter">
 				<DndContext onDragEnd={handleDragEnd}>
 					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-					<TrainerTitle title={title} />
+					<TrainerTitle audio={audio} title={title} />
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="alphabetical-sorter__grid">
 						{slots.map((slot, index) => (

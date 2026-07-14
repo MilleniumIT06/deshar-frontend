@@ -42,7 +42,7 @@ interface ReorderItemsProps extends TrainerCommonProps {
 }
 
 export const ReorderItems = forwardRef<TrainerRef, ReorderItemsProps>(
-	({ status, changeStatus, payload, onSuccess, onError, title, currentTrainerIndex, subTitle }, ref) => {
+	({ status, changeStatus, payload, onSuccess, onError, title, currentTrainerIndex, subTitle,audio }, ref) => {
 		const [data, setData] = useState<IReorderPayload>(payload)
 
 		const sensors = useSensors(
@@ -87,7 +87,7 @@ export const ReorderItems = forwardRef<TrainerRef, ReorderItemsProps>(
 		return (
 			<div className="reorder-items">
 				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-				<TrainerTitle title={title} />
+				<TrainerTitle title={title} audio={audio}/>
 				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 				<DndContext
 					sensors={sensors}
