@@ -1,4 +1,4 @@
-import { axiosClassic } from '@/api/api.helper'
+import { axiosClassic } from '@/config/api.helper'
 import { API_URL } from '@/config/api.config'
 import { type District } from '@/shared/types/types'
 

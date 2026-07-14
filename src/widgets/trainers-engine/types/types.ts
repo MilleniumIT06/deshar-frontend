@@ -14,6 +14,7 @@ export interface LessonListItem {
 	total_tasks: number
 	is_required: boolean;
 	audio:string|null;
+	image:string|null;
 }
 
 export interface TrainersEngineProps {

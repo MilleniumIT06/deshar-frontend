@@ -1,4 +1,4 @@
-import {  axiosWithAuth } from '@/api/api.helper'
+import {  axiosWithAuth } from '@/config/api.helper'
 import { API_URL } from '@/config/api.config'
 import { StudentCommonData } from '@/shared/types/admin/types';
 import { Id } from '@/shared/types/types';

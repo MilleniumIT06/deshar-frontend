@@ -1,4 +1,4 @@
-import { axiosClassic, axiosWithAuth } from '@/api/api.helper'
+import { axiosClassic, axiosWithAuth } from '@/config/api.helper'
 import { API_URL } from '@/config/api.config'
 import { type signInUserFormData } from '@/features/auth/SignIn/model/signIn.schema'
 

@@ -23,6 +23,8 @@ export const API_URL = {
 	// stats
 	userStats:()=> API_URL.root(`${prefix}/auth/stats`),
 
+	// files
+	files:()=>API_URL.root(`${SERVER_URL}/storage/`),
 
 	// education
 	ingModules:()=> API_URL.root(`${prefix}/modules`),
