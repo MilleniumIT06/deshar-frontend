@@ -1,15 +1,16 @@
 'use client'
 import { AnimatePresence, motion } from 'motion/react'
-import { useEffect } from 'react'
+import { type ReactNode, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import './styles.scss'
 
 interface MenuProps {
 	isOpen: boolean
 	onClose: () => void
+	content:ReactNode
 }
 
-export const Menu = ({ isOpen, onClose }: MenuProps) => {
+export const Menu = ({ isOpen, onClose, content}: MenuProps) => {
 	useEffect(() => {
 		const handleEscape = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') onClose()
@@ -43,7 +44,9 @@ export const Menu = ({ isOpen, onClose }: MenuProps) => {
 						exit={{ x: '-100%' }}
 						transition={{ type: 'spring', damping: 25, stiffness: 200 }}
 						className="SideMenu__panel">
-						<div className="SideMenu__content">test</div>
+						<div className="SideMenu__content">
+							{content}
+						</div>
 					</motion.div>
 				</div>
 			)}

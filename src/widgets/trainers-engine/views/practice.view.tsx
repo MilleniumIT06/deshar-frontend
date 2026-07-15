@@ -9,7 +9,6 @@ import { Hint } from '@/components/Engine/Hint'
 
 import { EngineFooter } from '../components/engine-footer'
 import { EngineHeader } from '../components/engine-header'
-import { AlertModal, Menu, SupportModal } from '../dynamic-imports'
 import RenderTrainer from '../render-trainer'
 
 import type { TrainerRef, UniqueTask } from '../types/types'
@@ -24,10 +23,8 @@ interface PracticeScreenProps {
 	totalTasks: number
 	isMenuOpen: boolean
 	onMenuClick: () => void
-	onMenuClose: () => void
-	onHelpClick: () => void
+	onBreakBtnClick: () => void
 	onSupportClick: () => void
-	isHelpOpen: boolean
 	isSupportModalOpen: boolean
 	uniqueTask: UniqueTask
 	status: 'idle' | 'success' | 'error'
@@ -47,11 +44,8 @@ export function PracticeScreen({
 	totalTasks,
 	isMenuOpen,
 	onMenuClick,
-	onMenuClose,
-	onHelpClick,
+	onBreakBtnClick,
 	onSupportClick,
-	isHelpOpen,
-	isSupportModalOpen,
 	uniqueTask,
 	status,
 	trainerRef,
@@ -69,7 +63,7 @@ export function PracticeScreen({
 				<EngineHeader
 					handleMenuClick={onMenuClick}
 					menuIsOpen={isMenuOpen}
-					handleHelpMenuOpen={onHelpClick}
+					handelBreakBtnClick={onBreakBtnClick}
 					currentTrainerIndex={currentTrainerIndex || 0}
 					totalTrainersCount={totalTasks}
 				/>
@@ -113,10 +107,6 @@ export function PracticeScreen({
 					{status === 'error' && <ErrorFooter handleReset={onResetButtonClick} />}
 				</footer>
 			</div>
-
-			<Menu isOpen={isMenuOpen} onClose={onMenuClose} />
-			{isHelpOpen && <AlertModal isOpen={isHelpOpen} onClose={onHelpClick} />}
-			{isSupportModalOpen && <SupportModal isOpen={isSupportModalOpen} onClose={onSupportClick} />}
 		</div>
 	)
 }

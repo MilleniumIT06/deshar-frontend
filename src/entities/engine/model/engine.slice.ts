@@ -4,8 +4,8 @@ import { type TrainerTheme } from '@/shared/types/types'
 
 interface TrainersState {
 	isMenuOpen: boolean
-	isHelpOpen: boolean
-	isSupportModalOpen: boolean
+	isSupportModalOpen: boolean;
+	isAlertModalOpen: boolean;
 	status: 'idle' | 'error' | 'success' | 'finish'
 	currentTrainerIndex: number;
 	currentLessonIndex: number;
@@ -15,8 +15,8 @@ interface TrainersState {
 
 const initialState: TrainersState = {
 	isMenuOpen: false,
-	isHelpOpen: false,
 	isSupportModalOpen: false,
+	isAlertModalOpen:false,
 	status: 'idle',
 	currentTrainerIndex: 0,
 	theme: 'default',
@@ -31,11 +31,11 @@ export const trainersSlice = createSlice({
 		setIsMenuOpen: (state, action: PayloadAction<boolean>) => {
 			state.isMenuOpen = action.payload
 		},
-		setHelpModalOpen: (state, action: PayloadAction<boolean>) => {
-			state.isHelpOpen = action.payload
-		},
 		setSupportModalOpen: (state, action: PayloadAction<boolean>) => {
 			state.isSupportModalOpen = action.payload
+		},
+		setAlertModalOpen: (state, action: PayloadAction<boolean>) => {
+			state.isAlertModalOpen = action.payload
 		},
 		setStatus: (state, action: PayloadAction<TrainersState['status']>) => {
 			state.status = action.payload
@@ -70,7 +70,7 @@ export const trainersSlice = createSlice({
 	},
 })
 
-export const { setIsMenuOpen, setHelpModalOpen, setSupportModalOpen, setStatus, nextTrainer, resetTrainers, setTheme,changeMode,nextLesson,resetState } =
+export const { setIsMenuOpen, setAlertModalOpen, setSupportModalOpen, setStatus, nextTrainer, resetTrainers, setTheme,changeMode,nextLesson,resetState } =
 	trainersSlice.actions
 
 export default trainersSlice.reducer
