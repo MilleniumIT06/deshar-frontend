@@ -55,7 +55,10 @@ export function useEngineNavigation({
 		}
 	}
 
-	const handleTheoryNext = () => goToNextLessonOrFinish()
+	const handleTheoryNext = () =>{
+		restartPracticeCountdown()
+		 goToNextLessonOrFinish()
+		}
 
 	const startPractice = () => {
 		dispatch(changeMode('practice'))

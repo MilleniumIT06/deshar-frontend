@@ -9,12 +9,12 @@ import { IconClose, IconOpen } from './icons'
 export const EngineHeader = ({
 	handleMenuClick,
 	menuIsOpen,
-	handleHelpMenuOpen,
+	handelBreakBtnClick,
 	currentTrainerIndex,
 	totalTrainersCount,
 }: {
 	handleMenuClick: () => void
-	handleHelpMenuOpen: () => void
+	handelBreakBtnClick: () => void
 	menuIsOpen: boolean
 	currentTrainerIndex: number
 	totalTrainersCount: number
@@ -42,7 +42,7 @@ export const EngineHeader = ({
 			</div>
 
 			<div className="engine-header__actions">
-				<BreakBtn handleClick={handleHelpMenuOpen} />
+				<BreakBtn handleClick={handelBreakBtnClick} />
 			</div>
 		</header>
 	)

@@ -1,6 +1,6 @@
 'use client'
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { ResultsCard } from '@/components/ResultsCard'
 import { useProfile } from '@/hooks/user/useProfile'
@@ -23,6 +23,13 @@ export const Successes = () => {
 
 	const visibleData = barChartMockData.slice(startIndex, startIndex + VISIBLE_COUNT)
 	const {isLoading,profileData,isError} = useProfile()
+	// useEffect(()=>{
+	// 	if(profileData)  {
+
+	// 		console.log('profileLesssonsPER',profileData.data.stats.lessons)
+	// 	}
+	// },[])
+
 	return (
 		<section className="Successes">
 			<div className="container Successes__container">
@@ -95,7 +102,7 @@ export const Successes = () => {
 							<ResultsCard
 								percent={profileData.data.stats.lessons.percentage}
 								period={7}
-								value={0}
+								value={profileData.data.stats.lessons.completed}
 								title="Завершено уроков"
 								mode='value'
 							/>

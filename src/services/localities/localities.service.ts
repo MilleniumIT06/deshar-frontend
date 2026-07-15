@@ -10,7 +10,6 @@ class LocalitiesService {
         method: 'GET',
         params: districtId && districtId > -1 ? { district_id: districtId } : {}
     })
-	console.log('localities', data)
     return data
 }
 }

@@ -5,7 +5,6 @@ import { EngineButton } from '@/components/Engine/Button'
 import { EngineHeader } from '../components/engine-header'
 import { EngineTheory } from '../components/engine-theory'
 import { BackArrowIcon } from '../components/icons'
-import { Menu } from '../dynamic-imports'
 
 
 import type { LessonListItem } from '../types/types'
@@ -18,7 +17,7 @@ interface TheoryScreenProps {
 	totalLessons: number
 	isMenuOpen: boolean
 	onMenuClick: () => void
-	onHelpClick: () => void
+	handelBreakBtnClick: () => void
 	hasTasks: boolean
 	isLastLesson: boolean
 	isCountdownExpired: boolean
@@ -34,7 +33,7 @@ export function TheoryScreen({
 	totalLessons,
 	isMenuOpen,
 	onMenuClick,
-	onHelpClick,
+	handelBreakBtnClick,
 	hasTasks,
 	isLastLesson,
 	isCountdownExpired,
@@ -50,7 +49,7 @@ export function TheoryScreen({
 				<EngineHeader
 					handleMenuClick={onMenuClick}
 					menuIsOpen={isMenuOpen}
-					handleHelpMenuOpen={onHelpClick}
+					handelBreakBtnClick={handelBreakBtnClick}
 					currentTrainerIndex={lessonIndex}
 					totalTrainersCount={totalLessons}
 				/>
@@ -94,7 +93,6 @@ export function TheoryScreen({
 					</div>
 				</footer>
 			</div>
-			<Menu isOpen={isMenuOpen} onClose={()=>"test"} />
 		</div>
 	)
 }

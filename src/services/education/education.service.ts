@@ -58,7 +58,7 @@ class EducationService {
 			url: API_URL.ingModules(),
 			method: 'GET',
 		})
-		console.log('getModules',data)
+
 		return data
 	}
     async getModuleById(id:Id) {

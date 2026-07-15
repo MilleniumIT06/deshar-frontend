@@ -23,10 +23,6 @@ export const TableItem = ({ doneModules, name, placeNumber, points, time, type, 
 
 	const placeClass = placeClasses[placeNumber as keyof typeof placeClasses] || 'tableItem__place_other'
 
-	if (type === 'parallel' && !parallelClass) {
-		// eslint-disable-next-line no-console
-		console.warn(`TableItem: parallelClass is required for type "parallel" (placeNumber: ${placeNumber})`)
-	}
 	const correctedTime = minutesToHoursAndMinutes(time)
 	return (
 		<tr className="tableItem">

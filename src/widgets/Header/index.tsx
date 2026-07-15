@@ -26,12 +26,7 @@ export const Header = () => {
 	const dispatch = useAppDispatch()
 	const router = useRouter()
 	const { isLoading, profileData } = useProfile()
-	useEffect(() => {
-		if (profileData) {
-			// eslint-disable-next-line no-console
-			console.log('User data in Header:', profileData.data.user)
-		}
-	}, [profileData])
+
 	useEffect(() => {
 		if (burgerOpen) {
 			const scrollY = window.scrollY

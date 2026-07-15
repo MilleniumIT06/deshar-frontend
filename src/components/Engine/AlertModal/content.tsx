@@ -1,7 +1,7 @@
 import { EngineButton } from '../Button'
 import './styles.scss'
 
-export const AlertModalContent = () => {
+export const AlertModalContent = ({onCancelBtnClick,onYesBtnClick}:{onYesBtnClick:()=>void;onCancelBtnClick:()=>void;}) => {
 	return (
 		<div className="alert-modal">
 			<div className="alert-modal__icon-wrapper">
@@ -23,10 +23,10 @@ export const AlertModalContent = () => {
 			<h4 className="alert-modal__title">Вы действительно хотите завершить тестирование?</h4>
 
 			<div className="alert-modal__actions">
-				<EngineButton variant="third" className="alert-modal__button">
+				<EngineButton variant="third" className="alert-modal__button" onClick={onYesBtnClick}>
 					Да
 				</EngineButton>
-				<EngineButton variant="secondary" className="alert-modal__button">
+				<EngineButton variant="secondary" className="alert-modal__button" onClick={onCancelBtnClick}>
 					Отмена
 				</EngineButton>
 			</div>

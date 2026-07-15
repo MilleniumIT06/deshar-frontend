@@ -86,7 +86,7 @@ const { regions, isLoading: isRegionsLoading } = useGetRegions()
 						region_id: regions?.find(region => region.name === 'Ингушетия')?.id || 1,
 						user_type: formData.user_type,
 					}
-					console.log('TeacherRegisterData',completeData)
+					return completeData
 				}
 		}
 

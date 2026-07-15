@@ -11,14 +11,11 @@ export function useSignUp() {
 	const { mutate, isPending, isSuccess } = useMutation({
 		mutationKey: ['create user'],
 		mutationFn: (data: RegistrationCompleteData) => registerService.register(data),
-		onSuccess: (data) => {
-			console.log('useSignUp data:', data)
+		onSuccess: () => {
 			router.replace('/')
 		},
 		onError(error) {
-			// console.log(error)
 			if (error.message) {
-				console.log('useSignUp error:', error.message)
 				alert('error')
 			} else {
 				alert('Ошибка при регистрации')

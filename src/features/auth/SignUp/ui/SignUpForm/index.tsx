@@ -25,8 +25,6 @@ export const SignUpForm = () => {
 		resolver: zodResolver(signUpUserSchema),
 		mode: 'onChange',
 	})
-	// const { roles ,isLoading} = useGetRoles()
-	// console.log('roles', roles)
 	const onSubmit = async (data: signUpUserFormData) => {
 		if (isValid) {
 			dispatch(

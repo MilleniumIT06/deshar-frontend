@@ -1,7 +1,7 @@
 'use client'
 /* eslint-disable react-hooks/exhaustive-deps */
 import cn from 'classnames'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 
 import { type RootState } from '@/app/_store'
@@ -12,18 +12,20 @@ import {
 	resetTrainers,
 	setStatus,
 	setIsMenuOpen,
-	setHelpModalOpen,
 	setSupportModalOpen,
 	setTheme,
 	changeMode,
+	setAlertModalOpen,
+	resetState
 } from '@/entities/engine/model/engine.slice'
 import { resetScore, addPoints, subtractPoints } from '@/entities/engine/model/scoring.slice'
 import { initTimer } from '@/entities/engine/model/timer.slice'
+import { Loader } from '@/shared/ui/Loader'
 
 import './styles/styles.scss'
 
 import { AUTO_ADVANCE_DELAY_MS, PRACTICE_UNLOCK_DELAY_SECONDS } from './constants'
-import { EngineFinishScreen } from './dynamic-imports'
+import { AlertModal, EngineFinishScreen, Menu, SupportModal } from './dynamic-imports'
 import { useEngineNavigation } from './hooks/useEngineNavigation'
 import { useLessonPracticeData } from './hooks/useLessonPracticeData'
 import { PracticeScreen } from './views/practice.view'
@@ -32,11 +34,13 @@ import { TheoryScreen } from './views/theory.view'
 import type { TrainerRef, TrainersEngineProps } from './types/types'
 
 
+
 export const TrainersEngine = ({ data: lessons, config, engineStatus }: TrainersEngineProps) => {
+	const router = useRouter()
 	const { themeName, time } = config
 	const dispatch = useAppDispatch()
 
-	const { status, currentTrainerIndex, isMenuOpen, isHelpOpen, isSupportModalOpen, mode, currentLessonIndex } =
+	const { status, currentTrainerIndex, isMenuOpen, isAlertModalOpen, isSupportModalOpen, mode, currentLessonIndex } =
 		useAppSelector((state: RootState) => state.engine)
 	const { isFinished } = useAppSelector((state: RootState) => state.timer)
 
@@ -99,14 +103,17 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 			dispatch(resetScore())
 		}
 	}
+	const handleBreakLearningProcess = ()=> {
+		trainerRef.current?.handleReset()
+		dispatch(resetState())
+router.back()
+	}
 
 	const changeStatus = (value: 'idle' | 'error' | 'success') => dispatch(setStatus(value))
 	const handleMenuToggle = () => dispatch(setIsMenuOpen(!isMenuOpen))
-	const handleMenuClose = () => dispatch(setIsMenuOpen(false))
-	const handleHelpMenuClick = () => dispatch(setHelpModalOpen(!isHelpOpen))
 	const handleSupportModalClick = () => dispatch(setSupportModalOpen(!isSupportModalOpen))
 	const handleTimerEnd = () => dispatch(setStatus('error'))
-
+	const handleBreakBtnClick = ()=> dispatch(setAlertModalOpen(!isAlertModalOpen))
 	const handleSuccess = () => {
 		if (!activeTask) return
 		dispatch(addPoints(uniqueTask?.task.xp_reward || 0))
@@ -131,6 +138,7 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 
 	if (mode === 'theory' && currentLesson) {
 		return (
+			<>
 			<TheoryScreen
 				themeName={themeName}
 				lesson={currentLesson}
@@ -138,7 +146,7 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 				totalLessons={lessons.length}
 				isMenuOpen={isMenuOpen}
 				onMenuClick={handleMenuToggle}
-				onHelpClick={handleHelpMenuClick}
+				handelBreakBtnClick={handleBreakBtnClick}
 				hasTasks={currentLesson.total_tasks > 0}
 				isLastLesson={isLastLesson}
 				isCountdownExpired={isCountdownExpired}
@@ -146,27 +154,28 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 				onStartPractice={startPractice}
 				onTheoryNext={handleTheoryNext}
 			/>
+			<Menu isOpen={isMenuOpen} onClose={()=>"test"} content="testth"/>
+				<AlertModal isOpen={isAlertModalOpen} onClose={handleBreakBtnClick} onCancelBtnClick={handleBreakBtnClick} onYesBtnClick={handleBreakLearningProcess}/>
+				</>
 		)
 	}
 
 	const isPracticeMode = currentLesson && currentLesson.total_tasks > 0 && mode === 'practice'
 	if (isPracticeMode) {
-		if (isTaskListLoading) return <div>Загрузка заданий...</div>
-		if (isTaskDetailLoading) return <div>Загрузка задания...</div>
-		if (isTaskDetailError) return <div>Не удалось загрузить задание</div>
-		if (!uniqueTask) return <div>Задание не найдено</div>
+		if (isTaskDetailLoading||isTaskListLoading) return <div style={{height:"100vh",display:"flex",justifyContent:"center",alignItems:"center"}}><Loader/></div>
+		if (!uniqueTask||isTaskDetailError) return <div>Не удалось загрузить задание</div>
 
 		return (
+			<>
+
 			<PracticeScreen
+				onBreakBtnClick={handleBreakBtnClick}
 				themeName={themeName}
 				currentTrainerIndex={currentTrainerIndex}
 				totalTasks={currentLesson.total_tasks}
 				isMenuOpen={isMenuOpen}
 				onMenuClick={handleMenuToggle}
-				onMenuClose={handleMenuClose}
-				onHelpClick={handleHelpMenuClick}
 				onSupportClick={handleSupportModalClick}
-				isHelpOpen={isHelpOpen}
 				isSupportModalOpen={isSupportModalOpen}
 				uniqueTask={uniqueTask}
 				status={status}
@@ -178,7 +187,11 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 				onResetButtonClick={onResetButtonClick}
 				onTimerEnd={handleTimerEnd}
 				timerRef={timerRef}
-			/>
+				/>
+				<Menu isOpen={isMenuOpen} onClose={()=>"test"} content="testpr"/>
+					<AlertModal isOpen={isAlertModalOpen} onClose={handleBreakBtnClick} onCancelBtnClick={handleBreakBtnClick} onYesBtnClick={handleBreakLearningProcess}/>
+							<SupportModal isOpen={isSupportModalOpen} onClose={handleSupportModalClick}/>
+				</>
 		)
 	}
 

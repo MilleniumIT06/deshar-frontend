@@ -11,7 +11,6 @@ interface TrainerTitleProps {
 
 export const TrainerTitle = ({ title, audio, className = '' }: TrainerTitleProps) => {
 	const {isLoading,togglePlay} = useAudioPlayer(`${API_URL.files()}${audio}`);
-	console.log(`${API_URL.files()}${audio}`)
 	return (
 		<div className={`trainer-title ${className}`}>
 			{audio ? <button

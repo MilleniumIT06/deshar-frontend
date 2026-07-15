@@ -55,8 +55,7 @@ export const useAudioPlayer = (audioUrl: string | null) => {
 				setIsLoading(true);
 			}
 
-			audio.play().catch((error) => {
-				console.error('Ошибка воспроизведения аудио:', error);
+			audio.play().catch(() => {
 				setIsLoading(false);
 			});
 		}
