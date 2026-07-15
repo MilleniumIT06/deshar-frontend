@@ -73,7 +73,6 @@ color: var(--color-text);
 }
 .EngineTheory {
 	width: 100%;
-	text-align: center;
 	max-width: 900px;
 	min-height: 60vh;
 
@@ -86,7 +85,7 @@ color: var(--color-text);
 	&__title {
 		width: 100%;
 		margin: 0 0 32px;
-
+text-align: center;
 		font-family: var(--font-family);
 		font-weight: 700;
 		font-size: 24px;
@@ -125,6 +124,13 @@ color: var(--color-text);
 		margin: 0 0 32px;
 
 		font-family: var(--font-family);
+		font-weight: 700;
+		line-height: 150%;
+		color: var(--neutral-darkest);
+		}
+		ul,ol {
+			padding-left: 5%;
+			font-family: var(--font-family);
 		font-weight: 700;
 		line-height: 150%;
 		color: var(--neutral-darkest);

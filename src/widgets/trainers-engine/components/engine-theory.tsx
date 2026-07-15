@@ -8,7 +8,7 @@ import { TrainerTitle } from '@/shared/ui/TrainerTitle';
 import './../styles/styles.scss';
 
 const sanitizeConfig = {
-    ALLOWED_TAGS:['p','h2','h3','h4','h5','h6','span','div'],
+    ALLOWED_TAGS:['p','h2','h3','h4','h5','h6','span','div','blockquote','ul', 'ol', 'li','strong','em','u','s'],
     ALLOWED_ATTR:['class'],
 }
 export const EngineTheory = ({
