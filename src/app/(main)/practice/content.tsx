@@ -24,7 +24,6 @@ export const PracticeContent = () => {
 	// 			setStatus('engineSuccess')
 	// 		} catch {
 	// 			setStatus('engineError')
-	// 			// console.log(e)
 	// 		}
 	// 	}
 

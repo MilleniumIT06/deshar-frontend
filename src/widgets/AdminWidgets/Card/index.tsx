@@ -104,7 +104,6 @@ export const Card = ({
 	const { hasRole } = useRole()
 	const hasFilters = filters.length > 0
 	const shouldShowFilters = showFilters && hasFilters
-	// console.log("isParallel:", isParallel);
 	return (
 		<div className="Card">
 			<div className="Card__inner">

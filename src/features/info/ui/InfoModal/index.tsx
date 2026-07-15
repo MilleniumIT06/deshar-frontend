@@ -1,5 +1,4 @@
 'use client'
-/* eslint-disable no-console */
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery'
 import BottomSheet from '@/widgets/BottomSheet'
 import { Modal } from '@/widgets/Modal/ui'
@@ -16,12 +15,11 @@ interface InfoModalProps {
 export const InfoModal = ({ isOpen, onClose, type = 'success', onFail, onSuccess }: InfoModalProps) => {
 	const isMobile = useMediaQuery('(max-width: 576px)')
 	const handleSuccess = () => {
-		console.log('success')
 		onSuccess()
 		onClose()
 	}
 	const handleFail = () => {
-		console.log('fail')
+
 		onFail()
 		onClose()
 	}

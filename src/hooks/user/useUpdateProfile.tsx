@@ -23,7 +23,7 @@ export function useUpdateProfile() {
         },
 
         onError: (error) => {
-            console.log(error);
+
             alert('Ошибка при обновлении профиля');
         }
     });

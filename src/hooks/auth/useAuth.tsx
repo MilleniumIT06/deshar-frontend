@@ -23,7 +23,6 @@ export function useAuth() {
 			router.replace('/dashboard')
 		},
 		onError: (err: { message: string }) => {
-			// console.error(err.message || 'Ошибка при авторизации');
 			alert(err.message || 'Ошибка при авторизации')
 		},
 	})

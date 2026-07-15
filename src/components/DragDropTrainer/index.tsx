@@ -42,8 +42,7 @@ export const DragDropTrainer = ({ data }: { data: IMissingWordDndTask }) => {
 		data: { id: data.id, missingWords: data.missingWords, sentence: data.sentence, type: data.type },
 		slots: slots,
 		onSuccess: handleSuccess,
-		// eslint-disable-next-line no-console
-		onError: () => console.log('error'),
+		onError: () => 'error',
 	})
 	const disableMoveBox = (value: string) => {
 		if (slots.find(item => item.current === value)) {

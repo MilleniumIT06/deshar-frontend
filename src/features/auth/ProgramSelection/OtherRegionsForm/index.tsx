@@ -82,12 +82,11 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 			// 	role_id: 1,
 			// 	user_type: 'student',
 			// }
-			// console.log('Other form data:', completeData)
 			// dispatch(updateFormData(completeData))
 			// mutate(completeData)
 			// dispatch(submitForm())
 		} catch (error) {
-			// console.error('Form submission error:', error)
+
 			return error
 		} finally {
 			// handleReset()
@@ -102,8 +101,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 
 	const { countries, isLoading: isCountriesLoading, isError: isCountriesError } = useGetCountries()
 	const { cities, isLoading: isCitiesLoading, isError: isCitiesError } = useGetCities()
-	// console.log(countries)
-	// console.log(schools)
+
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="ProgramSelectionForm__form">
 			<div className="ProgramSelectionForm__field">

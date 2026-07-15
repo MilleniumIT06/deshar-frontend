@@ -8,7 +8,6 @@ class DistrictsService {
 			url: API_URL.districts(),
 			method: 'GET',
 		})
-		console.log('districts', data)
 		return data
 	}
 }

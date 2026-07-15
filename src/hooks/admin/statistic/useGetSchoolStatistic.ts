@@ -11,6 +11,6 @@ export const useGetSchoolStatistic = () => {
 		queryFn: () => statsService.getAdminSchoolStats(),
 		staleTime: 10 * 60 * 1000,
 	})
-    console.log(schoolStatisticAdminData,'schoolClassesData')
+
 	return { schoolStatisticAdminData, isLoading, isError, error }
 }

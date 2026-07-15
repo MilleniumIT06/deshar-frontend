@@ -10,8 +10,8 @@ export const useExportSchoolData = () => {
         mutationFn: () => teachersService.exportSchoolDataAdmin(),
         onSuccess: (data) => {
             if (!data.success || !data.csv) {
-                console.error('Экспорт завершился неудачей на стороне сервера');
-                return;
+
+                return 'error';
             }
             const BOM = '\uFEFF';
             const csvContent = BOM + data.csv;
@@ -28,7 +28,7 @@ export const useExportSchoolData = () => {
             URL.revokeObjectURL(url);
         },
         onError: (error) => {
-            console.error('Ошибка при скачивании CSV:', error);
+           return error
         }
     })
 

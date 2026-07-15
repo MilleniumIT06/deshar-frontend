@@ -13,7 +13,7 @@ export const AllSchoolStudentsPageContent = () => {
     return (
         <main className="PageAdmin">
             <Card
-                resetFilters={()=>console.log('resetfilters')}
+                resetFilters={()=>'resetfilters'}
                 title={`Все ученики школы ${schoolClassesData?.meta.school_name}`}
                 valueFirst={`${schoolClassesData?.meta.total} учеников`}
                 csv={true}
@@ -24,7 +24,7 @@ export const AllSchoolStudentsPageContent = () => {
                {isLoading? <Loader/>:!isError&& schoolClassesData&&schoolClassesData.data.length>0 ? <Table<any, any>
                     data={schoolClassesData.data}
                     getColumns={() => getSchoolAllStudents()}
-                    handleRowClick={()=>console.log('row clie=c')}
+                    handleRowClick={()=>'row clie=c'}
                 />:"Error"}
             </Card>
         </main>

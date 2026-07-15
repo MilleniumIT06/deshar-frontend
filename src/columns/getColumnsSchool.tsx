@@ -66,7 +66,6 @@ export const getColumnsSchool = ({ role }: { role?: RoleName }) => [
 	//     const value = info.getValue();
 	//     // Пустая строка означает, что исходное значение было null/undefined
 	//     if (value === '') {
-	//       console.log(role);
 	//       return null
 	//     };
 

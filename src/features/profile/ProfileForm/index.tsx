@@ -15,10 +15,7 @@ import './styles.scss';
 export const ProfileForm = () => {
     const {profileData,isFetching} = useProfile()
     const {isPending,updateProfile} = useUpdateProfile()
-    useEffect(()=> {
-        console.log(profileData)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[isFetching])
+
    const {
         register,
         handleSubmit,
@@ -42,7 +39,6 @@ useEffect(() => {
     }
 }, [profileData, reset]);
         const onSubmit = async (data: profileFormData) => {
-            console.log('updatedasdsadasdaspp',data)
             updateProfile(data)
         }
     return (
