@@ -17,7 +17,8 @@ export const EngineFooter = ({
 	onTimerEnd: () => void
 	onClickBtn: () => void
 }) => {
-	const { theme, status } = useAppSelector(state => state.engine)
+	const theme = useAppSelector(state => state.engine.theme)
+const status = useAppSelector(state => state.engine.status)
 	const [isBlocked, setIsBlocked] = useState(true)
 
 	useEffect(() => {

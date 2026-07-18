@@ -1,5 +1,6 @@
 import cn from 'classnames'
 import { m, AnimatePresence } from 'motion/react'
+import React from 'react'
 
 import { ErrorFooter } from '@/components/Engine/Footer/error'
 import { SuccessFooter } from '@/components/Engine/Footer/success'
@@ -38,7 +39,7 @@ interface PracticeScreenProps {
 	timerRef: React.RefObject<TimerRef|null>
 }
 
-export function PracticeScreen({
+export const PracticeScreen=React.memo(function PracticeScreen({
 	themeName,
 	currentTrainerIndex,
 	totalTasks,
@@ -109,4 +110,4 @@ export function PracticeScreen({
 			</div>
 		</div>
 	)
-}
+})

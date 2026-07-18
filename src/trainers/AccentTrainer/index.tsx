@@ -15,14 +15,14 @@ interface IVariant {
 interface AccentTrainerProps extends TrainerCommonProps {
 	payload: {
 		variants: IVariant[]
-		correctVariantIds: (number | string)[]
+		correct_variant_ids: (number | string)[]
 	}
 }
 export const AccentTrainer = forwardRef(
 	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex,audio }: AccentTrainerProps, ref) => {
 		const { selectedIds, handleSelect } = useLetterClickTrainer({
 			ref,
-			correctIds: payload.correctVariantIds,
+			correctIds: payload.correct_variant_ids,
 			onSuccess,
 			onError,
 			changeStatus,

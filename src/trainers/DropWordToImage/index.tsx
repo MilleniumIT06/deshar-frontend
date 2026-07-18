@@ -15,12 +15,12 @@ import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
 interface DropWordToImageProps extends TrainerCommonProps {
 	payload: {
 		items: {
-			id: number
+			id: string
 			imageUrl: string
-			correctVariantId: number
+			correctVariantId: string
 		}[]
 		variants: {
-			id: number
+			id: string
 			value: string
 		}[]
 	}
@@ -36,7 +36,7 @@ export const DropWordToImage = forwardRef<TrainerRef, DropWordToImageProps>(
 			ref,
 		})
 
-		const getSelectedValue = (itemId: number) => {
+		const getSelectedValue = (itemId: string) => {
 			const variantId = selections[itemId]
 			return payload.variants.find(v => v.id === variantId)?.value || null
 		}

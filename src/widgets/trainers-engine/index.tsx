@@ -42,7 +42,7 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 
 	const { status, currentTrainerIndex, isMenuOpen, isAlertModalOpen, isSupportModalOpen, mode, currentLessonIndex } =
 		useAppSelector((state: RootState) => state.engine)
-	const { isFinished } = useAppSelector((state: RootState) => state.timer)
+	const isFinished = useAppSelector((state: RootState) => state.timer.isFinished)
 
 	const { moduleId, pieceId } = useParams<{ moduleId: string; pieceId: string }>()
 	const currentLesson = lessons ? lessons[currentLessonIndex] : null
@@ -164,7 +164,7 @@ router.back()
 	if (isPracticeMode) {
 		if (isTaskDetailLoading||isTaskListLoading) return <div style={{height:"100vh",display:"flex",justifyContent:"center",alignItems:"center"}}><Loader/></div>
 		if (!uniqueTask||isTaskDetailError) return <div>Не удалось загрузить задание</div>
-
+		console.log('debug-task:',uniqueTask)
 		return (
 			<>
 

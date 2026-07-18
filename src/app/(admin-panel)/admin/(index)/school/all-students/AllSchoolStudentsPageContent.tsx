@@ -8,21 +8,21 @@ import { Loader } from "@/shared/ui/Loader";
 import { Card } from "@/widgets/AdminWidgets/Card";
 
 export const AllSchoolStudentsPageContent = () => {
-    const {schoolClassesData,isLoading,isError} = useGetAllSchoolStudents()
+    const {allSchoolStudents,isAllSchoolStudentsError,isAllSchoolStudentsLoading} = useGetAllSchoolStudents()
     const { exportData, isExporting } = useExportSchoolData();
     return (
         <main className="PageAdmin">
             <Card
                 resetFilters={()=>'resetfilters'}
-                title={`Все ученики школы ${schoolClassesData?.meta.school_name}`}
-                valueFirst={`${schoolClassesData?.meta.total} учеников`}
+                title={`Все ученики школы ${allSchoolStudents?.meta.school_name}`}
+                valueFirst={`${allSchoolStudents?.meta.total} учеников`}
                 csv={true}
 				csvIsLoading={isExporting}
 				onClickCsvBtn={()=> exportData()}
               >
                 {/* <SchoolsTable data={SchoolsMockData} link="/schools/" /> */}
-               {isLoading? <Loader/>:!isError&& schoolClassesData&&schoolClassesData.data.length>0 ? <Table<any, any>
-                    data={schoolClassesData.data}
+               {isAllSchoolStudentsLoading? <Loader/>:!isAllSchoolStudentsError&& allSchoolStudents&&allSchoolStudents.data.length>0 ? <Table<any, any>
+                    data={allSchoolStudents.data}
                     getColumns={() => getSchoolAllStudents()}
                     handleRowClick={()=>'row clie=c'}
                 />:"Error"}

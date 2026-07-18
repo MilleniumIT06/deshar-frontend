@@ -1,6 +1,6 @@
 'use client'
 import dynamic from 'next/dynamic'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { ResultsCard } from '@/components/ResultsCard'
 import { useProfile } from '@/hooks/user/useProfile'

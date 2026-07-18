@@ -53,8 +53,8 @@ export const useDndTrainer = <T extends TrainerItem>({
 	const handleDragEnd = (event: DragEndEvent) => {
 		const { active, over } = event
 		if (over && !isSubmitted) {
-			const variantId = Number(active.id)
-			const itemId = Number(over.id)
+			const variantId = active.id
+			const itemId = over.id
 
 			setSelections(prev => ({
 				...prev,

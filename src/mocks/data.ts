@@ -802,7 +802,7 @@ export const testCardMock: {
 	// hint - подсказка
 }[] = [
 	{
-		type: 'accent-trainer',
+		type: 'accent_trainer',
 		scoring: {
 			points: 7,
 			penaltyPerMistake: 3,
@@ -821,7 +821,7 @@ export const testCardMock: {
 		subTitle: 'Выберите букву, на которую падает ударение в слове',
 	},
 	{
-		type: 'single-select-image-quiz',
+		type: 'single_select_image_quiz',
 		payload: {
 			variants: [
 				{
@@ -850,7 +850,7 @@ export const testCardMock: {
 		},
 	},
 	{
-		type: 'fix-sentence',
+		type: 'fix_sentence',
 		payload: {
 			sentence: 'Мы купили {{1}} яблоки.',
 			words: ['красное', 'красные', 'красную'],
@@ -864,7 +864,7 @@ export const testCardMock: {
 		subTitle: 'Нажмите на слово, которое нужно исправить в предложении и подберите правильный вариант',
 	},
 	{
-		type: 'alphabetic-sorter',
+		type: 'alphabetic_sorter',
 		title: 'Расставь слова в алфавитном порядке',
 		subTitle: 'Перетащите слова в правильные последовательности',
 		scoring: {
@@ -897,7 +897,7 @@ export const testCardMock: {
 		},
 	},
 	{
-		type: 'category-matcher',
+		type: 'category_matcher',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -917,7 +917,7 @@ export const testCardMock: {
 		title: 'Соедини слова с нужной категорией',
 	},
 	{
-		type: 'colorize-words',
+		type: 'colorize_words',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -999,7 +999,7 @@ export const testCardMock: {
 		subTitle: 'Выбери слова, которые подходят в пропуски и составь вывод',
 	},
 	{
-		type: 'delete-extra-letter',
+		type: 'delete_extra_letter',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -1021,7 +1021,7 @@ export const testCardMock: {
 		subTitle: 'Нажмите на лишние буквы в слове чтобы получить правильное написание',
 	},
 	{
-		type: 'drop-word-to-image',
+		type: 'drop_word_to_image',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -1041,7 +1041,7 @@ export const testCardMock: {
 		title: 'Перемести слова к нужной картинке',
 	},
 	{
-		type: 'drop-word-to-text',
+		type: 'drop_word_to_text',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -1083,7 +1083,7 @@ export const testCardMock: {
 		subTitle: 'Перетащи подходящее слово к каждому тексту',
 	},
 	{
-		type: 'multi-quiz',
+		type: 'multi_quiz',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -1101,7 +1101,7 @@ export const testCardMock: {
 		subTitle: 'Для чего люди используют речь?',
 	},
 	{
-		type: 'reorder-items',
+		type: 'reorder_items',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -1120,7 +1120,7 @@ export const testCardMock: {
 		subTitle: 'Перетащите буквы в правильной последовательности',
 	},
 	{
-		type: 'sequence-builder',
+		type: 'sequence_builder',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -1162,7 +1162,7 @@ export const testCardMock: {
 		subTitle: 'Перетащите части истории из правой колонки в левую в правильной последовательности',
 	},
 	{
-		type: 'single-quiz',
+		type: 'single_quiz',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -1180,7 +1180,7 @@ export const testCardMock: {
 		subTitle: 'Какой хук используется для хранения состояния?',
 	},
 	{
-		type: 'word-by-image',
+		type: 'word_by_image',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -1202,7 +1202,7 @@ export const testCardMock: {
 		subTitle: 'Собери слово из доступных букв',
 	},
 	{
-		type: 'word-picker',
+		type: 'word_picker',
 		scoring: {
 			points: 5,
 			penaltyPerMistake: 1,
@@ -1215,7 +1215,7 @@ export const testCardMock: {
 		},
 	},
 	{
-		type: 'drag-word-to-pocket',
+		type: 'drag_word_to_pocket',
 		scoring: {
 			penaltyPerMistake: 1,
 			points: 5,
@@ -1247,7 +1247,7 @@ export const testCardMock: {
 		title: 'Перетащи слово к нужной картинке',
 	},
 	{
-		type: 'phrase-image-matcher',
+		type: 'phrase_image_matcher',
 		scoring: {
 			penaltyPerMistake: 1,
 			points: 5,

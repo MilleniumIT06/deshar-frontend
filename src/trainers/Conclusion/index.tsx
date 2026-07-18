@@ -97,7 +97,7 @@ export const Conclusion = forwardRef(
 				const { active, over } = event
 				if (!over) return
 
-				const slotId = Number(over.id)
+				const slotId = over.id
 				const draggedValue = active.data.current?.value
 				if (!draggedValue) return
 
