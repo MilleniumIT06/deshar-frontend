@@ -1,15 +1,29 @@
 import { Id } from "./types";
-export type RoleName =
-'Супер-админ' |
-'Админ' |
-'Модератор' |
-'Представитель министерства' |
-'Пр. Управления образования' |
-'Представитель школы' |
-'Директор школы'|
-'Учитель'|
-'Ученик'|
- null
+export const ROLES = {
+    SUPER_ADMIN: 'Супер-админ',
+    ADMIN: 'Админ',
+    MODERATOR: 'Модератор',
+    MINISTRY: 'Представитель министерства',
+    EDUCATION_MGMT: 'Пр. Управления образования',
+    SCHOOL_REP: 'Представитель школы',
+    PRINCIPAL: 'Директор школы',
+	VICE_PRINCIPAL: 'Завуч',
+    TEACHER: 'Учитель',
+    STUDENT: 'Ученик',
+} as const;
+export const ADMIN_PANEL_ROLES: RoleName[] = [
+    ROLES.SUPER_ADMIN,
+    ROLES.ADMIN,
+	ROLES.MODERATOR,
+	ROLES.MINISTRY,
+    ROLES.TEACHER,
+	ROLES.EDUCATION_MGMT,
+	ROLES.SCHOOL_REP,
+	ROLES.PRINCIPAL,
+	ROLES.VICE_PRINCIPAL
+];
+
+export type RoleName = typeof ROLES[keyof typeof ROLES] | null;
 
 export type UserType = 'student' | 'teacher' | 'parent' | 'admin'|'department'|'ministry'|'vicePrincipal'|'principal'|'manager'
 export interface UserProfileResponse {

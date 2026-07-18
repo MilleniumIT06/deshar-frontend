@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { User } from './shared/types/user.types'
+import { ADMIN_PANEL_ROLES, User } from './shared/types/user.types'
 
 export async function proxy(request: NextRequest) {
     const token = request.cookies.get('jwt_token')?.value
@@ -48,11 +48,13 @@ export async function proxy(request: NextRequest) {
                 //         return NextResponse.redirect(new URL('/not-confirmed', request.url))
                 //     }
                 // }
-                // if(user.user_type==="admin"&&user.role.name==="Учитель") {
-                //     if(pathname !== '/admin') {
-                //         return NextResponse.redirect(new URL('/admin', request.url))
-                //     }
-                // }
+               const hasAdminAccess = ADMIN_PANEL_ROLES.includes(user.role.name);
+
+                if (hasAdminAccess || user.user_type === "admin") {
+                    if (!pathname.startsWith('/admin')) {
+                        return NextResponse.redirect(new URL('/admin', request.url));
+                    }
+                }
                 if(user.user_type==="student"&&user.role.name==="Ученик") {
                     if(pathname === '/admin') {
                         return NextResponse.redirect(new URL('/dashboard', request.url))

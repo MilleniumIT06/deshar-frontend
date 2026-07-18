@@ -12,7 +12,7 @@ interface UseLetterClickTrainerProps {
 
 export function useLetterClickTrainer({
 	ref,
-	correctIds,
+	correctIds=[],
 	onSuccess,
 	onError,
 	changeStatus,

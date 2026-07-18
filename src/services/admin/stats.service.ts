@@ -35,7 +35,7 @@ interface ISchoolStatistic {
 		generated_at:string;
 	}
 }
-interface ISchoolAllStudents extends StudentCommonData {
+export interface ISchoolAllStudents extends StudentCommonData {
 progress_percentage:number;
 avatar:string;
 class:string;

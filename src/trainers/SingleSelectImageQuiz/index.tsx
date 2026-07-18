@@ -18,14 +18,14 @@ interface IVariant {
 interface SingleSelectImageQuizProps extends TrainerCommonProps {
 	payload: {
 		variants: IVariant[]
-		correctVariantId: number
+		correct_variant_id: number
 	}
 }
 export const SingleSelectImageQuiz = forwardRef<TrainerRef, SingleSelectImageQuizProps>(
 	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle,audio }, ref) => {
 		const { selected, isSubmitted, handleSelect } = useQuizLogic<number>({
 			ref,
-			correctValue: payload.correctVariantId,
+			correctValue: payload.correct_variant_id,
 			onSuccess,
 			onError,
 			changeStatus,
@@ -48,13 +48,13 @@ export const SingleSelectImageQuiz = forwardRef<TrainerRef, SingleSelectImageQui
 								key={`SingleSelectImageQuizVariant${item.id}`}
 								imageUrl={item.imageUrl}
 								error={
-									isSubmitted && selected === item.id && item.id !== payload.correctVariantId
+									isSubmitted && selected === item.id && item.id !== payload.correct_variant_id
 								}
 								isCorrect={
-									isSubmitted && selected === item.id && item.id === payload.correctVariantId
+									isSubmitted && selected === item.id && item.id === payload.correct_variant_id
 								}
 								isIncorrect={
-									isSubmitted && selected !== item.id && item.id !== payload.correctVariantId
+									isSubmitted && selected !== item.id && item.id !== payload.correct_variant_id
 								}
 								selected={selected === item.id}
 								onClick={() => handleVariantClick(item.id)}
