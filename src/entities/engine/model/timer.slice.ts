@@ -40,8 +40,13 @@ export const timerSlice = createSlice({
 				state.isActive = true
 			}
 		},
+		resetTimer: state => {
+			state.timeLeft = state.initialTime
+			state.isActive = false
+			state.isFinished = false
+		},
 	},
 })
 
-export const { initTimer, tick, stopTimer, resumeTimer } = timerSlice.actions
+export const { initTimer, tick, stopTimer, resumeTimer,resetTimer } = timerSlice.actions
 export default timerSlice.reducer

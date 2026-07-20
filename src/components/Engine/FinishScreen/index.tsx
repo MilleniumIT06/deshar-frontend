@@ -4,11 +4,13 @@ import Image from 'next/image'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { resetState } from '@/entities/engine/model/engine.slice'
+import { resetScoring } from '@/entities/engine/model/scoring.slice'
 
 
 import './styles.scss'
 import { BreakBtn } from '../BreakBtn'
 import { EngineButton } from '../Button'
+
 
 export const EngineFinishScreen = () => {
 	const { totalScore } = useAppSelector(state => state.scoreReducer)
@@ -16,6 +18,7 @@ export const EngineFinishScreen = () => {
 
 	const reset = () => {
 	dispatch(resetState())
+	dispatch(resetScoring())
 	}
 	return (
 		<section className="finish-screen">

@@ -14,12 +14,11 @@ import {
 	setIsMenuOpen,
 	setSupportModalOpen,
 	setTheme,
-	changeMode,
 	setAlertModalOpen,
 	resetState
 } from '@/entities/engine/model/engine.slice'
-import { resetScore, addPoints, subtractPoints } from '@/entities/engine/model/scoring.slice'
-import { initTimer } from '@/entities/engine/model/timer.slice'
+import { addPoints, subtractPoints, resetCurrentScore } from '@/entities/engine/model/scoring.slice'
+import { initTimer, resetTimer } from '@/entities/engine/model/timer.slice'
 import { Loader } from '@/shared/ui/Loader'
 
 import './styles/styles.scss'
@@ -85,22 +84,21 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 	}, [status, currentTrainerIndex])
 
 	const onMainButtonClick = () => {
-		const isFinalLesson = currentLessonIndex === lessons.length - 1
-		const hasNoActiveTrainer = mode === 'practice' && currentTrainerIndex === undefined
-
-		if (isFinalLesson) {
-			dispatch(setStatus('finish'))
-		} else if (hasNoActiveTrainer) {
-			dispatch(changeMode('theory'))
-		}
-		trainerRef.current?.handleCheck()
-	}
+    if (currentLessonIndex === lessons.length - 1) {
+		// dispatch(addCurrentToTotalScore())
+        dispatch(setStatus('finish'))
+    }
+    trainerRef.current?.handleCheck()
+}
 
 	const onResetButtonClick = () => {
 		trainerRef.current?.handleReset()
 		if (isFinished && status === 'error') {
 			dispatch(resetTrainers())
-			dispatch(resetScore())
+			dispatch(resetCurrentScore())
+			dispatch(setStatus("idle"))
+			dispatch(resetTimer())
+			dispatch(initTimer(time))
 		}
 	}
 	const handleBreakLearningProcess = ()=> {
