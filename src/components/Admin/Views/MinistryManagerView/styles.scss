@@ -1,0 +1,13 @@
+.MinistryManagerView {
+    width: 100%;
+    &__statBlocks{
+        display: flex;
+        align-items: start;
+        gap:30px
+    }
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+}

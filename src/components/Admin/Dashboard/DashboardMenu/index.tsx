@@ -6,6 +6,7 @@ import { Logo } from '@/shared/ui/Logo'
 
 import { Avatar } from '../../Avatar'
 import './styles.scss'
+import { MinistryManagerDashboardMenuView } from '../Views/ministry-manager.dashboard-menu.view'
 import { SchoolManagerDashboardMenuView } from '../Views/school-manager.dashboard-menu.view'
 
 
@@ -22,6 +23,9 @@ export const DashboardMenu = () => {
 					<div className="DashboardMenu__content">
 						{
 							hasRole("Представитель школы") &&<SchoolManagerDashboardMenuView/>
+						}
+						{
+							hasRole("Представитель министерства") &&<MinistryManagerDashboardMenuView/>
 						}
 					</div>
 				</div>

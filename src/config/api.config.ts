@@ -25,7 +25,7 @@ export const API_URL = {
 
 	// files
 	files:()=>API_URL.root(`${SERVER_URL}/storage/`),
-
+	taskFiles:()=>API_URL.root(`${SERVER_URL}`),
 	// education
 	ingModules:()=> API_URL.root(`${prefix}/modules`),
 	// organization for admin
@@ -35,4 +35,5 @@ export const API_URL = {
 	adminExportSchoolCsv:()=> API_URL.root(`${prefix}/school/export`),
 	adminSchoolStats:()=> API_URL.root(`${prefix}/school/statistics`),
 	adminGetAllSchoolStudents:()=> API_URL.root(`${prefix}/school/students`),
+	adminMinistryRepublicStats:()=> API_URL.root(`${prefix}/ministry/republic/stats`),
 }

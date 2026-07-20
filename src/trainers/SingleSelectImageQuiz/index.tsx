@@ -10,6 +10,7 @@ import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { SingleSelectImageQuizVariant } from './variant'
 
 import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
+import { API_URL } from '@/config/api.config'
 
 interface IVariant {
 	id: number
@@ -46,7 +47,7 @@ export const SingleSelectImageQuiz = forwardRef<TrainerRef, SingleSelectImageQui
 						{payload.variants.map(item => (
 							<SingleSelectImageQuizVariant
 								key={`SingleSelectImageQuizVariant${item.id}`}
-								imageUrl={item.imageUrl}
+								imageUrl={API_URL.taskFiles()+item.imageUrl}
 								error={
 									isSubmitted && selected === item.id && item.id !== payload.correct_variant_id
 								}
