@@ -1,19 +1,18 @@
 'use client';
 
-import { getBestStudentsColumns } from "@/columns/getBestStudentsColumns";
+import { getSchoolBestStudentsColumns } from "@/columns/getSchoolBestStudentsColumns";
 import { ResultsCard } from "@/components/ResultsCard";
 import { useGetSchoolStatistic } from "@/hooks/admin/statistic/useGetSchoolStatistic";
 import { useGetAllSchoolStudents } from "@/hooks/admin/useGetAllSchoolStudents";
-import { barChartMockData, TEST_CLASSMATES } from "@/mocks/adminMock";
+import { barChartMockData } from "@/mocks/adminMock";
 import { Loader } from "@/shared/ui/Loader";
 import { MainChart } from "@/widgets/AdminWidgets/MainChart";
 
 import { ClassCardMain } from "../../ClassCardMain";
 import { Table } from "../../Table";
 
-import type { Student } from "@/shared/types/admin/types";
-import { ISchoolAllStudents } from "@/services/admin/stats.service";
-import { getSchoolBestStudentsColumns } from "@/columns/getSchoolBestStudentsColumns";
+import type { ISchoolAllStudents } from "@/services/admin/stats.service";
+
 
 // import { StatisticsBlock } from "../../StatisticsBlock";
 

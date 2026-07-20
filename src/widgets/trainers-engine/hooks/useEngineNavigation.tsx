@@ -1,5 +1,6 @@
 import { useAppDispatch } from '@/app/_store/hooks'
 import { resetTrainers, nextTrainer, setStatus, changeMode, nextLesson } from '@/entities/engine/model/engine.slice'
+import { addCurrentToTotalScore } from '@/entities/engine/model/scoring.slice'
 import { initTimer } from '@/entities/engine/model/timer.slice'
 
 import type { LessonListItem } from '../types/types'
@@ -27,6 +28,9 @@ export function useEngineNavigation({
 		if (currentLessonIndex < lessons.length - 1) {
 			dispatch(resetTrainers())
 			dispatch(changeMode('theory'))
+			if(lessons[currentLessonIndex].total_tasks>0) {
+				dispatch(addCurrentToTotalScore())
+			}
 			dispatch(nextLesson({ totalLessons: lessons.length }))
 		} else {
 			dispatch(setStatus('finish'))
@@ -46,11 +50,13 @@ export function useEngineNavigation({
 
 		if (currentLessonIndex < lessons.length - 1) {
 			dispatch(resetTrainers())
+			dispatch(addCurrentToTotalScore())
 			dispatch(changeMode('theory'))
 			dispatch(nextLesson({ totalLessons: lessons.length }))
 			dispatch(initTimer(time))
 			restartPracticeCountdown()
 		} else {
+			dispatch(addCurrentToTotalScore())
 			dispatch(setStatus('finish'))
 		}
 	}

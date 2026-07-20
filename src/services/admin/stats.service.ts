@@ -2,6 +2,7 @@ import {  axiosWithAuth } from '@/config/api.helper'
 import { API_URL } from '@/config/api.config'
 import { StudentCommonData } from '@/shared/types/admin/types';
 import { Id } from '@/shared/types/types';
+import { IRepublicStatistic } from '../types/republic.types';
 interface ISchoolStatistic {
     statistics:{
         overview:{[key:string]:number};
@@ -63,6 +64,16 @@ class StatsService {
 	async getSchoolAllStudents() {
 		const { data } = await axiosWithAuth<{data:ISchoolAllStudents[];meta:{school_id:Id;school_name:string;total:number}}>({
 			url: API_URL.adminGetAllSchoolStudents(),
+			method: 'GET',
+		})
+		return data
+	}
+
+
+	// ministry
+	async getMinistryRepublicStats() {
+		const { data } = await axiosWithAuth<IRepublicStatistic>({
+			url: API_URL.adminMinistryRepublicStats(),
 			method: 'GET',
 		})
 		return data
