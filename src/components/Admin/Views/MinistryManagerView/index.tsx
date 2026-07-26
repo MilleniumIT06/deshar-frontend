@@ -7,7 +7,7 @@ import { Selector } from "@/shared/ui/Selector";
 import { getBestStudentsColumns } from "./getBestStudentsColumns";
 import { ClassCardMain } from "../../ClassCardMain";
 import { StatisticsBlock } from "../../StatisticsBlock";
-import './styles.scss'
+import './../styles.scss'
 import { Table } from "../../Table";
 
 import type { ManagerTopStudent } from "@/services/types/republic.types";
@@ -32,12 +32,12 @@ export const MinistryManagerView = ()=> {
             console.log('ddsa')
         }
     return (
-        <div className="MinistryManagerView">
-            <div className="MinistryManagerView__head">
-                            <h1 className="MinistryManagerView__title">Общая статистика</h1>
-                            <Selector className="MinistryManagerView__selector" options={[{id:'1',label:"dd",default:true}]} onChange={handleSelectChange} />
+        <div className="CommonView">
+            <div className="CommonView__head">
+                            <h1 className="CommonView__title">Общая статистика</h1>
+                            <Selector className="CommonView__selector" options={[{id:'1',label:"dd",default:true}]} onChange={handleSelectChange} />
                         </div>
-            <div className="MinistryManagerView__statBlocks">
+            <div className="CommonView__statBlocks">
                 {isLoading?"statistic loading...":<StatisticsBlock data={transformedDistricStats} title="Районы"/>}
               {isLoading?"statistic loading...":<StatisticsBlock data={transformedSchoolsStats} title="Школы"/>}
             </div>

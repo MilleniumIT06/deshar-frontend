@@ -132,7 +132,7 @@ class StatsService {
 		return data
 	}
 	async getDepartmentDistrictStats() {
-		const {data} = await axiosWithAuth<{data:IDepartmentDistrictStats[]}>({
+		const {data} = await axiosWithAuth<{data:IDepartmentDistrictStats}>({
 			url: API_URL.adminDepartmentDistrictStats(),
 			method: 'GET',
 		})
