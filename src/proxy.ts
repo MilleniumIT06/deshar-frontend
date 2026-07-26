@@ -50,12 +50,12 @@ export async function proxy(request: NextRequest) {
                 // }
                const hasAdminAccess = ADMIN_PANEL_ROLES.includes(user.role.name);
 
-                if (hasAdminAccess || user.user_type === "admin") {
+                if (hasAdminAccess) {
                     if (!pathname.startsWith('/admin')) {
                         return NextResponse.redirect(new URL('/admin', request.url));
                     }
                 }
-                if(user.user_type==="student"&&user.role.name==="Ученик") {
+                if(user.role.name==="Ученик") {
                     if(pathname === '/admin') {
                         return NextResponse.redirect(new URL('/dashboard', request.url))
                     }

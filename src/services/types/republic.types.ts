@@ -5,7 +5,15 @@ export interface ManagerTopStudent {
 				points: number;
 				level: number;
 				school: string|null;
-				class: string|null;
+				class: string;
+			}
+			export interface ISchool {
+				id: Id;
+				name: string;
+				district: string|null;
+				students_count: number;
+				total_points: number;
+				average_points: number;
 			}
 export interface IRepublicStatistic{
     success: boolean;
@@ -25,14 +33,7 @@ export interface IRepublicStatistic{
 				total_points: number;
 				average_points: number;
 			}[]
-		top_schools: {
-				id: Id;
-				name: string;
-				district: string|null;
-				students_count: number;
-				total_points: number;
-				average_points: number;
-			}[]
+		top_schools: ISchool[]
 		top_students: ManagerTopStudent[]
 	}
 }
