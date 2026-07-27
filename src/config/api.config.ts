@@ -35,5 +35,19 @@ export const API_URL = {
 	adminExportSchoolCsv:()=> API_URL.root(`${prefix}/school/export`),
 	adminSchoolStats:()=> API_URL.root(`${prefix}/school/statistics`),
 	adminGetAllSchoolStudents:()=> API_URL.root(`${prefix}/school/students`),
+	// ministry
 	adminMinistryRepublicStats:()=> API_URL.root(`${prefix}/ministry/republic/stats`),
+	adminMinistryDistricts:()=> API_URL.root(`${prefix}/ministry/districts`),
+	adminMinistrySchools:()=> API_URL.root(`${prefix}/ministry/schools`),
+	adminMinistryDistrictStats:(id:Id)=> API_URL.root(`${prefix}/ministry/districts/${id}/stats`),
+	adminMinistrySchoolStats:(id:Id)=> API_URL.root(`${prefix}/ministry/schools/${id}/stats`),
+
+	// department
+	adminDepartmentMyDistrict:()=>API_URL.root(`${prefix}/education-department/my-district`),
+	adminDepartmentSchools:()=>API_URL.root(`${prefix}/education-department/schools`),
+	adminDepartmentUniqueSchool:(id:Id)=>API_URL.root(`${prefix}/education-department/schools/${id}/stats`),
+	adminDepartmentDistrictStats:()=>API_URL.root(`${prefix}/education-department/district/stats`),
+	adminDepartmentDistrictStudents:()=>API_URL.root(`${prefix}/education-department/students`),
+	adminDepartmentDistrictTeachers:()=>API_URL.root(`${prefix}/education-department/teachers`),
 }
+

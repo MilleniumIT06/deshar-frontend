@@ -118,7 +118,7 @@ router.back()
 	}
 	const handleError = () => {
 		if (!activeTask) return
-		dispatch(subtractPoints(0))
+		dispatch(subtractPoints(7))
 	}
 
 	if (engineStatus === 'engineLoading') return <div>Loading...</div>

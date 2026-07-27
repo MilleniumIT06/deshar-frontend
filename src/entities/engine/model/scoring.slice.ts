@@ -23,12 +23,8 @@ export const scoringSlice = createSlice({
 			state.totalScore += state.currentScore
 			state.currentScore = 0
 		},
-		resetScoring: state => {
-			state.totalScore = 0
-			state.currentScore = 0
-		}
 	},
 })
 
-export const { addPoints, resetScore, subtractPoints,addCurrentToTotalScore,resetCurrentScore,resetScoring } = scoringSlice.actions
+export const { addPoints, resetScore, subtractPoints,addCurrentToTotalScore,resetCurrentScore } = scoringSlice.actions
 export default scoringSlice.reducer

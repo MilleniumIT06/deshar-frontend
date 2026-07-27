@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { resetState } from '@/entities/engine/model/engine.slice'
-import { resetScoring } from '@/entities/engine/model/scoring.slice'
+import { resetScore } from '@/entities/engine/model/scoring.slice'
 
 
 import './styles.scss'
@@ -18,7 +18,7 @@ export const EngineFinishScreen = () => {
 
 	const reset = () => {
 	dispatch(resetState())
-	dispatch(resetScoring())
+	dispatch(resetScore())
 	}
 	return (
 		<section className="finish-screen">

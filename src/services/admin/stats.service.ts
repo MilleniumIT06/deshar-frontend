@@ -3,6 +3,8 @@ import { API_URL } from '@/config/api.config'
 import { StudentCommonData } from '@/shared/types/admin/types';
 import { Id } from '@/shared/types/types';
 import { IRepublicStatistic } from '../types/republic.types';
+import { IMinistryDistrict, IMinistrySchool, UniqueDistrict, UniqueSchool } from '../types/ministy.types';
+import { IDepartmentDistrictStats, IDepartmentStudent, IDepartmentUniqueSchool } from '../types/department.types';
 interface ISchoolStatistic {
     statistics:{
         overview:{[key:string]:number};
@@ -74,6 +76,78 @@ class StatsService {
 	async getMinistryRepublicStats() {
 		const { data } = await axiosWithAuth<IRepublicStatistic>({
 			url: API_URL.adminMinistryRepublicStats(),
+			method: 'GET',
+		})
+		return data
+	}
+	async getMinistryDistricts() {
+		const {data} = await axiosWithAuth<{data:IMinistryDistrict[];meta:{total_districts: number}}>({
+			url: API_URL.adminMinistryDistricts(),
+			method: 'GET',
+		})
+		return data
+	}
+	async getMinistrySchools() {
+		const {data} = await axiosWithAuth<{data:IMinistrySchool[]; meta: {total_schools: number}}>({
+			url: API_URL.adminMinistrySchools(),
+			method: 'GET',
+		})
+		return data
+	}
+	async getMinistryDistrictStats(id:Id) {
+		const {data} = await axiosWithAuth<UniqueDistrict>({
+			url: API_URL.adminMinistryDistrictStats(id),
+			method: 'GET',
+		})
+		return data
+	}
+	async getMinistrySchoolStats(id:Id) {
+		const {data} = await axiosWithAuth<UniqueSchool>({
+			url: API_URL.adminMinistrySchoolStats(id),
+			method: 'GET',
+		})
+		return data
+	}
+
+	// department
+	async getDepartmentMyDistrict() {
+		const {data} = await axiosWithAuth<{data:IMinistryDistrict;}>({
+			url: API_URL.adminDepartmentMyDistrict(),
+			method: 'GET',
+		})
+		return data
+	}
+	async getDepartmentSchools() {
+		const {data} = await axiosWithAuth<{data:IMinistrySchool[]; meta: {district_id: Id; total_schools: number}}>({
+			url: API_URL.adminDepartmentSchools(),
+			method: 'GET',
+		})
+		return data
+	}
+	async getDepartmentSchoolById(id:Id) {
+		const {data} = await axiosWithAuth<{data:IDepartmentUniqueSchool;}>({
+			url: API_URL.adminDepartmentUniqueSchool(id),
+			method: 'GET',
+		})
+		return data
+	}
+	async getDepartmentDistrictStats() {
+		const {data} = await axiosWithAuth<{data:IDepartmentDistrictStats}>({
+			url: API_URL.adminDepartmentDistrictStats(),
+			method: 'GET',
+		})
+		return data
+	}
+	async getDepartmentStudents() {
+		const {data} = await axiosWithAuth<{data:IDepartmentStudent[];meta:{district_id:Id;total_students: number}}>({
+			url: API_URL.adminDepartmentDistrictStudents(),
+			method: 'GET',
+		})
+		return data
+	}
+	async getDepartmentTeachers() {
+		const {data} = await axiosWithAuth<{data:IDepartmentStudent[];meta:{district_id:Id;total_students: number}}>({
+			url: API_URL.adminDepartmentDistrictTeachers(),
 			method: 'GET',
 		})
 		return data

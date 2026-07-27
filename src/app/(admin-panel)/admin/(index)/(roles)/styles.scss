@@ -1,0 +1,11 @@
+.UniqueSchoolPageContent {
+    &__cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap:30px;
+        .ResultsCard {
+            flex-shrink:0;
+            flex-basis:30%;
+        }
+    }
+}

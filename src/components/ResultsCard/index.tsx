@@ -1,7 +1,6 @@
 import cn from 'classnames'
 import { type ReactNode } from 'react'
 
-
 import './styles.scss'
 
 const IncreaseIcon = () => (
@@ -12,6 +11,7 @@ const IncreaseIcon = () => (
 		/>
 	</svg>
 )
+
 const DecreaseIcon = () => (
 	<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 		<path
@@ -20,6 +20,7 @@ const DecreaseIcon = () => (
 		/>
 	</svg>
 )
+
 const DefaultIcon = () => (
 	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path
@@ -32,61 +33,60 @@ const DefaultIcon = () => (
 		<circle cx="12" cy="12" r="8" stroke="#303030" strokeWidth="2" />
 	</svg>
 )
+
 const formatDisplayValue = (val: string | number, mode: 'value' | 'time') => {
-  if (mode === 'time') {
-    const totalMinutes = Number(val);
-    if (isNaN(totalMinutes)) return val;
+	if (mode === 'time') {
+		const totalMinutes = Number(val)
+		if (isNaN(totalMinutes)) return val
 
-    const hours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
+		const hours = Math.floor(totalMinutes / 60)
+		const minutes = totalMinutes % 60
 
+		const hoursStr = hours > 0 ? `${hours}ч ` : ''
+		return `${hoursStr}${minutes}м`
+	}
+	return val
+}
 
-    const hoursStr = hours > 0 ? `${hours}ч ` : '';
-    return `${hoursStr}${minutes}м`;
-  }
-  return val;
-};
+interface ResultsCardProps {
+	title: string
+	value?: string | number
+	percent?: number
+	period?: string | number
+	icon?: ReactNode
+	variant?: 'main' | 'admin'
+	mode?: 'value' | 'time'
+}
+
 export const ResultsCard = ({
-	percent = 5,
-	period = 7,
+	percent,
+	period,
 	value = 99,
 	title = 'test',
 	icon = <DefaultIcon />,
 	variant = 'main',
-	mode
-}: {
-	title: string
-	percent: number
-	period: string | number
-	value: string | number
-	icon?: ReactNode
-	variant?: 'main' | 'admin'
-	 mode: 'value' | 'time';
-}) => {
-	const percentIcon =  ()=> {
-		switch (true) {
-        case percent > 0:
-            return <IncreaseIcon />;
-        case percent < 0:
-            return <DecreaseIcon />;
-		case percent === 0:
-			return ""
-        default:
-            return null;
-    }
-}
-const percentClass =  ()=> {
-		switch (true) {
-        case percent > 0:
-            return 'increase';
-        case percent < 0:
-            return 'decrease';
-		case percent === 0:
-			return 'default';
-        default:
-            return null;
-    }
-}
+	mode = 'value',
+}: ResultsCardProps) => {
+
+
+	const hasPercent = percent !== undefined && percent !== null
+
+	let percentIcon: ReactNode = null
+	let percentClass = ''
+
+	if (hasPercent) {
+		if (percent > 0) {
+			percentIcon = <IncreaseIcon />
+			percentClass = 'increase'
+		} else if (percent < 0) {
+			percentIcon = <DecreaseIcon />
+			percentClass = 'decrease'
+		} else {
+			percentIcon = null
+			percentClass = 'default'
+		}
+	}
+
 	return (
 		<div className={cn('ResultsCard', variant)}>
 			<h6 className="ResultsCard__title">
@@ -94,20 +94,28 @@ const percentClass =  ()=> {
 				{title}
 			</h6>
 			<div className="ResultsCard__info">
-				<span className="ResultsCard__points">  {formatDisplayValue(value, mode)}</span>
-				<div className={cn('ResultsCard__percent', percentClass())}>
-					{percentIcon()}
-					<span>{percent > 0 ?  `+${percent}%` : `${percent}%`}</span>
-				</div>
+				<span className="ResultsCard__points">{formatDisplayValue(value, mode)}</span>
+
+				{hasPercent && (
+					<div className={cn('ResultsCard__percent', percentClass)}>
+						{percentIcon}
+						<span>{percent > 0 ? `+${percent}%` : `${percent}%`}</span>
+					</div>
+				)}
 			</div>
+
 			<div className="ResultsCard__summary">
-        <span className="ResultsCard__summary_value">
-          {formatDisplayValue(value, mode)}
-        </span>
-        <span className="ResultsCard__summary_period">
-          в прошлые {period} дней
-        </span>
-      </div>
+				{period && (
+					<>
+						<span className="ResultsCard__summary_value">
+							{formatDisplayValue(value, mode)}
+						</span>
+						<span className="ResultsCard__summary_period">
+							в прошлые {period} дней
+						</span>
+					</>
+				)}
+			</div>
 		</div>
 	)
 }

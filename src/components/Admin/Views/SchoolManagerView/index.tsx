@@ -15,6 +15,7 @@ import type { ISchoolAllStudents } from "@/services/admin/stats.service";
 
 
 // import { StatisticsBlock } from "../../StatisticsBlock";
+import './styles.scss';
 
 export const SchoolManagerView = ()=> {
     const {schoolStatisticAdminData,isLoading:isSchoolStatisticsLoading} =useGetSchoolStatistic()
@@ -23,7 +24,7 @@ export const SchoolManagerView = ()=> {
             return item
         }
     return (
-            <div>
+            <div className="SchoolManagerView">
                 <MainChart data={barChartMockData} title="Суммарная успеваемость школы" />
                 <div className="MainStatisticPageContent__result_cards">
                     {isSchoolStatisticsLoading ? <Loader/>: schoolStatisticAdminData && <>
