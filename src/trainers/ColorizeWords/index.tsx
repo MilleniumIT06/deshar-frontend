@@ -3,10 +3,10 @@ import { forwardRef, useImperativeHandle, useState } from 'react'
 
 import './styles.scss'
 import { EngineButton } from '@/components/Engine/Button'
-import { type TrainerCommonProps } from '@/shared/types/types'
+import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
-
+import type { Id, TrainerCommonProps } from '@/shared/types/types'
 
 export interface Tool {
 	type: 'paint' | 'erase'
@@ -32,7 +32,19 @@ interface WordState extends IVariant {
 }
 
 export const ColorizeWords = forwardRef(
-	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex,audio }: ColorizeWordsProps, ref) => {
+	(
+		{
+			payload,
+			title,
+			subTitle,
+			onSuccess,
+			onError,
+			changeStatus,
+			currentTrainerIndex,
+			audio,
+		}: ColorizeWordsProps,
+		ref,
+	) => {
 		const { variants, tools } = payload
 
 		const [selectedTool, setSelectedTool] = useState<Tool>(tools[0])
@@ -42,19 +54,45 @@ export const ColorizeWords = forwardRef(
 				color: null,
 			})),
 		)
-
+		const { checkAnswer } = useCheckAnswer({
+			onSuccess: () => changeStatus('success'),
+			onError: () => changeStatus('error'),
+		})
 		useImperativeHandle(ref, () => ({
-			handleCheck: () => {
-				const isCorrect = words.every(word => word.color === word.correctColor)
+			handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+				if (!moduleId || !pieceId || !lessonId || !taskId) return
 
-				if (isCorrect) {
+				const isCorrectClient = words.every(word => word.color === word.correctColor)
+				changeStatus(isCorrectClient ? 'success' : 'error')
+
+				const formattedAnswers = words.map(word => ({
+					[word.id]: word.color,
+				}))
+
+				const data = await checkAnswer({
+					moduleId,
+					pieceId,
+					lessonId,
+					taskId,
+					answer: formattedAnswers,
+					timeSpent: timeSpent ?? 0,
+				})
+
+				if (data?.is_correct) {
 					onSuccess()
-					changeStatus('success')
 				} else {
 					onError()
-					changeStatus('error')
 				}
-				return isCorrect
+				if (isCorrectClient !== data?.is_correct) {
+					// eslint-disable-next-line no-console
+					console.warn('Client/server mismatch on answer check', {
+						taskId,
+						isCorrectClient,
+						serverResult: data?.is_correct,
+					})
+				}
+
+				return Boolean(data?.is_correct)
 			},
 			handleReset: () => {
 				setWords(prev => prev.map(word => ({ ...word, color: null })))
@@ -79,7 +117,7 @@ export const ColorizeWords = forwardRef(
 		return (
 			<div className="colorize-words">
 				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-				<TrainerTitle title={title} audio={audio}/>
+				<TrainerTitle title={title} audio={audio} />
 
 				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 

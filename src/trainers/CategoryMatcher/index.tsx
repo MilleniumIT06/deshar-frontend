@@ -3,11 +3,13 @@ import cn from 'classnames'
 import { useImperativeHandle, forwardRef,useRef, useEffect } from 'react'
 import { ArcherContainer, ArcherElement } from 'react-archer'
 
-import { type TrainerCommonProps } from '@/shared/types/types'
+import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { useCategoryMatcher } from './useCategoryMatcher'
 import './styles.scss'
+
+import type { Id, TrainerCommonProps } from '@/shared/types/types'
 
 export interface CategoryMatcherItem {
 	id: string
@@ -36,33 +38,61 @@ export const CategoryMatcher = forwardRef(
 	) => {
 		const { items, categories } = payload
 const archerRef = useRef<any>(null)
+
 		const { connections, activeSource, startConnection, endConnection, mousePos, resetConnections } =
 			useCategoryMatcher()
-
+	const { checkAnswer } = useCheckAnswer({
+			onSuccess: () => changeStatus('success'),
+			onError: () => changeStatus('error'),
+		})
 		useImperativeHandle(ref, () => ({
-			handleCheck: () => {
-				const allConnected = items.every(item => connections.some(conn => conn.source === item.id))
+    handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+        const allConnected = items.every(item => connections.some(conn => conn.source === item.id))
+        if (!allConnected) return
 
-				if (!allConnected) return
+        if (!moduleId || !pieceId || !lessonId || !taskId) return
 
-				const isCorrect = items.every(item => {
-					const conn = connections.find(c => c.source === item.id)
-					return conn?.target === item.correct
-				})
+        const isCorrectClient = items.every(item => {
+            const conn = connections.find(c => c.source === item.id)
+            return conn?.target === item.correct
+        })
+        changeStatus(isCorrectClient ? 'success' : 'error')
 
-				if (isCorrect) {
-					changeStatus('success')
-					onSuccess()
-				} else {
-					changeStatus('error')
-					onError()
-				}
-			},
-			handleReset: () => {
-				changeStatus('idle')
-				resetConnections()
-			},
-		}))
+        const formattedAnswers = items.map(item => {
+            const conn = connections.find(c => c.source === item.id)
+            return {
+                [item.id]: conn ? conn.target : null
+            }
+        })
+
+        const data = await checkAnswer({
+            moduleId,
+            pieceId,
+            lessonId,
+            taskId,
+            answer: formattedAnswers,
+            timeSpent: timeSpent ?? 0,
+        })
+
+        if (data?.is_correct) {
+            onSuccess()
+        } else {
+            onError()
+        }
+        if (isCorrectClient !== data?.is_correct) {
+            // eslint-disable-next-line no-console
+            console.warn('Client/server mismatch on answer check', {
+                taskId,
+                isCorrectClient,
+                serverResult: data?.is_correct,
+            })
+        }
+    },
+    handleReset: () => {
+        changeStatus('idle')
+        resetConnections()
+    },
+}))
 		useEffect(() => {
     if (activeSource && archerRef.current) {
         archerRef.current.refreshScreen()

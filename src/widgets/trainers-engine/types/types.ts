@@ -2,7 +2,7 @@ import type { Id, TrainerTheme } from '@/shared/types/types'
 import { TrainerType } from '../trainersMap'
 
 export interface TrainerRef {
-	handleCheck: () => void
+	handleCheck: (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => void
 	handleReset: () => void
 }
 

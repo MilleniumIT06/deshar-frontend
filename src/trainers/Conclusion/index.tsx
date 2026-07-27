@@ -3,11 +3,13 @@ import cn from 'classnames'
 import { useState, useMemo, useCallback, useImperativeHandle, forwardRef } from 'react'
 
 import './styles.scss'
-import { type TrainerCommonProps } from '@/shared/types/types'
+import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { SlotInput } from './slot'
 import { ConclusionVariant } from './variant'
+
+import type { Id, TrainerCommonProps } from '@/shared/types/types'
 
 type Slot = {
 	id: number
@@ -53,45 +55,90 @@ export const Conclusion = forwardRef(
 		const [isError] = useState(false)
 
 		const currentItem = content[currentItemIndex]
+const { checkAnswer } = useCheckAnswer({
+			onSuccess: () => changeStatus('success'),
+			onError: () => changeStatus('error'),
+		})
 
 		useImperativeHandle(ref, () => ({
-			handleCheck: () => {
-				const allFilled = currentItem.slots.every(s => s.current !== null)
-				if (!allFilled) return
+    handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+        const allFilledInCurrent = currentItem.slots.every(s => s.current !== null)
+        if (!allFilledInCurrent) return
 
-				const isCorrect = currentItem.slots.every(s => s.current === s.correct)
+        const isCurrentCorrectClient = currentItem.slots.every(s => s.current === s.correct)
+        changeStatus(isCurrentCorrectClient ? 'success' : 'error')
 
-				if (isCorrect) {
-					setContent(prev =>
-						prev.map(item => (item.id === currentItem.id ? { ...item, completed: true } : item)),
-					)
-					if (currentItemIndex === content.length - 1) {
-						changeStatus('success')
-						onSuccess()
-						return
-					}
-					if (currentItemIndex < content.length - 1) {
-						setTimeout(() => {
-							setCurrentItemIndex(prev => prev + 1)
-							changeStatus('idle')
-						}, 500)
-					}
-				} else {
-					changeStatus('error')
-					onError()
-				}
-			},
-			handleReset: () => {
-				changeStatus('idle')
-				setContent(prev =>
-					prev.map(item =>
-						item.id === currentItem.id
-							? { ...item, slots: item.slots.map(s => ({ ...s, current: null })) }
-							: item,
-					),
-				)
-			},
-		}))
+        if (!isCurrentCorrectClient) {
+            onError()
+            return
+        }
+
+        setContent(prev =>
+            prev.map(item => (item.id === currentItem.id ? { ...item, completed: true } : item)),
+        )
+
+        const isLastStep = currentItemIndex === content.length - 1
+
+        if (!isLastStep) {
+            setTimeout(() => {
+                setCurrentItemIndex(prev => prev + 1)
+                changeStatus('idle')
+            }, 500)
+            return
+        }
+
+        if (!moduleId || !pieceId || !lessonId || !taskId) return
+
+        const formattedAnswers = content.flatMap(item => {
+            const slotsToMap = item.id === currentItem.id ? currentItem.slots : item.slots
+            return slotsToMap.map(s => ({
+                [s.id]: s.current
+            }))
+        })
+
+        const isAllCorrectClient = content.every(item => {
+            const slotsToCheck = item.id === currentItem.id ? currentItem.slots : item.slots
+            return slotsToCheck.every(s => s.current === s.correct)
+        })
+
+        const data = await checkAnswer({
+            moduleId,
+            pieceId,
+            lessonId,
+            taskId,
+            answer: formattedAnswers,
+            timeSpent: timeSpent ?? 0,
+        })
+
+        if (data?.is_correct) {
+            changeStatus('success')
+            onSuccess()
+        } else {
+            changeStatus('error')
+            onError()
+        }
+
+        if (isAllCorrectClient !== data?.is_correct) {
+            // eslint-disable-next-line no-console
+            console.warn('Client/server mismatch on final answer check', {
+                taskId,
+                isAllCorrectClient,
+                serverResult: data?.is_correct,
+            })
+        }
+    },
+    handleReset: () => {
+        changeStatus('idle')
+        setContent(prev =>
+            prev.map(item => ({
+                ...item,
+                completed: false,
+                slots: item.slots.map(s => ({ ...s, current: null }))
+            })),
+        )
+        setCurrentItemIndex(0)
+    },
+}))
 		const handleDragEnd = useCallback(
 			(event: DragEndEvent) => {
 				const { active, over } = event

@@ -88,7 +88,7 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 		// dispatch(addCurrentToTotalScore())
         dispatch(setStatus('finish'))
     }
-    trainerRef.current?.handleCheck()
+	trainerRef.current?.handleCheck(Number(moduleId),Number(pieceId),Number(currentLesson?.id),Number(uniqueTask?.task.id),30)
 }
 
 	const onResetButtonClick = () => {
