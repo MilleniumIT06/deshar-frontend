@@ -1,4 +1,5 @@
-import { Id } from "@/shared/types/types";
+import { type Id } from "@/shared/types/types";
+
 export interface ManagerTopStudent {
 				id:Id;
 				name: string;

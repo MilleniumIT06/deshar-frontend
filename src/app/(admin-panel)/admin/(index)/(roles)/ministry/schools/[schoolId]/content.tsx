@@ -65,7 +65,7 @@ export const UniqueSchoolPageContent = () => {
 			</div>
 			<ClassCardMain title="Лучшие ученики школы" linkHref="/" linkText="Полный список">
 				{ministrySchool && ministrySchool.data && ministrySchool.data.top_students.length > 0 ? (
-					<Table<SchoolTopStudent, any>
+					<Table<SchoolTopStudent>
 						data={ministrySchool.data.top_students}
 						getColumns={() => getSchoolTopStudents()}
 					/>

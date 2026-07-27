@@ -29,7 +29,7 @@ export const MinistryManagerView = ()=> {
         return "test"
     }
     const handleSelectChange = () => {
-            console.log('ddsa')
+            return 'ddsa'
         }
     return (
         <div className="CommonView">
@@ -46,7 +46,7 @@ export const MinistryManagerView = ()=> {
 				title={'Лучшие ученики среди школ'}
 				linkText="Полный список"
 				linkHref="/">
-				<Table<ManagerTopStudent, any>
+				<Table<ManagerTopStudent>
 					data={republicStats.data.top_students}
 					getColumns={() => getBestStudentsColumns()}
 					handleRowClick={redirectOnBestStudentsClick}

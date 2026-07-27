@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use client'
 /* eslint-disable react-hooks/exhaustive-deps */
 import cn from 'classnames'
@@ -38,7 +39,7 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 	const router = useRouter()
 	const { themeName, time } = config
 	const dispatch = useAppDispatch()
-
+console.log('dsa')
 	const { status, currentTrainerIndex, isMenuOpen, isAlertModalOpen, isSupportModalOpen, mode, currentLessonIndex } =
 		useAppSelector((state: RootState) => state.engine)
 	const isFinished = useAppSelector((state: RootState) => state.timer.isFinished)

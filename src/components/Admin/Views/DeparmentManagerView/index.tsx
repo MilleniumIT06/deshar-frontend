@@ -45,7 +45,7 @@ export const DepartmentManagerView = ()=> {
                         title={'Лучшие ученики среди школ'}
                         linkText="Полный список"
                         linkHref="/">
-                        <Table<ManagerTopStudent, any>
+                        <Table<ManagerTopStudent>
                             data={districtStats.data.top_students}
                             getColumns={() => getBestStudentsColumns()}
                             handleRowClick={redirectOnBestStudentsClick}

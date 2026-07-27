@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
 	useReactTable,
@@ -17,7 +18,7 @@ interface TableProps<TableItemType, T> {
 	getColumns: () => (AccessorKeyColumnDefBase<TableItemType, T> & Partial<IdIdentifier<TableItemType, T>>)[]
 	handleRowClick?: (item: TableItemType) => void
 }
-export const Table = <TData, TValue>({ data, getColumns, handleRowClick }: TableProps<TData, TValue>) => {
+export const Table = <TData, TValue=any>({ data, getColumns, handleRowClick }: TableProps<TData, TValue>) => {
 	const columns = useMemo(() => getColumns(), [])
 	// Состояние для сортировки
 	const [sorting, setSorting] = useState<SortingState>([])

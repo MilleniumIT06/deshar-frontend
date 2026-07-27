@@ -1,6 +1,7 @@
-import { educationService } from '@/services/education/education.service'
-import { Id } from '@/shared/types/types'
 import { useQuery } from '@tanstack/react-query'
+
+import { educationService } from '@/services/education/education.service'
+import { type Id } from '@/shared/types/types'
 
 export const useGetPieceById = (moduleId:Id,pieceId:Id) => {
 	const {

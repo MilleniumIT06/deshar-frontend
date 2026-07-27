@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { type TrainerType } from '../trainersMap'
+
 import type { Id, TrainerTheme } from '@/shared/types/types'
-import { TrainerType } from '../trainersMap'
 
 export interface TrainerRef {
 	handleCheck: (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => void

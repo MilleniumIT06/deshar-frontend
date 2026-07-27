@@ -1,7 +1,9 @@
-import { axiosClassic, axiosWithAuth } from '@/config/api.helper'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { API_URL } from '@/config/api.config'
+import { axiosClassic, axiosWithAuth } from '@/config/api.helper'
 
 import type { Id, SchoolClass } from '@/shared/types/types'
+
 interface SchoolClassStatistic {
 			 statistics: {
 		total_students: number;
@@ -34,7 +36,9 @@ class SchoolClassesService {
 			class_type_name: string;
 			teacher_id: Id | null;
 			teacher_name: string;
-		}[]; meta: any; success: boolean }>({
+		}[];
+		meta: any;
+		 success: boolean }>({
 			url: API_URL.adminClasses(),
 			method: 'GET',
 		})

@@ -1,6 +1,9 @@
+/* eslint-disable no-console */
 import { NextResponse } from 'next/server'
+
+import { ADMIN_PANEL_ROLES, type User } from './shared/types/user.types'
+
 import type { NextRequest } from 'next/server'
-import { ADMIN_PANEL_ROLES, User } from './shared/types/user.types'
 
 export async function proxy(request: NextRequest) {
     const token = request.cookies.get('jwt_token')?.value

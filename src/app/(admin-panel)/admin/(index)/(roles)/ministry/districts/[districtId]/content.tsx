@@ -141,10 +141,10 @@ export const UniqueDistrictPageContent = () => {
 			</div>
             <div>
                 <ClassCardMain title='Лучшие школы' linkHref='/' linkText='Полный список'>
-                       {ministryDistrict&&ministryDistrict.data&&ministryDistrict.data.top_schools.length>0 ? <Table<UniqueDistrictTopSchool,any> data={ministryDistrict.data.top_schools}  getColumns={()=>getTopSchoolsColumns()}/> : "Данных нет"}
+                       {ministryDistrict&&ministryDistrict.data&&ministryDistrict.data.top_schools.length>0 ? <Table<UniqueDistrictTopSchool> data={ministryDistrict.data.top_schools}  getColumns={()=>getTopSchoolsColumns()}/> : "Данных нет"}
                 </ClassCardMain>
 				<ClassCardMain title='Лучшие ученики' linkHref='/' linkText='Полный список'>
-                       {ministryDistrict&&ministryDistrict.data&&ministryDistrict.data.top_schools.length>0 ? <Table<UniqueDistrictTopStudent,any> data={ministryDistrict.data.top_students}  getColumns={()=>getTopStudentsColumns()}/> : "Данных нет"}
+                       {ministryDistrict&&ministryDistrict.data&&ministryDistrict.data.top_schools.length>0 ? <Table<UniqueDistrictTopStudent> data={ministryDistrict.data.top_students}  getColumns={()=>getTopStudentsColumns()}/> : "Данных нет"}
                 </ClassCardMain>
             </div>
 		</div>

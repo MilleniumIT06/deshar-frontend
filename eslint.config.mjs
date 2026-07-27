@@ -1,26 +1,20 @@
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { FlatCompat } from '@eslint/eslintrc'
 import eslintPluginImport from 'eslint-plugin-import'
 import tseslintParser from '@typescript-eslint/parser'
+import tseslintPlugin from '@typescript-eslint/eslint-plugin'
+import nextPlugin from '@next/eslint-plugin-next'
+import reactHooksPlugin from 'eslint-plugin-react-hooks'
+import reactPlugin from 'eslint-plugin-react'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const compat = new FlatCompat({
-	baseDirectory: __dirname,
-})
-
 const config = [
 	{
-		// Глобальные игноры
+		// Глобальные игноры (должны быть в отдельном объекте без поля files)
 		ignores: ['node_modules', 'dist', '.next', 'out', 'coverage', 'public'],
 	},
-
-	// Базовый конфиг Next.js (должен быть в начале)
-	...compat.config({
-		extends: ['next', 'prettier', 'next/core-web-vitals', 'next/typescript'],
-	}),
 	{
 		files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
 		languageOptions: {
@@ -29,11 +23,16 @@ const config = [
 			sourceType: 'module',
 			parserOptions: {
 				project: './tsconfig.json',
+				tsconfigRootDir: __dirname,
 				ecmaFeatures: { jsx: true },
 			},
 		},
 		plugins: {
 			import: eslintPluginImport,
+			'@typescript-eslint': tseslintPlugin,
+			'@next/next': nextPlugin,
+			'react-hooks': reactHooksPlugin,
+			'react': reactPlugin,
 		},
 		settings: {
 			'import/resolver': {
@@ -45,6 +44,11 @@ const config = [
 			},
 		},
 		rules: {
+			// Базовые правила Next.js вручную (взамен старого extends)
+			...nextPlugin.configs.recommended.rules,
+			...nextPlugin.configs['core-web-vitals'].rules,
+			...reactHooksPlugin.configs.recommended.rules,
+
 			'no-console': 'warn',
 			'import/order': [
 				'error',
@@ -58,7 +62,6 @@ const config = [
 			'import/newline-after-import': 'error',
 			'import/no-duplicates': 'error',
 
-			// Остальные правила
 			'no-constant-binary-expression': 'error',
 			'no-promise-executor-return': 'error',
 			'no-unreachable-loop': 'error',
@@ -73,6 +76,7 @@ const config = [
 			'prefer-const': 'error',
 			'prefer-template': 'error',
 
+			// Теперь эти правила будут работать корректно
 			'@typescript-eslint/no-explicit-any': 'warn',
 			'@typescript-eslint/no-unused-vars': [
 				'error',
@@ -83,7 +87,6 @@ const config = [
 				{ prefer: 'type-imports', fixStyle: 'inline-type-imports' },
 			],
 
-			'react-hooks/exhaustive-deps': 'error',
 			'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
 			'react/self-closing-comp': ['error', { component: true, html: true }],
 		},

@@ -19,7 +19,7 @@ export const DistrictsPageContent = ()=> {
     }
     return <div className="PageAdmin">
         <Card resetFilters={()=>'test'} title="Районы" valueFirst={`Всего районов ${ministryDistricts?.meta.total_districts}`}>
-            {ministryDistricts&&ministryDistricts.data&&ministryDistricts.data.length>0 ? <Table<IMinistryDistrict,any> data={ministryDistricts.data} handleRowClick={handleItemClick}  getColumns={()=>getDistrictsColumns()}/> : "Данных нет"}
+            {ministryDistricts&&ministryDistricts.data&&ministryDistricts.data.length>0 ? <Table<IMinistryDistrict> data={ministryDistricts.data} handleRowClick={handleItemClick}  getColumns={()=>getDistrictsColumns()}/> : "Данных нет"}
         </Card>
     </div>
 }

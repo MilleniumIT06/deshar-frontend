@@ -19,7 +19,7 @@ export const MinistrySchoolsAdminPageContent = ()=> {
          }
     return <div className="PageAdmin">
          <Card resetFilters={()=>'test'} title="Школы" valueFirst={`Всего школ ${ministrySchools?.meta.total_schools}`}>
-                   {ministrySchools&&ministrySchools.data&&ministrySchools.data.length>0 ? <Table<IMinistrySchool,any> data={ministrySchools.data} handleRowClick={handleItemClick} getColumns={()=>getSchoolsColumns()}/> : "Данных нет"}
+                   {ministrySchools&&ministrySchools.data&&ministrySchools.data.length>0 ? <Table<IMinistrySchool> data={ministrySchools.data} handleRowClick={handleItemClick} getColumns={()=>getSchoolsColumns()}/> : "Данных нет"}
                </Card>
     </div>
 }

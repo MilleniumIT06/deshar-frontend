@@ -61,7 +61,7 @@ export const SchoolManagerView = ()=> {
                         isAllSchoolStudentsLoading?<Loader/>:
                         !isAllSchoolStudentsError&&allSchoolStudents&&allSchoolStudents.data?
 
-                    <Table<ISchoolAllStudents, any>
+                    <Table<ISchoolAllStudents>
                         data={allSchoolStudents.data}
                         getColumns={() => getSchoolBestStudentsColumns()}
                         handleRowClick={redirectOnBestStudentsClick}

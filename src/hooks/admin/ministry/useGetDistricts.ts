@@ -1,6 +1,8 @@
-import { statsService } from '@/services/admin/stats.service'
-import type { Id } from '@/shared/types/types'
 import { useQuery } from '@tanstack/react-query'
+
+import { statsService } from '@/services/admin/stats.service'
+
+import type { Id } from '@/shared/types/types'
 
 export const useGetDistricts = () => {
 	const {
@@ -25,7 +27,7 @@ export const useGetDistrictById = (id:Id) => {
 		queryKey: ['adminMinistryDistrict',id],
 		queryFn: () => statsService.getMinistryDistrictStats(id),
 		staleTime: 10 * 60 * 1000,
-		enabled: !!id
+		enabled: Boolean(id)
 	})
 	return { ministryDistrict, isMinistryDistrictLoading, isMinistryDistrictError, error }
 }

@@ -4,7 +4,6 @@ import { useState } from 'react'
 
 import { getTeacherColumns } from '@/columns/getTeacherColumns'
 import { Table } from '@/components/Admin/Table'
-import { useExportSchoolData } from '@/hooks/admin/useExportSchoolData'
 import { useGetSchoolTeachers } from '@/hooks/admin/useGetSchoolTeachers'
 import { Loader } from '@/shared/ui/Loader'
 import { Card } from '@/widgets/AdminWidgets/Card'

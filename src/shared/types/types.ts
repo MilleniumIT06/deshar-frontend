@@ -1,4 +1,4 @@
-import { RoleName, User } from "./user.types"
+import { type RoleName, type User } from "./user.types"
 
 export type Id = number
 export interface District {

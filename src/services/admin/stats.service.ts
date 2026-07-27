@@ -1,10 +1,13 @@
-import {  axiosWithAuth } from '@/config/api.helper'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { API_URL } from '@/config/api.config'
-import { StudentCommonData } from '@/shared/types/admin/types';
-import { Id } from '@/shared/types/types';
-import { IRepublicStatistic } from '../types/republic.types';
-import { IMinistryDistrict, IMinistrySchool, UniqueDistrict, UniqueSchool } from '../types/ministy.types';
-import { IDepartmentDistrictStats, IDepartmentStudent, IDepartmentUniqueSchool } from '../types/department.types';
+import {  axiosWithAuth } from '@/config/api.helper'
+import { type StudentCommonData } from '@/shared/types/admin/types';
+import { type Id } from '@/shared/types/types';
+
+import { type IDepartmentDistrictStats, type IDepartmentStudent, type IDepartmentUniqueSchool } from '../types/department.types';
+import { type IMinistryDistrict, type IMinistrySchool, type UniqueDistrict, type UniqueSchool } from '../types/ministy.types';
+import { type IRepublicStatistic } from '../types/republic.types';
+
 interface ISchoolStatistic {
     statistics:{
         overview:{[key:string]:number};

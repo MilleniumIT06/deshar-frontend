@@ -1,5 +1,6 @@
-import { educationService } from '@/services/education/education.service'
 import { useQuery } from '@tanstack/react-query'
+
+import { educationService } from '@/services/education/education.service'
 
 export const useGetModules = () => {
 	const {
