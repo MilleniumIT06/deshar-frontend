@@ -1,4 +1,5 @@
 import { DashboardMenuItem } from '../DashboardMenuItem'
+import { SchoolsIcon, TeachersIcon } from '../icons'
 
 
 
@@ -6,9 +7,9 @@ import { DashboardMenuItem } from '../DashboardMenuItem'
 export const DepartmentManagerDashboardMenuView = () => {
     return (
         <>
-            <DashboardMenuItem title="Все школы" href="/admin/department/schools/" />
+            <DashboardMenuItem title="Все школы" href="/admin/department/schools/" icon={<SchoolsIcon/>}/>
             <DashboardMenuItem title="Ученики" href="/admin/department/students/" />
-            <DashboardMenuItem title="Учителя" href="/admin/department/teachers/" />
+            <DashboardMenuItem title="Учителя" href="/admin/department/teachers/" icon={<TeachersIcon/>}/>
         </>
     )
 }

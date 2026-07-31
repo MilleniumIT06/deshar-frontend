@@ -1,89 +1,31 @@
 export const SchoolsIcon = () => (
 	<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path
-			d="M8.09199 3.57254C9.20007 2.65928 10.7999 2.65928 11.908 3.57254L12.7865 4.2966C13.2478 4.67673 13.8269 4.88462 14.4245 4.88462C15.8469 4.88462 17 6.03769 17 7.46007V14C17 15.6569 15.6569 17 14 17H6C4.34315 17 3 15.6569 3 14V7.46007C3 6.03769 4.15307 4.88462 5.57546 4.88462C6.17315 4.88462 6.75223 4.67673 7.21346 4.2966L8.09199 3.57254Z"
-			stroke="#7D7979"
-			strokeWidth="1.5"
-		/>
-		<mask id="path-2-inside-1_4463_19629" fill="white">
-			<rect x="5" y="8" width="2" height="2" rx="0.5" />
-		</mask>
-		<rect
-			x="5"
-			y="8"
-			width="2"
-			height="2"
-			rx="0.5"
-			stroke="#7D7979"
-			strokeWidth="2"
-			mask="url(#path-2-inside-1_4463_19629)"
-		/>
-		<mask id="path-3-inside-2_4463_19629" fill="white">
-			<rect x="13" y="8" width="2" height="2" rx="0.5" />
-		</mask>
-		<rect
-			x="13"
-			y="8"
-			width="2"
-			height="2"
-			rx="0.5"
-			stroke="#7D7979"
-			strokeWidth="2"
-			mask="url(#path-3-inside-2_4463_19629)"
-		/>
-		<mask id="path-4-inside-3_4463_19629" fill="white">
-			<rect x="5" y="12" width="2" height="2" rx="0.5" />
-		</mask>
-		<rect
-			x="5"
-			y="12"
-			width="2"
-			height="2"
-			rx="0.5"
-			stroke="#7D7979"
-			strokeWidth="2"
-			mask="url(#path-4-inside-3_4463_19629)"
-		/>
-		<mask id="path-5-inside-4_4463_19629" fill="white">
-			<rect x="9" y="12" width="2" height="2" rx="0.5" />
-		</mask>
-		<rect
-			x="9"
-			y="12"
-			width="2"
-			height="2"
-			rx="0.5"
-			stroke="#7D7979"
-			strokeWidth="2"
-			mask="url(#path-5-inside-4_4463_19629)"
-		/>
-		<mask id="path-6-inside-5_4463_19629" fill="white">
-			<rect x="9" y="8" width="2" height="2" rx="0.5" />
-		</mask>
-		<rect
-			x="9"
-			y="8"
-			width="2"
-			height="2"
-			rx="0.5"
-			stroke="#7D7979"
-			strokeWidth="2"
-			mask="url(#path-6-inside-5_4463_19629)"
-		/>
-		<mask id="path-7-inside-6_4463_19629" fill="white">
-			<rect x="13" y="12" width="2" height="2" rx="0.5" />
-		</mask>
-		<rect
-			x="13"
-			y="12"
-			width="2"
-			height="2"
-			rx="0.5"
-			stroke="#7D7979"
-			strokeWidth="2"
-			mask="url(#path-7-inside-6_4463_19629)"
-		/>
-	</svg>
+  <path d="M8.09199 3.57254C9.20007 2.65928 10.7999 2.65928 11.908 3.57254L12.7865 4.2966C13.2478 4.67673 13.8269 4.88462 14.4245 4.88462C15.8469 4.88462 17 6.03769 17 7.46007V14C17 15.6569 15.6569 17 14 17H6C4.34315 17 3 15.6569 3 14V7.46007C3 6.03769 4.15307 4.88462 5.57546 4.88462C6.17315 4.88462 6.75223 4.67673 7.21346 4.2966L8.09199 3.57254Z" stroke="#7D7979" stroke-width="1.5" />
+  <mask id="path-2-inside-1_4330_21196" fill="white">
+    <rect x="5" y="8" width="2" height="2" rx="0.5" />
+  </mask>
+  <rect x="5" y="8" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-2-inside-1_4330_21196)" />
+  <mask id="path-3-inside-2_4330_21196" fill="white">
+    <rect x="13" y="8" width="2" height="2" rx="0.5" />
+  </mask>
+  <rect x="13" y="8" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-3-inside-2_4330_21196)" />
+  <mask id="path-4-inside-3_4330_21196" fill="white">
+    <rect x="5" y="12" width="2" height="2" rx="0.5" />
+  </mask>
+  <rect x="5" y="12" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-4-inside-3_4330_21196)" />
+  <mask id="path-5-inside-4_4330_21196" fill="white">
+    <rect x="9" y="12" width="2" height="2" rx="0.5" />
+  </mask>
+  <rect x="9" y="12" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-5-inside-4_4330_21196)" />
+  <mask id="path-6-inside-5_4330_21196" fill="white">
+    <rect x="9" y="8" width="2" height="2" rx="0.5" />
+  </mask>
+  <rect x="9" y="8" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-6-inside-5_4330_21196)" />
+  <mask id="path-7-inside-6_4330_21196" fill="white">
+    <rect x="13" y="12" width="2" height="2" rx="0.5" />
+  </mask>
+  <rect x="13" y="12" width="2" height="2" rx="0.5" stroke="#7D7979" stroke-width="2" mask="url(#path-7-inside-6_4330_21196)" />
+</svg>
 )
 export const EducationDepartmentIcon = () => (
 	<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

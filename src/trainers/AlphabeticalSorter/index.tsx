@@ -1,15 +1,15 @@
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
 import { useState, forwardRef, useImperativeHandle } from 'react'
 
-import { type TrainerCommonProps } from '@/shared/types/types'
+import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { AlphabeticalSlot } from './Slot'
 import { AlphabeticalSorterVariant } from './Variant'
 
-
 import './styles.scss'
 
+import type { Id, TrainerCommonProps } from '@/shared/types/types'
 import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 interface AlphabeticalSorterProps extends TrainerCommonProps {
@@ -26,13 +26,15 @@ interface AlphabeticalSorterProps extends TrainerCommonProps {
 	}
 }
 
-
 export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps>(
-	({ payload, onSuccess, onError, changeStatus, title, currentTrainerIndex, subTitle, audio}, ref) => {
+	({ payload, onSuccess, onError, changeStatus, title, currentTrainerIndex, subTitle, audio }, ref) => {
 		const [slots, setSlots] = useState(
 			payload.slots.map(item => ({ ...item, currentValue: null as string | null })),
 		)
-
+		const { checkAnswer } = useCheckAnswer({
+			onSuccess: () => changeStatus('success'),
+			onError: () => changeStatus('error'),
+		})
 		const handleDragEnd = (event: DragEndEvent) => {
 			const { active, over } = event
 			if (over) {
@@ -49,14 +51,37 @@ export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps
 		}
 
 		useImperativeHandle(ref, () => ({
-			handleCheck: () => {
-				const isAllCorrect = slots.every(slot => slot.correctValue === slot.currentValue)
-				if (isAllCorrect) {
-					changeStatus('success')
+			handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+				if (!moduleId || !pieceId || !lessonId || !taskId) return
+				const isAllCorrectClient = slots.every(slot => slot.correctValue === slot.currentValue)
+				changeStatus(isAllCorrectClient ? 'success' : 'error')
+
+				const formattedAnswers = slots.map(slot => ({
+					[slot.id]: slot.currentValue,
+				}))
+
+				const data = await checkAnswer({
+					moduleId,
+					pieceId,
+					lessonId,
+					taskId,
+					answer: formattedAnswers,
+					timeSpent: timeSpent ?? 0,
+				})
+
+				if (data?.is_correct) {
 					onSuccess()
 				} else {
-					changeStatus('error')
 					onError()
+				}
+
+				if (isAllCorrectClient !== data?.is_correct) {
+					// eslint-disable-next-line no-console
+					console.warn('Client/server mismatch on answer check', {
+						taskId,
+						isAllCorrectClient,
+						serverResult: data?.is_correct,
+					})
 				}
 			},
 			handleReset: () => {

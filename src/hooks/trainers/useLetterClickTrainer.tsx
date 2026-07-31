@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useImperativeHandle, type Ref } from 'react'
 
+import { useCheckAnswer } from './useCheckAnswer'
+
+import type { Id } from '@/shared/types/types'
+
 interface UseLetterClickTrainerProps {
 	ref: Ref<any>
 	correctIds: (number | string)[]
@@ -12,34 +16,53 @@ interface UseLetterClickTrainerProps {
 
 export function useLetterClickTrainer({
 	ref,
-	correctIds=[],
+	correctIds = [],
 	onSuccess,
 	onError,
 	changeStatus,
 	isMulti = false,
 }: UseLetterClickTrainerProps) {
 	const [selectedIds, setSelectedIds] = useState<(number | string)[]>([])
-
+	const { checkAnswer } = useCheckAnswer({
+		onSuccess: () => changeStatus('success'),
+		onError: () => changeStatus('error'),
+	})
 	useImperativeHandle(ref, () => ({
-		handleCheck: () => {
+		handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
 			if (selectedIds.length === 0) return
+			if (!moduleId || !pieceId || !lessonId || !taskId) return
 
-			let isCorrect = false
+			let isCorrectClient = false
 
 			if (isMulti) {
-				isCorrect =
+				isCorrectClient =
 					selectedIds.length === correctIds.length && selectedIds.every(id => correctIds.includes(id))
 			} else {
-				isCorrect = selectedIds.length === 1 && correctIds.includes(selectedIds[0])
+				isCorrectClient = selectedIds.length === 1 && correctIds.includes(selectedIds[0])
 			}
 
-			if (isCorrect) {
+			changeStatus(isCorrectClient ? 'success' : 'error')
+
+			const data = await checkAnswer({
+				moduleId,
+				pieceId,
+				lessonId,
+				taskId,
+				answer: selectedIds,
+				timeSpent: timeSpent ?? 0,
+			})
+
+			if (data?.is_correct) {
 				onSuccess()
-				changeStatus('success')
 			} else {
 				onError()
-				changeStatus('error')
 			}
+			if (isCorrectClient !== data?.is_correct) {
+  // eslint-disable-next-line no-console
+  console.warn('Client/server mismatch on answer check', {
+    taskId, isCorrectClient, serverResult: data?.is_correct,
+  })
+}
 		},
 		handleReset: () => {
 			setSelectedIds([])
