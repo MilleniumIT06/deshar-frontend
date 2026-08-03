@@ -18,12 +18,13 @@ import {
 } from '@dnd-kit/sortable'
 import { useState, useImperativeHandle, forwardRef } from 'react'
 
+import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import './styles.scss'
 
 import { ReorderableItem } from './item'
 
-import type { TrainerCommonProps } from '@/shared/types/types'
+import type { Id, TrainerCommonProps } from '@/shared/types/types'
 import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 export interface IOrderItem {
@@ -49,25 +50,60 @@ export const ReorderItems = forwardRef<TrainerRef, ReorderItemsProps>(
 			useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
 			useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
 		)
+		const {checkAnswer,isLoading} = useCheckAnswer()
 
 		useImperativeHandle(ref, () => ({
-			handleCheck: () => {
-				const currentOrder = data.data.map(item => item.id)
-				const isCorrect = JSON.stringify(currentOrder) === JSON.stringify(data.correctOrderIds)
+    handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+        if (isLoading) return
 
-				if (isCorrect) {
-					onSuccess?.()
-					changeStatus('success')
-				} else {
-					onError?.()
-					changeStatus('error')
-				}
-			},
-			handleReset: () => {
-				setData(payload)
-				changeStatus('idle')
-			},
-		}))
+        if (!moduleId || !pieceId || !lessonId || !taskId) return
+
+        const currentOrder = data.data.map(item => item.id)
+
+        const isCorrectClient = JSON.stringify(currentOrder) === JSON.stringify(data.correctOrderIds)
+
+        if (isCorrectClient) {
+            changeStatus('success')
+        } else {
+            changeStatus('error')
+        }
+
+
+        const serverData = await checkAnswer({
+            moduleId,
+            pieceId,
+            lessonId,
+            taskId,
+            answer: currentOrder,
+            timeSpent: timeSpent ?? 0,
+        })
+
+
+        if (!serverData) return
+
+
+        if (serverData.is_correct) {
+            changeStatus('success')
+            onSuccess?.()
+        } else {
+            changeStatus('error')
+            onError?.()
+        }
+
+        if (isCorrectClient !== serverData.is_correct) {
+            // eslint-disable-next-line no-console
+            console.warn('Client/server mismatch on answer check', {
+                taskId,
+                isCorrectClient,
+                serverResult: serverData.is_correct,
+            })
+        }
+    },
+    handleReset: () => {
+        setData(payload)
+        changeStatus('idle')
+    },
+}))
 
 		function handleDragEnd(event: DragEndEvent) {
 			const { active, over } = event

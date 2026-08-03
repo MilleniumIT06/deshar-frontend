@@ -33,6 +33,16 @@ isDisabled?:boolean;
 progressPercentage:number;
 status:string;
 }) => {
+	const getStatus = () => {
+		if(progressPercentage===100) {
+			return "completed"
+		}else if(progressPercentage===0) {
+			return "not_started"
+		}else if(progressPercentage>0) {
+			return "in_progress"
+		}
+		return "error"
+	}
 	return (
 		<div className={cn('ModuleCard')}>
 			<div className="ModuleCard__inner">
@@ -57,7 +67,7 @@ status:string;
 						processLessons={processLessons}
 						counter
 					/>
-					<AttestationBar percentage={progressPercentage} status={status} />
+					<AttestationBar percentage={progressPercentage} status={getStatus()} />
 				</div>
 			</div>
 		</div>

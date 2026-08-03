@@ -28,9 +28,9 @@ interface PracticeScreenProps {
 	onSupportClick: () => void
 	isSupportModalOpen: boolean
 	uniqueTask: UniqueTask
-	status: 'idle' | 'success' | 'error'
+	status: 'idle' | 'success' | 'error'|'checking'
 	trainerRef: React.RefObject<TrainerRef|null>
-	changeStatus: (value: 'idle' | 'error' | 'success') => void
+	changeStatus: (value: 'idle' | 'error' | 'success'|'checking') => void
 	onError: () => void
 	onSuccess: () => void
 	onMainButtonClick: () => void
@@ -58,6 +58,7 @@ export const PracticeScreen=React.memo(function PracticeScreen({
 	onTimerEnd,
 	timerRef,
 }: PracticeScreenProps) {
+	console.log(status)
 	return (
 		<div className={cn('trainers-engine', themeName)}>
 			<div className="trainers-engine__container">
@@ -101,7 +102,7 @@ export const PracticeScreen=React.memo(function PracticeScreen({
 				</main>
 
 				<footer className="trainers-engine__footer">
-					{status === 'idle' && (
+					{(status === 'idle'||status==='checking') && (
 						<EngineFooter onClickBtn={onMainButtonClick} onTimerEnd={onTimerEnd} timerRef={timerRef} />
 					)}
 					{status === 'success' && <SuccessFooter />}

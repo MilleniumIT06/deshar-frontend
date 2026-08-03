@@ -2,13 +2,15 @@
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
 import { useState, forwardRef, useImperativeHandle, useCallback } from 'react'
 
-import { type TrainerCommonProps } from '@/shared/types/types'
+import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { Slot } from './slot'
 import { Variant } from './variant'
 
+import type { Id, TrainerCommonProps } from '@/shared/types/types'
 import './styles.scss'
+
 
 interface ISequenceSlot {
 	slotId: number | string
@@ -30,7 +32,16 @@ interface SequenceBuilderProps extends TrainerCommonProps {
 
 export const SequenceBuilder = forwardRef(
 	(
-		{ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex,audio }: SequenceBuilderProps,
+		{
+			payload,
+			title,
+			subTitle,
+			onSuccess,
+			onError,
+			changeStatus,
+			currentTrainerIndex,
+			audio,
+		}: SequenceBuilderProps,
 		ref,
 	) => {
 		const [currentValues, setCurrentValues] = useState<Record<string | number, string | null>>(
@@ -40,17 +51,47 @@ export const SequenceBuilder = forwardRef(
 			() => Object.fromEntries(payload.slots.map(s => [s.slotId, null])),
 			[payload.slots],
 		)
-		const checkResult = () => {
-			const isAllCorrect = payload.slots.every(slot => currentValues[slot.slotId] === slot.correctValue)
+		const { checkAnswer, isLoading } = useCheckAnswer()
 
-			if (isAllCorrect) {
+		const checkResult = async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+			if (isLoading) return
+			if (!moduleId || !pieceId || !lessonId || !taskId) return
+
+			const isAllCorrectClient = payload.slots.every(slot => currentValues[slot.slotId] === slot.correctValue)
+
+			if (isAllCorrectClient) {
+				changeStatus('success')
+			} else {
+				changeStatus('error')
+			}
+			const data = await checkAnswer({
+				moduleId,
+				pieceId,
+				lessonId,
+				taskId,
+				answer: currentValues,
+				timeSpent: timeSpent ?? 0,
+			})
+			if (!data) return
+
+			if (data.is_correct) {
 				changeStatus('success')
 				onSuccess()
 			} else {
 				changeStatus('error')
 				onError()
 			}
+
+			if (isAllCorrectClient !== data.is_correct) {
+				// eslint-disable-next-line no-console
+				console.warn('Client/server mismatch on answer check', {
+					taskId,
+					isAllCorrectClient,
+					serverResult: data.is_correct,
+				})
+			}
 		}
+
 		useImperativeHandle(ref, () => ({
 			handleCheck: checkResult,
 			handleReset: () => {
@@ -61,6 +102,8 @@ export const SequenceBuilder = forwardRef(
 
 		const handleDragEnd = (event: DragEndEvent) => {
 			const { active, over } = event
+			if (isLoading) return
+
 			if (over) {
 				setCurrentValues(prev => ({
 					...prev,
@@ -77,7 +120,7 @@ export const SequenceBuilder = forwardRef(
 				<DndContext onDragEnd={handleDragEnd}>
 					<div className="sequence-builder__content">
 						<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-						<TrainerTitle title={title} audio={audio}/>
+						<TrainerTitle title={title} audio={audio} />
 
 						{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 

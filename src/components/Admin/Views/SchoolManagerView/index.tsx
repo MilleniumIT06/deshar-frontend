@@ -23,6 +23,9 @@ export const SchoolManagerView = ()=> {
         const redirectOnBestStudentsClick = (item: ISchoolAllStudents) => {
             return item
         }
+        {!isSchoolStatisticsLoading&&schoolStatisticAdminData&&console.log(schoolStatisticAdminData.statistics)}
+        {!isAllSchoolStudentsLoading&&allSchoolStudents&&console.log(allSchoolStudents.data)}
+
     return (
             <div className="SchoolManagerView">
                 <MainChart data={barChartMockData} title="Суммарная успеваемость школы" />

@@ -16,7 +16,7 @@ import {
 	setSupportModalOpen,
 	setTheme,
 	setAlertModalOpen,
-	resetState
+	resetState,
 } from '@/entities/engine/model/engine.slice'
 import { addPoints, subtractPoints, resetCurrentScore } from '@/entities/engine/model/scoring.slice'
 import { initTimer, resetTimer } from '@/entities/engine/model/timer.slice'
@@ -24,7 +24,7 @@ import { Loader } from '@/shared/ui/Loader'
 
 import './styles/styles.scss'
 
-import { AUTO_ADVANCE_DELAY_MS, PRACTICE_UNLOCK_DELAY_SECONDS } from './constants'
+import { AUTO_ADVANCE_DELAY_MS, ERROR_SUBSTRAC_POINTS, PRACTICE_UNLOCK_DELAY_SECONDS } from './constants'
 import { AlertModal, EngineFinishScreen, Menu, SupportModal } from './dynamic-imports'
 import { useEngineNavigation } from './hooks/useEngineNavigation'
 import { useLessonPracticeData } from './hooks/useLessonPracticeData'
@@ -46,7 +46,7 @@ console.log('dsa')
 
 	const { moduleId, pieceId } = useParams<{ moduleId: string; pieceId: string }>()
 	const currentLesson = lessons ? lessons[currentLessonIndex] : null
-
+	console.log(lessons)
 	const trainerRef = useRef<TrainerRef>(null)
 	const timerRef = useRef<TimerRef>(null)
 
@@ -64,7 +64,7 @@ console.log('dsa')
 			mode,
 			activeTaskIndex: currentTrainerIndex,
 		})
-
+		console.log('ddd',taskData)
 	const { handleNext, handleTheoryNext, startPractice, isLastLesson } = useEngineNavigation({
 		lessons,
 		currentLessonIndex,
@@ -72,6 +72,69 @@ console.log('dsa')
 		time,
 		restartPracticeCountdown: restartCountdown,
 	})
+// const hasRestoredProgress = useRef(false)
+
+// useEffect(() => {
+// 	if (!lessons || lessons.length === 0) return
+// 	if (hasRestoredProgress.current) return
+
+// 	hasRestoredProgress.current = true
+
+// 	const targetLessonIndex = lessons.findIndex(lesson => lesson.progress.status !== 'completed')
+
+// 	if (targetLessonIndex === -1) {
+// 		dispatch(
+// 			restoreProgress({
+// 				lessonIndex: lessons.length - 1,
+// 				trainerIndex: 0,
+// 				mode: 'practice',
+// 			}),
+// 		)
+// 		return
+// 	}
+
+// 	const targetLesson = lessons[targetLessonIndex]
+
+// 	if (targetLesson.progress.status === 'in_progress') {
+// 		dispatch(
+// 			restoreProgress({
+// 				lessonIndex: targetLessonIndex,
+// 				trainerIndex: 0,
+// 				mode: 'practice',
+// 			}),
+// 		)
+// 	} else {
+// 		dispatch(
+// 			restoreProgress({
+// 				lessonIndex: targetLessonIndex,
+// 				trainerIndex: 0,
+// 				mode: 'theory',
+// 			}),
+// 		)
+// 	}
+// }, [lessons, dispatch])
+// const hasRestoredTrainerIndex = useRef(false)
+
+// useEffect(() => {
+// 	if (!hasRestoredProgress.current) return
+// 	if (hasRestoredTrainerIndex.current) return
+// 	if (mode !== 'practice') return
+// 	if (!taskData || taskData.data.length === 0) return
+
+// 	hasRestoredTrainerIndex.current = true
+
+// 	const firstIncompleteTaskIndex = taskData.data.findIndex(task => task.progress.status !== 'completed')
+
+// 	if (firstIncompleteTaskIndex > 0) {
+// 		dispatch(setTrainerIndex(firstIncompleteTaskIndex))
+// 	}
+
+// 	const restoredCurrentScore = taskData.data.reduce((sum, task) => {
+// 		return task.progress.status === 'completed' ? sum + task.xp_reward : sum
+// 	}, 0)
+
+// 	dispatch(setCurrentScore(restoredCurrentScore))
+// }, [taskData, mode, dispatch])
 
 	useEffect(() => {
 		dispatch(initTimer(time))
@@ -108,18 +171,29 @@ console.log('dsa')
 router.back()
 	}
 
-	const changeStatus = (value: 'idle' | 'error' | 'success') => dispatch(setStatus(value))
+	const changeStatus = (value: 'idle' | 'error' | 'success'|'checking') => dispatch(setStatus(value))
 	const handleMenuToggle = () => dispatch(setIsMenuOpen(!isMenuOpen))
 	const handleSupportModalClick = () => dispatch(setSupportModalOpen(!isSupportModalOpen))
 	const handleTimerEnd = () => dispatch(setStatus('error'))
 	const handleBreakBtnClick = ()=> dispatch(setAlertModalOpen(!isAlertModalOpen))
+	// начисляем за каждую задачу
+	// const handleSuccess = () => {
+	// 	if (!activeTask) return
+	// 	dispatch(addPoints(uniqueTask?.task.xp_reward || 0))
+	// }
+	// начисляем за урок если все задачи в уроке выполнены
 	const handleSuccess = () => {
-		if (!activeTask) return
-		dispatch(addPoints(uniqueTask?.task.xp_reward || 0))
+	if (!activeTask || !currentLesson) return
+
+	const isLastTaskInLesson = currentTrainerIndex === currentLesson.total_tasks - 1
+
+	if (isLastTaskInLesson) {
+		dispatch(addPoints(currentLesson.xp_reward || 0))
 	}
+}
 	const handleError = () => {
 		if (!activeTask) return
-		dispatch(subtractPoints(7))
+		dispatch(subtractPoints(ERROR_SUBSTRAC_POINTS))
 	}
 
 	if (engineStatus === 'engineLoading') return <div>Loading...</div>

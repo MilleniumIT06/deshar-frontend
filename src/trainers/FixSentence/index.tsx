@@ -1,11 +1,13 @@
 import { useState, forwardRef, useImperativeHandle } from 'react'
 
-import { type TrainerCommonProps } from '@/shared/types/types'
+import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { FixSentenceItem } from './item'
 
 import './styles.scss'
+
+import type { Id, TrainerCommonProps } from '@/shared/types/types'
 
 interface FixSentenceProps extends TrainerCommonProps {
 	payload: {
@@ -18,23 +20,55 @@ interface FixSentenceProps extends TrainerCommonProps {
 export const FixSentence = forwardRef(
 	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex,audio }: FixSentenceProps, ref) => {
 		const [selectedIndex, setSelectedIndex] = useState<number>(0)
+		const { checkAnswer, isLoading } = useCheckAnswer()
 
-		useImperativeHandle(ref, () => ({
-			handleCheck: () => {
-				const isCorrect = payload.words[selectedIndex] === payload.correctAnswer
-				if (isCorrect) {
-					changeStatus('success')
-					onSuccess()
-				} else {
-					changeStatus('error')
-					onError()
-				}
-			},
-			handleReset: () => {
-				setSelectedIndex(0)
-				changeStatus('idle')
-			},
-		}))
+useImperativeHandle(ref, () => ({
+    handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+        if (isLoading) return
+		 if (!moduleId || !pieceId || !lessonId || !taskId) return
+        const selectedAnswer = payload.words[selectedIndex]
+
+        const isCorrectClient = selectedAnswer === payload.correctAnswer
+
+        if (isCorrectClient) {
+            changeStatus('success')
+        } else {
+            changeStatus('error')
+        }
+
+        const data = await checkAnswer({
+            moduleId,
+            pieceId,
+            lessonId,
+            taskId,
+            answer: selectedAnswer,
+            timeSpent: timeSpent||0,
+        })
+
+        if (!data) return
+
+        if (data.is_correct) {
+            changeStatus('success')
+            onSuccess()
+        } else {
+            changeStatus('error')
+            onError()
+        }
+
+        if (isCorrectClient !== data.is_correct) {
+            // eslint-disable-next-line no-console
+            console.warn('Client/server mismatch on answer check', {
+                taskId: taskId,
+                isCorrectClient,
+                serverResult: data.is_correct,
+            })
+        }
+    },
+    handleReset: () => {
+        setSelectedIndex(0)
+        changeStatus('idle')
+    },
+}))
 
 		const handleSelect = (index: number) => {
 			setSelectedIndex(index)

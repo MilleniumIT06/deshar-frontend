@@ -33,7 +33,7 @@ export interface TrainerCommonProps {
 	subTitle?: string
 	onSuccess: () => void
 	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+	changeStatus: (status: 'idle' | 'error' | 'success'|'checking') => void
 }
 // {subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 

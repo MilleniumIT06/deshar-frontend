@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useCallback } from 'react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { educationService } from '@/services/education/education.service'
 
@@ -41,45 +41,35 @@ type UseCheckAnswerOptions = {
 }
 
 export const useCheckAnswer = (options: UseCheckAnswerOptions = {}) => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<unknown>(null)
-  const [result, setResult] = useState<CheckAnswerResponse | null>(null)
+  const queryClient = useQueryClient()
 
-  const checkAnswer = useCallback(
-    async ({ moduleId, pieceId, lessonId, taskId, answer, timeSpent }: CheckAnswerParams) => {
-      setIsLoading(true)
-      setError(null)
+  const mutation = useMutation({
+    mutationFn: ({ moduleId, pieceId, lessonId, taskId, answer, timeSpent }: CheckAnswerParams) =>
+      educationService.checkTask(moduleId, pieceId, lessonId, taskId, {
+        answer,
+        time_spent: timeSpent,
+      }),
 
-      try {
-        const data: CheckAnswerResponse = await educationService.checkTask(moduleId, pieceId, lessonId, taskId, {
-          answer,
-          time_spent: timeSpent,
-        })
+    onSuccess: (data, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: ['ing-module-by-id', Number(variables.moduleId)],
+      })
 
-        setResult(data)
-
-        if (data.is_correct) {
-          options.onSuccess?.(data)
-        } else {
-          options.onError?.(data)
-        }
-
-        return data
-      } catch (err) {
-        setError(err)
-        options.onRequestError?.(err)
-        return null
-      } finally {
-        setIsLoading(false)
+      if (data.is_correct) {
+        options.onSuccess?.(data)
+      } else {
+        options.onError?.(data)
       }
     },
-    [options]
-  )
+    onError: (error) => {
+      options.onRequestError?.(error)
+    }
+  })
 
   return {
-    checkAnswer,
-    isLoading,
-    error,
-    result,
+    checkAnswer: mutation.mutateAsync,
+    isLoading: mutation.isPending,
+    error: mutation.error,
+    result: mutation.data ?? null,
   }
 }

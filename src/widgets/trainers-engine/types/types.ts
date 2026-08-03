@@ -17,6 +17,11 @@ export interface LessonListItem {
 	is_required: boolean;
 	audio:string|null;
 	image:string|null;
+	xp_reward:number;
+	progress:{
+		is_completed:boolean;
+		status:string|"completed";
+	}
 }
 
 export interface TrainersEngineProps {

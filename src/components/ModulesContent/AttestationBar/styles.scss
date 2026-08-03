@@ -19,6 +19,9 @@
 		&.checking {
 			background: var(--warning-medium);
 		}
+		&.in_progress {
+			background: var(--warning-medium);
+		}
 		&.checked {
 			background: var(--primary-medium);
 		}

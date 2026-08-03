@@ -1,48 +1,65 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useImperativeHandle, type Ref } from 'react'
 
+import { useCheckAnswer } from './useCheckAnswer'
+
+import type { Id } from '@/shared/types/types'
+
 interface UseQuizLogicProps<T> {
 	ref: Ref<any>
 	correctValue: T | T[]
 	onSuccess: () => void
 	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+	changeStatus: (status: 'idle' | 'error' | 'success'|'checking') => void
 }
 
 export function useQuizLogic<T>({ ref, correctValue, onSuccess, onError, changeStatus }: UseQuizLogicProps<T>) {
 	// Автоматически определяем, мульти-выбор это или нет
 	const isMulti = Array.isArray(correctValue)
-
+	const {checkAnswer,isLoading} =useCheckAnswer()
 	const [isSubmitted, setIsSubmitted] = useState(false)
-	// Инициализируем пустым массивом, если это мульти-выбор
+
 	const [selected, setSelected] = useState<T | T[]>(isMulti ? [] : (null as any))
 
 	useImperativeHandle(ref, () => ({
-		handleCheck: () => {
-			const hasSelection = isMulti ? (selected as T[]).length > 0 : selected !== null
+		handleCheck: async (moduleId: Id, pieceId: Id, lessonId: Id, taskId: Id, timeSpent?: number) => {
+    if (isLoading) {
+		return
+	}
 
-			if (!hasSelection) return
+    const hasSelection = isMulti
+        ? (selected as T[]).length > 0
+        : selected !== null
 
-			setIsSubmitted(true)
+    if (!hasSelection) return
 
-			let isCorrect = false
-			if (isMulti && Array.isArray(correctValue)) {
-				const selectedArray = selected as T[]
-				isCorrect =
-					selectedArray.length === correctValue.length &&
-					selectedArray.every(v => correctValue.includes(v))
-			} else {
-				isCorrect = selected === correctValue
-			}
+    setIsSubmitted(true)
+	changeStatus("checking")
+    const formattedAnswer = isMulti
+        ? (selected as T[])
+        : selected
 
-			if (isCorrect) {
-				onSuccess()
-				changeStatus('success')
-			} else {
-				onError()
-				changeStatus('error')
-			}
-		},
+    const data = await checkAnswer({
+        moduleId,
+        pieceId,
+        lessonId,
+        taskId,
+        answer: formattedAnswer,
+        timeSpent: timeSpent ?? 0,
+    })
+
+
+    if (!data) return
+
+
+    if (data.is_correct) {
+        changeStatus('success')
+        onSuccess()
+    } else {
+        changeStatus('error')
+        onError()
+    }
+},
 		handleReset: () => {
 			setIsSubmitted(false)
 			setSelected(isMulti ? [] : (null as any))

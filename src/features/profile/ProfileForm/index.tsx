@@ -15,7 +15,7 @@ import './styles.scss';
 export const ProfileForm = () => {
     const {profileData,isFetching} = useProfile()
     const {isPending,updateProfile} = useUpdateProfile()
-
+    console.log(profileData)
    const {
         register,
         handleSubmit,

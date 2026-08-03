@@ -47,6 +47,12 @@
 		&_wrapper {
 			border-top: 1px solid var(--neutral-light);
 			padding-top: 20px;
+			position: relative;
 		}
+	}
+	&__userMenu {
+		position: absolute;
+		top: -250px;
+		right: 0;
 	}
 }

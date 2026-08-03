@@ -11,13 +11,17 @@ export const AttestationBar = ({ percentage, status }: { percentage: number; sta
 				return ""
 			case "checking":
 				return "checking"
+			case "completed":
+				return "checked"
+			case "in_progress":
+				return "in_progress"
 			default:
 			return ""
 		}
 	}
 	return (
 		<div className="AttestationBar">
-			{status === 'checked' && <span className="AttestationBar__number">{percentage}%</span>}
+			{status === 'checked'||status==="completed"||status==="in_progress" && <span className="AttestationBar__number">{percentage}%</span>}
 			<div className={cn('AttestationBar__line', getClassByStatus())} />
 		</div>
 	)
