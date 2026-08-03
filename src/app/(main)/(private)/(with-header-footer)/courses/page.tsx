@@ -1,7 +1,7 @@
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs'
 import { AllCourses } from '@/widgets/AllCourses'
 
-import '../styles.scss'
+import '../../styles.scss'
 
 export default function AllCoursesPage() {
 	return (

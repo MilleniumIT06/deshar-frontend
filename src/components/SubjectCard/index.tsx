@@ -31,6 +31,7 @@ export interface SubjectCardProps extends VariantProps<typeof subjectCardVariant
 	loading?: 'eager' | 'lazy'
 	priority?: boolean
 	fullCatalog?: boolean
+	isFullCardClickable?: boolean // Новый проп для переключения режима
 }
 
 const FALLBACK_IMAGE = '/images/Courses/fallback.png'
@@ -48,6 +49,7 @@ const SubjectCard = ({
 	loading = 'lazy',
 	priority = false,
 	fullCatalog,
+	isFullCardClickable = false,
 }: SubjectCardProps) => {
 	const [imageError, setImageError] = useState(false)
 	const validImageUrl = imageUrl && imageUrl.trim() ? `images/Courses/${imageUrl.trim()}` : 'subjectcardskeleton'
@@ -61,7 +63,7 @@ const SubjectCard = ({
 	}, [validImageUrl])
 
 	const getModulesText = useCallback(() => {
-		if (fullCatalog) return 'дисциплин'
+		if (fullCatalog) return 'предметов'
 
 		const lastDigit = modulesCount % 10
 		const lastTwoDigits = modulesCount % 100
@@ -72,16 +74,19 @@ const SubjectCard = ({
 	}, [modulesCount, fullCatalog])
 
 	const linkHref = fullCatalog ? '/courses' : `/courses/${id}/modules`
-
 	const modulesText = `${modulesCount} ${getModulesText()}`
 
-	return (
-		<li className={cn(subjectCardVariants({ type, className }))}>
+	const CardContent = (
+		<>
 			<div className="SubjectCard__header">
 				<h6 className="SubjectCard__title">
-					<Link href={linkHref} passHref>
-						{title}
-					</Link>
+					{isFullCardClickable ? (
+						title
+					) : (
+						<Link href={linkHref} passHref>
+							{title}
+						</Link>
+					)}
 				</h6>
 
 				<span className="SubjectCard__modules">{modulesText}</span>
@@ -107,8 +112,25 @@ const SubjectCard = ({
 					</div>
 				</div>
 			)}
-		</li>
+		</>
 	)
+
+	const rootClassName = cn(
+		subjectCardVariants({ type, className }),
+		isFullCardClickable && 'SubjectCard--full-clickable',
+	)
+
+	if (isFullCardClickable) {
+		return (
+				<Link href={linkHref} className="SubjectCard__link-wrapper">
+			<li className={rootClassName}>
+					{CardContent}
+			</li>
+				</Link>
+		)
+	}
+
+	return <li className={rootClassName}>{CardContent}</li>
 }
 
 export { SubjectCard, subjectCardVariants }

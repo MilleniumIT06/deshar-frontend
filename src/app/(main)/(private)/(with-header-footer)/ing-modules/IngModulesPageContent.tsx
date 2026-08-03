@@ -20,6 +20,7 @@ export const IngModulesPageContent = () => {
 							console.log(module.progress.progress_percentage)
 							return <ModuleCard
 							id={module.id}
+							isFullCardClickable={true}
                             key={`ing-module-${module.id}`}
 							linkHref='ing-modules'
 							number={module.id}

@@ -13,6 +13,7 @@ export const AllCourses = () => {
 					<CoursesBlock title="1-4 класс">
 						{coursesB.map(item => (
 							<SubjectCard
+								isFullCardClickable={true}
 								key={`${item.id}key`}
 								modulesCount={item.modulesCount}
 								title={item.title}
@@ -24,7 +25,7 @@ export const AllCourses = () => {
 							/>
 						))}
 					</CoursesBlock>
-					<CoursesBlock title="5-9 класс">
+					{/* <CoursesBlock title="5-9 класс">
 						{coursesB.map(item => (
 							<SubjectCard
 								key={`${item.id}key`}
@@ -36,7 +37,7 @@ export const AllCourses = () => {
 								className="AllCourses__card"
 							/>
 						))}
-					</CoursesBlock>
+					</CoursesBlock> */}
 				</div>
 			</div>
 		</section>

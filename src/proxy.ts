@@ -11,15 +11,28 @@ export async function proxy(request: NextRequest) {
 
     const isAuthenticated = Boolean(token)
     const isAuthPage = pathname === '/sign-in'
+    const isHomePage = pathname === '/home'
 
     if (isAuthenticated && (pathname === '/' || isAuthPage)) {
         return NextResponse.redirect(new URL('/dashboard', request.url))
     }
 
 
-    if (!isAuthenticated && !isAuthPage) {
-        return NextResponse.redirect(new URL('/sign-in', request.url))
+    if (!isAuthenticated) {
+
+        if (pathname === '/') {
+            return NextResponse.redirect(new URL('/home', request.url))
+        }
+
+        if (isHomePage) {
+            return NextResponse.next()
+        }
+
+        if (!isAuthPage) {
+            return NextResponse.redirect(new URL('/sign-in', request.url))
+        }
     }
+
 
     if (isAuthenticated) {
         try {
@@ -30,6 +43,7 @@ export async function proxy(request: NextRequest) {
                     'Accept': 'application/json',
                 },
             })
+
             if (response.status === 401) {
                 const res = NextResponse.redirect(new URL('/sign-in', request.url))
                 res.cookies.delete('jwt_token')
@@ -38,32 +52,23 @@ export async function proxy(request: NextRequest) {
 
             if (response.ok) {
                 const res = await response.json()
-				const user:User = res.data.user;
-				if (user.is_banned === true && pathname !== '/user-banned') {
-                 return NextResponse.redirect(new URL('/user-banned', request.url));
+                const user: User = res.data.user
+       if (user.is_banned === true && pathname !== '/user-banned') {
+                    return NextResponse.redirect(new URL('/user-banned', request.url))
                 }
                 if (user.is_banned === false && pathname === '/user-banned') {
-                 return NextResponse.redirect(new URL('/dashboard', request.url));
-                }
-                // выключил чтобы не мешало разработке
-                // if (user.confirmed === false) {
-                //     if (pathname !== '/not-confirmed') {
-                //         return NextResponse.redirect(new URL('/not-confirmed', request.url))
-                //     }
-                // }
-               const hasAdminAccess = ADMIN_PANEL_ROLES.includes(user.role.name);
-
-                if (hasAdminAccess) {
-                    if (!pathname.startsWith('/admin')) {
-                        return NextResponse.redirect(new URL('/admin', request.url));
-                    }
-                }
-                if(user.role.name==="Ученик") {
-                    if(pathname === '/admin') {
-                        return NextResponse.redirect(new URL('/dashboard', request.url))
-                    }
+                    return NextResponse.redirect(new URL('/dashboard', request.url))
                 }
 
+                const hasAdminAccess = ADMIN_PANEL_ROLES.includes(user.role.name)
+
+                if (!hasAdminAccess && pathname.startsWith('/admin')) {
+                    return NextResponse.redirect(new URL('/dashboard', request.url))
+                }
+
+                if (hasAdminAccess && pathname === '/') {
+                    return NextResponse.redirect(new URL('/admin', request.url))
+                }
             }
         } catch (error) {
             console.error('Middleware Auth Error:', error)
@@ -76,18 +81,21 @@ export async function proxy(request: NextRequest) {
 export const config = {
     matcher: [
         '/',
+        '/home',
         '/sign-in',
         '/not-confirmed',
         '/dashboard/:path*',
         '/courses/:path*',
         '/completed-courses/:path*',
         '/learning/:path*',
-		'/user-banned',
+        '/user-banned',
         '/attestation/:path*',
         '/attestation-result/:path*',
-        '/courses/:path*',
         '/practice/:path*',
         '/profile/:path*',
         '/admin/:path*',
+        '/admin',
+        '/ing-modules/:path*',
+        '/support/:path*',
     ],
 }
