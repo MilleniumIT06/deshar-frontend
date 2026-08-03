@@ -1,11 +1,11 @@
 import { LearningSidebar } from '@/components/LearningSidebar'
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs'
 
-import '../styles.scss'
+import '../../styles.scss'
 
 import type { Metadata } from 'next'
 
-import '../../../globals.scss'
+import '@/app/globals.scss'
 // import { TrainersEngine } from '@/features/trainers-engine'
 
 export const metadata: Metadata = {

@@ -1,7 +1,7 @@
 import { ModulesContent } from '@/components/ModulesContent'
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs'
 
-import '../../../styles.scss'
+import '../../../../styles.scss'
 
 export default async function Modules() {
 	return (

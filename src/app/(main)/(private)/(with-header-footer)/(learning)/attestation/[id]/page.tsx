@@ -1,6 +1,6 @@
 import { LearningAttestation } from '@/components/LearningAttestation'
 
-import '../../../styles.scss'
+import '../../../../styles.scss'
 
 export default async function Attestation() {
 	return (
