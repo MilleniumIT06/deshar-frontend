@@ -1,6 +1,6 @@
-import { axiosWithAuth } from '@/config/api.helper'
 import { API_URL } from '@/config/api.config'
-import { Id } from '@/shared/types/types';
+import { axiosWithAuth } from '@/config/api.helper'
+import { type Id } from '@/shared/types/types';
 
 interface ITeachersResponseData {
     success:boolean;

@@ -1,4 +1,6 @@
-import { Id } from "./types";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { type Id } from "./types";
+
 export const ROLES = {
     SUPER_ADMIN: 'Супер-админ',
     ADMIN: 'Админ',

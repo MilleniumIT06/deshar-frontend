@@ -1,5 +1,7 @@
-import { Id } from "@/shared/types/types";
-import { ISchool } from "./republic.types";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { type Id } from "@/shared/types/types";
+
+import { type ISchool } from "./republic.types";
 
 export interface IMinistryDistrict {
             id:Id;

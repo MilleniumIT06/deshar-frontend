@@ -1,24 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import Image from 'next/image'
+import { useParams, useRouter } from 'next/navigation'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { resetState } from '@/entities/engine/model/engine.slice'
 import { resetScore } from '@/entities/engine/model/scoring.slice'
 
-
 import './styles.scss'
 import { BreakBtn } from '../BreakBtn'
 import { EngineButton } from '../Button'
 
-
 export const EngineFinishScreen = () => {
 	const { totalScore } = useAppSelector(state => state.scoreReducer)
 	const dispatch = useAppDispatch()
-
+	const router = useRouter()
+	const { moduleId } = useParams<{ moduleId: string }>()
 	const reset = () => {
-	dispatch(resetState())
-	dispatch(resetScore())
+		dispatch(resetState())
+		dispatch(resetScore())
+	}
+	const handleContinue = () => {
+		router.push(`/ing-modules/${moduleId}`)
 	}
 	return (
 		<section className="finish-screen">
@@ -62,7 +65,10 @@ export const EngineFinishScreen = () => {
 
 					{/* Кнопки действий */}
 					<div className="finish-screen__actions">
-						<EngineButton variant="secondary" className="finish-screen__btn finish-screen__btn-retry" onClick={reset}>
+						<EngineButton
+							variant="secondary"
+							className="finish-screen__btn finish-screen__btn-retry"
+							onClick={reset}>
 							<svg
 								className="finish-screen__btn-icon"
 								width="33"
@@ -87,7 +93,8 @@ export const EngineFinishScreen = () => {
 						</EngineButton>
 						<EngineButton
 							variant="primary"
-							className="finish-screen__btn finish-screen__btn-continue">
+							className="finish-screen__btn finish-screen__btn-continue"
+							onClick={handleContinue}>
 							Продолжить
 							<svg
 								width="16"

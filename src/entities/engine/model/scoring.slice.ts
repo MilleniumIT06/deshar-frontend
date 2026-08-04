@@ -8,6 +8,12 @@ export const scoringSlice = createSlice({
 			const newScore = state.currentScore + action.payload
 			state.currentScore = Math.max(0,newScore)
 		},
+		setTotalScore: (state, action: PayloadAction<number>) => {
+	state.totalScore = action.payload
+},
+setCurrentScore: (state, action: PayloadAction<number>) => {
+	state.currentScore = action.payload
+},
 		subtractPoints: (state, action: PayloadAction<number>) => {
 			const newScore = state.currentScore - action.payload
 			state.currentScore = Math.max(0,newScore)
@@ -26,5 +32,5 @@ export const scoringSlice = createSlice({
 	},
 })
 
-export const { addPoints, resetScore, subtractPoints,addCurrentToTotalScore,resetCurrentScore } = scoringSlice.actions
+export const { addPoints, resetScore, subtractPoints,addCurrentToTotalScore,resetCurrentScore,setTotalScore,setCurrentScore } = scoringSlice.actions
 export default scoringSlice.reducer

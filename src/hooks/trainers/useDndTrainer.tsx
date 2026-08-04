@@ -30,54 +30,56 @@ export const useDndTrainer = <T extends TrainerItem>({
 	const [selections, setSelections] = useState<Record<number | string, number | string | null>>(
 		Object.fromEntries(items.map(item => [item.id, null])),
 	)
-	const { checkAnswer } = useCheckAnswer({
-			onSuccess: () => changeStatus('success'),
-			onError: () => changeStatus('error'),
-		})
+	const { checkAnswer,isLoading } = useCheckAnswer()
 
 	useImperativeHandle(ref, () => ({
-    handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
-        const allFilled = items.every(item => selections[item.id] !== null)
-        if (!allFilled) return
+   handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+    if (isLoading) {
+		console.log('checking')
+		changeStatus("checking")
+		return
+	}
 
-        if (!moduleId || !pieceId || !lessonId || !taskId) return
-        setIsSubmitted(true)
-        const isCorrectClient = items.every(item => selections[item.id] === item.correctVariantId)
-        changeStatus(isCorrectClient ? 'success' : 'error')
+    const allFilled = items.every(item => selections[item.id] !== null)
+    if (!allFilled) return
 
-        const formattedAnswers = Object.fromEntries(
-            items.map(item => [item.id, selections[item.id]])
-        )
+    if (!moduleId || !pieceId || !lessonId || !taskId) return
 
-        try {
-            const data = await checkAnswer({
-                moduleId,
-                pieceId,
-                lessonId,
-                taskId,
-                answer: formattedAnswers,
-                timeSpent: timeSpent ?? 0,
-            })
+    setIsSubmitted(true)
 
-            if (data?.is_correct) {
-                onSuccess()
-            } else {
-                onError()
-            }
+    const formattedAnswers = Object.fromEntries(
+        items.map(item => [item.id, selections[item.id]])
+    )
 
-            if (isCorrectClient !== data?.is_correct) {
-                // eslint-disable-next-line no-console
-                console.warn('Client/server mismatch on answer check', {
-                    taskId, isCorrectClient, serverResult: data?.is_correct,
-                })
-            }
-        } catch (e) {
+    try {
+        const data = await checkAnswer({
+            moduleId,
+            pieceId,
+            lessonId,
+            taskId,
+            answer: formattedAnswers,
+            timeSpent: timeSpent ?? 0,
+        })
+        if (!data) {
             changeStatus('idle')
             setIsSubmitted(false)
-			// eslint-disable-next-line no-console
-			console.log(e)
+            return
         }
-    },
+
+        if (data.is_correct) {
+            changeStatus('success')
+            onSuccess()
+        } else {
+            changeStatus('error')
+            onError()
+        }
+    } catch (e) {
+        changeStatus('idle')
+        setIsSubmitted(false)
+        // eslint-disable-next-line no-console
+        console.error(e)
+    }
+},
     handleReset: () => {
         setIsSubmitted(false)
         setSelections(Object.fromEntries(items.map(item => [item.id, null])))

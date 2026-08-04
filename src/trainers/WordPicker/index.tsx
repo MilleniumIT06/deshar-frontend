@@ -1,10 +1,11 @@
 import cn from 'classnames'
 import { forwardRef, useImperativeHandle } from 'react'
 
+import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { useWordPicker } from '@/hooks/trainers/useWordPicker'
-import { type TrainerCommonProps } from '@/shared/types/types'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
+import type { Id, TrainerCommonProps } from '@/shared/types/types'
 import './styles.scss'
 
 interface WordPickerProps extends TrainerCommonProps {
@@ -15,8 +16,18 @@ interface WordPickerProps extends TrainerCommonProps {
 }
 
 export const WordPicker = forwardRef(
-	({ title, subTitle, onError, onSuccess, changeStatus, payload, currentTrainerIndex,audio }: WordPickerProps, ref) => {
-		const { words, toggleWord, checkResult, reset } = useWordPicker({
+	(
+		{ title, subTitle, onError, onSuccess, changeStatus, payload, currentTrainerIndex, audio }: WordPickerProps,
+		ref,
+	) => {
+		const { checkAnswer, isLoading } = useCheckAnswer()
+
+		const {
+			words,
+			toggleWord,
+			checkResult: coreCheck,
+			reset,
+		} = useWordPicker({
 			text: payload.text,
 			correctValues: payload.correctValues,
 			onSuccess,
@@ -24,8 +35,57 @@ export const WordPicker = forwardRef(
 			changeStatus,
 		})
 
+		const wrappedHandleCheck = async (
+			moduleId?: Id,
+			pieceId?: Id,
+			lessonId?: Id,
+			taskId?: Id,
+			timeSpent?: number,
+		) => {
+			if (isLoading) return
+			if (!moduleId || !pieceId || !lessonId || !taskId) return
+			const selectedTextAnswers = words.filter(word => word.isSelected).map(word => word.text)
+
+			if (selectedTextAnswers.length === 0) return
+			coreCheck()
+			const data = await checkAnswer({
+				moduleId,
+				pieceId,
+				lessonId,
+				taskId,
+				answer: selectedTextAnswers,
+				timeSpent: timeSpent ?? 0,
+			})
+
+
+			if (!data) return
+
+
+			if (data.is_correct) {
+				changeStatus('success')
+				onSuccess?.()
+			} else {
+				changeStatus('error')
+				onError?.()
+			}
+
+			const correctWords = words.filter(w => w.isCorrect)
+			const isCorrectClient =
+				words.filter(w => w.isSelected).length === correctWords.length &&
+				words.filter(w => w.isSelected).every(word => word.isCorrect)
+
+			if (isCorrectClient !== data.is_correct) {
+				// eslint-disable-next-line no-console
+				console.warn('Client/server mismatch on answer check', {
+					taskId,
+					isCorrectClient,
+					serverResult: data.is_correct,
+				})
+			}
+		}
+
 		useImperativeHandle(ref, () => ({
-			handleCheck: checkResult,
+			handleCheck: wrappedHandleCheck,
 			handleReset: reset,
 		}))
 
@@ -33,7 +93,7 @@ export const WordPicker = forwardRef(
 			<div className="word-picker">
 				<div className="word-picker__content">
 					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-					<TrainerTitle title={title} audio={audio}/>
+					<TrainerTitle title={title} audio={audio} />
 
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
@@ -59,7 +119,7 @@ export const WordPicker = forwardRef(
 									className={cn('word-picker__word', {
 										'is-selected': word.isSelected,
 									})}
-									onClick={() => toggleWord(index)}>
+									 onClick={() => !isLoading && toggleWord(index)}>
 									{word.text}
 								</span>
 							))}

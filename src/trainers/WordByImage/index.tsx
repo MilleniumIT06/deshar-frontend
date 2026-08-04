@@ -5,13 +5,14 @@ import Image from 'next/image'
 import { useImperativeHandle, forwardRef } from 'react'
 import './styles.scss'
 
+import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { useWordTrainer } from '@/hooks/trainers/useWordTrainer'
-import { type TrainerCommonProps } from '@/shared/types/types'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { DropInput } from './DropInput'
 import { MoveBoxImage } from './MoveBox'
 
+import type { Id, TrainerCommonProps } from '@/shared/types/types'
 import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 export interface IWordLetter {
@@ -34,8 +35,10 @@ interface WordByImageProps extends TrainerCommonProps {
 }
 
 export const WordByImage = forwardRef<TrainerRef, WordByImageProps>(
-	({ title, subTitle, status, changeStatus, onSuccess, onError, payload, currentTrainerIndex,audio }, ref) => {
+	({ title, subTitle, status, changeStatus, onSuccess, onError, payload, currentTrainerIndex, audio }, ref) => {
 		const { correctAnswer, availableLetters, imageUrl, id } = payload
+
+		const { checkAnswer, isLoading } = useCheckAnswer()
 
 		const {
 			slots,
@@ -52,17 +55,45 @@ export const WordByImage = forwardRef<TrainerRef, WordByImageProps>(
 			changeStatus,
 		})
 
-		const wrappedHandleCheck = () => {
+		const wrappedHandleCheck = async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+			if (isLoading) return
+
 			const isAnySlotFilled = slots.some(slot => slot.current !== null)
 			if (!isAnySlotFilled) return
 
+			if (!moduleId || !pieceId || !lessonId || !taskId) return
+
+			const userAnswer = slots.map(slot => slot.current || '').join('')
+
 			coreCheck()
 
-			const userAnswer = slots.map(slot => slot.current).join('')
-			if (userAnswer === correctAnswer) {
+			const data = await checkAnswer({
+				moduleId,
+				pieceId,
+				lessonId,
+				taskId,
+				answer: userAnswer, // Строка ответа
+				timeSpent: timeSpent ?? 0,
+			})
+
+			if (!data) return
+
+			if (data.is_correct) {
+				changeStatus('success')
 				onSuccess?.()
 			} else {
+				changeStatus('error')
 				onError?.()
+			}
+
+			const isCorrectClient = userAnswer === correctAnswer
+			if (isCorrectClient !== data.is_correct) {
+				// eslint-disable-next-line no-console
+				console.warn('Client/server mismatch on answer check', {
+					taskId,
+					isCorrectClient,
+					serverResult: data.is_correct,
+				})
 			}
 		}
 
@@ -76,7 +107,7 @@ export const WordByImage = forwardRef<TrainerRef, WordByImageProps>(
 					<div className="word-image-trainer__content">
 						<div className="word-image-trainer__header">
 							<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-							<TrainerTitle title={title} audio={audio}/>
+							<TrainerTitle title={title} audio={audio} />
 							{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 						</div>
 

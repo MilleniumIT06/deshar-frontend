@@ -1,6 +1,8 @@
-import { statsService } from '@/services/admin/stats.service'
-import type { Id } from '@/shared/types/types'
 import { useQuery } from '@tanstack/react-query'
+
+import { statsService } from '@/services/admin/stats.service'
+
+import type { Id } from '@/shared/types/types'
 
 export const useGetSchools = () => {
 	const {
@@ -25,7 +27,7 @@ export const useGetSchoolById = (id:Id) => {
         queryKey: ['adminMinistrySchool',id],
         queryFn: () => statsService.getMinistrySchoolStats(id),
         staleTime: 10 * 60 * 1000,
-        enabled: !!id
+        enabled: Boolean(id)
     })
     return { ministrySchool, isMinistrySchoolLoading, isMinistrySchoolError, error }
 }

@@ -1,5 +1,6 @@
-import { teachersService } from '@/services/admin/organization/teachers/teachers.service'
 import { useQuery } from '@tanstack/react-query'
+
+import { teachersService } from '@/services/admin/organization/teachers/teachers.service'
 
 export const useGetSchoolTeachers = () => {
 	const {

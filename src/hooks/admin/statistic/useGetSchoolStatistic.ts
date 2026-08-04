@@ -1,5 +1,7 @@
-import { statsService } from '@/services/admin/stats.service'
 import { useQuery } from '@tanstack/react-query'
+
+import { statsService } from '@/services/admin/stats.service'
+
 export const useGetSchoolStatistic = () => {
 	const {
 		data: schoolStatisticAdminData,

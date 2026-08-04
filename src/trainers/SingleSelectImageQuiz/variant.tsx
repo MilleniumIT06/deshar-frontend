@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 import cn from 'classnames'
-import Image from 'next/image'
 import './variant.scss'
 
 const Icon = () => (

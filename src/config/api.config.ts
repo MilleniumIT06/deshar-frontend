@@ -1,4 +1,4 @@
-import { Id } from "@/shared/types/types"
+import { type Id } from "@/shared/types/types"
 
 export const SERVER_URL = process.env.SERVER_URL
 

@@ -32,8 +32,7 @@
 	}
 
 	&__title {
-		a {
-			font-family: var(--font-family);
+		font-family: var(--font-family);
 			font-weight: 600;
 			font-size: 16px;
 			line-height: 150%;
@@ -42,7 +41,9 @@
 				font-size: 20px;
 				line-height: 140%;
 			}
-		}
+			a {
+				color: var(--neutral-darkest);
+			}
 	}
 
 	&__image {

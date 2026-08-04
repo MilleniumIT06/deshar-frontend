@@ -1,5 +1,7 @@
-import type { Id } from "@/shared/types/types"
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ManagerTopStudent } from "./republic.types";
+import type { Id } from "@/shared/types/types"
+
 export type DepartmentTopStudentType = Omit<ManagerTopStudent, "school">
 export interface IDepartmentUniqueSchool {
 		school: {

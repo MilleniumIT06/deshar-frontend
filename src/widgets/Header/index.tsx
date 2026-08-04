@@ -1,14 +1,12 @@
 // widgets/Header/index.tsx
 'use client'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-import { useAppDispatch } from '@/app/_store/hooks'
 import FullScreenMenu from '@/components/FullScreenMenu'
-import { logoutAction } from '@/entities/user/model/user.slice'
+import { UserMenu } from '@/components/UserMenu'
 import { useProfile } from '@/hooks/user/useProfile'
-import { loginService } from '@/services/auth/login.service'
 import { useOutsideClick } from '@/shared/hooks/useOutsideClick'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Button } from '@/shared/ui/Button'
@@ -23,10 +21,8 @@ export const Header = () => {
 	const userMenuRef = useOutsideClick(() => {
 		setIsMenuOpen(false)
 	})
-	const dispatch = useAppDispatch()
-	const router = useRouter()
 	const { isLoading, profileData } = useProfile()
-
+	const pathname = usePathname()
 	useEffect(() => {
 		if (burgerOpen) {
 			const scrollY = window.scrollY
@@ -64,20 +60,44 @@ export const Header = () => {
 	const handleAvatarClick = () => {
 		setIsMenuOpen(prev => !prev)
 	}
-
-	const handleLogout = async () => {
-		try {
-			await loginService.logout()
-		} catch (error) {
-			// eslint-disable-next-line no-console
-			console.error('Ошибка при логауте:', error)
-		} finally {
-			dispatch(logoutAction())
-			setIsMenuOpen(false)
-			router.push('/sign-in')
+const renderNavItems = () => {
+		if (pathname === '/home') {
+			return (
+				<>
+					<li className="Header__list_item">
+						<Link href="/dashboard" tabIndex={3}>
+							Уроки
+						</Link>
+					</li>
+					<li className="Header__list_item">
+						<Link href="/support" tabIndex={3}>
+							Поддержка
+						</Link>
+					</li>
+				</>
+			)
 		}
-	}
 
+		return (
+			<>
+				<li className="Header__list_item">
+					<Link href="/ing-modules" tabIndex={3}>
+						Ингушский язык
+					</Link>
+				</li>
+				<li className="Header__list_item">
+					<Link href="/ing-modules" tabIndex={3}>
+						Ингушская литература
+					</Link>
+				</li>
+				<li className="Header__list_item">
+					<Link href="/support" tabIndex={4}>
+						Поддержка
+					</Link>
+				</li>
+			</>
+		)
+	}
 	return (
 		<header className="Header">
 			{burgerOpen && <FullScreenMenu setMenuOpen={setBurgerOpen} />}
@@ -86,26 +106,7 @@ export const Header = () => {
 					<Logo size="large" className="Header__logo" />
 					<nav className="Header__nav">
 						<ul className="list-reset Header__list">
-							<li className="Header__list_item">
-								<Link href="/courses" tabIndex={2}>
-									Уроки
-								</Link>
-							</li>
-							<li className="Header__list_item">
-								<Link href="/attestation/1" tabIndex={3}>
-									Аттестация
-								</Link>
-							</li>
-							<li className="Header__list_item">
-								<Link href="/ing-modules" tabIndex={3}>
-									Ингушский язык
-								</Link>
-							</li>
-							<li className="Header__list_item">
-								<Link href="#" tabIndex={4}>
-									Контакты
-								</Link>
-							</li>
+							{renderNavItems()}
 						</ul>
 					</nav>
 					<div className="Header__right">
@@ -123,42 +124,14 @@ export const Header = () => {
 								</div>
 
 								{isMenuOpen && (
-									<div className="Header__user-menu">
-										<div className="Header__user-menu-header">
-											<Avatar user={profileData.data.user} size="small" showName={false} />
-											<div className="Header__user-info">
-												<div className="Header__user-name">
-													{profileData.data.user.name || 'Пользователь'}
-												</div>
-												<div className="Header__user-email">
-													{profileData.data.user.email || ''}
-												</div>
-											</div>
-										</div>
-										<div className="Header__user-menu-divider" />
-										<div className="Header__user-menu__list">
-											<Link
-												href="/profile"
-												className="Header__user-menu-item"
-												onClick={() => setIsMenuOpen(false)}>
-												Профиль
-											</Link>
-											<Link
-												href="/settings"
-												className="Header__user-menu-item"
-												onClick={() => setIsMenuOpen(false)}>
-												Настройки
-											</Link>
-											<div className="Header__user-menu-divider" />
-											<Button
-												variant={'primary'}
-												size="small"
-												onClick={handleLogout}
-												className="Header__user-menu-logout_btn">
-												Выйти
-											</Button>
-										</div>
-									</div>
+									<UserMenu
+										profileData={profileData}
+										handleMenuClose={() => setIsMenuOpen(false)}
+										listItems={[
+											{ itemHref: '/profile', itemTitle: 'Профиль' },
+											{ itemHref: '/settings', itemTitle: 'Настройки' },
+										]}
+									/>
 								)}
 							</div>
 						) : (

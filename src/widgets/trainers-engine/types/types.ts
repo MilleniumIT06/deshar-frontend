@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { type TrainerType } from '../trainersMap'
+
 import type { Id, TrainerTheme } from '@/shared/types/types'
-import { TrainerType } from '../trainersMap'
 
 export interface TrainerRef {
 	handleCheck: (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => void
@@ -15,6 +17,11 @@ export interface LessonListItem {
 	is_required: boolean;
 	audio:string|null;
 	image:string|null;
+	xp_reward:number;
+	progress:{
+		is_completed:boolean;
+		status:string|"completed";
+	}
 }
 
 export interface TrainersEngineProps {

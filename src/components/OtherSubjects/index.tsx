@@ -11,7 +11,7 @@ export const OtherSubjects = () => {
 		<section className="OtherSubjects">
 			<div className="container">
 				<div className="OtherSubjects__inner">
-					<h2 className="section__title">Другие дисциплины</h2>
+					<h2 className="section__title">Другие предметы</h2>
 					<div className="OtherSubjects__top">
 						<ul className={cn('list-reset', 'OtherSubjects__list', 'subjectsList')}>
 							{courses.map(course => (
@@ -28,7 +28,7 @@ export const OtherSubjects = () => {
 							<SubjectCard
 								className="otherSubjectsItem"
 								type="short"
-								title="Все дисциплины"
+								title="Все предметы"
 								modulesCount={26}
 								imageUrl="subjectcardskeleton"
 								fullCatalog={true}

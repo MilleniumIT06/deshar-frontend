@@ -1,8 +1,8 @@
-import { axiosWithAuth } from '@/config/api.helper'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { API_URL } from '@/config/api.config'
-import { Id } from '@/shared/types/types'
-import { TrainerType } from '@/widgets/trainers-engine/trainersMap'
-import { LessonListItem, UniqueTask } from '@/widgets/trainers-engine/types/types'
+import { axiosWithAuth } from '@/config/api.helper'
+import { type Id } from '@/shared/types/types'
+import { type LessonListItem, type UniqueTask } from '@/widgets/trainers-engine/types/types'
 
 export interface IModule {
 	id: Id
@@ -91,7 +91,7 @@ class EducationService {
 		return data
 	}
 	async getLessonTasks(moduleId: Id, pieceId: Id, lessonId: Id) {
-		const { data } = await axiosWithAuth<{ data: { id: Id }[] }>({
+		const { data } = await axiosWithAuth<{ data: { id: Id;progress:{status:string};xp_reward:number}[] }>({
 			url: `${API_URL.ingModules()}/${moduleId}/pieces/${pieceId}/lessons/${lessonId}/tasks`,
 			method: 'GET',
 		})

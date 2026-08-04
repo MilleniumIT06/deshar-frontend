@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import { useParams } from 'next/navigation'
 
@@ -15,7 +16,7 @@ import type { DepartmentTopStudentType } from '@/services/types/department.types
 type SchoolTopStudent = Omit<DepartmentTopStudentType, 'school'>
 export const UniqueSchoolPageContent = () => {
     const params = useParams<{ schoolId: string }>()
-    const { departmentSchool,error,isDepartmentSchoolError,isDepartmentSchoolLoading} = useGetSchoolById(
+    const { departmentSchool,isDepartmentSchoolError,isDepartmentSchoolLoading} = useGetSchoolById(
         Number(params.schoolId),
     )
 

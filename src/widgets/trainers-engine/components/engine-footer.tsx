@@ -61,7 +61,7 @@ const status = useAppSelector(state => state.engine.status)
 				<div className="engine-footer__actions">
 					<EngineButton
 						variant="primary"
-						disabled={isBlocked || status !== 'idle'}
+						disabled={isBlocked ||status==="checking"|| status !== 'idle'}
 						onClick={() => onClickBtn()}
 						className="engine-footer__submit-btn">
 						ПРОВЕРИТЬ
