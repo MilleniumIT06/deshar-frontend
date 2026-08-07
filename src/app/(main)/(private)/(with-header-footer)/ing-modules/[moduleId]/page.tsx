@@ -1,10 +1,9 @@
-import { ModuleContent } from "./content";
-
+import { ModuleContent } from './content'
 
 export default function IngModuleContent() {
-    return (
-        <main className="mRelative">
-            <ModuleContent/>
-        </main>
-    )
+	return (
+		<main className="mRelative">
+			<ModuleContent />
+		</main>
+	)
 }

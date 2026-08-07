@@ -123,12 +123,7 @@ export const WordByImage = forwardRef<TrainerRef, WordByImageProps>(
 
 						<ul className="word-image-trainer__letters-pool">
 							{letters.map(letter => (
-								<MoveBoxImage
-									key={letter.id}
-									char={letter.letter}
-									id={letter.id}
-									isDisabled={disableMoveBox(letter)}
-								/>
+								<MoveBoxImage key={letter.id} char={letter.letter} id={letter.id} isDisabled={disableMoveBox(letter)} />
 							))}
 						</ul>
 					</div>

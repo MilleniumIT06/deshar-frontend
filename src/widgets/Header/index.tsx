@@ -60,7 +60,7 @@ export const Header = () => {
 	const handleAvatarClick = () => {
 		setIsMenuOpen(prev => !prev)
 	}
-const renderNavItems = () => {
+	const renderNavItems = () => {
 		if (pathname === '/home') {
 			return (
 				<>
@@ -105,9 +105,7 @@ const renderNavItems = () => {
 				<div className="Header__inner">
 					<Logo size="large" className="Header__logo" />
 					<nav className="Header__nav">
-						<ul className="list-reset Header__list">
-							{renderNavItems()}
-						</ul>
+						<ul className="list-reset Header__list">{renderNavItems()}</ul>
 					</nav>
 					<div className="Header__right">
 						{isLoading ? (
@@ -115,12 +113,7 @@ const renderNavItems = () => {
 						) : profileData ? (
 							<div className="Header__user" ref={userMenuRef}>
 								<div className="Header__user-info-wrapper">
-									<Avatar
-										user={profileData.data.user}
-										size="medium"
-										showName={true}
-										onClick={() => handleAvatarClick()}
-									/>
+									<Avatar user={profileData.data.user} size="medium" showName={true} onClick={() => handleAvatarClick()} />
 								</div>
 
 								{isMenuOpen && (

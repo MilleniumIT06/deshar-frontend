@@ -11,14 +11,7 @@ export const List = ({ data }: IList) => {
 		<ul className="TopClassmatesList">
 			{students.map(student => {
 				const { id, class: className, ...studentProps } = student
-				return (
-					<TopClassmatesListItem
-						key={`student-${id}`}
-						type={type}
-						parallelClass={className}
-						{...studentProps}
-					/>
-				)
+				return <TopClassmatesListItem key={`student-${id}`} type={type} parallelClass={className} {...studentProps} />
 			})}
 		</ul>
 	)

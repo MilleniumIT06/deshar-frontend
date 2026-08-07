@@ -9,13 +9,7 @@ export interface IFilter {
 	onToChange?: (value: string) => void
 }
 
-export const Filter = ({
-	type = 'time',
-	fromValue: externalFromValue = '',
-	toValue: externalToValue = '',
-	onFromChange,
-	onToChange,
-}: IFilter) => {
+export const Filter = ({ type = 'time', fromValue: externalFromValue = '', toValue: externalToValue = '', onFromChange, onToChange }: IFilter) => {
 	const [internalFromValue, setInternalFromValue] = useState('')
 	const [internalToValue, setInternalToValue] = useState('')
 

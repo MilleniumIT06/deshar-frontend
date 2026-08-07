@@ -1,15 +1,7 @@
 import { useDroppable } from '@dnd-kit/core'
 import Image from 'next/image'
 
-export const PhraseImageMatcherItem = ({
-	currentValue,
-	imageUrl,
-	id,
-}: {
-	currentValue: string | null
-	imageUrl: string
-	id: string | number
-}) => {
+export const PhraseImageMatcherItem = ({ currentValue, imageUrl, id }: { currentValue: string | null; imageUrl: string; id: string | number }) => {
 	const { setNodeRef, isOver } = useDroppable({
 		id: id,
 	})

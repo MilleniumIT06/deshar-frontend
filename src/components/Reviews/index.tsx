@@ -63,29 +63,13 @@ export const Reviews = () => {
 							</Swiper>
 						)}
 						<div className="Reviews__slider_navigation">
-							<Button
-								variant="iconSecondary"
-								size="iconBig"
-								className={cn('btn-reset', 'Reviews__btn', 'slider__btn_left')}>
-								<svg
-									width="12"
-									height="18"
-									viewBox="0 0 12 18"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg">
+							<Button variant="iconSecondary" size="iconBig" className={cn('btn-reset', 'Reviews__btn', 'slider__btn_left')}>
+								<svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M11 17L2 9L11 1" strokeWidth="2" />
 								</svg>
 							</Button>
-							<Button
-								variant="iconSecondary"
-								size="iconBig"
-								className={cn('btn-reset', 'Reviews__btn', 'slider__btn_right')}>
-								<svg
-									width="12"
-									height="18"
-									viewBox="0 0 12 18"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg">
+							<Button variant="iconSecondary" size="iconBig" className={cn('btn-reset', 'Reviews__btn', 'slider__btn_right')}>
+								<svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<path d="M1 17L10 9L1 1" strokeWidth="2" />
 								</svg>
 							</Button>

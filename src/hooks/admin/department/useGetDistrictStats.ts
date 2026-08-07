@@ -4,9 +4,9 @@ import { statsService } from '@/services/admin/stats.service'
 
 export const useGetDistrictStats = () => {
 	const {
-		data:districtStats,
-		isLoading:isDistrictStatsLoading,
-		isError:isDistrictStatsError,
+		data: districtStats,
+		isLoading: isDistrictStatsLoading,
+		isError: isDistrictStatsError,
 		error,
 	} = useQuery({
 		queryKey: ['adminDistrictStats'],

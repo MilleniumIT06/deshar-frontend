@@ -91,7 +91,7 @@ class EducationService {
 		return data
 	}
 	async getLessonTasks(moduleId: Id, pieceId: Id, lessonId: Id) {
-		const { data } = await axiosWithAuth<{ data: { id: Id;progress:{status:string};xp_reward:number}[] }>({
+		const { data } = await axiosWithAuth<{ data: { id: Id; progress: { status: string }; xp_reward: number }[] }>({
 			url: `${API_URL.ingModules()}/${moduleId}/pieces/${pieceId}/lessons/${lessonId}/tasks`,
 			method: 'GET',
 		})
@@ -105,13 +105,7 @@ class EducationService {
 		return data
 	}
 
-	async checkTask(
-		moduleId: Id,
-		pieceId: Id,
-		lessonId: Id,
-		taskId: Id,
-		body: { answer: unknown; time_spent: number },
-	) {
+	async checkTask(moduleId: Id, pieceId: Id, lessonId: Id, taskId: Id, body: { answer: unknown; time_spent: number }) {
 		const { data } = await axiosWithAuth({
 			url: `${API_URL.ingModules()}/${moduleId}/pieces/${pieceId}/lessons/${lessonId}/tasks/${taskId}/complete`,
 			method: 'POST',

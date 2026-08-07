@@ -115,18 +115,13 @@ const SubjectCard = ({
 		</>
 	)
 
-	const rootClassName = cn(
-		subjectCardVariants({ type, className }),
-		isFullCardClickable && 'SubjectCard--full-clickable',
-	)
+	const rootClassName = cn(subjectCardVariants({ type, className }), isFullCardClickable && 'SubjectCard--full-clickable')
 
 	if (isFullCardClickable) {
 		return (
-				<Link href={linkHref} className="SubjectCard__link-wrapper">
-			<li className={rootClassName}>
-					{CardContent}
-			</li>
-				</Link>
+			<Link href={linkHref} className="SubjectCard__link-wrapper">
+				<li className={rootClassName}>{CardContent}</li>
+			</Link>
 		)
 	}
 

@@ -6,7 +6,6 @@ import { EngineHeader } from '../components/engine-header'
 import { EngineTheory } from '../components/engine-theory'
 import { BackArrowIcon } from '../components/icons'
 
-
 import type { LessonListItem } from '../types/types'
 import type { TrainerTheme } from '@/shared/types/types'
 
@@ -56,7 +55,7 @@ export function TheoryScreen({
 
 				<main className="trainers-engine__main trainers-engine__main--theory">
 					<h6>Урок {lessonIndex + 1}</h6>
-					<EngineTheory description={lesson.description} title={lesson.name} audio={lesson.audio} image={lesson.image}/>
+					<EngineTheory description={lesson.description} title={lesson.name} audio={lesson.audio} image={lesson.image} />
 				</main>
 
 				<footer>

@@ -86,7 +86,6 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 			// mutate(completeData)
 			// dispatch(submitForm())
 		} catch (error) {
-
 			return error
 		} finally {
 			// handleReset()
@@ -113,9 +112,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 					isLoading={isCountriesLoading}
 					isError={isCountriesError}
 				/>
-				{form.formState.errors.country && (
-					<p className="ProgramSelectionForm__error">{form.formState.errors.country.message}</p>
-				)}
+				{form.formState.errors.country && <p className="ProgramSelectionForm__error">{form.formState.errors.country.message}</p>}
 			</div>
 
 			<div className="ProgramSelectionForm__field">
@@ -127,9 +124,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 					isLoading={false}
 					isError={false}
 				/>
-				{form.formState.errors.region && (
-					<p className="ProgramSelectionForm__error">{form.formState.errors.region.message}</p>
-				)}
+				{form.formState.errors.region && <p className="ProgramSelectionForm__error">{form.formState.errors.region.message}</p>}
 			</div>
 			<div className="ProgramSelectionForm__field">
 				<InputSelect
@@ -140,9 +135,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 					isLoading={isCitiesLoading}
 					isError={isCitiesError}
 				/>
-				{form.formState.errors.city && (
-					<p className="ProgramSelectionForm__error">{form.formState.errors.city.message}</p>
-				)}
+				{form.formState.errors.city && <p className="ProgramSelectionForm__error">{form.formState.errors.city.message}</p>}
 			</div>
 			<div className="ProgramSelectionForm__field">
 				<InputSelect
@@ -151,9 +144,7 @@ export const OtherRegionsForm = ({ disableTab }: { disableTab: (value: boolean) 
 					options={classLevels}
 					placeholderValue="Выберите класс"
 				/>
-				{form.formState.errors.classLevel && (
-					<p className="ProgramSelectionForm__error">{form.formState.errors.classLevel.message}</p>
-				)}
+				{form.formState.errors.classLevel && <p className="ProgramSelectionForm__error">{form.formState.errors.classLevel.message}</p>}
 			</div>
 
 			<Button

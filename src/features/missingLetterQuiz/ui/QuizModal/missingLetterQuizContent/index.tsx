@@ -10,15 +10,7 @@ import { Notification } from '@/shared/ui/Notification'
 
 import './styles.scss'
 
-export const QuizContent = ({
-	onClose,
-	onError,
-	onSuccess,
-}: {
-	onClose: () => void
-	onSuccess: () => void
-	onError: () => void
-}) => {
+export const QuizContent = ({ onClose, onError, onSuccess }: { onClose: () => void; onSuccess: () => void; onError: () => void }) => {
 	const { activeLessonId, lessons } = useAppSelector(state => state.learningReducer)
 	const isLastLesson = () => {
 		if (lessons[lessons.length - 1].id === activeLessonId) {

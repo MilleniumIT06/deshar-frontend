@@ -25,11 +25,7 @@ export const ProgressBarAdmin = ({ doneLessons = 4, maxLessons = 10, processLess
 			<div className="ProgressBarAdmin__bar">
 				<div className="ProgressBarAdmin__done" style={{ width: `${percentDone}%` }} aria-hidden="true" />
 
-				<div
-					className="ProgressBarAdmin__process"
-					style={{ width: `${percentProcess}%` }}
-					aria-hidden="true"
-				/>
+				<div className="ProgressBarAdmin__process" style={{ width: `${percentProcess}%` }} aria-hidden="true" />
 			</div>
 		</div>
 	)

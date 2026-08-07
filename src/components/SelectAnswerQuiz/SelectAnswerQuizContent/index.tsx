@@ -25,12 +25,7 @@ export const SelectAnswerQuizContent = ({
 		<div className="SelectAnswerQuizContent">
 			<ul className={cn('list-reset', 'SelectAnswerQuizContent__list')}>
 				{data.map(item => (
-					<SelectBox
-						title={item.content}
-						handleSelect={() => onSelect(item)}
-						selected={checkSelected(item)}
-						key={item.id}
-					/>
+					<SelectBox title={item.content} handleSelect={() => onSelect(item)} selected={checkSelected(item)} key={item.id} />
 				))}
 			</ul>
 		</div>

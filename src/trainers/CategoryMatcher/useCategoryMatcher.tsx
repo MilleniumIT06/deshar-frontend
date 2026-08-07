@@ -19,16 +19,16 @@ export const useCategoryMatcher = () => {
 		return () => window.removeEventListener('mousemove', handleMouseMove)
 	}, [activeSource])
 
-const startConnection = useCallback(
-    (id: string, e: React.MouseEvent) => {
-        if (connections.some(c => c.source === id)) return;
+	const startConnection = useCallback(
+		(id: string, e: React.MouseEvent) => {
+			if (connections.some(c => c.source === id)) return
 
-        setMousePos({ x: e.clientX, y: e.clientY });
+			setMousePos({ x: e.clientX, y: e.clientY })
 
-        setActiveSource(id);
-    },
-    [connections]
-);
+			setActiveSource(id)
+		},
+		[connections],
+	)
 
 	const endConnection = useCallback(
 		(targetId: string) => {

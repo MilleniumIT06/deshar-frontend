@@ -19,10 +19,7 @@ interface DeleteExtraLetterProps extends TrainerCommonProps {
 }
 
 export const DeleteExtraLetter = forwardRef(
-	(
-		{ payload, title, onSuccess, onError, changeStatus, currentTrainerIndex, subTitle,audio }: DeleteExtraLetterProps,
-		ref,
-	) => {
+	({ payload, title, onSuccess, onError, changeStatus, currentTrainerIndex, subTitle, audio }: DeleteExtraLetterProps, ref) => {
 		const { selectedIds, handleSelect } = useLetterClickTrainer({
 			ref,
 			correctIds: payload.correctVariantIds,
@@ -36,7 +33,7 @@ export const DeleteExtraLetter = forwardRef(
 			<div className="delete-extra-letter">
 				<div className="delete-extra-letter__container">
 					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-					<TrainerTitle title={title} audio={audio}/>
+					<TrainerTitle title={title} audio={audio} />
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="delete-extra-letter__list">
 						{payload.variants.map(variant => {

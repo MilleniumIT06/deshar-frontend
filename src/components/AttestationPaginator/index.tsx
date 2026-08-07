@@ -6,7 +6,6 @@ import { ProgressBar } from '@/shared/ui/ProgressBar'
 import { StepCounter } from './StepCounter'
 import { changeCurrentTask } from '../LearningAttestation/attestation.slice'
 
-
 import './styles.scss'
 
 export const AttestationPaginator = () => {

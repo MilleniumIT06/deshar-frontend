@@ -586,8 +586,7 @@ export const initialLessons = [
 export const exampleMissingData = [
 	{
 		id: 1,
-		sentence:
-			'Купил как-то обувной мастер {{1}} для того, чтобы {{2}} обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.',
+		sentence: 'Купил как-то обувной мастер {{1}} для того, чтобы {{2}} обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.',
 		missingWords: [
 			{ id: 1, word: 'гвозди', missedLetter: 'в', wordNumber: 1 },
 			{ id: 2, word: 'починить', missedLetter: 'и', wordNumber: 2 },
@@ -657,8 +656,7 @@ export const exampleSelectData = [
 export const attestationExampleData = [
 	{
 		id: 1,
-		sentence:
-			'Купил1 как-то обувной мастер {{1}} для того, чтобы {{2}} обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.',
+		sentence: 'Купил1 как-то обувной мастер {{1}} для того, чтобы {{2}} обувь лорда Маркиза. К сожалению, он не знал насколько придирчив лорд.',
 		type: 'missing-word',
 		missingWords: [
 			{ id: 1, word: 'гвозди', missedLetter: 'в', wordNumber: 1 },

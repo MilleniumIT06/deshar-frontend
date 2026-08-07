@@ -8,7 +8,7 @@ export const useGetSchools = ({ localityId }: { localityId?: number | null }) =>
 		isLoading,
 		isError,
 	} = useQuery({
-		queryKey: ['schools',localityId],
+		queryKey: ['schools', localityId],
 		queryFn: () => schoolsService.getAllSchools(localityId),
 	})
 	return { schools, isLoading, isError }

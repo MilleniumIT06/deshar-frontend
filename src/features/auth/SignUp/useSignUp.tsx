@@ -1,7 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 
-
 import { registerService } from '@/services/auth/register.service'
 
 import { type RegistrationCompleteData } from '../ProgramSelection/IngushetiaForm'

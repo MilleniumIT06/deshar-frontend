@@ -2,7 +2,6 @@ import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
 
-
 import { Button } from '@/shared/ui/Button'
 
 import './styles.scss'

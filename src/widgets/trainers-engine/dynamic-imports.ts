@@ -6,12 +6,8 @@ export const AlertModal = dynamic(() => import('@/components/Engine/AlertModal')
 	ssr: false,
 })
 
-export const SupportModal = dynamic(
-	() => import('@/components/Engine/SupportModal').then(mod => mod.SupportModal),
-	{ ssr: false },
-)
+export const SupportModal = dynamic(() => import('@/components/Engine/SupportModal').then(mod => mod.SupportModal), {
+	ssr: false,
+})
 
-export const EngineFinishScreen = dynamic(
-	() => import('@/components/Engine/FinishScreen').then(mod => mod.EngineFinishScreen),
-	{ ssr: false },
-)
+export const EngineFinishScreen = dynamic(() => import('@/components/Engine/FinishScreen').then(mod => mod.EngineFinishScreen), { ssr: false })

@@ -3,7 +3,6 @@ import Cookies from 'js-cookie'
 
 import { userService } from '@/services/user.service'
 
-
 export function useProfile() {
 	const isTokenExist = Boolean(Cookies.get('jwt_token'))
 

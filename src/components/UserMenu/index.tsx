@@ -15,12 +15,12 @@ export const UserMenu = ({
 	handleMenuClose,
 	profileData,
 	extraClass,
-    listItems
+	listItems,
 }: {
 	handleMenuClose: (value: boolean) => void
 	profileData: UserProfileResponse
-	extraClass?: string;
-    listItems?:{itemHref:string;itemTitle:string;}[]
+	extraClass?: string
+	listItems?: { itemHref: string; itemTitle: string }[]
 }) => {
 	const router = useRouter()
 	const dispatch = useAppDispatch()
@@ -47,10 +47,13 @@ export const UserMenu = ({
 			</div>
 			<div className="UserMenu__divider" />
 			<div className="UserMenu__list">
-				{listItems&&listItems.length>0&&(listItems.map(item=><Link href={item.itemHref} className="UserMenu__item" onClick={() => handleMenuClose(false)}>
-					{item.itemTitle}
-				</Link>))
-}
+				{listItems &&
+					listItems.length > 0 &&
+					listItems.map(item => (
+						<Link href={item.itemHref} className="UserMenu__item" onClick={() => handleMenuClose(false)}>
+							{item.itemTitle}
+						</Link>
+					))}
 				<div className="UserMenu__divider" />
 				<Button variant={'primary'} size="small" onClick={handleLogout} className="UserMenu__logout_btn">
 					Выйти

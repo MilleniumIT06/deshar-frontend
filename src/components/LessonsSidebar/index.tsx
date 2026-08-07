@@ -8,15 +8,19 @@ import { Button } from '@/shared/ui/Button'
 import type { Id } from '@/shared/types/types'
 import './styles.scss'
 
-export const LessonsSidebar = ({ className,lessons,currentLessonId,handleLessonClick}: {
-    handleLessonClick:(lesson:{id:Id;name:string;description:string;})=>void;
-     className?: string;
-     lessons:{id:Id;name:string;description:string;}[];
-     currentLessonId:Id;
-    }) => {
+export const LessonsSidebar = ({
+	className,
+	lessons,
+	currentLessonId,
+	handleLessonClick,
+}: {
+	handleLessonClick: (lesson: { id: Id; name: string; description: string }) => void
+	className?: string
+	lessons: { id: Id; name: string; description: string }[]
+	currentLessonId: Id
+}) => {
 	const [page, setPage] = useState(0)
 	const ITEMS_PER_PAGE = 6
-
 
 	const handleNextPage = useCallback(() => {
 		setPage(prev => prev + 1)
@@ -26,13 +30,12 @@ export const LessonsSidebar = ({ className,lessons,currentLessonId,handleLessonC
 		setPage(prev => prev - 1)
 	}, [])
 
-	const isActiveLessonItem = (lessonIndex:number) => {
-		if(currentLessonId===lessonIndex)  {
+	const isActiveLessonItem = (lessonIndex: number) => {
+		if (currentLessonId === lessonIndex) {
 			return true
 		}
 		return false
 	}
-
 
 	const startIndex = page * ITEMS_PER_PAGE
 	const endIndex = startIndex + ITEMS_PER_PAGE
@@ -48,18 +51,13 @@ export const LessonsSidebar = ({ className,lessons,currentLessonId,handleLessonC
 					<h5 className="LessonsSidebar__title">Уроки</h5>
 					<div className="LessonsSidebar__content">
 						{hasPreviousPage && (
-							<Button
-								className="LessonsSidebar__showBtn"
-								variant="secondary"
-								size="medium"
-								fullWidth
-								onClick={handlePrevPage}>
+							<Button className="LessonsSidebar__showBtn" variant="secondary" size="medium" fullWidth onClick={handlePrevPage}>
 								Показать предыдущие
 							</Button>
 						)}
 
 						<ul className="LessonsSidebar__list">
-							{paginatedLessons.map((lesson,index) => {
+							{paginatedLessons.map((lesson, index) => {
 								// const lessonIndex = startIndex + index
 								return (
 									<LessonItem
@@ -77,12 +75,7 @@ export const LessonsSidebar = ({ className,lessons,currentLessonId,handleLessonC
 						</ul>
 
 						{hasNextPage && (
-							<Button
-								className="LessonsSidebar__showBtn"
-								variant="secondary"
-								size="medium"
-								fullWidth
-								onClick={handleNextPage}>
+							<Button className="LessonsSidebar__showBtn" variant="secondary" size="medium" fullWidth onClick={handleNextPage}>
 								Показать следующие
 							</Button>
 						)}

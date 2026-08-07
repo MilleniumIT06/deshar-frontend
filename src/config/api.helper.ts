@@ -8,7 +8,7 @@ const options: CreateAxiosDefaults = {
 		'Content-Type': 'application/json',
 	},
 	withCredentials: true,
-		withXSRFToken: true,
+	withXSRFToken: true,
 }
 const axiosClassic: AxiosInstance = axios.create(options)
 const axiosWithAuth: AxiosInstance = axios.create(options)
@@ -50,4 +50,4 @@ axiosWithAuth.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 
 	return config
 })
-export { axiosClassic,axiosWithAuth }
+export { axiosClassic, axiosWithAuth }

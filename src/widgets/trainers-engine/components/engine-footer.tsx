@@ -7,7 +7,6 @@ import { useAppSelector } from '@/app/_store/hooks'
 import { EngineButton } from '@/components/Engine/Button'
 import { Timer, type TimerRef } from '@/components/Engine/Timer'
 
-
 export const EngineFooter = ({
 	timerRef,
 	onTimerEnd,
@@ -18,7 +17,7 @@ export const EngineFooter = ({
 	onClickBtn: () => void
 }) => {
 	const theme = useAppSelector(state => state.engine.theme)
-const status = useAppSelector(state => state.engine.status)
+	const status = useAppSelector(state => state.engine.status)
 	const [isBlocked, setIsBlocked] = useState(true)
 
 	useEffect(() => {
@@ -33,10 +32,7 @@ const status = useAppSelector(state => state.engine.status)
 	return (
 		<div className={cn('engine-footer', theme)}>
 			<div className="engine-footer__container">
-				<EngineButton
-					disabled={isBlocked || status !== 'idle'}
-					variant="secondary"
-					className="engine-footer__back-btn">
+				<EngineButton disabled={isBlocked || status !== 'idle'} variant="secondary" className="engine-footer__back-btn">
 					<div className="engine-footer__back-content">
 						<svg
 							className="engine-footer__back-icon"
@@ -61,7 +57,7 @@ const status = useAppSelector(state => state.engine.status)
 				<div className="engine-footer__actions">
 					<EngineButton
 						variant="primary"
-						disabled={isBlocked ||status==="checking"|| status !== 'idle'}
+						disabled={isBlocked || status === 'checking' || status !== 'idle'}
 						onClick={() => onClickBtn()}
 						className="engine-footer__submit-btn">
 						ПРОВЕРИТЬ

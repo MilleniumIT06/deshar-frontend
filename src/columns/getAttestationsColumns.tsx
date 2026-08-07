@@ -41,9 +41,7 @@ export const getAttestationsColumns = ({ role }: { role?: RoleName }) => [
 	...(role === 'Пр. Управления образования'
 		? [
 				columnHelper.accessor('schoolName', {
-					header: ({ column }) => (
-						<SortableHeader<AttestationsTableItemType, string> title="Школа" column={column} />
-					),
+					header: ({ column }) => <SortableHeader<AttestationsTableItemType, string> title="Школа" column={column} />,
 					enableSorting: true,
 					sortingFn: 'text',
 					cell: info => (

@@ -29,9 +29,7 @@ export const getBestStudentsFlowColumns = () => [
 		},
 	}),
 	columnHelper.accessor('class', {
-		header: ({ column }: { column: Column<Student, string> }) => (
-			<SortableHeader<Student, string> title="Класс" column={column} />
-		),
+		header: ({ column }: { column: Column<Student, string> }) => <SortableHeader<Student, string> title="Класс" column={column} />,
 		enableSorting: true,
 		sortingFn: 'alphanumeric',
 		cell: info => (

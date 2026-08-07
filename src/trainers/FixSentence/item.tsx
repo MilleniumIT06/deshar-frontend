@@ -16,14 +16,9 @@ export const FixSentenceItem = ({ words, itemHeight = 48, selectedIndex, onSelec
 	return (
 		<div className="fix-sentence-item" onClick={onClickWord} role="button" tabIndex={0}>
 			<div className="fix-sentence-item__viewport" style={{ height: `${itemHeight}px` }}>
-				<div
-					className="fix-sentence-item__wheel"
-					style={{ transform: `translateY(-${selectedIndex * itemHeight}px)` }}>
+				<div className="fix-sentence-item__wheel" style={{ transform: `translateY(-${selectedIndex * itemHeight}px)` }}>
 					{words.map((word, index) => (
-						<span
-							key={`${word}-${index}`}
-							className="fix-sentence-item__word"
-							style={{ height: `${itemHeight}px` }}>
+						<span key={`${word}-${index}`} className="fix-sentence-item__word" style={{ height: `${itemHeight}px` }}>
 							{word}
 						</span>
 					))}

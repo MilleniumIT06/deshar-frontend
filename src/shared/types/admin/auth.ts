@@ -1,5 +1,4 @@
-import type { RoleName } from "../user.types"
-
+import type { RoleName } from '../user.types'
 
 export interface AuthState {
 	role: RoleName

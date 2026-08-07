@@ -9,7 +9,7 @@ interface SupportModalProps {
 export const SupportModal = ({ isOpen, onClose }: SupportModalProps) => {
 	return (
 		<EngineModal variant="support" isOpen={isOpen} onClose={onClose}>
-			<SupportModalContent  onCancel={onClose}/>
+			<SupportModalContent onCancel={onClose} />
 		</EngineModal>
 	)
 }

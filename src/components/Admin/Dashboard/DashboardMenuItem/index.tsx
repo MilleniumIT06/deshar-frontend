@@ -18,17 +18,7 @@ const DefaultIcon = () => (
 	</svg>
 )
 
-export const DashboardMenuItem = ({
-	title = 'test',
-	href = '#',
-	icon,
-	count,
-}: {
-	title: string
-	href: string
-	icon?: ReactNode
-	count?: number
-}) => {
+export const DashboardMenuItem = ({ title = 'test', href = '#', icon, count }: { title: string; href: string; icon?: ReactNode; count?: number }) => {
 	const pathname = usePathname()
 	const isActive = pathname === href
 

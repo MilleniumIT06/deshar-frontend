@@ -15,7 +15,6 @@ export default function SignUp() {
 				<div className="container">
 					<div className="Auth__inner">
 						<SignUpPageContent />
-
 					</div>
 				</div>
 			</section>

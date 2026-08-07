@@ -82,15 +82,7 @@ export const useDragDropWord = ({ data, onError, onSuccess, slots }: IUseDragDro
 				const slot = slots.find(slot => Number(slot.id) === Number(word.id))
 				if (!slot) return <span key={`missing-${index}`}>{part}</span>
 
-				return (
-					<DropInput
-						current={slot && slot.current}
-						id={slot.id}
-						key={slot.id}
-						word={word.word}
-						missingLetter={word.missedLetter}
-					/>
-				)
+				return <DropInput current={slot && slot.current} id={slot.id} key={slot.id} word={word.word} missingLetter={word.missedLetter} />
 			}
 			return <span key={`text-${index}`}>{part}</span>
 		})

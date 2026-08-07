@@ -1,4 +1,4 @@
-import { type Id } from "@/shared/types/types"
+import { type Id } from '@/shared/types/types'
 
 export const SERVER_URL = process.env.SERVER_URL
 
@@ -10,7 +10,7 @@ export const API_URL = {
 	login: () => API_URL.root(`${prefix}/auth/login`),
 	logout: () => API_URL.root(`${prefix}/auth/logout`),
 	me: () => API_URL.root(`${prefix}/auth/me`),
-	updateProfile:()=>API_URL.root(`${prefix}/auth/profile`),
+	updateProfile: () => API_URL.root(`${prefix}/auth/profile`),
 	countries: () => API_URL.root(`${prefix}/countries`),
 	schools: () => API_URL.root(`${prefix}/schools`),
 	districts: () => API_URL.root(`${prefix}/districts`),
@@ -21,33 +21,32 @@ export const API_URL = {
 	schoolClasses: () => API_URL.root(`${prefix}/school-classes`),
 
 	// stats
-	userStats:()=> API_URL.root(`${prefix}/auth/stats`),
+	userStats: () => API_URL.root(`${prefix}/auth/stats`),
 
 	// files
-	files:()=>API_URL.root(`${SERVER_URL}/storage/`),
-	taskFiles:()=>API_URL.root(`${SERVER_URL}`),
+	files: () => API_URL.root(`${SERVER_URL}/storage/`),
+	taskFiles: () => API_URL.root(`${SERVER_URL}`),
 	// education
-	ingModules:()=> API_URL.root(`${prefix}/modules`),
+	ingModules: () => API_URL.root(`${prefix}/modules`),
 	// organization for admin
-	adminClasses:()=> API_URL.root(`${prefix}/school/classes`),
-	adminClassStatistics:(id:Id)=> API_URL.root(`${prefix}/school/classes/${id}/statistics`),
-	adminTeachers:()=> API_URL.root(`${prefix}/school/teachers`),
-	adminExportSchoolCsv:()=> API_URL.root(`${prefix}/school/export`),
-	adminSchoolStats:()=> API_URL.root(`${prefix}/school/statistics`),
-	adminGetAllSchoolStudents:()=> API_URL.root(`${prefix}/school/students`),
+	adminClasses: () => API_URL.root(`${prefix}/school/classes`),
+	adminClassStatistics: (id: Id) => API_URL.root(`${prefix}/school/classes/${id}/statistics`),
+	adminTeachers: () => API_URL.root(`${prefix}/school/teachers`),
+	adminExportSchoolCsv: () => API_URL.root(`${prefix}/school/export`),
+	adminSchoolStats: () => API_URL.root(`${prefix}/school/statistics`),
+	adminGetAllSchoolStudents: () => API_URL.root(`${prefix}/school/students`),
 	// ministry
-	adminMinistryRepublicStats:()=> API_URL.root(`${prefix}/ministry/republic/stats`),
-	adminMinistryDistricts:()=> API_URL.root(`${prefix}/ministry/districts`),
-	adminMinistrySchools:()=> API_URL.root(`${prefix}/ministry/schools`),
-	adminMinistryDistrictStats:(id:Id)=> API_URL.root(`${prefix}/ministry/districts/${id}/stats`),
-	adminMinistrySchoolStats:(id:Id)=> API_URL.root(`${prefix}/ministry/schools/${id}/stats`),
+	adminMinistryRepublicStats: () => API_URL.root(`${prefix}/ministry/republic/stats`),
+	adminMinistryDistricts: () => API_URL.root(`${prefix}/ministry/districts`),
+	adminMinistrySchools: () => API_URL.root(`${prefix}/ministry/schools`),
+	adminMinistryDistrictStats: (id: Id) => API_URL.root(`${prefix}/ministry/districts/${id}/stats`),
+	adminMinistrySchoolStats: (id: Id) => API_URL.root(`${prefix}/ministry/schools/${id}/stats`),
 
 	// department
-	adminDepartmentMyDistrict:()=>API_URL.root(`${prefix}/education-department/my-district`),
-	adminDepartmentSchools:()=>API_URL.root(`${prefix}/education-department/schools`),
-	adminDepartmentUniqueSchool:(id:Id)=>API_URL.root(`${prefix}/education-department/schools/${id}/stats`),
-	adminDepartmentDistrictStats:()=>API_URL.root(`${prefix}/education-department/district/stats`),
-	adminDepartmentDistrictStudents:()=>API_URL.root(`${prefix}/education-department/students`),
-	adminDepartmentDistrictTeachers:()=>API_URL.root(`${prefix}/education-department/teachers`),
+	adminDepartmentMyDistrict: () => API_URL.root(`${prefix}/education-department/my-district`),
+	adminDepartmentSchools: () => API_URL.root(`${prefix}/education-department/schools`),
+	adminDepartmentUniqueSchool: (id: Id) => API_URL.root(`${prefix}/education-department/schools/${id}/stats`),
+	adminDepartmentDistrictStats: () => API_URL.root(`${prefix}/education-department/district/stats`),
+	adminDepartmentDistrictStudents: () => API_URL.root(`${prefix}/education-department/students`),
+	adminDepartmentDistrictTeachers: () => API_URL.root(`${prefix}/education-department/teachers`),
 }
-

@@ -1,7 +1,6 @@
 import cn from 'classnames'
 import Image from 'next/image'
 
-
 import './styles.scss'
 
 export const Footer = () => {
@@ -61,9 +60,7 @@ export const Footer = () => {
 								<address className={'Footer__address'}>
 									<a href="tel:89284884848">8 928 488 48 48</a>
 									<a href="mailto:deshar@mail.ru">deshar@mail.ru</a>
-									<a href="#">
-										386103, Республика Ингушетия, г. Назрань, ул. просп. Базоркина, 60
-									</a>
+									<a href="#">386103, Республика Ингушетия, г. Назрань, ул. просп. Базоркина, 60</a>
 								</address>
 								<div className={'Footer__socials'}>
 									<h6 className={'Footer__col_title'}>Социальные сети</h6>
@@ -90,9 +87,7 @@ export const Footer = () => {
 					</div>
 					<div className="Footer__bottom">
 						<div className="Footer__bottom_inner">
-							<span className="Footer__bottom_copyright">
-								© Образовательная онлайн-платформа “Дешаринг”, 2024
-							</span>
+							<span className="Footer__bottom_copyright">© Образовательная онлайн-платформа “Дешаринг”, 2024</span>
 							<ul className={cn('list-reset', 'Footer__agreement')}>
 								<li className="Footer__agreement_item">
 									<a href="#">Пользовательское согласшение</a>

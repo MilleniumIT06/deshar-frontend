@@ -1,7 +1,6 @@
 import cn from 'classnames'
 import Link from 'next/link'
 
-
 import './styles.scss'
 
 export interface BreadcrumbItem {

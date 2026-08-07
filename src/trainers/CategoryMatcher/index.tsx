@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import cn from 'classnames'
-import { useImperativeHandle, forwardRef,useRef, useEffect } from 'react'
+import { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 import { ArcherContainer, ArcherElement } from 'react-archer'
 
 import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
@@ -32,76 +32,72 @@ interface CategoryMatcherProps extends TrainerCommonProps {
 }
 
 export const CategoryMatcher = forwardRef(
-	(
-		{ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex,audio }: CategoryMatcherProps,
-		ref,
-	) => {
+	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex, audio }: CategoryMatcherProps, ref) => {
 		const { items, categories } = payload
-const archerRef = useRef<any>(null)
+		const archerRef = useRef<any>(null)
 
-		const { connections, activeSource, startConnection, endConnection, mousePos, resetConnections } =
-			useCategoryMatcher()
-	const { checkAnswer } = useCheckAnswer({
+		const { connections, activeSource, startConnection, endConnection, mousePos, resetConnections } = useCategoryMatcher()
+		const { checkAnswer } = useCheckAnswer({
 			onSuccess: () => changeStatus('success'),
 			onError: () => changeStatus('error'),
 		})
 		useImperativeHandle(ref, () => ({
-    handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
-        const allConnected = items.every(item => connections.some(conn => conn.source === item.id))
-        if (!allConnected) return
+			handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+				const allConnected = items.every(item => connections.some(conn => conn.source === item.id))
+				if (!allConnected) return
 
-        if (!moduleId || !pieceId || !lessonId || !taskId) return
+				if (!moduleId || !pieceId || !lessonId || !taskId) return
 
-        const isCorrectClient = items.every(item => {
-            const conn = connections.find(c => c.source === item.id)
-            return conn?.target === item.correct
-        })
-        changeStatus(isCorrectClient ? 'success' : 'error')
+				const isCorrectClient = items.every(item => {
+					const conn = connections.find(c => c.source === item.id)
+					return conn?.target === item.correct
+				})
+				changeStatus(isCorrectClient ? 'success' : 'error')
 
-        const formattedAnswers = items.map(item => {
-            const conn = connections.find(c => c.source === item.id)
-            return {
-                [item.id]: conn ? conn.target : null
-            }
-        })
+				const formattedAnswers = items.map(item => {
+					const conn = connections.find(c => c.source === item.id)
+					return {
+						[item.id]: conn ? conn.target : null,
+					}
+				})
 
-        const data = await checkAnswer({
-            moduleId,
-            pieceId,
-            lessonId,
-            taskId,
-            answer: formattedAnswers,
-            timeSpent: timeSpent ?? 0,
-        })
+				const data = await checkAnswer({
+					moduleId,
+					pieceId,
+					lessonId,
+					taskId,
+					answer: formattedAnswers,
+					timeSpent: timeSpent ?? 0,
+				})
 
-        if (data?.is_correct) {
-            onSuccess()
-        } else {
-            onError()
-        }
-        if (isCorrectClient !== data?.is_correct) {
-            // eslint-disable-next-line no-console
-            console.warn('Client/server mismatch on answer check', {
-                taskId,
-                isCorrectClient,
-                serverResult: data?.is_correct,
-            })
-        }
-    },
-    handleReset: () => {
-        changeStatus('idle')
-        resetConnections()
-    },
-}))
+				if (data?.is_correct) {
+					onSuccess()
+				} else {
+					onError()
+				}
+				if (isCorrectClient !== data?.is_correct) {
+					// eslint-disable-next-line no-console
+					console.warn('Client/server mismatch on answer check', {
+						taskId,
+						isCorrectClient,
+						serverResult: data?.is_correct,
+					})
+				}
+			},
+			handleReset: () => {
+				changeStatus('idle')
+				resetConnections()
+			},
+		}))
 		useEffect(() => {
-    if (activeSource && archerRef.current) {
-        archerRef.current.refreshScreen()
-    }
-}, [mousePos, activeSource])
+			if (activeSource && archerRef.current) {
+				archerRef.current.refreshScreen()
+			}
+		}, [mousePos, activeSource])
 		const onStartConnect = (e: React.MouseEvent, id: string) => {
-    changeStatus('idle')
-    startConnection(id, e)
-}
+			changeStatus('idle')
+			startConnection(id, e)
+		}
 		const onEndConnect = (targetId: string) => {
 			changeStatus('idle')
 			endConnection(targetId)
@@ -109,7 +105,7 @@ const archerRef = useRef<any>(null)
 		return (
 			<div className="category-matcher">
 				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-				{title && <TrainerTitle title={title} audio={audio}/>}
+				{title && <TrainerTitle title={title} audio={audio} />}
 				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 				<ArcherContainer ref={archerRef} strokeColor="#4f46e5" strokeWidth={3} endShape={{ arrow: { arrowLength: 0 } }}>
 					<div className="category-matcher__container">
@@ -144,22 +140,19 @@ const archerRef = useRef<any>(null)
 								return (
 									<ArcherElement key={w.id} id={w.id} relations={relations as any}>
 										<div
-											className={cn(
-												'category-matcher__card category-matcher__card--source',
-												{
-													'category-matcher__card--active': isDragging || conn,
-													'category-matcher__card--clickable': !conn,
-													'is-active': isDragging,
-													'is-connected': Boolean(conn),
-												},
-											)}
+											className={cn('category-matcher__card category-matcher__card--source', {
+												'category-matcher__card--active': isDragging || conn,
+												'category-matcher__card--clickable': !conn,
+												'is-active': isDragging,
+												'is-connected': Boolean(conn),
+											})}
 											style={
 												{
 													'--dot-color': isDragging ? '#4f46e5' : w.color,
 													'--tw-ring-color': isDragging ? '#4f46e5' : w.color,
 												} as React.CSSProperties
 											}
-											onClick={(e) => onStartConnect(e, w.id)}>
+											onClick={e => onStartConnect(e, w.id)}>
 											<span>{w.label}</span>
 										</div>
 									</ArcherElement>
@@ -176,16 +169,12 @@ const archerRef = useRef<any>(null)
 									<ArcherElement key={c.id} id={c.id}>
 										<div
 											onClick={() => onEndConnect(c.id)}
-											className={cn(
-												'category-matcher__card category-matcher__card--target',
-												{
-													'category-matcher__card--active': isTargeted,
-													'is-targeted': isTargeted,
-													'can-receive': Boolean(activeSource),
-													'category-matcher__card--clickable':
-														Boolean(activeSource),
-												},
-											)}
+											className={cn('category-matcher__card category-matcher__card--target', {
+												'category-matcher__card--active': isTargeted,
+												'is-targeted': isTargeted,
+												'can-receive': Boolean(activeSource),
+												'category-matcher__card--clickable': Boolean(activeSource),
+											})}
 											style={
 												{
 													'--dot-color': c.color,

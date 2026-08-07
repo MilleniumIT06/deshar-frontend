@@ -3,9 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { type ReactNode } from 'react'
 
-import {
-	testOptionsTeacher,
-} from '@/mocks/adminMock'
+import { testOptionsTeacher } from '@/mocks/adminMock'
 import { type Option, Selector } from '@/shared/ui/Selector'
 
 import './StatisticsLayout.scss'
@@ -17,11 +15,10 @@ interface StatisticsLayoutContentProps {
 export const StatisticsLayoutContent = ({ children }: StatisticsLayoutContentProps) => {
 	const router = useRouter()
 	const handleSelectChange = (item: Option) => {
-
-			if (item.default) {
-				router.push('/admin')
-			} else {
-				router.push(`/admin/${item.id}`)
+		if (item.default) {
+			router.push('/admin')
+		} else {
+			router.push(`/admin/${item.id}`)
 		}
 	}
 

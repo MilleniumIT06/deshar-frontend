@@ -13,10 +13,7 @@ const DragDropTrainer = dynamic(() => import('@/components/DragDropTrainer').the
 	loading: () => <div className="animate-pulse h-40 bg-gray-50" />,
 })
 
-const MissedLetterTrainer = dynamic(
-	() => import('@/components/MissedLetterTrainer').then(mod => mod.MissedLetterTrainer),
-	{ ssr: false },
-)
+const MissedLetterTrainer = dynamic(() => import('@/components/MissedLetterTrainer').then(mod => mod.MissedLetterTrainer), { ssr: false })
 
 const SelectAnswerQuiz = dynamic(() => import('@/components/SelectAnswerQuiz').then(mod => mod.SelectAnswerQuiz), {
 	ssr: false,

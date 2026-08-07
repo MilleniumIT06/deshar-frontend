@@ -35,8 +35,8 @@ export const trainersSlice = createSlice({
 			state.currentLessonIndex = action.payload
 		},
 		setTrainerIndex: (state, action: PayloadAction<number>) => {
-  state.currentTrainerIndex = action.payload
-},
+			state.currentTrainerIndex = action.payload
+		},
 		setSupportModalOpen: (state, action: PayloadAction<boolean>) => {
 			state.isSupportModalOpen = action.payload
 		},
@@ -57,10 +57,7 @@ export const trainersSlice = createSlice({
 				state.status = 'finish'
 			}
 		},
-		restoreProgress: (
-			state,
-			action: PayloadAction<{ lessonIndex: number; trainerIndex: number; mode: 'practice' | 'theory' }>,
-		) => {
+		restoreProgress: (state, action: PayloadAction<{ lessonIndex: number; trainerIndex: number; mode: 'practice' | 'theory' }>) => {
 			state.currentLessonIndex = action.payload.lessonIndex
 			state.currentTrainerIndex = action.payload.trainerIndex
 			state.mode = action.payload.mode
@@ -98,7 +95,7 @@ export const {
 	nextLesson,
 	resetState,
 	setTrainerIndex,
-	restoreProgress
+	restoreProgress,
 } = trainersSlice.actions
 
 export default trainersSlice.reducer

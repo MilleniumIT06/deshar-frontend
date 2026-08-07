@@ -34,8 +34,7 @@ export const useWordPicker = ({ text, correctValues, onSuccess, onError, changeS
 		const selectedWords = words.filter(w => w.isSelected)
 		const correctWords = words.filter(w => w.isCorrect)
 
-		const isAllCorrect =
-			selectedWords.length === correctWords.length && selectedWords.every(word => word.isCorrect)
+		const isAllCorrect = selectedWords.length === correctWords.length && selectedWords.every(word => word.isCorrect)
 
 		if (isAllCorrect && selectedWords.length > 0) {
 			onSuccess()

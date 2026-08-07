@@ -1,5 +1,3 @@
-
-
 import './styles.scss'
 import { forwardRef } from 'react'
 
@@ -23,7 +21,7 @@ interface SingleSelectImageQuizProps extends TrainerCommonProps {
 	}
 }
 export const SingleSelectImageQuiz = forwardRef<TrainerRef, SingleSelectImageQuizProps>(
-	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle,audio }, ref) => {
+	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle, audio }, ref) => {
 		const { selected, isSubmitted, handleSelect } = useQuizLogic<number>({
 			ref,
 			correctValue: payload.correct_variant_id,
@@ -41,22 +39,16 @@ export const SingleSelectImageQuiz = forwardRef<TrainerRef, SingleSelectImageQui
 			<div className="SingleSelectImageQuiz">
 				<div className="SingleSelectImageQuiz__inner">
 					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-					<TrainerTitle title={title} audio={audio}/>
+					<TrainerTitle title={title} audio={audio} />
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="SingleSelectImageQuiz__content">
 						{payload.variants.map(item => (
 							<SingleSelectImageQuizVariant
 								key={`SingleSelectImageQuizVariant${item.id}`}
-								imageUrl={API_URL.taskFiles()+item.imageUrl}
-								error={
-									isSubmitted && selected === item.id && item.id !== payload.correct_variant_id
-								}
-								isCorrect={
-									isSubmitted && selected === item.id && item.id === payload.correct_variant_id
-								}
-								isIncorrect={
-									isSubmitted && selected !== item.id && item.id !== payload.correct_variant_id
-								}
+								imageUrl={API_URL.taskFiles() + item.imageUrl}
+								error={isSubmitted && selected === item.id && item.id !== payload.correct_variant_id}
+								isCorrect={isSubmitted && selected === item.id && item.id === payload.correct_variant_id}
+								isIncorrect={isSubmitted && selected !== item.id && item.id !== payload.correct_variant_id}
 								selected={selected === item.id}
 								onClick={() => handleVariantClick(item.id)}
 							/>

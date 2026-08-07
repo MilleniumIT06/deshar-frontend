@@ -20,18 +20,8 @@ export const BarChart = ({ data }: { data: BarChartDataItem[] }) => {
 	return (
 		<div style={{ width: '100%', height: '100%' }}>
 			<RechartsBar style={{ width: '100%', height: '100%', aspectRatio: 1.618 }} responsive data={data}>
-				<XAxis
-					dataKey="name"
-					tickFormatter={t => `${t.getDate()} ${t.toLocaleString('default', { month: 'short' })}`}
-					axisLine={false}
-				/>
-				<YAxis
-					width={70}
-					dataKey="value"
-					tickFormatter={value => `${value} бал`}
-					axisLine={false}
-					ticks={ticks}
-				/>
+				<XAxis dataKey="name" tickFormatter={t => `${t.getDate()} ${t.toLocaleString('default', { month: 'short' })}`} axisLine={false} />
+				<YAxis width={70} dataKey="value" tickFormatter={value => `${value} бал`} axisLine={false} ticks={ticks} />
 				<Tooltip
 					shared={false}
 					content={data => {

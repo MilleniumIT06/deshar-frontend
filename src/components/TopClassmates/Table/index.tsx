@@ -39,14 +39,7 @@ export const Table = ({ data }: TableProps) => {
 				{students.map(student => {
 					const { id, class: className, ...studentProps } = student
 
-					return (
-						<TableItem
-							key={`student-${id}`}
-							type={type}
-							parallelClass={className}
-							{...studentProps}
-						/>
-					)
+					return <TableItem key={`student-${id}`} type={type} parallelClass={className} {...studentProps} />
 				})}
 			</tbody>
 		</table>

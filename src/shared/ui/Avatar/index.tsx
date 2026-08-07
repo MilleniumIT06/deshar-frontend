@@ -5,7 +5,6 @@ import './styles.scss'
 
 import type { User } from '@/shared/types/user.types'
 
-
 interface AvatarProps {
 	size?: 'small' | 'medium' | 'large'
 	className?: string
@@ -34,9 +33,7 @@ export const Avatar = ({ size = 'medium', className, user: propUser, showName = 
 				data-testid="avatar"
 				onClick={onClick}
 				style={{ cursor: onClick ? 'pointer' : 'default' }}>
-				{showName && displayName && displayName !== 'Пользователь' && (
-					<span className="Avatar__name">{displayName}</span>
-				)}
+				{showName && displayName && displayName !== 'Пользователь' && <span className="Avatar__name">{displayName}</span>}
 			</div>
 		)
 	}
@@ -49,17 +46,9 @@ export const Avatar = ({ size = 'medium', className, user: propUser, showName = 
 			onClick={onClick}
 			style={{ cursor: onClick ? 'pointer' : 'default' }}>
 			<div className={cn('Avatar__content', size)}>
-				<Image
-					src={propUser?.avatar}
-					alt={`Аватар ${displayName}`}
-					className="Avatar__image"
-					width={avatarSize}
-					height={avatarSize}
-				/>
+				<Image src={propUser?.avatar} alt={`Аватар ${displayName}`} className="Avatar__image" width={avatarSize} height={avatarSize} />
 			</div>
-			{showName && displayName && displayName !== 'Пользователь' && (
-				<span className="Avatar__name">{displayName}</span>
-			)}
+			{showName && displayName && displayName !== 'Пользователь' && <span className="Avatar__name">{displayName}</span>}
 		</div>
 	)
 }

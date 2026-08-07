@@ -1,6 +1,5 @@
-import { MinistrySchoolsAdminPageContent } from "./content";
-
+import { MinistrySchoolsAdminPageContent } from './content'
 
 export default function MinistrySchoolsAdminPage() {
-    return <MinistrySchoolsAdminPageContent />
+	return <MinistrySchoolsAdminPageContent />
 }

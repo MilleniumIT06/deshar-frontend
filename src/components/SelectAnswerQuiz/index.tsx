@@ -28,11 +28,7 @@ export const SelectAnswerQuiz = ({ data }: { data: IChoiceRightTask }) => {
 	}
 
 	return (
-		<TrainerWrapper
-			handleCheckAnswers={handleCheck}
-			hasError={error}
-			isButtonDisabled={disableButton()}
-			title={data.title}>
+		<TrainerWrapper handleCheckAnswers={handleCheck} hasError={error} isButtonDisabled={disableButton()} title={data.title}>
 			<SelectAnswerQuizContent
 				setError={handleError}
 				data={variants}

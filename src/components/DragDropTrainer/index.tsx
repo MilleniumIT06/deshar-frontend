@@ -27,9 +27,7 @@ export const DragDropTrainer = ({ data }: { data: IMissingWordDndTask }) => {
 	const handleDragEnd = (event: DragEndEvent) => {
 		const { active, over } = event
 		if (over) {
-			setSlots(
-				slots.map(slot => (slot.id === over.id ? { ...slot, current: active.data.current?.char } : slot)),
-			)
+			setSlots(slots.map(slot => (slot.id === over.id ? { ...slot, current: active.data.current?.char } : slot)))
 		}
 	}
 	const { currentTaskNumber } = useAppSelector(state => state.learningAttestationReducer)

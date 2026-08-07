@@ -13,13 +13,7 @@ interface UseEngineNavigationParams {
 	restartPracticeCountdown: () => void
 }
 
-export function useEngineNavigation({
-	lessons,
-	currentLessonIndex,
-	currentTrainerIndex,
-	time,
-	restartPracticeCountdown,
-}: UseEngineNavigationParams) {
+export function useEngineNavigation({ lessons, currentLessonIndex, currentTrainerIndex, time, restartPracticeCountdown }: UseEngineNavigationParams) {
 	const dispatch = useAppDispatch()
 
 	const isLastLesson = currentLessonIndex === lessons.length - 1
@@ -28,7 +22,7 @@ export function useEngineNavigation({
 		if (currentLessonIndex < lessons.length - 1) {
 			dispatch(resetTrainers())
 			dispatch(changeMode('theory'))
-			if(lessons[currentLessonIndex].total_tasks>0) {
+			if (lessons[currentLessonIndex].total_tasks > 0) {
 				dispatch(addCurrentToTotalScore())
 			}
 			dispatch(nextLesson({ totalLessons: lessons.length }))
@@ -61,10 +55,10 @@ export function useEngineNavigation({
 		}
 	}
 
-	const handleTheoryNext = () =>{
+	const handleTheoryNext = () => {
 		restartPracticeCountdown()
-		 goToNextLessonOrFinish()
-		}
+		goToNextLessonOrFinish()
+	}
 
 	const startPractice = () => {
 		dispatch(changeMode('practice'))

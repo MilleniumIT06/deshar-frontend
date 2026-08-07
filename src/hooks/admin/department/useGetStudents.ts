@@ -4,9 +4,9 @@ import { statsService } from '@/services/admin/stats.service'
 
 export const useGetDepartmentStudents = () => {
 	const {
-		data:departmentStudents,
-		isLoading:isDepartmentStudentsLoading,
-		isError:isDepartmentStudentsError,
+		data: departmentStudents,
+		isLoading: isDepartmentStudentsLoading,
+		isError: isDepartmentStudentsError,
 		error,
 	} = useQuery({
 		queryKey: ['adminDepartmentStudents'],

@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-
 import { getUniqueTeacherColumns } from '@/columns/getUniqueTeacherColumns'
 import { Table } from '@/components/Admin/Table'
 import { mockTeacherStudentsList } from '@/mocks/adminMock'

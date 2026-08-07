@@ -19,7 +19,6 @@ export const InfoModal = ({ isOpen, onClose, type = 'success', onFail, onSuccess
 		onClose()
 	}
 	const handleFail = () => {
-
 		onFail()
 		onClose()
 	}

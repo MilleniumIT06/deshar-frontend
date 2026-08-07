@@ -26,11 +26,7 @@ const Icon = () => (
 )
 export const HelpTrigger = ({ handleClick }: { handleClick: () => void }) => {
 	return (
-		<button
-			onClick={handleClick}
-			className="help-trigger"
-			title="Написать в поддержку"
-			aria-label="Написать в поддержку">
+		<button onClick={handleClick} className="help-trigger" title="Написать в поддержку" aria-label="Написать в поддержку">
 			<Icon />
 		</button>
 	)

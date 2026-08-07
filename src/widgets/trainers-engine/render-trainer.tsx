@@ -12,25 +12,14 @@ interface RenderTrainerProps {
 	currentIndex: number
 }
 
-const RenderTrainer = forwardRef<any, RenderTrainerProps>(
-	({ type, data, changeStatus, onSuccess, onError, currentIndex }, ref) => {
-		const Component = trainersMap[type]
+const RenderTrainer = forwardRef<any, RenderTrainerProps>(({ type, data, changeStatus, onSuccess, onError, currentIndex }, ref) => {
+	const Component = trainersMap[type]
 
-		if (!Component) {
-			return <p>Компонент типа: {type} не найден</p>
-		}
-		return (
-			<Component
-				{...data}
-				ref={ref}
-				changeStatus={changeStatus}
-				onSuccess={onSuccess}
-				onError={onError}
-				currentTrainerIndex={currentIndex}
-			/>
-		)
-	},
-)
+	if (!Component) {
+		return <p>Компонент типа: {type} не найден</p>
+	}
+	return <Component {...data} ref={ref} changeStatus={changeStatus} onSuccess={onSuccess} onError={onError} currentTrainerIndex={currentIndex} />
+})
 
 RenderTrainer.displayName = 'RenderTrainer'
 

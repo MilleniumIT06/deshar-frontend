@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-
 import { getSchoolStatisticColumns } from '@/columns/getSchoolStatisticColumns'
 import { Table } from '@/components/Admin/Table'
 import { SchoolStatMockData } from '@/mocks/adminMock'

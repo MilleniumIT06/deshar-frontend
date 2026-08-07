@@ -11,15 +11,7 @@ interface TopClassmatesListItemProps {
 	type: 'parallel' | 'classmates'
 }
 
-export const TopClassmatesListItem = ({
-	doneModules,
-	name,
-	placeNumber,
-	points,
-	time,
-	type,
-	parallelClass,
-}: TopClassmatesListItemProps) => {
+export const TopClassmatesListItem = ({ doneModules, name, placeNumber, points, time, type, parallelClass }: TopClassmatesListItemProps) => {
 	const placeClasses = {
 		1: 'TopClassmatesListItem__place_first',
 		2: 'TopClassmatesListItem__place_second',

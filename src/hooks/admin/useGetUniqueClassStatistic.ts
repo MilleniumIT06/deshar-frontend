@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { schoolClassesService } from '@/services/admin/organization/classes/schoolClasses.service'
 import { type Id } from '@/shared/types/types'
 
-export const useGetUniqueClassStatistic = (id:Id) => {
+export const useGetUniqueClassStatistic = (id: Id) => {
 	const {
 		data: classStatistic,
 		isLoading,

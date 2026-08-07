@@ -1,12 +1,12 @@
 .MinistryUniqueDistrict {
-    &__cards {
-        width: 100%;
-        display: flex;
-        flex-wrap:wrap;
-        gap:30px;
-        .ResultsCard {
-            flex-shrink:0;
-            flex-basis:25%;
-        }
-    }
+	&__cards {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px;
+		.ResultsCard {
+			flex-shrink: 0;
+			flex-basis: 25%;
+		}
+	}
 }

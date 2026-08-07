@@ -14,18 +14,15 @@ import type { UniqueDistrictTopStudent } from '@/services/types/ministy.types'
 type SchoolTopStudent = Omit<UniqueDistrictTopStudent, 'school'>
 export const UniqueSchoolPageContent = () => {
 	const params = useParams<{ schoolId: string }>()
-	const { isMinistrySchoolLoading, isMinistrySchoolError, ministrySchool } = useGetSchoolById(
-		Number(params.schoolId),
-	)
+	const { isMinistrySchoolLoading, isMinistrySchoolError, ministrySchool } = useGetSchoolById(Number(params.schoolId))
 
-	if (isMinistrySchoolLoading){
-
-        return (
-            <div>
+	if (isMinistrySchoolLoading) {
+		return (
+			<div>
 				<Loader />
 			</div>
 		)
-    }
+	}
 	if (isMinistrySchoolError) return <div>Error</div>
 
 	return (
@@ -36,39 +33,16 @@ export const UniqueSchoolPageContent = () => {
 
 			<div className="UniqueSchoolPageContent__main">
 				<div className="UniqueSchoolPageContent__cards">
-					<ResultsCard
-						variant="admin"
-						title="Учеников"
-						value={ministrySchool?.data.statistics.total_students}
-					/>
-					<ResultsCard
-						variant="admin"
-						title="Учителей"
-						value={ministrySchool?.data.statistics.total_teachers}
-					/>
-					<ResultsCard
-						variant="admin"
-						title="Классы"
-						value={ministrySchool?.data.statistics.total_classes}
-					/>
-					<ResultsCard
-						variant="admin"
-						title="Баллы"
-						value={ministrySchool?.data.statistics.total_points}
-					/>
-					<ResultsCard
-						variant="admin"
-						title="Ср. балл"
-						value={ministrySchool?.data.statistics.average_points}
-					/>
+					<ResultsCard variant="admin" title="Учеников" value={ministrySchool?.data.statistics.total_students} />
+					<ResultsCard variant="admin" title="Учителей" value={ministrySchool?.data.statistics.total_teachers} />
+					<ResultsCard variant="admin" title="Классы" value={ministrySchool?.data.statistics.total_classes} />
+					<ResultsCard variant="admin" title="Баллы" value={ministrySchool?.data.statistics.total_points} />
+					<ResultsCard variant="admin" title="Ср. балл" value={ministrySchool?.data.statistics.average_points} />
 				</div>
 			</div>
 			<ClassCardMain title="Лучшие ученики школы" linkHref="/" linkText="Полный список">
 				{ministrySchool && ministrySchool.data && ministrySchool.data.top_students.length > 0 ? (
-					<Table<SchoolTopStudent>
-						data={ministrySchool.data.top_students}
-						getColumns={() => getSchoolTopStudents()}
-					/>
+					<Table<SchoolTopStudent> data={ministrySchool.data.top_students} getColumns={() => getSchoolTopStudents()} />
 				) : (
 					'Данных нет'
 				)}

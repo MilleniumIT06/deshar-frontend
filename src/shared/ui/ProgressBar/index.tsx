@@ -1,7 +1,6 @@
 import cn from 'classnames'
 import { useMemo } from 'react'
 
-
 import './styles.scss'
 
 // Интерфейс пропсов компонента ProgressBar
@@ -61,12 +60,9 @@ export const ProgressBar = ({
 			{/* Блок с текстовой информацией (счетчик/проценты) */}
 			{counter && (
 				<div className="ProgressBar__info">
-					<span className="ProgressBar__done_count">{done}</span>/
-					<span className="ProgressBar__max_count">{max}</span>
+					<span className="ProgressBar__done_count">{done}</span>/<span className="ProgressBar__max_count">{max}</span>
 					{/* Отображение процентов рядом со счетчиком */}
-					{showPercentage && (
-						<span className="ProgressBar__percentage">{formatPercentage(percentDone)}</span>
-					)}
+					{showPercentage && <span className="ProgressBar__percentage">{formatPercentage(percentDone)}</span>}
 				</div>
 			)}
 

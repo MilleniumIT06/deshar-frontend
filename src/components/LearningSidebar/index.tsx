@@ -2,7 +2,6 @@
 import cn from 'classnames'
 import { useCallback, useState } from 'react'
 
-
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { AttestationItem } from '@/components/AttestationItem'
 import { type ILesson } from '@/components/LearningContent'
@@ -76,12 +75,7 @@ export const LearningSidebar = ({ className }: { className?: string }) => {
 					<h5 className="LearningSidebar__title">Уроки</h5>
 					<div className="LearningSidebar__content">
 						{hasPreviousPage && (
-							<Button
-								className="LearningSidebar__showBtn"
-								variant="secondary"
-								size="medium"
-								fullWidth
-								onClick={handlePrevPage}>
+							<Button className="LearningSidebar__showBtn" variant="secondary" size="medium" fullWidth onClick={handlePrevPage}>
 								Показать предыдущие
 							</Button>
 						)}
@@ -105,12 +99,7 @@ export const LearningSidebar = ({ className }: { className?: string }) => {
 						</ul>
 
 						{hasNextPage && (
-							<Button
-								className="LearningSidebar__showBtn"
-								variant="secondary"
-								size="medium"
-								fullWidth
-								onClick={handleNextPage}>
+							<Button className="LearningSidebar__showBtn" variant="secondary" size="medium" fullWidth onClick={handleNextPage}>
 								Показать следующие
 							</Button>
 						)}
@@ -118,11 +107,7 @@ export const LearningSidebar = ({ className }: { className?: string }) => {
 				</div>
 				<div className="LearningSidebar__bottom">
 					<h5 className="LearningSidebar__title">Аттестация</h5>
-					<AttestationItem
-						max={data.length}
-						current={numberOfCompletedTasks}
-						active={isActiveAttestationItem()}
-					/>
+					<AttestationItem max={data.length} current={numberOfCompletedTasks} active={isActiveAttestationItem()} />
 				</div>
 			</div>
 		</div>

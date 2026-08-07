@@ -6,7 +6,7 @@ import tseslintPlugin from '@typescript-eslint/eslint-plugin'
 import nextPlugin from '@next/eslint-plugin-next'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import reactPlugin from 'eslint-plugin-react'
-
+import eslintConfigPrettier from 'eslint-config-prettier'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
@@ -32,7 +32,7 @@ const config = [
 			'@typescript-eslint': tseslintPlugin,
 			'@next/next': nextPlugin,
 			'react-hooks': reactHooksPlugin,
-			'react': reactPlugin,
+			react: reactPlugin,
 		},
 		settings: {
 			'import/resolver': {
@@ -78,19 +78,14 @@ const config = [
 
 			// Теперь эти правила будут работать корректно
 			'@typescript-eslint/no-explicit-any': 'warn',
-			'@typescript-eslint/no-unused-vars': [
-				'error',
-				{ argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
-			],
-			'@typescript-eslint/consistent-type-imports': [
-				'error',
-				{ prefer: 'type-imports', fixStyle: 'inline-type-imports' },
-			],
+			'@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+			'@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports', fixStyle: 'inline-type-imports' }],
 
 			'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
 			'react/self-closing-comp': ['error', { component: true, html: true }],
 		},
 	},
+	eslintConfigPrettier,
 ]
 
 export default config

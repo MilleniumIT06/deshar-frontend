@@ -19,9 +19,9 @@ export const DashboardMenu = () => {
 	const { hasRole } = useRole()
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 	const userMenuRef = useOutsideClick(() => {
-			setIsMenuOpen(false)
-		})
-		const handleAvatarClick = () => {
+		setIsMenuOpen(false)
+	})
+	const handleAvatarClick = () => {
 		setIsMenuOpen(prev => !prev)
 	}
 	return (
@@ -50,7 +50,11 @@ export const DashboardMenu = () => {
 							onClick={handleAvatarClick}
 						/>
 						{isMenuOpen && (
-							<UserMenu profileData={profileData} handleMenuClose={() => setIsMenuOpen(false)} extraClass='DashboardMenu__userMenu'/>
+							<UserMenu
+								profileData={profileData}
+								handleMenuClose={() => setIsMenuOpen(false)}
+								extraClass="DashboardMenu__userMenu"
+							/>
 						)}
 					</div>
 				) : (

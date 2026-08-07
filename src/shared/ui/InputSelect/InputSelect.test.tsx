@@ -23,52 +23,24 @@ describe('InputSelect Component', () => {
 	const mockSetValue = vi.fn()
 
 	it('renders without crashing', () => {
-		render(
-			<InputSelect
-				placeholderValue="Select an option"
-				options={mockOptions}
-				value=""
-				setValue={mockSetValue}
-			/>,
-		)
+		render(<InputSelect placeholderValue="Select an option" options={mockOptions} value="" setValue={mockSetValue} />)
 
 		expect(screen.getByPlaceholderText('Select an option')).toBeInTheDocument()
 	})
 
 	it('displays the selected option label', () => {
-		render(
-			<InputSelect
-				placeholderValue="Select an option"
-				options={mockOptions}
-				value={'Option 2'}
-				setValue={mockSetValue}
-			/>,
-		)
+		render(<InputSelect placeholderValue="Select an option" options={mockOptions} value={'Option 2'} setValue={mockSetValue} />)
 		expect(screen.getByDisplayValue('Option 2')).toBeInTheDocument()
 	})
 
 	it('shows placeholder when no value is selected', () => {
-		render(
-			<InputSelect
-				placeholderValue="Select an option"
-				options={mockOptions}
-				value=""
-				setValue={mockSetValue}
-			/>,
-		)
+		render(<InputSelect placeholderValue="Select an option" options={mockOptions} value="" setValue={mockSetValue} />)
 
 		expect(screen.getByPlaceholderText('Select an option')).toBeInTheDocument()
 	})
 
 	it('toggles dropdown when button is clicked', () => {
-		render(
-			<InputSelect
-				placeholderValue="Select an option"
-				options={mockOptions}
-				value=""
-				setValue={mockSetValue}
-			/>,
-		)
+		render(<InputSelect placeholderValue="Select an option" options={mockOptions} value="" setValue={mockSetValue} />)
 
 		const toggleButton = screen.getByLabelText('Toggle dropdown')
 		fireEvent.click(toggleButton)
@@ -83,14 +55,7 @@ describe('InputSelect Component', () => {
 	})
 
 	it('calls setValue when an option is selected', () => {
-		render(
-			<InputSelect
-				placeholderValue="Select an option"
-				options={mockOptions}
-				value=""
-				setValue={mockSetValue}
-			/>,
-		)
+		render(<InputSelect placeholderValue="Select an option" options={mockOptions} value="" setValue={mockSetValue} />)
 
 		// Open dropdown
 		const toggleButton = screen.getByLabelText('Toggle dropdown')
@@ -105,14 +70,7 @@ describe('InputSelect Component', () => {
 	})
 
 	it('closes dropdown after selecting an option', () => {
-		render(
-			<InputSelect
-				placeholderValue="Select an option"
-				options={mockOptions}
-				value=""
-				setValue={mockSetValue}
-			/>,
-		)
+		render(<InputSelect placeholderValue="Select an option" options={mockOptions} value="" setValue={mockSetValue} />)
 
 		// Open dropdown
 		const toggleButton = screen.getByLabelText('Toggle dropdown')
@@ -161,14 +119,7 @@ describe('InputSelect Component', () => {
 	// });
 
 	it('has correct aria attributes', () => {
-		render(
-			<InputSelect
-				placeholderValue="Select an option"
-				options={mockOptions}
-				value=""
-				setValue={mockSetValue}
-			/>,
-		)
+		render(<InputSelect placeholderValue="Select an option" options={mockOptions} value="" setValue={mockSetValue} />)
 
 		const toggleButton = screen.getByLabelText('Toggle dropdown')
 		expect(toggleButton).toHaveAttribute('aria-expanded', 'false')

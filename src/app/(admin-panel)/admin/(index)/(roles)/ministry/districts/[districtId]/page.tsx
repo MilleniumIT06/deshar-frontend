@@ -1,5 +1,5 @@
-import { UniqueDistrictPageContent } from "./content";
+import { UniqueDistrictPageContent } from './content'
 
 export default function UniqueDistrictPage() {
-    return <UniqueDistrictPageContent />
+	return <UniqueDistrictPageContent />
 }

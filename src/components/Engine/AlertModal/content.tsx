@@ -1,7 +1,7 @@
 import { EngineButton } from '../Button'
 import './styles.scss'
 
-export const AlertModalContent = ({onCancelBtnClick,onYesBtnClick}:{onYesBtnClick:()=>void;onCancelBtnClick:()=>void;}) => {
+export const AlertModalContent = ({ onCancelBtnClick, onYesBtnClick }: { onYesBtnClick: () => void; onCancelBtnClick: () => void }) => {
 	return (
 		<div className="alert-modal">
 			<div className="alert-modal__icon-wrapper">

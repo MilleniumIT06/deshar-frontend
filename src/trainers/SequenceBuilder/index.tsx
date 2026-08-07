@@ -11,7 +11,6 @@ import { Variant } from './variant'
 import type { Id, TrainerCommonProps } from '@/shared/types/types'
 import './styles.scss'
 
-
 interface ISequenceSlot {
 	slotId: number | string
 	content: string
@@ -31,26 +30,11 @@ interface SequenceBuilderProps extends TrainerCommonProps {
 }
 
 export const SequenceBuilder = forwardRef(
-	(
-		{
-			payload,
-			title,
-			subTitle,
-			onSuccess,
-			onError,
-			changeStatus,
-			currentTrainerIndex,
-			audio,
-		}: SequenceBuilderProps,
-		ref,
-	) => {
+	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex, audio }: SequenceBuilderProps, ref) => {
 		const [currentValues, setCurrentValues] = useState<Record<string | number, string | null>>(
 			Object.fromEntries(payload.slots.map(s => [s.slotId, null])),
 		)
-		const generateInitialState = useCallback(
-			() => Object.fromEntries(payload.slots.map(s => [s.slotId, null])),
-			[payload.slots],
-		)
+		const generateInitialState = useCallback(() => Object.fromEntries(payload.slots.map(s => [s.slotId, null])), [payload.slots])
 		const { checkAnswer, isLoading } = useCheckAnswer()
 
 		const checkResult = async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
@@ -127,12 +111,7 @@ export const SequenceBuilder = forwardRef(
 						<div className="sequence-builder__columns">
 							<div className="sequence-builder__column">
 								{payload.slots.map(slot => (
-									<Slot
-										key={slot.slotId}
-										id={slot.slotId}
-										content={slot.content}
-										value={currentValues[slot.slotId]}
-									/>
+									<Slot key={slot.slotId} id={slot.slotId} content={slot.content} value={currentValues[slot.slotId]} />
 								))}
 							</div>
 

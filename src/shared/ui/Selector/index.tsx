@@ -104,12 +104,7 @@ export const Selector = ({
 
 			<AnimatePresence>
 				{isOpen && (
-					<m.div
-						className="Selector__body"
-						variants={dropdownVariants}
-						initial="closed"
-						animate="open"
-						exit="closed">
+					<m.div className="Selector__body" variants={dropdownVariants} initial="closed" animate="open" exit="closed">
 						<div className="Selector__body_inner">
 							<ul id={listboxId} className={cn('list-reset', 'Selector__list')}>
 								{options.map(option => (

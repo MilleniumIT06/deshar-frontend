@@ -4,7 +4,6 @@
 import cn from 'classnames'
 import { useState, useEffect } from 'react'
 
-
 import './styles.scss'
 import type { RoleName } from '@/shared/types/user.types'
 
@@ -18,18 +17,11 @@ interface AvatarProps {
 	name?: string
 	size?: 'small' | 'medium' | 'large'
 	className?: string
-	role?: RoleName;
+	role?: RoleName
 	onClick?: () => void
 }
 
-export const Avatar = ({
-	src = '/avatar.png',
-	name = 'Ислам Парчиев',
-	size = 'medium',
-	className,
-	role = 'Админ',
-	onClick,
-}: AvatarProps) => {
+export const Avatar = ({ src = '/avatar.png', name = 'Ислам Парчиев', size = 'medium', className, role = 'Админ', onClick }: AvatarProps) => {
 	const [imageError, setImageError] = useState(false)
 
 	useEffect(() => {

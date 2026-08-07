@@ -35,15 +35,7 @@ export interface RateCardProps extends VariantProps<typeof RateCardVariants> {
 	info: { id: number; content: string }[]
 }
 
-const RateCard = ({
-	title,
-	price,
-	discount,
-	variant,
-	className,
-	onSelect,
-	info = [{ id: 1, content: 'test' }],
-}: RateCardProps) => {
+const RateCard = ({ title, price, discount, variant, className, onSelect, info = [{ id: 1, content: 'test' }] }: RateCardProps) => {
 	const formattedPrice = price > 0 ? `${new Intl.NumberFormat('ru-RU').format(price)} ₽` : 'Бесплатно!'
 
 	const buttonText = price > 0 ? 'Записаться' : 'Попробовать'

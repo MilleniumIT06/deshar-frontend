@@ -14,14 +14,7 @@ interface UseLetterClickTrainerProps {
 	isMulti?: boolean
 }
 
-export function useLetterClickTrainer({
-	ref,
-	correctIds = [],
-	onSuccess,
-	onError,
-	changeStatus,
-	isMulti = false,
-}: UseLetterClickTrainerProps) {
+export function useLetterClickTrainer({ ref, correctIds = [], onSuccess, onError, changeStatus, isMulti = false }: UseLetterClickTrainerProps) {
 	const [selectedIds, setSelectedIds] = useState<(number | string)[]>([])
 	const { checkAnswer } = useCheckAnswer()
 	const isCheckingRef = useRef(false)

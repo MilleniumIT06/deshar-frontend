@@ -31,11 +31,7 @@ export const MainChart = ({ data, title = 'TITLE' }: { data: BarChartDataItem[];
 							<path d="M8 1L2 7L8 13" stroke="#303030" strokeWidth="1.5" />
 						</svg>
 					</Button>
-					<Button
-						variant="iconThird"
-						size="iconSmall"
-						onClick={handleNext}
-						disabled={startIndex >= data.length - VISIBLE_COUNT}>
+					<Button variant="iconThird" size="iconSmall" onClick={handleNext} disabled={startIndex >= data.length - VISIBLE_COUNT}>
 						<svg width="9" height="14" viewBox="0 0 9 14" fill="none">
 							<path d="M1 13L7 7L1 1" stroke="#303030" strokeWidth="1.5" />
 						</svg>

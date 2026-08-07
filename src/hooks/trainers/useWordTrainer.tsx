@@ -32,9 +32,7 @@ export const useWordTrainer = ({ id, correctAnswer, availableLetters, changeStat
 	const handleDragEnd = useCallback((event: DragEndEvent) => {
 		const { active, over } = event
 		if (over) {
-			setSlots(prev =>
-				prev.map(slot => (slot.id === over.id ? { ...slot, current: active.data.current?.char } : slot)),
-			)
+			setSlots(prev => prev.map(slot => (slot.id === over.id ? { ...slot, current: active.data.current?.char } : slot)))
 		}
 	}, [])
 

@@ -7,10 +7,10 @@ import './styles.scss'
 interface MenuProps {
 	isOpen: boolean
 	onClose: () => void
-	content:ReactNode
+	content: ReactNode
 }
 
-export const Menu = ({ isOpen, onClose, content}: MenuProps) => {
+export const Menu = ({ isOpen, onClose, content }: MenuProps) => {
 	useEffect(() => {
 		const handleEscape = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') onClose()
@@ -44,9 +44,7 @@ export const Menu = ({ isOpen, onClose, content}: MenuProps) => {
 						exit={{ x: '-100%' }}
 						transition={{ type: 'spring', damping: 25, stiffness: 200 }}
 						className="SideMenu__panel">
-						<div className="SideMenu__content">
-							{content}
-						</div>
+						<div className="SideMenu__content">{content}</div>
 					</motion.div>
 				</div>
 			)}

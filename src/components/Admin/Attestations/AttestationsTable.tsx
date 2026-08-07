@@ -1,4 +1,3 @@
- 
 'use client'
 import { useReactTable, getCoreRowModel, flexRender, getSortedRowModel, type SortingState } from '@tanstack/react-table'
 import { useMemo, useState } from 'react'
@@ -12,7 +11,7 @@ interface AttestationsTableProps {
 	data: AttestationsTableItemType[]
 }
 export const AttestationsTable = ({ data }: AttestationsTableProps) => {
-	const columns = useMemo(() => getAttestationsColumns({ role:"Учитель" }), [])
+	const columns = useMemo(() => getAttestationsColumns({ role: 'Учитель' }), [])
 	// Состояние для сортировки
 	const [sorting, setSorting] = useState<SortingState>([])
 
@@ -37,9 +36,7 @@ export const AttestationsTable = ({ data }: AttestationsTableProps) => {
 									{header.isPlaceholder ? null : (
 										<div
 											{...{
-												className: header.column.getCanSort()
-													? 'cursor-pointer select-none'
-													: '',
+												className: header.column.getCanSort() ? 'cursor-pointer select-none' : '',
 												onClick: header.column.getToggleSortingHandler(),
 											}}>
 											{flexRender(header.column.columnDef.header, header.getContext())}
@@ -52,16 +49,8 @@ export const AttestationsTable = ({ data }: AttestationsTableProps) => {
 														fill="none"
 														xmlns="http://www.w3.org/2000/svg">
 														<g transform="rotate(180 10 10)">
-															<path
-																d="M15 10L10 15L5 10"
-																stroke="#7D7979"
-																strokeWidth="1.5"
-															/>
-															<path
-																d="M10 15L10 5"
-																stroke="#7D7979"
-																strokeWidth="1.4"
-															/>
+															<path d="M15 10L10 15L5 10" stroke="#7D7979" strokeWidth="1.5" />
+															<path d="M10 15L10 5" stroke="#7D7979" strokeWidth="1.4" />
 														</g>
 													</svg>
 												),
@@ -72,16 +61,8 @@ export const AttestationsTable = ({ data }: AttestationsTableProps) => {
 														viewBox="0 0 20 20"
 														fill="none"
 														xmlns="http://www.w3.org/2000/svg">
-														<path
-															d="M15 10L10 15L5 10"
-															stroke="#7D7979"
-															strokeWidth="1.5"
-														/>
-														<path
-															d="M10 15L10 5"
-															stroke="#7D7979"
-															strokeWidth="1.4"
-														/>
+														<path d="M15 10L10 15L5 10" stroke="#7D7979" strokeWidth="1.5" />
+														<path d="M10 15L10 5" stroke="#7D7979" strokeWidth="1.4" />
 													</svg>
 												),
 											}[header.column.getIsSorted() as string] ?? null}
@@ -95,11 +76,7 @@ export const AttestationsTable = ({ data }: AttestationsTableProps) => {
 
 				<tbody>
 					{table.getRowModel().rows.map(row => (
-						<StudentTableItem<AttestationsTableItemType>
-							key={row.id}
-							row={row}
-							status={row.original.attestationStatus}
-						/>
+						<StudentTableItem<AttestationsTableItemType> key={row.id} row={row} status={row.original.attestationStatus} />
 					))}
 				</tbody>
 			</table>

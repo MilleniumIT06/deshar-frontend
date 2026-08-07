@@ -32,17 +32,13 @@ describe('ProgressBar Component', () => {
 	})
 
 	it('displays percentage when showPercentage is true and counter is true', () => {
-		render(
-			<ProgressBar maxLessons={10} doneLessons={5} processLessons={2} counter={true} showPercentage={true} />,
-		)
+		render(<ProgressBar maxLessons={10} doneLessons={5} processLessons={2} counter={true} showPercentage={true} />)
 
 		expect(screen.getByText('50%')).toBeInTheDocument()
 	})
 
 	it('displays bottom percentage when showPercentage is true and counter is false', () => {
-		render(
-			<ProgressBar maxLessons={10} doneLessons={5} processLessons={2} counter={false} showPercentage={true} />,
-		)
+		render(<ProgressBar maxLessons={10} doneLessons={5} processLessons={2} counter={false} showPercentage={true} />)
 
 		expect(screen.getByText('50% завершено')).toBeInTheDocument()
 	})
@@ -63,9 +59,7 @@ describe('ProgressBar Component', () => {
 
 	it('applies custom className', () => {
 		const customClass = 'custom-progress-bar'
-		const { container } = render(
-			<ProgressBar maxLessons={10} doneLessons={5} processLessons={2} className={customClass} />,
-		)
+		const { container } = render(<ProgressBar maxLessons={10} doneLessons={5} processLessons={2} className={customClass} />)
 
 		expect(container.firstChild).toHaveClass(customClass)
 	})

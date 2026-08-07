@@ -1,5 +1,3 @@
-export const SupportContent = ()=>{
-    return <div>
-        Support
-    </div>
+export const SupportContent = () => {
+	return <div>Support</div>
 }

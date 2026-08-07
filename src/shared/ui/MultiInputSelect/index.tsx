@@ -1,4 +1,3 @@
- 
 'use client'
 
 import cn from 'classnames'
@@ -38,7 +37,7 @@ const MultiInputSelect = <T extends string | number>({
 		if (open) setOpen(false)
 	})
 
-	 const handleToggleOption = (option: Option<T>) => {
+	const handleToggleOption = (option: Option<T>) => {
 		const isSelected = value.some(item => item.id === option.id)
 		if (isSelected) {
 			setValue(value.filter(item => item.id !== option.id))
@@ -51,10 +50,7 @@ const MultiInputSelect = <T extends string | number>({
 	const displayValue = value.map(v => v.name).join(', ')
 
 	return (
-		<div
-			className={cn('MultiInputSelect', variant === 'admin' && 'adminVariant', 'multi')}
-			ref={selectRef}
-			data-testid="input-select">
+		<div className={cn('MultiInputSelect', variant === 'admin' && 'adminVariant', 'multi')} ref={selectRef} data-testid="input-select">
 			<input
 				placeholder={placeholderValue}
 				className={cn('input-reset', 'MultiInputSelect__input')}
@@ -105,12 +101,7 @@ const MultiInputSelect = <T extends string | number>({
 											['selected']: isSelected,
 										})}
 										onClick={() => handleToggleOption(option)}>
-										<input
-											type="checkbox"
-											checked={isSelected}
-											readOnly
-											className="MultiInputSelect__checkbox"
-										/>
+										<input type="checkbox" checked={isSelected} readOnly className="MultiInputSelect__checkbox" />
 										<span>{option.name}</span>
 									</div>
 								)

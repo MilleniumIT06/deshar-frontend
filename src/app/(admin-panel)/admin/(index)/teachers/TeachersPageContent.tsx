@@ -10,7 +10,6 @@ import { Card } from '@/widgets/AdminWidgets/Card'
 
 import type { Id } from '@/shared/types/types'
 
-
 const TABS = [
 	{ id: 0, title: 'Все предметы' },
 	{ id: 1, title: 'Математика' },
@@ -23,7 +22,7 @@ export const TeachersPageContent = () => {
 	// const navigate = useNavigate();
 	// const { role } = useRole()
 	const router = useRouter()
-const {isLoading:isSchoolTeachersLoading,teachersData,isError:isSchoolTeachersError} = useGetSchoolTeachers()
+	const { isLoading: isSchoolTeachersLoading, teachersData, isError: isSchoolTeachersError } = useGetSchoolTeachers()
 	const [timeFrom, setTimeFrom] = useState<string>('')
 	const [timeTo, setTimeTo] = useState<string>('')
 
@@ -42,20 +41,26 @@ const {isLoading:isSchoolTeachersLoading,teachersData,isError:isSchoolTeachersEr
 		setPointsTo('')
 	}
 	const redirectOnClick = (item: {
-							id:Id;
-							name: string;
-							email: string;
-							avatar: string;
-							is_online: boolean;
-							last_activity: string;
-							students_count: number;
-							classes_count: number;
-						}) => {
+		id: Id
+		name: string
+		email: string
+		avatar: string
+		is_online: boolean
+		last_activity: string
+		students_count: number
+		classes_count: number
+	}) => {
 		router.push(`/admin/teachers/${item.id}`)
 	}
-	if(isSchoolTeachersLoading) return <div className='PageAdmin'> <Loader/></div>
-	if(isSchoolTeachersError) return <div>Error</div>
-	if(teachersData && !teachersData.data) return  <div>Error</div>
+	if (isSchoolTeachersLoading)
+		return (
+			<div className="PageAdmin">
+				{' '}
+				<Loader />
+			</div>
+		)
+	if (isSchoolTeachersError) return <div>Error</div>
+	if (teachersData && !teachersData.data) return <div>Error</div>
 	return (
 		<main className="PageAdmin">
 			<Card
@@ -91,17 +96,20 @@ const {isLoading:isSchoolTeachersLoading,teachersData,isError:isSchoolTeachersEr
 				setActiveTab={setActiveTab}
 				type="teachers"
 				csv={false}>
-				<Table<{
-							id:Id;
-							name: string;
-							email: string;
-							avatar: string;
-							is_online: boolean;
-							last_activity: string;
-							students_count: number;
-							classes_count: number;
-						}, never>
-					data={teachersData&&teachersData.data||[]}
+				<Table<
+					{
+						id: Id
+						name: string
+						email: string
+						avatar: string
+						is_online: boolean
+						last_activity: string
+						students_count: number
+						classes_count: number
+					},
+					never
+				>
+					data={(teachersData && teachersData.data) || []}
 					getColumns={() => getTeacherColumns()}
 					handleRowClick={redirectOnClick}
 				/>

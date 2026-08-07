@@ -27,7 +27,7 @@ interface DropWordToImageProps extends TrainerCommonProps {
 }
 
 export const DropWordToImage = forwardRef<TrainerRef, DropWordToImageProps>(
-	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex,audio }, ref) => {
+	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex, audio }, ref) => {
 		const { selections, isSubmitted, handleDragEnd, isVariantUsed } = useDndTrainer({
 			items: payload.items,
 			onSuccess,
@@ -45,17 +45,12 @@ export const DropWordToImage = forwardRef<TrainerRef, DropWordToImageProps>(
 			<DndContext onDragEnd={handleDragEnd}>
 				<div className="trainer-dnd">
 					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-					<TrainerTitle title={title} audio={audio}/>
+					<TrainerTitle title={title} audio={audio} />
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
 					<div className="trainer-dnd__drop-zone">
 						{payload.items.map(item => (
-							<DropItem
-								key={item.id}
-								id={item.id}
-								imageUrl={item.imageUrl}
-								currentValue={getSelectedValue(item.id)}
-							/>
+							<DropItem key={item.id} id={item.id} imageUrl={item.imageUrl} currentValue={getSelectedValue(item.id)} />
 						))}
 					</div>
 

@@ -5,7 +5,6 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { resetForm } from '@/features/auth/signUp.slice'
 import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
@@ -71,24 +70,32 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 		defaultValues: defaultValues,
 		mode: 'onChange',
 	})
-const selectedDistrict = form.watch('district')
-const selectedLocality = form.watch('locality')
+	const selectedDistrict = form.watch('district')
+	const selectedLocality = form.watch('locality')
 
-// для теста можно тут поставить  selectedSchool = {id:0}, чтобы подгружались все классы
-const selectedSchool = {id:-1}
-// const selectedSchool = form.watch('school')
+	// для теста можно тут поставить  selectedSchool = {id:0}, чтобы подгружались все классы
+	const selectedSchool = { id: -1 }
+	// const selectedSchool = form.watch('school')
 	const { districts, isLoading: isDistrictsLoading, isError: isDistrictsError } = useGetDistricts()
-	const { isError: isSchoolsError, schools, isLoading: isSchoolsLoading } = useGetSchools({
-		localityId:selectedLocality?.id
+	const {
+		isError: isSchoolsError,
+		schools,
+		isLoading: isSchoolsLoading,
+	} = useGetSchools({
+		localityId: selectedLocality?.id,
 	})
 	const { countries, isLoading: isCountriesLoading } = useGetCountries()
-	const { localities, isLoading: isLocalitiesLoading, isError: isLocalitiesError } = useGetLocalities({
-    districtId: selectedDistrict?.id
-})
+	const {
+		localities,
+		isLoading: isLocalitiesLoading,
+		isError: isLocalitiesError,
+	} = useGetLocalities({
+		districtId: selectedDistrict?.id,
+	})
 	const { regions, isLoading: isRegionsLoading } = useGetRegions()
 	const { schoolClasses, isLoading: isSchoolClassesLoading } = useGetSchoolClasses({
-    schoolId: selectedSchool?.id
-})
+		schoolId: selectedSchool?.id,
+	})
 
 	useEffect(() => {
 		if (form.formState.isSubmitting) {
@@ -97,16 +104,16 @@ const selectedSchool = {id:-1}
 			disableTab(false)
 		}
 	}, [form.formState.isSubmitting, disableTab])
-useEffect(() => {
-    form.setValue('locality', { id: -1, name: '' })
-	form.setValue('school', { id: -1, name: '' })
+	useEffect(() => {
+		form.setValue('locality', { id: -1, name: '' })
+		form.setValue('school', { id: -1, name: '' })
 
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [selectedDistrict, selectedDistrict.id])
-useEffect(() => {
-    form.setValue('school', { id: -1, name: '' })
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [selectedLocality.id,selectedDistrict])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [selectedDistrict, selectedDistrict.id])
+	useEffect(() => {
+		form.setValue('school', { id: -1, name: '' })
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [selectedLocality.id, selectedDistrict])
 	const onSubmit = async (data: z.infer<typeof validateSchema>) => {
 		if (form.formState.isValid && !isCountriesLoading && !isRegionsLoading) {
 			let formattedBirthDate = formData.birthDate
@@ -155,9 +162,7 @@ useEffect(() => {
 					isError={isDistrictsError}
 					placeholderValue="Выберите район"
 				/>
-				{form.formState.errors.district && (
-					<p className="ProgramSelectionForm__error">{form.formState.errors.district.message}</p>
-				)}
+				{form.formState.errors.district && <p className="ProgramSelectionForm__error">{form.formState.errors.district.message}</p>}
 			</div>
 			<div className="ProgramSelectionForm__field">
 				<InputSelect
@@ -171,9 +176,7 @@ useEffect(() => {
 					isError={isLocalitiesError}
 					placeholderValue="Выберите населенный пункт"
 				/>
-				{form.formState.errors.locality && (
-					<p className="ProgramSelectionForm__error">{form.formState.errors.locality.message}</p>
-				)}
+				{form.formState.errors.locality && <p className="ProgramSelectionForm__error">{form.formState.errors.locality.message}</p>}
 			</div>
 
 			<div className="ProgramSelectionForm__field">
@@ -185,9 +188,7 @@ useEffect(() => {
 					isError={isSchoolsError}
 					placeholderValue="Выберите школу"
 				/>
-				{form.formState.errors.school && (
-					<p className="ProgramSelectionForm__error">{form.formState.errors.school.message}</p>
-				)}
+				{form.formState.errors.school && <p className="ProgramSelectionForm__error">{form.formState.errors.school.message}</p>}
 			</div>
 
 			<div className="ProgramSelectionForm__field">
@@ -200,9 +201,7 @@ useEffect(() => {
 					placeholderValue="Выберите класс"
 					isLoading={isSchoolClassesLoading}
 				/>
-				{form.formState.errors.schoolClass && (
-					<p className="ProgramSelectionForm__error">{form.formState.errors.schoolClass.message}</p>
-				)}
+				{form.formState.errors.schoolClass && <p className="ProgramSelectionForm__error">{form.formState.errors.schoolClass.message}</p>}
 			</div>
 
 			<div>

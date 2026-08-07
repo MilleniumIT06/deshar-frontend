@@ -1,37 +1,36 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation } from '@tanstack/react-query'
 
-import { teachersService } from "@/services/admin/organization/teachers/teachers.service";
+import { teachersService } from '@/services/admin/organization/teachers/teachers.service'
 
 export const useExportSchoolData = () => {
-    const {
-        mutateAsync: exportData,
-        isPending: isExporting,
-        error: exportError,
-    } = useMutation({
-        mutationFn: () => teachersService.exportSchoolDataAdmin(),
-        onSuccess: (data) => {
-            if (!data.success || !data.csv) {
+	const {
+		mutateAsync: exportData,
+		isPending: isExporting,
+		error: exportError,
+	} = useMutation({
+		mutationFn: () => teachersService.exportSchoolDataAdmin(),
+		onSuccess: data => {
+			if (!data.success || !data.csv) {
+				return 'error'
+			}
+			const BOM = '\uFEFF'
+			const csvContent = BOM + data.csv
+			const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+			const url = URL.createObjectURL(blob)
+			const link = document.createElement('a')
 
-                return 'error';
-            }
-            const BOM = '\uFEFF';
-            const csvContent = BOM + data.csv;
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
+			link.href = url
+			link.setAttribute('download', data.filename || 'students_export.csv')
 
-            link.href = url;
-            link.setAttribute('download', data.filename || 'students_export.csv');
+			document.body.appendChild(link)
+			link.click()
+			document.body.removeChild(link)
+			URL.revokeObjectURL(url)
+		},
+		onError: error => {
+			return error
+		},
+	})
 
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-        },
-        onError: (error) => {
-           return error
-        }
-    })
-
-    return { exportData, isExporting, exportError }
+	return { exportData, isExporting, exportError }
 }

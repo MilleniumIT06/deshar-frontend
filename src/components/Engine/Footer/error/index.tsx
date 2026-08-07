@@ -8,12 +8,7 @@ export const ErrorFooter = ({ handleReset }: { handleReset: () => void }) => {
 			<div className="error-footer__container">
 				<div className="error-footer__status">
 					<div className="error-footer__icon-wrapper">
-						<svg
-							className="error-footer__status-icon"
-							width="80"
-							height="80"
-							viewBox="0 0 80 80"
-							fill="none">
+						<svg className="error-footer__status-icon" width="80" height="80" viewBox="0 0 80 80" fill="none">
 							<circle cx="40" cy="40" r="40" fill="white" />
 							<path
 								d="M47.8724 40L54.4596 33.4064C55.4631 32.3557 56.0159 30.9535 55.9996 29.5C55.9834 28.0465 55.3993 26.6571 54.3724 25.6292C53.3455 24.6013 51.9575 24.0167 50.5054 24.0004C49.0533 23.984 47.6524 24.5374 46.6028 25.5419L40.0156 32.1356L33.3972 25.5419C32.3476 24.5374 30.9467 23.984 29.4946 24.0004C28.0425 24.0167 26.6545 24.6013 25.6276 25.6292C24.6007 26.6571 24.0166 28.0465 24.0004 29.5C23.9841 30.9535 24.5369 32.3557 25.5404 33.4064L32.1276 40L25.5404 46.5936C24.5369 47.6443 23.9841 49.0465 24.0004 50.5C24.0166 51.9535 24.6007 53.3429 25.6276 54.3708C26.6545 55.3987 28.0425 55.9833 29.4946 55.9996C30.9467 56.016 32.3476 55.4626 33.3972 54.4581L39.9844 47.8644L46.5716 54.4581C47.6212 55.4626 49.022 56.016 50.4741 55.9996C51.9263 55.9833 53.3143 55.3987 54.3412 54.3708C55.3681 53.3429 55.9521 51.9535 55.9684 50.5C55.9847 49.0465 55.4319 47.6443 54.4283 46.5936L47.8724 40Z"
@@ -24,12 +19,7 @@ export const ErrorFooter = ({ handleReset }: { handleReset: () => void }) => {
 					<div className="error-footer__text-block">
 						<h3 className="error-footer__title">Не правильный ответ</h3>
 						<button className="error-footer__discuss-btn">
-							<svg
-								className="error-footer__discuss-icon"
-								width="20"
-								height="20"
-								viewBox="0 0 20 20"
-								fill="none">
+							<svg className="error-footer__discuss-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
 								<path
 									fillRule="evenodd"
 									clipRule="evenodd"
@@ -46,12 +36,7 @@ export const ErrorFooter = ({ handleReset }: { handleReset: () => void }) => {
 				<div className="error-footer__actions">
 					<EngineButton variant="third" onClick={handleReset} className="error-footer__btn">
 						Пройти заново
-						<svg
-							className="error-footer__btn-icon"
-							width="33"
-							height="33"
-							viewBox="0 0 33 33"
-							fill="none">
+						<svg className="error-footer__btn-icon" width="33" height="33" viewBox="0 0 33 33" fill="none">
 							<path
 								d="M16.8593 30.7424C14.5808 30.7424 12.2966 30.0958 10.3145 28.7845C5.96983 25.9115 3.99138 20.4201 5.50319 15.4298C5.66819 14.8848 6.24415 14.5765 6.78916 14.742C7.33418 14.907 7.64201 15.4829 7.47701 16.028C6.22765 20.1519 7.86269 24.6899 11.452 27.0639C15.0784 29.4621 19.9257 29.1687 23.2417 26.3508C26.5154 23.5685 27.5941 18.7097 25.8064 14.7982C23.9187 10.667 19.3225 8.33845 14.8788 9.26142C13.0086 9.64968 11.239 10.6103 9.89632 11.9674C9.49568 12.3722 8.8429 12.3758 8.43813 11.9752C8.03337 11.5745 8.02976 10.9217 8.4304 10.517C10.0556 8.8747 12.197 7.71196 14.4596 7.24223C19.8386 6.12796 25.3986 8.94276 27.6828 13.9412C29.8809 18.751 28.6042 24.5007 24.5782 27.9229C22.3786 29.791 19.6226 30.7424 16.8593 30.7424Z"
 								fill="white"

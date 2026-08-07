@@ -19,73 +19,65 @@ interface UseDndTrainerProps<T extends TrainerItem> {
 	ref: ForwardedRef<any>
 }
 
-export const useDndTrainer = <T extends TrainerItem>({
-	items,
-	onSuccess,
-	onError,
-	changeStatus,
-	ref,
-}: UseDndTrainerProps<T>) => {
+export const useDndTrainer = <T extends TrainerItem>({ items, onSuccess, onError, changeStatus, ref }: UseDndTrainerProps<T>) => {
 	const [isSubmitted, setIsSubmitted] = useState(false)
 	const [selections, setSelections] = useState<Record<number | string, number | string | null>>(
 		Object.fromEntries(items.map(item => [item.id, null])),
 	)
-	const { checkAnswer,isLoading } = useCheckAnswer()
+	const { checkAnswer, isLoading } = useCheckAnswer()
 
 	useImperativeHandle(ref, () => ({
-   handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
-    if (isLoading) {
-		console.log('checking')
-		changeStatus("checking")
-		return
-	}
+		handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+			if (isLoading) {
+				console.log('checking')
+				changeStatus('checking')
+				return
+			}
 
-    const allFilled = items.every(item => selections[item.id] !== null)
-    if (!allFilled) return
+			const allFilled = items.every(item => selections[item.id] !== null)
+			if (!allFilled) return
 
-    if (!moduleId || !pieceId || !lessonId || !taskId) return
+			if (!moduleId || !pieceId || !lessonId || !taskId) return
 
-    setIsSubmitted(true)
+			setIsSubmitted(true)
 
-    const formattedAnswers = Object.fromEntries(
-        items.map(item => [item.id, selections[item.id]])
-    )
+			const formattedAnswers = Object.fromEntries(items.map(item => [item.id, selections[item.id]]))
 
-    try {
-        const data = await checkAnswer({
-            moduleId,
-            pieceId,
-            lessonId,
-            taskId,
-            answer: formattedAnswers,
-            timeSpent: timeSpent ?? 0,
-        })
-        if (!data) {
-            changeStatus('idle')
-            setIsSubmitted(false)
-            return
-        }
+			try {
+				const data = await checkAnswer({
+					moduleId,
+					pieceId,
+					lessonId,
+					taskId,
+					answer: formattedAnswers,
+					timeSpent: timeSpent ?? 0,
+				})
+				if (!data) {
+					changeStatus('idle')
+					setIsSubmitted(false)
+					return
+				}
 
-        if (data.is_correct) {
-            changeStatus('success')
-            onSuccess()
-        } else {
-            changeStatus('error')
-            onError()
-        }
-    } catch (e) {
-        changeStatus('idle')
-        setIsSubmitted(false)
-        // eslint-disable-next-line no-console
-        console.error(e)
-    }
-},
-    handleReset: () => {
-        setIsSubmitted(false)
-        setSelections(Object.fromEntries(items.map(item => [item.id, null])))
-        changeStatus('idle')
-    },
-}))
+				if (data.is_correct) {
+					changeStatus('success')
+					onSuccess()
+				} else {
+					changeStatus('error')
+					onError()
+				}
+			} catch (e) {
+				changeStatus('idle')
+				setIsSubmitted(false)
+				// eslint-disable-next-line no-console
+				console.error(e)
+			}
+		},
+		handleReset: () => {
+			setIsSubmitted(false)
+			setSelections(Object.fromEntries(items.map(item => [item.id, null])))
+			changeStatus('idle')
+		},
+	}))
 
 	const handleDragEnd = (event: DragEndEvent) => {
 		const { active, over } = event

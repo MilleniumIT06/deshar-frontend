@@ -1,5 +1,5 @@
-import { AllSchoolStudentsPageContent } from "./AllSchoolStudentsPageContent";
+import { AllSchoolStudentsPageContent } from './AllSchoolStudentsPageContent'
 
 export default function AllSchoolStudentsPage() {
-    return <AllSchoolStudentsPageContent />
+	return <AllSchoolStudentsPageContent />
 }

@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-
 import { StudentTable } from '@/components/Admin/StudentTable'
 import { studentTableMockData } from '@/mocks/adminMock'
 import { Card } from '@/widgets/AdminWidgets/Card'

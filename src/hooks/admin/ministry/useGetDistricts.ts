@@ -6,9 +6,9 @@ import type { Id } from '@/shared/types/types'
 
 export const useGetDistricts = () => {
 	const {
-		data:ministryDistricts,
-		isLoading:isMinistryDistrictsLoading,
-		isError:isMinistryDistrictsError,
+		data: ministryDistricts,
+		isLoading: isMinistryDistrictsLoading,
+		isError: isMinistryDistrictsError,
 		error,
 	} = useQuery({
 		queryKey: ['adminMinistryDistricts'],
@@ -17,17 +17,17 @@ export const useGetDistricts = () => {
 	})
 	return { ministryDistricts, isMinistryDistrictsLoading, isMinistryDistrictsError, error }
 }
-export const useGetDistrictById = (id:Id) => {
+export const useGetDistrictById = (id: Id) => {
 	const {
-		data:ministryDistrict,
-		isLoading:isMinistryDistrictLoading,
-		isError:isMinistryDistrictError,
+		data: ministryDistrict,
+		isLoading: isMinistryDistrictLoading,
+		isError: isMinistryDistrictError,
 		error,
 	} = useQuery({
-		queryKey: ['adminMinistryDistrict',id],
+		queryKey: ['adminMinistryDistrict', id],
 		queryFn: () => statsService.getMinistryDistrictStats(id),
 		staleTime: 10 * 60 * 1000,
-		enabled: Boolean(id)
+		enabled: Boolean(id),
 	})
 	return { ministryDistrict, isMinistryDistrictLoading, isMinistryDistrictError, error }
 }

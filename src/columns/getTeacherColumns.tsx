@@ -2,19 +2,18 @@ import { createColumnHelper } from '@tanstack/react-table'
 
 import { SortableHeader } from '@/components/Admin/SortableHeader'
 
-import type { Id } from '@/shared/types/types';
+import type { Id } from '@/shared/types/types'
 
 const columnHelper = createColumnHelper<{
-			id:Id;
-			name: string;
-			email: string;
-			avatar: string;
-			is_online: boolean;
-			last_activity: string;
-			students_count: number;
-			classes_count: number;
-		}>()
-
+	id: Id
+	name: string
+	email: string
+	avatar: string
+	is_online: boolean
+	last_activity: string
+	students_count: number
+	classes_count: number
+}>()
 
 export const getTeacherColumns = () => [
 	// columnHelper.accessor('avatar', {
@@ -44,7 +43,7 @@ export const getTeacherColumns = () => [
 			)
 		},
 	}),
-columnHelper.accessor('email', {
+	columnHelper.accessor('email', {
 		header: ({ column }) => <SortableHeader title="E-mail" column={column} />,
 		enableSorting: true,
 		sortingFn: 'basic',
@@ -75,7 +74,7 @@ columnHelper.accessor('email', {
 		cell: info => {
 			return (
 				<div className={'TableItem__name'}>
-					<span>{info.getValue() ? "В сети": "Оффлайн"}</span>
+					<span>{info.getValue() ? 'В сети' : 'Оффлайн'}</span>
 				</div>
 			)
 		},

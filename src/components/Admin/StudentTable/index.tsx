@@ -3,7 +3,6 @@
 import { useReactTable, getCoreRowModel, flexRender, type SortingState, getSortedRowModel } from '@tanstack/react-table'
 import { useMemo, useState } from 'react'
 
-
 import './styles.scss'
 import { getStudentTableColumns } from '@/columns/getStudentTableColumns'
 import { type AttestationStatus } from '@/shared/types/admin/types'
@@ -64,16 +63,8 @@ export const StudentTable = ({ data }: { data: StudentTableItemType[] }) => {
 														fill="none"
 														xmlns="http://www.w3.org/2000/svg">
 														<g transform="rotate(180 10 10)">
-															<path
-																d="M15 10L10 15L5 10"
-																stroke="#7D7979"
-																strokeWidth="1.5"
-															/>
-															<path
-																d="M10 15L10 5"
-																stroke="#7D7979"
-																strokeWidth="1.4"
-															/>
+															<path d="M15 10L10 15L5 10" stroke="#7D7979" strokeWidth="1.5" />
+															<path d="M10 15L10 5" stroke="#7D7979" strokeWidth="1.4" />
 														</g>
 													</svg>
 												),
@@ -84,16 +75,8 @@ export const StudentTable = ({ data }: { data: StudentTableItemType[] }) => {
 														viewBox="0 0 20 20"
 														fill="none"
 														xmlns="http://www.w3.org/2000/svg">
-														<path
-															d="M15 10L10 15L5 10"
-															stroke="#7D7979"
-															strokeWidth="1.5"
-														/>
-														<path
-															d="M10 15L10 5"
-															stroke="#7D7979"
-															strokeWidth="1.4"
-														/>
+														<path d="M15 10L10 15L5 10" stroke="#7D7979" strokeWidth="1.5" />
+														<path d="M10 15L10 5" stroke="#7D7979" strokeWidth="1.4" />
 													</svg>
 												),
 											}[header.column.getIsSorted() as string] ?? null}
@@ -106,11 +89,7 @@ export const StudentTable = ({ data }: { data: StudentTableItemType[] }) => {
 				</thead>
 				<tbody>
 					{table.getRowModel().rows.map(row => (
-						<StudentTableItem<StudentTableItemType>
-							key={row.id}
-							row={row}
-							status={row.original.attestationStatus}
-						/>
+						<StudentTableItem<StudentTableItemType> key={row.id} row={row} status={row.original.attestationStatus} />
 					))}
 				</tbody>
 			</table>

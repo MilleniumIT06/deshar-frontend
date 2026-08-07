@@ -68,12 +68,7 @@ export const StatisticsBlock = ({ title = 'test', data, centerLabel = 'балл�
 			<div className="StatisticsBlock__inner">
 				<div className="StatisticsBlock__header">
 					<h3 className="StatisticsBlock__title">{title}</h3>
-					<Selector
-						className="StatisticsBlock__selector"
-						options={selectorOptions}
-						defaultValue="Неделя"
-						mini={true}
-					/>
+					<Selector className="StatisticsBlock__selector" options={selectorOptions} defaultValue="Неделя" mini={true} />
 				</div>
 				<div className="StatisticsBlock__body">
 					<PieChart
@@ -96,12 +91,7 @@ export const StatisticsBlock = ({ title = 'test', data, centerLabel = 'балл�
 							isAnimationActive={false}
 						/>
 
-						<Legend
-							content={<CustomLeg data={data} />}
-							align="right"
-							layout="vertical"
-							verticalAlign="middle"
-						/>
+						<Legend content={<CustomLeg data={data} />} align="right" layout="vertical" verticalAlign="middle" />
 						<Tooltip
 							isAnimationActive={false}
 							content={data => {

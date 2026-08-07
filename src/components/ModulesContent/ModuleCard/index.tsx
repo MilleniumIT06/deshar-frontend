@@ -64,12 +64,7 @@ export const ModuleCard = ({
 				</div>
 			</div>
 			<div className="ModuleCard__footer">
-				<ProgressBar
-					maxLessons={maxLessons}
-					doneLessons={doneLessons}
-					processLessons={processLessons}
-					counter
-				/>
+				<ProgressBar maxLessons={maxLessons} doneLessons={doneLessons} processLessons={processLessons} counter />
 				<AttestationBar percentage={progressPercentage} status={getStatus()} />
 			</div>
 		</div>

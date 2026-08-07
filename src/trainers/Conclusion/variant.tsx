@@ -3,15 +3,7 @@ import cn from 'classnames'
 
 import './variant.scss'
 
-export const ConclusionVariant = ({
-	id,
-	isDisabled,
-	value,
-}: {
-	id: string | number
-	value: string
-	isDisabled: boolean
-}) => {
+export const ConclusionVariant = ({ id, isDisabled, value }: { id: string | number; value: string; isDisabled: boolean }) => {
 	const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
 		id,
 		data: { value },

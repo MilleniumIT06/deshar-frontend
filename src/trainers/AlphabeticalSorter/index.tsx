@@ -28,9 +28,7 @@ interface AlphabeticalSorterProps extends TrainerCommonProps {
 
 export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps>(
 	({ payload, onSuccess, onError, changeStatus, title, currentTrainerIndex, subTitle, audio }, ref) => {
-		const [slots, setSlots] = useState(
-			payload.slots.map(item => ({ ...item, currentValue: null as string | null })),
-		)
+		const [slots, setSlots] = useState(payload.slots.map(item => ({ ...item, currentValue: null as string | null })))
 		const { checkAnswer } = useCheckAnswer({
 			onSuccess: () => changeStatus('success'),
 			onError: () => changeStatus('error'),
@@ -38,11 +36,7 @@ export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps
 		const handleDragEnd = (event: DragEndEvent) => {
 			const { active, over } = event
 			if (over) {
-				setSlots(prev =>
-					prev.map(slot =>
-						slot.id === over.id ? { ...slot, currentValue: active.data.current?.value } : slot,
-					),
-				)
+				setSlots(prev => prev.map(slot => (slot.id === over.id ? { ...slot, currentValue: active.data.current?.value } : slot)))
 			}
 		}
 
@@ -98,12 +92,7 @@ export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps
 					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 					<div className="alphabetical-sorter__grid">
 						{slots.map((slot, index) => (
-							<AlphabeticalSlot
-								key={`slot-${slot.id}`}
-								id={slot.id}
-								orderNumber={index + 1}
-								value={slot.currentValue}
-							/>
+							<AlphabeticalSlot key={`slot-${slot.id}`} id={slot.id} orderNumber={index + 1} value={slot.currentValue} />
 						))}
 					</div>
 

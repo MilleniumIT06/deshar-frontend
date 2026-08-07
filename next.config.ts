@@ -16,6 +16,9 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
+	typescript: {
+		ignoreBuildErrors: false,
+	},
 	/* config options here */
 }
 

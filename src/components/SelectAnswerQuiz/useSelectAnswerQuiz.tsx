@@ -5,13 +5,7 @@ import { useState } from 'react'
 import { type IChoiceRightTask } from '../LearningContent'
 import { type ISelectItem } from './SelectAnswerQuizContent'
 
-export const useSelectAnswerQuiz = ({
-	setError,
-	data,
-}: {
-	setError: (value: boolean) => void
-	data: IChoiceRightTask
-}) => {
+export const useSelectAnswerQuiz = ({ setError, data }: { setError: (value: boolean) => void; data: IChoiceRightTask }) => {
 	const [variants, setVariants] = useState(data.variants)
 	const [selected, setSelected] = useState<ISelectItem[]>([])
 	let correctAnswersCount = 0

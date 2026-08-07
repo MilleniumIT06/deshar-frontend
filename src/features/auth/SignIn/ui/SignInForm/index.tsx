@@ -58,11 +58,7 @@ export const SignInForm = () => {
 						disabled={isLoading}
 						{...register('password')}
 					/>
-					<Button
-						className="SignInForm__btn"
-						size="medium"
-						disabled={!isValid || isLoading}
-						type="submit">
+					<Button className="SignInForm__btn" size="medium" disabled={!isValid || isLoading} type="submit">
 						{isLoading ? 'Вход...' : 'Войти'}
 					</Button>
 				</form>
@@ -75,10 +71,7 @@ export const SignInForm = () => {
 					<Link href="/forgot-password" className="SignInForm__forgot">
 						Забыли пароль?
 					</Link>
-					<p>
-						Продолжая, вы соглашаетесь на обработку персональных данных и принимаете условия
-						пользовательского соглашения
-					</p>
+					<p>Продолжая, вы соглашаетесь на обработку персональных данных и принимаете условия пользовательского соглашения</p>
 				</div>
 			</div>
 		</div>

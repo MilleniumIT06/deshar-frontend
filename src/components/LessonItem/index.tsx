@@ -25,13 +25,7 @@ export const LessonItem = ({
 	return (
 		<li
 			key={id}
-			className={cn(
-				'LessonItem',
-				completed && 'completed',
-				active && 'active',
-				fullWidth && 'fullWidth',
-				disabled && 'disabled',
-			)}
+			className={cn('LessonItem', completed && 'completed', active && 'active', fullWidth && 'fullWidth', disabled && 'disabled')}
 			onClick={disabled ? undefined : handleClick}>
 			<span className="LessonItem__number">{number}</span>
 			<span className="LessonItem__text">{text}</span>

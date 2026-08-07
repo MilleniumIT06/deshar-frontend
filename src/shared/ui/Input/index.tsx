@@ -21,8 +21,7 @@ const inputVariants = cva('Input', {
 	},
 })
 
-export interface InputProps
-	extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>, VariantProps<typeof inputVariants> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>, VariantProps<typeof inputVariants> {
 	error?: boolean
 	validationMessage?: string
 	startAdornment?: React.ReactNode
@@ -30,20 +29,7 @@ export interface InputProps
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-	(
-		{
-			variant,
-			fullWidth,
-			className,
-			type,
-			error = false,
-			startAdornment,
-			endAdornment,
-			validationMessage,
-			...props
-		},
-		ref,
-	) => {
+	({ variant, fullWidth, className, type, error = false, startAdornment, endAdornment, validationMessage, ...props }, ref) => {
 		const [showPassword, setShowPassword] = useState(false)
 
 		const togglePasswordVisibility = useCallback(() => {
@@ -55,12 +41,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 		const showVisibilityToggle = isPassword && !props.disabled
 
 		return (
-			<div
-				className={cn(
-					inputVariants({ variant, fullWidth, className }),
-					{ ['error']: error },
-					{ ['passwordInput']: isPassword },
-				)}>
+			<div className={cn(inputVariants({ variant, fullWidth, className }), { ['error']: error }, { ['passwordInput']: isPassword })}>
 				{startAdornment && <span className="Input__startAdornment">{startAdornment}</span>}
 
 				<input className="Input__input" type={inputType} aria-invalid={error} ref={ref} {...props} />
@@ -75,12 +56,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 						// tabIndex={-1} // Предотвращает фокусировку при табинге
 					>
 						{showPassword ? (
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path
 									d="M22 12C20 16 16.4444 19 12 19C7.55556 19 4 16 2 12C4 8 7.55556 5 12 5C16.4444 5 20 8 22 12Z"
 									strokeWidth="2"
@@ -88,12 +64,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 								<circle cx="12" cy="12" r="3" strokeWidth="2" />
 							</svg>
 						) : (
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path
 									d="M17.5 17.2931C15.8976 18.3663 14.0427 19 12 19C7.55556 19 4 16 2 12C3.10926 9.78147 4.69704 7.87056 6.6496 6.60849M9.5 5.3291C10.296 5.11468 11.131 5 12 5C16.4444 5 20 8 22 12C21.3987 13.2026 20.6568 14.3148 19.7924 15.2823"
 									strokeWidth="2"

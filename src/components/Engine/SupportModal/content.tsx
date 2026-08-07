@@ -2,13 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-
 import { EngineButton } from '../Button'
 import { EngineInput } from '../Input'
 import { Textarea } from '../Textarea'
 import './styles.scss'
 import { type supportFormData, supportFormSchema } from './support-form.schema'
-
 
 export const SupportModalContent = ({ onCancel }: { onCancel?: () => void }) => {
 	const [serverError, setServerError] = useState<string>('')
@@ -27,7 +25,6 @@ export const SupportModalContent = ({ onCancel }: { onCancel?: () => void }) => 
 		try {
 			setIsLoading(true)
 			setServerError('')
-
 		} catch (error) {
 			setServerError(error instanceof Error ? error.message : 'Ошибка Отправки формы')
 		} finally {
@@ -64,18 +61,10 @@ export const SupportModalContent = ({ onCancel }: { onCancel?: () => void }) => 
 				</div>
 
 				<div className="support-form__actions">
-					<EngineButton
-						disabled={!isValid || isLoading}
-						type="submit"
-						variant="primary"
-						className="support-form__btn">
+					<EngineButton disabled={!isValid || isLoading} type="submit" variant="primary" className="support-form__btn">
 						{isLoading ? 'Отправка...' : 'Отправить'}
 					</EngineButton>
-					<EngineButton
-						type="button"
-						variant="secondary"
-						onClick={onCancel}
-						className="support-form__btn">
+					<EngineButton type="button" variant="secondary" onClick={onCancel} className="support-form__btn">
 						Отмена
 					</EngineButton>
 				</div>

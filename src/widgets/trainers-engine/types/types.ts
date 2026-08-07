@@ -14,13 +14,13 @@ export interface LessonListItem {
 	description: string
 	sort_order: number
 	total_tasks: number
-	is_required: boolean;
-	audio:string|null;
-	image:string|null;
-	xp_reward:number;
-	progress:{
-		is_completed:boolean;
-		status:string|"completed";
+	is_required: boolean
+	audio: string | null
+	image: string | null
+	xp_reward: number
+	progress: {
+		is_completed: boolean
+		status: string | 'completed'
 	}
 }
 
@@ -34,30 +34,30 @@ export interface TrainersEngineProps {
 }
 
 export interface UniqueTask {
-			task: {
-				audio: null|string;
-				config:any;
-				created_at:string;
-				description:string;
-				hints:string[];
-				id:Id;
-				image:string|null;
-				is_published:boolean;
-				is_required:boolean;
-				lesson_id:Id;
-				max_attempts:number;
-				sort_order:number;
-				task_type_id:Id;
-				task_type:{
-					description:string;
-					id:Id;
-					name:string;
-					slug:TrainerType;
-				}
-				time_limit_seconds:number;
-				title:string;
-				updated_at:string;
-				video:string|null;
-				xp_reward:number;
-			}
+	task: {
+		audio: null | string
+		config: any
+		created_at: string
+		description: string
+		hints: string[]
+		id: Id
+		image: string | null
+		is_published: boolean
+		is_required: boolean
+		lesson_id: Id
+		max_attempts: number
+		sort_order: number
+		task_type_id: Id
+		task_type: {
+			description: string
+			id: Id
+			name: string
+			slug: TrainerType
 		}
+		time_limit_seconds: number
+		title: string
+		updated_at: string
+		video: string | null
+		xp_reward: number
+	}
+}

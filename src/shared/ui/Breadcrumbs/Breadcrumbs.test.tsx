@@ -12,11 +12,7 @@ vi.mock('next/link', () => ({
 }))
 
 describe('Breadcrumbs Component', () => {
-	const mockItems = [
-		{ label: 'Home', href: '/' },
-		{ label: 'Products', href: '/products' },
-		{ label: 'Current Page' },
-	]
+	const mockItems = [{ label: 'Home', href: '/' }, { label: 'Products', href: '/products' }, { label: 'Current Page' }]
 
 	it('renders without crashing', () => {
 		render(<Breadcrumbs items={mockItems} />)
@@ -82,12 +78,7 @@ describe('Breadcrumbs Component', () => {
 
 	it('uses custom separator when provided', () => {
 		const customSeparator = '>'
-		render(
-			<Breadcrumbs
-				items={mockItems}
-				separator={<span data-testid="custom-separator">{customSeparator}</span>}
-			/>,
-		)
+		render(<Breadcrumbs items={mockItems} separator={<span data-testid="custom-separator">{customSeparator}</span>} />)
 
 		const customSeparators = screen.getAllByTestId('custom-separator')
 		expect(customSeparators).toHaveLength(mockItems.length - 1)

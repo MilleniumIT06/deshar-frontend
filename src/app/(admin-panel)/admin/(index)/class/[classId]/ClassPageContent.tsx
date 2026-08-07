@@ -30,7 +30,7 @@ export const ClassPageContent = () => {
 	const [pointsFrom, setPointsFrom] = useState<string>('')
 	const [pointsTo, setPointsTo] = useState<string>('')
 	const [activeTab, setActiveTab] = useState(0)
-	const {isLoading,classStatistic} = useGetUniqueClassStatistic(Number(params.classId))
+	const { isLoading, classStatistic } = useGetUniqueClassStatistic(Number(params.classId))
 	const resetFilters = () => {
 		setTimeFrom('')
 		setTimeTo('')
@@ -99,41 +99,44 @@ export const ClassPageContent = () => {
 	// const filteredFlow = useMemo(() => filterData(TEST_FLOW), [filterData])
 	return (
 		<main className="PageAdmin">
-			{isLoading?<Loader/> :<Card
-				filters={[
-					{
-						type: 'time',
-						setValueFrom: setTimeFrom,
-						setValueTo: setTimeTo,
-						valueFrom: timeFrom,
-						valueTo: timeTo,
-					},
-					{
-						type: 'modules',
-						setValueFrom: setModulesFrom,
-						setValueTo: setModulesTo,
-						valueFrom: modulesFrom,
-						valueTo: modulesTo,
-					},
-					{
-						type: 'points',
-						setValueFrom: setPointsFrom,
-						setValueTo: setPointsTo,
-						valueFrom: pointsFrom,
-						valueTo: pointsTo,
-					},
-				]}
-				resetFilters={resetFilters}
-				title={`Класс ${classStatistic?.class.name}`}
-				tabs={TABS}
-				key={'testCard123'}
-				valueFirst={`${classStatistic?.statistics.total_students} учеников`}
-				valueSecond={`${classStatistic?.statistics.total_xp} баллов`}
-				activeTab={activeTab}
-				setActiveTab={setActiveTab}
-				isParallel={isParallel}
-				type="class">
-				{/* {activeTab === 0 ? (
+			{isLoading ? (
+				<Loader />
+			) : (
+				<Card
+					filters={[
+						{
+							type: 'time',
+							setValueFrom: setTimeFrom,
+							setValueTo: setTimeTo,
+							valueFrom: timeFrom,
+							valueTo: timeTo,
+						},
+						{
+							type: 'modules',
+							setValueFrom: setModulesFrom,
+							setValueTo: setModulesTo,
+							valueFrom: modulesFrom,
+							valueTo: modulesTo,
+						},
+						{
+							type: 'points',
+							setValueFrom: setPointsFrom,
+							setValueTo: setPointsTo,
+							valueFrom: pointsFrom,
+							valueTo: pointsTo,
+						},
+					]}
+					resetFilters={resetFilters}
+					title={`Класс ${classStatistic?.class.name}`}
+					tabs={TABS}
+					key={'testCard123'}
+					valueFirst={`${classStatistic?.statistics.total_students} учеников`}
+					valueSecond={`${classStatistic?.statistics.total_xp} баллов`}
+					activeTab={activeTab}
+					setActiveTab={setActiveTab}
+					isParallel={isParallel}
+					type="class">
+					{/* {activeTab === 0 ? (
 					<Table<Student, never>
 						key={`classmates-filtered-data-table`}
 						data={filteredClassmates}
@@ -149,12 +152,17 @@ export const ClassPageContent = () => {
 					/>
 				)} */}
 
-			{classStatistic?.top_students && classStatistic?.top_students.length > 0 ? <Table<{id:Id;level:number;level_name:string;name:string;rank:number;xp:0},never>
-					key={`class-students-data`}
-					data={classStatistic?.top_students}
-					getColumns={()=>getUniqueClassStudentsColumns()}
-				/>: "error"}
-			</Card>}
+					{classStatistic?.top_students && classStatistic?.top_students.length > 0 ? (
+						<Table<{ id: Id; level: number; level_name: string; name: string; rank: number; xp: 0 }, never>
+							key={`class-students-data`}
+							data={classStatistic?.top_students}
+							getColumns={() => getUniqueClassStudentsColumns()}
+						/>
+					) : (
+						'error'
+					)}
+				</Card>
+			)}
 		</main>
 	)
 }

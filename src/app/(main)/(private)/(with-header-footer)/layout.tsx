@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic'
 
 import { Header } from '@/widgets'
 
-
 const Footer = dynamic(() => import('@/widgets').then(mod => mod.Footer), {
 	loading: () => <div>Загрузка...</div>,
 })

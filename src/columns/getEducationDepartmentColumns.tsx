@@ -22,9 +22,7 @@ export const getEducationDepartmentColumns = () => [
 		},
 	}),
 	columnHelper.accessor('educationDepartmentName', {
-		header: ({ column }) => (
-			<SortableHeader<IEducationDepartment, string> title="Упр. образования" column={column} />
-		),
+		header: ({ column }) => <SortableHeader<IEducationDepartment, string> title="Упр. образования" column={column} />,
 		enableSorting: true,
 		sortingFn: 'alphanumeric',
 		cell: info => (

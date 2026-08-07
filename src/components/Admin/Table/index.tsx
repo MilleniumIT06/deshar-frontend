@@ -18,7 +18,7 @@ interface TableProps<TableItemType, T> {
 	getColumns: () => (AccessorKeyColumnDefBase<TableItemType, T> & Partial<IdIdentifier<TableItemType, T>>)[]
 	handleRowClick?: (item: TableItemType) => void
 }
-export const Table = <TData, TValue=any>({ data, getColumns, handleRowClick }: TableProps<TData, TValue>) => {
+export const Table = <TData, TValue = any>({ data, getColumns, handleRowClick }: TableProps<TData, TValue>) => {
 	const columns = useMemo(() => getColumns(), [])
 	// Состояние для сортировки
 	const [sorting, setSorting] = useState<SortingState>([])
@@ -44,9 +44,7 @@ export const Table = <TData, TValue=any>({ data, getColumns, handleRowClick }: T
 									{header.isPlaceholder ? null : (
 										<div
 											{...{
-												className: header.column.getCanSort()
-													? 'cursor-pointer select-none'
-													: '',
+												className: header.column.getCanSort() ? 'cursor-pointer select-none' : '',
 												onClick: header.column.getToggleSortingHandler(),
 											}}>
 											{flexRender(header.column.columnDef.header, header.getContext())}
@@ -59,16 +57,8 @@ export const Table = <TData, TValue=any>({ data, getColumns, handleRowClick }: T
 														fill="none"
 														xmlns="http://www.w3.org/2000/svg">
 														<g transform="rotate(180 10 10)">
-															<path
-																d="M15 10L10 15L5 10"
-																stroke="#7D7979"
-																strokeWidth="1.5"
-															/>
-															<path
-																d="M10 15L10 5"
-																stroke="#7D7979"
-																strokeWidth="1.4"
-															/>
+															<path d="M15 10L10 15L5 10" stroke="#7D7979" strokeWidth="1.5" />
+															<path d="M10 15L10 5" stroke="#7D7979" strokeWidth="1.4" />
 														</g>
 													</svg>
 												),
@@ -79,16 +69,8 @@ export const Table = <TData, TValue=any>({ data, getColumns, handleRowClick }: T
 														viewBox="0 0 20 20"
 														fill="none"
 														xmlns="http://www.w3.org/2000/svg">
-														<path
-															d="M15 10L10 15L5 10"
-															stroke="#7D7979"
-															strokeWidth="1.5"
-														/>
-														<path
-															d="M10 15L10 5"
-															stroke="#7D7979"
-															strokeWidth="1.4"
-														/>
+														<path d="M15 10L10 15L5 10" stroke="#7D7979" strokeWidth="1.5" />
+														<path d="M10 15L10 5" stroke="#7D7979" strokeWidth="1.4" />
 													</svg>
 												),
 											}[header.column.getIsSorted() as string] ?? null}
@@ -104,9 +86,7 @@ export const Table = <TData, TValue=any>({ data, getColumns, handleRowClick }: T
 					{table.getRowModel().rows.map(row => (
 						<tr key={row.id} className={`TableItem`} onClick={() => handleRowClick?.(row.original)}>
 							{row.getVisibleCells().map(cell => (
-								<td key={cell.id}>
-									{flexRender(cell.column.columnDef.cell, cell.getContext())}
-								</td>
+								<td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
 							))}
 						</tr>
 					))}

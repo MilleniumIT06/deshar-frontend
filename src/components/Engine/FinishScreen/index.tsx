@@ -31,13 +31,7 @@ export const EngineFinishScreen = () => {
 				<div className="finish-screen__content">
 					{/* Иконка коробки */}
 					<div className="finish-screen__box-icon">
-						<Image
-							width={141}
-							height={141}
-							src="/images/Engine/box.png"
-							alt="Finish box"
-							quality={100}
-						/>
+						<Image width={141} height={141} src="/images/Engine/box.png" alt="Finish box" quality={100} />
 					</div>
 
 					{/* Полоса прогресса цели */}
@@ -47,9 +41,7 @@ export const EngineFinishScreen = () => {
 						</div>
 					</div>
 
-					<h2 className="finish-screen__score-title">
-						Ты заработал {totalScore} XP очков опыта своей ежедневной цели
-					</h2>
+					<h2 className="finish-screen__score-title">Ты заработал {totalScore} XP очков опыта своей ежедневной цели</h2>
 
 					{/* Статистика бонусов */}
 					<div className="finish-screen__stats">
@@ -65,10 +57,7 @@ export const EngineFinishScreen = () => {
 
 					{/* Кнопки действий */}
 					<div className="finish-screen__actions">
-						<EngineButton
-							variant="secondary"
-							className="finish-screen__btn finish-screen__btn-retry"
-							onClick={reset}>
+						<EngineButton variant="secondary" className="finish-screen__btn finish-screen__btn-retry" onClick={reset}>
 							<svg
 								className="finish-screen__btn-icon"
 								width="33"
@@ -91,17 +80,9 @@ export const EngineFinishScreen = () => {
 							</svg>
 							Пройти заново
 						</EngineButton>
-						<EngineButton
-							variant="primary"
-							className="finish-screen__btn finish-screen__btn-continue"
-							onClick={handleContinue}>
+						<EngineButton variant="primary" className="finish-screen__btn finish-screen__btn-continue" onClick={handleContinue}>
 							Продолжить
-							<svg
-								width="16"
-								height="14"
-								viewBox="0 0 16 14"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg">
+							<svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path
 									d="M15.7443 7.65384L9.9661 13.7313C9.80115 13.9048 9.58132 14 9.34692 14C9.11225 14 8.89254 13.9046 8.7276 13.7313L8.20299 13.1794C8.03818 13.0062 7.94738 12.7748 7.94738 12.5281C7.94738 12.2816 8.03818 12.0425 8.20299 11.8692L11.5739 8.31602L0.864384 8.31602C0.381526 8.31602 1.06333e-06 7.91844 1.15215e-06 7.41044L1.28858e-06 6.63019C1.3774e-06 6.1222 0.381527 5.68452 0.864385 5.68452L11.6121 5.68453L8.20312 2.11147C8.03831 1.93798 7.94751 1.71292 7.94751 1.46625C7.94751 1.21984 8.03831 0.991499 8.20312 0.818155L8.72774 0.268022C8.89268 0.0945412 9.11238 1.59326e-06 9.34705 1.63429e-06C9.58145 1.67527e-06 9.80129 0.0957716 9.96623 0.269253L15.7444 6.34658C15.9097 6.5206 16.0006 6.75291 16 6.99987C16.0005 7.24764 15.9097 7.48009 15.7443 7.65384Z"
 									fill="white"

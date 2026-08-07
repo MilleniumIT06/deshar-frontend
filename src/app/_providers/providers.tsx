@@ -7,7 +7,6 @@ import { Provider } from 'react-redux'
 
 import { store } from '../_store'
 
-
 export const Providers = ({ children }: { children: ReactNode }) => {
 	const [client] = useState(
 		new QueryClient({

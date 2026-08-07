@@ -54,19 +54,11 @@ export const TrainerWrapper = ({
 					</Button>
 
 					{!hasError && checkAllCompleted() ? (
-						<Button
-							variant="primary"
-							size="small"
-							onClick={handleClickFinishBtn}
-							disabled={isButtonDisabled}>
+						<Button variant="primary" size="small" onClick={handleClickFinishBtn} disabled={isButtonDisabled}>
 							Завершить аттестацию
 						</Button>
 					) : (
-						<Button
-							variant="primary"
-							size="small"
-							onClick={handleCheckAnswers}
-							disabled={isButtonDisabled}>
+						<Button variant="primary" size="small" onClick={handleCheckAnswers} disabled={isButtonDisabled}>
 							Далее
 						</Button>
 					)}

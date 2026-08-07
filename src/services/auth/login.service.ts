@@ -17,11 +17,10 @@ class LoginService {
 	}
 	async logout(): Promise<void> {
 		try {
-				await axiosWithAuth({
-					url: API_URL.logout(),
-					method: 'POST',
-				})
-
+			await axiosWithAuth({
+				url: API_URL.logout(),
+				method: 'POST',
+			})
 		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.error('Ошибка при отправке запроса logout на бэкенд:', error)

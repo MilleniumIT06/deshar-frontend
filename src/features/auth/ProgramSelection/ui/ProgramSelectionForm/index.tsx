@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from 'motion/react'
 import Link from 'next/link'
 import { useState } from 'react'
 
-
-
 import { tabs } from '@/mocks/data'
 import { Tabs } from '@/shared/ui/Tabs'
 
@@ -66,10 +64,7 @@ export const ProgramSelectionForm = () => {
 					<div>
 						Уже зарегистрированы? <Link href="/sign-in">Войти</Link>
 					</div>
-					<p>
-						Продолжая, вы соглашаетесь на обработку персональных данных и принимаете условия
-						пользовательского соглашения
-					</p>
+					<p>Продолжая, вы соглашаетесь на обработку персональных данных и принимаете условия пользовательского соглашения</p>
 				</div>
 			</div>
 		</div>

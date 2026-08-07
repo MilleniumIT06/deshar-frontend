@@ -7,16 +7,13 @@ import { SuccessFooter } from '@/components/Engine/Footer/success'
 import { HelpTrigger } from '@/components/Engine/HelpTrigger'
 import { Hint } from '@/components/Engine/Hint'
 
-
 import { EngineFooter } from '../components/engine-footer'
 import { EngineHeader } from '../components/engine-header'
 import RenderTrainer from '../render-trainer'
 
 import type { TrainerRef, UniqueTask } from '../types/types'
 import type { TimerRef } from '@/components/Engine/Timer'
-import type{ TrainerTheme } from '@/shared/types/types'
-
-
+import type { TrainerTheme } from '@/shared/types/types'
 
 interface PracticeScreenProps {
 	themeName: TrainerTheme
@@ -28,18 +25,18 @@ interface PracticeScreenProps {
 	onSupportClick: () => void
 	isSupportModalOpen: boolean
 	uniqueTask: UniqueTask
-	status: 'idle' | 'success' | 'error'|'checking'
-	trainerRef: React.RefObject<TrainerRef|null>
-	changeStatus: (value: 'idle' | 'error' | 'success'|'checking') => void
+	status: 'idle' | 'success' | 'error' | 'checking'
+	trainerRef: React.RefObject<TrainerRef | null>
+	changeStatus: (value: 'idle' | 'error' | 'success' | 'checking') => void
 	onError: () => void
 	onSuccess: () => void
 	onMainButtonClick: () => void
 	onResetButtonClick: () => void
 	onTimerEnd: () => void
-	timerRef: React.RefObject<TimerRef|null>
+	timerRef: React.RefObject<TimerRef | null>
 }
 
-export const PracticeScreen=React.memo(function PracticeScreen({
+export const PracticeScreen = React.memo(function PracticeScreen({
 	themeName,
 	currentTrainerIndex,
 	totalTasks,
@@ -102,7 +99,7 @@ export const PracticeScreen=React.memo(function PracticeScreen({
 				</main>
 
 				<footer className="trainers-engine__footer">
-					{(status === 'idle'||status==='checking') && (
+					{(status === 'idle' || status === 'checking') && (
 						<EngineFooter onClickBtn={onMainButtonClick} onTimerEnd={onTimerEnd} timerRef={timerRef} />
 					)}
 					{status === 'success' && <SuccessFooter />}

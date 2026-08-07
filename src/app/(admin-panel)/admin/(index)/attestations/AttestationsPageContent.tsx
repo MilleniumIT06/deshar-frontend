@@ -32,12 +32,7 @@ export const AttestationsPageContent = () => {
 		setPointsFrom('')
 		setPointsTo('')
 	}
-	const data =
-		activeTab === 0
-			? mockAttestationData.checking
-			: activeTab === 1
-				? mockAttestationData.accepted
-				: mockAttestationData.rejected
+	const data = activeTab === 0 ? mockAttestationData.checking : activeTab === 1 ? mockAttestationData.accepted : mockAttestationData.rejected
 	return (
 		<main className="PageAdmin">
 			<Card

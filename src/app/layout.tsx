@@ -4,7 +4,6 @@ import { Providers } from './_providers/providers'
 
 import type { Metadata } from 'next'
 
-
 import './globals.scss'
 
 const montserrat = Montserrat({

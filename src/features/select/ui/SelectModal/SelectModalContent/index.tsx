@@ -26,11 +26,7 @@ export const SelectModalContent = ({ onClose }: { onClose: () => void }) => {
 				<Button variant="secondary" size="small" className="SelectModalContent__btn" onClick={onClose}>
 					Отмена
 				</Button>
-				<Button
-					variant="primary"
-					size="small"
-					className="SelectModalContent__btn"
-					onClick={handleClickStartBtn}>
+				<Button variant="primary" size="small" className="SelectModalContent__btn" onClick={handleClickStartBtn}>
 					Начать
 				</Button>
 			</div>

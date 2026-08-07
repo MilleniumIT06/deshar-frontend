@@ -1,4 +1,4 @@
-import { type Id } from "../types"
+import { type Id } from '../types'
 
 export type Student = {
 	id: number
@@ -11,10 +11,10 @@ export type Student = {
 	class: string
 }
 export interface StudentCommonData {
-	id:Id;
-	level:number;
-	name:string;
-	xp:0
+	id: Id
+	level: number
+	name: string
+	xp: 0
 }
 export type StudentTableProps = {
 	data: Student[]

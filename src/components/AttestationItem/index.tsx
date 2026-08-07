@@ -19,18 +19,11 @@ export const AttestationItem = ({ max = 5, current = 1, active = false }: Attest
 			<div className="AttestationItem__inner">
 				<div className="AttestationItem__top">
 					<span className="AttestationItem__title">Прогресс</span>
-					<div
-						className="AttestationItem__counter"
-						aria-label={`Текущий прогресс: ${normalizedCurrent} из ${normalizedMax}`}>
+					<div className="AttestationItem__counter" aria-label={`Текущий прогресс: ${normalizedCurrent} из ${normalizedMax}`}>
 						<span>{normalizedCurrent}</span>/<span>{normalizedMax}</span>
 					</div>
 				</div>
-				<ProgressBar
-					maxLessons={normalizedMax}
-					doneLessons={0}
-					processLessons={normalizedCurrent}
-					className={'AttestationItem__bar'}
-				/>
+				<ProgressBar maxLessons={normalizedMax} doneLessons={0} processLessons={normalizedCurrent} className={'AttestationItem__bar'} />
 			</div>
 		</div>
 	)

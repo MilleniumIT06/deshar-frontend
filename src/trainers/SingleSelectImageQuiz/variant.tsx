@@ -55,10 +55,14 @@ export const SingleSelectImageQuizVariant = ({ imageUrl, error, selected, onClic
 				'is-correct': isCorrect,
 				'is-incorrect': isIncorrect,
 			})}>
-			<img style={{
-				width:"520px",
-				height:"282px"
-			}} src={imageUrl} alt="ereaq" />
+			<img
+				style={{
+					width: '520px',
+					height: '282px',
+				}}
+				src={imageUrl}
+				alt="ereaq"
+			/>
 			{isCorrect && (
 				<div className="SingleSelectImageQuizVariant__icon">
 					<Icon />

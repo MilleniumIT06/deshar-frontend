@@ -2,7 +2,6 @@
 import cn from 'classnames'
 import { useRef, useEffect, useState } from 'react'
 
-
 import './styles.scss'
 import { Button } from '../../Button'
 
@@ -31,8 +30,7 @@ export const Tabs = ({ tabs, activeTab, handleTab, maxWidth }: TabsProps) => {
 		const container = tabsContainerRef.current
 		if (container) {
 			const scrollAmount = 200
-			const newScrollLeft =
-				direction === 'left' ? container.scrollLeft - scrollAmount : container.scrollLeft + scrollAmount
+			const newScrollLeft = direction === 'left' ? container.scrollLeft - scrollAmount : container.scrollLeft + scrollAmount
 
 			container.scrollTo({
 				left: newScrollLeft,
@@ -58,17 +56,9 @@ export const Tabs = ({ tabs, activeTab, handleTab, maxWidth }: TabsProps) => {
 	return (
 		<div className={cn('Tabs', maxWidth && 'maxWidth')}>
 			{canScrollLeft && (
-				<Button
-					variant="iconSecondary"
-					size="iconSmall"
-					onClick={() => scroll('left')}
-					className="Tabs__scroll_left">
+				<Button variant="iconSecondary" size="iconSmall" onClick={() => scroll('left')} className="Tabs__scroll_left">
 					<svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M0.53125 0.53125L6.53125 6.53125L0.53125 12.5313"
-							stroke="#303030"
-							strokeWidth="1.5"
-						/>
+						<path d="M0.53125 0.53125L6.53125 6.53125L0.53125 12.5313" stroke="#303030" strokeWidth="1.5" />
 					</svg>
 				</Button>
 			)}
@@ -89,17 +79,9 @@ export const Tabs = ({ tabs, activeTab, handleTab, maxWidth }: TabsProps) => {
 			</div>
 
 			{canScrollRight && (
-				<Button
-					variant="iconSecondary"
-					size="iconSmall"
-					onClick={() => scroll('right')}
-					className="Tabs__scroll_right">
+				<Button variant="iconSecondary" size="iconSmall" onClick={() => scroll('right')} className="Tabs__scroll_right">
 					<svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M0.53125 0.53125L6.53125 6.53125L0.53125 12.5313"
-							stroke="#303030"
-							strokeWidth="1.5"
-						/>
+						<path d="M0.53125 0.53125L6.53125 6.53125L0.53125 12.5313" stroke="#303030" strokeWidth="1.5" />
 					</svg>
 				</Button>
 			)}

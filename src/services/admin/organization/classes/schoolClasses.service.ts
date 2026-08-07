@@ -5,47 +5,49 @@ import { axiosClassic, axiosWithAuth } from '@/config/api.helper'
 import type { Id, SchoolClass } from '@/shared/types/types'
 
 interface SchoolClassStatistic {
-			 statistics: {
-		total_students: number;
-		total_xp: number;
-		average_xp: number;
-		average_level: number;
-		active_students: number;
-		active_percentage: number;
+	statistics: {
+		total_students: number
+		total_xp: number
+		average_xp: number
+		average_level: number
+		active_students: number
+		active_percentage: number
 	}
-		class: {id:Id,name:string;};
-		success: boolean;
-		top_students:{id:Id;level:number;level_name:string;name:string;rank:number;xp:0}[]
-	}
+	class: { id: Id; name: string }
+	success: boolean
+	top_students: { id: Id; level: number; level_name: string; name: string; rank: number; xp: 0 }[]
+}
 class SchoolClassesService {
 	async getAllSchoolClasses(schoolId?: number | null) {
 		const { data } = await axiosClassic<SchoolClass[]>({
 			url: API_URL.schoolClasses(),
 			method: 'GET',
-			params: schoolId && schoolId > -1 ? { school_id: schoolId } : {}
+			params: schoolId && schoolId > -1 ? { school_id: schoolId } : {},
 		})
 		return data
 	}
 
 	async getAllSchoolClassesAdmin() {
-		const { data } = await axiosWithAuth<{ data: {
-			id:Id;
-			name: string;
-			students_count: number;
-			class_type_id: number;
-			class_type_name: string;
-			teacher_id: Id | null;
-			teacher_name: string;
-		}[];
-		meta: any;
-		 success: boolean }>({
+		const { data } = await axiosWithAuth<{
+			data: {
+				id: Id
+				name: string
+				students_count: number
+				class_type_id: number
+				class_type_name: string
+				teacher_id: Id | null
+				teacher_name: string
+			}[]
+			meta: any
+			success: boolean
+		}>({
 			url: API_URL.adminClasses(),
 			method: 'GET',
 		})
 		return data
 	}
 
-	async getUniqueClassStatisticAdmin(id:Id) {
+	async getUniqueClassStatisticAdmin(id: Id) {
 		const { data } = await axiosWithAuth<SchoolClassStatistic>({
 			url: API_URL.adminClassStatistics(id),
 			method: 'GET',

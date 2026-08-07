@@ -19,21 +19,11 @@ export const AttestationResult = () => {
 						<h6 className="AttestationResult__title">Вы успешно прошли модуль!</h6>
 					</div>
 					<div className="AttestationResult__btns">
-						<Button
-							asChild
-							size="small"
-							variant="primary"
-							className="AttestationResult__btn"
-							fullWidth>
+						<Button asChild size="small" variant="primary" className="AttestationResult__btn" fullWidth>
 							<Link href="/dashboard">Следующий модуль</Link>
 						</Button>
 
-						<Button
-							asChild
-							variant="secondary"
-							size="small"
-							fullWidth
-							className="AttestationResult__btn">
+						<Button asChild variant="secondary" size="small" fullWidth className="AttestationResult__btn">
 							<Link href="/dashboard">Вернуться в профиль</Link>
 						</Button>
 					</div>

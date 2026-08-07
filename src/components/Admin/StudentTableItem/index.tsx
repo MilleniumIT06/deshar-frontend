@@ -2,7 +2,6 @@
 import { flexRender, type Row } from '@tanstack/react-table'
 import { useState, useMemo } from 'react'
 
-
 import useRole from '@/shared/hooks/admin/useRole'
 // import { type Role } from '@/shared/types/admin/auth'
 import { type AttestationStatus } from '@/shared/types/admin/types'
@@ -31,28 +30,12 @@ const STATUS_CONFIG = {
 type AttestationResultsFooterStatus = Exclude<AttestationStatus, 'notCompleted'>
 
 const ExpandIcon = ({ isExpanded }: { isExpanded: boolean }) => (
-	<svg
-		width="14"
-		height="9"
-		viewBox="0 0 14 9"
-		fill="none"
-		xmlns="http://www.w3.org/2000/svg"
-		className={isExpanded ? 'expanded' : ''}>
+	<svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg" className={isExpanded ? 'expanded' : ''}>
 		<path d="M13 1L7 7L1 0.999999" stroke="#7D7979" strokeWidth="1.5" />
 	</svg>
 )
 
-const ResultRow = ({
-	task,
-	time,
-	mistakes,
-	points,
-}: {
-	task: string
-	time: string
-	mistakes: string
-	points: string
-}) => (
+const ResultRow = ({ task, time, mistakes, points }: { task: string; time: string; mistakes: string; points: string }) => (
 	<tr className="attestationResults__tr">
 		<td className="attestationResults__tr-task">{task}</td>
 		<td className="attestationResults__tr-time">{time}</td>
@@ -86,13 +69,7 @@ const AttestationResultsTable = () => {
 			</thead>
 			<tbody>
 				{resultsData.map(result => (
-					<ResultRow
-						key={result.id}
-						task={result.task}
-						time={result.time}
-						mistakes={result.mistakes}
-						points={result.points}
-					/>
+					<ResultRow key={result.id} task={result.task} time={result.time} mistakes={result.mistakes} points={result.points} />
 				))}
 			</tbody>
 		</table>
@@ -156,7 +133,7 @@ const AttestationResultsHeader = () => {
 }
 const AttestationResultsFooter = ({ status }: { status: AttestationResultsFooterStatus }) => {
 	const { hasRole } = useRole()
-	const canManageAttestation = hasRole("Админ")
+	const canManageAttestation = hasRole('Админ')
 
 	const statusConfig = STATUS_CONFIG[status]
 	const isStatusWithDetails = status === 'accepted' || status === 'rejected'
@@ -168,13 +145,9 @@ const AttestationResultsFooter = ({ status }: { status: AttestationResultsFooter
 	return (
 		<>
 			<div className="attestationResults__status_wrapper">
-				<span className={`attestationResults__status_text ${statusConfig.className}`}>
-					{statusConfig.text}
-				</span>
+				<span className={`attestationResults__status_text ${statusConfig.className}`}>{statusConfig.text}</span>
 				{isStatusWithDetails && (
-					<span className={`attestationResults__status_text ${statusConfig.className}`}>
-						12.04.2025, 17:30 - Альтиева Роза, завуч
-					</span>
+					<span className={`attestationResults__status_text ${statusConfig.className}`}>12.04.2025, 17:30 - Альтиева Роза, завуч</span>
 				)}
 			</div>
 

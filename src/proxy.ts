@@ -6,96 +6,93 @@ import { ADMIN_PANEL_ROLES, type User } from './shared/types/user.types'
 import type { NextRequest } from 'next/server'
 
 export async function proxy(request: NextRequest) {
-    const token = request.cookies.get('jwt_token')?.value
-    const { pathname } = request.nextUrl
+	const token = request.cookies.get('jwt_token')?.value
+	const { pathname } = request.nextUrl
 
-    const isAuthenticated = Boolean(token)
-    const isAuthPage = pathname === '/sign-in'
-    const isHomePage = pathname === '/home'
+	const isAuthenticated = Boolean(token)
+	const isAuthPage = pathname === '/sign-in'
+	const isHomePage = pathname === '/home'
 
-    if (isAuthenticated && (pathname === '/' || isAuthPage)) {
-        return NextResponse.redirect(new URL('/dashboard', request.url))
-    }
+	if (isAuthenticated && (pathname === '/' || isAuthPage)) {
+		return NextResponse.redirect(new URL('/dashboard', request.url))
+	}
 
+	if (!isAuthenticated) {
+		if (pathname === '/') {
+			return NextResponse.redirect(new URL('/home', request.url))
+		}
 
-    if (!isAuthenticated) {
+		if (isHomePage) {
+			return NextResponse.next()
+		}
 
-        if (pathname === '/') {
-            return NextResponse.redirect(new URL('/home', request.url))
-        }
+		if (!isAuthPage) {
+			return NextResponse.redirect(new URL('/sign-in', request.url))
+		}
+	}
 
-        if (isHomePage) {
-            return NextResponse.next()
-        }
+	if (isAuthenticated) {
+		try {
+			const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8000'
+			const response = await fetch(`${SERVER_URL}/api/auth/me`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+					Accept: 'application/json',
+				},
+			})
 
-        if (!isAuthPage) {
-            return NextResponse.redirect(new URL('/sign-in', request.url))
-        }
-    }
+			if (response.status === 401) {
+				const res = NextResponse.redirect(new URL('/sign-in', request.url))
+				res.cookies.delete('jwt_token')
+				return res
+			}
 
+			if (response.ok) {
+				const res = await response.json()
+				const user: User = res.data.user
+				if (user.is_banned === true && pathname !== '/user-banned') {
+					return NextResponse.redirect(new URL('/user-banned', request.url))
+				}
+				if (user.is_banned === false && pathname === '/user-banned') {
+					return NextResponse.redirect(new URL('/dashboard', request.url))
+				}
 
-    if (isAuthenticated) {
-        try {
-            const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8000'
-            const response = await fetch(`${SERVER_URL}/api/auth/me`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Accept': 'application/json',
-                },
-            })
+				const hasAdminAccess = ADMIN_PANEL_ROLES.includes(user.role.name)
 
-            if (response.status === 401) {
-                const res = NextResponse.redirect(new URL('/sign-in', request.url))
-                res.cookies.delete('jwt_token')
-                return res
-            }
+				if (!hasAdminAccess && pathname.startsWith('/admin')) {
+					return NextResponse.redirect(new URL('/dashboard', request.url))
+				}
 
-            if (response.ok) {
-                const res = await response.json()
-                const user: User = res.data.user
-       if (user.is_banned === true && pathname !== '/user-banned') {
-                    return NextResponse.redirect(new URL('/user-banned', request.url))
-                }
-                if (user.is_banned === false && pathname === '/user-banned') {
-                    return NextResponse.redirect(new URL('/dashboard', request.url))
-                }
+				if (hasAdminAccess && pathname === '/') {
+					return NextResponse.redirect(new URL('/admin', request.url))
+				}
+			}
+		} catch (error) {
+			console.error('Middleware Auth Error:', error)
+		}
+	}
 
-                const hasAdminAccess = ADMIN_PANEL_ROLES.includes(user.role.name)
-
-                if (!hasAdminAccess && pathname.startsWith('/admin')) {
-                    return NextResponse.redirect(new URL('/dashboard', request.url))
-                }
-
-                if (hasAdminAccess && pathname === '/') {
-                    return NextResponse.redirect(new URL('/admin', request.url))
-                }
-            }
-        } catch (error) {
-            console.error('Middleware Auth Error:', error)
-        }
-    }
-
-    return NextResponse.next()
+	return NextResponse.next()
 }
 
 export const config = {
-    matcher: [
-        '/',
-        '/home',
-        '/sign-in',
-        '/not-confirmed',
-        '/dashboard/:path*',
-        '/courses/:path*',
-        '/completed-courses/:path*',
-        '/learning/:path*',
-        '/user-banned',
-        '/attestation/:path*',
-        '/attestation-result/:path*',
-        '/practice/:path*',
-        '/profile/:path*',
-        '/admin/:path*',
-        '/admin',
-        '/ing-modules/:path*',
-        '/support/:path*',
-    ],
+	matcher: [
+		'/',
+		'/home',
+		'/sign-in',
+		'/not-confirmed',
+		'/dashboard/:path*',
+		'/courses/:path*',
+		'/completed-courses/:path*',
+		'/learning/:path*',
+		'/user-banned',
+		'/attestation/:path*',
+		'/attestation-result/:path*',
+		'/practice/:path*',
+		'/profile/:path*',
+		'/admin/:path*',
+		'/admin',
+		'/ing-modules/:path*',
+		'/support/:path*',
+	],
 }

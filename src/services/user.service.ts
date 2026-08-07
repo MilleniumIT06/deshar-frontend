@@ -14,7 +14,7 @@ class UserService {
 		const { data } = await axiosWithAuth<User>({
 			url: API_URL.updateProfile(),
 			method: 'PUT',
-			data:userData
+			data: userData,
 		})
 		return data
 	}

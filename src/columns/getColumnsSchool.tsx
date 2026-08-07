@@ -4,7 +4,7 @@ import cn from 'classnames'
 import { SortableHeader } from '@/components/Admin/SortableHeader'
 import { minutesToHoursAndMinutes } from '@/shared/admin/utils'
 
-import type{  SchoolDepItem } from '@/shared/types/admin/types'
+import type { SchoolDepItem } from '@/shared/types/admin/types'
 import type { RoleName } from '@/shared/types/user.types'
 
 const columnHelper = createColumnHelper<SchoolDepItem>()
@@ -37,9 +37,7 @@ export const getColumnsSchool = ({ role }: { role?: RoleName }) => [
 	...(role === 'Представитель министерства' || role === 'Админ'
 		? [
 				columnHelper.accessor('department', {
-					header: ({ column }) => (
-						<SortableHeader<SchoolDepItem, string> title="Управление" column={column} />
-					),
+					header: ({ column }) => <SortableHeader<SchoolDepItem, string> title="Управление" column={column} />,
 					enableSorting: true,
 					sortingFn: 'alphanumeric',
 					cell: info => (

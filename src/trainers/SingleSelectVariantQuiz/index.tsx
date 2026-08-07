@@ -2,7 +2,6 @@
 
 import { forwardRef } from 'react'
 
-
 import { useQuizLogic } from '@/hooks/trainers/useQuiz'
 import './styles.scss'
 import { type TrainerCommonProps } from '@/shared/types/types'
@@ -18,7 +17,6 @@ interface IVariant {
 	title: string
 }
 
-
 interface SingleSelectProps extends TrainerCommonProps {
 	payload: {
 		variants: IVariant[]
@@ -27,7 +25,7 @@ interface SingleSelectProps extends TrainerCommonProps {
 }
 
 export const SingleSelectVariantQuiz = forwardRef<TrainerRef, SingleSelectProps>(
-	({ payload, changeStatus, onError, onSuccess, title, subTitle, currentTrainerIndex,audio }, ref) => {
+	({ payload, changeStatus, onError, onSuccess, title, subTitle, currentTrainerIndex, audio }, ref) => {
 		const { selected, isSubmitted, handleSelect } = useQuizLogic<number>({
 			ref,
 			correctValue: payload.correctVariantId,
@@ -38,7 +36,7 @@ export const SingleSelectVariantQuiz = forwardRef<TrainerRef, SingleSelectProps>
 		return (
 			<div className="single-select-quiz">
 				<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
-				<TrainerTitle title={title} audio={audio}/>
+				<TrainerTitle title={title} audio={audio} />
 
 				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
@@ -50,9 +48,7 @@ export const SingleSelectVariantQuiz = forwardRef<TrainerRef, SingleSelectProps>
 								numberItem={item.itemNumber}
 								title={item.title}
 								selected={selected === item.id}
-								error={
-									isSubmitted && selected === item.id && item.id !== payload.correctVariantId
-								}
+								error={isSubmitted && selected === item.id && item.id !== payload.correctVariantId}
 								onClick={() => handleSelect(item.id)}
 							/>
 						))}

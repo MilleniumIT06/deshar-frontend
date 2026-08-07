@@ -28,16 +28,9 @@ export const InfoModalContent = ({
 					)}
 				</div>
 				<div className="InfoModalContent__bottom">
-					<span className="InfoModalContent__text">
-						{type === 'success' ? successMessage : failMessage}
-					</span>
+					<span className="InfoModalContent__text">{type === 'success' ? successMessage : failMessage}</span>
 					{type === 'success' ? (
-						<Button
-							className="InfoModalContent__btn"
-							size="small"
-							variant="primary"
-							fullWidth
-							onClick={onSuccess}>
+						<Button className="InfoModalContent__btn" size="small" variant="primary" fullWidth onClick={onSuccess}>
 							Хорошо
 						</Button>
 					) : (

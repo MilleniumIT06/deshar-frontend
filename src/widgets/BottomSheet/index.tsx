@@ -1,6 +1,5 @@
 'use client'
 
-
 import { useDraggable, DndContext, type DragEndEvent, type UniqueIdentifier, type DragMoveEvent } from '@dnd-kit/core'
 import { restrictToVerticalAxis, restrictToWindowEdges } from '@dnd-kit/modifiers'
 import { useEffect, useState } from 'react'
@@ -102,10 +101,7 @@ export default function BottomSheet({ isOpen, onClose, children, title }: Bottom
 			{/* Overlay */}
 			<div className="bottomSheet__overlay" onClick={() => !isDragging && onClose()} />
 
-			<DndContext
-				onDragEnd={handleDragEnd}
-				onDragMove={handleDragMove}
-				modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}>
+			<DndContext onDragEnd={handleDragEnd} onDragMove={handleDragMove} modifiers={[restrictToVerticalAxis, restrictToWindowEdges]}>
 				{/* Bottom Sheet */}
 				<div className="bottomSheet" style={{ transform: `translateY(${sheetPosition}px)` }}>
 					<DraggableHandle id={sheetId} />

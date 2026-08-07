@@ -2,7 +2,6 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-
 import { getColumnsSchool } from '@/columns/getColumnsSchool'
 import { Table } from '@/components/Admin/Table'
 import { SchoolsMockData } from '@/mocks/adminMock'
@@ -79,7 +78,7 @@ export const SchoolsPageContent = () => {
 				{/* <SchoolsTable data={SchoolsMockData} link="/schools/" /> */}
 				<Table<SchoolDepItem, any>
 					data={SchoolsMockData}
-					getColumns={() => getColumnsSchool({ role:"Учитель" })}
+					getColumns={() => getColumnsSchool({ role: 'Учитель' })}
 					handleRowClick={redirectOnSchoolClick}
 				/>
 			</Card>

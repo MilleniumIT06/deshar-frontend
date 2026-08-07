@@ -20,15 +20,7 @@ interface InputSelectProps {
 	isError?: boolean
 }
 
-const InputSelect = ({
-	isLoading,
-	isError,
-	placeholderValue = 'example',
-	options,
-	setValue,
-	value,
-	variant = 'common',
-}: InputSelectProps) => {
+const InputSelect = ({ isLoading, isError, placeholderValue = 'example', options, setValue, value, variant = 'common' }: InputSelectProps) => {
 	const [open, setOpen] = useState(false)
 	const selectRef = useOutsideClick(() => {
 		if (open) setOpen(false)
@@ -41,10 +33,7 @@ const InputSelect = ({
 	// const selectedLabel = options.find(option => option.name === value)?.name || ''
 	const displayValue = typeof value === 'object' && value !== null ? value.name : value
 	return (
-		<div
-			className={cn('InputSelect', variant === 'admin' && 'adminVariant')}
-			ref={selectRef}
-			data-testid="input-select">
+		<div className={cn('InputSelect', variant === 'admin' && 'adminVariant')} ref={selectRef} data-testid="input-select">
 			<input
 				placeholder={placeholderValue}
 				className={cn('input-reset', 'InputSelect__input')}
@@ -93,9 +82,7 @@ const InputSelect = ({
 										['selected']: option.name === value.name,
 									})}
 									onClick={() => handleChange(option)}>
-									<span>
-										{option.name}
-										</span>
+									<span>{option.name}</span>
 								</div>
 							))
 						)}

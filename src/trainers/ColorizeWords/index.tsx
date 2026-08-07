@@ -32,19 +32,7 @@ interface WordState extends IVariant {
 }
 
 export const ColorizeWords = forwardRef(
-	(
-		{
-			payload,
-			title,
-			subTitle,
-			onSuccess,
-			onError,
-			changeStatus,
-			currentTrainerIndex,
-			audio,
-		}: ColorizeWordsProps,
-		ref,
-	) => {
+	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex, audio }: ColorizeWordsProps, ref) => {
 		const { variants, tools } = payload
 
 		const [selectedTool, setSelectedTool] = useState<Tool>(tools[0])
@@ -140,17 +128,9 @@ export const ColorizeWords = forwardRef(
 								key={`${index}-${tool.toolName}`}
 								onClick={() => setSelectedTool(tool)}
 								variant="primary"
-								className={cn(
-									'tool-button',
-									selectedTool.toolName === tool.toolName && 'tool-button--selected',
-								)}>
+								className={cn('tool-button', selectedTool.toolName === tool.toolName && 'tool-button--selected')}>
 								<div className="tool-content">
-									{tool.type === 'paint' && (
-										<i
-											className="color-indicator"
-											style={{ backgroundColor: tool.toolColor }}
-										/>
-									)}
+									{tool.type === 'paint' && <i className="color-indicator" style={{ backgroundColor: tool.toolColor }} />}
 									<span>{tool.toolName}</span>
 								</div>
 							</EngineButton>

@@ -20,12 +20,7 @@ export default function FullScreenMenu({ setMenuOpen }: { setMenuOpen: (value: b
 	if (!container) return null
 
 	return createPortal(
-		<m.div
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			exit={{ opacity: 0 }}
-			transition={{ duration: 0.3 }}
-			className="FullScreenMenu">
+		<m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="FullScreenMenu">
 			<div className="FullScreenMenu__container">
 				<nav className="FullScreenMenu__nav">
 					<ul className="list-reset FullScreenMenu__list">
