@@ -9,7 +9,8 @@ import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { useCategoryMatcher } from './useCategoryMatcher'
 import './styles.scss'
 
-import type { Id, TrainerCommonProps } from '@/shared/types/types'
+import type { Id } from '@/shared/types/types'
+import type { TrainerCommonProps } from '@/widgets/trainers-engine/types/types'
 
 export interface CategoryMatcherItem {
 	id: string

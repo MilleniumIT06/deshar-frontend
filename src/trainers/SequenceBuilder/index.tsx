@@ -8,7 +8,9 @@ import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { Slot } from './slot'
 import { Variant } from './variant'
 
-import type { Id, TrainerCommonProps } from '@/shared/types/types'
+import type { Id } from '@/shared/types/types'
+import type { TrainerCommonProps } from '@/widgets/trainers-engine/types/types'
+
 import './styles.scss'
 
 interface ISequenceSlot {

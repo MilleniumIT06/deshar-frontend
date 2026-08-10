@@ -5,11 +5,12 @@ import { useState, useMemo, useCallback, useImperativeHandle, forwardRef } from 
 import './styles.scss'
 import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { type TrainerCommonProps } from '@/widgets/trainers-engine/types/types'
 
 import { SlotInput } from './slot'
 import { ConclusionVariant } from './variant'
 
-import type { Id, TrainerCommonProps } from '@/shared/types/types'
+import type { Id } from '@/shared/types/types'
 
 type Slot = {
 	id: number

@@ -12,17 +12,19 @@ import { Avatar } from '@/shared/ui/Avatar'
 import { Button } from '@/shared/ui/Button'
 import { Logo } from '@/shared/ui/Logo'
 import './styles.scss'
-// import { useAppDispatch } from '@/app/_store/hooks'
-// import { logout } from '@/entities/user/model/user.slice'
+
 export const Header = () => {
 	const [burgerOpen, setBurgerOpen] = useState(false)
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+	const [isMounted, setIsMounted] = useState(false)
 	const userMenuRef = useOutsideClick(() => {
 		setIsMenuOpen(false)
 	})
 	const { isLoading, profileData } = useProfile()
 	const pathname = usePathname()
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
 	useEffect(() => {
 		if (burgerOpen) {
 			const scrollY = window.scrollY
@@ -108,7 +110,11 @@ export const Header = () => {
 						<ul className="list-reset Header__list">{renderNavItems()}</ul>
 					</nav>
 					<div className="Header__right">
-						{isLoading ? (
+						{!isMounted ? (
+							<Button asChild variant="primary" size="small" className="Header__btn" tabIndex={6}>
+								<Link href="/sign-in">Войти</Link>
+							</Button>
+						) : isLoading ? (
 							'Loading...'
 						) : profileData ? (
 							<div className="Header__user" ref={userMenuRef}>
@@ -132,6 +138,7 @@ export const Header = () => {
 								<Link href="/sign-in">Войти</Link>
 							</Button>
 						)}
+
 						<button
 							className={`btn-reset Header__burger ${burgerOpen ? 'active' : ''}`}
 							aria-label="Открыть меню"

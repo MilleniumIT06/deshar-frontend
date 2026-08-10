@@ -5,8 +5,9 @@ import './styles.scss'
 import { EngineButton } from '@/components/Engine/Button'
 import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { type TrainerCommonProps } from '@/widgets/trainers-engine/types/types'
 
-import type { Id, TrainerCommonProps } from '@/shared/types/types'
+import type { Id } from '@/shared/types/types'
 
 export interface Tool {
 	type: 'paint' | 'erase'

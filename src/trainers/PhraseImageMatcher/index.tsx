@@ -2,8 +2,8 @@ import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
 
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
-import { type TrainerCommonProps } from '@/shared/types/types'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { type TrainerCommonProps } from '@/widgets/trainers-engine/types/types'
 
 import { PhraseImageMatcherItem } from './item'
 import { Variant } from '../DragWordToPocket/variant'

@@ -1,12 +1,12 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
-import { type TrainerTheme } from '@/shared/types/types'
+import type { TrainerTheme, TrainerStatus } from '@/widgets/trainers-engine/types/types'
 
 interface TrainersState {
 	isMenuOpen: boolean
 	isSupportModalOpen: boolean
 	isAlertModalOpen: boolean
-	status: 'idle' | 'error' | 'success' | 'finish' | 'checking'
+	status: TrainerStatus
 	currentTrainerIndex: number
 	currentLessonIndex: number
 	theme: TrainerTheme

@@ -13,63 +13,61 @@ export async function proxy(request: NextRequest) {
 	const isAuthPage = pathname === '/sign-in'
 	const isHomePage = pathname === '/home'
 
-	if (isAuthenticated && (pathname === '/' || isAuthPage)) {
-		return NextResponse.redirect(new URL('/dashboard', request.url))
-	}
-
 	if (!isAuthenticated) {
 		if (pathname === '/') {
 			return NextResponse.redirect(new URL('/home', request.url))
 		}
-
-		if (isHomePage) {
+		if (isHomePage || isAuthPage) {
 			return NextResponse.next()
 		}
-
-		if (!isAuthPage) {
-			return NextResponse.redirect(new URL('/sign-in', request.url))
-		}
+		return NextResponse.redirect(new URL('/sign-in', request.url))
 	}
 
-	if (isAuthenticated) {
-		try {
-			const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8000'
-			const response = await fetch(`${SERVER_URL}/api/auth/me`, {
-				headers: {
-					Authorization: `Bearer ${token}`,
-					Accept: 'application/json',
-				},
-			})
+	if (pathname === '/' || isAuthPage) {
+		return NextResponse.redirect(new URL('/dashboard', request.url))
+	}
 
-			if (response.status === 401) {
-				const res = NextResponse.redirect(new URL('/sign-in', request.url))
-				res.cookies.delete('jwt_token')
-				return res
-			}
+	try {
+		const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8000'
+		const response = await fetch(`${SERVER_URL}/api/auth/me`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+				Accept: 'application/json',
+			},
+		})
 
-			if (response.ok) {
-				const res = await response.json()
-				const user: User = res.data.user
-				if (user.is_banned === true && pathname !== '/user-banned') {
+		if (response.status === 401) {
+			const res = NextResponse.redirect(new URL('/sign-in', request.url))
+			res.cookies.delete('jwt_token')
+			return res
+		}
+
+		if (response.ok) {
+			const res = await response.json()
+			const user: User = res.data.user
+
+			if (user.is_banned === true) {
+				if (pathname !== '/user-banned') {
 					return NextResponse.redirect(new URL('/user-banned', request.url))
 				}
-				if (user.is_banned === false && pathname === '/user-banned') {
-					return NextResponse.redirect(new URL('/dashboard', request.url))
-				}
+				return NextResponse.next()
+			}
 
-				const hasAdminAccess = ADMIN_PANEL_ROLES.includes(user.role.name)
+			if (user.is_banned === false && pathname === '/user-banned') {
+				return NextResponse.redirect(new URL('/dashboard', request.url))
+			}
+			const hasAdminAccess = ADMIN_PANEL_ROLES.includes(user.role.name)
 
-				if (!hasAdminAccess && pathname.startsWith('/admin')) {
-					return NextResponse.redirect(new URL('/dashboard', request.url))
-				}
-
-				if (hasAdminAccess && pathname === '/') {
+			if (hasAdminAccess) {
+				if (!pathname.startsWith('/admin') && pathname !== '/user-banned') {
 					return NextResponse.redirect(new URL('/admin', request.url))
 				}
+			} else if (pathname.startsWith('/admin')) {
+				return NextResponse.redirect(new URL('/dashboard', request.url))
 			}
-		} catch (error) {
-			console.error('Middleware Auth Error:', error)
 		}
+	} catch (error) {
+		console.error('Middleware Auth Error:', error)
 	}
 
 	return NextResponse.next()

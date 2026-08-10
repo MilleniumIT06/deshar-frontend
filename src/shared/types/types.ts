@@ -26,18 +26,6 @@ export interface Role {
 	name: RoleName
 }
 
-export interface TrainerCommonProps {
-	audio: string | null
-	currentTrainerIndex: number
-	title: string
-	subTitle?: string
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success' | 'checking') => void
-}
-// {subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
-
-export type TrainerTheme = 'towers' | 'ocean' | 'forest' | 's' | 'o' | 'default'
 interface IUserResponse extends User {
 	points: number
 }

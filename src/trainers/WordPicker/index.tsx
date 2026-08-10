@@ -5,7 +5,9 @@ import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
 import { useWordPicker } from '@/hooks/trainers/useWordPicker'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
-import type { Id, TrainerCommonProps } from '@/shared/types/types'
+import type { Id } from '@/shared/types/types'
+import type { TrainerCommonProps } from '@/widgets/trainers-engine/types/types'
+
 import './styles.scss'
 
 interface WordPickerProps extends TrainerCommonProps {

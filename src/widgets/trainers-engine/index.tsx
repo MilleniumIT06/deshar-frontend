@@ -28,16 +28,16 @@ import { AUTO_ADVANCE_DELAY_MS, ERROR_SUBSTRAC_POINTS, PRACTICE_UNLOCK_DELAY_SEC
 import { AlertModal, EngineFinishScreen, Menu, SupportModal } from './dynamic-imports'
 import { useEngineNavigation } from './hooks/useEngineNavigation'
 import { useLessonPracticeData } from './hooks/useLessonPracticeData'
+import { useEngineSound } from './hooks/useSound'
 import { PracticeScreen } from './views/practice.view'
 import { TheoryScreen } from './views/theory.view'
 
-import type { TrainerRef, TrainersEngineProps } from './types/types'
+import type { TrainerRef, TrainersEngineProps, TrainerStatus } from './types/types'
 
 export const TrainersEngine = ({ data: lessons, config, engineStatus }: TrainersEngineProps) => {
 	const router = useRouter()
 	const { themeName, time } = config
 	const dispatch = useAppDispatch()
-	console.log('dsa')
 	const { status, currentTrainerIndex, isMenuOpen, isAlertModalOpen, isSupportModalOpen, mode, currentLessonIndex } = useAppSelector(
 		(state: RootState) => state.engine,
 	)
@@ -58,7 +58,6 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 		mode,
 		activeTaskIndex: currentTrainerIndex,
 	})
-	console.log('ddd', taskData)
 	const { handleNext, handleTheoryNext, startPractice, isLastLesson } = useEngineNavigation({
 		lessons,
 		currentLessonIndex,
@@ -66,6 +65,7 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 		time,
 		restartPracticeCountdown: restartCountdown,
 	})
+	const { playError, playSuccess } = useEngineSound()
 	// const hasRestoredProgress = useRef(false)
 
 	// useEffect(() => {
@@ -165,7 +165,7 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 		router.back()
 	}
 
-	const changeStatus = (value: 'idle' | 'error' | 'success' | 'checking') => dispatch(setStatus(value))
+	const changeStatus = (value: TrainerStatus) => dispatch(setStatus(value))
 	const handleMenuToggle = () => dispatch(setIsMenuOpen(!isMenuOpen))
 	const handleSupportModalClick = () => dispatch(setSupportModalOpen(!isSupportModalOpen))
 	const handleTimerEnd = () => dispatch(setStatus('error'))
@@ -178,7 +178,7 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 	// начисляем за урок если все задачи в уроке выполнены
 	const handleSuccess = () => {
 		if (!activeTask || !currentLesson) return
-
+		playSuccess()
 		const isLastTaskInLesson = currentTrainerIndex === currentLesson.total_tasks - 1
 
 		if (isLastTaskInLesson) {
@@ -187,6 +187,7 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 	}
 	const handleError = () => {
 		if (!activeTask) return
+		playError()
 		dispatch(subtractPoints(ERROR_SUBSTRAC_POINTS))
 	}
 
@@ -241,7 +242,6 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 				</div>
 			)
 		if (!uniqueTask || isTaskDetailError) return <div>Не удалось загрузить задание</div>
-		console.log('debug-task:', uniqueTask)
 		return (
 			<>
 				<PracticeScreen

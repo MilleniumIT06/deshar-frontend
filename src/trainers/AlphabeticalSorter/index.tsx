@@ -9,8 +9,8 @@ import { AlphabeticalSorterVariant } from './Variant'
 
 import './styles.scss'
 
-import type { Id, TrainerCommonProps } from '@/shared/types/types'
-import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
+import type { Id } from '@/shared/types/types'
+import type { TrainerCommonProps, TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 interface AlphabeticalSorterProps extends TrainerCommonProps {
 	payload: {

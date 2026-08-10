@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type TrainerType } from '../trainersMap'
 
-import type { Id, TrainerTheme } from '@/shared/types/types'
+import type { Id } from '@/shared/types/types'
 
 export interface TrainerRef {
 	handleCheck: (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => void
@@ -61,3 +61,16 @@ export interface UniqueTask {
 		xp_reward: number
 	}
 }
+export interface TrainerCommonProps {
+	audio: string | null
+	currentTrainerIndex: number
+	title: string
+	subTitle?: string
+	onSuccess: () => void
+	onError: () => void
+	changeStatus: (status: TrainerStatus) => void
+}
+// {subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
+
+export type TrainerTheme = 'towers' | 'ocean' | 'forest' | 's' | 'o' | 'default'
+export type TrainerStatus = 'idle' | 'error' | 'success' | 'finish' | 'checking' | 'attempts-left'

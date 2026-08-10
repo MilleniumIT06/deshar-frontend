@@ -34,6 +34,7 @@ export const ModuleContent = () => {
 							<ModuleCard
 								id={piece.id}
 								key={`ing-module-piece-${piece.id}`}
+								isFullCardClickable={true}
 								number={piece.id}
 								title={piece.name}
 								maxLessons={piece.total_lessons}

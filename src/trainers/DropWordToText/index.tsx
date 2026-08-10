@@ -3,14 +3,13 @@ import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
 
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
-import { type TrainerCommonProps } from '@/shared/types/types'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import './styles.scss'
 
 import { DropWordToTextItem } from './item'
 import { Variant } from './variant'
 
-import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
+import type { TrainerCommonProps, TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 interface IVariant {
 	id: number

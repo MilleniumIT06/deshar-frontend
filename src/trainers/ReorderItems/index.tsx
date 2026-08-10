@@ -19,8 +19,8 @@ import './styles.scss'
 
 import { ReorderableItem } from './item'
 
-import type { Id, TrainerCommonProps } from '@/shared/types/types'
-import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
+import type { Id } from '@/shared/types/types'
+import type { TrainerCommonProps, TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 export interface IOrderItem {
 	id: UniqueIdentifier

@@ -11,9 +11,8 @@ import { EngineFooter } from '../components/engine-footer'
 import { EngineHeader } from '../components/engine-header'
 import RenderTrainer from '../render-trainer'
 
-import type { TrainerRef, UniqueTask } from '../types/types'
+import type { TrainerRef, TrainerStatus, TrainerTheme, UniqueTask } from '../types/types'
 import type { TimerRef } from '@/components/Engine/Timer'
-import type { TrainerTheme } from '@/shared/types/types'
 
 interface PracticeScreenProps {
 	themeName: TrainerTheme
@@ -25,9 +24,9 @@ interface PracticeScreenProps {
 	onSupportClick: () => void
 	isSupportModalOpen: boolean
 	uniqueTask: UniqueTask
-	status: 'idle' | 'success' | 'error' | 'checking'
+	status: TrainerStatus
 	trainerRef: React.RefObject<TrainerRef | null>
-	changeStatus: (value: 'idle' | 'error' | 'success' | 'checking') => void
+	changeStatus: (value: TrainerStatus) => void
 	onError: () => void
 	onSuccess: () => void
 	onMainButtonClick: () => void
