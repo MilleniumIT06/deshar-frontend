@@ -17,7 +17,9 @@ export async function proxy(request: NextRequest) {
 		if (pathname === '/') {
 			return NextResponse.redirect(new URL('/home', request.url))
 		}
-		if (isHomePage || isAuthPage) {
+		const isSupportPage = pathname.startsWith('/support')
+
+		if (isHomePage || isAuthPage || isSupportPage) {
 			return NextResponse.next()
 		}
 		return NextResponse.redirect(new URL('/sign-in', request.url))

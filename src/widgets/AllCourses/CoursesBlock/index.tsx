@@ -4,7 +4,7 @@ export const CoursesBlock = ({ children, title }: { children: React.ReactNode; t
 	return (
 		<div className="CoursesBlock">
 			<h3 className="CoursesBlock__title">{title}</h3>
-			<ul className="CoursesBlock__cards">{children}</ul>
+			<ul className="CoursesBlock__cards list-reset">{children}</ul>
 		</div>
 	)
 }
