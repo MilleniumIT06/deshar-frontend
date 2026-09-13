@@ -3,7 +3,10 @@ import { motion, AnimatePresence } from 'motion/react'
 import Link from 'next/link'
 import { useState } from 'react'
 
+import { useAppDispatch } from '@/app/_store/hooks'
+import { prevStep } from '@/features/auth/signUp.slice'
 import { tabs } from '@/mocks/data'
+import { Button } from '@/shared/ui/Button'
 import { Tabs } from '@/shared/ui/Tabs'
 
 import './styles.scss'
@@ -15,6 +18,7 @@ export const ProgramSelectionForm = () => {
 	const [direction, setDirection] = useState(0)
 	const [isTabsDisabled, setIsTabsDisabled] = useState(false)
 
+	const dispatch = useAppDispatch()
 	const handleTabChange = (tabIndex: number) => {
 		if (!isTabsDisabled) {
 			setDirection(tabIndex > activeTab ? 1 : -1)
@@ -57,6 +61,9 @@ export const ProgramSelectionForm = () => {
 							) : (
 								<OtherRegionsForm disableTab={setIsTabsDisabled} />
 							)}
+							<Button size="small" variant="secondary" onClick={() => dispatch(prevStep())}>
+								Назад
+							</Button>
 						</motion.div>
 					</AnimatePresence>
 				</div>

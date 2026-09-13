@@ -2,8 +2,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { useAppSelector } from '@/app/_store/hooks'
+import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { useSignUp } from '@/features/auth/SignUp/useSignUp'
+import { prevStep } from '@/features/auth/signUp.slice'
 import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
 import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
 import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
@@ -51,6 +52,7 @@ export const TeacherForm = () => {
 		mode: 'onChange',
 	})
 	const { formData } = useAppSelector(state => state.signUpFormReducer)
+	const dispatch = useAppDispatch()
 	const { isPending } = useSignUp()
 	const { regions, isLoading: isRegionsLoading } = useGetRegions()
 	const { countries, isLoading: isCountriesLoading } = useGetCountries()
@@ -189,6 +191,9 @@ export const TeacherForm = () => {
 							{form.formState.isSubmitting || isPending ? 'Отправка...' : 'Зарегистрироваться'}
 						</Button>
 					</div>
+					<Button size="small" variant="secondary" onClick={() => dispatch(prevStep())}>
+						Назад
+					</Button>
 				</form>
 			</div>
 		</div>

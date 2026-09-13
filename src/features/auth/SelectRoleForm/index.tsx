@@ -1,8 +1,9 @@
 'use client'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
-
 import './styles.scss'
-import { nextStep, updateFormData } from '../signUp.slice'
+import { Button } from '@/shared/ui/Button'
+
+import { nextStep, prevStep, updateFormData } from '../signUp.slice'
 
 import type { UserType } from '@/shared/types/user.types'
 
@@ -67,6 +68,9 @@ export const SelectRoleForm = () => {
 						<span>Учитель</span>
 					</div>
 				</div>
+				<Button size="small" variant="secondary" onClick={() => dispatch(prevStep())}>
+					Назад
+				</Button>
 			</div>
 		</div>
 	)
