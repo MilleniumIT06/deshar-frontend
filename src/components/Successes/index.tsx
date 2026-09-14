@@ -1,6 +1,6 @@
 'use client'
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { ResultsCard } from '@/components/ResultsCard'
 import { useProfile } from '@/hooks/user/useProfile'
@@ -13,22 +13,23 @@ const BarChart = dynamic(() => import('@/widgets/AdminWidgets/MainChart/BarChart
 	ssr: false,
 	loading: () => <div className="StatisticsBlock-placeholder">Загрузка графиков...</div>,
 })
+
 const VISIBLE_COUNT = 19
 const STEP = 6
+
 export const Successes = () => {
 	const [startIndex, setStartIndex] = useState(0)
+	const [isMounted, setIsMounted] = useState(false)
+
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
 
 	const handlePrev = () => setStartIndex(prev => Math.max(0, prev - STEP))
 	const handleNext = () => setStartIndex(prev => Math.min(barChartMockData.length - VISIBLE_COUNT, prev + STEP))
 
 	const visibleData = barChartMockData.slice(startIndex, startIndex + VISIBLE_COUNT)
 	const { isLoading, profileData, isError } = useProfile()
-	// useEffect(()=>{
-	// 	if(profileData)  {
-
-	// 		console.log('profileLesssonsPER',profileData.data.stats.lessons)
-	// 	}
-	// },[])
 
 	return (
 		<section className="Successes">
@@ -81,13 +82,14 @@ export const Successes = () => {
 								/>
 							</div>
 							<div className="chart__body">
-								{/* <BarChart data={barChartMockData} /> */}
 								<BarChart data={visibleData} />
 							</div>
 						</div>
 					</div>
 					<div className="Successes__footer">
-						{isLoading ? (
+						{!isMounted ? (
+							<div>Загрузка статистики...</div>
+						) : isLoading ? (
 							<div>Loading...</div>
 						) : !isError && profileData ? (
 							<div className="Successes__results">
@@ -122,20 +124,6 @@ export const Successes = () => {
 										</svg>
 									}
 								/>
-								{/* <ResultsCard
-								percent={profileData.data.stats.overall.completion_rate}
-								period={7}
-								title="completion_rate"
-								value={profileData.data.stats.overall.completion_rate}
-								mode='value'
-							/>
-							<ResultsCard
-								percent={0}
-								period={7}
-								title="rank"
-								value={profileData.data.stats.overall.rank}
-								mode='value'
-							/> */}
 								<ResultsCard
 									percent={profileData.data.stats.tasks.percentage}
 									period={7}

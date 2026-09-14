@@ -3,13 +3,12 @@ import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
 
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
-import { type TrainerCommonProps } from '@/shared/types/types'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { Pocket } from './pocket'
 import { Variant } from './variant'
 
-import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
+import type { TrainerCommonProps, TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 interface DragWordToPocketProps extends TrainerCommonProps {
 	payload: {

@@ -1,10 +1,11 @@
 import { forwardRef } from 'react'
 
 import { useLetterClickTrainer } from '@/hooks/trainers/useLetterClickTrainer'
-import { type TrainerCommonProps } from '@/shared/types/types'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { type TrainerCommonProps } from '@/widgets/trainers-engine/types/types'
 
 import { AccentLetter } from './item'
+
 import './styles.scss'
 
 interface IVariant {

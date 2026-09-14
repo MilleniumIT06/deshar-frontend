@@ -12,8 +12,8 @@ import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { DropInput } from './DropInput'
 import { MoveBoxImage } from './MoveBox'
 
-import type { Id, TrainerCommonProps } from '@/shared/types/types'
-import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
+import type { Id } from '@/shared/types/types'
+import type { TrainerCommonProps, TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 export interface IWordLetter {
 	id: number | string

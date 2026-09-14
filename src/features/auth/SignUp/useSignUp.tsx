@@ -11,7 +11,7 @@ export function useSignUp() {
 		mutationKey: ['create user'],
 		mutationFn: (data: RegistrationCompleteData) => registerService.register(data),
 		onSuccess: () => {
-			router.replace('/')
+			router.replace('/sign-in')
 		},
 		onError(error) {
 			if (error.message) {

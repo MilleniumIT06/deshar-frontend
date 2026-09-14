@@ -79,15 +79,7 @@ const SubjectCard = ({
 	const CardContent = (
 		<>
 			<div className="SubjectCard__header">
-				<h6 className="SubjectCard__title">
-					{isFullCardClickable ? (
-						title
-					) : (
-						<Link href={linkHref} passHref>
-							{title}
-						</Link>
-					)}
-				</h6>
+				<span className="SubjectCard__title">{isFullCardClickable ? title : <Link href={linkHref}>{title}</Link>}</span>
 
 				<span className="SubjectCard__modules">{modulesText}</span>
 			</div>
@@ -103,7 +95,6 @@ const SubjectCard = ({
 							fill
 							loading={loading}
 							priority={priority}
-							quality={100}
 							onError={handleImageError}
 							placeholder="blur"
 							blurDataURL={PLACEHOLDER_SVG}
@@ -119,13 +110,19 @@ const SubjectCard = ({
 
 	if (isFullCardClickable) {
 		return (
-			<Link href={linkHref} className="SubjectCard__link-wrapper">
-				<li className={rootClassName}>{CardContent}</li>
-			</Link>
+			<li>
+				<Link href={linkHref} className="SubjectCard__link-wrapper">
+					<article className={rootClassName}>{CardContent}</article>
+				</Link>
+			</li>
 		)
 	}
 
-	return <li className={rootClassName}>{CardContent}</li>
+	return (
+		<li>
+			<article className={rootClassName}>{CardContent}</article>
+		</li>
+	)
 }
 
 export { SubjectCard, subjectCardVariants }

@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
@@ -145,6 +146,7 @@ export const IngushetiaForm = ({ disableTab }: { disableTab: (value: boolean) =>
 			form.reset()
 			dispatch(resetForm())
 			disableTab(false)
+			toast.success('Регистрация прошла успешно!', { style: { backgroundColor: 'var(--neutral-white)' } })
 		}
 	}, [isSuccess, form, dispatch, disableTab])
 

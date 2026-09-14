@@ -6,8 +6,7 @@ import { EngineHeader } from '../components/engine-header'
 import { EngineTheory } from '../components/engine-theory'
 import { BackArrowIcon } from '../components/icons'
 
-import type { LessonListItem } from '../types/types'
-import type { TrainerTheme } from '@/shared/types/types'
+import type { LessonListItem, TrainerTheme } from '../types/types'
 
 interface TheoryScreenProps {
 	themeName: TrainerTheme

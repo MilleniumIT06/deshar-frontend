@@ -50,7 +50,7 @@ export const UserMenu = ({
 				{listItems &&
 					listItems.length > 0 &&
 					listItems.map(item => (
-						<Link href={item.itemHref} className="UserMenu__item" onClick={() => handleMenuClose(false)}>
+						<Link key={item.itemTitle} href={item.itemHref} className="UserMenu__item" onClick={() => handleMenuClose(false)}>
 							{item.itemTitle}
 						</Link>
 					))}

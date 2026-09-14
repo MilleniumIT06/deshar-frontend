@@ -3,12 +3,11 @@ import { forwardRef } from 'react'
 
 import { API_URL } from '@/config/api.config'
 import { useQuizLogic } from '@/hooks/trainers/useQuiz'
-import { type TrainerCommonProps } from '@/shared/types/types'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { SingleSelectImageQuizVariant } from './variant'
 
-import type { TrainerRef } from '@/widgets/trainers-engine/types/types'
+import type { TrainerCommonProps, TrainerRef } from '@/widgets/trainers-engine/types/types'
 
 interface IVariant {
 	id: number

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useRef, useImperativeHandle, type Ref } from 'react'
 
+import { type TrainerStatus } from '@/widgets/trainers-engine/types/types'
+
 import { useCheckAnswer } from './useCheckAnswer'
 
 import type { Id } from '@/shared/types/types'
@@ -10,7 +12,7 @@ interface UseLetterClickTrainerProps {
 	correctIds: (number | string)[]
 	onSuccess: () => void
 	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success' | 'checking') => void
+	changeStatus: (status: TrainerStatus) => void
 	isMulti?: boolean
 }
 

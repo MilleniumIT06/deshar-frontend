@@ -34,7 +34,7 @@ export const IngModulesPageContent = () => {
 									maxLessons={module.total_pieces || 0}
 									doneLessons={0}
 									processLessons={0}
-									isDisabled={false}
+									isDisabled={module.progress.is_completed}
 									progressPercentage={module.progress.progress_percentage}
 									status={module.progress.status}
 								/>

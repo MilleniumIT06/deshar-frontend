@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 import { saveTokenToCookie } from '@/services/auth/auth-token.service'
 import { loginService } from '@/services/auth/login.service'
@@ -19,7 +20,7 @@ export function useAuth() {
 		mutationFn: (data: signInUserFormData) => loginService.login(data),
 		onSuccess: response => {
 			if (response.token) saveTokenToCookie(response.token)
-
+			toast.success('Авторизация прошла успешно!', { style: { backgroundColor: 'var(--neutral-white)' } })
 			router.replace('/dashboard')
 		},
 		onError: (err: { message: string }) => {

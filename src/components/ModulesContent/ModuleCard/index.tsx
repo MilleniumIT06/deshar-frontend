@@ -42,7 +42,7 @@ export const ModuleCard = ({
 		if (progressPercentage > 0) return 'in_progress'
 		return 'error'
 	}
-
+	console.log(status)
 	const targetUrl = `${linkHref}/${id}`
 
 	const CardContent = (
