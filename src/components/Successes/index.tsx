@@ -7,6 +7,7 @@ import { useProfile } from '@/hooks/user/useProfile'
 import { barChartMockData } from '@/mocks/adminMock'
 import { Button } from '@/shared/ui/Button'
 import { Selector } from '@/shared/ui/Selector'
+
 import './styles.scss'
 
 const BarChart = dynamic(() => import('@/widgets/AdminWidgets/MainChart/BarChart').then(mod => mod.BarChart), {
