@@ -2,8 +2,8 @@
 import { useParams } from 'next/navigation'
 
 import { ModuleCard } from '@/components/ModulesContent/ModuleCard'
-import './../styles.scss'
 import { useGetModuleById } from '@/hooks/queries/education/modules/useGetModuleById'
+import './../styles.scss'
 import { Loader } from '@/shared/ui/Loader'
 
 export const ModuleContent = () => {
@@ -30,23 +30,26 @@ export const ModuleContent = () => {
 				<div className="IngModulesPageContent__inner">
 					<h1 className="section__title">{uniqueModule.module.name}</h1>
 					<div className="IngModulesPageContent__cards">
-						{uniqueModule.pieces?.map(piece => (
-							<ModuleCard
-								id={piece.id}
-								key={`ing-module-piece-${piece.id}`}
-								isFullCardClickable={true}
-								number={piece.id}
-								title={piece.name}
-								maxLessons={piece.total_lessons}
-								doneLessons={12}
-								processLessons={0}
-								linkHref={`${moduleId}/pieces`}
-								progressPercentage={piece.progress.progress_percentage}
-								status={piece.progress.status}
-								isDisabled={piece.progress.progress_percentage === 100}
-								name="Часть"
-							/>
-						))}
+						{uniqueModule.pieces?.map(piece => {
+							console.log(piece)
+							return (
+								<ModuleCard
+									id={piece.id}
+									key={`ing-module-piece-${piece.id}`}
+									isFullCardClickable={true}
+									number={piece.id}
+									title={piece.name}
+									maxLessons={piece.total_lessons}
+									doneLessons={piece.progress.is_completed ? piece.total_lessons : 0}
+									processLessons={0}
+									linkHref={`${moduleId}/pieces`}
+									progressPercentage={piece.progress.progress_percentage}
+									status={piece.progress.status}
+									isDisabled={piece.progress.progress_percentage === 100}
+									name="Часть"
+								/>
+							)
+						})}
 					</div>
 				</div>
 			</div>

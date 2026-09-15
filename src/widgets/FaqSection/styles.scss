@@ -1,0 +1,12 @@
+.FaqSection {
+	max-width: 720px;
+	margin: 0 auto;
+	padding: 48px 16px;
+	&__title {
+		font-size: 28px;
+		font-weight: 600;
+		margin-bottom: 24px;
+		text-align: center;
+		font-family: var(--font-family);
+	}
+}

@@ -21,6 +21,7 @@ export const EngineFinishScreen = () => {
 		dispatch(resetScore())
 	}
 	const handleContinue = () => {
+		reset()
 		router.push(`/ing-modules/${moduleId}`)
 	}
 	return (

@@ -12,7 +12,6 @@ export async function proxy(request: NextRequest) {
 	const isAuthenticated = Boolean(token)
 	const isAuthPage = pathname === '/sign-in'
 	const isHomePage = pathname === '/home'
-
 	if (!isAuthenticated) {
 		if (pathname === '/') {
 			return NextResponse.redirect(new URL('/home', request.url))
