@@ -48,7 +48,7 @@ export const FixSentence = forwardRef(
 
 				if (!data) return
 
-				if (data.is_correct) {
+				if (data?.is_correct || (data?.is_completed && isCorrectClient)) {
 					changeStatus('success')
 					onSuccess()
 				} else {

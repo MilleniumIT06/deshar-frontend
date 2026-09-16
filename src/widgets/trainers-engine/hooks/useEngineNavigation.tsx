@@ -1,7 +1,7 @@
 import { useAppDispatch } from '@/app/_store/hooks'
 import { resetTrainers, nextTrainer, setStatus, changeMode, nextLesson } from '@/entities/engine/model/engine.slice'
 import { addCurrentToTotalScore } from '@/entities/engine/model/scoring.slice'
-import { initTimer } from '@/entities/engine/model/timer.slice'
+import { initTimer, resumeTimer } from '@/entities/engine/model/timer.slice'
 
 import type { LessonListItem } from '../types/types'
 
@@ -57,15 +57,13 @@ export function useEngineNavigation({ lessons, currentLessonIndex, currentTraine
 	// TODO: ЕСЛИ ЧТО ТО ПОЙДЕТ НЕ ТАК РАССКОМЕНТИРОВАТЬ ВЕРХНЮЮ И УБРАТЬ НИЖНЮЮ
 	const handleNext = (taskData: { data: unknown[] } | undefined) => {
 		if (!taskData) return
-
 		const activeIndex = currentTrainerIndex ?? 0
 		const isLastTrainerInLesson = activeIndex === taskData.data.length - 1
-
 		if (!isLastTrainerInLesson) {
 			dispatch(nextTrainer({ totalTrainers: taskData.data.length }))
+			dispatch(resumeTimer())
 			return
 		}
-
 		const currentLessonHasTasks = lessons[currentLessonIndex].total_tasks > 0
 
 		if (currentLessonIndex < lessons.length - 1) {

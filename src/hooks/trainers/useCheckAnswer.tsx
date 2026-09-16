@@ -54,8 +54,9 @@ export const useCheckAnswer = (options: UseCheckAnswerOptions = {}) => {
 			queryClient.invalidateQueries({
 				queryKey: ['ing-module-by-id', Number(variables.moduleId)],
 			})
-
-			if (data.is_correct) {
+			console.log('vedartest', data)
+			console.log(data?.is_correct || data?.is_completed)
+			if (data?.is_correct || data?.is_completed) {
 				options.onSuccess?.(data)
 			} else {
 				options.onError?.(data)
