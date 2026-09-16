@@ -20,6 +20,7 @@ interface ModuleCardProps {
 	progressPercentage: number
 	status: string
 	isFullCardClickable?: boolean
+	fon: string | null
 }
 
 export const ModuleCard = ({
@@ -35,6 +36,7 @@ export const ModuleCard = ({
 	progressPercentage,
 	status,
 	isFullCardClickable = false,
+	fon,
 }: ModuleCardProps) => {
 	const getStatus = () => {
 		if (progressPercentage === 100) return 'completed'
@@ -72,11 +74,18 @@ export const ModuleCard = ({
 
 	if (isFullCardClickable && !isDisabled) {
 		return (
-			<Link href={targetUrl} className={cn('ModuleCard', 'ModuleCard--clickable')}>
+			<Link
+				href={targetUrl}
+				className={cn('ModuleCard', 'ModuleCard--clickable')}
+				style={{ backgroundImage: `url(http://localhost:8000${fon})` }}>
 				{CardContent}
 			</Link>
 		)
 	}
 
-	return <div className={cn('ModuleCard')}>{CardContent}</div>
+	return (
+		<div className={cn('ModuleCard')} style={{ backgroundImage: `url(http://localhost:8000${fon})` }}>
+			{CardContent}
+		</div>
+	)
 }

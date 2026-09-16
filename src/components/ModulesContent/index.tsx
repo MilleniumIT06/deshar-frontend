@@ -17,6 +17,7 @@ export const ModulesContent = () => {
 							processLessons={0}
 							progressPercentage={1}
 							status="checked"
+							fon={null}
 						/>
 					</div>
 				</div>

@@ -31,7 +31,7 @@ export const ModuleContent = () => {
 					<h1 className="section__title">{uniqueModule.module.name}</h1>
 					<div className="IngModulesPageContent__cards">
 						{uniqueModule.pieces?.map(piece => {
-							console.log(piece)
+							console.log('dsa', piece)
 							return (
 								<ModuleCard
 									id={piece.id}
@@ -47,6 +47,7 @@ export const ModuleContent = () => {
 									status={piece.progress.status}
 									isDisabled={piece.progress.progress_percentage === 100}
 									name="Часть"
+									fon={piece.fon}
 								/>
 							)
 						})}

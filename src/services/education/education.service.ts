@@ -36,6 +36,7 @@ interface UniqueModule {
 	module: {
 		id: Id
 		name: string
+		image: string | null
 	}
 	pieces: {
 		id: Id

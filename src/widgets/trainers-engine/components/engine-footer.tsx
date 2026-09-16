@@ -16,7 +16,6 @@ export const EngineFooter = ({
 	onTimerEnd: () => void
 	onClickBtn: () => void
 }) => {
-	const theme = useAppSelector(state => state.engine.theme)
 	const status = useAppSelector(state => state.engine.status)
 	const [isBlocked, setIsBlocked] = useState(true)
 
@@ -30,7 +29,7 @@ export const EngineFooter = ({
 	}, [])
 
 	return (
-		<div className={cn('engine-footer', theme)}>
+		<div className={cn('engine-footer')}>
 			<div className="engine-footer__container">
 				<EngineButton disabled={isBlocked || status !== 'idle'} variant="secondary" className="engine-footer__back-btn">
 					<div className="engine-footer__back-content">

@@ -19,6 +19,7 @@ import {
 } from '@/entities/engine/model/engine.slice'
 import { addPoints, subtractPoints, resetCurrentScore } from '@/entities/engine/model/scoring.slice'
 import { initTimer, resetTimer } from '@/entities/engine/model/timer.slice'
+import { useGetModuleById } from '@/hooks/queries/education/modules/useGetModuleById'
 import { useGetUniquePiece } from '@/hooks/queries/education/pieces/useGetUniquePiece'
 import { Loader } from '@/shared/ui/Loader'
 
@@ -52,13 +53,17 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 	const { isExpired: isCountdownExpired, secondsLeft, restart: restartCountdown } = useCountdownTimer(PRACTICE_UNLOCK_DELAY_SECONDS)
 
 	const { data } = useGetUniquePiece(Number(moduleId), Number(pieceId))
-
+	const { module } = useGetModuleById(Number(moduleId))
 	useEffect(() => {
-		if (data && data.piece.fon) {
-			console.log(data && data.piece.fon)
-			dispatch(setThemeUrl(data.piece.fon))
+		// if (data && data.piece.fon) {
+		// 	console.log(data && data.piece.fon)
+		// 	dispatch(setThemeUrl(data.piece.fon))
+		// }
+		if (module && module.module && module.module.image) {
+			console.log('module', module)
+			dispatch(setThemeUrl(module.module.image))
 		}
-	}, [data, dispatch])
+	}, [module, data, dispatch])
 
 	const { taskData, isTaskListLoading, activeTask, uniqueTask, isTaskDetailLoading, isTaskDetailError } = useLessonPracticeData({
 		moduleId: Number(moduleId),
