@@ -17,7 +17,7 @@ export function useLessonPracticeData({ moduleId, pieceId, currentLesson, mode, 
 	const { data: taskData, isLoading: isTaskListLoading } = useGetLessonTasks(moduleId, pieceId, lessonId, shouldLoadTaskList)
 
 	const activeTask = taskData?.data && taskData.data.length > 0 ? taskData.data[activeTaskIndex ?? 0] : undefined
-	console.log(activeTask, 'activeTask')
+	// console.log(activeTask, 'activeTask')
 	const {
 		data: uniqueTask,
 		isLoading: isTaskDetailLoading,

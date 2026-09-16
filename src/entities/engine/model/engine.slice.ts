@@ -9,7 +9,7 @@ interface TrainersState {
 	status: TrainerStatus
 	currentTrainerIndex: number
 	currentLessonIndex: number
-	theme: TrainerTheme
+	themeUrl: string | null
 	mode: 'practice' | 'theory'
 }
 
@@ -19,7 +19,7 @@ const initialState: TrainersState = {
 	isAlertModalOpen: false,
 	status: 'idle',
 	currentTrainerIndex: 0,
-	theme: 'default',
+	themeUrl: null,
 	mode: 'theory',
 	currentLessonIndex: 0,
 }
@@ -46,8 +46,8 @@ export const trainersSlice = createSlice({
 		setStatus: (state, action: PayloadAction<TrainersState['status']>) => {
 			state.status = action.payload
 		},
-		setTheme: (state, action: PayloadAction<TrainerTheme>) => {
-			state.theme = action.payload
+		setThemeUrl: (state, action: PayloadAction<string>) => {
+			state.themeUrl = action.payload
 		},
 		nextTrainer: (state, { payload }: PayloadAction<{ totalTrainers: number }>) => {
 			if (state.currentTrainerIndex < payload.totalTrainers - 1) {
@@ -90,7 +90,7 @@ export const {
 	setStatus,
 	nextTrainer,
 	resetTrainers,
-	setTheme,
+	setThemeUrl,
 	changeMode,
 	nextLesson,
 	resetState,

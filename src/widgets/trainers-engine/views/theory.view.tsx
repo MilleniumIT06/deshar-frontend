@@ -1,15 +1,15 @@
 import cn from 'classnames'
 
+import { useAppSelector } from '@/app/_store/hooks'
 import { EngineButton } from '@/components/Engine/Button'
 
 import { EngineHeader } from '../components/engine-header'
 import { EngineTheory } from '../components/engine-theory'
 import { BackArrowIcon } from '../components/icons'
 
-import type { LessonListItem, TrainerTheme } from '../types/types'
+import type { LessonListItem } from '../types/types'
 
 interface TheoryScreenProps {
-	themeName: TrainerTheme
 	lesson: LessonListItem
 	lessonIndex: number
 	totalLessons: number
@@ -25,7 +25,6 @@ interface TheoryScreenProps {
 }
 
 export function TheoryScreen({
-	themeName,
 	lesson,
 	lessonIndex,
 	totalLessons,
@@ -39,10 +38,11 @@ export function TheoryScreen({
 	onStartPractice,
 	onTheoryNext,
 }: TheoryScreenProps) {
+	const theme = useAppSelector(state => state.engine.themeUrl)
 	const countdownSuffix = isCountdownExpired ? '' : ` (${secondsLeft})`
 
 	return (
-		<div className={cn('trainers-engine', themeName)}>
+		<div className={cn('trainers-engine')} style={{ backgroundImage: `url(http://localhost:8000${theme})` }}>
 			<div className="trainers-engine__container trainers-engine__container_theory">
 				<EngineHeader
 					handleMenuClick={onMenuClick}
@@ -58,7 +58,7 @@ export function TheoryScreen({
 				</main>
 
 				<footer>
-					<div className={cn('engine-footer', themeName)}>
+					<div className={cn('engine-footer')}>
 						<div className="engine-footer__container">
 							<EngineButton variant="secondary" className="engine-footer__back-btn">
 								<div className="engine-footer__back-content">
