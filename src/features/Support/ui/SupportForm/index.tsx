@@ -17,6 +17,7 @@ export const SupportForm = () => {
 		register,
 		handleSubmit,
 		formState: { errors, isValid },
+		reset,
 	} = useForm<supportFormData>({
 		resolver: zodResolver(supportFormSchema),
 		mode: 'onChange',
@@ -24,6 +25,7 @@ export const SupportForm = () => {
 
 	const onSubmit = async (data: supportFormData) => {
 		send(data)
+		reset()
 	}
 	return (
 		<section className="SupportSection">
