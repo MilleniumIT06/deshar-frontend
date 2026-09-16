@@ -8,6 +8,8 @@
 	flex-shrink: 1;
 	height: 260px;
 	background-color: var(--neutral-lightest);
+	background-position: center;
+	background-size: cover;
 	&__suptitle {
 		font-family: var(--font-family);
 		font-weight: 600;

@@ -67,7 +67,7 @@ export const ColorizeWords = forwardRef(
 					timeSpent: timeSpent ?? 0,
 				})
 
-				if (data?.is_correct) {
+				if (data?.is_correct || (data?.is_completed && isCorrectClient)) {
 					onSuccess()
 				} else {
 					onError()

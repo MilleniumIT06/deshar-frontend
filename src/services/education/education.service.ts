@@ -36,6 +36,7 @@ interface UniqueModule {
 	module: {
 		id: Id
 		name: string
+		image: string | null
 	}
 	pieces: {
 		id: Id
@@ -76,7 +77,7 @@ class EducationService {
 				total_tasks: number
 				progress: any
 			}[]
-			piece: { name: string }
+			piece: { name: string; fon: string }
 		}>({
 			url: `${API_URL.ingModules()}/${moduleId}/pieces/${pieceId}`,
 			method: 'GET',

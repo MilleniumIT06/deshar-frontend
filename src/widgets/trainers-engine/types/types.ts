@@ -26,7 +26,6 @@ export interface LessonListItem {
 
 export interface TrainersEngineProps {
 	config: {
-		themeName: TrainerTheme
 		time: number
 	}
 	data: LessonListItem[]

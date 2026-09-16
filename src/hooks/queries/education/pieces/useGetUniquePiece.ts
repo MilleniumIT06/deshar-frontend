@@ -3,16 +3,15 @@ import { useQuery } from '@tanstack/react-query'
 import { educationService } from '@/services/education/education.service'
 import { type Id } from '@/shared/types/types'
 
-export const useGetModuleById = (id: Id) => {
+export const useGetUniquePiece = (moduleId: Id, pieceId: Id) => {
 	const { data, isLoading, isError, error } = useQuery({
-		queryKey: ['ing-module-by-id', Number(id)],
-		queryFn: () => educationService.getModuleById(id),
-		staleTime: 0,
-		gcTime: 0,
+		queryKey: ['ing-module-unique-Piece', moduleId, pieceId],
+		queryFn: () => educationService.getPiece(moduleId, pieceId),
+		staleTime: 20 * 60 * 1000,
 	})
 
 	return {
-		module: data || undefined,
+		data: data || undefined,
 		isLoading,
 		isError,
 		error,

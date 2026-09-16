@@ -1,7 +1,7 @@
 import { useAppDispatch } from '@/app/_store/hooks'
 import { resetTrainers, nextTrainer, setStatus, changeMode, nextLesson } from '@/entities/engine/model/engine.slice'
 import { addCurrentToTotalScore } from '@/entities/engine/model/scoring.slice'
-import { initTimer } from '@/entities/engine/model/timer.slice'
+import { initTimer, resumeTimer } from '@/entities/engine/model/timer.slice'
 
 import type { LessonListItem } from '../types/types'
 
@@ -31,30 +31,57 @@ export function useEngineNavigation({ lessons, currentLessonIndex, currentTraine
 		}
 	}
 
+	// const handleNext = (taskData: { data: unknown[] } | undefined) => {
+	// 	if (!taskData) return
+
+	// 	const activeIndex = currentTrainerIndex ?? 0
+	// 	const isLastTrainerInLesson = activeIndex === taskData.data.length - 1
+
+	// 	if (!isLastTrainerInLesson) {
+	// 		dispatch(nextTrainer({ totalTrainers: taskData.data.length }))
+	// 		return
+	// 	}
+
+	// 	if (currentLessonIndex < lessons.length - 1) {
+	// 		dispatch(resetTrainers())
+	// 		dispatch(addCurrentToTotalScore())
+	// 		dispatch(changeMode('theory'))
+	// 		dispatch(nextLesson({ totalLessons: lessons.length }))
+	// 		dispatch(initTimer(time))
+	// 		restartPracticeCountdown()
+	// 	} else {
+	// 		dispatch(addCurrentToTotalScore())
+	// 		dispatch(setStatus('finish'))
+	// 	}
+	// }
+	// TODO: ЕСЛИ ЧТО ТО ПОЙДЕТ НЕ ТАК РАССКОМЕНТИРОВАТЬ ВЕРХНЮЮ И УБРАТЬ НИЖНЮЮ
 	const handleNext = (taskData: { data: unknown[] } | undefined) => {
 		if (!taskData) return
-
 		const activeIndex = currentTrainerIndex ?? 0
 		const isLastTrainerInLesson = activeIndex === taskData.data.length - 1
-
 		if (!isLastTrainerInLesson) {
 			dispatch(nextTrainer({ totalTrainers: taskData.data.length }))
+			dispatch(resumeTimer())
 			return
 		}
+		const currentLessonHasTasks = lessons[currentLessonIndex].total_tasks > 0
 
 		if (currentLessonIndex < lessons.length - 1) {
 			dispatch(resetTrainers())
-			dispatch(addCurrentToTotalScore())
+			if (currentLessonHasTasks) {
+				dispatch(addCurrentToTotalScore())
+			}
 			dispatch(changeMode('theory'))
 			dispatch(nextLesson({ totalLessons: lessons.length }))
 			dispatch(initTimer(time))
 			restartPracticeCountdown()
 		} else {
-			dispatch(addCurrentToTotalScore())
+			if (currentLessonHasTasks) {
+				dispatch(addCurrentToTotalScore())
+			}
 			dispatch(setStatus('finish'))
 		}
 	}
-
 	const handleTheoryNext = () => {
 		restartPracticeCountdown()
 		goToNextLessonOrFinish()

@@ -6,7 +6,8 @@ export const useGetModules = () => {
 	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ['ing-modules'],
 		queryFn: () => educationService.getModules(),
-		staleTime: 20 * 60 * 1000,
+		staleTime: 0,
+		gcTime: 0,
 	})
 
 	return {

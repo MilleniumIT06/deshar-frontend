@@ -97,7 +97,7 @@ export const Conclusion = forwardRef(
 					timeSpent: timeSpent ?? 0,
 				})
 
-				if (data?.is_correct) {
+				if (data?.is_correct || (data?.is_completed && isAllCorrectClient)) {
 					changeStatus('success')
 					onSuccess()
 				} else {

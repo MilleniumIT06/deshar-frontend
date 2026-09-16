@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 'use client'
-/* eslint-disable react-hooks/exhaustive-deps */
 import cn from 'classnames'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
@@ -14,12 +13,14 @@ import {
 	setStatus,
 	setIsMenuOpen,
 	setSupportModalOpen,
-	setTheme,
+	setThemeUrl,
 	setAlertModalOpen,
 	resetState,
 } from '@/entities/engine/model/engine.slice'
 import { addPoints, subtractPoints, resetCurrentScore } from '@/entities/engine/model/scoring.slice'
 import { initTimer, resetTimer } from '@/entities/engine/model/timer.slice'
+import { useGetModuleById } from '@/hooks/queries/education/modules/useGetModuleById'
+import { useGetUniquePiece } from '@/hooks/queries/education/pieces/useGetUniquePiece'
 import { Loader } from '@/shared/ui/Loader'
 
 import './styles/styles.scss'
@@ -36,7 +37,7 @@ import type { TrainerRef, TrainersEngineProps, TrainerStatus } from './types/typ
 
 export const TrainersEngine = ({ data: lessons, config, engineStatus }: TrainersEngineProps) => {
 	const router = useRouter()
-	const { themeName, time } = config
+	const { time } = config
 	const dispatch = useAppDispatch()
 	const { status, currentTrainerIndex, isMenuOpen, isAlertModalOpen, isSupportModalOpen, mode, currentLessonIndex } = useAppSelector(
 		(state: RootState) => state.engine,
@@ -50,6 +51,19 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 	const timerRef = useRef<TimerRef>(null)
 
 	const { isExpired: isCountdownExpired, secondsLeft, restart: restartCountdown } = useCountdownTimer(PRACTICE_UNLOCK_DELAY_SECONDS)
+
+	const { data } = useGetUniquePiece(Number(moduleId), Number(pieceId))
+	const { module } = useGetModuleById(Number(moduleId))
+	useEffect(() => {
+		// if (data && data.piece.fon) {
+		// 	console.log(data && data.piece.fon)
+		// 	dispatch(setThemeUrl(data.piece.fon))
+		// }
+		if (module && module.module && module.module.image) {
+			console.log('module', module)
+			dispatch(setThemeUrl(module.module.image))
+		}
+	}, [module, data, dispatch])
 
 	const { taskData, isTaskListLoading, activeTask, uniqueTask, isTaskDetailLoading, isTaskDetailError } = useLessonPracticeData({
 		moduleId: Number(moduleId),
@@ -132,21 +146,36 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 
 	useEffect(() => {
 		dispatch(initTimer(time))
-		dispatch(setTheme(themeName))
 	}, [])
 
+	// useEffect(() => {
+	// 	if (status !== 'success') return
+	// 	const timeoutId = setTimeout(() => handleNext(taskData), AUTO_ADVANCE_DELAY_MS)
+	// 	return () => clearTimeout(timeoutId)
+	// }, [status, currentTrainerIndex])
+	// TODO:ЕСЛИ ЧТО ТО ПОЙДЕТ НЕ ТАК, РАССКОМЕНТИРОВАТЬ ВЕРХНИЙ БЛОК И УБРАТЬ НИЖНИЙ
 	useEffect(() => {
 		if (status !== 'success') return
 		const timeoutId = setTimeout(() => handleNext(taskData), AUTO_ADVANCE_DELAY_MS)
 		return () => clearTimeout(timeoutId)
-	}, [status, currentTrainerIndex])
+	}, [status, currentTrainerIndex, taskData])
 
+	// const onMainButtonClick = () => {
+	// 	if (currentLessonIndex === lessons.length - 1) {
+	// 		// dispatch(addCurrentToTotalScore())
+	// 		dispatch(setStatus('finish'))
+	// 	}
+	// 	trainerRef.current?.handleCheck(Number(moduleId), Number(pieceId), Number(currentLesson?.id), Number(uniqueTask?.task.id), 30)
+	// }
+	// TODO:ЕСЛИ ЧТО ТО ПОЙДЕТ НЕ ТАК, РАССКОМЕНТИРОВАТЬ ВЕРХНЮЮ И ЗАКОМЕНТИРОВАТЬ НИЖНЮЮ ФУНКЦИИ
 	const onMainButtonClick = () => {
-		if (currentLessonIndex === lessons.length - 1) {
-			// dispatch(addCurrentToTotalScore())
-			dispatch(setStatus('finish'))
-		}
-		trainerRef.current?.handleCheck(Number(moduleId), Number(pieceId), Number(currentLesson?.id), Number(uniqueTask?.task.id), 30)
+		trainerRef.current?.handleCheck(
+			Number(moduleId),
+			Number(pieceId),
+			Number(currentLesson?.id),
+			Number(uniqueTask?.task.id),
+			timerRef.current?.stopAndGetTime() ?? 0,
+		)
 	}
 
 	const onResetButtonClick = () => {
@@ -196,7 +225,7 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 
 	if (status === 'finish') {
 		return (
-			<div className={cn('trainers-engine', themeName)}>
+			<div className={cn('trainers-engine')}>
 				<div className="trainers-engine__finish-screen">
 					<EngineFinishScreen />
 				</div>
@@ -208,7 +237,6 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 		return (
 			<>
 				<TheoryScreen
-					themeName={themeName}
 					lesson={currentLesson}
 					lessonIndex={currentLessonIndex || 0}
 					totalLessons={lessons.length}
@@ -246,7 +274,6 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 			<>
 				<PracticeScreen
 					onBreakBtnClick={handleBreakBtnClick}
-					themeName={themeName}
 					currentTrainerIndex={currentTrainerIndex}
 					totalTasks={currentLesson.total_tasks}
 					isMenuOpen={isMenuOpen}

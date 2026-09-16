@@ -2,6 +2,7 @@ import cn from 'classnames'
 import { m, AnimatePresence } from 'motion/react'
 import React from 'react'
 
+import { useAppSelector } from '@/app/_store/hooks'
 import { ErrorFooter } from '@/components/Engine/Footer/error'
 import { SuccessFooter } from '@/components/Engine/Footer/success'
 import { HelpTrigger } from '@/components/Engine/HelpTrigger'
@@ -11,11 +12,10 @@ import { EngineFooter } from '../components/engine-footer'
 import { EngineHeader } from '../components/engine-header'
 import RenderTrainer from '../render-trainer'
 
-import type { TrainerRef, TrainerStatus, TrainerTheme, UniqueTask } from '../types/types'
+import type { TrainerRef, TrainerStatus, UniqueTask } from '../types/types'
 import type { TimerRef } from '@/components/Engine/Timer'
 
 interface PracticeScreenProps {
-	themeName: TrainerTheme
 	currentTrainerIndex: number | null
 	totalTasks: number
 	isMenuOpen: boolean
@@ -36,7 +36,6 @@ interface PracticeScreenProps {
 }
 
 export const PracticeScreen = React.memo(function PracticeScreen({
-	themeName,
 	currentTrainerIndex,
 	totalTasks,
 	isMenuOpen,
@@ -54,9 +53,9 @@ export const PracticeScreen = React.memo(function PracticeScreen({
 	onTimerEnd,
 	timerRef,
 }: PracticeScreenProps) {
-	console.log(status)
+	const theme = useAppSelector(state => state.engine.themeUrl)
 	return (
-		<div className={cn('trainers-engine', themeName)}>
+		<div className={cn('trainers-engine')} style={{ backgroundImage: `url(http://localhost:8000${theme})` }}>
 			<div className="trainers-engine__container">
 				<EngineHeader
 					handleMenuClick={onMenuClick}

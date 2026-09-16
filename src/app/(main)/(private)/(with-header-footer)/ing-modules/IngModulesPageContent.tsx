@@ -37,6 +37,7 @@ export const IngModulesPageContent = () => {
 									isDisabled={module.progress.is_completed}
 									progressPercentage={module.progress.progress_percentage}
 									status={module.progress.status}
+									fon={null}
 								/>
 							)
 						})}

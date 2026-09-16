@@ -19,7 +19,6 @@ export const PiecesContent = () => {
 					data={data.data}
 					engineStatus="engineSuccess"
 					config={{
-						themeName: 'default',
 						time: 180,
 					}}
 				/>

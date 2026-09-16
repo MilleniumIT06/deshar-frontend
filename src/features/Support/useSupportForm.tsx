@@ -16,9 +16,10 @@ export function useSupportForm() {
 		mutationFn: (data: supportFormData) => supportService.send(data),
 		onSuccess: () => {
 			toast.success('Успешно отправлено!', { style: { backgroundColor: 'var(--neutral-white)' } })
+			// toast.error('Ошибка при отправке. Повторите попытку')
 		},
 		onError: (err: { message: string }) => {
-			alert(err.message || 'Ошибка при отправке')
+			toast.error(err.message || 'Ошибка при отправке. Повторите попытку')
 		},
 	})
 

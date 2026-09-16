@@ -63,7 +63,7 @@ export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps
 					timeSpent: timeSpent ?? 0,
 				})
 
-				if (data?.is_correct) {
+				if (data?.is_correct || (data?.is_completed && isAllCorrectClient)) {
 					onSuccess()
 				} else {
 					onError()
