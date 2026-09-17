@@ -39,6 +39,7 @@ export function TheoryScreen({
 	onTheoryNext,
 }: TheoryScreenProps) {
 	const theme = useAppSelector(state => state.engine.themeUrl)
+	const isAudioPlaying = useAppSelector(state => state.audioPlayer.isPlaying)
 	const countdownSuffix = isCountdownExpired ? '' : ` (${secondsLeft})`
 
 	return (
@@ -70,7 +71,7 @@ export function TheoryScreen({
 							<div className="engine-footer__actions">
 								{hasTasks ? (
 									<EngineButton
-										disabled={!isCountdownExpired}
+										disabled={!isCountdownExpired || isAudioPlaying}
 										variant="primary"
 										className="trainers-engine__button"
 										onClick={onStartPractice}>
@@ -81,7 +82,7 @@ export function TheoryScreen({
 										variant="primary"
 										className="trainers-engine__button"
 										onClick={onTheoryNext}
-										disabled={!isCountdownExpired}>
+										disabled={!isCountdownExpired || isAudioPlaying}>
 										{isLastLesson ? 'Завершить' : 'Перейти на след урок'}
 										{countdownSuffix}
 									</EngineButton>
