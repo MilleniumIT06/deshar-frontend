@@ -54,8 +54,9 @@ export const PracticeScreen = React.memo(function PracticeScreen({
 	timerRef,
 }: PracticeScreenProps) {
 	const theme = useAppSelector(state => state.engine.themeUrl)
+	const baseUrl = process.env.API_URL || 'http://localhost:8000'
 	return (
-		<div className={cn('trainers-engine')} style={{ backgroundImage: `url(http://localhost:8000${theme})` }}>
+		<div className={cn('trainers-engine')} style={{ backgroundImage: `url(${baseUrl}${theme})` }}>
 			<div className="trainers-engine__container">
 				<EngineHeader
 					handleMenuClick={onMenuClick}
