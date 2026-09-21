@@ -59,6 +59,7 @@ export interface UniqueTask {
 		video: string | null
 		xp_reward: number
 	}
+	progress: { status: 'completed' | 'failed'; is_completed: boolean }
 }
 export interface TrainerCommonProps {
 	audio: string | null

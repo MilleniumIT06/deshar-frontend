@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useImperativeHandle, type Ref } from 'react'
 
+import { type TrainerStatus } from '@/widgets/trainers-engine/types/types'
+
 import { useCheckAnswer } from './useCheckAnswer'
 
 import type { Id } from '@/shared/types/types'
@@ -10,7 +12,7 @@ interface UseQuizLogicProps<T> {
 	correctValue: T | T[]
 	onSuccess: () => void
 	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success' | 'checking') => void
+	changeStatus: (status: TrainerStatus) => void
 }
 
 export function useQuizLogic<T>({ ref, correctValue, onSuccess, onError, changeStatus }: UseQuizLogicProps<T>) {
@@ -46,12 +48,27 @@ export function useQuizLogic<T>({ ref, correctValue, onSuccess, onError, changeS
 
 			if (!data) return
 
-			if (data.is_correct) {
+			// if (data.is_correct) {
+			// 	changeStatus('success')
+			// 	onSuccess()
+			// } else {
+			// 	changeStatus('error')
+			// 	onError()
+			// }
+			if (data?.is_correct || data?.is_completed) {
+				console.log('vetka1')
 				changeStatus('success')
 				onSuccess()
-			} else {
+			} else if (data?.attempts_left === 0) {
+				console.log('vetka_no_attempts')
+				changeStatus('attempts-left')
+				// onNoAttemptsLeft()
+			} else if (data?.is_correct === false) {
+				console.log('vetka2')
 				changeStatus('error')
 				onError()
+			} else {
+				console.log('vetka3')
 			}
 		},
 		handleReset: () => {

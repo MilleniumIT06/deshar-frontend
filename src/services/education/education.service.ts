@@ -77,7 +77,7 @@ class EducationService {
 				total_tasks: number
 				progress: any
 			}[]
-			piece: { name: string; fon: string }
+			piece: { name: string; fon: string; estimated_time: number }
 		}>({
 			url: `${API_URL.ingModules()}/${moduleId}/pieces/${pieceId}`,
 			method: 'GET',

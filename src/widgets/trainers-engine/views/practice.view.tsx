@@ -102,6 +102,7 @@ export const PracticeScreen = React.memo(function PracticeScreen({
 					)}
 					{status === 'success' && <SuccessFooter />}
 					{status === 'error' && <ErrorFooter handleReset={onResetButtonClick} />}
+					{status === 'attempts-left' && <div>состояние когда попытки исчерпаны</div>}
 				</footer>
 			</div>
 		</div>

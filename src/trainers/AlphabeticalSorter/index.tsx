@@ -29,10 +29,7 @@ interface AlphabeticalSorterProps extends TrainerCommonProps {
 export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps>(
 	({ payload, onSuccess, onError, changeStatus, title, currentTrainerIndex, subTitle, audio }, ref) => {
 		const [slots, setSlots] = useState(payload.slots.map(item => ({ ...item, currentValue: null as string | null })))
-		const { checkAnswer } = useCheckAnswer({
-			onSuccess: () => changeStatus('success'),
-			onError: () => changeStatus('error'),
-		})
+		const { checkAnswer } = useCheckAnswer()
 		const handleDragEnd = (event: DragEndEvent) => {
 			const { active, over } = event
 			if (over) {
@@ -63,12 +60,26 @@ export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps
 					timeSpent: timeSpent ?? 0,
 				})
 
+				// if (data?.is_correct || (data?.is_completed && isAllCorrectClient)) {
+				// 	onSuccess()
+				// } else {
+				// 	onError()
+				// }
 				if (data?.is_correct || (data?.is_completed && isAllCorrectClient)) {
+					console.log('vetka1')
+					changeStatus('success')
 					onSuccess()
-				} else {
+				} else if (data?.attempts_left === 0) {
+					console.log('vetka_no_attempts')
+					changeStatus('attempts-left')
+					// onNoAttemptsLeft()
+				} else if (data?.is_correct === false) {
+					console.log('vetka2')
+					changeStatus('error')
 					onError()
+				} else {
+					console.log('vetka3')
 				}
-
 				if (isAllCorrectClient !== data?.is_correct) {
 					// eslint-disable-next-line no-console
 					console.warn('Client/server mismatch on answer check', {

@@ -60,14 +60,28 @@ export const SequenceBuilder = forwardRef(
 			})
 			if (!data) return
 
-			if (data.is_correct) {
+			// if (data.is_correct) {
+			// 	changeStatus('success')
+			// 	onSuccess()
+			// } else {
+			// 	changeStatus('error')
+			// 	onError()
+			// }
+			if (data?.is_correct || (data?.is_completed && isAllCorrectClient)) {
+				console.log('vetka1')
 				changeStatus('success')
 				onSuccess()
-			} else {
+			} else if (data?.attempts_left === 0) {
+				console.log('vetka_no_attempts')
+				changeStatus('attempts-left')
+				// onNoAttemptsLeft()
+			} else if (data?.is_correct === false) {
+				console.log('vetka2')
 				changeStatus('error')
 				onError()
+			} else {
+				console.log('vetka3')
 			}
-
 			if (isAllCorrectClient !== data.is_correct) {
 				// eslint-disable-next-line no-console
 				console.warn('Client/server mismatch on answer check', {
