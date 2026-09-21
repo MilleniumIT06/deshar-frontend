@@ -20,7 +20,7 @@ interface AccentTrainerProps extends TrainerCommonProps {
 	}
 }
 export const AccentTrainer = forwardRef(
-	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex, audio }: AccentTrainerProps, ref) => {
+	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex, audio, isAlreadyCompleted }: AccentTrainerProps, ref) => {
 		const { selectedIds, handleSelect } = useLetterClickTrainer({
 			ref,
 			correctIds: payload.correct_variant_ids,
@@ -28,6 +28,7 @@ export const AccentTrainer = forwardRef(
 			onError,
 			changeStatus,
 			isMulti: false,
+			isCompleted: isAlreadyCompleted,
 		})
 
 		const selectedId = selectedIds[0] || null

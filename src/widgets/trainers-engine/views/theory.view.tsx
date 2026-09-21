@@ -42,6 +42,7 @@ export function TheoryScreen({
 	const isAudioPlaying = useAppSelector(state => state.audioPlayer.isPlaying)
 	const countdownSuffix = isCountdownExpired ? '' : ` (${secondsLeft})`
 	const baseUrl = process.env.SERVER_URL
+
 	return (
 		<div className={cn('trainers-engine')} style={{ backgroundImage: `url(${baseUrl}${theme})` }}>
 			<div className="trainers-engine__container trainers-engine__container_theory">

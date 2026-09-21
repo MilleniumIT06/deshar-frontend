@@ -69,6 +69,7 @@ export interface TrainerCommonProps {
 	onSuccess: () => void
 	onError: () => void
 	changeStatus: (status: TrainerStatus) => void
+	isAlreadyCompleted: boolean
 }
 // {subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 
