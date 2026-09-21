@@ -2,7 +2,7 @@
 'use client'
 import cn from 'classnames'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { type RootState } from '@/app/_store'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
@@ -16,11 +16,9 @@ import {
 	setThemeUrl,
 	setAlertModalOpen,
 	resetState,
-	setIsLessonCompletedModalOpen,
 } from '@/entities/engine/model/engine.slice'
 import { addPoints, subtractPoints, resetCurrentScore } from '@/entities/engine/model/scoring.slice'
 import { initTimer, resetTimer, resumeTimer } from '@/entities/engine/model/timer.slice'
-import { LessonCompletedModal } from '@/features/info/ui/LessonCompletedModal'
 import { useGetModuleById } from '@/hooks/queries/education/modules/useGetModuleById'
 import { Loader } from '@/shared/ui/Loader'
 
@@ -40,10 +38,10 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 	const router = useRouter()
 	const { time } = config
 	const dispatch = useAppDispatch()
-	const { status, currentTrainerIndex, isMenuOpen, isAlertModalOpen, isSupportModalOpen, mode, currentLessonIndex, isLessonCompletedModalOpen } =
-		useAppSelector((state: RootState) => state.engine)
+	const { status, currentTrainerIndex, isMenuOpen, isAlertModalOpen, isSupportModalOpen, mode, currentLessonIndex } = useAppSelector(
+		(state: RootState) => state.engine,
+	)
 	const isFinished = useAppSelector((state: RootState) => state.timer.isFinished)
-	const [shownModalLessonId, setShownModalLessonId] = useState(null)
 	const { moduleId, pieceId } = useParams<{ moduleId: string; pieceId: string }>()
 	const currentLesson = lessons ? lessons[currentLessonIndex] : null
 	console.log(lessons)
@@ -169,15 +167,6 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 	// 		dispatch(setIsLessonCompletedModalOpen(true))
 	// 	}
 	// }, [currentLesson, isTaskDetailLoading])
-	useEffect(() => {
-		if (!isTaskDetailLoading && currentLesson) {
-			const isCompleted = currentLesson.progress?.is_completed && currentLesson.progress?.status === 'completed'
-			if (isCompleted && shownModalLessonId !== currentLesson.id) {
-				dispatch(setIsLessonCompletedModalOpen(true))
-				setShownModalLessonId(currentLesson.id)
-			}
-		}
-	}, [currentLesson, isTaskDetailLoading, shownModalLessonId])
 	// const onMainButtonClick = () => {
 	// 	if (currentLessonIndex === lessons.length - 1) {
 	// 		// dispatch(addCurrentToTotalScore())
@@ -276,11 +265,6 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 					onClose={handleBreakBtnClick}
 					onCancelBtnClick={handleBreakBtnClick}
 					onYesBtnClick={handleBreakLearningProcess}
-				/>
-				<LessonCompletedModal
-					isOpen={isLessonCompletedModalOpen}
-					handleClick={() => dispatch(setIsLessonCompletedModalOpen(false))}
-					onClose={() => dispatch(setIsLessonCompletedModalOpen(false))}
 				/>
 			</>
 		)
