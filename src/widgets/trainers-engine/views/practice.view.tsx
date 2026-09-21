@@ -55,7 +55,7 @@ export const PracticeScreen = React.memo(function PracticeScreen({
 }: PracticeScreenProps) {
 	const theme = useAppSelector(state => state.engine.themeUrl)
 	const baseUrl = process.env.SERVER_URL
-
+	console.log('uniq', uniqueTask)
 	return (
 		<div className={cn('trainers-engine')} style={{ backgroundImage: `url(${baseUrl}${theme})` }}>
 			<div className="trainers-engine__container">
@@ -87,6 +87,7 @@ export const PracticeScreen = React.memo(function PracticeScreen({
 										payload: uniqueTask.task.config,
 										title: uniqueTask.task.title,
 										subTitle: uniqueTask.task.description,
+										isAlreadyCompleted: uniqueTask.progress.is_completed,
 									}}
 									changeStatus={changeStatus}
 									onError={onError}

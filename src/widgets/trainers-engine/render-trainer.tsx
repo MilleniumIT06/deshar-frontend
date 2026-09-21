@@ -5,7 +5,12 @@ import { trainersMap, type TrainerType } from './trainersMap'
 
 interface RenderTrainerProps {
 	type: TrainerType
-	data: any
+	data: {
+		payload: any
+		title: string
+		subTitle: string | null
+		isAlreadyCompleted: boolean
+	}
 	onSuccess: () => void
 	onError: () => void
 	changeStatus: (status: 'idle' | 'error' | 'success') => void
@@ -18,7 +23,17 @@ const RenderTrainer = forwardRef<any, RenderTrainerProps>(({ type, data, changeS
 	if (!Component) {
 		return <p>Компонент типа: {type} не найден</p>
 	}
-	return <Component {...data} ref={ref} changeStatus={changeStatus} onSuccess={onSuccess} onError={onError} currentTrainerIndex={currentIndex} />
+	return (
+		<Component
+			{...data}
+			ref={ref}
+			changeStatus={changeStatus}
+			onSuccess={onSuccess}
+			onError={onError}
+			isAlreadyCompleted={data.isAlreadyCompleted}
+			currentTrainerIndex={currentIndex}
+		/>
+	)
 })
 
 RenderTrainer.displayName = 'RenderTrainer'
