@@ -29,7 +29,7 @@ export async function proxy(request: NextRequest) {
 	}
 
 	try {
-		const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8000'
+		const SERVER_URL = process.env.SERVER_URL
 		const response = await fetch(`${SERVER_URL}/api/auth/me`, {
 			headers: {
 				Authorization: `Bearer ${token}`,

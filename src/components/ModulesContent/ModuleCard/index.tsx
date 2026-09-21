@@ -38,6 +38,7 @@ export const ModuleCard = ({
 	isFullCardClickable = false,
 	fon,
 }: ModuleCardProps) => {
+	const baseUrl = process.env.SERVER_URL
 	const getStatus = () => {
 		if (progressPercentage === 100) return 'completed'
 		if (progressPercentage === 0) return 'not_started'
@@ -74,17 +75,14 @@ export const ModuleCard = ({
 
 	if (isFullCardClickable && !isDisabled) {
 		return (
-			<Link
-				href={targetUrl}
-				className={cn('ModuleCard', 'ModuleCard--clickable')}
-				style={{ backgroundImage: `url(http://localhost:8000${fon})` }}>
+			<Link href={targetUrl} className={cn('ModuleCard', 'ModuleCard--clickable')} style={{ backgroundImage: `url(${baseUrl}${fon})` }}>
 				{CardContent}
 			</Link>
 		)
 	}
 
 	return (
-		<div className={cn('ModuleCard')} style={{ backgroundImage: `url(http://localhost:8000${fon})` }}>
+		<div className={cn('ModuleCard')} style={{ backgroundImage: `url(${baseUrl}${fon})` }}>
 			{CardContent}
 		</div>
 	)
