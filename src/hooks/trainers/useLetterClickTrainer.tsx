@@ -46,13 +46,35 @@ export function useLetterClickTrainer({ ref, correctIds = [], onSuccess, onError
 
 				if (!data) return
 
-				if (data?.is_correct || (data?.is_completed && isCorrectClient)) {
+				console.log('useLetterClickTrainer', data)
+
+				const isTaskSuccessful =
+					data.is_correct ||
+					(data.is_completed && isCorrectClient) ||
+					(data.is_completed === true && data.message === 'Задание уже выполнено')
+
+				if (isTaskSuccessful) {
+					console.log('vetka_success')
 					changeStatus('success')
 					onSuccess()
-				} else {
+					return
+				}
+
+				if (data.attempts_left === 0) {
+					console.log('vetka_no_attempts')
+					changeStatus('attempts-left')
+					// onNoAttemptsLeft()
+					return
+				}
+
+				if (data.is_correct === false) {
+					console.log('vetka_error')
 					changeStatus('error')
 					onError()
+					return
 				}
+
+				console.log('vetka_fallback', data)
 
 				if (isCorrectClient !== data.is_correct) {
 					// eslint-disable-next-line no-console

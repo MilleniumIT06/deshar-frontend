@@ -5,6 +5,7 @@ import type { TrainerStatus } from '@/widgets/trainers-engine/types/types'
 interface TrainersState {
 	isMenuOpen: boolean
 	isSupportModalOpen: boolean
+	isLessonCompletedModalOpen: boolean
 	isAlertModalOpen: boolean
 	status: TrainerStatus
 	currentTrainerIndex: number
@@ -17,6 +18,7 @@ const initialState: TrainersState = {
 	isMenuOpen: false,
 	isSupportModalOpen: false,
 	isAlertModalOpen: false,
+	isLessonCompletedModalOpen: false,
 	status: 'idle',
 	currentTrainerIndex: 0,
 	themeUrl: null,
@@ -39,6 +41,9 @@ export const trainersSlice = createSlice({
 		},
 		setSupportModalOpen: (state, action: PayloadAction<boolean>) => {
 			state.isSupportModalOpen = action.payload
+		},
+		setIsLessonCompletedModalOpen: (state, action: PayloadAction<boolean>) => {
+			state.isLessonCompletedModalOpen = action.payload
 		},
 		setAlertModalOpen: (state, action: PayloadAction<boolean>) => {
 			state.isAlertModalOpen = action.payload
@@ -87,6 +92,7 @@ export const {
 	setLessonIndex,
 	setAlertModalOpen,
 	setSupportModalOpen,
+	setIsLessonCompletedModalOpen,
 	setStatus,
 	nextTrainer,
 	resetTrainers,

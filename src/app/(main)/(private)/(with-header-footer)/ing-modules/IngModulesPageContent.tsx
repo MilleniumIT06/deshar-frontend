@@ -22,7 +22,7 @@ export const IngModulesPageContent = () => {
 					<h1 className="section__title">Ингушский язык</h1>
 					<div className="IngModulesPageContent__cards">
 						{modules?.data.map(module => {
-							console.log(module.progress.progress_percentage)
+							console.log(module.progress)
 							return (
 								<ModuleCard
 									id={module.id}
@@ -32,7 +32,7 @@ export const IngModulesPageContent = () => {
 									number={module.id}
 									title={module.name}
 									maxLessons={module.total_pieces || 0}
-									doneLessons={0}
+									doneLessons={module.progress.progress_percentage === 100 ? (module.total_pieces ?? 0) : 0}
 									processLessons={0}
 									isDisabled={module.progress.is_completed}
 									progressPercentage={module.progress.progress_percentage}

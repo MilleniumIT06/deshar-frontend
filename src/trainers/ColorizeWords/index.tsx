@@ -43,10 +43,7 @@ export const ColorizeWords = forwardRef(
 				color: null,
 			})),
 		)
-		const { checkAnswer } = useCheckAnswer({
-			onSuccess: () => changeStatus('success'),
-			onError: () => changeStatus('error'),
-		})
+		const { checkAnswer } = useCheckAnswer()
 		useImperativeHandle(ref, () => ({
 			handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
 				if (!moduleId || !pieceId || !lessonId || !taskId) return
@@ -67,10 +64,25 @@ export const ColorizeWords = forwardRef(
 					timeSpent: timeSpent ?? 0,
 				})
 
+				// if (data?.is_correct || (data?.is_completed && isCorrectClient)) {
+				// 	onSuccess()
+				// } else {
+				// 	onError()
+				// }
 				if (data?.is_correct || (data?.is_completed && isCorrectClient)) {
+					console.log('vetka1')
+					changeStatus('success')
 					onSuccess()
-				} else {
+				} else if (data?.attempts_left === 0) {
+					console.log('vetka_no_attempts')
+					changeStatus('attempts-left')
+					// onNoAttemptsLeft()
+				} else if (data?.is_correct === false) {
+					console.log('vetka2')
+					changeStatus('error')
 					onError()
+				} else {
+					console.log('vetka3')
 				}
 				if (isCorrectClient !== data?.is_correct) {
 					// eslint-disable-next-line no-console
