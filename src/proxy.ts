@@ -6,8 +6,26 @@ import { ADMIN_PANEL_ROLES, type User } from './shared/types/user.types'
 import type { NextRequest } from 'next/server'
 
 export async function proxy(request: NextRequest) {
-	const token = request.cookies.get('jwt_token')?.value
 	const { pathname } = request.nextUrl
+	const correctPassword = process.env.SITE_PASSWORD
+
+	if (pathname !== '/secure-login' && pathname !== '/api/auth') {
+		const authCookie = request.cookies.get('site_auth')?.value
+
+		if (correctPassword && (!authCookie || authCookie !== correctPassword)) {
+			return NextResponse.redirect(new URL('/secure-login', request.url))
+		}
+	}
+
+	if (pathname === '/secure-login' && request.cookies.get('site_auth')?.value === correctPassword) {
+		return NextResponse.redirect(new URL('/', request.url))
+	}
+
+	if (pathname === '/secure-login' || pathname === '/api/auth') {
+		return NextResponse.next()
+	}
+
+	const token = request.cookies.get('jwt_token')?.value
 
 	const isAuthenticated = Boolean(token)
 	const isAuthPage = pathname === '/sign-in'
@@ -77,6 +95,8 @@ export async function proxy(request: NextRequest) {
 export const config = {
 	matcher: [
 		'/',
+		'/secure-login',
+		'/api/auth',
 		'/home',
 		'/sign-in',
 		'/not-confirmed',
