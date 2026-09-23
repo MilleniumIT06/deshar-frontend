@@ -2,6 +2,7 @@ import './styles.scss'
 import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
 
+import { API_URL } from '@/config/api.config'
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
@@ -24,9 +25,10 @@ interface DragWordToPocketProps extends TrainerCommonProps {
 	}
 }
 export const DragWordToPocket = forwardRef<TrainerRef, DragWordToPocketProps>(
-	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle, audio }, ref) => {
+	({ changeStatus, onError, onSuccess, isAlreadyCompleted, payload, title, currentTrainerIndex, subTitle, audio }, ref) => {
 		const { selections, handleDragEnd, isVariantUsed, setSelections } = useDndTrainer({
 			items: payload.items,
+			isCompleted: isAlreadyCompleted,
 			onSuccess,
 			onError,
 			changeStatus,
@@ -59,7 +61,7 @@ export const DragWordToPocket = forwardRef<TrainerRef, DragWordToPocketProps>(
 							<Pocket
 								key={item.id}
 								id={item.id}
-								imageUrl={item.imageUrl}
+								imageUrl={API_URL.taskFiles() + item.imageUrl}
 								currentValue={getSelectedValue(item.id)}
 								removeItem={removeItemFromSelections}
 								// isError={isSubmitted && selections[item.id] !== item.correctVariantId}

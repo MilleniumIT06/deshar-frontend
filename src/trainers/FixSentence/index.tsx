@@ -1,6 +1,6 @@
 import { useState, forwardRef, useImperativeHandle } from 'react'
 
-import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
+import { useTrainerCheck } from '@/hooks/trainers/useTrainerCheck'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { type TrainerCommonProps } from '@/widgets/trainers-engine/types/types'
 
@@ -19,65 +19,29 @@ interface FixSentenceProps extends TrainerCommonProps {
 }
 
 export const FixSentence = forwardRef(
-	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex, audio }: FixSentenceProps, ref) => {
+	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex, audio, isAlreadyCompleted }: FixSentenceProps, ref) => {
 		const [selectedIndex, setSelectedIndex] = useState<number>(0)
-		const { checkAnswer, isLoading } = useCheckAnswer()
+
+		const { runCheck, isCheckingRef } = useTrainerCheck({
+			isCompleted: isAlreadyCompleted ?? false,
+			onSuccess,
+			onError,
+			changeStatus,
+		})
 
 		useImperativeHandle(ref, () => ({
 			handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
-				if (isLoading) return
-				if (!moduleId || !pieceId || !lessonId || !taskId) return
 				const selectedAnswer = payload.words[selectedIndex]
-
 				const isCorrectClient = selectedAnswer === payload.correctAnswer
 
-				if (isCorrectClient) {
-					changeStatus('success')
-				} else {
-					changeStatus('error')
-				}
-
-				const data = await checkAnswer({
+				await runCheck(isCorrectClient, {
 					moduleId,
 					pieceId,
 					lessonId,
 					taskId,
 					answer: selectedAnswer,
-					timeSpent: timeSpent || 0,
+					timeSpent,
 				})
-
-				if (!data) return
-
-				// if (data?.is_correct || (data?.is_completed && isCorrectClient)) {
-				// 	changeStatus('success')
-				// 	onSuccess()
-				// } else {
-				// 	changeStatus('error')
-				// 	onError()
-				// }
-				if (data?.is_correct || (data?.is_completed && isCorrectClient)) {
-					console.log('vetka1')
-					changeStatus('success')
-					onSuccess()
-				} else if (data?.attempts_left === 0) {
-					console.log('vetka_no_attempts')
-					changeStatus('attempts-left')
-					// onNoAttemptsLeft()
-				} else if (data?.is_correct === false) {
-					console.log('vetka2')
-					changeStatus('error')
-					onError()
-				} else {
-					console.log('vetka3')
-				}
-				if (isCorrectClient !== data.is_correct) {
-					// eslint-disable-next-line no-console
-					console.warn('Client/server mismatch on answer check', {
-						taskId: taskId,
-						isCorrectClient,
-						serverResult: data.is_correct,
-					})
-				}
 			},
 			handleReset: () => {
 				setSelectedIndex(0)
@@ -86,6 +50,7 @@ export const FixSentence = forwardRef(
 		}))
 
 		const handleSelect = (index: number) => {
+			if (isCheckingRef.current) return
 			setSelectedIndex(index)
 			changeStatus('idle')
 		}

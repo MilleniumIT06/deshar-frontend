@@ -3,7 +3,7 @@ import cn from 'classnames'
 import { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 import { ArcherContainer, ArcherElement } from 'react-archer'
 
-import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
+import { useTrainerCheck } from '@/hooks/trainers/useTrainerCheck'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { useCategoryMatcher } from './useCategoryMatcher'
@@ -33,24 +33,28 @@ interface CategoryMatcherProps extends TrainerCommonProps {
 }
 
 export const CategoryMatcher = forwardRef(
-	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex, audio }: CategoryMatcherProps, ref) => {
+	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex, audio, isAlreadyCompleted }: CategoryMatcherProps, ref) => {
 		const { items, categories } = payload
 		const archerRef = useRef<any>(null)
 
 		const { connections, activeSource, startConnection, endConnection, mousePos, resetConnections } = useCategoryMatcher()
-		const { checkAnswer } = useCheckAnswer()
+
+		const { runCheck, isCheckingRef } = useTrainerCheck({
+			isCompleted: isAlreadyCompleted ?? false,
+			onSuccess,
+			onError,
+			changeStatus,
+		})
+
 		useImperativeHandle(ref, () => ({
 			handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
 				const allConnected = items.every(item => connections.some(conn => conn.source === item.id))
 				if (!allConnected) return
 
-				if (!moduleId || !pieceId || !lessonId || !taskId) return
-
 				const isCorrectClient = items.every(item => {
 					const conn = connections.find(c => c.source === item.id)
 					return conn?.target === item.correct
 				})
-				changeStatus(isCorrectClient ? 'success' : 'error')
 
 				const formattedAnswers = items.map(item => {
 					const conn = connections.find(c => c.source === item.id)
@@ -59,43 +63,14 @@ export const CategoryMatcher = forwardRef(
 					}
 				})
 
-				const data = await checkAnswer({
+				await runCheck(isCorrectClient, {
 					moduleId,
 					pieceId,
 					lessonId,
 					taskId,
 					answer: formattedAnswers,
-					timeSpent: timeSpent ?? 0,
+					timeSpent,
 				})
-
-				// if (data?.is_correct || (data?.is_completed && isCorrectClient)) {
-				// 	onSuccess()
-				// } else {
-				// 	onError()
-				// }
-				if (data?.is_correct || (data?.is_completed && isCorrectClient)) {
-					console.log('vetka1')
-					changeStatus('success')
-					onSuccess()
-				} else if (data?.attempts_left === 0) {
-					console.log('vetka_no_attempts')
-					changeStatus('attempts-left')
-					// onNoAttemptsLeft()
-				} else if (data?.is_correct === false) {
-					console.log('vetka2')
-					changeStatus('error')
-					onError()
-				} else {
-					console.log('vetka3')
-				}
-				if (isCorrectClient !== data?.is_correct) {
-					// eslint-disable-next-line no-console
-					console.warn('Client/server mismatch on answer check', {
-						taskId,
-						isCorrectClient,
-						serverResult: data?.is_correct,
-					})
-				}
 			},
 			handleReset: () => {
 				changeStatus('idle')
@@ -108,10 +83,12 @@ export const CategoryMatcher = forwardRef(
 			}
 		}, [mousePos, activeSource])
 		const onStartConnect = (e: React.MouseEvent, id: string) => {
+			if (isCheckingRef.current) return
 			changeStatus('idle')
 			startConnection(id, e)
 		}
 		const onEndConnect = (targetId: string) => {
+			if (isCheckingRef.current) return
 			changeStatus('idle')
 			endConnection(targetId)
 		}
@@ -122,7 +99,6 @@ export const CategoryMatcher = forwardRef(
 				{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
 				<ArcherContainer ref={archerRef} strokeColor="#4f46e5" strokeWidth={3} endShape={{ arrow: { arrowLength: 0 } }}>
 					<div className="category-matcher__container">
-						{/* Левая колонка (Items) */}
 						<div className="category-matcher__column">
 							{items.map(w => {
 								const conn = connections.find(c => c.source === w.id)
@@ -173,7 +149,6 @@ export const CategoryMatcher = forwardRef(
 							})}
 						</div>
 
-						{/* Правая колонка (Categories) */}
 						<div className="category-matcher__column">
 							{categories.map(c => {
 								const isTargeted = connections.some(conn => conn.target === c.id)
@@ -208,26 +183,13 @@ export const CategoryMatcher = forwardRef(
 									position: 'fixed',
 									left: mousePos.x,
 									top: mousePos.y,
-									width: 1, // Небольшой размер, чтобы Archer мог зацепиться
+									width: 1,
 									height: 1,
 									pointerEvents: 'none',
 								}}
 							/>
 						</ArcherElement>
 					)}
-					{/* <ArcherElement id="mouse-pointer">
-    <div
-        style={{
-            position: 'fixed',
-            left: mousePos.x,
-            top: mousePos.y,
-            width: 1, // Небольшой размер, чтобы Archer мог зацепиться
-            height: 1,
-            pointerEvents: 'none',
-            visibility: activeSource ? 'visible' : 'hidden' // Скрываем, когда нет тяги
-        }}
-    />
-</ArcherElement> */}
 				</ArcherContainer>
 			</div>
 		)

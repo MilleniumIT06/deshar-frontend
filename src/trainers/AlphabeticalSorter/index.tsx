@@ -1,7 +1,7 @@
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
 import { useState, forwardRef, useImperativeHandle } from 'react'
 
-import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
+import { useTrainerCheck } from '@/hooks/trainers/useTrainerCheck'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { AlphabeticalSlot } from './Slot'
@@ -27,9 +27,16 @@ interface AlphabeticalSorterProps extends TrainerCommonProps {
 }
 
 export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps>(
-	({ payload, onSuccess, onError, changeStatus, title, currentTrainerIndex, subTitle, audio }, ref) => {
+	({ payload, onSuccess, onError, changeStatus, title, currentTrainerIndex, subTitle, audio, isAlreadyCompleted }, ref) => {
 		const [slots, setSlots] = useState(payload.slots.map(item => ({ ...item, currentValue: null as string | null })))
-		const { checkAnswer } = useCheckAnswer()
+
+		const { runCheck, isCheckingRef } = useTrainerCheck({
+			isCompleted: isAlreadyCompleted ?? false,
+			onSuccess,
+			onError,
+			changeStatus,
+		})
+
 		const handleDragEnd = (event: DragEndEvent) => {
 			const { active, over } = event
 			if (over) {
@@ -43,51 +50,20 @@ export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps
 
 		useImperativeHandle(ref, () => ({
 			handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
-				if (!moduleId || !pieceId || !lessonId || !taskId) return
 				const isAllCorrectClient = slots.every(slot => slot.correctValue === slot.currentValue)
-				changeStatus(isAllCorrectClient ? 'success' : 'error')
 
 				const formattedAnswers = slots.map(slot => ({
 					[slot.id]: slot.currentValue,
 				}))
 
-				const data = await checkAnswer({
+				await runCheck(isAllCorrectClient, {
 					moduleId,
 					pieceId,
 					lessonId,
 					taskId,
 					answer: formattedAnswers,
-					timeSpent: timeSpent ?? 0,
+					timeSpent,
 				})
-
-				// if (data?.is_correct || (data?.is_completed && isAllCorrectClient)) {
-				// 	onSuccess()
-				// } else {
-				// 	onError()
-				// }
-				if (data?.is_correct || (data?.is_completed && isAllCorrectClient)) {
-					console.log('vetka1')
-					changeStatus('success')
-					onSuccess()
-				} else if (data?.attempts_left === 0) {
-					console.log('vetka_no_attempts')
-					changeStatus('attempts-left')
-					// onNoAttemptsLeft()
-				} else if (data?.is_correct === false) {
-					console.log('vetka2')
-					changeStatus('error')
-					onError()
-				} else {
-					console.log('vetka3')
-				}
-				if (isAllCorrectClient !== data?.is_correct) {
-					// eslint-disable-next-line no-console
-					console.warn('Client/server mismatch on answer check', {
-						taskId,
-						isAllCorrectClient,
-						serverResult: data?.is_correct,
-					})
-				}
 			},
 			handleReset: () => {
 				setSlots(prev => prev.map(item => ({ ...item, currentValue: null })))
@@ -113,7 +89,7 @@ export const AlphabeticalSorter = forwardRef<TrainerRef, AlphabeticalSorterProps
 								<AlphabeticalSorterVariant
 									key={variant.id}
 									id={variant.id}
-									isDisabled={disableVariant(variant.value)}
+									isDisabled={disableVariant(variant.value) || isCheckingRef.current}
 									value={variant.value}
 								/>
 							))}

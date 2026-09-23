@@ -8,11 +8,19 @@ const nextConfig: NextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: '**', // разрешает все HTTPS хосты
+				hostname: 'ui-avatars.com',
+				pathname: '/**',
 			},
 			{
 				protocol: 'http',
-				hostname: '**', // разрешает все HTTP хосты
+				hostname: 'localhost', // Если локальный бекенд, укажите его хост (например, localhost или 127.0.0.1)
+				port: '8000', // Укажите порт вашего бекенда, если он есть
+				pathname: '/**',
+			},
+			{
+				protocol: 'https',
+				hostname: '://yourbackend.com', // Если продакшн-бекенд, укажите его домен здесь
+				pathname: '/**',
 			},
 		],
 	},

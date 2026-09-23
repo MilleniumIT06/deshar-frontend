@@ -3,7 +3,7 @@ import cn from 'classnames'
 import { useState, useMemo, useCallback, useImperativeHandle, forwardRef } from 'react'
 
 import './styles.scss'
-import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
+import { useTrainerCheck } from '@/hooks/trainers/useTrainerCheck'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { type TrainerCommonProps } from '@/widgets/trainers-engine/types/types'
 
@@ -38,26 +38,34 @@ interface ConclusionProps extends TrainerCommonProps {
 }
 
 export const Conclusion = forwardRef(
-	({ payload: { data }, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex, audio }: ConclusionProps, ref) => {
+	(
+		{ payload: { data }, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex, audio, isAlreadyCompleted }: ConclusionProps,
+		ref,
+	) => {
 		const [content, setContent] = useState<ConclusionItem[]>([...data])
 		const [currentItemIndex, setCurrentItemIndex] = useState(0)
 		const [isError] = useState(false)
 
 		const currentItem = content[currentItemIndex]
-		const { checkAnswer } = useCheckAnswer({
-			onSuccess: () => changeStatus('success'),
-			onError: () => changeStatus('error'),
+
+		const { runCheck, isCheckingRef } = useTrainerCheck({
+			isCompleted: isAlreadyCompleted ?? false,
+			onSuccess,
+			onError,
+			changeStatus,
 		})
 
 		useImperativeHandle(ref, () => ({
 			handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
+				if (isCheckingRef.current) return
+
 				const allFilledInCurrent = currentItem.slots.every(s => s.current !== null)
 				if (!allFilledInCurrent) return
 
 				const isCurrentCorrectClient = currentItem.slots.every(s => s.current === s.correct)
-				changeStatus(isCurrentCorrectClient ? 'success' : 'error')
 
 				if (!isCurrentCorrectClient) {
+					changeStatus('error')
 					onError()
 					return
 				}
@@ -67,14 +75,13 @@ export const Conclusion = forwardRef(
 				const isLastStep = currentItemIndex === content.length - 1
 
 				if (!isLastStep) {
+					changeStatus('success')
 					setTimeout(() => {
 						setCurrentItemIndex(prev => prev + 1)
 						changeStatus('idle')
 					}, 500)
 					return
 				}
-
-				if (!moduleId || !pieceId || !lessonId || !taskId) return
 
 				const formattedAnswers = content.flatMap(item => {
 					const slotsToMap = item.id === currentItem.id ? currentItem.slots : item.slots
@@ -83,50 +90,18 @@ export const Conclusion = forwardRef(
 					}))
 				})
 
-				const isAllCorrectClient = content.every(item => {
-					const slotsToCheck = item.id === currentItem.id ? currentItem.slots : item.slots
-					return slotsToCheck.every(s => s.current === s.correct)
-				})
+				// Каждый шаг уже проверен на клиенте перед тем, как продвинуться дальше,
+				// так что на последнем шаге весь ответ гарантированно верный локально.
+				const isAllCorrectClient = true
 
-				const data = await checkAnswer({
+				await runCheck(isAllCorrectClient, {
 					moduleId,
 					pieceId,
 					lessonId,
 					taskId,
 					answer: formattedAnswers,
-					timeSpent: timeSpent ?? 0,
+					timeSpent,
 				})
-
-				// if (data?.is_correct || (data?.is_completed && isAllCorrectClient)) {
-				// 	changeStatus('success')
-				// 	onSuccess()
-				// } else {
-				// 	changeStatus('error')
-				// 	onError()
-				// }
-				if (data?.is_correct || (data?.is_completed && isAllCorrectClient)) {
-					console.log('vetka1')
-					changeStatus('success')
-					onSuccess()
-				} else if (data?.attempts_left === 0) {
-					console.log('vetka_no_attempts')
-					changeStatus('attempts-left')
-					// onNoAttemptsLeft()
-				} else if (data?.is_correct === false) {
-					console.log('vetka2')
-					changeStatus('error')
-					onError()
-				} else {
-					console.log('vetka3')
-				}
-				if (isAllCorrectClient !== data?.is_correct) {
-					// eslint-disable-next-line no-console
-					console.warn('Client/server mismatch on final answer check', {
-						taskId,
-						isAllCorrectClient,
-						serverResult: data?.is_correct,
-					})
-				}
 			},
 			handleReset: () => {
 				changeStatus('idle')

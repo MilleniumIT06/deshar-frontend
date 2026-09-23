@@ -15,7 +15,7 @@ interface UseWordTrainerProps {
 	id: string | number
 	correctAnswer: string
 	availableLetters: ILetter[]
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+	changeStatus: (status: 'idle' | 'error' | 'success' | 'checking' | 'attempts-left') => void
 }
 
 export const useWordTrainer = ({ id, correctAnswer, availableLetters, changeStatus }: UseWordTrainerProps) => {
@@ -36,19 +36,6 @@ export const useWordTrainer = ({ id, correctAnswer, availableLetters, changeStat
 		}
 	}, [])
 
-	const handleCheck = useCallback(() => {
-		const userAnswer = slots.map(slot => slot.current).join('')
-		const isAnySlotFilled = slots.some(slot => slot.current !== null)
-
-		if (!isAnySlotFilled) return
-
-		if (userAnswer === correctAnswer) {
-			changeStatus('success')
-		} else {
-			changeStatus('error')
-		}
-	}, [slots, correctAnswer, changeStatus])
-
 	const handleReset = useCallback(() => {
 		changeStatus('idle')
 		setSlots(prev => prev.map(slot => ({ ...slot, current: null })))
@@ -65,7 +52,6 @@ export const useWordTrainer = ({ id, correctAnswer, availableLetters, changeStat
 		letters,
 		sensors,
 		handleDragEnd,
-		handleCheck,
 		handleReset,
 		disableMoveBox,
 	}

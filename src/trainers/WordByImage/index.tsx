@@ -1,11 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import { DndContext } from '@dnd-kit/core'
-import Image from 'next/image'
 import { useImperativeHandle, forwardRef } from 'react'
 import './styles.scss'
 
-import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
+import { API_URL } from '@/config/api.config'
+import { useTrainerCheck } from '@/hooks/trainers/useTrainerCheck'
 import { useWordTrainer } from '@/hooks/trainers/useWordTrainer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
@@ -35,80 +36,38 @@ interface WordByImageProps extends TrainerCommonProps {
 }
 
 export const WordByImage = forwardRef<TrainerRef, WordByImageProps>(
-	({ title, subTitle, status, changeStatus, onSuccess, onError, payload, currentTrainerIndex, audio }, ref) => {
+	({ title, subTitle, status, changeStatus, onSuccess, onError, payload, currentTrainerIndex, audio, isAlreadyCompleted }, ref) => {
 		const { correctAnswer, availableLetters, imageUrl, id } = payload
 
-		const { checkAnswer, isLoading } = useCheckAnswer()
-
-		const {
-			slots,
-			letters,
-			sensors,
-			handleDragEnd,
-			handleCheck: coreCheck,
-			handleReset,
-			disableMoveBox,
-		} = useWordTrainer({
+		const { slots, letters, sensors, handleDragEnd, handleReset, disableMoveBox } = useWordTrainer({
 			id,
 			correctAnswer,
 			availableLetters,
 			changeStatus,
 		})
 
-		const wrappedHandleCheck = async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
-			if (isLoading) return
+		const { runCheck, isCheckingRef } = useTrainerCheck({
+			isCompleted: isAlreadyCompleted ?? false,
+			onSuccess,
+			onError,
+			changeStatus,
+		})
 
+		const wrappedHandleCheck = async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
 			const isAnySlotFilled = slots.some(slot => slot.current !== null)
 			if (!isAnySlotFilled) return
 
-			if (!moduleId || !pieceId || !lessonId || !taskId) return
-
 			const userAnswer = slots.map(slot => slot.current || '').join('')
+			const isCorrectClient = userAnswer === correctAnswer
 
-			coreCheck()
-
-			const data = await checkAnswer({
+			await runCheck(isCorrectClient, {
 				moduleId,
 				pieceId,
 				lessonId,
 				taskId,
-				answer: userAnswer, // Строка ответа
-				timeSpent: timeSpent ?? 0,
+				answer: userAnswer,
+				timeSpent,
 			})
-
-			if (!data) return
-
-			// if (data.is_correct) {
-			// 	changeStatus('success')
-			// 	onSuccess?.()
-			// } else {
-			// 	changeStatus('error')
-			// 	onError?.()
-			// }
-			const isCorrectClient = userAnswer === correctAnswer
-			if (data?.is_correct || (data?.is_completed && isCorrectClient)) {
-				console.log('vetka1')
-				changeStatus('success')
-				onSuccess()
-			} else if (data?.attempts_left === 0) {
-				console.log('vetka_no_attempts')
-				changeStatus('attempts-left')
-				// onNoAttemptsLeft()
-			} else if (data?.is_correct === false) {
-				console.log('vetka2')
-				changeStatus('error')
-				onError()
-			} else {
-				console.log('vetka3')
-			}
-			if (isCorrectClient !== data.is_correct) {
-				// eslint-disable-next-line no-console
-				console.warn('Client/server mismatch on answer check', {
-					taskId,
-					isCorrectClient,
-					serverResult: data.is_correct,
-				})
-			}
 		}
 
 		useImperativeHandle(ref, () => ({
@@ -126,7 +85,7 @@ export const WordByImage = forwardRef<TrainerRef, WordByImageProps>(
 						</div>
 
 						<div className="word-image-trainer__image-wrapper">
-							<Image src={imageUrl} alt={title} className="word-image-trainer__image" fill />
+							<img src={API_URL.taskFiles() + imageUrl} alt={title} className="word-image-trainer__image" />
 						</div>
 
 						<div className="word-image-trainer__slots-container">
@@ -137,7 +96,12 @@ export const WordByImage = forwardRef<TrainerRef, WordByImageProps>(
 
 						<ul className="word-image-trainer__letters-pool">
 							{letters.map(letter => (
-								<MoveBoxImage key={letter.id} char={letter.letter} id={letter.id} isDisabled={disableMoveBox(letter)} />
+								<MoveBoxImage
+									key={letter.id}
+									char={letter.letter}
+									id={letter.id}
+									isDisabled={disableMoveBox(letter) || isCheckingRef.current}
+								/>
 							))}
 						</ul>
 					</div>

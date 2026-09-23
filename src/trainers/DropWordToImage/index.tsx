@@ -2,6 +2,7 @@
 import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
 
+import { API_URL } from '@/config/api.config'
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
 import './styles.scss'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
@@ -49,7 +50,12 @@ export const DropWordToImage = forwardRef<TrainerRef, DropWordToImageProps>(
 
 					<div className="trainer-dnd__drop-zone">
 						{payload.items.map(item => (
-							<DropItem key={item.id} id={item.id} imageUrl={item.imageUrl} currentValue={getSelectedValue(item.id)} />
+							<DropItem
+								key={item.id}
+								id={item.id}
+								imageUrl={API_URL.taskFiles() + item.imageUrl}
+								currentValue={getSelectedValue(item.id)}
+							/>
 						))}
 					</div>
 

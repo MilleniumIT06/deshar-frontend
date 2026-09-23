@@ -2,7 +2,7 @@
 import { DndContext, type DragEndEvent } from '@dnd-kit/core'
 import { useState, forwardRef, useImperativeHandle, useCallback } from 'react'
 
-import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
+import { useTrainerCheck } from '@/hooks/trainers/useTrainerCheck'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { Slot } from './slot'
@@ -32,64 +32,30 @@ interface SequenceBuilderProps extends TrainerCommonProps {
 }
 
 export const SequenceBuilder = forwardRef(
-	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex, audio }: SequenceBuilderProps, ref) => {
+	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex, audio, isAlreadyCompleted }: SequenceBuilderProps, ref) => {
 		const [currentValues, setCurrentValues] = useState<Record<string | number, string | null>>(
 			Object.fromEntries(payload.slots.map(s => [s.slotId, null])),
 		)
 		const generateInitialState = useCallback(() => Object.fromEntries(payload.slots.map(s => [s.slotId, null])), [payload.slots])
-		const { checkAnswer, isLoading } = useCheckAnswer()
+
+		const { runCheck, isCheckingRef } = useTrainerCheck({
+			isCompleted: isAlreadyCompleted ?? false,
+			onSuccess,
+			onError,
+			changeStatus,
+		})
 
 		const checkResult = async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
-			if (isLoading) return
-			if (!moduleId || !pieceId || !lessonId || !taskId) return
-
 			const isAllCorrectClient = payload.slots.every(slot => currentValues[slot.slotId] === slot.correctValue)
 
-			if (isAllCorrectClient) {
-				changeStatus('success')
-			} else {
-				changeStatus('error')
-			}
-			const data = await checkAnswer({
+			await runCheck(isAllCorrectClient, {
 				moduleId,
 				pieceId,
 				lessonId,
 				taskId,
 				answer: currentValues,
-				timeSpent: timeSpent ?? 0,
+				timeSpent,
 			})
-			if (!data) return
-
-			// if (data.is_correct) {
-			// 	changeStatus('success')
-			// 	onSuccess()
-			// } else {
-			// 	changeStatus('error')
-			// 	onError()
-			// }
-			if (data?.is_correct || (data?.is_completed && isAllCorrectClient)) {
-				console.log('vetka1')
-				changeStatus('success')
-				onSuccess()
-			} else if (data?.attempts_left === 0) {
-				console.log('vetka_no_attempts')
-				changeStatus('attempts-left')
-				// onNoAttemptsLeft()
-			} else if (data?.is_correct === false) {
-				console.log('vetka2')
-				changeStatus('error')
-				onError()
-			} else {
-				console.log('vetka3')
-			}
-			if (isAllCorrectClient !== data.is_correct) {
-				// eslint-disable-next-line no-console
-				console.warn('Client/server mismatch on answer check', {
-					taskId,
-					isAllCorrectClient,
-					serverResult: data.is_correct,
-				})
-			}
 		}
 
 		useImperativeHandle(ref, () => ({
@@ -102,7 +68,7 @@ export const SequenceBuilder = forwardRef(
 
 		const handleDragEnd = (event: DragEndEvent) => {
 			const { active, over } = event
-			if (isLoading) return
+			if (isCheckingRef.current) return
 
 			if (over) {
 				setCurrentValues(prev => ({

@@ -20,13 +20,14 @@ interface SingleSelectImageQuizProps extends TrainerCommonProps {
 	}
 }
 export const SingleSelectImageQuiz = forwardRef<TrainerRef, SingleSelectImageQuizProps>(
-	({ changeStatus, onError, onSuccess, payload, title, currentTrainerIndex, subTitle, audio }, ref) => {
+	({ changeStatus, onError, onSuccess, payload, isAlreadyCompleted, title, currentTrainerIndex, subTitle, audio }, ref) => {
 		const { selected, isSubmitted, handleSelect } = useQuizLogic<number>({
 			ref,
 			correctValue: payload.correct_variant_id,
 			onSuccess,
 			onError,
 			changeStatus,
+			isCompleted: isAlreadyCompleted,
 		})
 		const handleVariantClick = (id: number) => {
 			if (isSubmitted) {

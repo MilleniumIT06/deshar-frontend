@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import './pocket.scss'
 import { useDroppable } from '@dnd-kit/core'
 import cn from 'classnames'
-import Image from 'next/image'
 
 interface Props {
 	id: number | string
@@ -27,7 +27,7 @@ export const Pocket = ({ id, imageUrl, currentValue, removeItem }: Props) => {
 				</div>
 			)}
 			<div className="DropPocket__content">
-				<Image width={124} height={127} src={imageUrl} alt="testpocket1da" />
+				<img style={{ width: 124, height: 127 }} src={imageUrl} alt="testpocket1da" />
 			</div>
 		</div>
 	)

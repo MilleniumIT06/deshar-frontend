@@ -1,6 +1,7 @@
 import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
 
+import { API_URL } from '@/config/api.config'
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import { type TrainerCommonProps } from '@/widgets/trainers-engine/types/types'
@@ -24,9 +25,10 @@ interface Props extends TrainerCommonProps {
 	}
 }
 export const PhraseImageMatcher = forwardRef(
-	({ changeStatus, onError, onSuccess, payload, title, subTitle, currentTrainerIndex, audio }: Props, ref) => {
+	({ changeStatus, onError, onSuccess, payload, title, subTitle, currentTrainerIndex, audio, isAlreadyCompleted }: Props, ref) => {
 		const { selections, isSubmitted, handleDragEnd, isVariantUsed } = useDndTrainer({
 			items: payload.items,
+			isCompleted: isAlreadyCompleted,
 			onSuccess,
 			onError,
 			changeStatus,
@@ -46,7 +48,7 @@ export const PhraseImageMatcher = forwardRef(
 							<PhraseImageMatcherItem
 								key={item.id}
 								id={item.id}
-								imageUrl={item.imageUrl}
+								imageUrl={API_URL.taskFiles() + item.imageUrl}
 								currentValue={getVariantValueById(selections[item.id])}
 							/>
 						))}
