@@ -2,6 +2,7 @@
 import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
 
+import { API_URL } from '@/config/api.config'
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
 import './styles.scss'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
@@ -26,15 +27,15 @@ interface DropWordToImageProps extends TrainerCommonProps {
 }
 
 export const DropWordToImage = forwardRef<TrainerRef, DropWordToImageProps>(
-	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex, audio }, ref) => {
+	({ payload, onSuccess, onError, changeStatus, isAlreadyCompleted, title, subTitle, currentTrainerIndex, audio }, ref) => {
 		const { selections, isSubmitted, handleDragEnd, isVariantUsed } = useDndTrainer({
 			items: payload.items,
+			isCompleted: isAlreadyCompleted,
 			onSuccess,
 			onError,
 			changeStatus,
 			ref,
 		})
-
 		const getSelectedValue = (itemId: string) => {
 			const variantId = selections[itemId]
 			return payload.variants.find(v => v.id === variantId)?.value || null
@@ -49,7 +50,12 @@ export const DropWordToImage = forwardRef<TrainerRef, DropWordToImageProps>(
 
 					<div className="trainer-dnd__drop-zone">
 						{payload.items.map(item => (
-							<DropItem key={item.id} id={item.id} imageUrl={item.imageUrl} currentValue={getSelectedValue(item.id)} />
+							<DropItem
+								key={item.id}
+								id={item.id}
+								imageUrl={API_URL.taskFiles() + item.imageUrl}
+								currentValue={getSelectedValue(item.id)}
+							/>
 						))}
 					</div>
 

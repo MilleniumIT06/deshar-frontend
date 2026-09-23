@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { forwardRef, useImperativeHandle } from 'react'
 
-import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
+import { useTrainerCheck } from '@/hooks/trainers/useTrainerCheck'
 import { useWordPicker } from '@/hooks/trainers/useWordPicker'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
@@ -18,67 +18,37 @@ interface WordPickerProps extends TrainerCommonProps {
 }
 
 export const WordPicker = forwardRef(
-	({ title, subTitle, onError, onSuccess, changeStatus, payload, currentTrainerIndex, audio }: WordPickerProps, ref) => {
-		const { checkAnswer, isLoading } = useCheckAnswer()
-
-		const {
-			words,
-			toggleWord,
-			checkResult: coreCheck,
-			reset,
-		} = useWordPicker({
+	({ title, subTitle, onError, onSuccess, changeStatus, payload, currentTrainerIndex, audio, isAlreadyCompleted }: WordPickerProps, ref) => {
+		const { words, toggleWord, reset } = useWordPicker({
 			text: payload.text,
 			correctValues: payload.correctValues,
+			changeStatus,
+		})
+
+		const { runCheck, isCheckingRef } = useTrainerCheck({
+			isCompleted: isAlreadyCompleted ?? false,
 			onSuccess,
 			onError,
 			changeStatus,
 		})
 
 		const wrappedHandleCheck = async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
-			if (isLoading) return
 			if (!moduleId || !pieceId || !lessonId || !taskId) return
-			const selectedTextAnswers = words.filter(word => word.isSelected).map(word => word.text)
 
-			if (selectedTextAnswers.length === 0) return
-			coreCheck()
-			const data = await checkAnswer({
+			const selectedWords = words.filter(word => word.isSelected)
+			if (selectedWords.length === 0) return
+
+			const correctWords = words.filter(w => w.isCorrect)
+			const isCorrectClient = selectedWords.length === correctWords.length && selectedWords.every(word => word.isCorrect)
+
+			await runCheck(isCorrectClient, {
 				moduleId,
 				pieceId,
 				lessonId,
 				taskId,
-				answer: selectedTextAnswers,
-				timeSpent: timeSpent ?? 0,
+				answer: selectedWords.map(word => word.text),
+				timeSpent,
 			})
-
-			if (!data) return
-			const correctWords = words.filter(w => w.isCorrect)
-			const isCorrectClient =
-				words.filter(w => w.isSelected).length === correctWords.length && words.filter(w => w.isSelected).every(word => word.isCorrect)
-
-			if (data?.is_correct || (data?.is_completed && isCorrectClient)) {
-				console.log('vetka1')
-				changeStatus('success')
-				onSuccess()
-			} else if (data?.attempts_left === 0) {
-				console.log('vetka_no_attempts')
-				changeStatus('attempts-left')
-				// onNoAttemptsLeft()
-			} else if (data?.is_correct === false) {
-				console.log('vetka2')
-				changeStatus('error')
-				onError()
-			} else {
-				console.log('vetka3')
-			}
-
-			if (isCorrectClient !== data.is_correct) {
-				// eslint-disable-next-line no-console
-				console.warn('Client/server mismatch on answer check', {
-					taskId,
-					isCorrectClient,
-					serverResult: data.is_correct,
-				})
-			}
 		}
 
 		useImperativeHandle(ref, () => ({
@@ -111,7 +81,7 @@ export const WordPicker = forwardRef(
 									className={cn('word-picker__word', {
 										'is-selected': word.isSelected,
 									})}
-									onClick={() => !isLoading && toggleWord(index)}>
+									onClick={() => !isCheckingRef.current && toggleWord(index)}>
 									{word.text}
 								</span>
 							))}

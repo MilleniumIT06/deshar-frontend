@@ -13,7 +13,7 @@ import { restrictToHorizontalAxis } from '@dnd-kit/modifiers'
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, horizontalListSortingStrategy } from '@dnd-kit/sortable'
 import { useState, useImperativeHandle, forwardRef } from 'react'
 
-import { useCheckAnswer } from '@/hooks/trainers/useCheckAnswer'
+import { useTrainerCheck } from '@/hooks/trainers/useTrainerCheck'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import './styles.scss'
 
@@ -38,72 +38,34 @@ interface ReorderItemsProps extends TrainerCommonProps {
 }
 
 export const ReorderItems = forwardRef<TrainerRef, ReorderItemsProps>(
-	({ status, changeStatus, payload, onSuccess, onError, title, currentTrainerIndex, subTitle, audio }, ref) => {
+	({ status, changeStatus, payload, onSuccess, onError, title, currentTrainerIndex, subTitle, audio, isAlreadyCompleted }, ref) => {
 		const [data, setData] = useState<IReorderPayload>(payload)
 
 		const sensors = useSensors(
 			useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
 			useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
 		)
-		const { checkAnswer, isLoading } = useCheckAnswer()
+
+		const { runCheck, isCheckingRef } = useTrainerCheck({
+			isCompleted: isAlreadyCompleted ?? false,
+			onSuccess,
+			onError,
+			changeStatus,
+		})
 
 		useImperativeHandle(ref, () => ({
 			handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
-				if (isLoading) return
-
-				if (!moduleId || !pieceId || !lessonId || !taskId) return
-
 				const currentOrder = data.data.map(item => item.id)
-
 				const isCorrectClient = JSON.stringify(currentOrder) === JSON.stringify(data.correctOrderIds)
 
-				if (isCorrectClient) {
-					changeStatus('success')
-				} else {
-					changeStatus('error')
-				}
-
-				const serverData = await checkAnswer({
+				await runCheck(isCorrectClient, {
 					moduleId,
 					pieceId,
 					lessonId,
 					taskId,
 					answer: currentOrder,
-					timeSpent: timeSpent ?? 0,
+					timeSpent,
 				})
-
-				if (!serverData) return
-
-				// if (serverData.is_correct) {
-				// 	changeStatus('success')
-				// 	onSuccess?.()
-				// } else {
-				// 	changeStatus('error')
-				// 	onError?.()
-				// }
-				if (serverData?.is_correct || (serverData?.is_completed && isCorrectClient)) {
-					console.log('vetka1')
-					changeStatus('success')
-					onSuccess()
-				} else if (serverData?.attempts_left === 0) {
-					console.log('vetka_no_attempts')
-					changeStatus('attempts-left')
-					// onNoAttemptsLeft()
-				} else if (serverData?.is_correct === false) {
-					console.log('vetka2')
-					changeStatus('error')
-					onError()
-				} else {
-					console.log('vetka3')
-				}
-				if (isCorrectClient !== serverData.is_correct) {
-					// eslint-disable-next-line no-console
-					console.warn('Client/server mismatch on answer check', {
-						taskId,
-						isCorrectClient,
-						serverResult: serverData.is_correct,
-					})
-				}
 			},
 			handleReset: () => {
 				setData(payload)
@@ -112,6 +74,8 @@ export const ReorderItems = forwardRef<TrainerRef, ReorderItemsProps>(
 		}))
 
 		function handleDragEnd(event: DragEndEvent) {
+			if (isCheckingRef.current) return
+
 			const { active, over } = event
 			if (status !== 'idle') changeStatus('idle')
 

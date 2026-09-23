@@ -23,10 +23,11 @@ interface MultiSelectProps extends TrainerCommonProps {
 }
 
 export const MultiSelectVariantsQuiz = forwardRef<TrainerRef, MultiSelectProps>(
-	({ payload, changeStatus, onError, onSuccess, title, subTitle, currentTrainerIndex, audio }, ref) => {
+	({ payload, changeStatus, onError, onSuccess, isAlreadyCompleted, title, subTitle, currentTrainerIndex, audio }, ref) => {
 		const { selected, isSubmitted, handleSelect } = useQuizLogic<number>({
 			ref,
 			correctValue: payload.correctVariantIds,
+			isCompleted: isAlreadyCompleted,
 			onSuccess,
 			onError,
 			changeStatus,

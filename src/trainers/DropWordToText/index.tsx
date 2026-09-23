@@ -30,9 +30,10 @@ interface DropWordToTextProps extends TrainerCommonProps {
 }
 
 export const DropWordToText = forwardRef<TrainerRef, DropWordToTextProps>(
-	({ title, subTitle, onSuccess, onError, changeStatus, payload, currentTrainerIndex, audio }, ref) => {
+	({ title, subTitle, onSuccess, onError, changeStatus, payload, currentTrainerIndex, audio, isAlreadyCompleted }, ref) => {
 		const { selections, isSubmitted, handleDragEnd, isVariantUsed } = useDndTrainer({
 			items: payload.items,
+			isCompleted: isAlreadyCompleted,
 			onSuccess,
 			onError,
 			changeStatus,

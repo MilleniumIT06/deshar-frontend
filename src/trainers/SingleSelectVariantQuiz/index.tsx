@@ -24,13 +24,14 @@ interface SingleSelectProps extends TrainerCommonProps {
 }
 
 export const SingleSelectVariantQuiz = forwardRef<TrainerRef, SingleSelectProps>(
-	({ payload, changeStatus, onError, onSuccess, title, subTitle, currentTrainerIndex, audio }, ref) => {
+	({ payload, changeStatus, onError, onSuccess, title, isAlreadyCompleted, subTitle, currentTrainerIndex, audio }, ref) => {
 		const { selected, isSubmitted, handleSelect } = useQuizLogic<number>({
 			ref,
 			correctValue: payload.correctVariantId,
 			onSuccess,
 			onError,
 			changeStatus,
+			isCompleted: isAlreadyCompleted,
 		})
 		return (
 			<div className="single-select-quiz">

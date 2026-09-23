@@ -9,12 +9,10 @@ interface WordState {
 interface UseWordPickerProps {
 	text: string
 	correctValues: string[]
-	onSuccess: () => void
-	onError: () => void
-	changeStatus: (status: 'idle' | 'error' | 'success') => void
+	changeStatus: (status: 'idle' | 'error' | 'success' | 'checking' | 'attempts-left') => void
 }
 
-export const useWordPicker = ({ text, correctValues, onSuccess, onError, changeStatus }: UseWordPickerProps) => {
+export const useWordPicker = ({ text, correctValues, changeStatus }: UseWordPickerProps) => {
 	const [words, setWords] = useState<WordState[]>(() => {
 		const regex = /([^\s"']+|"[^"]*"|'[^']*')/g
 		const matches = text.match(regex) || []
@@ -30,21 +28,6 @@ export const useWordPicker = ({ text, correctValues, onSuccess, onError, changeS
 		setWords(prev => prev.map((word, i) => (i === index ? { ...word, isSelected: !word.isSelected } : word)))
 	}, [])
 
-	const checkResult = useCallback(() => {
-		const selectedWords = words.filter(w => w.isSelected)
-		const correctWords = words.filter(w => w.isCorrect)
-
-		const isAllCorrect = selectedWords.length === correctWords.length && selectedWords.every(word => word.isCorrect)
-
-		if (isAllCorrect && selectedWords.length > 0) {
-			onSuccess()
-			changeStatus('success')
-		} else {
-			onError()
-			changeStatus('error')
-		}
-	}, [words, onSuccess, onError, changeStatus])
-
 	const reset = useCallback(() => {
 		setWords(prev => prev.map(word => ({ ...word, isSelected: false })))
 		changeStatus('idle')
@@ -53,7 +36,6 @@ export const useWordPicker = ({ text, correctValues, onSuccess, onError, changeS
 	return {
 		words,
 		toggleWord,
-		checkResult,
 		reset,
 	}
 }

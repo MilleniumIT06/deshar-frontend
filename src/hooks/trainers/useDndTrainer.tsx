@@ -2,7 +2,7 @@
 import { type DragEndEvent } from '@dnd-kit/core'
 import { useState, useImperativeHandle, type ForwardedRef } from 'react'
 
-import { useCheckAnswer } from './useCheckAnswer'
+import { useTrainerCheck } from './useTrainerCheck'
 
 import type { Id } from '@/shared/types/types'
 
@@ -13,72 +13,52 @@ interface TrainerItem {
 
 interface UseDndTrainerProps<T extends TrainerItem> {
 	items: T[]
+	isCompleted?: boolean
 	onSuccess: () => void
 	onError: () => void
 	changeStatus: (status: any) => void
 	ref: ForwardedRef<any>
 }
 
-export const useDndTrainer = <T extends TrainerItem>({ items, onSuccess, onError, changeStatus, ref }: UseDndTrainerProps<T>) => {
+export const useDndTrainer = <T extends TrainerItem>({
+	items,
+	isCompleted = false,
+	onSuccess,
+	onError,
+	changeStatus,
+	ref,
+}: UseDndTrainerProps<T>) => {
 	const [isSubmitted, setIsSubmitted] = useState(false)
 	const [selections, setSelections] = useState<Record<number | string, number | string | null>>(
 		Object.fromEntries(items.map(item => [item.id, null])),
 	)
-	const { checkAnswer, isLoading } = useCheckAnswer()
+
+	const { runCheck } = useTrainerCheck({
+		isCompleted,
+		onSuccess,
+		onError,
+		changeStatus,
+	})
 
 	useImperativeHandle(ref, () => ({
 		handleCheck: async (moduleId?: Id, pieceId?: Id, lessonId?: Id, taskId?: Id, timeSpent?: number) => {
-			if (isLoading) {
-				console.log('checking')
-				changeStatus('checking')
-				return
-			}
-
 			const allFilled = items.every(item => selections[item.id] !== null)
 			if (!allFilled) return
-
-			if (!moduleId || !pieceId || !lessonId || !taskId) return
 
 			setIsSubmitted(true)
 
 			const formattedAnswers = Object.fromEntries(items.map(item => [item.id, selections[item.id]]))
 
-			try {
-				const data = await checkAnswer({
-					moduleId,
-					pieceId,
-					lessonId,
-					taskId,
-					answer: formattedAnswers,
-					timeSpent: timeSpent ?? 0,
-				})
-				if (!data) {
-					changeStatus('idle')
-					setIsSubmitted(false)
-					return
-				}
+			const isCorrectClient = items.every(item => selections[item.id] === item.correctVariantId)
 
-				if (data?.is_correct || data?.is_completed) {
-					console.log('vetka1')
-					changeStatus('success')
-					onSuccess()
-				} else if (data?.attempts_left === 0) {
-					console.log('vetka_no_attempts')
-					changeStatus('attempts-left')
-					// onNoAttemptsLeft()
-				} else if (data?.is_correct === false) {
-					console.log('vetka2')
-					changeStatus('error')
-					onError()
-				} else {
-					console.log('vetka3')
-				}
-			} catch (e) {
-				changeStatus('idle')
-				setIsSubmitted(false)
-				// eslint-disable-next-line no-console
-				console.error(e)
-			}
+			await runCheck(isCorrectClient, {
+				moduleId,
+				pieceId,
+				lessonId,
+				taskId,
+				answer: formattedAnswers,
+				timeSpent,
+			})
 		},
 		handleReset: () => {
 			setIsSubmitted(false)
