@@ -11,7 +11,7 @@ import './styles.scss'
 import { BreakBtn } from '../BreakBtn'
 import { EngineButton } from '../Button'
 
-export const EngineFinishScreen = () => {
+export const EngineFinishScreen = ({ handleBreakBtnClick }: { handleBreakBtnClick: () => void }) => {
 	const { totalScore } = useAppSelector(state => state.scoreReducer)
 	const dispatch = useAppDispatch()
 	const router = useRouter()
@@ -26,7 +26,7 @@ export const EngineFinishScreen = () => {
 	}
 	return (
 		<section className="finish-screen">
-			<BreakBtn handleClick={() => 'test'} className="finish-screen__close-btn" />
+			<BreakBtn handleClick={handleBreakBtnClick} className="finish-screen__close-btn" />
 
 			<div className="finish-screen__container">
 				<div className="finish-screen__content">

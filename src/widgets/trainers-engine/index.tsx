@@ -236,7 +236,13 @@ export const TrainersEngine = ({ data: lessons, config, engineStatus }: Trainers
 		return (
 			<div className={cn('trainers-engine')}>
 				<div className="trainers-engine__finish-screen">
-					<EngineFinishScreen />
+					<EngineFinishScreen handleBreakBtnClick={handleBreakBtnClick} />
+					<AlertModal
+						isOpen={isAlertModalOpen}
+						onClose={handleBreakBtnClick}
+						onCancelBtnClick={handleBreakBtnClick}
+						onYesBtnClick={handleBreakLearningProcess}
+					/>
 				</div>
 			</div>
 		)

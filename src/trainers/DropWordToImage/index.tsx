@@ -27,15 +27,15 @@ interface DropWordToImageProps extends TrainerCommonProps {
 }
 
 export const DropWordToImage = forwardRef<TrainerRef, DropWordToImageProps>(
-	({ payload, onSuccess, onError, changeStatus, title, subTitle, currentTrainerIndex, audio }, ref) => {
+	({ payload, onSuccess, onError, changeStatus, isAlreadyCompleted, title, subTitle, currentTrainerIndex, audio }, ref) => {
 		const { selections, isSubmitted, handleDragEnd, isVariantUsed } = useDndTrainer({
 			items: payload.items,
+			isCompleted: isAlreadyCompleted,
 			onSuccess,
 			onError,
 			changeStatus,
 			ref,
 		})
-
 		const getSelectedValue = (itemId: string) => {
 			const variantId = selections[itemId]
 			return payload.variants.find(v => v.id === variantId)?.value || null
