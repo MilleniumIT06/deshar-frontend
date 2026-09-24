@@ -1,6 +1,6 @@
 'use client'
-import { API_URL } from '@/config/api.config'
 import { useAudioPlayer } from '@/shared/hooks/useAudioPlayer'
+import { getAudioUrl } from '@/shared/lib/getAudioUrl'
 import './styles.scss'
 
 interface TrainerTitleProps {
@@ -10,7 +10,9 @@ interface TrainerTitleProps {
 }
 
 export const TrainerTitle = ({ title, audio, className = '' }: TrainerTitleProps) => {
-	const { isLoading, togglePlay } = useAudioPlayer(`${API_URL.files()}${audio}`)
+	const audioUrl = getAudioUrl(audio)
+	const { isLoading, togglePlay } = useAudioPlayer(audioUrl, true)
+
 	return (
 		<div className={`trainer-title ${className}`}>
 			{audio ? (

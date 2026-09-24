@@ -3,9 +3,11 @@ import { useRef, useEffect, useCallback } from 'react'
 
 import { type RootState } from '@/app/_store'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
-import { setCurrentAudio, setIsLoading, setIsPlaying, stopAudio } from '@/entities/audio/model/audioPlayer.slice'
+import { markAudioAsListened, setCurrentAudio, setIsLoading, setIsPlaying, stopAudio } from '@/entities/audio/model/audioPlayer.slice'
 
-export const useAudioPlayer = (audioUrl: string | null) => {
+import { useAutoplayAudio } from './useAutoplayAudio'
+
+export const useAudioPlayer = (audioUrl: string | null, autoPlay = false) => {
 	const audioRef = useRef<HTMLAudioElement | null>(null)
 	const dispatch = useAppDispatch()
 
@@ -32,6 +34,7 @@ export const useAudioPlayer = (audioUrl: string | null) => {
 		const handleEnded = () => {
 			audio.currentTime = 0
 			dispatch(stopAudio())
+			dispatch(markAudioAsListened())
 		}
 		const handleWaiting = () => dispatch(setIsLoading(true))
 		const handlePlaying = () => dispatch(setIsLoading(false))
@@ -61,6 +64,27 @@ export const useAudioPlayer = (audioUrl: string | null) => {
 		}
 	}, [currentAudioUrl, audioUrl])
 
+	const playAudio = useCallback(() => {
+		if (!audioRef.current || !audioUrl) return
+		const audio = audioRef.current
+
+		dispatch(setCurrentAudio(audioUrl))
+		if (audio.readyState < 3) {
+			dispatch(setIsLoading(true))
+		}
+		audio.play().catch(() => {
+			dispatch(setIsLoading(false))
+		})
+	}, [audioUrl, dispatch])
+
+	useAutoplayAudio(
+		() => {
+			if (!audioRef.current || !audioRef.current.paused) return
+			playAudio()
+		},
+		autoPlay && Boolean(audioUrl),
+	)
+
 	const togglePlay = useCallback(() => {
 		if (!audioRef.current || !audioUrl) return
 		const audio = audioRef.current
@@ -72,14 +96,8 @@ export const useAudioPlayer = (audioUrl: string | null) => {
 			return
 		}
 
-		dispatch(setCurrentAudio(audioUrl))
-		if (audio.readyState < 3) {
-			dispatch(setIsLoading(true))
-		}
-		audio.play().catch(() => {
-			dispatch(setIsLoading(false))
-		})
-	}, [audioUrl, dispatch])
+		playAudio()
+	}, [audioUrl, playAudio])
 
 	return {
 		togglePlay: audioUrl ? togglePlay : undefined,
