@@ -2,6 +2,8 @@ import cn from 'classnames'
 
 import { useAppSelector } from '@/app/_store/hooks'
 import { EngineButton } from '@/components/Engine/Button'
+import { API_URL } from '@/config/api.config'
+import { useIsAudioListened } from '@/shared/hooks/useIsAudioListened'
 
 import { EngineHeader } from '../components/engine-header'
 import { EngineTheory } from '../components/engine-theory'
@@ -40,6 +42,9 @@ export function TheoryScreen({
 }: TheoryScreenProps) {
 	const theme = useAppSelector(state => state.engine.themeUrl)
 	const isAudioPlaying = useAppSelector(state => state.audioPlayer.isPlaying)
+	const audioUrl = lesson.audio ? `${API_URL.files()}${lesson.audio}` : null
+	const hasListenedAudio = useIsAudioListened(audioUrl)
+	const isAudioBlocking = audioUrl ? !hasListenedAudio : false
 	const countdownSuffix = isCountdownExpired ? '' : ` (${secondsLeft})`
 	const baseUrl = process.env.SERVER_URL
 
@@ -72,7 +77,7 @@ export function TheoryScreen({
 							<div className="engine-footer__actions">
 								{hasTasks ? (
 									<EngineButton
-										disabled={!isCountdownExpired || isAudioPlaying}
+										disabled={!isCountdownExpired || isAudioPlaying || isAudioBlocking}
 										variant="primary"
 										className="trainers-engine__button"
 										onClick={onStartPractice}>
@@ -83,7 +88,7 @@ export function TheoryScreen({
 										variant="primary"
 										className="trainers-engine__button"
 										onClick={onTheoryNext}
-										disabled={!isCountdownExpired || isAudioPlaying}>
+										disabled={!isCountdownExpired || isAudioPlaying || isAudioBlocking}>
 										{isLastLesson ? 'Завершить' : 'Перейти на след урок'}
 										{countdownSuffix}
 									</EngineButton>
