@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 import { useAppDispatch } from '@/app/_store/hooks'
 import { logoutAction } from '@/entities/user/model/user.slice'
@@ -27,13 +28,14 @@ export const UserMenu = ({
 	const handleLogout = async () => {
 		try {
 			await loginService.logout()
+			dispatch(logoutAction())
+			handleMenuClose(false)
+			toast.success('Вы успешно вышли из аккаунта!', { style: { backgroundColor: 'var(--neutral-white)' } })
+			router.replace('/sign-in')
 		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.error('Ошибка при логауте:', error)
-		} finally {
-			dispatch(logoutAction())
-			handleMenuClose(false)
-			router.push('/sign-in')
+			toast.error('Ошибка при выходе из аккаунта!')
 		}
 	}
 	return (
