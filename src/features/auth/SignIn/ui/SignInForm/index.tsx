@@ -11,13 +11,16 @@ import { Input } from '@/shared/ui/Input'
 
 import { signInUserFormSchema, type signInUserFormData } from '../../model/signIn.schema'
 
+import type { AxiosError } from 'axios'
+
 import './styles.scss'
 
 export const SignInForm = () => {
-	const { isLoading, login, serverError } = useAuth()
+	const { isLoading, login } = useAuth()
 	const {
 		register,
 		handleSubmit,
+		setError,
 		formState: { errors, isValid },
 	} = useForm<signInUserFormData>({
 		resolver: zodResolver(signInUserFormSchema),
@@ -25,19 +28,36 @@ export const SignInForm = () => {
 	})
 
 	const onSubmit = async (data: signInUserFormData) => {
-		login(data)
+		login(data, {
+			onError: (
+				err: AxiosError<{
+					message: string
+					errors: Record<string, string[]>
+				}>,
+			) => {
+				if (err.response?.status === 422) {
+					const serverErrors = err.response.data?.errors
+
+					if (serverErrors) {
+						Object.keys(serverErrors).forEach(key => {
+							const messages = serverErrors[key]
+							const errorMessage = Array.isArray(messages) ? messages[0] : messages
+
+							setError(key as keyof signInUserFormData, {
+								type: 'server',
+								message: errorMessage || 'Ошибка валидации',
+							})
+						})
+					}
+				}
+			},
+		})
 	}
 
 	return (
 		<div className="SignInForm">
 			<div className="SignInForm__inner">
 				<h1 className="SignInForm__title">Вход в систему</h1>
-
-				{serverError && (
-					<div className="SignInForm__error" role="alert">
-						{serverError}
-					</div>
-				)}
 
 				<form className="SignInForm__form" onSubmit={handleSubmit(onSubmit)}>
 					<Input
