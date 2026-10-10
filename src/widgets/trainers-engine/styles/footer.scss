@@ -1,3 +1,4 @@
+@use './../../../shared/scss/breakpoint' as breakpoint;
 .engine-footer {
 	display: flex;
 	justify-content: center;
@@ -12,10 +13,16 @@
 		align-items: center;
 		width: 100%;
 		max-width: 80%;
+		@include breakpoint.mobile {
+			max-width: 100%;
+		}
 	}
 
 	&__back-btn {
 		padding: 0 40px;
+		@include breakpoint.mobile {
+			padding: 0 15px;
+		}
 	}
 
 	&__back-content {
@@ -27,41 +34,7 @@
 	&__back-icon {
 		flex-shrink: 0;
 	}
-
-	&.forest {
-		.engine-footer__back-btn {
-			background-color: #d3e8de;
-			color: #57804f;
-		}
-	}
-	&.ocean {
-		.engine-footer__back-btn {
-			background-color: #b7d6e9;
-			color: #507890;
-		}
-		.engine-footer__submit-btn {
-			background-color: #78e0ff;
-			color: #154d5e;
-		}
-	}
-	&.towers {
-		.engine-footer__back-btn {
-			background-color: #fffcf8;
-			color: #8f795b;
-		}
-		.engine-footer__submit-btn {
-			background-color: #ffde05;
-			color: #542c1f;
-		}
-	}
-	&.s {
-		.engine-footer__back-btn {
-			background-color: #b5c3e4;
-			color: #5f697b;
-		}
-		.engine-footer__submit-btn {
-			background-color: #2776ee;
-			color: #fff;
-		}
+	@include breakpoint.mobile {
+		height: 70px;
 	}
 }

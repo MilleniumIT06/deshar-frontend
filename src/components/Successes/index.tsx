@@ -44,9 +44,6 @@ export const Successes = () => {
 								{ id: 'week', label: 'Неделя' },
 								{ id: 'month', label: 'Месяц' },
 								{ id: 'year', label: 'Год' },
-								{ id: 'test', label: 'test' },
-								{ id: 'test2', label: 'test2' },
-								{ id: 'test3', label: 'test3' },
 							]}
 							defaultValue="week"
 							onChange={() => 'test'}

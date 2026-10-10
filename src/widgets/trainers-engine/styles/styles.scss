@@ -1,3 +1,4 @@
+@use './../../../shared/scss/breakpoint' as breakpoint;
 .trainers-engine {
 	min-height: 100vh;
 	background-color: #f8faff;
@@ -32,6 +33,14 @@
 				text-align: center;
 				color: var(--color-text);
 			}
+			@include breakpoint.mobile {
+				justify-content: start;
+			}
+		}
+		@include breakpoint.mobile {
+			height: calc(100vh - 130px);
+			padding: 0 15px 15px;
+			padding-top: 20px;
 		}
 	}
 
@@ -188,4 +197,12 @@
 			flex-wrap: wrap;
 		}
 	}
+}
+.trainer__subtitle {
+	font-family: var(--font-family);
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 1.4;
+	text-align: center;
+	color: var(--text-color);
 }
