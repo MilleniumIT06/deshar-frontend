@@ -4,11 +4,11 @@ import dynamic from 'next/dynamic'
 import { getBestStudentsColumns } from '@/columns/getBestStudentsColumns'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
 import { Table } from '@/components/Admin/Table'
-import { ResultsCard } from '@/components/ResultsCard'
 import { barChartMockData } from '@/mocks/adminMock'
 import { TEST_CLASSMATES } from '@/mocks/data'
 import { type Student } from '@/shared/types/admin/types'
 import './styles.scss'
+import { ResultsCard } from '@/shared/ui/ResultsCard'
 
 const MainChart = dynamic(() => import('@/widgets/AdminWidgets/MainChart').then(mod => mod.MainChart), {
 	ssr: false,

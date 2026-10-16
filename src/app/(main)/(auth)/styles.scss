@@ -83,3 +83,10 @@
 		background-image: none;
 	}
 }
+.forgotPassword {
+	padding-top: 111px;
+	min-height: 100vh;
+	@include breakpoint.tablet {
+		padding-top: 0;
+	}
+}

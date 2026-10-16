@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 
-import { useAuth } from '@/hooks/auth/useAuth'
+import { useAuth } from '@/features/auth/SignIn/hooks/useAuth'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 

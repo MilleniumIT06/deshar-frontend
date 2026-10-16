@@ -1,6 +1,5 @@
-import { CompletedCourses } from '@/components/CompletedCourses'
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs'
-
+import { CompletedCourses } from '@/widgets/CompletedCourses'
 import '../../styles.scss'
 
 export default function Completed() {

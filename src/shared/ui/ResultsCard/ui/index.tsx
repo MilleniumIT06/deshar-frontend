@@ -1,0 +1,96 @@
+import cn from 'classnames'
+import { type ReactNode } from 'react'
+
+import './styles.scss'
+import { formatDisplayValue } from '../libs/formatDisplayValue'
+
+const IncreaseIcon = () => (
+	<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+		<path
+			d="M6.29289 16.1924C5.90237 16.5829 5.90237 17.2161 6.29289 17.6066C6.68342 17.9971 7.31658 17.9971 7.70711 17.6066L6.29289 16.1924ZM17.8995 6.99998C17.8995 6.4477 17.4518 5.99998 16.8995 5.99998L7.89949 5.99998C7.34721 5.99998 6.89949 6.4477 6.89949 6.99998C6.89949 7.55227 7.34721 7.99998 7.89949 7.99998L15.8995 7.99998L15.8995 16C15.8995 16.5523 16.3472 17 16.8995 17C17.4518 17 17.8995 16.5523 17.8995 16L17.8995 6.99998ZM7.70711 17.6066L17.6066 7.70709L16.1924 6.29287L6.29289 16.1924L7.70711 17.6066Z"
+			fill="currentColor"
+		/>
+	</svg>
+)
+
+const DecreaseIcon = () => (
+	<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+		<path
+			d="M7.70698 6.29289C7.31646 5.90237 6.6833 5.90237 6.29277 6.29289C5.90225 6.68342 5.90225 7.31658 6.29277 7.70711L7.70698 6.29289ZM16.8994 17.8995C17.4517 17.8995 17.8994 17.4518 17.8994 16.8995L17.8994 7.89949C17.8994 7.34721 17.4517 6.89949 16.8994 6.89949C16.3471 6.89949 15.8994 7.34721 15.8994 7.89949L15.8994 15.8995L7.89937 15.8995C7.34709 15.8995 6.89937 16.3472 6.89937 16.8995C6.89937 17.4518 7.34709 17.8995 7.89937 17.8995L16.8994 17.8995ZM6.29277 7.70711L16.1923 17.6066L17.6065 16.1924L7.70698 6.29289L6.29277 7.70711Z"
+			fill="currentColor"
+		/>
+	</svg>
+)
+
+const DefaultIcon = () => (
+	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M8 12.6413L10.6027 15L16 10" stroke="#303030" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+		<circle cx="12" cy="12" r="8" stroke="#303030" strokeWidth="2" />
+	</svg>
+)
+
+interface ResultsCardProps {
+	title: string
+	value?: string | number
+	percent?: number
+	period?: string | number
+	icon?: ReactNode
+	variant?: 'main' | 'admin'
+	mode?: 'value' | 'time'
+}
+
+export const ResultsCard = ({
+	percent,
+	period,
+	value = 99,
+	title = 'test',
+	icon = <DefaultIcon />,
+	variant = 'main',
+	mode = 'value',
+}: ResultsCardProps) => {
+	const hasPercent = percent !== undefined && percent !== null
+
+	let percentIcon: ReactNode = null
+	let percentClass = ''
+
+	if (hasPercent) {
+		if (percent > 0) {
+			percentIcon = <IncreaseIcon />
+			percentClass = 'increase'
+		} else if (percent < 0) {
+			percentIcon = <DecreaseIcon />
+			percentClass = 'decrease'
+		} else {
+			percentIcon = null
+			percentClass = 'default'
+		}
+	}
+
+	return (
+		<div className={cn('ResultsCard', variant)}>
+			<h6 className="ResultsCard__title">
+				{icon}
+				{title}
+			</h6>
+			<div className="ResultsCard__info">
+				<span className="ResultsCard__points">{formatDisplayValue(value, mode)}</span>
+
+				{hasPercent && (
+					<div className={cn('ResultsCard__percent', percentClass)}>
+						{percentIcon}
+						<span>{percent > 0 ? `+${percent}%` : `${percent}%`}</span>
+					</div>
+				)}
+			</div>
+
+			<div className="ResultsCard__summary">
+				{period && (
+					<>
+						<span className="ResultsCard__summary_value">{formatDisplayValue(value, mode)}</span>
+						<span className="ResultsCard__summary_period">в прошлые {period} дней</span>
+					</>
+				)}
+			</div>
+		</div>
+	)
+}

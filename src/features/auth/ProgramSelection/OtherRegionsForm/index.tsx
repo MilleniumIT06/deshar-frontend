@@ -15,7 +15,7 @@ import { classLevels, regions } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
-import { useSignUp } from '../../SignUp/useSignUp'
+import { useSignUp } from '../../SignUp/hooks/useSignUp'
 // import { type RegistrationCompleteData } from '../IngushetiaForm'
 
 const validateSchema = z.object({

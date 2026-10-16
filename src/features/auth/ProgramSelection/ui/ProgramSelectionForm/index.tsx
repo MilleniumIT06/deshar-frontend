@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 import { useAppDispatch } from '@/app/_store/hooks'
-import { prevStep } from '@/features/auth/signUp.slice'
+import { prevStep } from '@/features/auth/SignUp/model/signUp.slice'
 import { tabs } from '@/mocks/data'
 import { Button } from '@/shared/ui/Button'
 import { Tabs } from '@/shared/ui/Tabs'

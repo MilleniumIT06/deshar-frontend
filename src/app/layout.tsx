@@ -1,8 +1,10 @@
 import { Montserrat, Roboto, Unbounded } from 'next/font/google'
+import Script from 'next/script'
 
 import { Providers } from './_providers/providers'
 
 import type { Metadata } from 'next'
+
 import './globals.scss'
 
 const montserrat = Montserrat({
@@ -74,6 +76,17 @@ export default function RootLayout({
 		<html lang="ru">
 			<body className={`${roboto.variable} ${unbounded.variable} ${montserrat.variable}`}>
 				<Providers>{children}</Providers>
+				<Script id="register-sw">
+					{`
+						if ('serviceWorker' in navigator) {
+							window.addEventListener('load', function() {
+								navigator.serviceWorker.register('/sw.js')
+									.then(reg => console.log('SW registered!', reg))
+									.catch(err => console.error('SW registration failed:', err));
+							});
+						}
+					`}
+				</Script>
 			</body>
 		</html>
 	)

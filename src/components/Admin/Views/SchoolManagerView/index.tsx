@@ -1,11 +1,11 @@
 'use client'
 
 import { getSchoolBestStudentsColumns } from '@/columns/getSchoolBestStudentsColumns'
-import { ResultsCard } from '@/components/ResultsCard'
 import { useGetSchoolStatistic } from '@/hooks/admin/statistic/useGetSchoolStatistic'
 import { useGetAllSchoolStudents } from '@/hooks/admin/useGetAllSchoolStudents'
 import { barChartMockData } from '@/mocks/adminMock'
 import { Loader } from '@/shared/ui/Loader'
+import { ResultsCard } from '@/shared/ui/ResultsCard'
 import { MainChart } from '@/widgets/AdminWidgets/MainChart'
 
 import { ClassCardMain } from '../../ClassCardMain'

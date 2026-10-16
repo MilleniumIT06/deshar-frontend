@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
-import { resetForm } from '@/features/auth/signUp.slice'
+import { resetForm } from '@/features/auth/SignUp/model/signUp.slice'
 import { useGetCountries } from '@/hooks/queries/countries/useGetCountries'
 import { useGetDistricts } from '@/hooks/queries/districts/useGetDistricts'
 import { useGetSchools } from '@/hooks/queries/schools/useGetSchools'
@@ -17,7 +17,7 @@ import { useGetSchoolClasses } from '@/hooks/queries/useGetSchoolClasses'
 import { Button } from '@/shared/ui/Button'
 import { InputSelect } from '@/shared/ui/InputSelect'
 
-import { useSignUp } from '../../SignUp/useSignUp'
+import { useSignUp } from '../../SignUp/hooks/useSignUp'
 
 import type { UserType } from '@/shared/types/user.types'
 

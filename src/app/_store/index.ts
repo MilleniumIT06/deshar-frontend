@@ -10,7 +10,7 @@ import learningReducer from '@/entities/learning/model/slice'
 import learningStatusReducer from '@/entities/learning/model/status.slice'
 // import userReducer from '@/entities/user/model/user.slice'
 import settingsSlice from '@/entities/settings/model/settings.slice'
-import signUpFormReducer from '@/features/auth/signUp.slice'
+import signUpFormReducer from '@/features/auth/SignUp/model/signUp.slice'
 
 export const store = configureStore({
 	reducer: {
