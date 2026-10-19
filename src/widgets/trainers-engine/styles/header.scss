@@ -1,3 +1,5 @@
+@use './../../../shared/scss/breakpoint' as breakpoint;
+
 .engine-header {
 	display: flex;
 	justify-content: space-between;
@@ -17,6 +19,9 @@
 		text-transform: uppercase;
 		text-align: center;
 		color: var(--text-color);
+		@include breakpoint.mobile {
+			display: none;
+		}
 	}
 
 	&__progress {
@@ -26,10 +31,17 @@
 		// max-width: 600px;
 		margin: 0 20px;
 		margin-right: 75px;
+		@include breakpoint.mobile {
+			margin-right: 20px;
+		}
 	}
 
 	&__actions {
 		display: flex;
 		align-items: center;
+	}
+
+	@include breakpoint.mobile {
+		padding: 15px 15px 0;
 	}
 }

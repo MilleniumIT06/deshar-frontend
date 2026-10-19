@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic'
 
 import { Continue } from '@/components/Continue'
-import { Successes } from '@/components/Successes'
+import { Successes } from '@/widgets/Successes'
 
-const OtherSubjects = dynamic(() => import('@/components/OtherSubjects').then(mod => mod.OtherSubjects), {
+const OtherSubjects = dynamic(() => import('@/widgets/OtherSubjects').then(mod => mod.OtherSubjects), {
 	loading: () => <div>Загрузка...</div>,
 })
 const TopClassmates = dynamic(() => import('@/components/TopClassmates').then(mod => mod.TopClassmates), {

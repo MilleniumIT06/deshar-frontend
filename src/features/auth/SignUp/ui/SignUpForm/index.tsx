@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 
 import { useAppDispatch } from '@/app/_store/hooks'
-import { nextStep, updateFormData } from '@/features/auth/signUp.slice'
+import { nextStep, updateFormData } from '@/features/auth/SignUp/model/signUp.slice'
 import { Button } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 

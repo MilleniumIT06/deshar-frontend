@@ -4,10 +4,10 @@ import { useParams } from 'next/navigation'
 import { getSchoolTopStudents } from '@/columns/ministry/getSchoolTopStudents'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
 import { Table } from '@/components/Admin/Table'
-import { ResultsCard } from '@/components/ResultsCard'
 import { useGetSchoolById } from '@/hooks/admin/ministry/useGetSchools'
 import './../../../styles.scss'
 import { Loader } from '@/shared/ui/Loader'
+import { ResultsCard } from '@/shared/ui/ResultsCard'
 
 import type { UniqueDistrictTopStudent } from '@/services/types/ministy.types'
 

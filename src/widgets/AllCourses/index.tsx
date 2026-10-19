@@ -1,7 +1,8 @@
-import { SubjectCard } from '@/components/SubjectCard'
+import { SubjectCard } from '@/entities/subject-card'
 import { coursesB } from '@/mocks/data'
 
 import { CoursesBlock } from './CoursesBlock'
+
 import './styles.scss'
 
 export const AllCourses = () => {
@@ -25,19 +26,6 @@ export const AllCourses = () => {
 							/>
 						))}
 					</CoursesBlock>
-					{/* <CoursesBlock title="5-9 класс">
-						{coursesB.map(item => (
-							<SubjectCard
-								key={`${item.id}key`}
-								modulesCount={item.modulesCount}
-								title={item.title}
-								description={item.description}
-								id={item.id}
-								type="long"
-								className="AllCourses__card"
-							/>
-						))}
-					</CoursesBlock> */}
 				</div>
 			</div>
 		</section>

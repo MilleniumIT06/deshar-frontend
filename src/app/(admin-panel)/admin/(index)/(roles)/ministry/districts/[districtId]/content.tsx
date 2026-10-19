@@ -5,9 +5,10 @@ import { getTopSchoolsColumns } from '@/columns/ministry/getTopSchoolsColumns'
 import { getTopStudentsColumns } from '@/columns/ministry/getTopStudentsColumns'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
 import { Table } from '@/components/Admin/Table'
-import { ResultsCard } from '@/components/ResultsCard'
 import { useGetDistrictById } from '@/hooks/admin/ministry/useGetDistricts'
 import { Loader } from '@/shared/ui/Loader'
+import { ResultsCard } from '@/shared/ui/ResultsCard'
+
 import './styles.scss'
 
 import type { UniqueDistrictTopSchool, UniqueDistrictTopStudent } from '@/services/types/ministy.types'

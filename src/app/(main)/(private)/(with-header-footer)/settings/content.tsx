@@ -3,6 +3,7 @@
 import { type RootState } from '@/app/_store'
 import { useAppDispatch, useAppSelector } from '@/app/_store/hooks'
 import { toggleSoundEnabled } from '@/entities/settings/model/settings.slice'
+import { PWAInstallButton } from '@/features/install-pwa'
 import { Toggle } from '@/shared/ui/Toggle'
 
 export const SettingsPageContent = () => {
@@ -17,6 +18,7 @@ export const SettingsPageContent = () => {
 						<div className="SettingsPageContent__form">
 							<Toggle label="Звук в тренажере" checked={isSoundEnabled} onChange={() => dispatch(toggleSoundEnabled())} />
 						</div>
+						<PWAInstallButton />
 					</div>
 				</div>
 			</div>

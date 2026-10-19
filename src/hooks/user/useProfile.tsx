@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import Cookies from 'js-cookie'
 
+import { getTokenFromCookie } from '@/services/auth/auth-token.service'
 import { userService } from '@/services/user.service'
 
 export function useProfile() {
-	const isTokenExist = Boolean(Cookies.get('jwt_token'))
+	const isTokenExist = Boolean(getTokenFromCookie())
 
 	const {
 		data: profileData,

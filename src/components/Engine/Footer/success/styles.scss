@@ -1,3 +1,5 @@
+@use './../../../../shared/scss/breakpoint' as breakpoint;
+
 .success-footer {
 	width: 100%;
 	height: 115px; // h-28.75
@@ -26,6 +28,12 @@
 
 	&__status-icon {
 		display: block;
+		width: 80px;
+		height: 80px;
+		@include breakpoint.mobile {
+			width: 40px;
+			height: 40px;
+		}
 	}
 
 	&__title {
@@ -34,6 +42,9 @@
 		font-size: 30px;
 		line-height: 1.4;
 		color: var(--primary-medium);
+		@include breakpoint.mobile {
+			font-size: 21px;
+		}
 	}
 
 	&__actions {
@@ -49,5 +60,8 @@
 
 	&__btn-icon {
 		flex-shrink: 0;
+	}
+	@include breakpoint.mobile {
+		height: 80px;
 	}
 }

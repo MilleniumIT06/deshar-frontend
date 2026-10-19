@@ -1,3 +1,4 @@
+@use './../../../shared/scss/breakpoint' as breakpoint;
 .finish-button {
 	display: flex;
 	align-items: center;
@@ -33,5 +34,15 @@
 		display: block;
 		width: 19px;
 		height: 19px;
+		@include breakpoint.mobile {
+			width: 15px;
+			height: 15px;
+		}
+	}
+	@include breakpoint.mobile {
+		border-radius: 100%;
+		width: auto;
+		height: auto;
+		padding: 10px;
 	}
 }

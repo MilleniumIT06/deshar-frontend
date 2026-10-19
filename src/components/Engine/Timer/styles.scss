@@ -1,3 +1,4 @@
+@use './../../../shared/scss/breakpoint' as breakpoint;
 .timer {
 	width: 240px; // w-60
 	height: 83px; // h-20.75
@@ -12,12 +13,18 @@
 		justify-content: center;
 		gap: 22.5px;
 		height: 100%;
+		@include breakpoint.mobile {
+			gap: 0;
+		}
 	}
 
 	&__icon-wrapper {
 		flex-shrink: 0;
 		display: flex;
 		align-items: center;
+		@include breakpoint.mobile {
+			display: none;
+		}
 	}
 
 	&__icon {
@@ -36,12 +43,18 @@
 		font-size: 48px;
 		line-height: 0.88;
 		color: var(--primary-medium); // по умолчанию зеленый
+		@include breakpoint.mobile {
+			font-size: 36px;
+		}
 	}
 
 	&__label {
 		font-weight: 600;
 		font-size: 13px;
 		color: var(--color-text);
+		@include breakpoint.mobile {
+			font-size: 9px;
+		}
 	}
 
 	// Модификатор критического времени
@@ -52,5 +65,10 @@
 
 		// Если нужно, чтобы иконка тоже краснела:
 		// color: #ff4347;
+	}
+	@include breakpoint.mobile {
+		width: 140px; // w-60
+		height: 63px; // h-20.75
+		padding: 5px;
 	}
 }

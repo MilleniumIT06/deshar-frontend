@@ -5,10 +5,10 @@ import { useParams } from 'next/navigation'
 import { getSchoolTopStudents } from '@/columns/department/getSchoolTopStudents'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
 import { Table } from '@/components/Admin/Table'
-import { ResultsCard } from '@/components/ResultsCard'
 import { useGetSchoolById } from '@/hooks/admin/department/useGetSchools'
 import './../../../styles.scss'
 import { Loader } from '@/shared/ui/Loader'
+import { ResultsCard } from '@/shared/ui/ResultsCard'
 
 import type { DepartmentTopStudentType } from '@/services/types/department.types'
 

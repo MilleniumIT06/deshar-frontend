@@ -1,7 +1,7 @@
 'use client'
-import { ResultsCard } from '@/components/ResultsCard'
 import { useGetDistrictStats } from '@/hooks/admin/department/useGetDistrictStats'
 import { Loader } from '@/shared/ui/Loader'
+import { ResultsCard } from '@/shared/ui/ResultsCard'
 
 import { ClassCardMain } from '../../ClassCardMain'
 import { StatisticsBlock } from '../../StatisticsBlock'

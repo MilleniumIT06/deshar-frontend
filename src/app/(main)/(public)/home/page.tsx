@@ -1,14 +1,14 @@
 import dynamic from 'next/dynamic'
 
-import { Hero } from '@/components/Hero'
 import { Info } from '@/components/Info'
-import { Learn } from '@/components/Learn'
+import { Hero } from '@/widgets/Hero/ui/Hero'
+import { Learn } from '@/widgets/Learn'
 
-const Reviews = dynamic(() => import('@/components/Reviews').then(mod => mod.Reviews), {
+const Reviews = dynamic(() => import('@/widgets/Reviews').then(mod => mod.Reviews), {
 	// ssr: false,
 	loading: () => <div>Загрузка...</div>,
 })
-const Subscription = dynamic(() => import('@/components/Subcription').then(mod => mod.Subscription), {
+const Subscription = dynamic(() => import('@/widgets/Subscription').then(mod => mod.Subscription), {
 	// ssr: false,
 	loading: () => <div>Загрузка...</div>,
 })

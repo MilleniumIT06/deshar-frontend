@@ -1,6 +1,8 @@
-import { ProfileForm } from '@/features/profile/ProfileForm'
+'use client'
+import dynamic from 'next/dynamic'
 import './content.scss'
 
+const ProfileForm = dynamic(() => import('@/features/profile/ProfileForm').then(mod => mod.ProfileForm), { ssr: false })
 export const ProfilePageContent = () => {
 	return (
 		<section className="ProfilePageContent">

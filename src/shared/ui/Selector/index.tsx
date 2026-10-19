@@ -81,26 +81,28 @@ export const Selector = ({
 			aria-expanded={isOpen}
 			aria-haspopup="listbox"
 			aria-controls={listboxId}>
-			<div className="Selector__header">
+			<button
+				type="button"
+				className={cn('btn-reset', 'Selector__header')}
+				onClick={() => setIsOpen(!isOpen)}
+				role="combobox"
+				aria-expanded={isOpen}
+				aria-haspopup="listbox"
+				aria-controls={listboxId}
+				aria-label={isOpen ? 'Закрыть список' : 'Открыть список'}>
 				<span title={getCurrentLabel()}>{getCurrentLabel()}</span>
-				<button
-					type="button"
-					className={cn('btn-reset', 'Selector__btn')}
-					onClick={() => setIsOpen(!isOpen)}
-					aria-label={isOpen ? 'Закрыть список' : 'Открыть список'}>
-					<m.svg
-						width="14"
-						height="9"
-						viewBox="0 0 14 9"
-						fill="none"
-						variants={arrowVariants}
-						initial="closed"
-						animate={isOpen ? 'open' : 'closed'}
-						transition={{ duration: 0.2 }}>
-						<path d="M13 1L7 7L1 0.999999" stroke="#303030" strokeWidth="1.5" />
-					</m.svg>
-				</button>
-			</div>
+				<m.svg
+					width="14"
+					height="9"
+					viewBox="0 0 14 9"
+					fill="none"
+					variants={arrowVariants}
+					initial="closed"
+					animate={isOpen ? 'open' : 'closed'}
+					transition={{ duration: 0.2 }}>
+					<path d="M13 1L7 7L1 0.999999" stroke="#303030" strokeWidth="1.5" />
+				</m.svg>
+			</button>
 
 			<AnimatePresence>
 				{isOpen && (
