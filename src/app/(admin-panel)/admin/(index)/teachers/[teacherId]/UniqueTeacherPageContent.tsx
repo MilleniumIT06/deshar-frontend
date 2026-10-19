@@ -3,8 +3,8 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { getUniqueTeacherColumns } from '@/columns/getUniqueTeacherColumns'
 import { Table } from '@/components/Admin/Table'
+import { getUniqueTeacherColumns } from '@/entities/columns/getUniqueTeacherColumns'
 import { mockTeacherStudentsList } from '@/mocks/adminMock'
 import { type UniqueTeacherStudentItem } from '@/shared/types/admin/types'
 import { Card } from '@/widgets/AdminWidgets/Card'

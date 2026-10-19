@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 // import { getBestStudentsColumns } from '@/columns/getBestStudentsColumns'
 // import { getBestStudentsFlowColumns } from '@/columns/getBestStudentsFlowColumn'
-import { getUniqueClassStudentsColumns } from '@/columns/getUniqueClassStudents'
+import { getUniqueClassStudentsColumns } from '@/entities/columns/getUniqueClassStudents'
 import { Table } from '@/components/Admin/Table'
 import { useGetUniqueClassStatistic } from '@/hooks/admin/useGetUniqueClassStatistic'
 // import { TEST_CLASSMATES } from '@/mocks/data'

@@ -1,7 +1,7 @@
 'use client'
 import { useParams } from 'next/navigation'
 
-import { getSchoolTopStudents } from '@/columns/ministry/getSchoolTopStudents'
+import { getSchoolTopStudents } from '@/entities/columns/ministry/getSchoolTopStudents'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
 import { Table } from '@/components/Admin/Table'
 import { useGetSchoolById } from '@/hooks/admin/ministry/useGetSchools'

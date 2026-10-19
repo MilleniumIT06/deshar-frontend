@@ -1,8 +1,7 @@
 import { type Metadata } from 'next'
 
-import { SignUpPageContent } from '@/features/auth/SignUp/ui/SignUpPageContent/index'
-
 import '../styles.scss'
+import { SignUpPageContent } from '@/views'
 
 export const metadata: Metadata = {
 	title: 'Регистрация',

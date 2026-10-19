@@ -4,7 +4,7 @@ import { useReactTable, getCoreRowModel, flexRender, type SortingState, getSorte
 import { useMemo, useState } from 'react'
 
 import './styles.scss'
-import { getStudentTableColumns } from '@/columns/getStudentTableColumns'
+import { getStudentTableColumns } from '@/entities/columns/getStudentTableColumns'
 import { type AttestationStatus } from '@/shared/types/admin/types'
 
 import { StudentTableItem } from '../StudentTableItem'

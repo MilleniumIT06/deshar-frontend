@@ -1,4 +1,4 @@
-import { SettingsPageContent } from './content'
+import { SettingsPageContent } from '@/views'
 
 export default function Settings() {
 	return (

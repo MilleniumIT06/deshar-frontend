@@ -1,4 +1,4 @@
-import { ProfilePageContent } from './content'
+import { ProfilePageContent } from '@/views'
 
 export default function Profile() {
 	return (

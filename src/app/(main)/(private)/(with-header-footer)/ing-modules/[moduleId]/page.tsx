@@ -1,9 +1,9 @@
-import { ModuleContent } from './content'
+import { IngUniqueModuleContent } from '@/views'
 
-export default function IngModuleContent() {
+export default function IngModulePage() {
 	return (
 		<main className="mRelative">
-			<ModuleContent />
+			<IngUniqueModuleContent />
 		</main>
 	)
 }

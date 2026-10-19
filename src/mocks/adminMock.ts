@@ -5,7 +5,7 @@
 // import type { DepartamentItem, SchoolDepItem } from '../types/types'
 import { type StudentTableItemType } from '@/components/Admin/StudentTable'
 
-import type { AttestationsTableItemType } from '@/columns/getAttestationsColumns'
+import type { AttestationsTableItemType } from '@/entities/columns/getAttestationsColumns'
 import type { TeacherItem, DepartamentItem, SchoolDepItem } from '@/shared/types/admin/types'
 
 export const TEST_CLASSMATES = [

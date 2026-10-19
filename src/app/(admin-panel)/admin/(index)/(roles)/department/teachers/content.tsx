@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
-import { getDepartmentAllStudentsColumns } from '@/columns/department/getDepartmentAllStudentsColumns'
+import { getDepartmentAllStudentsColumns } from '@/entities/columns/department/getDepartmentAllStudentsColumns'
 import { Table } from '@/components/Admin/Table'
 import { useGetDepartmentTeachers } from '@/hooks/admin/department/useGetTeachers'
 import { Loader } from '@/shared/ui/Loader'

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
-import { getSchoolAllStudents } from '@/columns/getSchoolAllStudents'
+import { getSchoolAllStudents } from '@/entities/columns/getSchoolAllStudents'
 import { Table } from '@/components/Admin/Table'
 import { useExportSchoolData } from '@/hooks/admin/useExportSchoolData'
 import { useGetAllSchoolStudents } from '@/hooks/admin/useGetAllSchoolStudents'

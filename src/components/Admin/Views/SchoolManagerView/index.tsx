@@ -1,6 +1,6 @@
 'use client'
 
-import { getSchoolBestStudentsColumns } from '@/columns/getSchoolBestStudentsColumns'
+import { getSchoolBestStudentsColumns } from '@/entities/columns/getSchoolBestStudentsColumns'
 import { useGetSchoolStatistic } from '@/hooks/admin/statistic/useGetSchoolStatistic'
 import { useGetAllSchoolStudents } from '@/hooks/admin/useGetAllSchoolStudents'
 import { barChartMockData } from '@/mocks/adminMock'

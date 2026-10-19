@@ -1,8 +1,8 @@
 'use client'
 import { useParams } from 'next/navigation'
 
-import { getTopSchoolsColumns } from '@/columns/ministry/getTopSchoolsColumns'
-import { getTopStudentsColumns } from '@/columns/ministry/getTopStudentsColumns'
+import { getTopSchoolsColumns } from '@/entities/columns/ministry/getTopSchoolsColumns'
+import { getTopStudentsColumns } from '@/entities/columns/ministry/getTopStudentsColumns'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
 import { Table } from '@/components/Admin/Table'
 import { useGetDistrictById } from '@/hooks/admin/ministry/useGetDistricts'

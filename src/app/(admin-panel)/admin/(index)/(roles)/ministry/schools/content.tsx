@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 
-import { getSchoolsColumns } from '@/columns/ministry/getSchoolsColumns'
+import { getSchoolsColumns } from '@/entities/columns/ministry/getSchoolsColumns'
 import { Table } from '@/components/Admin/Table'
 import { useGetSchools } from '@/hooks/admin/ministry/useGetSchools'
 import { Loader } from '@/shared/ui/Loader'

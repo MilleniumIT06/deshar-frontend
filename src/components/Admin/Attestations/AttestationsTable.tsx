@@ -2,7 +2,7 @@
 import { useReactTable, getCoreRowModel, flexRender, getSortedRowModel, type SortingState } from '@tanstack/react-table'
 import { useMemo, useState } from 'react'
 
-import { type AttestationsTableItemType, getAttestationsColumns } from '@/columns/getAttestationsColumns'
+import { type AttestationsTableItemType, getAttestationsColumns } from '@/entities/columns/getAttestationsColumns'
 
 import { StudentTableItem } from '../StudentTableItem'
 import './styles.scss'

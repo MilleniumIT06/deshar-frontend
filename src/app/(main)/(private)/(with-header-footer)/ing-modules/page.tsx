@@ -1,4 +1,4 @@
-import { IngModulesPageContent } from './IngModulesPageContent'
+import { IngModulesPageContent } from '@/views'
 
 export default function IngModulesPage() {
 	return (

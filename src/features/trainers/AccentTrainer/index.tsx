@@ -1,0 +1,60 @@
+import { forwardRef } from 'react'
+
+import { useLetterClickTrainer } from '@/features/trainers/model/hooks/useLetterClickTrainer'
+import { TrainerTitle } from '@/shared/ui/TrainerTitle'
+import { type TrainerCommonProps } from '@/widgets/trainers-engine/types/types'
+
+import { AccentLetter } from './item'
+
+import './styles.scss'
+
+interface IVariant {
+	id: number | string
+	letter: string
+}
+
+interface AccentTrainerProps extends TrainerCommonProps {
+	payload: {
+		variants: IVariant[]
+		correct_variant_ids: (number | string)[]
+	}
+}
+export const AccentTrainer = forwardRef(
+	({ payload, title, subTitle, onSuccess, onError, changeStatus, currentTrainerIndex, audio, isAlreadyCompleted }: AccentTrainerProps, ref) => {
+		const { selectedIds, handleSelect } = useLetterClickTrainer({
+			ref,
+			correctIds: payload.correct_variant_ids,
+			onSuccess,
+			onError,
+			changeStatus,
+			isMulti: false,
+			isCompleted: isAlreadyCompleted,
+		})
+
+		const selectedId = selectedIds[0] || null
+
+		return (
+			<div className="accent-trainer">
+				<div className="accent-trainer__container">
+					<span className="trainer-number-title">Тренажер {currentTrainerIndex}</span>
+					<TrainerTitle audio={audio} title={title} className="accent-trainer__title" />
+
+					{subTitle && <h2 className="trainer__subtitle">{subTitle}</h2>}
+
+					<div className="accent-trainer__letters">
+						{payload.variants.map(variant => (
+							<AccentLetter
+								key={variant.id}
+								letter={variant.letter}
+								checked={selectedId === variant.id}
+								onClick={() => handleSelect(variant.id)}
+							/>
+						))}
+					</div>
+				</div>
+			</div>
+		)
+	},
+)
+
+AccentTrainer.displayName = 'AccentTrainer'
