@@ -1,8 +1,8 @@
 import './styles.scss'
 import { forwardRef } from 'react'
 
-import { API_URL } from '@/shared/api'
 import { useQuizLogic } from '@/features/trainers/model/hooks/useQuiz'
+import { API_URL } from '@/shared/api'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { SingleSelectImageQuizVariant } from './variant'

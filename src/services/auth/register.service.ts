@@ -1,6 +1,6 @@
+import { type RegistrationCompleteData } from '@/features/auth/ProgramSelection/IngushetiaForm'
 import { API_URL } from '@/shared/api'
 import { axiosClassic } from '@/shared/api/api.helper'
-import { type RegistrationCompleteData } from '@/features/auth/ProgramSelection/IngushetiaForm'
 
 class RegisterService {
 	async register(data: RegistrationCompleteData) {

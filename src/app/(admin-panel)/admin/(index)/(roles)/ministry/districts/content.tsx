@@ -1,8 +1,8 @@
 'use client'
 import { useRouter } from 'next/navigation'
 
-import { getDistrictsColumns } from '@/entities/columns/ministry/getDistrictsColumns'
 import { Table } from '@/components/Admin/Table'
+import { getDistrictsColumns } from '@/entities/columns/ministry/getDistrictsColumns'
 import { useGetDistricts } from '@/hooks/admin/ministry/useGetDistricts'
 import { Loader } from '@/shared/ui/Loader'
 import { Card } from '@/widgets/AdminWidgets/Card'

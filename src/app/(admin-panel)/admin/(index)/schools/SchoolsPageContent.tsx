@@ -2,8 +2,8 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { getColumnsSchool } from '@/entities/columns/getColumnsSchool'
 import { Table } from '@/components/Admin/Table'
+import { getColumnsSchool } from '@/entities/columns/getColumnsSchool'
 import { SchoolsMockData } from '@/mocks/adminMock'
 import useRole from '@/shared/hooks/admin/useRole'
 import { type SchoolDepItem, type SchoolItem } from '@/shared/types/admin/types'

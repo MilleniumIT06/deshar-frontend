@@ -5,9 +5,9 @@ import { DndContext } from '@dnd-kit/core'
 import { useImperativeHandle, forwardRef } from 'react'
 import './styles.scss'
 
-import { API_URL } from '@/shared/api'
 import { useTrainerCheck } from '@/features/trainers/model/hooks/useTrainerCheck'
 import { useWordTrainer } from '@/features/trainers/model/hooks/useWordTrainer'
+import { API_URL } from '@/shared/api'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 
 import { DropInput } from './DropInput'

@@ -2,9 +2,9 @@
 'use client'
 import { useParams } from 'next/navigation'
 
-import { getSchoolTopStudents } from '@/entities/columns/department/getSchoolTopStudents'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
 import { Table } from '@/components/Admin/Table'
+import { getSchoolTopStudents } from '@/entities/columns/department/getSchoolTopStudents'
 import { useGetSchoolById } from '@/hooks/admin/department/useGetSchools'
 import './../../../styles.scss'
 import { Loader } from '@/shared/ui/Loader'

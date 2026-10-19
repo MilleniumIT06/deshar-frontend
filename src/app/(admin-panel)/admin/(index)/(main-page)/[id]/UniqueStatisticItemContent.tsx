@@ -1,9 +1,9 @@
 'use client'
 import dynamic from 'next/dynamic'
 
-import { getBestStudentsColumns } from '@/entities/columns/getBestStudentsColumns'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
 import { Table } from '@/components/Admin/Table'
+import { getBestStudentsColumns } from '@/entities/columns/getBestStudentsColumns'
 import { barChartMockData } from '@/mocks/adminMock'
 import { TEST_CLASSMATES } from '@/mocks/data'
 import { type Student } from '@/shared/types/admin/types'

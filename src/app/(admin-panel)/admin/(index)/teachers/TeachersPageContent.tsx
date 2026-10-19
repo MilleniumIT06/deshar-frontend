@@ -2,8 +2,8 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { getTeacherColumns } from '@/entities/columns/getTeacherColumns'
 import { Table } from '@/components/Admin/Table'
+import { getTeacherColumns } from '@/entities/columns/getTeacherColumns'
 import { useGetSchoolTeachers } from '@/hooks/admin/useGetSchoolTeachers'
 import { Loader } from '@/shared/ui/Loader'
 import { Card } from '@/widgets/AdminWidgets/Card'

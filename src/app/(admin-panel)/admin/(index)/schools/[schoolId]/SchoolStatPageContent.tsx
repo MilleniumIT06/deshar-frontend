@@ -3,8 +3,8 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { getSchoolStatisticColumns } from '@/entities/columns/getSchoolStatisticColumns'
 import { Table } from '@/components/Admin/Table'
+import { getSchoolStatisticColumns } from '@/entities/columns/getSchoolStatisticColumns'
 import { SchoolStatMockData } from '@/mocks/adminMock'
 import { type SchoolStatItem } from '@/shared/types/admin/types'
 import { Card } from '@/widgets/AdminWidgets/Card'

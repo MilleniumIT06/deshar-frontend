@@ -1,10 +1,10 @@
 'use client'
 import { useParams } from 'next/navigation'
 
-import { getTopSchoolsColumns } from '@/entities/columns/ministry/getTopSchoolsColumns'
-import { getTopStudentsColumns } from '@/entities/columns/ministry/getTopStudentsColumns'
 import { ClassCardMain } from '@/components/Admin/ClassCardMain'
 import { Table } from '@/components/Admin/Table'
+import { getTopSchoolsColumns } from '@/entities/columns/ministry/getTopSchoolsColumns'
+import { getTopStudentsColumns } from '@/entities/columns/ministry/getTopStudentsColumns'
 import { useGetDistrictById } from '@/hooks/admin/ministry/useGetDistricts'
 import { Loader } from '@/shared/ui/Loader'
 import { ResultsCard } from '@/shared/ui/ResultsCard'
