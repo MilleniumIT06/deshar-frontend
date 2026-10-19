@@ -5,12 +5,12 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import FullScreenMenu from '@/components/FullScreenMenu'
-import { UserMenu } from '@/components/UserMenu'
 import { useProfile } from '@/hooks/user/useProfile'
 import { useOutsideClick } from '@/shared/hooks/useOutsideClick'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Button } from '@/shared/ui/Button'
 import { Logo } from '@/shared/ui/Logo'
+import { UserMenu } from '@/widgets/UserMenu'
 import './styles.scss'
 
 export const Header = () => {

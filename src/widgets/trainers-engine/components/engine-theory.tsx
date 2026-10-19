@@ -3,7 +3,7 @@
 import DOMPurify from 'dompurify'
 import { useEffect, useState } from 'react'
 
-import { API_URL } from '@/config/api.config'
+import { API_URL } from '@/shared/api'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 import './../styles/styles.scss'
 

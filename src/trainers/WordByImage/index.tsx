@@ -5,7 +5,7 @@ import { DndContext } from '@dnd-kit/core'
 import { useImperativeHandle, forwardRef } from 'react'
 import './styles.scss'
 
-import { API_URL } from '@/config/api.config'
+import { API_URL } from '@/shared/api'
 import { useTrainerCheck } from '@/hooks/trainers/useTrainerCheck'
 import { useWordTrainer } from '@/hooks/trainers/useWordTrainer'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'

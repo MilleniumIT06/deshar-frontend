@@ -4,13 +4,13 @@ import { LessonProgressCard } from '@/entities/course/LessonProgressCard'
 
 import './styles.scss'
 
-export const Continue = () => {
+export const ContinueLearning = () => {
 	return (
-		<section className="Continue">
+		<section className="ContinueLearning">
 			<div className="container">
-				<div className="Continue__inner">
+				<div className="ContinueLearning__inner">
 					<h2 className="section__title">Продолжим обучение</h2>
-					<div className="Continue__subjects">
+					<div className="ContinueLearning__subjects">
 						<LessonProgressCard
 							countOfFinishedModules={7}
 							countOfLeftModules={11}
@@ -19,8 +19,8 @@ export const Continue = () => {
 							title="Ингушский язык"
 						/>
 					</div>
-					<div className="Continue__footer">
-						<Link href="/completed-courses" className="Continue__link">
+					<div className="ContinueLearning__footer">
+						<Link href="/completed-courses" className="ContinueLearning__link">
 							Открыть выполненые дисциплины
 						</Link>
 					</div>

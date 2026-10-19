@@ -1,7 +1,7 @@
 import './styles.scss'
 import { forwardRef } from 'react'
 
-import { API_URL } from '@/config/api.config'
+import { API_URL } from '@/shared/api'
 import { useQuizLogic } from '@/hooks/trainers/useQuiz'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'
 

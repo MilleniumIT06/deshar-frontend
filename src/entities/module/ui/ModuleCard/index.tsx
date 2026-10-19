@@ -34,7 +34,6 @@ export const ModuleCard = ({
 	name = 'Модуль',
 	isDisabled = false,
 	progressPercentage,
-	status,
 	isFullCardClickable = false,
 	fon,
 }: ModuleCardProps) => {
@@ -45,7 +44,6 @@ export const ModuleCard = ({
 		if (progressPercentage > 0) return 'in_progress'
 		return 'error'
 	}
-	console.log(status)
 	const targetUrl = `${linkHref}/${id}`
 
 	const CardContent = (

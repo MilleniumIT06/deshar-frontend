@@ -1,6 +1,6 @@
 import axios, { type CreateAxiosDefaults, type AxiosInstance, type InternalAxiosRequestConfig } from 'axios'
 
-import { SERVER_URL } from '@/config/api.config'
+import { SERVER_URL } from './api.config'
 
 const options: CreateAxiosDefaults = {
 	baseURL: SERVER_URL,

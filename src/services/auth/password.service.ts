@@ -1,5 +1,5 @@
-// import { API_URL } from '@/config/api.config'
-import { axiosClassic } from '@/config/api.helper'
+// import { API_URL } from '@/shared/api'
+import { axiosClassic } from '@/shared/api/api.helper'
 
 import type { ForgotPasswordRequest } from '@/features/auth/ForgotPassword/model/ForgotPassword.request'
 

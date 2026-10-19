@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 
-import { Info } from '@/components/Info'
 import { Hero } from '@/widgets/Hero/ui/Hero'
+import { Info } from '@/widgets/Info'
 import { Learn } from '@/widgets/Learn'
 
 const Reviews = dynamic(() => import('@/widgets/Reviews').then(mod => mod.Reviews), {
@@ -12,7 +12,7 @@ const Subscription = dynamic(() => import('@/widgets/Subscription').then(mod => 
 	// ssr: false,
 	loading: () => <div>Загрузка...</div>,
 })
-const Question = dynamic(() => import('@/components/Question').then(mod => mod.Question), {
+const Question = dynamic(() => import('@/widgets/Question').then(mod => mod.Question), {
 	// ssr: false,
 	loading: () => <div>Загрузка...</div>,
 })

@@ -1,5 +1,4 @@
-import { API_URL } from '@/config/api.config'
-import { axiosClassic } from '@/config/api.helper'
+import { API_URL, axiosClassic } from '@/shared/api'
 
 class RolesService {
 	async getAllRoles() {

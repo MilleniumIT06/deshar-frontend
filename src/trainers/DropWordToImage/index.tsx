@@ -2,7 +2,7 @@
 import { DndContext } from '@dnd-kit/core'
 import { forwardRef } from 'react'
 
-import { API_URL } from '@/config/api.config'
+import { API_URL } from '@/shared/api'
 import { useDndTrainer } from '@/hooks/trainers/useDndTrainer'
 import './styles.scss'
 import { TrainerTitle } from '@/shared/ui/TrainerTitle'

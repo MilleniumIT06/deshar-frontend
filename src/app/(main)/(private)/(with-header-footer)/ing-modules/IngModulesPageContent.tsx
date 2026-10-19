@@ -1,6 +1,5 @@
 'use client'
-
-import { ModuleCard } from '@/components/ModulesContent/ModuleCard'
+import { ModuleCard } from '@/entities/module/ui/ModuleCard'
 import { useGetModules } from '@/hooks/queries/education/modules/useGetModules'
 import './styles.scss'
 import { Loader } from '@/shared/ui/Loader'

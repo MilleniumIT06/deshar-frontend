@@ -1,4 +1,4 @@
-import { type StudentData } from '@/components/TopClassmates'
+import { type StudentData } from '@/widgets/TopClassmates/model/types'
 import { type TrainerType } from '@/widgets/trainers-engine/trainersMap'
 
 export const areas = [

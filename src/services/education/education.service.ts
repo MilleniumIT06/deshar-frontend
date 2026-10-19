@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { API_URL } from '@/config/api.config'
-import { axiosWithAuth } from '@/config/api.helper'
+import { API_URL } from '@/shared/api'
+import { axiosWithAuth } from '@/shared/api/api.helper'
 import { type Id } from '@/shared/types/types'
 import { type LessonListItem, type UniqueTask } from '@/widgets/trainers-engine/types/types'
 

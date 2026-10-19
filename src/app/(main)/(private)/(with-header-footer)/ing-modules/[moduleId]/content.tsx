@@ -1,7 +1,7 @@
 'use client'
 import { useParams } from 'next/navigation'
 
-import { ModuleCard } from '@/components/ModulesContent/ModuleCard'
+import { ModuleCard } from '@/entities/module/ui/ModuleCard'
 import { useGetModuleById } from '@/hooks/queries/education/modules/useGetModuleById'
 import './../styles.scss'
 import { Loader } from '@/shared/ui/Loader'

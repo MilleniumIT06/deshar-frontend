@@ -1,4 +1,4 @@
-import { type StudentData } from '..'
+import { type StudentData } from '../../model/types'
 import { TableItem } from '../TableItem'
 
 import './styles.scss'

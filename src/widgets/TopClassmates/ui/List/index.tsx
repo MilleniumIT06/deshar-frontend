@@ -1,5 +1,5 @@
-import { TopClassmatesListItem } from '../ListItem'
 import './styles.scss'
+import { TopClassmatesListItem } from '../ListItem'
 import { type TableData } from '../Table'
 
 interface IList {

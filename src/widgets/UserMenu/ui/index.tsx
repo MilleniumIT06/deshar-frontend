@@ -1,15 +1,11 @@
 import cn from 'classnames'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { toast } from 'sonner'
 
-import { useAppDispatch } from '@/app/_store/hooks'
-import { logoutAction } from '@/entities/user/model/user.slice'
-import { loginService } from '@/services/auth/login.service'
+import { LogoutButton } from '@/features/auth/LogoutButton'
 import { Avatar } from '@/shared/ui/Avatar'
-import { Button } from '@/shared/ui/Button'
 
 import type { UserProfileResponse } from '@/shared/types/user.types'
+
 import './styles.scss'
 
 export const UserMenu = ({
@@ -23,21 +19,6 @@ export const UserMenu = ({
 	extraClass?: string
 	listItems?: { itemHref: string; itemTitle: string }[]
 }) => {
-	const router = useRouter()
-	const dispatch = useAppDispatch()
-	const handleLogout = async () => {
-		try {
-			await loginService.logout()
-			dispatch(logoutAction())
-			handleMenuClose(false)
-			toast.success('Вы успешно вышли из аккаунта!', { style: { backgroundColor: 'var(--neutral-white)' } })
-			router.replace('/sign-in')
-		} catch (error) {
-			// eslint-disable-next-line no-console
-			console.error('Ошибка при логауте:', error)
-			toast.error('Ошибка при выходе из аккаунта!')
-		}
-	}
 	return (
 		<div className={cn('UserMenu', extraClass)}>
 			<div className="UserMenu__header">
@@ -57,9 +38,7 @@ export const UserMenu = ({
 						</Link>
 					))}
 				<div className="UserMenu__divider" />
-				<Button variant={'primary'} size="small" onClick={handleLogout} className="UserMenu__logout_btn">
-					Выйти
-				</Button>
+				<LogoutButton />
 			</div>
 		</div>
 	)

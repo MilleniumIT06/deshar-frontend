@@ -2,7 +2,7 @@ import cn from 'classnames'
 
 import { useAppSelector } from '@/app/_store/hooks'
 import { EngineButton } from '@/components/Engine/Button'
-import { API_URL } from '@/config/api.config'
+import { API_URL } from '@/shared/api'
 import { useIsAudioListened } from '@/shared/hooks/useIsAudioListened'
 
 import { EngineHeader } from '../components/engine-header'

@@ -1,12 +1,12 @@
 'use client'
 import { useState } from 'react'
 
-import { UserMenu } from '@/components/UserMenu'
 import { useProfile } from '@/hooks/user/useProfile'
 import useRole from '@/shared/hooks/admin/useRole'
 import { useOutsideClick } from '@/shared/hooks/useOutsideClick'
 import { Loader } from '@/shared/ui/Loader'
 import { Logo } from '@/shared/ui/Logo'
+import { UserMenu } from '@/widgets/UserMenu'
 
 import { Avatar } from '../../Avatar'
 import './styles.scss'

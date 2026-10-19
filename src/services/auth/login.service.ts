@@ -1,5 +1,5 @@
-import { API_URL } from '@/config/api.config'
-import { axiosClassic, axiosWithAuth } from '@/config/api.helper'
+import { API_URL } from '@/shared/api'
+import { axiosClassic, axiosWithAuth } from '@/shared/api/api.helper'
 import { type signInUserFormData } from '@/features/auth/SignIn/model/signIn.schema'
 
 import { removeTokenFromCookie } from './auth-token.service'
